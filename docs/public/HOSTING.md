@@ -26,9 +26,9 @@ UDP 443 используется Caddy для HTTP/3; при его блокир
 Caddy. Постоянные данные лежат в Docker volumes. Настройте резервные копии
 вне этого узла и автозапуск Docker после перезагрузки.
 
-Файлы: [compose.yaml](../../server/deploy/docker/compose.yaml),
-[Caddyfile](../../server/deploy/docker/Caddyfile),
-[справочник переменных](../../server/deploy/docker/.env.example).
+Файлы: [compose.yaml](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/compose.yaml),
+[Caddyfile](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/Caddyfile),
+[справочник переменных](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/.env.example).
 Старый `server/docker-compose.yml` остаётся отдельным вариантом для разработки
 с пересборкой исходников и записью писем в файлы.
 
@@ -284,7 +284,7 @@ git checkout --detach 8d2213f5bc24bd94a4eac6ee85f132ac3bd5600a
 ```
 
 При следующем обновлении меняйте digest и исходники chart согласованно.
-Справочник параметров: [values.yaml](../../server/helm/consolecrypt-server/values.yaml).
+Справочник параметров: [values.yaml](https://github.com/evsikovas/consolecrypt-server/blob/main/server/helm/consolecrypt-server/values.yaml).
 
 Образ можно предварительно проверить Docker-командами:
 
@@ -735,4 +735,4 @@ cc_kubectl exec deployment/consolecrypt -- \
 и не меняйте PostgreSQL 16 на другой major простой заменой тега. Смена major
 PostgreSQL требует отдельного плана переноса данных.
 
-Параметры запуска без Helm: [server/.env.example](../../server/.env.example).
+Параметры запуска без Helm: [server/.env.example](https://github.com/evsikovas/consolecrypt-server/blob/main/server/.env.example).
