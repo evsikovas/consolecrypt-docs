@@ -20,7 +20,7 @@ export const guideSections = [
       b('Для нескольких устройств выберите «Подключиться к серверу», проверьте HTTPS-адрес и войдите или создайте аккаунт. Подтвердите email, если сервер этого требует.', 'For multiple devices, choose “Connect to a server”, check its HTTPS address and sign in or create an account. Verify your email when required by the server.'),
       b('Переключайте профили в верхней части бокового меню. Дополнительные профили и включение синхронизации доступны в настройках; данные разных профилей не смешиваются.', 'Switch profiles at the top of the sidebar. Settings lets you add profiles or enable sync; data from different profiles stays separate.'),
     ],
-    note: b('Учётные записи принадлежат конкретному серверу. Веб-кабинет этого сайта обслуживает consolecrypt.evsikov.net; аккаунт с другого сервера здесь не появится автоматически.', 'Accounts belong to a particular server. This website’s account portal serves consolecrypt.evsikov.net; an account from another server does not appear here automatically.'),
+    note: b('Веб-кабинет обслуживает публичный сервер sync.consolecrypt.dev и сохраняет аккаунты consolecrypt.evsikov.net. Используйте прежние email и пароль. Адрес в существующем профиле менять не нужно; аккаунты других серверов не появляются здесь автоматически.', 'The account portal serves public sync.consolecrypt.dev and retains consolecrypt.evsikov.net accounts. Use your existing email and password. Keep the server address in existing profiles; accounts from other servers do not appear here automatically.'),
     image: shot('welcome', 'Первый запуск: локальная работа, подключение сервера и восстановление из копии.', 'First launch: local use, server connection and restoring a backup.'),
   },
   {
@@ -261,7 +261,7 @@ export const guideSections = [
       b('Найдите устройства коллеги по email. Коллега открывает «Код моего устройства»; сравните весь код через независимый канал и отметьте подтверждение.', 'Find your colleague’s devices by email. They open “My device verification code”; compare the whole code through an independent channel and confirm it.'),
       b('Оставьте «Чтение» для просмотра или явно выберите «Редактирование». Проверьте получателей и опубликуйте. Получатель сверяет код владельца в «Проверить и принять».', 'Keep “Read” for viewing, or explicitly choose “Edit”. Check recipients and publish. The recipient verifies the owner’s code in “Verify and accept”.'),
     ],
-    note: b('Доступность зависит от совместимого сервера, подтверждённой почты и доверия устройствам. На публичном consolecrypt.evsikov.net включены общий доступ, группы, секреты и подтверждённое добавление новых устройств коллеги. Каждый элемент публикуется только по явному действию его владельца.', 'Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public consolecrypt.evsikov.net. Each item is published only through an explicit action by its owner.'),
+    note: b('Доступность зависит от совместимого сервера, подтверждённой почты и доверия устройствам. На публичном sync.consolecrypt.dev включены общий доступ, группы, секреты и подтверждённое добавление новых устройств коллеги. Каждый элемент публикуется только по явному действию его владельца.', 'Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public sync.consolecrypt.dev. Each item is published only through an explicit action by its owner.'),
     images: [shot('sharing-recipient', 'Полный пример кода устройства для независимой проверки; не используйте демонстрационный код для реального доверия.', 'A complete example device code for independent verification; never use the demo code to establish real trust.'), shot('sharing-roles', 'Выбор прав: чтение или редактирование.', 'Selecting Reader or Editor access.')],
     image: shot('sharing-main', 'Совместный доступ: отдельная карточка устройств и синтетические элементы со скрытым секретом.', 'Sharing: a separate device card and synthetic items with a masked secret.'),
   },
@@ -370,13 +370,13 @@ export const guideSections = [
       b('Отмена диалога оставляет проверенную загрузку для повторной попытки. Для сохранения выберите новое имя: существующий файл не перезаписывается.', 'Cancelling the dialog keeps the verified download ready for retry. Choose a new filename when saving: an existing file is never overwritten.'),
     ],
     note: b('Если на macOS ConsoleCrypt не открывается после обновления через старое приложение, один раз скачайте актуальный DMG через браузер. Закройте ConsoleCrypt и замените его в Applications. Повторная загрузка через старую кнопку не устранит блокировку. Хранилище и связку ключей удалять не нужно. После первого запуска заменённой копии следующие обновления используют системный диалог «Сохранить и открыть».', 'If ConsoleCrypt cannot open on macOS after an update from the old app, download the latest DMG once through your browser. Quit ConsoleCrypt and replace it in Applications. Downloading again through the old button will not clear the block. Keep your vault and Keychain. After the replaced app starts, later updates use the system “Save and open” dialog.'),
-    links: [{ href: 'https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/UPDATES.md', text: b('Полная инструкция обновления клиента ↗', 'Full client update instructions ↗') }],
+    links: [{ href: 'https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/UPDATES.md', text: b('Полная инструкция обновления клиента ↗', 'Full client update instructions ↗') }],
   },
   {
     id: 'server-account', group: 'control', title: b('Личный кабинет', 'Website account'),
     intro: b('Веб-кабинет управляет аккаунтом публичного сервера. Работа с расшифрованными хостами, ключами и сниппетами остаётся в приложении.', 'The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.'),
     steps: [
-      b('Откройте «Личный кабинет» и используйте email и пароль аккаунта на consolecrypt.evsikov.net. Здесь можно подтвердить email, изменить пароль аккаунта и отозвать устройства.', 'Open “Account” and use your consolecrypt.evsikov.net email and account password. You can verify email, change the account password and revoke devices here.'),
+      b('Откройте «Личный кабинет» и используйте email и пароль нашего публичного сервера (включая существующие аккаунты consolecrypt.evsikov.net). Здесь можно подтвердить email, изменить пароль аккаунта и отозвать устройства.', 'Open “Account” and use your public-server email and account password, including existing consolecrypt.evsikov.net accounts. You can verify email, change the account password and revoke devices here.'),
       b('Для закрытого контура разверните совместимый сервер из отдельной серверной части репозитория. Инструкции Docker и Helm предназначены для администратора.', 'For a private environment, deploy a compatible server from the repository’s server component. Docker and Helm instructions are intended for administrators.'),
       b('В клиенте создайте профиль с HTTPS-адресом своего сервера. Зарегистрируйте аккаунт на нём; настройки почты, резервных копий сервера и доступности sharing задаёт администратор.', 'Create a client profile using your server’s HTTPS address. Register an account there; the administrator configures email, server backups and sharing availability.'),
     ],
@@ -398,7 +398,7 @@ export const guideSections = [
       {
         title: b('1. Исходники и Secret базы', '1. Source and database Secret'),
         caption: b('Пример для sh/bash/zsh. Файл database-url содержит строку подключения вашей базы; команда читает его, не выводя содержимое.', 'Example for sh/bash/zsh. The database-url file contains your database connection string; the command reads it without printing its contents.'),
-        code: 'git clone https://git.evsikov.net/publics/consolecrypt.git\ncd consolecrypt\ngit checkout --detach 8d2213f5bc24bd94a4eac6ee85f132ac3bd5600a\nkubectl --kubeconfig /private/path/kubeconfig.yaml create namespace consolecrypt\nkubectl --kubeconfig /private/path/kubeconfig.yaml -n consolecrypt create secret generic consolecrypt-database \\\n  --from-file=database-url=/private/path/database-url',
+        code: 'git clone https://github.com/evsikovas/consolecrypt-server.git\ncd consolecrypt-server\nkubectl --kubeconfig /private/path/kubeconfig.yaml create namespace consolecrypt\nkubectl --kubeconfig /private/path/kubeconfig.yaml -n consolecrypt create secret generic consolecrypt-database \\\n  --from-file=database-url=/private/path/database-url',
       },
       {
         title: b('2. Проверка и установка Helm chart', '2. Validate and install the Helm chart'),
@@ -411,7 +411,7 @@ export const guideSections = [
         code: 'curl --fail https://sync.example.com/readyz\ncurl --fail https://sync.example.com/v1/meta',
       },
     ],
-    links: [{ href: 'https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/HOSTING.md', text: b('Полная инструкция: Docker, Helm, HTTPS, почта и резервные копии ↗', 'Full instructions: Docker, Helm, HTTPS, email and backups ↗') }],
+    links: [{ href: 'https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md', text: b('Полная инструкция: Docker, Helm, HTTPS, почта и резервные копии ↗', 'Full instructions: Docker, Helm, HTTPS, email and backups ↗') }],
     note: b('Учётные записи разных серверов независимы. Сервер хранит зашифрованные данные и служебные метаданные, не расшифровывает хранилище и не участвует в SSH-соединениях. Не переносите действующие хранилища без резервной копии.', 'Accounts on different servers are independent. The server stores encrypted data and operational metadata, never decrypts your vault and never carries SSH connections. Back up existing vaults before moving them.'),
     image: shot('welcome', 'Подключение клиента: выберите сервер или начните работать локально.', 'Client connection: choose a server or start working locally.'),
     images: [shot('sync', 'Синхронизация: подключённый профиль, состояние и действия для проверки обмена данными.', 'Sync: the connected profile, status and actions for checking data exchange.')],
@@ -432,7 +432,7 @@ export const guideSections = [
       {
         title: b('1. Пример и приватная конфигурация', '1. Example and private configuration'),
         caption: b('Команды для терминала Linux, Bash или zsh. Замените sync.example.com своим доменом. Генератор запрашивает пароль SMTP без отображения на экране.', 'Commands for a Linux terminal, Bash or zsh. Replace sync.example.com with your domain. The generator requests the SMTP password without displaying it.'),
-        code: 'git clone --depth 1 https://git.evsikov.net/publics/consolecrypt.git consolecrypt-server-docker\ncd consolecrypt-server-docker\nexport CC_INSTALL_DIR="$HOME/.config/consolecrypt-docker"\nexport CC_API_DOMAIN="sync.example.com"\npython3 server/deploy/docker/init-config.py \\\n  --directory "$CC_INSTALL_DIR" --domain "$CC_API_DOMAIN"',
+        code: 'git clone --depth 1 https://github.com/evsikovas/consolecrypt-server.git consolecrypt-server-docker\ncd consolecrypt-server-docker\nexport CC_INSTALL_DIR="$HOME/.config/consolecrypt-docker"\nexport CC_API_DOMAIN="sync.example.com"\npython3 server/deploy/docker/init-config.py \\\n  --directory "$CC_INSTALL_DIR" --domain "$CC_API_DOMAIN"',
       },
       {
         title: b('2. Запуск с HTTPS', '2. Start with HTTPS'),
@@ -446,8 +446,8 @@ export const guideSections = [
       },
     ],
     links: [
-      { href: 'https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/HOSTING.md#docker-compose', text: b('Полная инструкция Docker: HTTPS, SMTP, резервные копии и обновления ↗', 'Full Docker instructions: HTTPS, SMTP, backups and upgrades ↗') },
-      { href: 'https://git.evsikov.net/publics/consolecrypt/-/blob/main/server/deploy/native/README.md', text: b('Настройки SMTP и установка без Docker: приватный файл конфигурации ↗', 'SMTP settings and installation without Docker: private configuration file ↗') },
+      { href: 'https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose', text: b('Полная инструкция Docker: HTTPS, SMTP, резервные копии и обновления ↗', 'Full Docker instructions: HTTPS, SMTP, backups and upgrades ↗') },
+      { href: 'https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md', text: b('Настройки SMTP и установка без Docker: приватный файл конфигурации ↗', 'SMTP settings and installation without Docker: private configuration file ↗') },
     ],
     note: b('Этот Compose запускает сервер синхронизации. Он не расшифровывает хранилища и не передаёт SSH-трафик. Приватный server.env содержит пароли: не публикуйте его и не прикладывайте к отчётам. Не запускайте генератор заново для существующей базы. Для смены SMTP измените server.env и пересоздайте контейнер сервера; пересборка образа не нужна.', 'This Compose setup runs the sync server. It never decrypts vaults or carries SSH traffic. The private server.env contains passwords: do not publish it or attach it to reports. Do not run the generator again for an existing database. To change SMTP settings, edit server.env and recreate the server container; no image rebuild is needed.'),
     image: shot('welcome', 'В клиенте выберите свой сервер и укажите его HTTPS-адрес.', 'Choose your own server in the client and enter its HTTPS address.'),

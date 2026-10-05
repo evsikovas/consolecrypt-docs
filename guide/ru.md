@@ -1,6 +1,6 @@
 # Руководство ConsoleCrypt
 
-[English](en.md) · [README](../README.md) · [Сайт](https://consolecrypt.evsikov.net/guide?lang=ru)
+[English](en.md) · [README](../README.md) · [Сайт](https://consolecrypt.dev/guide?lang=ru)
 
 Пошаговое руководство с реальным интерфейсом приложения и демонстрационными данными. Снимки не содержат пользовательских секретов. Версии исходных снимков указаны в [манифесте](../assets/guide/manifest.json).
 
@@ -67,7 +67,7 @@
 
 > **Обратите внимание**
 >
-> Учётные записи принадлежат конкретному серверу. Веб-кабинет этого сайта обслуживает consolecrypt.evsikov.net; аккаунт с другого сервера здесь не появится автоматически.
+> Веб-кабинет обслуживает публичный сервер sync.consolecrypt.dev и сохраняет аккаунты consolecrypt.evsikov.net. Используйте прежние email и пароль. Адрес в существующем профиле менять не нужно; аккаунты других серверов не появляются здесь автоматически.
 
 ![Первый запуск: локальная работа, подключение сервера и восстановление из копии.](../assets/guide/welcome-ru.png)
 
@@ -527,7 +527,7 @@ sudo dnf install ./consolecrypt.rpm
 
 > **Обратите внимание**
 >
-> Доступность зависит от совместимого сервера, подтверждённой почты и доверия устройствам. На публичном consolecrypt.evsikov.net включены общий доступ, группы, секреты и подтверждённое добавление новых устройств коллеги. Каждый элемент публикуется только по явному действию его владельца.
+> Доступность зависит от совместимого сервера, подтверждённой почты и доверия устройствам. На публичном sync.consolecrypt.dev включены общий доступ, группы, секреты и подтверждённое добавление новых устройств коллеги. Каждый элемент публикуется только по явному действию его владельца.
 
 ![Совместный доступ: отдельная карточка устройств и синтетические элементы со скрытым секретом.](../assets/guide/sharing-main-ru.png)
 
@@ -745,7 +745,7 @@ sudo dnf install ./consolecrypt.rpm
 
 Веб-кабинет управляет аккаунтом публичного сервера. Работа с расшифрованными хостами, ключами и сниппетами остаётся в приложении.
 
-1. Откройте «Личный кабинет» и используйте email и пароль аккаунта на consolecrypt.evsikov.net. Здесь можно подтвердить email, изменить пароль аккаунта и отозвать устройства.
+1. Откройте «Личный кабинет» и используйте email и пароль нашего публичного сервера (включая существующие аккаунты consolecrypt.evsikov.net). Здесь можно подтвердить email, изменить пароль аккаунта и отозвать устройства.
 
 2. Для закрытого контура разверните совместимый сервер из отдельной серверной части репозитория. Инструкции Docker и Helm предназначены для администратора.
 
@@ -778,9 +778,8 @@ sudo dnf install ./consolecrypt.rpm
 Пример для sh/bash/zsh. Файл database-url содержит строку подключения вашей базы; команда читает его, не выводя содержимое.
 
 ```text
-git clone https://git.evsikov.net/publics/consolecrypt.git
-cd consolecrypt
-git checkout --detach 8d2213f5bc24bd94a4eac6ee85f132ac3bd5600a
+git clone https://github.com/evsikovas/consolecrypt-server.git
+cd consolecrypt-server
 kubectl --kubeconfig /private/path/kubeconfig.yaml create namespace consolecrypt
 kubectl --kubeconfig /private/path/kubeconfig.yaml -n consolecrypt create secret generic consolecrypt-database \
   --from-file=database-url=/private/path/database-url
@@ -808,7 +807,7 @@ curl --fail https://sync.example.com/readyz
 curl --fail https://sync.example.com/v1/meta
 ```
 
-[Полная инструкция: Docker, Helm, HTTPS, почта и резервные копии ↗](../docs/public/HOSTING.md)
+[Полная инструкция: Docker, Helm, HTTPS, почта и резервные копии ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **Обратите внимание**
 >
@@ -845,7 +844,7 @@ curl --fail https://sync.example.com/v1/meta
 Команды для терминала Linux, Bash или zsh. Замените sync.example.com своим доменом. Генератор запрашивает пароль SMTP без отображения на экране.
 
 ```text
-git clone --depth 1 https://git.evsikov.net/publics/consolecrypt.git consolecrypt-server-docker
+git clone --depth 1 https://github.com/evsikovas/consolecrypt-server.git consolecrypt-server-docker
 cd consolecrypt-server-docker
 export CC_INSTALL_DIR="$HOME/.config/consolecrypt-docker"
 export CC_API_DOMAIN="sync.example.com"
@@ -877,9 +876,9 @@ curl --fail "https://$CC_API_DOMAIN/readyz"
 curl --fail "https://$CC_API_DOMAIN/v1/meta"
 ```
 
-[Полная инструкция Docker: HTTPS, SMTP, резервные копии и обновления ↗](../docs/public/HOSTING.md#docker-compose)
+[Полная инструкция Docker: HTTPS, SMTP, резервные копии и обновления ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose)
 
-[Настройки SMTP и установка без Docker: приватный файл конфигурации ↗](https://git.evsikov.net/publics/consolecrypt/-/blob/main/server/deploy/native/README.md)
+[Настройки SMTP и установка без Docker: приватный файл конфигурации ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md)
 
 > **Обратите внимание**
 >

@@ -141,7 +141,7 @@ function prose(value) {
 const text = (value, locale) => prose(value[locale]);
 const tableText = (value, locale) => text(value, locale).replace(/\r?\n/g, '<br>');
 function linkTarget(href) {
-  const prefix = 'https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/';
+  const prefix = 'https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/';
   return href.startsWith(prefix) ? `../docs/public/${href.slice(prefix.length)}` : href;
 }
 function fence(code) {
@@ -155,7 +155,7 @@ for (const locale of ['ru', 'en']) {
   const other = locale === 'ru' ? '[English](en.md)' : '[Русский](ru.md)';
   const out = [
     `# ${title}`, '',
-    `${other} · [README](../README.md) · [${locale === 'ru' ? 'Сайт' : 'Website'}](https://consolecrypt.evsikov.net/guide?lang=${locale})`, '',
+    `${other} · [README](../README.md) · [${locale === 'ru' ? 'Сайт' : 'Website'}](https://consolecrypt.dev/guide?lang=${locale})`, '',
     locale === 'ru'
       ? 'Пошаговое руководство с реальным интерфейсом приложения и демонстрационными данными. Снимки не содержат пользовательских секретов. Версии исходных снимков указаны в [манифесте](../assets/guide/manifest.json).'
       : 'Step-by-step instructions with the real application interface and demonstration data. Screenshots contain no user secrets. Their source versions are recorded in the [manifest](../assets/guide/manifest.json).', '',

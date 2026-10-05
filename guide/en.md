@@ -1,6 +1,6 @@
 # ConsoleCrypt guide
 
-[Русский](ru.md) · [README](../README.md) · [Website](https://consolecrypt.evsikov.net/guide?lang=en)
+[Русский](ru.md) · [README](../README.md) · [Website](https://consolecrypt.dev/guide?lang=en)
 
 Step-by-step instructions with the real application interface and demonstration data. Screenshots contain no user secrets. Their source versions are recorded in the [manifest](../assets/guide/manifest.json).
 
@@ -67,7 +67,7 @@ Start locally or connect encrypted sync. A profile contains its own vault and, w
 
 > **Keep in mind**
 >
-> Accounts belong to a particular server. This website’s account portal serves consolecrypt.evsikov.net; an account from another server does not appear here automatically.
+> The account portal serves public sync.consolecrypt.dev and retains consolecrypt.evsikov.net accounts. Use your existing email and password. Keep the server address in existing profiles; accounts from other servers do not appear here automatically.
 
 ![First launch: local use, server connection and restoring a backup.](../assets/guide/welcome-en.png)
 
@@ -527,7 +527,7 @@ Share individual items with verified devices of people on the same server. Your 
 
 > **Keep in mind**
 >
-> Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public consolecrypt.evsikov.net. Each item is published only through an explicit action by its owner.
+> Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public sync.consolecrypt.dev. Each item is published only through an explicit action by its owner.
 
 ![Sharing: a separate device card and synthetic items with a masked secret.](../assets/guide/sharing-main-en.png)
 
@@ -745,7 +745,7 @@ Update checking with a separate startup-check preference.
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
-1. Open “Account” and use your consolecrypt.evsikov.net email and account password. You can verify email, change the account password and revoke devices here.
+1. Open “Account” and use your public-server email and account password, including existing consolecrypt.evsikov.net accounts. You can verify email, change the account password and revoke devices here.
 
 2. For a private environment, deploy a compatible server from the repository’s server component. Docker and Helm instructions are intended for administrators.
 
@@ -778,9 +778,8 @@ A server enables device sync and collaboration. The client does not need one for
 Example for sh/bash/zsh. The database-url file contains your database connection string; the command reads it without printing its contents.
 
 ```text
-git clone https://git.evsikov.net/publics/consolecrypt.git
-cd consolecrypt
-git checkout --detach 8d2213f5bc24bd94a4eac6ee85f132ac3bd5600a
+git clone https://github.com/evsikovas/consolecrypt-server.git
+cd consolecrypt-server
 kubectl --kubeconfig /private/path/kubeconfig.yaml create namespace consolecrypt
 kubectl --kubeconfig /private/path/kubeconfig.yaml -n consolecrypt create secret generic consolecrypt-database \
   --from-file=database-url=/private/path/database-url
@@ -808,7 +807,7 @@ curl --fail https://sync.example.com/readyz
 curl --fail https://sync.example.com/v1/meta
 ```
 
-[Full instructions: Docker, Helm, HTTPS, email and backups ↗](../docs/public/HOSTING.md)
+[Full instructions: Docker, Helm, HTTPS, email and backups ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **Keep in mind**
 >
@@ -845,7 +844,7 @@ Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server 
 Commands for a Linux terminal, Bash or zsh. Replace sync.example.com with your domain. The generator requests the SMTP password without displaying it.
 
 ```text
-git clone --depth 1 https://git.evsikov.net/publics/consolecrypt.git consolecrypt-server-docker
+git clone --depth 1 https://github.com/evsikovas/consolecrypt-server.git consolecrypt-server-docker
 cd consolecrypt-server-docker
 export CC_INSTALL_DIR="$HOME/.config/consolecrypt-docker"
 export CC_API_DOMAIN="sync.example.com"
@@ -877,9 +876,9 @@ curl --fail "https://$CC_API_DOMAIN/readyz"
 curl --fail "https://$CC_API_DOMAIN/v1/meta"
 ```
 
-[Full Docker instructions: HTTPS, SMTP, backups and upgrades ↗](../docs/public/HOSTING.md#docker-compose)
+[Full Docker instructions: HTTPS, SMTP, backups and upgrades ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose)
 
-[SMTP settings and installation without Docker: private configuration file ↗](https://git.evsikov.net/publics/consolecrypt/-/blob/main/server/deploy/native/README.md)
+[SMTP settings and installation without Docker: private configuration file ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md)
 
 > **Keep in mind**
 >
