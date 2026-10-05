@@ -5,9 +5,7 @@
 Пакеты содержат клиент, Rust bridge, Flutter engine, иконку и пункт меню приложений.
 Базовая сборка — **Ubuntu 22.04**; установка пакетов и запуск проверены
 в изолированных **Debian 12** и **Fedora 43** с X11 и программным рендерингом.
-Текущий выпуск — **0.3.0+1378**: [DEB](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.3.0/ConsoleCrypt-0.3.0%2B1378-linux-x64.deb) ·
-[RPM](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.3.0/ConsoleCrypt-0.3.0%2B1378-linux-x64.rpm).
-Сервер синхронизации устанавливается отдельно: [Docker и Kubernetes](HOSTING.md).
+Текущий выпуск — **0.3.2**: DEB и RPM находятся во [вложениях GitHub-релиза](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.3.2).
 
 ## Системная ключница
 
@@ -41,7 +39,7 @@
 
 ## Установка `.deb`
 
-Скачайте пакет на [странице загрузки](https://consolecrypt.evsikov.net/download?lang=ru).
+Скачайте пакет на [странице загрузки](https://consolecrypt.dev/download?lang=ru).
 Откройте терминал в каталоге скачивания и подставьте точное имя полученного файла:
 
 ```sh
@@ -103,8 +101,9 @@ Flutter-сборок в одном каталоге. Сохраняйте `Cargo
 
 Для воспроизводимого окружения есть
 [`client/ci/linux/Dockerfile`](https://github.com/evsikovas/consolecrypt-client/blob/main/client/ci/linux/Dockerfile): Ubuntu 22.04,
-проверенная ревизия официального Flutter и закреплённый Rust. GitLab job
-`build-linux` использует Docker на уже зарегистрированном Mac runner и монтирует
+проверенная ревизия официального Flutter и закреплённый Rust. Job `linux`
+в [GitHub Actions](GITHUB_ACTIONS.md) использует Docker на отдельном Linux x64
+runner с метками `consolecrypt`, `client`, `linux-docker` и монтирует
 только подготовленные публичные исходники; домашний каталог, D-Bus, ключницы,
 SSH-ключи и Kubernetes-конфигурация в контейнер не передаются.
 

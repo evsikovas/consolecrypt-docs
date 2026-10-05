@@ -41,10 +41,10 @@ xcrun simctl launch booted io.consolecrypt.consolecrypt
 
 ### Готовый архив из релиза 0.3.1
 
-В [релизе v0.3.1](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.3.1)
-скачайте [часть 1](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.3.1/ConsoleCrypt-0.3.1%2B1389-ios-simulator-universal.zip.001),
-[часть 2](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.3.1/ConsoleCrypt-0.3.1%2B1389-ios-simulator-universal.zip.002)
-и [SHA256SUMS-0.3.1.txt](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.3.1/SHA256SUMS-0.3.1.txt).
+В [релизе v0.3.1](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.3.1)
+скачайте [часть 1](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.3.1/ConsoleCrypt-0.3.1%2B1389-ios-simulator-universal.zip.001),
+[часть 2](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.3.1/ConsoleCrypt-0.3.1%2B1389-ios-simulator-universal.zip.002)
+и [SHA256SUMS-0.3.1.txt](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.3.1/SHA256SUMS-0.3.1.txt).
 Сохраните все три файла в одной папке. Архив опубликован двумя
 частями; объединение восстанавливает проверенный ZIP без изменения приложения. Отдельные части распаковывать не нужно.
 
@@ -85,9 +85,22 @@ flutter test integration_test/ios_core_test.dart -d <SIMULATOR_UDID> \
 `python3 client/scripts/bump-version.py`. Проверка использует отдельное
 приватное тестовое хранилище и не требует учётных данных публичного сервера.
 
-## SSH/SFTP regression и GitLab CI
+## GitHub Actions и iOS Simulator
 
-### Что содержит артефакт iOS preview в GitLab
+В workflow `Client packages` job `ios` идёт после macOS и Android на одном
+Mac runner. Она запускает `ci-ios.sh --build-only`, устанавливает и открывает
+preview в отдельном Simulator. Actions artifact содержит **полный Simulator ZIP**,
+его SHA-256 и файл версии; срок хранения — 30 дней. Это отличается от прежнего
+GitLab artifact, описанного ниже. [Раннеры и номера сборок](GITHUB_ACTIONS.md).
+Публикация установщика в GitHub Release выполняется отдельно после проверки.
+
+In GitHub Actions, the `ios` job uploads the complete Simulator ZIP, its checksum
+and version receipt. It runs after the macOS and Android jobs on the same Mac
+runner. A CI artifact is not a public release or an installable iPhone package.
+
+## SSH/SFTP regression и прежний GitLab CI
+
+### Исторический GitLab artifact: только квитанции
 
 Начиная с 0.3, CI сохраняет полный Simulator ZIP на Mac runner **вне checkout**:
 `$HOME/.cache/consolecrypt/ios-preview/<полный source SHA>/<job ID>/`.
