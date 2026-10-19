@@ -3,8 +3,8 @@
 # ConsoleCrypt — документация
 
 Руководство по SSH, RDP, SFTP, зашифрованному хранилищу, синхронизации,
-сниппетам, ИИ и совместной работе. Новые главы описывают серию клиента 0.5;
-опубликованные пакеты ниже пока относятся к 0.4.1.
+сниппетам, ИИ и совместной работе. Руководство и опубликованные пакеты ниже
+относятся к клиенту 0.5.2.
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
@@ -23,26 +23,28 @@
 - [RDP](docs/public/RDP.md), включая мобильный тачпад.
 - [Локальные терминалы: zsh, PowerShell, cmd и WSL](docs/public/LOCAL_TERMINALS.md).
 - [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md): три модели и сохранение установленных файлов при обновлении.
-- [Изменения серии 0.5](docs/public/RELEASE_0_5_1.md).
+- [Изменения серии 0.5](docs/public/RELEASE_0_5_2.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 0.4.1](docs/public/RELEASE_0_4_1.md).
+- [Обновления](docs/public/UPDATES.md), [версия 0.5.2](docs/public/RELEASE_0_5_2.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).
 
-## Готовые сборки 0.4.1
+## Готовые сборки 0.5.2
 
-Все пакеты выпущены из одного тега [v0.4.1](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.4.1).
-Перед установкой можно сверить файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/SHA256SUMS-0.4.1.txt).
+Семь файлов выпущены из одного тега [v0.5.2](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.5.2).
+Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/SHA256SUMS-0.5.2.txt).
 
-| Платформа | Сборка | Файл |
-| --- | --- | --- |
-| macOS, Apple Silicon и Intel | 0.4.1+18011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18011-macos-universal.dmg) |
-| Windows x64 | 0.4.1+18012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18012-windows-x64-setup.exe), [ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18012-windows-x64.zip) |
-| Linux x64 | 0.4.1+18013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18013-linux-x64.deb), [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18013-linux-x64.rpm) |
-| Android ARM64 | 0.4.1+18014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18014-android-arm64.apk) |
-| iOS Simulator на Mac | 0.4.1+18015 | [ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18015-ios-simulator-universal.zip) |
+| Платформа | Сборка | Файл | Размер, байт |
+| --- | --- | --- | ---: |
+| macOS, Apple Silicon и Intel | 0.5.2+21011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/ConsoleCrypt-0.5.2%2B21011-macos-universal.dmg) | 142 458 251 |
+| Windows x64 | 0.5.2+21012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/ConsoleCrypt-0.5.2%2B21012-windows-x64-setup.exe) | 25 606 773 |
+| Windows x64 | 0.5.2+21012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/ConsoleCrypt-0.5.2%2B21012-windows-x64.zip) | 35 715 187 |
+| Linux x64 | 0.5.2+21013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/ConsoleCrypt-0.5.2%2B21013-linux-x64.deb) | 26 675 076 |
+| Linux x64 | 0.5.2+21013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/ConsoleCrypt-0.5.2%2B21013-linux-x64.rpm) | 36 007 926 |
+| Android ARM64 | 0.5.2+21014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/ConsoleCrypt-0.5.2%2B21014-android-arm64.apk) | 70 521 773 |
+| iOS Simulator на Mac | 0.5.2+21015 | [ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.2/ConsoleCrypt-0.5.2%2B21015-ios-simulator-universal.zip) | 154 847 303 |
 
 Android и iOS используют мобильный RDP-тачпад. Архив iOS предназначен для
 Simulator, а не для установки на физический iPhone; [порядок запуска](docs/public/BUILD_IOS.md).

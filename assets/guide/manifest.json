@@ -3,22 +3,22 @@
   "userData": false,
   "revealedSecrets": false,
   "sourceCommits": [
-    "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+    "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
     "153f5858191e630185cb18891644cc17d07fa9cf",
     "b5033563da855681483a804fd423faa4a8935a32"
   ],
   "generatorCommits": [
-    "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+    "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
     "153f5858191e630185cb18891644cc17d07fa9cf",
     "b5033563da855681483a804fd423faa4a8935a32"
   ],
   "capturedAt": "2026-10-19T20:57:55.611239+00:00",
-  "review": "All 102 images visually reviewed. Six About, SFTP-settings and Updates images were recaptured in RU/EN from committed 0.5.1 source. The other 96 images retain their original 0.5.0 PNG checksums and exact source/generator commits; their demonstrated UI is unchanged. Every image records sourceVersion; visibleAppVersion is present only when the app version is printed in that image.",
+  "review": "All 102 images visually reviewed. Six About, SFTP-settings and Updates images were recaptured in RU/EN from committed 0.5.2 source. The other 96 images retain their original 0.5.0 PNG checksums and exact source/generator commits; their demonstrated UI is unchanged. Every image records sourceVersion; visibleAppVersion is present only when the app version is printed in that image.",
   "knownLimitations": [
     "These are Flutter widget-test renderings with synthetic services, terminal output, local model states and 16 GiB AI hardware recommendation; no native shell, WSL distribution or model inference is started by captures.",
     "Windows widget variants run on a macOS test host with system font aliases; these images do not establish native Windows or WSL compatibility.",
     "Widget tests do not render a native OS keyboard; keyboard screenshots show the reserved 200 logical pixel bottom inset. Mobile RDP captures show Android widgets; matching iOS layout tests run separately.",
-    "The 0.5-series guide combines 96 unchanged source-0.5.0 captures with six source-0.5.1 captures. These are widget renderings from recorded commits, not installed CI release packages. Source versions are 0.5.0+18016 and 0.5.1+19016; visible version labels now show 0.5.1+19016. Package build numbers and native smoke results are verified separately.",
+    "The 0.5-series guide combines 96 unchanged source-0.5.0 captures with six source-0.5.2 captures. These are widget renderings from recorded commits, not installed CI release packages. Source versions are 0.5.0+18016 and 0.5.2+20016; visible version labels now show 0.5.2+20016. Package build numbers and native smoke results are verified separately.",
     "Pickers are scrollable; a partially visible next SSH row at the bottom of the WSL picker is the normal viewport boundary."
   ],
   "tests": {
@@ -29,8 +29,8 @@
     "mobileRdpAndroidIosBothOrientationsRu": 4,
     "mobileRdpAndroidIosBothOrientationsEn": 4,
     "targetedAnalyze": "No issues found",
-    "source051VersionScreensRu": 3,
-    "source051VersionScreensEn": 3
+    "source052VersionScreensRu": 3,
+    "source052VersionScreensEn": 3
   },
   "images": [
     {
@@ -42,14 +42,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "8d4f05dfa528b999eeadf1c55be9f9d0f98d8f89b57aee28038d0fbe3f4445d3",
-      "sourceRelease": "0.5.1",
-      "sourceCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
-      "generatorCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+      "sha256": "88f9794f471b2ded33a44763ce4ce2774fa661688f1a8d30c992684eddde5e26",
+      "sourceRelease": "0.5.2",
+      "sourceCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
+      "generatorCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
       "captureNote": "Production widgets from committed source with synthetic demo services; no live account, shell, model inference, user data or revealed secrets.",
-      "sourceVersion": "0.5.1+19016",
-      "visibleAppVersion": "0.5.1+19016",
-      "capturedAt": "2026-10-19T21:10:37.850730+00:00"
+      "sourceVersion": "0.5.2+20016",
+      "visibleAppVersion": "0.5.2+20016",
+      "capturedAt": "2026-10-19T21:37:34.342989+00:00"
     },
     {
       "name": "about-license-ru",
@@ -60,14 +60,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "bf7e589232461b54ec72f3bc22a3c6fe33df0577bfd883eeabd96c00c4addf7b",
-      "sourceRelease": "0.5.1",
-      "sourceCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
-      "generatorCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+      "sha256": "33eef46d064a9a1747908658bd0bfebdcc6152c6e7eab35839d80d52892badc1",
+      "sourceRelease": "0.5.2",
+      "sourceCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
+      "generatorCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
       "captureNote": "Production widgets from committed source with synthetic demo services; no live account, shell, model inference, user data or revealed secrets.",
-      "sourceVersion": "0.5.1+19016",
-      "visibleAppVersion": "0.5.1+19016",
-      "capturedAt": "2026-10-19T21:10:37.850730+00:00"
+      "sourceVersion": "0.5.2+20016",
+      "visibleAppVersion": "0.5.2+20016",
+      "capturedAt": "2026-10-19T21:37:34.342989+00:00"
     },
     {
       "name": "appearance-en",
@@ -1008,14 +1008,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "90bafc75959c31f9485a31d2a24111e5642cfccca2dda47f8a22966cc06dea6a",
-      "sourceRelease": "0.5.1",
-      "sourceCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
-      "generatorCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+      "sha256": "0ce7879dd4e034393511c4ee5a10d6bef84598844fd4c73de65a30a9c351ea56",
+      "sourceRelease": "0.5.2",
+      "sourceCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
+      "generatorCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
       "captureNote": "Production widgets from committed source with synthetic demo services; no live account, shell, model inference, user data or revealed secrets.",
-      "sourceVersion": "0.5.1+19016",
-      "visibleAppVersion": "0.5.1+19016",
-      "capturedAt": "2026-10-19T21:10:37.850730+00:00"
+      "sourceVersion": "0.5.2+20016",
+      "visibleAppVersion": "0.5.2+20016",
+      "capturedAt": "2026-10-19T21:37:34.342989+00:00"
     },
     {
       "name": "sftp-settings-ru",
@@ -1026,14 +1026,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "0bba0ee735dd6b470a43e06e63f009de5c6ef53a70b560734b508fb6ec883bfc",
-      "sourceRelease": "0.5.1",
-      "sourceCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
-      "generatorCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+      "sha256": "d83fd0e8ae1066d87795551cc47a202edaa2af00ce146e739205a3fcae8e437e",
+      "sourceRelease": "0.5.2",
+      "sourceCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
+      "generatorCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
       "captureNote": "Production widgets from committed source with synthetic demo services; no live account, shell, model inference, user data or revealed secrets.",
-      "sourceVersion": "0.5.1+19016",
-      "visibleAppVersion": "0.5.1+19016",
-      "capturedAt": "2026-10-19T21:10:37.850730+00:00"
+      "sourceVersion": "0.5.2+20016",
+      "visibleAppVersion": "0.5.2+20016",
+      "capturedAt": "2026-10-19T21:37:34.342989+00:00"
     },
     {
       "name": "sharing-main-en",
@@ -1492,14 +1492,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "30210a4a62f12f42f2392c0d0153fddf4dcf5c0294b3a54b630306afaf8d530e",
-      "sourceRelease": "0.5.1",
-      "sourceCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
-      "generatorCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+      "sha256": "91833772a5dc4ba0af26fb8c235fedb72fdc849083e7259cd425e1598b8b00a0",
+      "sourceRelease": "0.5.2",
+      "sourceCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
+      "generatorCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
       "captureNote": "Production widgets from committed source with synthetic demo services; no live account, shell, model inference, user data or revealed secrets.",
-      "sourceVersion": "0.5.1+19016",
-      "visibleAppVersion": "0.5.1+19016",
-      "capturedAt": "2026-10-19T21:10:37.850730+00:00"
+      "sourceVersion": "0.5.2+20016",
+      "visibleAppVersion": "0.5.2+20016",
+      "capturedAt": "2026-10-19T21:37:34.342989+00:00"
     },
     {
       "name": "updates-ru",
@@ -1510,14 +1510,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "c2d54db768aaeb2a8549fff33faee33326127905545c20ebe8f1c90e9b19c906",
-      "sourceRelease": "0.5.1",
-      "sourceCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
-      "generatorCommit": "0a1aad53a0b97fcf5acd68751db028e3ca91b9bd",
+      "sha256": "9c8c120954c60ed2e8109d07fa4923c2dfe6e29b0a47db88dc7b3e98b2da386d",
+      "sourceRelease": "0.5.2",
+      "sourceCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
+      "generatorCommit": "2b5adc4e9908bca1c227bddb708d38daec3a5dbc",
       "captureNote": "Production widgets from committed source with synthetic demo services; no live account, shell, model inference, user data or revealed secrets.",
-      "sourceVersion": "0.5.1+19016",
-      "visibleAppVersion": "0.5.1+19016",
-      "capturedAt": "2026-10-19T21:10:37.850730+00:00"
+      "sourceVersion": "0.5.2+20016",
+      "visibleAppVersion": "0.5.2+20016",
+      "capturedAt": "2026-10-19T21:37:34.342989+00:00"
     },
     {
       "name": "vault-settings-en",
@@ -1683,11 +1683,11 @@
   "releaseSeries": "0.5",
   "sourceReleases": [
     "0.5.0",
-    "0.5.1"
+    "0.5.2"
   ],
   "sourceVersions": [
     "0.5.0+18016",
-    "0.5.1+19016"
+    "0.5.2+20016"
   ],
-  "updatedAt": "2026-10-19T21:10:37.850730+00:00"
+  "updatedAt": "2026-10-19T21:37:34.342989+00:00"
 }

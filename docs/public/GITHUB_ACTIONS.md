@@ -89,6 +89,94 @@ Artifacts are retained for 30 days and include only explicit package, checksum
 and version paths. The Linux test report uses a redacted, closed JSON schema;
 test keyrings, raw runtime output and private fixtures are not uploaded.
 
+## Generated-output cleanup
+
+Full generated-output cleanup runs **only after a stable GitHub Release has
+been published**. Persistent Windows and Mac build jobs use `clean: false` for
+checkout and retain ignored Cargo/Flutter outputs, local packages and the owned
+AI smoke cache after compilation, test or upload failures. Diagnostic jobs also
+retain them. The workflow records the repository, source commit, run and platform
+in a workspace ownership marker before building.
+
+After publication, separate Windows and Mac cleanup jobs verify that marker and
+the checkout's current `HEAD`. They perform no checkout and refuse a foreign or
+newer workspace. The release, diagnostic and maintenance workflows share one
+concurrency group, so another build cannot begin while post-publication cleanup
+is running. Publication is recorded only after GitHub has accepted the public
+release; a later update-feed dispatch failure does not prevent cleanup of that
+already published release. Completed artifact uploads and GitHub logs remain.
+
+This policy applies to tags containing these workflow changes. The immutable
+`v0.5.2` workflow still contains the earlier per-job `always()` cleanup. Hosted
+Mac virtual machines and Linux ARC `emptyDir` workspaces are ephemeral; retaining
+files in a job does not preserve them after that machine or pod is destroyed.
+An abruptly terminated persistent runner can also miss its final cleanup job;
+use the guarded maintenance workflow below after publication.
+
+Cleanup is restricted to the exact `GITHUB_WORKSPACE` of this repository and
+checks Git root/origin and tracked files before deleting anything. Its closed
+list covers Cargo `target` directories, Flutter `build`/`.dart_tool`, Android
+checkout `.gradle`/`.cxx`, and `dist`. A symlink/junction in a target's ancestors
+is rejected; links inside generated trees are removed without following them.
+Source, `.local` receipts, application models/vault, signing keys, SDKs, Cargo
+registry, pub cache and shared tool installations are outside this list.
+If a finishing build removes or creates a file during traversal, cleanup retries
+only `ENOENT`/`ENOTEMPTY` up to five times (3.85 seconds of total backoff).
+Persistent failures remain failures; diagnostics include the error type and errno,
+without exception text, absolute paths or environment values.
+
+Windows GitHub jobs reuse `.ci-cache/local-ai-smoke` inside the guarded checkout.
+Its ownership marker binds it to this repository and workspace, independently of
+the attempt number, so a retry can reuse verified downloads. Post-publication
+cleanup removes this owned cache together with generated build outputs. The old
+`C:\GitLab-Runner\tools\consolecrypt-local-ai-smoke` cache is preserved unless
+an operator explicitly opts into maintenance for that known CI path.
+
+Linux records its job ownership under `RUNNER_TEMP` before starting Docker and
+labels the container with repository/run/attempt/job. Both the normal exit trap
+and a separate `always()` step call `cleanup-linux-job.py` to stop compute even
+when a build fails or is cancelled. The helper checks the ownership receipt,
+labels, image and exact `/work` source mount, then removes only the inspected
+immutable container ID. Missing/mismatched ownership or linked paths fail closed.
+The helper retains the owned source scratch and a safe receipt; ARC eventually
+removes its shared `emptyDir` with the pod. The builder image and shared Docker
+layers are retained. There is no global Docker prune or volume deletion.
+
+`Runner generated-output maintenance` is a separate, **main-only** manual
+workflow. It does not build packages, deploy, receive signing secrets or change
+release tags. It uses the same concurrency group as release builds, so it waits
+until the release has finished. It requires a published stable tag, verifies
+that its GitHub Release is public, and refuses cleanup if the workspace's current
+`HEAD` differs from that tag. An older published release therefore cannot be used
+to erase a newer failed attempt. Its tools checkout is nested separately with
+`clean: false`. Inline guards run **before** checkout: they reject symlink/junction
+ancestors, a foreign workspace and an existing tools directory unless it is
+empty or already the expected clean Git checkout (including untracked/ignored
+files). Checkout must not erase
+unknown files before the guarded cleanup runs.
+
+```sh
+gh workflow run runner-cleanup.yml --ref main -f platform=macos -f published_tag=v0.5.2
+gh workflow run runner-cleanup.yml --ref main -f platform=windows -f published_tag=v0.5.2
+
+# Explicit one-time cleanup of known old Windows CI GGUF/download/runtime files.
+gh workflow run runner-cleanup.yml --ref main \
+  -f platform=windows -f published_tag=v0.5.2 -f legacy_windows_ai_cache=true
+```
+
+The legacy-cache option defaults to false, accepts no arbitrary path, rejects
+links/reparse points and unexpected runtime contents, and preserves selection,
+logs, receipts and unknown files. It does not inspect Windows application data.
+Deletion boundaries are tested with tiny owned temporary repositories by
+`python3 -m unittest discover -s client/scripts -p 'test_ci_cleanup.py' -v`.
+The Windows junction test runs on Windows and is explicitly skipped elsewhere.
+`test_cleanup_policy.py` also verifies that a failed release creation/publication
+does not emit the publication signal that enables full cleanup.
+`test_linux_cleanup.py` covers Docker ownership boundaries; `tests/test_linux_ci.py`
+also kills a synthetic producer shell with `SIGKILL` and invokes final cleanup as
+a new process, without relying on its exit trap. These use a fake Docker, not
+live user containers.
+
 ## Русский
 
 `main` хранит проверенную исходную базу. Для выпуска поднимите версию, добавьте
@@ -96,3 +184,18 @@ release notes, отправьте коммит в `main`, затем тег `vX.
 Только тег запускает сборки. После успешной сборки всех платформ workflow
 публикует полный GitHub Release и запускает обновление подписанной ленты.
 Пакеты Android подписываются прежним ключом раннера. iOS — только Simulator preview.
+
+
+### Диагностический тег Windows
+
+Для изолированной проверки ConPTY до нового стабильного выпуска создаётся
+неизменяемый тег `check-windows-0.5.2-1` (следующие попытки — новый номер).
+`windows-native-check.yml` на hosted runner проверяет формат тега и принадлежность
+коммита `main`, затем запускает `ci-windows.ps1 -NativeOnly` на Windows.
+Этот режим компилирует и выполняет только нативные тесты; он не резервирует
+номер установщика, не собирает приложение, не скачивает модели и не публикует
+релиз. Промежуточные результаты сохраняются и после успеха, и после ошибки;
+полная очистка выполняется только после публикации стабильного выпуска.
+Диагностические и релизные задания используют общую очередь, чтобы очистка
+опубликованного выпуска не пересекалась с новой диагностической сборкой.
+Обычный релиз по `vX.Y.Z` повторяет полный набор проверок и упаковку всех платформ.

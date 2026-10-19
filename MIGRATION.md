@@ -18,15 +18,28 @@ Historical license notices remain applicable to their original versions.
 
 ## Domain and build transition
 
-The public site and guide move to https://consolecrypt.dev. New profiles can use
-https://sync.consolecrypt.dev; existing public accounts are retained. Keep the
-server URL in existing profiles until an explicit supported migration is
-provided. The old endpoint remains available for compatibility.
+The public site and guide are at https://consolecrypt.dev. The public account
+server is https://sync.consolecrypt.dev; existing account identifiers and keys
+are retained. The old `consolecrypt.evsikov.net` and
+`updates.consolecrypt.evsikov.net` endpoints are currently unavailable. Set an
+existing server profile to `https://sync.consolecrypt.dev`. If the old built-in
+updater cannot connect, download the current installer from the site and update
+the existing installation manually. Preserve the vault, application data,
+downloaded models and system Keychain/keyring; do not delete or recreate them
+as part of the domain change.
 
-The documentation workflow validates both generated guides and the 82 reviewed
-screenshots. It has read-only repository permissions and does not deploy the
+The documentation workflow validates both generated guides and the 102
+screenshots against their manifest, including PNG dimensions and SHA-256 hashes.
+It has read-only repository permissions and does not deploy the
 website. Publish the matching site and client release separately, after their
 GitHub Actions build artifacts have been verified.
+
+Публичный сервер аккаунтов — `https://sync.consolecrypt.dev`; идентификаторы
+и ключи прежних аккаунтов сохранены. Старые домены сервера и обновлений сейчас
+недоступны. Измените адрес в существующем профиле сервера; если прежний updater
+не подключается, скачайте установщик с `consolecrypt.dev` и обновите приложение
+вручную. Сохраните хранилище, данные приложения, скачанные модели и системную
+связку ключей; смена домена не требует их удаления или создания заново.
 
 Скриншоты и исторические заметки выпусков сохраняют исходные номера версий:
 новое руководство не выдаёт старые проверки за проверки новой сборки.
