@@ -69,7 +69,7 @@ Start locally or connect encrypted sync. A profile contains its own vault and, w
 
 > **Keep in mind**
 >
-> The account portal serves public sync.consolecrypt.dev and retains consolecrypt.evsikov.net accounts. Use your existing email and password. Keep the server address in existing profiles; accounts from other servers do not appear here automatically.
+> The account portal serves public sync.consolecrypt.dev and retains consolecrypt.evsikov.net accounts. Use your existing email and password. The old domain is currently unavailable, and existing profile addresses do not change automatically. Save a backup before reconfiguring the server. Accounts from other servers do not appear here automatically.
 
 ![First launch: local use, server connection and restoring a backup.](../assets/guide/welcome-en.png)
 
@@ -257,7 +257,7 @@ Full-screen connection bar: session switching, permissions and window controls. 
 
 ## 8. RDP on a phone: touchpad and keyboard (0.4.1)
 
-The panel is available starting with Android build 0.4.1; 0.3.2 does not include it. Use APK 0.4.1 or newer. Use on a physical iPhone requires separate verification.
+The panel is included on Android and iOS Simulator starting with 0.4.1; 0.3.2 does not include it. Use an APK or Simulator ZIP from 0.4.1 or newer. Use on a physical iPhone requires separate verification.
 
 | Touchpad gesture | Windows action |
 | --- | --- |
@@ -282,7 +282,19 @@ The panel is available starting with Android build 0.4.1; 0.3.2 does not include
 
 > **Keep in mind**
 >
-> These gestures apply to the mobile interface in 0.4.1. Desktop controls are unchanged. Folder redirection remains unavailable on Android and iOS; screenshots in the preceding chapter belong to the historical builds recorded in the manifest.
+> These gestures are available on Android and iOS in 0.4.1. Desktop controls are unchanged. Folder redirection is unavailable on Android and iOS. The screenshots show real Android widgets with a synthetic desktop frame; space is reserved for the system keyboard, which is not rendered. iOS is distributed as a Simulator preview.
+
+![Mobile RDP 0.4.1: touchpad enabled, with a cursor that moves independently of the finger. Synthetic desktop frame.](../assets/guide/mobile-rdp-portrait-controls-en.png)
+
+Mobile RDP 0.4.1: touchpad enabled, with a cursor that moves independently of the finger. Synthetic desktop frame.
+
+![Full-screen session with the special-key bar. The empty bottom area is reserved for the system keyboard.](../assets/guide/mobile-rdp-portrait-keyboard-en.png)
+
+Full-screen session with the special-key bar. The empty bottom area is reserved for the system keyboard.
+
+![Landscape orientation: compact controls and keys; the system keyboard area is left empty.](../assets/guide/mobile-rdp-landscape-keyboard-en.png)
+
+Landscape orientation: compact controls and keys; the system keyboard area is left empty.
 
 <a name="quick-connect"></a>
 
@@ -548,9 +560,9 @@ AI chat with selected context from the demo terminal.
 
 On macOS and Windows, client 0.4.1 can install the small Qwen2.5-Coder 1.5B Q4\_K\_M model. Answers do not require a cloud provider.
 
-1. Open AI settings → “Local AI” and choose “Install”. The app downloads about 1.1 GB of model data. Windows installs a separate runtime; macOS includes the runtime in the app. Settings show progress; you can cancel and later resume the download.
+1. Open Settings, find “Built-in local AI” and choose “Install local AI”. The app downloads about 1.1 GB of model data. Windows installs a separate runtime; macOS includes the runtime in the app. Settings show progress; you can cancel and later resume the download.
 
-2. “Use local AI by default” starts enabled and takes effect after installation. It is saved only on this computer. Turn it off to return to your usual provider selection.
+2. “Use by default after installation” starts enabled and takes effect after installation. It is saved only on this computer. Turn it off to return to your usual provider selection.
 
 3. Open AI chat or request a command through the palette. The model starts on the first request; Start and Stop buttons are also available. The process unloads after 15 minutes of inactivity.
 
@@ -559,6 +571,18 @@ On macOS and Windows, client 0.4.1 can install the small Qwen2.5-Coder 1.5B Q4\_
 > **Keep in mind**
 >
 > Files are verified with SHA-256. The installed model processes requests on your computer; context and command approval still use the normal ConsoleCrypt checks. Vault lock and profile changes stop the process. The model can make mistakes: review commands before running them.
+
+![Local AI installation: the model and enabled option to use it by default after installation. Demo profile.](../assets/guide/local-ai-install-en.png)
+
+Local AI installation: the model and enabled option to use it by default after installation. Demo profile.
+
+![Download and verification progress with a cancel button. The progress shown is synthetic.](../assets/guide/local-ai-progress-en.png)
+
+Download and verification progress with a cancel button. The progress shown is synthetic.
+
+![The Ready state with stop and remove actions in the real interface; the model state is simulated.](../assets/guide/local-ai-ready-en.png)
+
+The Ready state with stop and remove actions in the real interface; the model state is simulated.
 
 <a name="sharing-start"></a>
 

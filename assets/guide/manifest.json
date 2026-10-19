@@ -2,15 +2,26 @@
   "source": "real-flutter-widgets-with-synthetic-demo-services",
   "userData": false,
   "revealedSecrets": false,
-  "sourceVersionShown": "0.2.4+70",
-  "description": "Production Flutter widgets with synthetic demo services. Existing screenshots retain their recorded source releases; RDP host and permission screenshots are from 0.3.0 preparation. No live account, native remote desktop, user data or revealed secrets. Sharing, sync and backup screenshots refreshed for 0.3.1.",
-  "generators": [
-    "client/flutter/tool/design_preview.dart",
-    "client/flutter/tool/guide_capture_support.dart",
-    "client/flutter/tool/mobile_preview.dart",
-    "client/flutter/test/rdp/rdp_screen_test.dart",
-    "client/flutter/.local/connection_preview_test.dart"
+  "sourceVersionShown": "0.4.1+17016",
+  "sourceRelease": "0.4.1",
+  "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+  "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+  "capturedAt": "2026-10-19T20:05:42.504366+00:00",
+  "review": "All 94 published candidates visually inspected through 14 general and 5 final-state contact sheets, with full-size Local AI and mobile RDP spot checks.",
+  "knownLimitations": [
+    "Widget tests do not render a native OS keyboard; keyboard screenshots show the reserved 200 logical pixel bottom inset.",
+    "Mobile RDP dark-theme toolbar currently has low-contrast white icons on a light background; actual 0.4.1 output retained, no screenshot or production alteration.",
+    "These captures render tagged source metadata 0.4.1+17016; they are not screenshots of CI packages +18011 through +18015."
   ],
+  "tests": {
+    "desktopRu": 39,
+    "desktopEn": 39,
+    "mobileTerminalAndScreenCapture": 4,
+    "desktopRdp": 4,
+    "mobileRdpAndroidIosBothOrientations": 8,
+    "mobileRdpEnglishAndroidIosShell": 4,
+    "targetedAnalyze": "No issues found"
+  },
   "images": [
     {
       "name": "about-license-en",
@@ -21,10 +32,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "707f89aeeb7842f994355863de9398265f6e2d95fe317900b7d182ca9d89f5f7",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "18e1fe04f2682bb85606ba6d4cfc3d418e613e2829e37219e10ee280ee135f54",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "about-license-ru",
@@ -35,10 +48,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "5762658146731b754ee1f382f8505f2d7b790d4349c933a4efea73e5381f1732",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "f970da43de55a516e1d9acd5de3c78e7768173e65e3ef810d8a18b85489a11ce",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "appearance-en",
@@ -49,10 +64,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "b5692a6d6c65647f3ba4458322f134094c94222d54e317a193127b42161cb67d",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "1dda2a7fcd3319a9d4890156920baabc3bec78716fb40dd0e99bd1ec6c423efe",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "appearance-ru",
@@ -63,10 +80,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "20b27bc5aa0c55a92981c73947d4a04ae1ab726019dc2f680a93d3fd200ba8ca",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "fbcf9ee159a1d9c4843e937c2a47042c7d6afda090471dacca00a3b3b60b3cd6",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "backups-en",
@@ -77,10 +96,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a95d094fb2b4de12e0c0b762da1a26f7ce470b2c02c5f2226dcb80466fce2bdc",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Production 0.3.1 widgets with synthetic demo services; refreshed page spacing and scroll edges."
+      "sha256": "cc2da58261bc08277d3ca2bf55422a15a849f12e9a77fd8706f3df29c2ae97bd",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "backups-ru",
@@ -91,10 +112,44 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "d0ce326f808dd0c344e62e77c78cdb31f7de13ccc3f965d635ec2a42fb1d0cdd",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Production 0.3.1 widgets with synthetic demo services; refreshed page spacing and scroll edges."
+      "sha256": "121ca3828dfde1f58510d0049c92838e6b8c67dc8d3e5f78227312960884faac",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
+    },
+    {
+      "name": "connection-picker-en",
+      "case": "connection-picker",
+      "locale": "en",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "76aa97cbc2237e56b0b5b7e74ca838c0b108ca665e01c9dbc3f352904cff1ded",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
+    },
+    {
+      "name": "connection-picker-ru",
+      "case": "connection-picker",
+      "locale": "ru",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "0c0e25e69707d3efec37db4ba0ce600366ca89f48758d5593afb587c6e258119",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "credentials-en",
@@ -105,10 +160,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "1a6fe1c3c99a4cf5cf83d6896752d86433e193763a57460e509aa99e2755d914",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "8ce48968caca9658e84b625d14eaf4f8e9b24345d0ddb4678810f27d716551f2",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "credentials-ru",
@@ -119,10 +176,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a2eebbf94a440659ceb0592a8060ee6480d9d0ef6898a43707a45390283dca3a",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "56b66ba6ff453db44f63fbf1cf92e45cf51320501852cd8f60e349957b6d3613",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "devices-en",
@@ -133,10 +192,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a5bbea00e017bf5436091a19e79a1b61d991d2b38b34b33355ab34c4c51e2d12",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "8bcf9edba998c672faa635c6790363231518b9f064bcea76d9dcf7b3f9369334",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "devices-ru",
@@ -147,10 +208,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "dd548e15a7a79bf885d1d9c437378eca7d6a9223e80ca11769ae772c101b7f38",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "41be6e2b6446373af48e7cd80bf628ea47a240fd509e97e22cfe55b31d852880",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "enrollment-owner-en",
@@ -161,10 +224,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "42ca8aff05cea74014ef9579a641ede0e96152d8055e39138350e3bf4486d69b",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "d476e8e537b84f520916b9a72a31307a4ee4a52b225e51e19b25ccf4fd4fcd1a",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "enrollment-owner-ru",
@@ -175,10 +240,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "ecf95f87d841e77d3ea80e57f432a5e31ce4aa95348b4a5256f94f63cd8a63d4",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "6a4640e59d542d3331f70ce9a8da82bae4de7501a875caaa15585d275f09c410",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "host-groups-en",
@@ -189,10 +256,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "5a9e16f2f4fa29b16076450de080069288ac67905b4234cc1c57163ab79181d9",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "933239de65c557a64ac50816fac572093ab21bbf85bbce6b46bc5ec10757ac80",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "host-groups-ru",
@@ -203,10 +272,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "cbbcada260540a2a56b575fc7e3fb565f606de71bcccc73cbc0fcba4b1d0f35d",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "323f11a073cb42081e227b827964a675ef4975f15e54319dc80e71a962f276bd",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "host-menu-en",
@@ -217,10 +288,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a1818f50b08132f9921280bd27fc5370738a02d730da3568c0560b2a5b38650d",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "1c2b53632aeae08a130482d0a3b73215e75aee3e19c58785b7d0037ff3ce6352",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "host-menu-ru",
@@ -231,10 +304,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a5f91b7655fb89c9c7b6327797c26b65be2623397306e3011cd451ca836fd518",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "8450dc6cc5c60ed23a142314cd37f7870ea784118eb9424ec2893478d8bd35ff",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "host-palette-en",
@@ -245,10 +320,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "fd84896a78b92e845377a96d9922d035b63ef8262d3bbd491d74325efeee672c",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "ed9e79eac10209c01ea17f4dfff7084a48ccc2a7344b7f3a9bc91a1f4d68caf4",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "host-palette-ru",
@@ -259,10 +336,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "97c05ec18b0e522a61814466ee9007ae5ee41fc9b9004ff25eb59abf2af45d2e",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "1993fc08d94b7060807a4b3dd5d2349e934daa35aa69a1b6278fdf79597b1386",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "hosts-en",
@@ -273,10 +352,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a741a44aea4da56925f8368c34fc7749866a47dd9771599be557bb43ecb8b64f",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "10ed1b7f8c9df714a3b6ac5b27603e764b744efdebb7065fdb5da547b3211da8",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "hosts-ru",
@@ -287,10 +368,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "8c5560d26f937f1cd42e3381954d977a69b68f9d2cfd40be82e6ff1e2bfa9e5d",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "bf2953d6a32299d2a9e4589f879da7a2c8196de66879fe407bb0baed8cf0ec75",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "inventory-groups-en",
@@ -301,10 +384,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "4c5d6dfce9f54b67f914631763a8d2c51af402f00a0388e393853de45a1c3e03",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "fee3103fffac6ab8f23cbdf5484bf6c4627717b6387cd37616d0a15618badad6",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "inventory-groups-ru",
@@ -315,10 +400,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "5b3b737cfc26bdeb5d0acc2db9e9fd565b9cd700a8a996fbe2b6dc21e6459a40",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "0ee5cfdb4a28bd9ff9e779a861ad707c64f5333a919ada13cd045cb0e0ff6af1",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "inventory-production-en",
@@ -329,10 +416,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "3f6b5c861065d6befd1ec0fc2488bacdc4cd0d64851179af984d7b9dda84f376",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "b2a9c874828c3196a9bba2bdd58960eee833d1b892d0183e27b6f25e4e080c85",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "inventory-production-ru",
@@ -343,10 +432,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "28fef9b387353395223e24df8b9b568f2080227b999420f15e1297204d77326e",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "a286d3afe2198cccbc324ef8b3919f10c01c228cda36fcee38117d632e0a0ea0",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "known-hosts-en",
@@ -357,10 +448,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "9b5b9c02f4266c9783581c024c812d994c8b649efef5afe85201e4d486f0ca92",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "be6ecd313f88bed8f225a7f4226fa3f0f86d11cfa8bf4c52cfa9d492ff91fd72",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "known-hosts-ru",
@@ -371,10 +464,108 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "f7e12991fb5d897fcdb90cb57ba4bfd180c2746b217557d7ebfeed8b7bc731a5",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "8644adc3704812130a35bd03f29ef5729792665242846c1fd7a94da011d8c97e",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
+    },
+    {
+      "name": "local-ai-install-en",
+      "case": "local-ai-install",
+      "locale": "en",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "6ecd039524ccbe557c9b1469bf90462f8dd6d01ab006a485c30c3cea83bc1082",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets. Local runtime status is simulated, while the production DeviceLocalAiService merges provider defaults. No download or inference is performed."
+    },
+    {
+      "name": "local-ai-install-ru",
+      "case": "local-ai-install",
+      "locale": "ru",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "f171e5208913d1572ca82d4979052f25e3bca7fdf214ef22d43721edfe32db5e",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets. Local runtime status is simulated, while the production DeviceLocalAiService merges provider defaults. No download or inference is performed."
+    },
+    {
+      "name": "local-ai-progress-en",
+      "case": "local-ai-progress",
+      "locale": "en",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "22cdbad508bc9cb9e6c76490414a478b36b3fceb5de319635f296dbcbf05bf16",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets. Local runtime status is simulated, while the production DeviceLocalAiService merges provider defaults. No download or inference is performed."
+    },
+    {
+      "name": "local-ai-progress-ru",
+      "case": "local-ai-progress",
+      "locale": "ru",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "4bfddbda18e5bcc757b2644eb9d130b06876cba415ff5d69c6bfde600a4a2642",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets. Local runtime status is simulated, while the production DeviceLocalAiService merges provider defaults. No download or inference is performed."
+    },
+    {
+      "name": "local-ai-ready-en",
+      "case": "local-ai-ready",
+      "locale": "en",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "8d96ad33e2e488ba7b3cba8db955cb53c7636cd87ac030f10870a4bcdc9a6b35",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets. Local runtime status is simulated, while the production DeviceLocalAiService merges provider defaults. No download or inference is performed."
+    },
+    {
+      "name": "local-ai-ready-ru",
+      "case": "local-ai-ready",
+      "locale": "ru",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "a7bdf7a41492ef942538fe6022493cd3889019658566daee7df17b58f10f3110",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets. Local runtime status is simulated, while the production DeviceLocalAiService merges provider defaults. No download or inference is performed."
     },
     {
       "name": "mobile-screen-capture-en",
@@ -385,10 +576,12 @@
       "reviewed": true,
       "width": 824,
       "height": 1830,
-      "sha256": "018c31c713a7620047edfb732b35b7ada0687373f35dd6e1018fd40fccb6f1dd",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "bfd64a8a5251886311871f6aff692b6a099abecd333de3c236b9399f54f7bc53",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production Flutter mobile widgets with synthetic demo services and reserved example.test endpoints; no live account, user data or revealed secrets."
     },
     {
       "name": "mobile-screen-capture-ru",
@@ -399,10 +592,12 @@
       "reviewed": true,
       "width": 824,
       "height": 1830,
-      "sha256": "3c257de229e52952a0a1fc1787e290da58750d7d379c3a69f8e835679bbaeb77",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "3accfed049cda2aa8fa868704a937be8a17231d96d804325d585b5c75e15f882",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production Flutter mobile widgets with synthetic demo services and reserved example.test endpoints; no live account, user data or revealed secrets."
     },
     {
       "name": "mobile-terminal-en",
@@ -413,10 +608,12 @@
       "reviewed": true,
       "width": 824,
       "height": 1830,
-      "sha256": "43bfdbbaf87ef9adc9b3c57baddd97623ff4f4c14996f4a63c4e5dff3e89a855",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "c6bbbdd9b12febb9e90fc18a6cb79f6337e3f876a4c44e337d005e9536585e8e",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production Flutter mobile widgets with synthetic demo services and reserved example.test endpoints; no live account, user data or revealed secrets."
     },
     {
       "name": "mobile-terminal-ru",
@@ -427,10 +624,12 @@
       "reviewed": true,
       "width": 824,
       "height": 1830,
-      "sha256": "97bc22b635f351c74b06399fb1d98d75022451e9af428a14c96a1c420de08c32",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "b573d4329a33e27f5e95f6c24f23bf0f310cf6c31aaf9b09dedc65579ca0225f",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production Flutter mobile widgets with synthetic demo services and reserved example.test endpoints; no live account, user data or revealed secrets."
     },
     {
       "name": "panel-mode-settings-en",
@@ -441,10 +640,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "4049c68d820b68e026be4532ee42addc7cc802ac055d919dc72a5236313dcc53",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "fd9e974ba801071e9c707ddd8b1730a7d0413fa9826ac816ce8c7cdb147a3e25",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "panel-mode-settings-ru",
@@ -455,62 +656,44 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "20edf2f3404ca93cd202bfd0d1f74d03061540391e952e97572454a34302ddd8",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "dffa4630996f88ab9799e89034e9ec4338f42aa05059d6fc7aeb73523384986d",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
-      "name": "rdp-host-editor-en",
-      "case": "rdp-host-editor",
+      "name": "rdp-host-picker-en",
+      "case": "rdp-host-picker",
       "locale": "en",
-      "platform": "Windows layout in macOS widget-test rendering",
-      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
       "reviewed": true,
-      "width": 1280,
-      "height": 860,
-      "sha256": "53265dfd535dc7aa67de063069fad9a52d0866f54d9882fc5b738917836d9ec3",
-      "sourceRelease": "0.3.0",
-      "captureNote": "Production Flutter widgets with synthetic in-memory services. No native Windows desktop is pictured."
+      "width": 1440,
+      "height": 900,
+      "sha256": "deeb5f03ab3a10f2e982097724c5618fee2cbd0c6628d98715b07b5c9d11d988",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
-      "name": "rdp-host-editor-ru",
-      "case": "rdp-host-editor",
+      "name": "rdp-host-picker-ru",
+      "case": "rdp-host-picker",
       "locale": "ru",
-      "platform": "Windows layout in macOS widget-test rendering",
-      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
       "reviewed": true,
-      "width": 1280,
-      "height": 860,
-      "sha256": "fe20fe090dafefda89b63bc749b0ab4249fbd0385616d7fbdf401174fc6d7bfa",
-      "sourceRelease": "0.3.0",
-      "captureNote": "Production Flutter widgets with synthetic in-memory services. No native Windows desktop is pictured."
-    },
-    {
-      "name": "rdp-permissions-en",
-      "case": "rdp-permissions",
-      "locale": "en",
-      "platform": "Windows layout in macOS widget-test rendering",
-      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
-      "reviewed": true,
-      "width": 1280,
-      "height": 860,
-      "sha256": "b0c9f0a74e9769645a6d2526f0df0cbc19929daad2fa69420b058c1aa3ce4e42",
-      "sourceRelease": "0.3.0",
-      "captureNote": "Production Flutter widgets with synthetic in-memory services, reviewed after folder status/path/limits changes. No native Windows desktop is pictured."
-    },
-    {
-      "name": "rdp-permissions-ru",
-      "case": "rdp-permissions",
-      "locale": "ru",
-      "platform": "Windows layout in macOS widget-test rendering",
-      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
-      "reviewed": true,
-      "width": 1280,
-      "height": 860,
-      "sha256": "327103ba2b358a1d8e9e5f486d739800520733bb33a0d093322e7f089618cf94",
-      "sourceRelease": "0.3.0",
-      "captureNote": "Production Flutter widgets with synthetic in-memory services, reviewed after folder status/path/limits changes. No native Windows desktop is pictured."
+      "width": 1440,
+      "height": 900,
+      "sha256": "cf154a065eda852932dd352a81661d3d7aa8abe4aa48db98b425009616781530",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "security-settings-en",
@@ -521,10 +704,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "423eeb9f78545d329502559eb022516bd754b5a423d1122e78b7a9ce5d44d203",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "6cc34ad21c3ec67068e21105ac7c40059644a85ee16b1fb2b28360d3defa6189",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "security-settings-ru",
@@ -535,10 +720,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "651a5512d07a9094938d89c1afbfce3e947c4e02e3bdcfd93e6d6c93c17101e8",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "05c71e9f8b679878aa7a3a99e9551316ee2aa63764c3283f1435805d9ccb71f6",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sftp-preview-en",
@@ -549,10 +736,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "df82b2859cb796ff3ecdee04de670ef91ffc7d0a60d4ccce5cf7033ae2e1b5be",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "95caab4b51f788d3fff69ade7203b434f9ec95c1a328eb6541bce0bf67889726",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sftp-preview-ru",
@@ -563,10 +752,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "4bd9881cf612f78b20728f4623aebedd303b0cc14df91199ae0680c9ef09cf82",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "16e1eb3f7d2fe00eac1ca895e74d7fa9db98a19f90fa2e672c9b3c4ef5156ecf",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sftp-settings-en",
@@ -577,10 +768,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "1b6f79f1e9180aa934628df8eeeb25d59bc6e4bf886483e4c11115521d7842eb",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "4dfc330f2d662d523a48af88e1fa2540e446036f144acbcdedff36fa435a6994",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sftp-settings-ru",
@@ -591,10 +784,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "927bc92926f29112ab34f0b9a21b72506f4047e2dae9f36885c333eca1499615",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "1b29cbd1bdd6828a2cfa0b6584292ce9ef9d62fb8bd9aed01a8b8896acf4fd77",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-main-en",
@@ -606,9 +801,11 @@
       "width": 1440,
       "height": 900,
       "sha256": "0ac5269bce58181f01fba17d5c6eac02178ac723d0821a98e2cc537620ad9a21",
-      "sourceRelease": "0.3.1",
-      "captureNote": "Production 0.3.1 widgets with synthetic demo services; refreshed page spacing and scroll edges.",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4"
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-main-ru",
@@ -620,9 +817,11 @@
       "width": 1440,
       "height": 900,
       "sha256": "3bcbac671fb9c268e5e13b1d00ccb5ed132447b2fa8e3c93e2b53970619515b7",
-      "sourceRelease": "0.3.1",
-      "captureNote": "Production 0.3.1 widgets with synthetic demo services; refreshed page spacing and scroll edges.",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4"
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-recipient-en",
@@ -633,10 +832,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "e4552a700cf20372e440d88824a86f7fe26d44ada6382a7e3ad94a0198caa9f7",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "7d01ef36f6942c7e219d07591c2f86d3767996060a051e434e66c46049f1a766",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-recipient-ru",
@@ -647,10 +848,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "06566cc3a546e57f94bc421b120dc7228e822e722e928dde54869838964f44e4",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "aad77a3851cef857fa07aeffed366b9179884f54045dcdc1c1194f0256cdcec0",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-roles-en",
@@ -661,10 +864,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "6e94b951aa6c2e63ec0bc8ebb8a371c5cdf0e3005712835f18bedbcab0d1761e",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "d547230b9edeca43fe87856d3978b72f8af392f435c216be53d12f5df98e52aa",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-roles-ru",
@@ -675,10 +880,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "5fb1568f66fc376b9c8f621f57a0faf99a1b73b127817d4905edf7cb3b8c2edc",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "92a1c926fa4fa6aa271f4f78fb0832d0ccd444f8c1b077f2b9e6215d6cb8e661",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-secret-en",
@@ -689,10 +896,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "97be30eddcb028fd39debed32dcc4ec6a1785eb61d79b8e23faf0b986ee9c0c3",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "36a3929226dddf4d6985eb78a3b731c15a83f7236f69dadda1f409c20c6288d6",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sharing-secret-ru",
@@ -703,10 +912,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "1f0f091e81f92efa959f577180e4611240d0ae37c246ef21c91343ced428499a",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "7dd2909cbfc4c93dbd64b6f82fcde65bd43b4b6b9d24ac176d5224e895e1eafc",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "snippet-catalog-en",
@@ -717,10 +928,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "2c7480e4b9baf423019fce5ddbaa5869460238b19a11ad6118a40de748488642",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "eb60209e3ae660d5fb5728b4259b0313fa00921b78cfb4467ba0a5a9940e79b7",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "snippet-catalog-ru",
@@ -731,10 +944,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "f059e5e9f82f83bc09d29689a2e39e85648f3c07ab246e555f72d2575408e9dd",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "1da603ce6d098122fdc06827bbfffa32de173f15b7d2e28895c645cdb35d0d8e",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "snippet-packages-en",
@@ -745,10 +960,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "65aa243cf850e719c0fcc87fa4b3681c202efcfe0f55f2d605257e95aa25ca9f",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "05a2b16bd78a344720251be307d172e348eff02bbd88080573d033f826f76bf5",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "snippet-packages-ru",
@@ -759,10 +976,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "d06983569b875eb8c13b84fd5622a5316beacce63be9153f2702ee93bacf4ff1",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "5f1fd8ced4ce518a5a1d64e4f20156edde9aa4b6b9d3af7dec9c6dbb321679f2",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sync-en",
@@ -773,10 +992,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "5927fb633cdd80dee615866415f75d2aa4000942d88f87c21f003cd4d21807f4",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Production 0.3.1 widgets with synthetic demo services; refreshed page spacing and scroll edges."
+      "sha256": "0e8d70732a40f42fd51da36154f26ff25ec11982b148db2dbd011ee510137154",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "sync-ru",
@@ -787,10 +1008,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "04b2422c741c61825b10ab92e7eb9a771f2748554e95d75bc771f4648b68ea19",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Production 0.3.1 widgets with synthetic demo services; refreshed page spacing and scroll edges."
+      "sha256": "e52f08aed6b463eabebe71ddfdb04ba82eabbd73bf4e330ec3a63110d00cdc59",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "terminal-menu-en",
@@ -801,10 +1024,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "78fc26f47322ee8d0c7e57b21e45d9701ef13e9e1443334eb232961f467bf1ee",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "0b6628cd361d5f50b7770e3c380aa54d95ee9d6e9c50a1725383498492f16077",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "terminal-menu-ru",
@@ -815,10 +1040,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "3a007a1880e5ac8503c25904f6a2c1a2989ab51e1eb7d1efe45850f7584d1dd8",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "0615eb7cd8bd6294808bfeb6f3abbf75c9a54cd7ed367f7ef7fb343f8d86e02b",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "terminal-selection-scroll-en",
@@ -829,10 +1056,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "7ef9b983daa8a227e6b60fde4834db6ea1710a88a8e4bb0a84d4d8502a28ecf4",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "64a81507f6d9caad184bcf297cdbf627f39a486a81271c05458c014293c7181c",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "terminal-selection-scroll-ru",
@@ -843,10 +1072,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "2e2682f113e7cd9f21ec6cc44e77f6c147d93cb00073cafbe1f77bf0aa8cc7b9",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "87f991cb0fa4595585426d809a3475ec740dd36a1485a7f79b394711cad8f7cf",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "terminal-tabs-overflow-en",
@@ -857,10 +1088,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a5de96b2a868d24f5126af2617377ab6a978e6f6485dfb648b164b36716d9b47",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "0edf283f297a42917c955372dcfb59f4dbb70bee6430e6469739a5bbe6946c45",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "terminal-tabs-overflow-ru",
@@ -871,10 +1104,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "e178e5d07ab786cb33f4186a5b3adfe037727200d8610dad37e256170f2816bb",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "b38e5256e672f90dfa658b2cc4a171fe471a2d9c8d724fbd68aefec0821b457b",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "tunnels-en",
@@ -885,10 +1120,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "98f33a1a56605cde98df94bb879a40c52ed3ba4ef9519bab12fb14a6a96d6a8c",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "66b2c31605de76504655a8c4fa52b5d89c8bb07fc37e0fb889926a0810f9cf9e",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "tunnels-ru",
@@ -899,10 +1136,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "3ee9ec9fcc52bafd4d7f8ca93d2cbc14ebc01129b64f3023a4ed196132e4b99b",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "3010891bfbce3ea6e8420ad8d77fdfe362b8e4acfb57dedca192f85c3b96e1ec",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "updates-en",
@@ -913,10 +1152,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "523c2287fc182ecb8a219fe731ffb4644bd6d81ca8489beb6afb0d1be56f33e6",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "b7425929baa4da7b05ef90966539c8d1a01217e6fb0aead9e74d4b5375ed426a",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "updates-ru",
@@ -927,10 +1168,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "9a96ff1421e211e5a02bc91e5c0a365b2ec3f291020b142087d6b6ea39906e1c",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "fd21daef4a6d13fba4c44c01cbb35f0e69aca57d9426040ad371c7c9c04139f1",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "vault-settings-en",
@@ -941,10 +1184,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "e7e67a45f6ec654301b1036d7052c5f5dd700684a924d6336ad2bd8e531559ea",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "ee53bb14c2bb6044b1ea95ac44d12c285514a76f061b2f58e755b9b9adfa683f",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "vault-settings-ru",
@@ -955,10 +1200,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "77d6987b6f37e59e93b263ef0525914dbc825fff23cdbdf999b3a9fbb98f74f4",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "9de4f68fb33b19cb4ed8db81d104775ca337edc8194e9b79efbbe22c26d4eb39",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "welcome-en",
@@ -970,9 +1217,11 @@
       "width": 1440,
       "height": 900,
       "sha256": "fb65a8f2ab4d534bcfec92efb9906c840164264f53e0e8eb964ac652d704ab8f",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "welcome-ru",
@@ -984,9 +1233,11 @@
       "width": 1440,
       "height": 900,
       "sha256": "3b39928cd130f9a2bbe16de4b8434833ea74dd22df1fd909c9f4ac202e7b847b",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "workspace-ai-expanded-en",
@@ -997,10 +1248,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "de699180dcb5d1a3acf15ead5ed7b8367550ab8d19a88337a189a3ce2230b4d8",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "8954faa453f811f64248fc408748de40b945d64d91220e65c66b8f966a50bbf2",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "workspace-ai-expanded-ru",
@@ -1011,10 +1264,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "ca428795944b13f1c86cf7abaed193dec5c3e488e83a6424f7a59a7eb725d30c",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "c089e9f3e99e42d8685d91aebb7f8199afd7a4678bf8b316653ac2e73c0cc2c4",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "workspace-ai-selection-en",
@@ -1025,10 +1280,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "27a5437e3eeffe2b427991b7e563df774858be307e66256243586dde63781da6",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "a5f555b856fc1a118c8b9eb99eeca9c62d28f01693d7bdfa78087db3d61aee17",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "workspace-ai-selection-ru",
@@ -1039,10 +1296,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "0b26f4c14030816eab35ac44813210644800269544334ae9e30a90a0c7e607b1",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "bea644f00307e09c4086aeba8cd6c04e973e04a051a63582d583d13b904c55dc",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "workspace-snippets-expanded-en",
@@ -1053,10 +1312,12 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "216514b9d5aee5b52ea2e81239c0811259ad37d429d98bee5e5a84b663ed5599",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "7cb81ff0b85c4972b432949dc7cd05e502b7370a6589bb71f74362f903bddb00",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
       "name": "workspace-snippets-expanded-ru",
@@ -1067,107 +1328,213 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "d7f64f0ad5bbef91d6fa3fa35650c1a059f8c4c5ed52d7ae7154d98fee31515c",
-      "sourceRelease": "0.2.4",
-      "sourceCommit": "39d3a487c6aaa9098a26ff79672b4359acb6da36",
-      "captureNote": "Frozen 0.2.4+70 production widgets with synthetic demo services; reviewed in six contact sheets and four full-size scenes."
+      "sha256": "a4736c26ec9956203c8cc2b8722eb44d5e5168e964bf529db214e219ba71e928",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production 0.4.1 widgets with synthetic demo services; no live account, user data or revealed secrets."
     },
     {
-      "name": "rdp-fullscreen-bar-ru",
-      "case": "rdp-fullscreen-bar",
-      "locale": "ru",
-      "platform": "Windows layout in macOS widget-test rendering",
-      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
+      "name": "mobile-rdp-landscape-keyboard-en",
+      "case": "mobile-rdp-landscape-keyboard",
+      "locale": "en",
+      "platform": "Android widget-test rendering",
+      "generator": "client/flutter/test/rdp/rdp_mobile_layout_test.dart",
       "reviewed": true,
-      "width": 680,
-      "height": 48,
-      "sha256": "644f8467b9aad704d53802788510635edbecdf0cb78aa2dff0263caca8f53ab1",
-      "sourceRelease": "0.3.0",
-      "captureNote": "Production Flutter connection bar with synthetic in-memory services. No native Windows desktop or user data is pictured.",
-      "captureRegion": "connection-bar"
+      "width": 1688,
+      "height": 780,
+      "sha256": "cce8e749fa07780b73652b37972b295e12279f7b805c80d237d10b1da0cba3d5",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Actual full mobile shell and RDP controls with a synthetic RGBA frame. No native RDP connection. Keyboard cases reserve a 200-logical-pixel IME inset; the OS keyboard itself is not rendered. Dark toolbar icon contrast limitation recorded separately."
+    },
+    {
+      "name": "mobile-rdp-landscape-keyboard-ru",
+      "case": "mobile-rdp-landscape-keyboard",
+      "locale": "ru",
+      "platform": "Android widget-test rendering",
+      "generator": "client/flutter/test/rdp/rdp_mobile_layout_test.dart",
+      "reviewed": true,
+      "width": 1688,
+      "height": 780,
+      "sha256": "cce8e749fa07780b73652b37972b295e12279f7b805c80d237d10b1da0cba3d5",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Actual full mobile shell and RDP controls with a synthetic RGBA frame. No native RDP connection. Keyboard cases reserve a 200-logical-pixel IME inset; the OS keyboard itself is not rendered. Dark toolbar icon contrast limitation recorded separately."
+    },
+    {
+      "name": "mobile-rdp-portrait-controls-en",
+      "case": "mobile-rdp-portrait-controls",
+      "locale": "en",
+      "platform": "Android widget-test rendering",
+      "generator": "client/flutter/test/rdp/rdp_mobile_layout_test.dart",
+      "reviewed": true,
+      "width": 780,
+      "height": 1688,
+      "sha256": "dfbd07ccf65c28e4a693517f3dd4992fa27460f3675895f19ff69f2802defc5d",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Actual full mobile shell and RDP controls with a synthetic RGBA frame. No native RDP connection. Keyboard cases reserve a 200-logical-pixel IME inset; the OS keyboard itself is not rendered. Dark toolbar icon contrast limitation recorded separately."
+    },
+    {
+      "name": "mobile-rdp-portrait-controls-ru",
+      "case": "mobile-rdp-portrait-controls",
+      "locale": "ru",
+      "platform": "Android widget-test rendering",
+      "generator": "client/flutter/test/rdp/rdp_mobile_layout_test.dart",
+      "reviewed": true,
+      "width": 780,
+      "height": 1688,
+      "sha256": "23b17dff0f74c24e339456fa0bf4c116446c8de5d0e6b9e365bc31c866f12dbf",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Actual full mobile shell and RDP controls with a synthetic RGBA frame. No native RDP connection. Keyboard cases reserve a 200-logical-pixel IME inset; the OS keyboard itself is not rendered. Dark toolbar icon contrast limitation recorded separately."
+    },
+    {
+      "name": "mobile-rdp-portrait-keyboard-en",
+      "case": "mobile-rdp-portrait-keyboard",
+      "locale": "en",
+      "platform": "Android widget-test rendering",
+      "generator": "client/flutter/test/rdp/rdp_mobile_layout_test.dart",
+      "reviewed": true,
+      "width": 780,
+      "height": 1688,
+      "sha256": "bdc656fd6a0d7a48a6cddfd419ad7b691fb0c325186ce533895d4fd4aed50ea3",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Actual full mobile shell and RDP controls with a synthetic RGBA frame. No native RDP connection. Keyboard cases reserve a 200-logical-pixel IME inset; the OS keyboard itself is not rendered. Dark toolbar icon contrast limitation recorded separately."
+    },
+    {
+      "name": "mobile-rdp-portrait-keyboard-ru",
+      "case": "mobile-rdp-portrait-keyboard",
+      "locale": "ru",
+      "platform": "Android widget-test rendering",
+      "generator": "client/flutter/test/rdp/rdp_mobile_layout_test.dart",
+      "reviewed": true,
+      "width": 780,
+      "height": 1688,
+      "sha256": "41c80ce6efbdeba1c4252baba6d5f519a0d9944e6b705f15bfad4ce14e8619ab",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Actual full mobile shell and RDP controls with a synthetic RGBA frame. No native RDP connection. Keyboard cases reserve a 200-logical-pixel IME inset; the OS keyboard itself is not rendered. Dark toolbar icon contrast limitation recorded separately."
     },
     {
       "name": "rdp-fullscreen-bar-en",
       "case": "rdp-fullscreen-bar",
       "locale": "en",
-      "platform": "Windows layout in macOS widget-test rendering",
+      "platform": "Windows widget-test rendering",
       "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
       "reviewed": true,
       "width": 680,
       "height": 48,
       "sha256": "644f8467b9aad704d53802788510635edbecdf0cb78aa2dff0263caca8f53ab1",
-      "sourceRelease": "0.3.0",
-      "captureNote": "Production Flutter connection bar with synthetic in-memory services. No native Windows desktop or user data is pictured.",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production RDP widgets with synthetic test service and reserved example.test endpoints; no native remote desktop or credentials. Fullscreen bar is a deliberate crop of its own RepaintBoundary.",
       "captureRegion": "connection-bar"
     },
     {
-      "name": "connection-picker-ru",
-      "case": "connection-picker",
+      "name": "rdp-fullscreen-bar-ru",
+      "case": "rdp-fullscreen-bar",
       "locale": "ru",
       "platform": "Windows widget-test rendering",
-      "generator": "client/flutter/.local/connection_preview_test.dart",
+      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
       "reviewed": true,
-      "width": 1440,
-      "height": 980,
-      "sha256": "2b7ded93dd4f0fc7a8e64a458f3d9e3cc2330b571eeb470e636f5beb4ab3c721",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Synthetic saved hosts only; production widgets, no live connections or credentials."
+      "width": 680,
+      "height": 48,
+      "sha256": "644f8467b9aad704d53802788510635edbecdf0cb78aa2dff0263caca8f53ab1",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production RDP widgets with synthetic test service and reserved example.test endpoints; no native remote desktop or credentials. Fullscreen bar is a deliberate crop of its own RepaintBoundary.",
+      "captureRegion": "connection-bar"
     },
     {
-      "name": "connection-picker-en",
-      "case": "connection-picker",
+      "name": "rdp-host-editor-en",
+      "case": "rdp-host-editor",
       "locale": "en",
       "platform": "Windows widget-test rendering",
-      "generator": "client/flutter/.local/connection_preview_test.dart",
+      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
       "reviewed": true,
-      "width": 1440,
-      "height": 980,
-      "sha256": "764a49e411cf0fe6ed48d2a7ee3e9e8658f152f447d494fdbd7ddfef10080ac1",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Synthetic saved hosts only; production widgets, no live connections or credentials."
+      "width": 1280,
+      "height": 860,
+      "sha256": "8ddd7f337afb41dd4988923b2e16b7df4e62a10957f542dd4ab69fc853cece10",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production RDP widgets with synthetic test service and reserved example.test endpoints; no native remote desktop or credentials. Fullscreen bar is a deliberate crop of its own RepaintBoundary."
     },
     {
-      "name": "rdp-host-picker-ru",
-      "case": "rdp-host-picker",
+      "name": "rdp-host-editor-ru",
+      "case": "rdp-host-editor",
       "locale": "ru",
       "platform": "Windows widget-test rendering",
-      "generator": "client/flutter/.local/connection_preview_test.dart",
+      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
       "reviewed": true,
-      "width": 1440,
-      "height": 980,
-      "sha256": "e14e6acc060f885cbb3df8f9fc67584e19fbaab7181c441663ab35b5a4275b28",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Synthetic saved hosts only; production widgets, no live connections or credentials."
+      "width": 1280,
+      "height": 860,
+      "sha256": "27bea69dc86280c9c2c0462c8bcdaa9fc72d5174a5bf30336a7fb7e880c9be82",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production RDP widgets with synthetic test service and reserved example.test endpoints; no native remote desktop or credentials. Fullscreen bar is a deliberate crop of its own RepaintBoundary."
     },
     {
-      "name": "rdp-host-picker-en",
-      "case": "rdp-host-picker",
+      "name": "rdp-permissions-en",
+      "case": "rdp-permissions",
       "locale": "en",
       "platform": "Windows widget-test rendering",
-      "generator": "client/flutter/.local/connection_preview_test.dart",
+      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
       "reviewed": true,
-      "width": 1440,
-      "height": 980,
-      "sha256": "2a46cf83549b515e35e88f8eb8881a3435bf9cac6a643e3dbe6f4739c3a7975d",
-      "sourceRelease": "0.3.1",
-      "sourceCommit": "02ba6a8a28c04741b80ce0086f8411a6cfa08ff4",
-      "captureNote": "Synthetic saved hosts only; production widgets, no live connections or credentials."
+      "width": 1280,
+      "height": 860,
+      "sha256": "3c04a46354fc413dc1c1ab6684f100c022818594c887b016ca202077f838fabb",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production RDP widgets with synthetic test service and reserved example.test endpoints; no native remote desktop or credentials. Fullscreen bar is a deliberate crop of its own RepaintBoundary."
+    },
+    {
+      "name": "rdp-permissions-ru",
+      "case": "rdp-permissions",
+      "locale": "ru",
+      "platform": "Windows widget-test rendering",
+      "generator": "client/flutter/test/rdp/rdp_screen_test.dart",
+      "reviewed": true,
+      "width": 1280,
+      "height": 860,
+      "sha256": "688b0c16f5c77e8119fe3525f5e78107fc6f6fdb7bd243dbd76ff1e32f124bca",
+      "sourceRelease": "0.4.1",
+      "sourceCommit": "f0ea3d1256e9d60e016a022a8e1432d1489fc3da",
+      "generatorCommit": "a1c62b9119bcfb8ae00cf7af120a12f8f0b717fb",
+      "sourceVersionShown": "0.4.1+17016",
+      "captureNote": "Production RDP widgets with synthetic test service and reserved example.test endpoints; no native remote desktop or credentials. Fullscreen bar is a deliberate crop of its own RepaintBoundary."
     }
   ],
-  "nativeEnforcementProof": false,
-  "heroImages": [
-    {
-      "file": "assets/desktop.png",
-      "from": "hosts-ru",
-      "sha256": "8c5560d26f937f1cd42e3381954d977a69b68f9d2cfd40be82e6ff1e2bfa9e5d"
-    },
-    {
-      "file": "assets/phone.png",
-      "from": "mobile-terminal-ru",
-      "sha256": "97bc22b635f351c74b06399fb1d98d75022451e9af428a14c96a1c420de08c32"
-    }
+  "description": "Production Flutter widgets from client 0.4.1 with synthetic demo services. All 94 images refreshed; native OS keyboard and real remote sessions are not captured. Generator changes are recorded separately from the release source.",
+  "generators": [
+    "client/flutter/test/rdp/rdp_mobile_layout_test.dart",
+    "client/flutter/test/rdp/rdp_screen_test.dart",
+    "client/flutter/tool/design_preview.dart",
+    "client/flutter/tool/mobile_preview.dart"
   ]
 }

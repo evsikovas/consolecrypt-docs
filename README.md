@@ -7,7 +7,7 @@
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
-В руководстве 33 главы и 82 скриншота для двух языков: первый запуск,
+В руководстве 33 главы и 94 скриншота для двух языков: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
 файлы, буфер обмена, общие папки, резервные копии и запуск своего сервера.
 Изображения получены из демонстрационного интерфейса с синтетическими данными.
@@ -27,6 +27,22 @@
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).
+
+## Готовые сборки 0.4.1
+
+Все пакеты выпущены из одного тега [v0.4.1](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.4.1).
+Перед установкой можно сверить файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/SHA256SUMS-0.4.1.txt).
+
+| Платформа | Сборка | Файл |
+| --- | --- | --- |
+| macOS, Apple Silicon и Intel | 0.4.1+18011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18011-macos-universal.dmg) |
+| Windows x64 | 0.4.1+18012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18012-windows-x64-setup.exe), [ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18012-windows-x64.zip) |
+| Linux x64 | 0.4.1+18013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18013-linux-x64.deb), [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18013-linux-x64.rpm) |
+| Android ARM64 | 0.4.1+18014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18014-android-arm64.apk) |
+| iOS Simulator на Mac | 0.4.1+18015 | [ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.4.1/ConsoleCrypt-0.4.1%2B18015-ios-simulator-universal.zip) |
+
+Android и iOS используют мобильный RDP-тачпад. Архив iOS предназначен для
+Simulator, а не для установки на физический iPhone; [порядок запуска](docs/public/BUILD_IOS.md).
 
 ## Структура
 
