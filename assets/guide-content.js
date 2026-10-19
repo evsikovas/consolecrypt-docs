@@ -191,7 +191,7 @@ export const guideSections = [
   },
   {
     id: 'terminal', group: 'workspace', title: b('Терминал, вкладки и выделение', 'Terminal, tabs and selection'),
-    intro: b('Одна вкладка — одно SSH-подключение. На телефоне есть панель специальных клавиш, а на компьютере — горячие клавиши и контекстное меню.', 'Each tab is an SSH connection. Phones have a special-key bar; computers have shortcuts and a context menu.'),
+    intro: b('Одна вкладка — одна терминальная сессия: SSH, а в 0.5 на macOS и Windows также локальная оболочка. На телефоне есть панель специальных клавиш, а на компьютере — горячие клавиши и контекстное меню.', 'Each tab is one terminal session: SSH, plus local shells on macOS and Windows in 0.5. Phones have a special-key bar; computers have shortcuts and a context menu.'),
     steps: [
       b('Нажмите внутри терминала для ввода. Новое подключение открывается кнопкой «+». Когда вкладки не помещаются, прокручивайте полосу колёсиком или стрелками по краям. Рядом со стрелками показано общее число открытых вкладок в скобках.', 'Click inside the terminal to type. The “+” button opens another connection. When tabs overflow, scroll the strip with the mouse wheel or its edge arrows. The total number of open tabs appears in parentheses beside the arrows.'),
       b('Чтобы выделить несколько экранов вывода, удерживайте кнопку мыши и прокручивайте историю колёсиком. Можно вывести указатель за верхний или нижний край терминала: история начнёт прокручиваться автоматически, продолжая выделение.', 'To select several screens of output, hold the mouse button and scroll the history with the wheel. Move the pointer beyond the terminal’s top or bottom edge to scroll automatically while extending the selection.'),
@@ -203,6 +203,83 @@ export const guideSections = [
     note: b('После обновления откройте новую SSH-сессию. Встроенный SSH запрашивает UTF-8 для ввода и удаления кириллицы. Если символы всё ещё искажаются, проверьте UTF-8 локаль удалённого хоста: настройки его оболочки и SSH-сервера могут перекрывать запрос клиента.', 'Open a new SSH session after updating. Built-in SSH requests UTF-8 for entering and deleting Cyrillic text. If characters are still corrupted, check the remote host’s UTF-8 locale: its shell and SSH-server settings can override the client’s request.'),
     images: [shot('terminal-selection-scroll', 'Выделение текста в середине истории демонстрационного терминала.', 'Text selected in the middle of the demo terminal’s scrollback history.'), shot('terminal-tabs-overflow', 'Восемь открытых демонстрационных вкладок: навигация по полосе и счётчик.', 'Eight open demo tabs: strip navigation and the tab count.'), shot('mobile-terminal', 'Демонстрационный терминал Android с панелью специальных клавиш.', 'Demo Android terminal with its special-key bar.', {width: 824, height: 1830, layout: 'phone'})],
     image: shot('terminal-menu', 'Контекстное меню над выделением в демонстрационном терминале.', 'Context menu over a selection in the demo terminal.'),
+  },
+  {
+    "id": "local-terminals",
+    "group": "workspace",
+    "keywords": [
+      "zsh",
+      "PowerShell",
+      "cmd",
+      "WSL",
+      "PTY",
+      "ConPTY",
+      "локальный",
+      "local shell"
+    ],
+    "title": {
+      "ru": "Локальные терминалы: zsh, PowerShell и WSL (0.5)",
+      "en": "Local terminals: zsh, PowerShell and WSL (0.5)"
+    },
+    "intro": {
+      "ru": "В серии 0.5 на macOS и Windows можно открыть оболочку своего компьютера рядом с SSH-вкладками. Она запускается с вашими обычными правами пользователя и не требует сервера синхронизации.",
+      "en": "The 0.5 series lets macOS and Windows open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server."
+    },
+    "steps": [
+      {
+        "ru": "Откройте «Терминал» и нажмите кнопку новой вкладки, Cmd+T на macOS или Ctrl+T на Windows. В группе «Локальные оболочки» выберите zsh, Windows PowerShell, Command Prompt либо установленный PowerShell 7. Общая кнопка «+» приложения по-прежнему выбирает SSH/RDP-хосты.",
+        "en": "Open Terminal and use its new-tab button, Cmd+T on macOS or Ctrl+T on Windows. Under Local shells choose zsh, Windows PowerShell, Command Prompt or installed PowerShell 7. The app’s global “+” still opens the SSH/RDP host picker."
+      },
+      {
+        "ru": "Каждый установленный WSL-дистрибутив отображается отдельно. Выберите Ubuntu, Debian или другой доступный дистрибутив; можно открыть несколько вкладок одной оболочки. Сам WSL клиент не устанавливает.",
+        "en": "Each installed WSL distribution appears separately. Choose Ubuntu, Debian or another available distribution; you can open several tabs for one shell. The client does not install WSL itself."
+      },
+      {
+        "ru": "Проверяйте подпись «Этот компьютер» и имя WSL-дистрибутива, переключаясь между локальной и SSH-вкладкой. Ввод, изменение размера, Ctrl+C и интерактивные программы используют настоящий PTY/ConPTY. SFTP доступен для SSH-хоста, у локальной вкладки этого действия нет.",
+        "en": "Check the This computer label and WSL distribution name when switching between local and SSH tabs. Input, resizing, Ctrl+C and interactive programs use a real PTY/ConPTY. SFTP is an SSH-host action and is absent from the local tab."
+      },
+      {
+        "ru": "ИИ получает диалект активной оболочки и только явно выбранный контекст. AI-команды и сниппеты в локальную вкладку можно «Вставить» без Enter; автоматическое выполнение отключено. Проверьте текст и нажмите Enter сами, если хотите его выполнить.",
+        "en": "AI receives the active shell dialect and only explicitly selected context. AI commands and snippets can be inserted into a local tab without Enter; automatic execution is disabled. Review the text and press Enter yourself if you want to run it."
+      },
+      {
+        "ru": "Закрытие вкладки завершает её процесс. «Перезапустить оболочку» создаёт новую сессию. Блокировка хранилища, смена профиля и выход закрывают оболочку и её текущую foreground-группу. Отсоединённые фоновые процессы (например, nohup) не разыскиваются; весь WSL-дистрибутив не останавливается.",
+        "en": "Closing a tab ends its process. Restart shell starts a new session. Vault lock, profile switch and quit close the shell and its current foreground process group. Detached/background processes such as nohup are not searched for, and the entire WSL distribution is not stopped."
+      }
+    ],
+    "note": {
+      "ru": "Локальные оболочки 0.5 доступны на macOS и Windows. Пакет macOS работает без App Sandbox и сохраняет прежние каталоги данных на месте; не удаляйте контейнер 0.4.1, модели, vault или Keychain. При конфликте двух каталогов или ошибке доступа запуск останавливается до создания нового профиля. Снимки ниже — виджеты с синтетическими профилями, не доказательство нативного запуска WSL.",
+      "en": "Local shells in 0.5 support macOS and Windows. The macOS package runs without App Sandbox and reuses existing storage in place; keep the 0.4.1 container, models, vault and Keychain. Conflicting or unreadable storage stops startup before creating a new profile. The screenshots below use widgets with synthetic profiles, not a native WSL run."
+    },
+    "images": [
+      {
+        "name": "terminal-local-picker",
+        "caption": {
+          "ru": "Выбор локальной zsh и SSH-хостов: настоящий интерфейс с демонстрационными профилями.",
+          "en": "Choosing local zsh and SSH hosts: real interface with demo profiles."
+        },
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "name": "terminal-local-tabs",
+        "caption": {
+          "ru": "SSH и локальная zsh рядом. Текст терминала синтетический; пользовательские команды не выполнялись.",
+          "en": "SSH and local zsh side by side. Terminal text is synthetic; no user commands ran."
+        },
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "name": "terminal-wsl-picker",
+        "caption": {
+          "ru": "Windows-вариант выбора PowerShell, cmd и двух WSL-дистрибутивов в widget-тесте на macOS. Оболочки не запускались.",
+          "en": "Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-hosted widget test. No shells ran."
+        },
+        "width": 1440,
+        "height": 900
+      }
+    ]
   },
   {
     id: 'shortcuts', group: 'workspace', title: b('Горячие клавиши', 'Keyboard shortcuts'),
@@ -279,21 +356,155 @@ export const guideSections = [
     image: shot('workspace-ai-selection', 'ИИ-чат с выбранным контекстом демонстрационного терминала.', 'AI chat with selected context from the demo terminal.'),
   },
   {
-    id: 'local-ai', group: 'workspace', keywords: ['AI', 'ИИ', 'Qwen', 'llama.cpp', 'offline', 'локальный', 'Metal', 'CPU'],
-    title: b('Локальный ИИ на компьютере (0.4.1)', 'Local AI on your computer (0.4.1)'),
-    intro: b('На macOS и Windows клиент 0.4.1 умеет сам установить небольшую модель Qwen2.5-Coder 1.5B Q4_K_M. Для ответов подключение к облачному провайдеру не требуется.', 'On macOS and Windows, client 0.4.1 can install the small Qwen2.5-Coder 1.5B Q4_K_M model. Answers do not require a cloud provider.'),
-    steps: [
-      b('Откройте «Настройки», найдите «Встроенный локальный ИИ» и нажмите «Установить локальный ИИ». Скачаются примерно 1,1 ГБ модели; в Windows отдельно устанавливается движок, а в macOS он входит в приложение. Прогресс виден в настройках; загрузку можно отменить и затем продолжить.', 'Open Settings, find “Built-in local AI” and choose “Install local AI”. The app downloads about 1.1 GB of model data. Windows installs a separate runtime; macOS includes the runtime in the app. Settings show progress; you can cancel and later resume the download.'),
-      b('Флажок «Использовать по умолчанию после установки» изначально включён и действует после установки. Он сохраняется только на этом компьютере. Если снять флажок, обычный выбор вашего провайдера снова используется.', '“Use by default after installation” starts enabled and takes effect after installation. It is saved only on this computer. Turn it off to return to your usual provider selection.'),
-      b('Откройте ИИ-чат или запросите команду через палитру. Модель запускается при первом запросе; также доступны кнопки запуска и остановки. Через 15 минут бездействия процесс выгружается из памяти.', 'Open AI chat or request a command through the palette. The model starts on the first request; Start and Stop buttons are also available. The process unloads after 15 minutes of inactivity.'),
-      b('На Apple Silicon используется ускорение Metal. На Intel Mac и Windows x64 модель работает на CPU. Android и Linux не скачивают эту модель и не показывают раздел локальной установки.', 'Apple Silicon uses Metal acceleration. Intel Mac and Windows x64 run the model on the CPU. Android and Linux do not download this model or show the local installation section.'),
+    "id": "local-ai",
+    "group": "workspace",
+    "keywords": [
+      "AI",
+      "ИИ",
+      "Qwen",
+      "llama.cpp",
+      "offline",
+      "локальный",
+      "Metal",
+      "CPU",
+      "RAM"
     ],
-    note: b('Файлы проверяются по SHA-256. Запросы к установленной модели обрабатываются на компьютере, а контекст и подтверждение команд проходят обычные проверки ConsoleCrypt. Блокировка хранилища и смена профиля останавливают процесс. Модель может ошибаться — проверяйте команды перед выполнением.', 'Files are verified with SHA-256. The installed model processes requests on your computer; context and command approval still use the normal ConsoleCrypt checks. Vault lock and profile changes stop the process. The model can make mistakes: review commands before running them.'),
-    images: [
-      shot('local-ai-install', 'Установка локального ИИ: модель и включённый флажок использования по умолчанию после установки. Демонстрационный профиль.', 'Local AI installation: the model and enabled option to use it by default after installation. Demo profile.'),
-      shot('local-ai-progress', 'Индикатор загрузки и проверки с кнопкой отмены. Прогресс на снимке демонстрационный.', 'Download and verification progress with a cancel button. The progress shown is synthetic.'),
-      shot('local-ai-ready', 'Состояние «Готово» и действия остановки и удаления в настоящем интерфейсе; состояние модели демонстрационное.', 'The Ready state with stop and remove actions in the real interface; the model state is simulated.'),
+    "title": {
+      "ru": "Локальный ИИ: три модели и обновление (0.5)",
+      "en": "Local AI: three models and upgrades (0.5)"
+    },
+    "intro": {
+      "ru": "На macOS и Windows модель отвечает на вашем компьютере. В серии 0.5 можно выбрать лёгкую Qwen2.5-Coder 1.5B, среднюю Qwen3.5 4B или мощную Qwen3.5 9B; уже скачанные модели сохраняются при обновлении.",
+      "en": "On macOS and Windows, the model answers on your computer. The 0.5 series offers Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates."
+    },
+    "table": {
+      "headings": [
+        {
+          "ru": "Вариант",
+          "en": "Tier"
+        },
+        {
+          "ru": "Модель и загрузка",
+          "en": "Model and download"
+        },
+        {
+          "ru": "Общая ОЗУ: ориентир",
+          "en": "Total RAM guidance"
+        }
+      ],
+      "rows": [
+        [
+          {
+            "ru": "Лёгкая",
+            "en": "Light"
+          },
+          {
+            "ru": "Qwen2.5-Coder 1.5B Q4_K_M · 1,1 ГБ",
+            "en": "Qwen2.5-Coder 1.5B Q4_K_M · 1.1 GB"
+          },
+          {
+            "ru": "4 ГиБ",
+            "en": "4 GiB"
+          }
+        ],
+        [
+          {
+            "ru": "Средняя",
+            "en": "Medium"
+          },
+          {
+            "ru": "Qwen3.5 4B Q4_K_M · 2,7 ГБ",
+            "en": "Qwen3.5 4B Q4_K_M · 2.7 GB"
+          },
+          {
+            "ru": "8 ГиБ",
+            "en": "8 GiB"
+          }
+        ],
+        [
+          {
+            "ru": "Мощная",
+            "en": "Strong"
+          },
+          {
+            "ru": "Qwen3.5 9B Q4_K_M · 5,7 ГБ",
+            "en": "Qwen3.5 9B Q4_K_M · 5.7 GB"
+          },
+          {
+            "ru": "16 ГиБ",
+            "en": "16 GiB"
+          }
+        ]
+      ]
+    },
+    "steps": [
+      {
+        "ru": "В настройках откройте «Встроенный локальный ИИ» и выберите модель. Звезда рекомендует вариант по общей памяти компьютера, но не меняет выбор автоматически. При неизвестном объёме или менее 4 ГиБ звезды нет. ОЗУ — ориентир, а не обещание скорости.",
+        "en": "In Settings, open Built-in local AI and select a model. The star recommends a tier based on total system RAM but never changes your choice automatically. Unknown RAM or less than 4 GiB shows no star. RAM guidance is not a speed guarantee."
+      },
+      {
+        "ru": "Нажмите «Установить локальный ИИ». Файлы проверяются по размеру и SHA-256; прогресс виден, загрузку можно отменить и продолжить. В Windows отдельно устанавливается движок; macOS включает небольшой движок в пакет. Большие файлы моделей не входят в установщик приложения.",
+        "en": "Choose Install local AI. Files are checked by exact size and SHA-256; progress is visible and downloads can be cancelled and resumed. Windows installs a separate runtime; macOS includes the small runtime in its package. Large model files are not bundled in the app installer."
+      },
+      {
+        "ru": "Флажок «Использовать по умолчанию после установки» хранится только на этом устройстве. Снятие возвращает обычный выбор провайдера. После установки локальной модели при включённом default выбор другой, ещё не скачанной модели приводит к предложению установить её без незаметной отправки запроса в облако.",
+        "en": "Use by default after installation is saved only on this device. Turning it off returns to your usual provider. After a local model is installed with local default enabled, selecting another model that is not downloaded asks for installation instead of silently sending the request to the cloud."
+      },
+      {
+        "ru": "Смена модели останавливает текущий процесс и сохраняет остальные GGUF-файлы. «Удалить» удаляет только выбранную модель и её частичные загрузки. Обновление или ремонт движка повторно использует проверенную модель; прежний Qwen2.5-Coder 1.5B и настройки default сохраняются.",
+        "en": "Switching models stops the current process and retains the other GGUF files. Remove deletes only the selected model and its partial downloads. Updating or repairing the runtime reuses a verified model; the original Qwen2.5-Coder 1.5B and default preference are preserved."
+      },
+      {
+        "ru": "Модель запускается при первом запросе либо кнопкой запуска. После 15 минут без запросов, блокировки vault, смены профиля или выхода процесс останавливается. Apple Silicon использует Metal; Intel Mac и Windows x64 — CPU. На Linux и мобильных платформах встроенная установка недоступна.",
+        "en": "The model starts on the first request or with Start. It stops after 15 idle minutes, vault lock, profile switch or quit. Apple Silicon uses Metal; Intel Mac and Windows x64 use CPU. Built-in installation is unavailable on Linux and mobile platforms."
+      },
+      {
+        "ru": "Откройте «Источники и лицензии моделей»: 1.5B опубликована Qwen, версии 4B/9B — GGUF-квантования Qwen от Unsloth; все три используют Apache-2.0. Лицензионный текст доступен без интернета.",
+        "en": "Open Model sources and licenses: Qwen publishes the 1.5B GGUF, and Unsloth provides GGUF quantizations of Qwen 4B/9B; all three use Apache-2.0. License text is available offline."
+      }
     ],
+    "note": {
+      "ru": "Локальный запрос идёт только на 127.0.0.1 со случайным токеном; фильтрация контекста сохраняется. В локальном терминале AI-команда вставляется без Enter и выполняется вами вручную после проверки. На macOS не удаляйте прежний контейнер данных при обновлении 0.4.1 → 0.5: профиль и модель используются на месте. Снимки показывают синтетические состояния, не реальную загрузку или скорость ответов.",
+      "en": "Local requests use only 127.0.0.1 with a random token; context filtering remains active. In local terminals, AI commands are inserted without Enter and executed manually after your review. On macOS, keep the previous data container when upgrading 0.4.1 to 0.5: the profile and model are reused in place. Screenshots show synthetic states, not real downloads or response speeds."
+    },
+    "images": [
+      {
+        "name": "local-ai-catalog",
+        "caption": {
+          "ru": "Три модели, размеры и ориентиры ОЗУ. Звезда 9B рассчитана для демонстрационных 16 ГиБ, а не измерена на пользовательском компьютере.",
+          "en": "Three models, sizes and RAM guidance. The 9B star uses synthetic 16 GiB hardware, not a measurement of the user’s computer."
+        },
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "name": "local-ai-install",
+        "caption": {
+          "ru": "Выбор локальной модели и настройка default. Демонстрационный профиль.",
+          "en": "Local model selection and the default preference. Demo profile."
+        },
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "name": "local-ai-progress",
+        "caption": {
+          "ru": "Индикатор загрузки и проверки с отменой; прогресс синтетический.",
+          "en": "Download and verification progress with cancellation; progress is synthetic."
+        },
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "name": "local-ai-ready",
+        "caption": {
+          "ru": "Готовая выбранная модель и действия остановки и удаления; состояние процесса демонстрационное.",
+          "en": "The selected model is ready with stop and remove actions; the process state is simulated."
+        },
+        "width": 1440,
+        "height": 900
+      }
+    ]
   },
   {
     id: 'sharing-start', group: 'collaboration', title: b('Совместный доступ: с чего начать', 'Sharing: getting started'),

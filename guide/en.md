@@ -24,13 +24,14 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Passwords, keys and credentials](#credentials)
 - [Known hosts and SSH-key verification](#host-keys)
 - [Terminal, tabs and selection](#terminal)
+- [Local terminals: zsh, PowerShell and WSL (0.5)](#local-terminals)
 - [Keyboard shortcuts](#shortcuts)
 - [SFTP: transfers and file preview](#sftp)
 - [SFTP: default editor](#sftp-editor)
 - [SSH tunnels](#tunnels)
 - [Snippets, variables and starter sets](#snippets)
 - [AI chat and the context you send](#ai)
-- [Local AI on your computer (0.4.1)](#local-ai)
+- [Local AI: three models and upgrades (0.5)](#local-ai)
 
 **Working together**
 
@@ -392,7 +393,7 @@ A separate known-host list with demo fingerprints.
 
 ## 13. Terminal, tabs and selection
 
-Each tab is an SSH connection. Phones have a special-key bar; computers have shortcuts and a context menu.
+Each tab is one terminal session: SSH, plus local shells on macOS and Windows in 0.5. Phones have a special-key bar; computers have shortcuts and a context menu.
 
 1. Click inside the terminal to type. The “+” button opens another connection. When tabs overflow, scroll the strip with the mouse wheel or its edge arrows. The total number of open tabs appears in parentheses beside the arrows.
 
@@ -426,9 +427,41 @@ Eight open demo tabs: strip navigation and the tab count.
 
 Demo Android terminal with its special-key bar.
 
+<a name="local-terminals"></a>
+
+## 14. Local terminals: zsh, PowerShell and WSL (0.5)
+
+The 0.5 series lets macOS and Windows open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
+
+1. Open Terminal and use its new-tab button, Cmd+T on macOS or Ctrl+T on Windows. Under Local shells choose zsh, Windows PowerShell, Command Prompt or installed PowerShell 7. The app’s global “+” still opens the SSH/RDP host picker.
+
+2. Each installed WSL distribution appears separately. Choose Ubuntu, Debian or another available distribution; you can open several tabs for one shell. The client does not install WSL itself.
+
+3. Check the This computer label and WSL distribution name when switching between local and SSH tabs. Input, resizing, Ctrl+C and interactive programs use a real PTY/ConPTY. SFTP is an SSH-host action and is absent from the local tab.
+
+4. AI receives the active shell dialect and only explicitly selected context. AI commands and snippets can be inserted into a local tab without Enter; automatic execution is disabled. Review the text and press Enter yourself if you want to run it.
+
+5. Closing a tab ends its process. Restart shell starts a new session. Vault lock, profile switch and quit close the shell and its current foreground process group. Detached/background processes such as nohup are not searched for, and the entire WSL distribution is not stopped.
+
+> **Keep in mind**
+>
+> Local shells in 0.5 support macOS and Windows. The macOS package runs without App Sandbox and reuses existing storage in place; keep the 0.4.1 container, models, vault and Keychain. Conflicting or unreadable storage stops startup before creating a new profile. The screenshots below use widgets with synthetic profiles, not a native WSL run.
+
+![Choosing local zsh and SSH hosts: real interface with demo profiles.](../assets/guide/terminal-local-picker-en.png)
+
+Choosing local zsh and SSH hosts: real interface with demo profiles.
+
+![SSH and local zsh side by side. Terminal text is synthetic; no user commands ran.](../assets/guide/terminal-local-tabs-en.png)
+
+SSH and local zsh side by side. Terminal text is synthetic; no user commands ran.
+
+![Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-hosted widget test. No shells ran.](../assets/guide/terminal-wsl-picker-en.png)
+
+Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-hosted widget test. No shells ran.
+
 <a name="shortcuts"></a>
 
-## 14. Keyboard shortcuts
+## 15. Keyboard shortcuts
 
 The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command.
 
@@ -450,7 +483,7 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 
 <a name="sftp"></a>
 
-## 15. SFTP: transfers and file preview
+## 16. SFTP: transfers and file preview
 
 Open SFTP from a host’s menu or the sidebar. Files travel directly between your device and the SSH host.
 
@@ -466,7 +499,7 @@ Quick Look for a demo file with a separate line-number gutter.
 
 <a name="sftp-editor"></a>
 
-## 16. SFTP: default editor
+## 17. SFTP: default editor
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
@@ -488,7 +521,7 @@ The remembered-editor local preference in the demo client.
 
 <a name="tunnels"></a>
 
-## 17. SSH tunnels
+## 18. SSH tunnels
 
 A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.
 
@@ -508,7 +541,7 @@ Demo tunnel definitions and statuses.
 
 <a name="snippets"></a>
 
-## 18. Snippets, variables and starter sets
+## 19. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
@@ -534,7 +567,7 @@ Filtering and managing snippet sets.
 
 <a name="ai"></a>
 
-## 19. AI chat and the context you send
+## 20. AI chat and the context you send
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
@@ -556,37 +589,51 @@ AI chat with selected context from the demo terminal.
 
 <a name="local-ai"></a>
 
-## 20. Local AI on your computer (0.4.1)
+## 21. Local AI: three models and upgrades (0.5)
 
-On macOS and Windows, client 0.4.1 can install the small Qwen2.5-Coder 1.5B Q4\_K\_M model. Answers do not require a cloud provider.
+On macOS and Windows, the model answers on your computer. The 0.5 series offers Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates.
 
-1. Open Settings, find “Built-in local AI” and choose “Install local AI”. The app downloads about 1.1 GB of model data. Windows installs a separate runtime; macOS includes the runtime in the app. Settings show progress; you can cancel and later resume the download.
+| Tier | Model and download | Total RAM guidance |
+| --- | --- | --- |
+| Light | Qwen2.5-Coder 1.5B Q4\_K\_M · 1.1 GB | 4 GiB |
+| Medium | Qwen3.5 4B Q4\_K\_M · 2.7 GB | 8 GiB |
+| Strong | Qwen3.5 9B Q4\_K\_M · 5.7 GB | 16 GiB |
 
-2. “Use by default after installation” starts enabled and takes effect after installation. It is saved only on this computer. Turn it off to return to your usual provider selection.
+1. In Settings, open Built-in local AI and select a model. The star recommends a tier based on total system RAM but never changes your choice automatically. Unknown RAM or less than 4 GiB shows no star. RAM guidance is not a speed guarantee.
 
-3. Open AI chat or request a command through the palette. The model starts on the first request; Start and Stop buttons are also available. The process unloads after 15 minutes of inactivity.
+2. Choose Install local AI. Files are checked by exact size and SHA-256; progress is visible and downloads can be cancelled and resumed. Windows installs a separate runtime; macOS includes the small runtime in its package. Large model files are not bundled in the app installer.
 
-4. Apple Silicon uses Metal acceleration. Intel Mac and Windows x64 run the model on the CPU. Android and Linux do not download this model or show the local installation section.
+3. Use by default after installation is saved only on this device. Turning it off returns to your usual provider. After a local model is installed with local default enabled, selecting another model that is not downloaded asks for installation instead of silently sending the request to the cloud.
+
+4. Switching models stops the current process and retains the other GGUF files. Remove deletes only the selected model and its partial downloads. Updating or repairing the runtime reuses a verified model; the original Qwen2.5-Coder 1.5B and default preference are preserved.
+
+5. The model starts on the first request or with Start. It stops after 15 idle minutes, vault lock, profile switch or quit. Apple Silicon uses Metal; Intel Mac and Windows x64 use CPU. Built-in installation is unavailable on Linux and mobile platforms.
+
+6. Open Model sources and licenses: Qwen publishes the 1.5B GGUF, and Unsloth provides GGUF quantizations of Qwen 4B/9B; all three use Apache-2.0. License text is available offline.
 
 > **Keep in mind**
 >
-> Files are verified with SHA-256. The installed model processes requests on your computer; context and command approval still use the normal ConsoleCrypt checks. Vault lock and profile changes stop the process. The model can make mistakes: review commands before running them.
+> Local requests use only 127.0.0.1 with a random token; context filtering remains active. In local terminals, AI commands are inserted without Enter and executed manually after your review. On macOS, keep the previous data container when upgrading 0.4.1 to 0.5: the profile and model are reused in place. Screenshots show synthetic states, not real downloads or response speeds.
 
-![Local AI installation: the model and enabled option to use it by default after installation. Demo profile.](../assets/guide/local-ai-install-en.png)
+![Three models, sizes and RAM guidance. The 9B star uses synthetic 16 GiB hardware, not a measurement of the user’s computer.](../assets/guide/local-ai-catalog-en.png)
 
-Local AI installation: the model and enabled option to use it by default after installation. Demo profile.
+Three models, sizes and RAM guidance. The 9B star uses synthetic 16 GiB hardware, not a measurement of the user’s computer.
 
-![Download and verification progress with a cancel button. The progress shown is synthetic.](../assets/guide/local-ai-progress-en.png)
+![Local model selection and the default preference. Demo profile.](../assets/guide/local-ai-install-en.png)
 
-Download and verification progress with a cancel button. The progress shown is synthetic.
+Local model selection and the default preference. Demo profile.
 
-![The Ready state with stop and remove actions in the real interface; the model state is simulated.](../assets/guide/local-ai-ready-en.png)
+![Download and verification progress with cancellation; progress is synthetic.](../assets/guide/local-ai-progress-en.png)
 
-The Ready state with stop and remove actions in the real interface; the model state is simulated.
+Download and verification progress with cancellation; progress is synthetic.
+
+![The selected model is ready with stop and remove actions; the process state is simulated.](../assets/guide/local-ai-ready-en.png)
+
+The selected model is ready with stop and remove actions; the process state is simulated.
 
 <a name="sharing-start"></a>
 
-## 21. Sharing: getting started
+## 22. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -618,7 +665,7 @@ Selecting Reader or Editor access.
 
 <a name="sharing-items"></a>
 
-## 22. Shared hosts, groups and secrets
+## 23. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -640,7 +687,7 @@ The separate secret-publishing dialog: the value is masked and consent has not b
 
 <a name="sharing-devices"></a>
 
-## 23. A colleague’s new personal devices
+## 24. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -662,7 +709,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 24. Revocation, queues and trust recovery
+## 25. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -680,7 +727,7 @@ The owner manages participants. An editor changes content; participant access re
 
 <a name="appearance"></a>
 
-## 25. Colors, text size and glass effects
+## 26. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -702,7 +749,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 26. Right panel: bubbles or one workspace
+## 27. Right panel: bubbles or one workspace
 
 Snippets and AI are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -728,7 +775,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 27. Screenshots and screen protection
+## 28. Screenshots and screen protection
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device.
 
@@ -752,7 +799,7 @@ The macOS security section explains the OS limitation.
 
 <a name="backups"></a>
 
-## 28. Backups and restore
+## 29. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -772,7 +819,7 @@ Encrypted backups and scheduling in the demo client.
 
 <a name="about"></a>
 
-## 29. Version, author and licenses
+## 30. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -788,7 +835,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 30. Client updates
+## 31. Client updates
 
 On Windows, macOS and Android, “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself. On Linux, download the new package from the website and install it manually.
 
@@ -816,7 +863,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 31. Website account
+## 32. Website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -832,7 +879,7 @@ The website account manages your public-server account. Decrypted hosts, keys an
 
 <a name="server-setup"></a>
 
-## 32. Your own server: Kubernetes
+## 33. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -898,7 +945,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 33. Your own server: Docker Compose
+## 34. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 

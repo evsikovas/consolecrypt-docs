@@ -3,11 +3,12 @@
 # ConsoleCrypt — документация
 
 Руководство по SSH, RDP, SFTP, зашифрованному хранилищу, синхронизации,
-сниппетам, ИИ и совместной работе. Документация обновлена для клиента 0.4.1.
+сниппетам, ИИ и совместной работе. Новые главы описывают серию клиента 0.5;
+опубликованные пакеты ниже пока относятся к 0.4.1.
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
-В руководстве 33 главы и 94 скриншота для двух языков: первый запуск,
+В руководстве 34 главы и 102 скриншота для двух языков: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
 файлы, буфер обмена, общие папки, резервные копии и запуск своего сервера.
 Изображения получены из демонстрационного интерфейса с синтетическими данными.
@@ -20,7 +21,9 @@
 - [Docker и Kubernetes](docs/public/HOSTING.md).
 - [Совместный доступ](docs/public/SHARING.md).
 - [RDP](docs/public/RDP.md), включая мобильный тачпад.
-- [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md).
+- [Локальные терминалы: zsh, PowerShell, cmd и WSL](docs/public/LOCAL_TERMINALS.md).
+- [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md): три модели и сохранение установленных файлов при обновлении.
+- [Изменения серии 0.5](docs/public/RELEASE_0_5_1.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
 - [Обновления](docs/public/UPDATES.md), [версия 0.4.1](docs/public/RELEASE_0_4_1.md).
