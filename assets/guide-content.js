@@ -115,8 +115,8 @@ export const guideSections = [
   },
   {
     id: 'rdp-mobile', group: 'workspace', keywords: ['RDP', 'Android', 'iOS', 'touchpad', 'тачпад', 'mouse', 'мышь', 'IME', 'keyboard', 'клавиатура', 'drag', 'перетаскивание', 'landscape'],
-    title: b('RDP на телефоне: тачпад и клавиатура (0.4.0)', 'RDP on a phone: touchpad and keyboard (0.4.0)'),
-    intro: b('Панель доступна начиная с Android-сборки 0.4.0. В 0.3.2 её ещё нет. Используйте APK 0.4.0 или новее; работа на физическом iPhone требует отдельной проверки.', 'The panel is available starting with Android build 0.4.0; 0.3.2 does not include it. Use APK 0.4.0 or newer. Use on a physical iPhone requires separate verification.'),
+    title: b('RDP на телефоне: тачпад и клавиатура (0.4.1)', 'RDP on a phone: touchpad and keyboard (0.4.1)'),
+    intro: b('Панель доступна начиная с Android-сборки 0.4.1. В 0.3.2 её ещё нет. Используйте APK 0.4.1 или новее; работа на физическом iPhone требует отдельной проверки.', 'The panel is available starting with Android build 0.4.1; 0.3.2 does not include it. Use APK 0.4.1 or newer. Use on a physical iPhone requires separate verification.'),
     table: { headings: [b('Жест в режиме тачпада', 'Touchpad gesture'), b('Действие в Windows', 'Windows action')], rows: [
       [b('Одно короткое касание', 'One short tap'), b('Левый клик в позиции курсора.', 'Left-click at the cursor.')],
       [b('Два быстрых касания', 'Two quick taps'), b('Двойной левый клик.', 'Double left-click.')],
@@ -133,7 +133,7 @@ export const guideSections = [
       b('Если экранная клавиатура ещё составляет слово или предлагает варианты ввода, сначала завершите ввод на ней. До завершения композиции служебные кнопки не отправляют удалённые команды.', 'If the phone keyboard is still composing a word or offering input candidates, finish that input first. Until composition is complete, the extra key buttons do not send remote commands.'),
       b('Переключение режима управления или сеанса, уход в фон, блокировка и отключение ввода отпускают нажатые клавиши и кнопки мыши. После возвращения начните жест заново. Подключённая мышь использует обычное прямое управление.', 'Changing input mode or session, going into the background, locking or disabling input releases held keys and mouse buttons. Start a new gesture after returning. An attached mouse uses ordinary direct control.'),
     ],
-    note: b('Эти жесты относятся к мобильному интерфейсу 0.4.0. Настольное управление не меняется. Перенаправление папок на Android и iOS по-прежнему недоступно; существующие снимки в соседней главе относятся к указанным в манифесте историческим сборкам.', 'These gestures apply to the mobile interface in 0.4.0. Desktop controls are unchanged. Folder redirection remains unavailable on Android and iOS; screenshots in the preceding chapter belong to the historical builds recorded in the manifest.'),
+    note: b('Эти жесты относятся к мобильному интерфейсу 0.4.1. Настольное управление не меняется. Перенаправление папок на Android и iOS по-прежнему недоступно; существующие снимки в соседней главе относятся к указанным в манифесте историческим сборкам.', 'These gestures apply to the mobile interface in 0.4.1. Desktop controls are unchanged. Folder redirection remains unavailable on Android and iOS; screenshots in the preceding chapter belong to the historical builds recorded in the manifest.'),
   },
   {
     id: 'quick-connect', group: 'workspace', keywords: ['IP', 'SSH', 'Enter', '⌘K', 'Ctrl+K', 'command palette'], title: b('Быстрый поиск и подключение', 'Quick search and connect'),
@@ -275,8 +275,8 @@ export const guideSections = [
   },
   {
     id: 'local-ai', group: 'workspace', keywords: ['AI', 'ИИ', 'Qwen', 'llama.cpp', 'offline', 'локальный', 'Metal', 'CPU'],
-    title: b('Локальный ИИ на компьютере (0.4.0)', 'Local AI on your computer (0.4.0)'),
-    intro: b('На macOS и Windows клиент 0.4.0 умеет сам установить небольшую модель Qwen2.5-Coder 1.5B Q4_K_M. Для ответов подключение к облачному провайдеру не требуется.', 'On macOS and Windows, client 0.4.0 can install the small Qwen2.5-Coder 1.5B Q4_K_M model. Answers do not require a cloud provider.'),
+    title: b('Локальный ИИ на компьютере (0.4.1)', 'Local AI on your computer (0.4.1)'),
+    intro: b('На macOS и Windows клиент 0.4.1 умеет сам установить небольшую модель Qwen2.5-Coder 1.5B Q4_K_M. Для ответов подключение к облачному провайдеру не требуется.', 'On macOS and Windows, client 0.4.1 can install the small Qwen2.5-Coder 1.5B Q4_K_M model. Answers do not require a cloud provider.'),
     steps: [
       b('Откройте настройки ИИ → «Локальный ИИ» и нажмите «Установить». Скачаются примерно 1,1 ГБ модели; в Windows отдельно устанавливается движок, а в macOS он входит в приложение. Прогресс виден в настройках; загрузку можно отменить и затем продолжить.', 'Open AI settings → “Local AI” and choose “Install”. The app downloads about 1.1 GB of model data. Windows installs a separate runtime; macOS includes the runtime in the app. Settings show progress; you can cancel and later resume the download.'),
       b('Флажок «Использовать локальный ИИ по умолчанию» изначально включён и действует после установки. Он сохраняется только на этом компьютере. Если снять флажок, обычный выбор вашего провайдера снова используется.', '“Use local AI by default” starts enabled and takes effect after installation. It is saved only on this computer. Turn it off to return to your usual provider selection.'),

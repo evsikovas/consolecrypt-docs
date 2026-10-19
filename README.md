@@ -3,7 +3,7 @@
 # ConsoleCrypt — документация
 
 Руководство по SSH, RDP, SFTP, зашифрованному хранилищу, синхронизации,
-сниппетам, ИИ и совместной работе. Документация обновлена для клиента 0.4.0.
+сниппетам, ИИ и совместной работе. Документация обновлена для клиента 0.4.1.
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
@@ -23,7 +23,7 @@
 - [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 0.4.0](docs/public/RELEASE_0_4_0.md).
+- [Обновления](docs/public/UPDATES.md), [версия 0.4.1](docs/public/RELEASE_0_4_1.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).

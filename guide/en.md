@@ -18,7 +18,7 @@ Step-by-step instructions with the real application interface and demonstration 
 
 - [Hosts: add, find and connect](#hosts)
 - [RDP: Windows remote desktop](#rdp)
-- [RDP on a phone: touchpad and keyboard (0.4.0)](#rdp-mobile)
+- [RDP on a phone: touchpad and keyboard (0.4.1)](#rdp-mobile)
 - [Quick search and connect](#quick-connect)
 - [Groups and jump hosts](#groups)
 - [Passwords, keys and credentials](#credentials)
@@ -30,7 +30,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [SSH tunnels](#tunnels)
 - [Snippets, variables and starter sets](#snippets)
 - [AI chat and the context you send](#ai)
-- [Local AI on your computer (0.4.0)](#local-ai)
+- [Local AI on your computer (0.4.1)](#local-ai)
 
 **Working together**
 
@@ -255,9 +255,9 @@ Full-screen connection bar: session switching, permissions and window controls. 
 
 <a name="rdp-mobile"></a>
 
-## 8. RDP on a phone: touchpad and keyboard (0.4.0)
+## 8. RDP on a phone: touchpad and keyboard (0.4.1)
 
-The panel is available starting with Android build 0.4.0; 0.3.2 does not include it. Use APK 0.4.0 or newer. Use on a physical iPhone requires separate verification.
+The panel is available starting with Android build 0.4.1; 0.3.2 does not include it. Use APK 0.4.1 or newer. Use on a physical iPhone requires separate verification.
 
 | Touchpad gesture | Windows action |
 | --- | --- |
@@ -282,7 +282,7 @@ The panel is available starting with Android build 0.4.0; 0.3.2 does not include
 
 > **Keep in mind**
 >
-> These gestures apply to the mobile interface in 0.4.0. Desktop controls are unchanged. Folder redirection remains unavailable on Android and iOS; screenshots in the preceding chapter belong to the historical builds recorded in the manifest.
+> These gestures apply to the mobile interface in 0.4.1. Desktop controls are unchanged. Folder redirection remains unavailable on Android and iOS; screenshots in the preceding chapter belong to the historical builds recorded in the manifest.
 
 <a name="quick-connect"></a>
 
@@ -544,9 +544,9 @@ AI chat with selected context from the demo terminal.
 
 <a name="local-ai"></a>
 
-## 20. Local AI on your computer (0.4.0)
+## 20. Local AI on your computer (0.4.1)
 
-On macOS and Windows, client 0.4.0 can install the small Qwen2.5-Coder 1.5B Q4\_K\_M model. Answers do not require a cloud provider.
+On macOS and Windows, client 0.4.1 can install the small Qwen2.5-Coder 1.5B Q4\_K\_M model. Answers do not require a cloud provider.
 
 1. Open AI settings → “Local AI” and choose “Install”. The app downloads about 1.1 GB of model data. Windows installs a separate runtime; macOS includes the runtime in the app. Settings show progress; you can cancel and later resume the download.
 
