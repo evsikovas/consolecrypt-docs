@@ -1,6 +1,6 @@
 # Выпуск версии / Releasing
 
-Сборки выполняет [GitHub Actions](../../.github/workflows/client.yml) в репозитории
+Сборки выполняет [GitHub Actions](https://github.com/evsikovas/consolecrypt-client/blob/main/.github/workflows/client.yml) в репозитории
 `evsikovas/consolecrypt-client`. [Раннеры и нумерация](GITHUB_ACTIONS.md).
 Исходники и lock-файлы хранятся в Git; установщики — во вложениях релиза.
 Не добавляйте `dist/`, токены, Android keystore или приватные ключи подписи.
