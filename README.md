@@ -3,11 +3,11 @@
 # ConsoleCrypt — документация
 
 Руководство по SSH, RDP, SFTP, зашифрованному хранилищу, синхронизации,
-сниппетам, ИИ и совместной работе. Документация обновлена для клиента 0.3.2.
+сниппетам, ИИ и совместной работе. Документация обновлена для клиента 0.4.0.
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
-В руководстве 31 глава и 82 скриншота для двух языков: первый запуск,
+В руководстве 33 главы и 82 скриншота для двух языков: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
 файлы, буфер обмена, общие папки, резервные копии и запуск своего сервера.
 Изображения получены из демонстрационного интерфейса с синтетическими данными.
@@ -19,10 +19,11 @@
 - [Сервер и протокол](https://github.com/evsikovas/consolecrypt-server).
 - [Docker и Kubernetes](docs/public/HOSTING.md).
 - [Совместный доступ](docs/public/SHARING.md).
-- [RDP](docs/public/RDP.md).
+- [RDP](docs/public/RDP.md), включая мобильный тачпад.
+- [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 0.3.2](docs/public/RELEASE_0_3_2.md).
+- [Обновления](docs/public/UPDATES.md), [версия 0.4.0](docs/public/RELEASE_0_4_0.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).

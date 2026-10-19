@@ -18,6 +18,7 @@ Step-by-step instructions with the real application interface and demonstration 
 
 - [Hosts: add, find and connect](#hosts)
 - [RDP: Windows remote desktop](#rdp)
+- [RDP on a phone: touchpad and keyboard (0.4.0)](#rdp-mobile)
 - [Quick search and connect](#quick-connect)
 - [Groups and jump hosts](#groups)
 - [Passwords, keys and credentials](#credentials)
@@ -29,6 +30,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [SSH tunnels](#tunnels)
 - [Snippets, variables and starter sets](#snippets)
 - [AI chat and the context you send](#ai)
+- [Local AI on your computer (0.4.0)](#local-ai)
 
 **Working together**
 
@@ -251,9 +253,40 @@ Demo session permissions: text clipboard and a selected folder with a separate w
 
 Full-screen connection bar: session switching, permissions and window controls. Demo data.
 
+<a name="rdp-mobile"></a>
+
+## 8. RDP on a phone: touchpad and keyboard (0.4.0)
+
+The panel is available starting with Android build 0.4.0; 0.3.2 does not include it. Use APK 0.4.0 or newer. Use on a physical iPhone requires separate verification.
+
+| Touchpad gesture | Windows action |
+| --- | --- |
+| One short tap | Left-click at the cursor. |
+| Two quick taps | Double left-click. |
+| Double-tap and hold the second tap | Drag; lift your finger to release the mouse button. |
+| Hold one finger for about 500 ms, then move | Another way to start dragging. |
+| Short two-finger tap | Right-click at the cursor. |
+| Two-finger swipe | Scroll without moving the cursor. |
+
+1. The default “Direct touch” mode clicks directly under your finger. Tap the mouse button in the bottom bar to enable “Touchpad”; tap it again to return to direct touch.
+
+2. In touchpad mode, move one finger over the desktop area: the visible cursor moves relative to its previous position. Lift and reposition your finger to continue moving without making the cursor jump to your finger.
+
+3. Use the gestures in the table or the separate left- and right-click buttons. These buttons click at the current cursor position, not at your finger on the bar.
+
+4. The keyboard button separately shows or hides the phone keyboard. Touching the remote desktop does not open it. With the keyboard open, Esc, Tab, arrow keys, Enter and Backspace (⌫) are available; scroll the keys horizontally if they do not fit. When height is limited, such as landscape with the keyboard open, they share one compact bar with the controls.
+
+5. If the phone keyboard is still composing a word or offering input candidates, finish that input first. Until composition is complete, the extra key buttons do not send remote commands.
+
+6. Changing input mode or session, going into the background, locking or disabling input releases held keys and mouse buttons. Start a new gesture after returning. An attached mouse uses ordinary direct control.
+
+> **Keep in mind**
+>
+> These gestures apply to the mobile interface in 0.4.0. Desktop controls are unchanged. Folder redirection remains unavailable on Android and iOS; screenshots in the preceding chapter belong to the historical builds recorded in the manifest.
+
 <a name="quick-connect"></a>
 
-## 8. Quick search and connect
+## 9. Quick search and connect
 
 Find a saved host from anywhere in the app and open an SSH or RDP session. The command palette brings together hosts, snippets and quick actions.
 
@@ -281,7 +314,7 @@ The global “+”: choosing saved SSH and RDP hosts.
 
 <a name="groups"></a>
 
-## 9. Groups and jump hosts
+## 10. Groups and jump hosts
 
 Groups organize your inventory and provide common settings. A jump-host chain reaches an SSH host through intermediate machines.
 
@@ -307,7 +340,7 @@ Adding a demo host to an existing group.
 
 <a name="credentials"></a>
 
-## 10. Passwords, keys and credentials
+## 11. Passwords, keys and credentials
 
 Credentials are separate from hosts: one credential can be assigned to multiple connections.
 
@@ -329,7 +362,7 @@ Credentials in a demo vault; values are masked.
 
 <a name="host-keys"></a>
 
-## 11. Known hosts and SSH-key verification
+## 12. Known hosts and SSH-key verification
 
 A server key identifies the SSH host you are connecting to. This is separate from trusting a ConsoleCrypt device.
 
@@ -345,7 +378,7 @@ A separate known-host list with demo fingerprints.
 
 <a name="terminal"></a>
 
-## 12. Terminal, tabs and selection
+## 13. Terminal, tabs and selection
 
 Each tab is an SSH connection. Phones have a special-key bar; computers have shortcuts and a context menu.
 
@@ -383,7 +416,7 @@ Demo Android terminal with its special-key bar.
 
 <a name="shortcuts"></a>
 
-## 13. Keyboard shortcuts
+## 14. Keyboard shortcuts
 
 The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command.
 
@@ -405,7 +438,7 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 
 <a name="sftp"></a>
 
-## 14. SFTP: transfers and file preview
+## 15. SFTP: transfers and file preview
 
 Open SFTP from a host’s menu or the sidebar. Files travel directly between your device and the SSH host.
 
@@ -421,7 +454,7 @@ Quick Look for a demo file with a separate line-number gutter.
 
 <a name="sftp-editor"></a>
 
-## 15. SFTP: default editor
+## 16. SFTP: default editor
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
@@ -443,7 +476,7 @@ The remembered-editor local preference in the demo client.
 
 <a name="tunnels"></a>
 
-## 16. SSH tunnels
+## 17. SSH tunnels
 
 A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.
 
@@ -463,7 +496,7 @@ Demo tunnel definitions and statuses.
 
 <a name="snippets"></a>
 
-## 17. Snippets, variables and starter sets
+## 18. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
@@ -489,7 +522,7 @@ Filtering and managing snippet sets.
 
 <a name="ai"></a>
 
-## 18. AI chat and the context you send
+## 19. AI chat and the context you send
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
@@ -509,9 +542,27 @@ You choose the provider, context and subsequent action. A model’s answer does 
 
 AI chat with selected context from the demo terminal.
 
+<a name="local-ai"></a>
+
+## 20. Local AI on your computer (0.4.0)
+
+On macOS and Windows, client 0.4.0 can install the small Qwen2.5-Coder 1.5B Q4\_K\_M model. Answers do not require a cloud provider.
+
+1. Open AI settings → “Local AI” and choose “Install”. The app downloads about 1.1 GB of model data. Windows installs a separate runtime; macOS includes the runtime in the app. Settings show progress; you can cancel and later resume the download.
+
+2. “Use local AI by default” starts enabled and takes effect after installation. It is saved only on this computer. Turn it off to return to your usual provider selection.
+
+3. Open AI chat or request a command through the palette. The model starts on the first request; Start and Stop buttons are also available. The process unloads after 15 minutes of inactivity.
+
+4. Apple Silicon uses Metal acceleration. Intel Mac and Windows x64 run the model on the CPU. Android and Linux do not download this model or show the local installation section.
+
+> **Keep in mind**
+>
+> Files are verified with SHA-256. The installed model processes requests on your computer; context and command approval still use the normal ConsoleCrypt checks. Vault lock and profile changes stop the process. The model can make mistakes: review commands before running them.
+
 <a name="sharing-start"></a>
 
-## 19. Sharing: getting started
+## 21. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -543,7 +594,7 @@ Selecting Reader or Editor access.
 
 <a name="sharing-items"></a>
 
-## 20. Shared hosts, groups and secrets
+## 22. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -565,7 +616,7 @@ The separate secret-publishing dialog: the value is masked and consent has not b
 
 <a name="sharing-devices"></a>
 
-## 21. A colleague’s new personal devices
+## 23. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -587,7 +638,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 22. Revocation, queues and trust recovery
+## 24. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -605,7 +656,7 @@ The owner manages participants. An editor changes content; participant access re
 
 <a name="appearance"></a>
 
-## 23. Colors, text size and glass effects
+## 25. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -627,7 +678,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 24. Right panel: bubbles or one workspace
+## 26. Right panel: bubbles or one workspace
 
 Snippets and AI are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -653,7 +704,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 25. Screenshots and screen protection
+## 27. Screenshots and screen protection
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device.
 
@@ -677,7 +728,7 @@ The macOS security section explains the OS limitation.
 
 <a name="backups"></a>
 
-## 26. Backups and restore
+## 28. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -697,7 +748,7 @@ Encrypted backups and scheduling in the demo client.
 
 <a name="about"></a>
 
-## 27. Version, author and licenses
+## 29. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -713,7 +764,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 28. Client updates
+## 30. Client updates
 
 On Windows, macOS and Android, “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself. On Linux, download the new package from the website and install it manually.
 
@@ -741,7 +792,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 29. Website account
+## 31. Website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -757,7 +808,7 @@ The website account manages your public-server account. Decrypted hosts, keys an
 
 <a name="server-setup"></a>
 
-## 30. Your own server: Kubernetes
+## 32. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -823,7 +874,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 31. Your own server: Docker Compose
+## 33. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 

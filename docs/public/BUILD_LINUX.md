@@ -100,7 +100,7 @@ client/scripts/build-linux.sh
 Flutter-сборок в одном каталоге. Сохраняйте `Cargo.lock` и `pubspec.lock`.
 
 Для воспроизводимого окружения есть
-[`client/ci/linux/Dockerfile`](https://github.com/evsikovas/consolecrypt-client/blob/main/client/ci/linux/Dockerfile): Ubuntu 22.04,
+[`client/ci/linux/Dockerfile`](../../client/ci/linux/Dockerfile): Ubuntu 22.04,
 проверенная ревизия официального Flutter и закреплённый Rust. Job `linux`
 в [GitHub Actions](GITHUB_ACTIONS.md) использует Docker на отдельном Linux x64
 runner с метками `consolecrypt`, `client`, `linux-docker` и монтирует
