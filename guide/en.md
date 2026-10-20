@@ -32,6 +32,12 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Snippets, variables and starter sets](#snippets)
 - [AI chat and the context you send](#ai)
 - [Local AI: three models and upgrades (0.5)](#local-ai)
+- [Kubernetes: connections and access](#kubernetes-connections)
+- [Kubernetes: resources and changes](#kubernetes-resources)
+- [Kubernetes: logs, shell and tunnels](#kubernetes-logs-shell)
+- [Kubernetes: GitOps and problems](#kubernetes-gitops)
+- [Kubernetes: Helm](#kubernetes-helm)
+- [Kubernetes: context terminal and AI](#kubernetes-terminal-ai)
 
 **Working together**
 
@@ -300,7 +306,7 @@ On a phone, the connected desktop automatically opens fullscreen. Touchpad is th
 
 > **Keep in mind**
 >
-> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. iOS is distributed for Simulator on Mac. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard.
+> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The earlier iOS 0.5.6 preview is available for Simulator on Mac; iOS 0.6.3 is deferred. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard.
 
 ![Desktop and floating button, with permanent panels hidden.](../assets/guide/mobile-rdp-portrait-dark-en.png)
 
@@ -912,9 +918,177 @@ The website account manages your public-server account. Decrypted hosts, keys an
 >
 > The server sees accounts and operational metadata, stores encrypted objects and has no decryption key. Signing in to this website does not transfer an account from another server.
 
+<a name="kubernetes-connections"></a>
+
+## 33. Kubernetes: connections and access
+
+Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
+
+1. Open Kubernetes, choose kubeconfig import and select a file or paste YAML. Desktop supports multiple files and folder scanning.
+
+2. Select contexts and review the server, user, namespace and authentication. Mark production clusters. The original file is unchanged.
+
+3. For exec authentication, review the executable path, arguments and SHA-256. Import does not run the command; its first execution needs separate approval.
+
+4. Configure SSH or a proxy when needed, then connect. Use token, client certificate or OIDC on mobile; external exec plugins require desktop.
+
+5. To share with colleagues, open Shared access and select a context. Credentials are excluded by default and require explicit inclusion.
+
+[Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
+
+> **Keep in mind**
+>
+> Cluster connections sync as encrypted objects. Exporting a kubeconfig creates a separate file that can contain secrets.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-inventory-1400-en.png)
+
+Kubernetes interface with demonstration data.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-inventory-412-en.png)
+
+Kubernetes interface with demonstration data.
+
+<a name="kubernetes-resources"></a>
+
+## 34. Kubernetes: resources and changes
+
+Live lists and details show objects from available APIs, including installed CRDs.
+
+1. Select a namespace and resource kind. Use search, filtering and column settings; the list updates automatically.
+
+2. Open an object for status, YAML, events and related resources. Supported workloads expose rollout history and revision comparisons.
+
+3. To edit YAML, open the editor, review the diff and dry-run result, then confirm applying. Field ownership conflicts require a separate decision.
+
+4. Deletion, restart and scaling require confirmation. Secret values are hidden and revealed separately.
+
+5. A production context blocks writes. Desktop allows a temporary write window; bulk production mutations remain prohibited.
+
+[Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
+
+> **Keep in mind**
+>
+> Kubernetes RBAC still applies. Metrics require an accessible metrics-server; missing data or permissions are reported explicitly.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-resources-1400-en.png)
+
+Kubernetes interface with demonstration data.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-resources-412-en.png)
+
+Kubernetes interface with demonstration data.
+
+<a name="kubernetes-logs-shell"></a>
+
+## 35. Kubernetes: logs, shell and tunnels
+
+Logs, shell and port forwarding are built into the client and require no external kubectl.
+
+1. Select a container in Pod details and open Logs. Stream output, filter lines or inspect the previous container run.
+
+2. Open related Pod logs from a workload. Save output to a file on desktop or use system sharing on mobile.
+
+3. Open the Pod terminal. Automatic selection tries bash, ash and sh, or choose a command explicitly. Production requires the corresponding context permission.
+
+4. Create a port forward for the desired port. Use the displayed local address and stop the tunnel when finished.
+
+5. On Android, active tunnels appear in a notification with a stop action. Kubernetes testing and a new build for iOS are deferred. Locking the vault closes sessions.
+
+[Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-details-1400-en.png)
+
+Kubernetes interface with demonstration data.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-details-412-en.png)
+
+Kubernetes interface with demonstration data.
+
+<a name="kubernetes-gitops"></a>
+
+## 36. Kubernetes: GitOps and problems
+
+Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
+
+1. Open GitOps and select sources, Kustomizations, HelmReleases or another available group. Search narrows the list.
+
+2. Use resource flow and dependencies to navigate from a source to its workload. Status and events help explain failures.
+
+3. For Flux, select reconcile, reconcile with source or suspend/resume. Review the object and confirm. Argo provides sync and refresh.
+
+4. Set a suspension reason and reminder separately. A reminder never resumes an object automatically.
+
+5. Optionally enable Flux alerts and event history for the context. History stays local for up to seven days; alerts operate within the running app.
+
+6. Problems collects diagnostics for Pods, workloads, nodes and GitOps. Open the object, logs or an AI explanation from a finding.
+
+[Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
+
+> **Keep in mind**
+>
+> Overview is marked partial when RBAC prevents some reads or a data limit is reached.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-gitops-1400-en.png)
+
+Kubernetes interface with demonstration data.
+
+![GitOps on a phone with demonstration data. The filter panel is scrolled; scroll it to the top to use search.](../assets/guide/kube-gitops-412-en.png)
+
+GitOps on a phone with demonstration data. The filter panel is scrolled; scroll it to the top to use search.
+
+<a name="kubernetes-helm"></a>
+
+## 37. Kubernetes: Helm
+
+Inspect stored Helm releases and compare them with the current cluster.
+
+1. Open Helm, choose a namespace and release. History shows status, chart and revision.
+
+2. Inspect values and manifest. All string values and credential-named fields are masked. Computed values may be incomplete for chart dependencies.
+
+3. Compare two revisions or select live comparison. Unavailable and masked data are indicated separately.
+
+4. Desktop rollback requires installed helm and separate approval. Production restrictions apply to this operation too.
+
+[Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
+
+> **Keep in mind**
+>
+> Live comparison reads the stored manifest and live objects; it does not perform dry-run or replace controller drift diagnostics.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-helm-1400-en.png)
+
+Kubernetes interface with demonstration data.
+
+![Kubernetes interface with demonstration data.](../assets/guide/kube-helm-412-en.png)
+
+Kubernetes interface with demonstration data.
+
+<a name="kubernetes-terminal-ai"></a>
+
+## 38. Kubernetes: context terminal and AI
+
+The context remains explicit for both local commands and AI assistance.
+
+1. On desktop, open a context terminal and choose a shell. Its title shows the cluster and default namespace; the tab keeps that context during navigation.
+
+2. kubectl and Flux use a temporary kubeconfig for the local proxy. Actual cluster keys are not written to that file, and the proxy enforces production policy.
+
+3. If a CLI is missing, review the installation option, exact command and installation method. Package sources follow the package manager configuration. Execution requires separate approval.
+
+4. Open AI from the Kubernetes panel or a problem. Check the provider and consent to cluster data access.
+
+5. Discuss resources, events and log tails. Suggested commands and YAML only execute after your action through the normal checks.
+
+[Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
+
+> **Keep in mind**
+>
+> An external provider receives selected sanitized data. WSL requires access to the Windows loopback proxy; incompatible networking never exposes an external proxy listener.
+
 <a name="server-setup"></a>
 
-## 33. Your own server: Kubernetes
+## 39. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -980,7 +1154,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 34. Your own server: Docker Compose
+## 40. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 

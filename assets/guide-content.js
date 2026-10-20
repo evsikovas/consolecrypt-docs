@@ -274,8 +274,8 @@ export const guideSections = [
     }
   ],
   "note": {
-    "ru": "На планшете полный экран включается вручную, а автоматический режим выбирает прямое касание. При включённом экранном дикторе используется прямое касание и кнопка не скрывается. Перенаправление папок на телефоне недоступно. iOS распространяется как сборка для Simulator на Mac. На снимках настоящие виджеты с синтетическим кадром; пустая область зарезервирована для системной клавиатуры.",
-    "en": "Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. iOS is distributed for Simulator on Mac. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard."
+    "ru": "На планшете полный экран включается вручную, а автоматический режим выбирает прямое касание. При включённом экранном дикторе используется прямое касание и кнопка не скрывается. Перенаправление папок на телефоне недоступно. Для iOS доступна прежняя предварительная сборка 0.5.6 для Simulator на Mac; выпуск 0.6.3 для iOS отложен. На снимках настоящие виджеты с синтетическим кадром; пустая область зарезервирована для системной клавиатуры.",
+    "en": "Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The earlier iOS 0.5.6 preview is available for Simulator on Mac; iOS 0.6.3 is deferred. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard."
   },
   "images": [
     {
@@ -837,6 +837,426 @@ export const guideSections = [
     ],
     note: b('Сервер видит аккаунты и служебные метаданные, хранит зашифрованные объекты и не имеет ключа их расшифровки. Учётная запись другого сервера не переносится через вход в этот веб-кабинет.', 'The server sees accounts and operational metadata, stores encrypted objects and has no decryption key. Signing in to this website does not transfer an account from another server.'),
   },
+  {
+  "id": "kubernetes-connections",
+  "group": "workspace",
+  "title": {
+    "ru": "Kubernetes: подключения и доступ",
+    "en": "Kubernetes: connections and access"
+  },
+  "intro": {
+    "ru": "Импортируйте существующие контексты и храните доступы в зашифрованном хранилище. Запросы к кластеру идут с вашего устройства.",
+    "en": "Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device."
+  },
+  "keywords": [
+    "Kubernetes",
+    "kubeconfig",
+    "kubectl",
+    "Flux",
+    "Helm"
+  ],
+  "steps": [
+    {
+      "ru": "Откройте Kubernetes, нажмите импорт kubeconfig и выберите файл или вставьте YAML. На компьютере доступны несколько файлов и сканирование папки.",
+      "en": "Open Kubernetes, choose kubeconfig import and select a file or paste YAML. Desktop supports multiple files and folder scanning."
+    },
+    {
+      "ru": "Отметьте контексты, проверьте сервер, пользователя, namespace и способ входа. Для рабочего кластера включите «Прод». Исходный файл не меняется.",
+      "en": "Select contexts and review the server, user, namespace and authentication. Mark production clusters. The original file is unchanged."
+    },
+    {
+      "ru": "При exec-авторизации просмотрите путь, аргументы и SHA-256 бинарного файла. Импорт сам не запускает команду; первый запуск требует отдельного разрешения.",
+      "en": "For exec authentication, review the executable path, arguments and SHA-256. Import does not run the command; its first execution needs separate approval."
+    },
+    {
+      "ru": "При необходимости настройте SSH или прокси, затем подключитесь. На телефоне используйте token, client certificate или OIDC; внешние exec-плагины доступны на компьютере.",
+      "en": "Configure SSH or a proxy when needed, then connect. Use token, client certificate or OIDC on mobile; external exec plugins require desktop."
+    },
+    {
+      "ru": "Для коллег откройте совместный доступ и выберите контекст. Учётные данные исключены по умолчанию; включайте их только отдельным осознанным действием.",
+      "en": "To share with colleagues, open Shared access and select a context. Credentials are excluded by default and require explicit inclusion."
+    }
+  ],
+  "links": [
+    {
+      "href": "https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/KUBERNETES.md",
+      "text": {
+        "ru": "Подробная инструкция Kubernetes ↗",
+        "en": "Full Kubernetes instructions ↗"
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "kube-inventory-1400",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 1400,
+      "height": 1000
+    },
+    {
+      "name": "kube-inventory-412",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "note": {
+    "ru": "Кластеры синхронизируются в зашифрованном виде. Экспорт kubeconfig создаёт отдельный файл, который может содержать секреты.",
+    "en": "Cluster connections sync as encrypted objects. Exporting a kubeconfig creates a separate file that can contain secrets."
+  }
+},
+  {
+  "id": "kubernetes-resources",
+  "group": "workspace",
+  "title": {
+    "ru": "Kubernetes: ресурсы и изменения",
+    "en": "Kubernetes: resources and changes"
+  },
+  "intro": {
+    "ru": "Живой список и карточки показывают объекты доступных API, включая установленные CRD.",
+    "en": "Live lists and details show objects from available APIs, including installed CRDs."
+  },
+  "keywords": [
+    "Kubernetes",
+    "kubeconfig",
+    "kubectl",
+    "Flux",
+    "Helm"
+  ],
+  "steps": [
+    {
+      "ru": "Выберите namespace и тип ресурса. Используйте поиск, фильтр и настройки колонок; список обновляется автоматически.",
+      "en": "Select a namespace and resource kind. Use search, filtering and column settings; the list updates automatically."
+    },
+    {
+      "ru": "Откройте объект: доступны состояние, YAML, события и связанные ресурсы. Workloads поддерживают историю rollout и сравнение ревизий.",
+      "en": "Open an object for status, YAML, events and related resources. Supported workloads expose rollout history and revision comparisons."
+    },
+    {
+      "ru": "Для изменения YAML откройте редактор, проверьте diff и результат dry-run, затем подтвердите применение. Конфликт владения полями требует отдельного решения.",
+      "en": "To edit YAML, open the editor, review the diff and dry-run result, then confirm applying. Field ownership conflicts require a separate decision."
+    },
+    {
+      "ru": "Удаление, restart и масштабирование выполняются после подтверждения. Значения Secret скрыты и раскрываются отдельно.",
+      "en": "Deletion, restart and scaling require confirmation. Secret values are hidden and revealed separately."
+    },
+    {
+      "ru": "В контексте «Прод» изменения заблокированы. На компьютере можно открыть временное окно записи; массовые изменения в production всё равно запрещены.",
+      "en": "A production context blocks writes. Desktop allows a temporary write window; bulk production mutations remain prohibited."
+    }
+  ],
+  "links": [
+    {
+      "href": "https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/KUBERNETES.md",
+      "text": {
+        "ru": "Подробная инструкция Kubernetes ↗",
+        "en": "Full Kubernetes instructions ↗"
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "kube-resources-1400",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 1400,
+      "height": 1000
+    },
+    {
+      "name": "kube-resources-412",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "note": {
+    "ru": "Права Kubernetes RBAC сохраняются. Метрики появляются при доступном metrics-server; отсутствие данных или прав отображается явно.",
+    "en": "Kubernetes RBAC still applies. Metrics require an accessible metrics-server; missing data or permissions are reported explicitly."
+  }
+},
+  {
+  "id": "kubernetes-logs-shell",
+  "group": "workspace",
+  "title": {
+    "ru": "Kubernetes: логи, shell и туннели",
+    "en": "Kubernetes: logs, shell and tunnels"
+  },
+  "intro": {
+    "ru": "Логи, shell и port-forward встроены в клиент и не требуют внешнего kubectl.",
+    "en": "Logs, shell and port forwarding are built into the client and require no external kubectl."
+  },
+  "keywords": [
+    "Kubernetes",
+    "kubeconfig",
+    "kubectl",
+    "Flux",
+    "Helm"
+  ],
+  "steps": [
+    {
+      "ru": "В карточке Pod выберите контейнер и откройте логи. Можно включить поток, фильтровать строки и посмотреть предыдущий запуск контейнера.",
+      "en": "Select a container in Pod details and open Logs. Stream output, filter lines or inspect the previous container run."
+    },
+    {
+      "ru": "В workload откройте логи связанных Pod. Сохраните результат в файл на компьютере или через системный обмен на телефоне.",
+      "en": "Open related Pod logs from a workload. Save output to a file on desktop or use system sharing on mobile."
+    },
+    {
+      "ru": "Откройте терминал Pod. Автовыбор пробует bash, ash и sh; отдельный выбор позволяет задать команду. В production нужен соответствующий доступ контекста.",
+      "en": "Open the Pod terminal. Automatic selection tries bash, ash and sh, or choose a command explicitly. Production requires the corresponding context permission."
+    },
+    {
+      "ru": "Создайте port-forward для нужного порта. Используйте показанный локальный адрес и остановите туннель после работы.",
+      "en": "Create a port forward for the desired port. Use the displayed local address and stop the tunnel when finished."
+    },
+    {
+      "ru": "На Android активные туннели видны в уведомлении с кнопкой остановки. Проверка Kubernetes на iOS и новая сборка iOS отложены. Блокировка хранилища закрывает сессии.",
+      "en": "On Android, active tunnels appear in a notification with a stop action. Kubernetes testing and a new build for iOS are deferred. Locking the vault closes sessions."
+    }
+  ],
+  "links": [
+    {
+      "href": "https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/KUBERNETES.md",
+      "text": {
+        "ru": "Подробная инструкция Kubernetes ↗",
+        "en": "Full Kubernetes instructions ↗"
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "kube-details-1400",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 1400,
+      "height": 1000
+    },
+    {
+      "name": "kube-details-412",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 412,
+      "height": 915
+    }
+  ]
+},
+  {
+  "id": "kubernetes-gitops",
+  "group": "workspace",
+  "title": {
+    "ru": "Kubernetes: GitOps и проблемы",
+    "en": "Kubernetes: GitOps and problems"
+  },
+  "intro": {
+    "ru": "Flux и Argo CD отображаются по доступным CRD. Обзор объединяет состояние, зависимости и переходы к проблемным объектам.",
+    "en": "Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects."
+  },
+  "keywords": [
+    "Kubernetes",
+    "kubeconfig",
+    "kubectl",
+    "Flux",
+    "Helm"
+  ],
+  "steps": [
+    {
+      "ru": "Откройте GitOps и выберите источники, Kustomizations, HelmReleases или другие доступные группы. Поиск сужает список.",
+      "en": "Open GitOps and select sources, Kustomizations, HelmReleases or another available group. Search narrows the list."
+    },
+    {
+      "ru": "Используйте карту ресурсов и зависимости для перехода от источника к workload. Статус и события помогают понять причину ошибки.",
+      "en": "Use resource flow and dependencies to navigate from a source to its workload. Status and events help explain failures."
+    },
+    {
+      "ru": "Для Flux откройте действие reconcile, reconcile с источником или suspend/resume. Проверьте объект и подтвердите действие. Для Argo доступны sync и refresh.",
+      "en": "For Flux, select reconcile, reconcile with source or suspend/resume. Review the object and confirm. Argo provides sync and refresh."
+    },
+    {
+      "ru": "Причина приостановки и напоминание задаются отдельно. Напоминание не возобновляет объект автоматически.",
+      "en": "Set a suspension reason and reminder separately. A reminder never resumes an object automatically."
+    },
+    {
+      "ru": "При необходимости включите уведомления Flux и историю событий для контекста. История хранится локально до семи дней; уведомления работают внутри открытого приложения.",
+      "en": "Optionally enable Flux alerts and event history for the context. History stays local for up to seven days; alerts operate within the running app."
+    },
+    {
+      "ru": "Раздел «Проблемы» собирает диагностику Pod, workloads, узлов и GitOps. Откройте объект, логи или объяснение ИИ из найденной проблемы.",
+      "en": "Problems collects diagnostics for Pods, workloads, nodes and GitOps. Open the object, logs or an AI explanation from a finding."
+    }
+  ],
+  "links": [
+    {
+      "href": "https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/KUBERNETES.md",
+      "text": {
+        "ru": "Подробная инструкция Kubernetes ↗",
+        "en": "Full Kubernetes instructions ↗"
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "kube-gitops-1400",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 1400,
+      "height": 1000
+    },
+    {
+      "name": "kube-gitops-412",
+      "caption": {
+        "ru": "GitOps на телефоне с демонстрационными данными. Панель фильтров прокручена; для поиска прокрутите её к началу.",
+        "en": "GitOps on a phone with demonstration data. The filter panel is scrolled; scroll it to the top to use search."
+      },
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "note": {
+    "ru": "Если части API недоступны по RBAC или достигнут лимит данных, обзор помечается неполным.",
+    "en": "Overview is marked partial when RBAC prevents some reads or a data limit is reached."
+  }
+},
+  {
+  "id": "kubernetes-helm",
+  "group": "workspace",
+  "title": {
+    "ru": "Kubernetes: Helm",
+    "en": "Kubernetes: Helm"
+  },
+  "intro": {
+    "ru": "Просматривайте сохранённые Helm-релизы и сравнивайте их с текущим кластером.",
+    "en": "Inspect stored Helm releases and compare them with the current cluster."
+  },
+  "keywords": [
+    "Kubernetes",
+    "kubeconfig",
+    "kubectl",
+    "Flux",
+    "Helm"
+  ],
+  "steps": [
+    {
+      "ru": "Откройте Helm, выберите namespace и релиз. История показывает статус, chart и номер ревизии.",
+      "en": "Open Helm, choose a namespace and release. History shows status, chart and revision."
+    },
+    {
+      "ru": "Откройте values и манифест. Все строковые values скрываются, как и поля с именами учётных данных. Вычисленные values могут быть неполными для зависимостей chart.",
+      "en": "Inspect values and manifest. All string values and credential-named fields are masked. Computed values may be incomplete for chart dependencies."
+    },
+    {
+      "ru": "Сравните две ревизии или выберите сравнение с кластером. Недоступные и скрытые данные отмечаются отдельно.",
+      "en": "Compare two revisions or select live comparison. Unavailable and masked data are indicated separately."
+    },
+    {
+      "ru": "Для rollback на компьютере требуется установленный helm и отдельное подтверждение. Production-ограничения действуют и для этой операции.",
+      "en": "Desktop rollback requires installed helm and separate approval. Production restrictions apply to this operation too."
+    }
+  ],
+  "links": [
+    {
+      "href": "https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/KUBERNETES.md",
+      "text": {
+        "ru": "Подробная инструкция Kubernetes ↗",
+        "en": "Full Kubernetes instructions ↗"
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "kube-helm-1400",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 1400,
+      "height": 1000
+    },
+    {
+      "name": "kube-helm-412",
+      "caption": {
+        "ru": "Интерфейс Kubernetes с демонстрационными данными.",
+        "en": "Kubernetes interface with demonstration data."
+      },
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "note": {
+    "ru": "Сравнение с кластером читает сохранённый манифест и живые объекты; оно не выполняет dry-run и не заменяет диагностику drift контроллера.",
+    "en": "Live comparison reads the stored manifest and live objects; it does not perform dry-run or replace controller drift diagnostics."
+  }
+},
+  {
+  "id": "kubernetes-terminal-ai",
+  "group": "workspace",
+  "title": {
+    "ru": "Kubernetes: терминал контекста и ИИ",
+    "en": "Kubernetes: context terminal and AI"
+  },
+  "intro": {
+    "ru": "Контекст остаётся явным и для локальных команд, и для помощи ИИ.",
+    "en": "The context remains explicit for both local commands and AI assistance."
+  },
+  "keywords": [
+    "Kubernetes",
+    "kubeconfig",
+    "kubectl",
+    "Flux",
+    "Helm"
+  ],
+  "steps": [
+    {
+      "ru": "На компьютере откройте терминал контекста и выберите оболочку. Заголовок показывает кластер и namespace по умолчанию; вкладка остаётся на этом контексте при навигации.",
+      "en": "On desktop, open a context terminal and choose a shell. Its title shows the cluster and default namespace; the tab keeps that context during navigation."
+    },
+    {
+      "ru": "kubectl и Flux используют временный kubeconfig локального прокси. Реальные ключи кластера не записываются в этот файл, а ограничения «Прод» проверяются прокси.",
+      "en": "kubectl and Flux use a temporary kubeconfig for the local proxy. Actual cluster keys are not written to that file, and the proxy enforces production policy."
+    },
+    {
+      "ru": "Если CLI не найден, просмотрите предложение установки, точную команду и способ установки. Источник пакета задаётся настройками пакетного менеджера. Выполнение требует отдельного подтверждения.",
+      "en": "If a CLI is missing, review the installation option, exact command and installation method. Package sources follow the package manager configuration. Execution requires separate approval."
+    },
+    {
+      "ru": "Откройте ИИ из панели Kubernetes или карточки проблемы. Проверьте провайдера и разрешите чтение данных кластера.",
+      "en": "Open AI from the Kubernetes panel or a problem. Check the provider and consent to cluster data access."
+    },
+    {
+      "ru": "Обсудите ресурсы, события и хвосты логов. Предложенные команды и YAML выполняются только после вашего действия через обычные проверки.",
+      "en": "Discuss resources, events and log tails. Suggested commands and YAML only execute after your action through the normal checks."
+    }
+  ],
+  "links": [
+    {
+      "href": "https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/KUBERNETES.md",
+      "text": {
+        "ru": "Подробная инструкция Kubernetes ↗",
+        "en": "Full Kubernetes instructions ↗"
+      }
+    }
+  ],
+  "note": {
+    "ru": "Внешний провайдер получает выбранные очищенные данные. Для WSL требуется доступ к loopback-прокси Windows; неподходящий сетевой режим не открывает прокси наружу.",
+    "en": "An external provider receives selected sanitized data. WSL requires access to the Windows loopback proxy; incompatible networking never exposes an external proxy listener."
+  }
+},
   {
     id: 'server-setup', group: 'control', title: b('Свой сервер: Kubernetes', 'Your own server: Kubernetes'),
     intro: b('Сервер нужен для синхронизации устройств и совместной работы. Для локальной работы клиента он не требуется. Ни сайт продукта, ни аналитика для установки собственного сервера не нужны.', 'A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.'),
