@@ -275,8 +275,8 @@ export const guideSections = [
     }
   ],
   "note": {
-    "ru": "На планшете полный экран включается вручную, а автоматический режим выбирает прямое касание. При включённом экранном дикторе используется прямое касание и кнопка не скрывается. Перенаправление папок на телефоне недоступно. Для iOS доступна прежняя предварительная сборка 0.5.6 для Simulator на Mac; выпуск 0.6.3 для iOS отложен. На снимках настоящие виджеты с синтетическим кадром; пустая область зарезервирована для системной клавиатуры.",
-    "en": "Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The earlier iOS 0.5.6 preview is available for Simulator on Mac; iOS 0.6.3 is deferred. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard."
+    "ru": "На планшете полный экран включается вручную, а автоматический режим выбирает прямое касание. При включённом экранном дикторе используется прямое касание и кнопка не скрывается. Перенаправление папок на телефоне недоступно. Для iOS доступна прежняя предварительная сборка 0.5.6 для Simulator на Mac; выпуск 0.6.3 для iOS отложен. На снимках настоящие виджеты; рабочий стол Windows нарисован синтетически. Пустая область зарезервирована для системной клавиатуры.",
+    "en": "Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The earlier iOS 0.5.6 preview is available for Simulator on Mac; iOS 0.6.3 is deferred. Screenshots use real widgets with a drawn, synthetic Windows desktop; the empty area is reserved for the system keyboard."
   },
   "images": [
     {

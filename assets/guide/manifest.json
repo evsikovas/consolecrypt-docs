@@ -12,9 +12,10 @@
     "153f5858191e630185cb18891644cc17d07fa9cf",
     "1c2541d95719faa6bbad3fbaa43487c8cb79e851",
     "f43d0dbf69d3a53b3d6a70535684f8750168c141",
-    "621bbc5a08470a9c21bf19685f19c9edf0063410"
+    "621bbc5a08470a9c21bf19685f19c9edf0063410",
+    "80b8d02de4fcd45b8a3fa94de65bc48df91a1591"
   ],
-  "capturedAt": "2026-10-20T21:24:35.287535+00:00",
+  "capturedAt": "2026-10-20T21:36:20.237971+00:00",
   "review": "All 26 new 0.5.5 and 6 updated/new 0.5.6 images visually reviewed in RU/EN. Earlier image bytes retain their original provenance. Recovery Kit illustrations contain unusable synthetic example data. All 20 new Kubernetes images and 6 version-bearing images refreshed from 0.6.4 were visually reviewed in RU/EN; older image records retain their existing provenance. The 12 phone RDP images were recaptured from 0.6.4 (tile-grid controls, cursor kept across resizes) and visually reviewed in RU/EN. The 20 Kubernetes images were recaptured from 0.6.4 (desktop navigator, details drawer and GitOps layout) and visually reviewed in RU/EN.",
   "knownLimitations": [
     "These are Flutter widget-test renderings with synthetic services, terminal output, local model states and 16 GiB AI hardware recommendation; no native shell, WSL distribution or model inference is started by captures.",
@@ -1048,13 +1049,13 @@
       "reviewed": true,
       "width": 1688,
       "height": 780,
-      "sha256": "ec94b906b668970803e6a0e3f8e1721e6fe1d7853702e74a1ce350491019ba75",
+      "sha256": "3ea7360d8896dc6f8334179c7bd47daabf76c1e52bff88ea69e4367a2a4efdf5",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-landscape-controls-dark-ru",
@@ -1065,13 +1066,13 @@
       "reviewed": true,
       "width": 1688,
       "height": 780,
-      "sha256": "dc57307a2145322aa1fd5077f8cf522e7a9d18287c275771352579f92dab0846",
+      "sha256": "8359db905d092d2d70a7e5402fac0eda528f1bb725447a57bdc523191fca6f6b",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-landscape-keyboard-dark-en",
@@ -1082,13 +1083,13 @@
       "reviewed": true,
       "width": 1688,
       "height": 780,
-      "sha256": "2f2428eefa76f5c812c0056c0e126dc356dca384f2cf479b4a3539f6485397ad",
+      "sha256": "131096959f35766b928284822bcc99f26dc0b0c38b6082c04d37c62ed66c92f6",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-landscape-keyboard-dark-ru",
@@ -1099,13 +1100,13 @@
       "reviewed": true,
       "width": 1688,
       "height": 780,
-      "sha256": "77d06aeb5b710d4b3d519566ff50a6345d4c76edc5ff282fc0ac2dbe698a01fb",
+      "sha256": "eafbfb1b83a61de48a5e39c135920adfd6bb1c7e43fefd5dff3b7872db8b2057",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-controls-dark-en",
@@ -1116,13 +1117,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "6dae4662bca85ae9f03089e60ac75913b23006b44d63146ee1565590e9bfe520",
+      "sha256": "aab1e5c62f6e6a7f1a853428d4302f759440c989d13f087cab2999618a9b246b",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-controls-dark-ru",
@@ -1133,13 +1134,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "7d2fdefb9e4ce7f9d687dcf4a020f3ac10533fa57e9501fe9c7b4f1fb17fd349",
+      "sha256": "f1760caf08569edbcce883aaaaed6198fe8de15851174c25a836b748c134f12c",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-controls-light-en",
@@ -1150,13 +1151,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "aec022416830b52d297d306bf92699084d38083fe91d9a12a9791caf5898ba17",
+      "sha256": "8133d327f03727d05f4cbcaf786777ce8be33d1e34af2a58b4f63fa398572dec",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-controls-light-ru",
@@ -1167,13 +1168,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "ea950a4170e86961a12c98bf3dca6f2631f5fd2679ebb568650b38cd1f92cc8d",
+      "sha256": "13b8238c7488c2e37c9f547c64d0c94d6175f37144e858063f2a3119aceb62e1",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-dark-en",
@@ -1184,13 +1185,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "ac5dde98435f0d0222cf407757f64a67827378442d1f8fd3c344e68183c18460",
+      "sha256": "2f1922e395268e9dcabb6be68bf2be4d51a4817a52cdea7036807784ede4c54f",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-dark-ru",
@@ -1201,13 +1202,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "ac5dde98435f0d0222cf407757f64a67827378442d1f8fd3c344e68183c18460",
+      "sha256": "5c0675787f985b33fd9181d289717665175085100ba60320cc8a72e89c90df4b",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-keyboard-dark-en",
@@ -1218,13 +1219,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "589c1cd62430ae5060d4bfb59c6d26b9ff0c64c159013990274b35f5e77092d9",
+      "sha256": "dc14a66be736bfc9a379feb33a45b205663d46a4345b33c7130feb8527b4d2c0",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-rdp-portrait-keyboard-dark-ru",
@@ -1235,13 +1236,13 @@
       "reviewed": true,
       "width": 780,
       "height": 1688,
-      "sha256": "589c1cd62430ae5060d4bfb59c6d26b9ff0c64c159013990274b35f5e77092d9",
+      "sha256": "fdbced50e72cac356b26845a39f1780b32b1ec5acd309c3b0f07e78a3c13295b",
       "sourceRelease": "0.6.4",
       "sourceVersion": "0.6.4+21029",
       "sourceCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "generatorCommit": "621bbc5a08470a9c21bf19685f19c9edf0063410",
-      "capturedAt": "2026-10-20T21:19:46.371199+00:00",
-      "captureNote": "Production widgets with synthetic demo services; no user data, native shell, model inference or live RDP connection. The OS keyboard is not rendered."
+      "generatorCommit": "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
+      "capturedAt": "2026-10-20T21:36:20.237971+00:00",
+      "captureNote": "Production widgets with a drawn Windows-like remote desktop (synthetic pixels, real text); no user data, server or live RDP connection. The OS keyboard is not rendered."
     },
     {
       "name": "mobile-screen-capture-en",

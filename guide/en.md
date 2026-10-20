@@ -308,7 +308,7 @@ On a phone, the connected desktop automatically opens fullscreen. Touchpad is th
 
 > **Keep in mind**
 >
-> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The earlier iOS 0.5.6 preview is available for Simulator on Mac; iOS 0.6.3 is deferred. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard.
+> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The earlier iOS 0.5.6 preview is available for Simulator on Mac; iOS 0.6.3 is deferred. Screenshots use real widgets with a drawn, synthetic Windows desktop; the empty area is reserved for the system keyboard.
 
 ![Desktop and floating button, with permanent panels hidden.](../assets/guide/mobile-rdp-portrait-dark-en.png)
 
