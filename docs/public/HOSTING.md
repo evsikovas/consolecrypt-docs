@@ -26,9 +26,9 @@ UDP 443 используется Caddy для HTTP/3; при его блокир
 Caddy. Постоянные данные лежат в Docker volumes. Настройте резервные копии
 вне этого узла и автозапуск Docker после перезагрузки.
 
-Файлы: [compose.yaml](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/compose.yaml),
-[Caddyfile](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/Caddyfile),
-[справочник переменных](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/.env.example).
+Файлы: [compose.yaml](../../server/deploy/docker/compose.yaml),
+[Caddyfile](../../server/deploy/docker/Caddyfile),
+[справочник переменных](../../server/deploy/docker/.env.example).
 Старый `server/docker-compose.yml` остаётся отдельным вариантом для разработки
 с пересборкой исходников и записью писем в файлы.
 
@@ -148,7 +148,8 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server \
 
 Четыре флага sharing по умолчанию выключены. Если администратор отдельно решил
 включить совместный доступ и проверил совместимость клиентов, он изменяет
-`CC_OBJECT_SHARING_ENABLED`, `CC_SHARED_GROUPS_ENABLED`, `CC_SHARED_SECRETS_ENABLED`
+`CC_OBJECT_SHARING_ENABLED`, `CC_SHARED_GROUPS_ENABLED`, `CC_SHARED_SECRETS_ENABLED`,
+`CC_SHARED_KUBE_CONTEXTS_ENABLED`
 и `CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED` в том же приватном файле на `true`,
 затем пересоздаёт только сервис `server` той же командой. Подписи запросов
 остаются обязательными. Основной флаг обязателен для остальных расширений.
@@ -285,7 +286,7 @@ helm show chart server/helm/consolecrypt-server
 ```
 
 При следующем обновлении меняйте digest и исходники chart согласованно.
-Справочник параметров: [values.yaml](https://github.com/evsikovas/consolecrypt-server/blob/main/server/helm/consolecrypt-server/values.yaml).
+Справочник параметров: [values.yaml](../../server/helm/consolecrypt-server/values.yaml).
 
 Образ можно предварительно проверить Docker-командами:
 
@@ -450,6 +451,7 @@ config:
   objectSharingEnabled: false
   sharedGroupsEnabled: false
   sharedSecretsEnabled: false
+  sharedKubeContextsEnabled: false
   sharingOwnerOnlineEnrollmentEnabled: false
 
 mail:
@@ -632,6 +634,7 @@ config:
   objectSharingEnabled: true
   sharedGroupsEnabled: true
   sharedSecretsEnabled: true
+  sharedKubeContextsEnabled: true
   sharingOwnerOnlineEnrollmentEnabled: true
 ```
 
@@ -736,4 +739,15 @@ cc_kubectl exec deployment/consolecrypt -- \
 и не меняйте PostgreSQL 16 на другой major простой заменой тега. Смена major
 PostgreSQL требует отдельного плана переноса данных.
 
-Параметры запуска без Helm: [server/.env.example](https://github.com/evsikovas/consolecrypt-server/blob/main/server/.env.example).
+Параметры запуска без Helm: [server/.env.example](../../server/.env.example).
+
+### Общие подключения Kubernetes
+
+`CC_SHARED_KUBE_CONTEXTS_ENABLED=true` разрешает обмен зашифрованными
+подключениями Kubernetes при включённом `CC_OBJECT_SHARING_ENABLED`. Клиент
+проверяет `supports_kube_contexts` в подписанном запросе к `/v1/shares/capabilities`
+и явно запрашивает `include_kube_contexts=true` при чтении списка. Старые клиенты
+продолжают получать прежние типы объектов. Сервер проверяет подписи, права
+устройств и версии; адрес кластера, сертификаты и учётные данные находятся
+в зашифрованном содержимом. Сервер не читает kubeconfig и не подключается к API
+Kubernetes. Отключение флага скрывает общий объект, сохраняя его шифротекст.

@@ -61,11 +61,13 @@ export const guideSections = [
     intro: b('Хранилище открывается на вашем устройстве. Настройте блокировку и способ разблокировки сразу после создания.', 'Your vault unlocks on your device. Configure locking and unlocking after creating it.'),
     steps: [
       b('Сохраните комплект восстановления офлайн и выполните проверку слов. Слова и QR-код дают доступ к хранилищу: не отправляйте их по почте, в чат или ИИ.', 'Save the Recovery Kit offline and complete the word check. Its words and QR code grant vault access: do not send them by email, chat or AI.'),
+      b('В версии 0.5.6 слова комплекта восстановления на телефоне отображаются целиком. Количество колонок зависит от ширины экрана и размера шрифта; QR-код расположен под словами. Прокрутите экран, чтобы сохранить весь комплект.', 'In 0.5.6, Recovery Kit words remain whole on phones. The column count follows the screen width and text size, with the QR code below the words. Scroll to save the complete kit.'),
       b('В «Настройки → Хранилище» выберите время автоблокировки. «Заблокировать сейчас» закрывает хранилище; «Изменить парольную фразу…» меняет именно его парольную фразу.', 'In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.'),
       b('На поддерживаемом устройстве включите «Разблокировка отпечатком пальца» или вариант с названием системного метода. Сначала хранилище должно быть открыто и устройство подтверждено; биометрию настройте в системе.', 'On a supported device, enable fingerprint unlocking or the option named after the system method. First unlock the vault and approve the device; configure biometrics in system settings.'),
       b('Если комплект потерян, пока хранилище открыто создайте «Новый комплект восстановления…» и сохраните его. Предыдущий комплект перестанет действовать.', 'If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.'),
     ],
     note: b('Биометрия хранится как настройка этого устройства и не синхронизируется. Доступность зависит от оборудования и ОС; системный диалог может предложить пароль устройства. Face ID на физическом iPhone ещё требует отдельной проверки.', 'Biometric unlocking is a local preference and does not sync. Availability depends on hardware and OS; the system dialog may offer your device password. Face ID on a physical iPhone still needs separate verification.'),
+    images: [shot('recovery-kit-mobile', 'Комплект восстановления на телефоне: слова целиком, QR-код ниже. На иллюстрации только демонстрационные данные.', 'Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.', { width: 412, height: 915 })],
     image: shot('vault-settings', 'Настройки хранилища и доступные способы разблокировки; секреты на снимке не раскрыты.', 'Vault settings and available unlock methods; no secrets are revealed.'),
   },
   {
@@ -86,12 +88,14 @@ export const guideSections = [
     intro: b('Хост хранит параметры подключения по SSH или RDP. Карточки и список показывают адрес, пользователя и группу.', 'A host stores SSH or RDP connection settings. Cards and list rows show its address, user and group.'),
     steps: [
       b('Откройте «Хосты → Новый хост» и сначала выберите SSH или RDP. Задайте имя, адрес, порт, пользователя и учётные данные. Для SSH доступны наследование из группы и jump-хосты; для RDP — пароль и необязательный домен Windows, порт по умолчанию 3389.', 'Open “Hosts → New host” and first choose SSH or RDP. Enter a name, address, port, username and credential. SSH supports group defaults and jump hosts; RDP uses a password, an optional Windows domain and port 3389 by default.'),
+      b('На компьютере в форме нового SSH-хоста нажмите «Импорт». Клиент читает ~/.ssh/known_hosts и /etc/ssh/ssh_known_hosts на Linux/macOS, либо %USERPROFILE%\\\\.ssh\\\\known_hosts на Windows. Просмотрите адреса и отметьте нужные; уже сохранённые подключения исключаются. Пользователя и учётные данные укажите отдельно.', 'On desktop, click Import in the new SSH-host form. It reads ~/.ssh/known_hosts and /etc/ssh/ssh_known_hosts on Linux/macOS, or %USERPROFILE%\\\\.ssh\\\\known_hosts on Windows. Review and select addresses; existing connections are excluded. Supply usernames and credentials separately.'),
+      b('Импорт создаёт подключения, но не переносит доверие к ключам. Хешированные имена, шаблоны, отозванные ключи и записи CA пропускаются. При первом подключении проверьте ключ сервера обычным способом.', 'Import creates connections without importing key trust. Hashed names, patterns, revoked keys and CA records are skipped. Verify the server key normally when first connecting.'),
       b('Используйте поиск по именам, адресам, группам и тегам. Переключатель карточки/список меняет представление; карточка группы открывает её содержимое.', 'Search names, addresses, groups and tags. The grid/list toggle changes the view; opening a group card shows its contents.'),
       b('Нажмите в центре карточки хоста или на значок подключения. В зависимости от типа откроется терминал или удалённый рабочий стол.', 'Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.'),
       b('В меню «…» доступны подключение, SFTP, редактирование, удаление и добавление в существующую группу. Возможность поделиться показывается при поддержке сервером.', 'The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. Sharing appears when supported by the server.'),
     ],
     image: shot('hosts', 'Обзор демонстрационных хостов и их параметров подключения.', 'An overview of demo hosts and their connection details.'),
-    images: [shot('inventory-production', 'Хосты внутри демонстрационной группы: карточки, поиск и действия подключения.', 'Hosts in a demo group: cards, search and connection actions.'), shot('host-menu', 'Меню действий выбранного хоста.', 'The selected host’s action menu.')],
+    images: [shot('inventory-production', 'Хосты внутри демонстрационной группы: карточки, поиск и действия подключения.', 'Hosts in a demo group: cards, search and connection actions.'), shot('host-menu', 'Меню действий выбранного хоста.', 'The selected host’s action menu.'), shot('host-import', 'Импорт адресов из демонстрационного known_hosts: выбор перед сохранением.', 'Importing addresses from a demo known_hosts: select before saving.')],
   },
   {
     id: 'rdp', group: 'workspace', keywords: ['RDP', 'Windows', 'clipboard', 'буфер обмена', 'диски', 'folder'],
@@ -114,32 +118,226 @@ export const guideSections = [
     images: [shot('rdp-host-picker', 'Выбор сохранённого RDP-хоста из раздела удалённого рабочего стола.', 'Choosing a saved RDP host from Remote desktop.', { width: 1440, height: 900 }), shot('rdp-permissions', 'Разрешения демонстрационного сеанса: текстовый буфер и выбранная папка с отдельным правом записи. Рабочий стол Windows на снимке не отображается.', 'Demo session permissions: text clipboard and a selected folder with a separate write permission. The Windows desktop is not shown.', { width: 1280, height: 860 }), shot('rdp-fullscreen-bar', 'Панель полного экрана: переключение подключения, разрешения и управление окном. Демонстрационные данные.', 'Full-screen connection bar: session switching, permissions and window controls. Demo data.', { width: 680, height: 48 })],
   },
   {
-    id: 'rdp-mobile', group: 'workspace', keywords: ['RDP', 'Android', 'iOS', 'touchpad', 'тачпад', 'mouse', 'мышь', 'IME', 'keyboard', 'клавиатура', 'drag', 'перетаскивание', 'landscape'],
-    title: b('RDP на телефоне: тачпад и клавиатура (0.4.1)', 'RDP on a phone: touchpad and keyboard (0.4.1)'),
-    intro: b('Панель включена в Android и iOS Simulator начиная с 0.4.1. В 0.3.2 её ещё нет. Используйте APK или Simulator ZIP 0.4.1 или новее; работа на физическом iPhone требует отдельной проверки.', 'The panel is included on Android and iOS Simulator starting with 0.4.1; 0.3.2 does not include it. Use an APK or Simulator ZIP from 0.4.1 or newer. Use on a physical iPhone requires separate verification.'),
-    table: { headings: [b('Жест в режиме тачпада', 'Touchpad gesture'), b('Действие в Windows', 'Windows action')], rows: [
-      [b('Одно короткое касание', 'One short tap'), b('Левый клик в позиции курсора.', 'Left-click at the cursor.')],
-      [b('Два быстрых касания', 'Two quick taps'), b('Двойной левый клик.', 'Double left-click.')],
-      [b('Двойное касание с удержанием второго', 'Double-tap and hold the second tap'), b('Перетаскивание; отпустите палец для отпускания кнопки мыши.', 'Drag; lift your finger to release the mouse button.')],
-      [b('Удержание одного пальца около 500 мс, затем движение', 'Hold one finger for about 500 ms, then move'), b('Другой способ начать перетаскивание.', 'Another way to start dragging.')],
-      [b('Короткое касание двумя пальцами', 'Short two-finger tap'), b('Правый клик в позиции курсора.', 'Right-click at the cursor.')],
-      [b('Движение двумя пальцами', 'Two-finger swipe'), b('Прокрутка без перемещения курсора.', 'Scroll without moving the cursor.')],
-    ] },
-    steps: [
-      b('По умолчанию включён режим «Касание»: клик происходит непосредственно под пальцем. Нажмите кнопку мыши в нижней панели, чтобы включить «Тачпад»; повторное нажатие вернёт прямое касание.', 'The default “Direct touch” mode clicks directly under your finger. Tap the mouse button in the bottom bar to enable “Touchpad”; tap it again to return to direct touch.'),
-      b('В режиме тачпада двигайте одним пальцем в области рабочего стола: видимый курсор перемещается относительно своего прежнего положения. Поднимите палец и приложите его в другом месте, чтобы продолжить движение без скачка курсора к пальцу.', 'In touchpad mode, move one finger over the desktop area: the visible cursor moves relative to its previous position. Lift and reposition your finger to continue moving without making the cursor jump to your finger.'),
-      b('Используйте жесты из таблицы или отдельные кнопки левого и правого клика. Эти кнопки нажимают в текущей позиции курсора, а не под пальцем на панели.', 'Use the gestures in the table or the separate left- and right-click buttons. These buttons click at the current cursor position, not at your finger on the bar.'),
-      b('Кнопка клавиатуры отдельно открывает и скрывает экранную клавиатуру телефона. Касание удалённого рабочего стола само по себе её не открывает. При открытой клавиатуре доступны Esc, Tab, стрелки, Enter и Backspace (⌫); если клавиши не помещаются, прокрутите их по горизонтали. При небольшой высоте, например в альбомной ориентации с клавиатурой, они находятся в одной компактной панели с кнопками управления.', 'The keyboard button separately shows or hides the phone keyboard. Touching the remote desktop does not open it. With the keyboard open, Esc, Tab, arrow keys, Enter and Backspace (⌫) are available; scroll the keys horizontally if they do not fit. When height is limited, such as landscape with the keyboard open, they share one compact bar with the controls.'),
-      b('Если экранная клавиатура ещё составляет слово или предлагает варианты ввода, сначала завершите ввод на ней. До завершения композиции служебные кнопки не отправляют удалённые команды.', 'If the phone keyboard is still composing a word or offering input candidates, finish that input first. Until composition is complete, the extra key buttons do not send remote commands.'),
-      b('Переключение режима управления или сеанса, уход в фон, блокировка и отключение ввода отпускают нажатые клавиши и кнопки мыши. После возвращения начните жест заново. Подключённая мышь использует обычное прямое управление.', 'Changing input mode or session, going into the background, locking or disabling input releases held keys and mouse buttons. Start a new gesture after returning. An attached mouse uses ordinary direct control.'),
-    ],
-    note: b('Эти жесты доступны на Android и iOS в 0.4.1. Настольное управление не меняется. Перенаправление папок на Android и iOS недоступно. На снимках — настоящие виджеты Android с демонстрационным кадром рабочего стола; системная клавиатура не рисуется, под неё оставлено место. iOS распространяется как предварительная сборка для Simulator.', 'These gestures are available on Android and iOS in 0.4.1. Desktop controls are unchanged. Folder redirection is unavailable on Android and iOS. The screenshots show real Android widgets with a synthetic desktop frame; space is reserved for the system keyboard, which is not rendered. iOS is distributed as a Simulator preview.'),
-    images: [
-      shot('mobile-rdp-portrait-controls', 'Мобильный RDP 0.4.1: включён тачпад, курсор перемещается независимо от пальца. Демонстрационный кадр.', 'Mobile RDP 0.4.1: touchpad enabled, with a cursor that moves independently of the finger. Synthetic desktop frame.', { width: 780, height: 1688, layout: 'phone' }),
-      shot('mobile-rdp-portrait-keyboard', 'Полноэкранный сеанс с панелью специальных клавиш. Пустая область снизу зарезервирована для системной клавиатуры.', 'Full-screen session with the special-key bar. The empty bottom area is reserved for the system keyboard.', { width: 780, height: 1688, layout: 'phone' }),
-      shot('mobile-rdp-landscape-keyboard', 'Альбомная ориентация: компактная панель управления и клавиш; область системной клавиатуры оставлена пустой.', 'Landscape orientation: compact controls and keys; the system keyboard area is left empty.', { width: 1688, height: 780 }),
-    ],
+  "id": "rdp-mobile",
+  "group": "workspace",
+  "keywords": [
+    "RDP",
+    "Android",
+    "iOS",
+    "touchpad",
+    "тачпад",
+    "mouse",
+    "мышь",
+    "IME",
+    "keyboard",
+    "клавиатура",
+    "drag",
+    "перетаскивание",
+    "landscape"
+  ],
+  "title": {
+    "ru": "RDP на телефоне: тачпад и клавиатура (0.5.5)",
+    "en": "RDP on a phone: touchpad and keyboard (0.5.5)"
   },
+  "intro": {
+    "ru": "На телефоне подключённый рабочий стол автоматически открывается на весь экран. По умолчанию включён тачпад: палец двигает курсор относительно его текущего положения. Одна плавающая кнопка открывает управление сеансом.",
+    "en": "On a phone, the connected desktop automatically opens fullscreen. Touchpad is the default: your finger moves the pointer relative to its current position. One floating button opens the session controls."
+  },
+  "table": {
+    "headings": [
+      {
+        "ru": "Жест в режиме тачпада",
+        "en": "Touchpad gesture"
+      },
+      {
+        "ru": "Действие",
+        "en": "Action"
+      }
+    ],
+    "rows": [
+      [
+        {
+          "ru": "Движение одним пальцем",
+          "en": "Move one finger"
+        },
+        {
+          "ru": "Перемещение курсора; палец можно поднимать и переносить.",
+          "en": "Move the pointer; lift and reposition your finger as needed."
+        }
+      ],
+      [
+        {
+          "ru": "Короткое касание",
+          "en": "Short tap"
+        },
+        {
+          "ru": "Левый клик в текущей позиции курсора.",
+          "en": "Left-click at the current pointer position."
+        }
+      ],
+      [
+        {
+          "ru": "Два быстрых касания",
+          "en": "Two quick taps"
+        },
+        {
+          "ru": "Двойной левый клик.",
+          "en": "Double left-click."
+        }
+      ],
+      [
+        {
+          "ru": "Двойное касание с удержанием второго или удержание около 500 мс",
+          "en": "Double-tap and hold the second tap, or hold for about 500 ms"
+        },
+        {
+          "ru": "Начать перетаскивание; отпускание пальца отпускает кнопку мыши.",
+          "en": "Start dragging; lifting the finger releases the mouse button."
+        }
+      ],
+      [
+        {
+          "ru": "Касание двумя пальцами",
+          "en": "Two-finger tap"
+        },
+        {
+          "ru": "Правый клик.",
+          "en": "Right-click."
+        }
+      ],
+      [
+        {
+          "ru": "Параллельное движение двух пальцев",
+          "en": "Move two fingers together"
+        },
+        {
+          "ru": "Прокрутка без перемещения курсора.",
+          "en": "Scroll without moving the pointer."
+        }
+      ],
+      [
+        {
+          "ru": "Щипок",
+          "en": "Pinch"
+        },
+        {
+          "ru": "Масштаб 1–4×; курсор остаётся видимым при перемещении к краю.",
+          "en": "Zoom 1–4×; the view follows the pointer near an edge."
+        }
+      ],
+      [
+        {
+          "ru": "Двойное касание двумя пальцами",
+          "en": "Two-finger double tap"
+        },
+        {
+          "ru": "Вписать рабочий стол в экран.",
+          "en": "Fit the desktop to the screen."
+        }
+      ],
+      [
+        {
+          "ru": "Касание тремя пальцами",
+          "en": "Three-finger tap"
+        },
+        {
+          "ru": "Открыть или скрыть клавиатуру.",
+          "en": "Show or hide the keyboard."
+        }
+      ]
+    ]
+  },
+  "steps": [
+    {
+      "ru": "Нажмите плавающую кнопку у края. В меню доступны клавиатура, тачпад или прямое касание, специальные клавиши, буфер, сеансы, ориентация и сворачивание. Перетащите кнопку к удобному краю; её положение запоминается отдельно для двух ориентаций.",
+      "en": "Tap the floating button at the edge. Its menu provides the keyboard, touchpad or direct touch, extra keys, clipboard, sessions, orientation and minimize. Drag the button to a convenient edge; its position is remembered separately for both orientations."
+    },
+    {
+      "ru": "В режиме «Касание» нажатие действует под пальцем. Выбранный для хоста режим сохраняется только на этом устройстве. Подключённая мышь работает обычным способом.",
+      "en": "In Direct touch mode, a tap acts under your finger. The selected mode for a host is remembered only on this device. An attached mouse works normally."
+    },
+    {
+      "ru": "Клавиатура появляется поверх рабочего стола, не сжимая его. Над ней есть полоса дополнительных клавиш; отдельный лист открывает F1–F12, стрелки и сочетания. Одно касание Ctrl, Alt, Win или Shift действует на следующую клавишу; двойное фиксирует модификатор, следующее отпускает.",
+      "en": "The keyboard overlays the desktop without shrinking it. An extra-key strip appears above it; a separate sheet provides F1–F12, arrows and shortcuts. Tap Ctrl, Alt, Win or Shift once for the next key, twice to lock the modifier, then again to release it."
+    },
+    {
+      "ru": "Если клавиатура ещё составляет слово, сначала завершите ввод. До окончания композиции дополнительные клавиши не отправляют команды. Смена сеанса, уход в фон и блокировка отпускают зажатые клавиши и кнопки мыши.",
+      "en": "If the keyboard is still composing a word, finish that input first. Extra keys do not send commands during composition. Switching sessions, going into the background and locking release held keys and mouse buttons."
+    },
+    {
+      "ru": "В мобильных настройках RDP выберите скорость и ускорение курсора, его размер, чёткость, масштаб Windows, ориентацию и автоскрытие кнопки. Разрешение подстраивается под экран, если RDP-сервер разрешает изменение размера; иначе сеанс сохраняет прежнее разрешение.",
+      "en": "Mobile RDP settings provide pointer speed and acceleration, cursor size, clarity, Windows scale, orientation and button hiding. Resolution follows the screen when the RDP server supports resizing; otherwise the session keeps its existing resolution."
+    },
+    {
+      "ru": "На Android кнопка «Назад» сначала скрывает клавиатуру. Затем она раскрывает управление; повторное нажатие в течение двух секунд сворачивает сеанс без отключения. Можно переключаться между четырьмя сеансами. «Отключить» запрашивает подтверждение.",
+      "en": "On Android, Back first hides the keyboard. It then opens the controls; another press within two seconds minimizes without disconnecting. Switch among up to four sessions. Disconnect asks for confirmation."
+    }
+  ],
+  "note": {
+    "ru": "На планшете полный экран включается вручную, а автоматический режим выбирает прямое касание. При включённом экранном дикторе используется прямое касание и кнопка не скрывается. Перенаправление папок на телефоне недоступно. iOS распространяется как сборка для Simulator на Mac. На снимках настоящие виджеты с синтетическим кадром; пустая область зарезервирована для системной клавиатуры.",
+    "en": "Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. iOS is distributed for Simulator on Mac. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard."
+  },
+  "images": [
+    {
+      "name": "mobile-rdp-portrait-dark",
+      "caption": {
+        "ru": "Рабочий стол и плавающая кнопка: постоянные панели скрыты.",
+        "en": "Desktop and floating button, with permanent panels hidden."
+      },
+      "width": 780,
+      "height": 1688,
+      "layout": "phone"
+    },
+    {
+      "name": "mobile-rdp-portrait-controls-dark",
+      "caption": {
+        "ru": "Меню управления в портретной ориентации.",
+        "en": "Session controls in portrait orientation."
+      },
+      "width": 780,
+      "height": 1688,
+      "layout": "phone"
+    },
+    {
+      "name": "mobile-rdp-portrait-keyboard-dark",
+      "caption": {
+        "ru": "Полоса клавиш над зарезервированной областью системной клавиатуры.",
+        "en": "Extra-key strip above the reserved system-keyboard area."
+      },
+      "width": 780,
+      "height": 1688,
+      "layout": "phone"
+    },
+    {
+      "name": "mobile-rdp-landscape-controls-dark",
+      "caption": {
+        "ru": "Альбомная ориентация и меню управления.",
+        "en": "Landscape orientation and session controls."
+      },
+      "width": 1688,
+      "height": 780
+    },
+    {
+      "name": "mobile-rdp-landscape-keyboard-dark",
+      "caption": {
+        "ru": "Клавиши в альбомной ориентации; размер рабочего стола сохраняется.",
+        "en": "Keys in landscape orientation; the desktop size stays stable."
+      },
+      "width": 1688,
+      "height": 780
+    },
+    {
+      "name": "mobile-rdp-portrait-controls-light",
+      "caption": {
+        "ru": "Те же элементы управления в светлой теме.",
+        "en": "The same controls in the light theme."
+      },
+      "width": 780,
+      "height": 1688,
+      "layout": "phone"
+    }
+  ]
+},
   {
     id: 'quick-connect', group: 'workspace', keywords: ['IP', 'SSH', 'Enter', '⌘K', 'Ctrl+K', 'command palette'], title: b('Быстрый поиск и подключение', 'Quick search and connect'),
     intro: b('Найдите сохранённый хост из любой части приложения и сразу откройте SSH- или RDP-сеанс. Палитра команд объединяет поиск хостов, сниппетов и быстрые действия.', 'Find a saved host from anywhere in the app and open an SSH or RDP session. The command palette brings together hosts, snippets and quick actions.'),
@@ -226,6 +424,7 @@ export const guideSections = [
       "en": "The 0.5 series lets macOS and Windows open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server."
     },
     "steps": [
+      {"ru": "В палитре Cmd+K / Ctrl+K выберите «Новый локальный терминал». На macOS сразу откроется zsh; на Windows появится выбор PowerShell, cmd и отдельных WSL-дистрибутивов.", "en": "In the Cmd+K / Ctrl+K palette, choose New local terminal. macOS opens zsh immediately; Windows offers PowerShell, cmd and individual WSL distributions."},
       {
         "ru": "Откройте «Терминал» и нажмите кнопку новой вкладки, Cmd+T на macOS или Ctrl+T на Windows. В группе «Локальные оболочки» выберите zsh, Windows PowerShell, Command Prompt либо установленный PowerShell 7. Общая кнопка «+» приложения по-прежнему выбирает SSH/RDP-хосты.",
         "en": "Open Terminal and use its new-tab button, Cmd+T on macOS or Ctrl+T on Windows. Under Local shells choose zsh, Windows PowerShell, Command Prompt or installed PowerShell 7. The app’s global “+” still opens the SSH/RDP host picker."
@@ -252,6 +451,7 @@ export const guideSections = [
       "en": "Local shells in 0.5 support macOS and Windows. The macOS package runs without App Sandbox and reuses existing storage in place; keep the 0.4.1 container, models, vault and Keychain. Conflicting or unreadable storage stops startup before creating a new profile. The screenshots below use widgets with synthetic profiles, not a native WSL run."
     },
     "images": [
+      {"name": "local-terminal-palette", "caption": {"ru": "Новый локальный терминал в палитре команд.", "en": "New local terminal in the command palette."}, "width": 1440, "height": 900},
       {
         "name": "terminal-local-picker",
         "caption": {
@@ -423,8 +623,8 @@ export const guideSections = [
         ],
         [
           {
-            "ru": "Мощная",
-            "en": "Strong"
+            "ru": "Тяжёлая",
+            "en": "Heavy"
           },
           {
             "ru": "Qwen3.5 9B Q4_K_M · 5,7 ГБ",

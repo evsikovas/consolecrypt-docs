@@ -18,7 +18,7 @@ Step-by-step instructions with the real application interface and demonstration 
 
 - [Hosts: add, find and connect](#hosts)
 - [RDP: Windows remote desktop](#rdp)
-- [RDP on a phone: touchpad and keyboard (0.4.1)](#rdp-mobile)
+- [RDP on a phone: touchpad and keyboard (0.5.5)](#rdp-mobile)
 - [Quick search and connect](#quick-connect)
 - [Groups and jump hosts](#groups)
 - [Passwords, keys and credentials](#credentials)
@@ -142,11 +142,13 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 
 1. Save the Recovery Kit offline and complete the word check. Its words and QR code grant vault access: do not send them by email, chat or AI.
 
-2. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
+2. In 0.5.6, Recovery Kit words remain whole on phones. The column count follows the screen width and text size, with the QR code below the words. Scroll to save the complete kit.
 
-3. On a supported device, enable fingerprint unlocking or the option named after the system method. First unlock the vault and approve the device; configure biometrics in system settings.
+3. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
 
-4. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
+4. On a supported device, enable fingerprint unlocking or the option named after the system method. First unlock the vault and approve the device; configure biometrics in system settings.
+
+5. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
 
 > **Keep in mind**
 >
@@ -155,6 +157,10 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 ![Vault settings and available unlock methods; no secrets are revealed.](../assets/guide/vault-settings-en.png)
 
 Vault settings and available unlock methods; no secrets are revealed.
+
+![Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.](../assets/guide/recovery-kit-mobile-en.png)
+
+Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.
 
 <a name="devices"></a>
 
@@ -190,11 +196,15 @@ A host stores SSH or RDP connection settings. Cards and list rows show its addre
 
 1. Open “Hosts → New host” and first choose SSH or RDP. Enter a name, address, port, username and credential. SSH supports group defaults and jump hosts; RDP uses a password, an optional Windows domain and port 3389 by default.
 
-2. Search names, addresses, groups and tags. The grid/list toggle changes the view; opening a group card shows its contents.
+2. On desktop, click Import in the new SSH-host form. It reads ~/.ssh/known\_hosts and /etc/ssh/ssh\_known\_hosts on Linux/macOS, or %USERPROFILE%\\\\.ssh\\\\known\_hosts on Windows. Review and select addresses; existing connections are excluded. Supply usernames and credentials separately.
 
-3. Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.
+3. Import creates connections without importing key trust. Hashed names, patterns, revoked keys and CA records are skipped. Verify the server key normally when first connecting.
 
-4. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. Sharing appears when supported by the server.
+4. Search names, addresses, groups and tags. The grid/list toggle changes the view; opening a group card shows its contents.
+
+5. Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.
+
+6. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. Sharing appears when supported by the server.
 
 ![An overview of demo hosts and their connection details.](../assets/guide/hosts-en.png)
 
@@ -207,6 +217,10 @@ Hosts in a demo group: cards, search and connection actions.
 ![The selected host’s action menu.](../assets/guide/host-menu-en.png)
 
 The selected host’s action menu.
+
+![Importing addresses from a demo known\_hosts: select before saving.](../assets/guide/host-import-en.png)
+
+Importing addresses from a demo known\_hosts: select before saving.
 
 <a name="rdp"></a>
 
@@ -256,46 +270,61 @@ Full-screen connection bar: session switching, permissions and window controls. 
 
 <a name="rdp-mobile"></a>
 
-## 8. RDP on a phone: touchpad and keyboard (0.4.1)
+## 8. RDP on a phone: touchpad and keyboard (0.5.5)
 
-The panel is included on Android and iOS Simulator starting with 0.4.1; 0.3.2 does not include it. Use an APK or Simulator ZIP from 0.4.1 or newer. Use on a physical iPhone requires separate verification.
+On a phone, the connected desktop automatically opens fullscreen. Touchpad is the default: your finger moves the pointer relative to its current position. One floating button opens the session controls.
 
-| Touchpad gesture | Windows action |
+| Touchpad gesture | Action |
 | --- | --- |
-| One short tap | Left-click at the cursor. |
+| Move one finger | Move the pointer; lift and reposition your finger as needed. |
+| Short tap | Left-click at the current pointer position. |
 | Two quick taps | Double left-click. |
-| Double-tap and hold the second tap | Drag; lift your finger to release the mouse button. |
-| Hold one finger for about 500 ms, then move | Another way to start dragging. |
-| Short two-finger tap | Right-click at the cursor. |
-| Two-finger swipe | Scroll without moving the cursor. |
+| Double-tap and hold the second tap, or hold for about 500 ms | Start dragging; lifting the finger releases the mouse button. |
+| Two-finger tap | Right-click. |
+| Move two fingers together | Scroll without moving the pointer. |
+| Pinch | Zoom 1–4×; the view follows the pointer near an edge. |
+| Two-finger double tap | Fit the desktop to the screen. |
+| Three-finger tap | Show or hide the keyboard. |
 
-1. The default “Direct touch” mode clicks directly under your finger. Tap the mouse button in the bottom bar to enable “Touchpad”; tap it again to return to direct touch.
+1. Tap the floating button at the edge. Its menu provides the keyboard, touchpad or direct touch, extra keys, clipboard, sessions, orientation and minimize. Drag the button to a convenient edge; its position is remembered separately for both orientations.
 
-2. In touchpad mode, move one finger over the desktop area: the visible cursor moves relative to its previous position. Lift and reposition your finger to continue moving without making the cursor jump to your finger.
+2. In Direct touch mode, a tap acts under your finger. The selected mode for a host is remembered only on this device. An attached mouse works normally.
 
-3. Use the gestures in the table or the separate left- and right-click buttons. These buttons click at the current cursor position, not at your finger on the bar.
+3. The keyboard overlays the desktop without shrinking it. An extra-key strip appears above it; a separate sheet provides F1–F12, arrows and shortcuts. Tap Ctrl, Alt, Win or Shift once for the next key, twice to lock the modifier, then again to release it.
 
-4. The keyboard button separately shows or hides the phone keyboard. Touching the remote desktop does not open it. With the keyboard open, Esc, Tab, arrow keys, Enter and Backspace (⌫) are available; scroll the keys horizontally if they do not fit. When height is limited, such as landscape with the keyboard open, they share one compact bar with the controls.
+4. If the keyboard is still composing a word, finish that input first. Extra keys do not send commands during composition. Switching sessions, going into the background and locking release held keys and mouse buttons.
 
-5. If the phone keyboard is still composing a word or offering input candidates, finish that input first. Until composition is complete, the extra key buttons do not send remote commands.
+5. Mobile RDP settings provide pointer speed and acceleration, cursor size, clarity, Windows scale, orientation and button hiding. Resolution follows the screen when the RDP server supports resizing; otherwise the session keeps its existing resolution.
 
-6. Changing input mode or session, going into the background, locking or disabling input releases held keys and mouse buttons. Start a new gesture after returning. An attached mouse uses ordinary direct control.
+6. On Android, Back first hides the keyboard. It then opens the controls; another press within two seconds minimizes without disconnecting. Switch among up to four sessions. Disconnect asks for confirmation.
 
 > **Keep in mind**
 >
-> These gestures are available on Android and iOS in 0.4.1. Desktop controls are unchanged. Folder redirection is unavailable on Android and iOS. The screenshots show real Android widgets with a synthetic desktop frame; space is reserved for the system keyboard, which is not rendered. iOS is distributed as a Simulator preview.
+> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. iOS is distributed for Simulator on Mac. Screenshots use real widgets with a synthetic frame; the empty area is reserved for the system keyboard.
 
-![Mobile RDP 0.4.1: touchpad enabled, with a cursor that moves independently of the finger. Synthetic desktop frame.](../assets/guide/mobile-rdp-portrait-controls-en.png)
+![Desktop and floating button, with permanent panels hidden.](../assets/guide/mobile-rdp-portrait-dark-en.png)
 
-Mobile RDP 0.4.1: touchpad enabled, with a cursor that moves independently of the finger. Synthetic desktop frame.
+Desktop and floating button, with permanent panels hidden.
 
-![Full-screen session with the special-key bar. The empty bottom area is reserved for the system keyboard.](../assets/guide/mobile-rdp-portrait-keyboard-en.png)
+![Session controls in portrait orientation.](../assets/guide/mobile-rdp-portrait-controls-dark-en.png)
 
-Full-screen session with the special-key bar. The empty bottom area is reserved for the system keyboard.
+Session controls in portrait orientation.
 
-![Landscape orientation: compact controls and keys; the system keyboard area is left empty.](../assets/guide/mobile-rdp-landscape-keyboard-en.png)
+![Extra-key strip above the reserved system-keyboard area.](../assets/guide/mobile-rdp-portrait-keyboard-dark-en.png)
 
-Landscape orientation: compact controls and keys; the system keyboard area is left empty.
+Extra-key strip above the reserved system-keyboard area.
+
+![Landscape orientation and session controls.](../assets/guide/mobile-rdp-landscape-controls-dark-en.png)
+
+Landscape orientation and session controls.
+
+![Keys in landscape orientation; the desktop size stays stable.](../assets/guide/mobile-rdp-landscape-keyboard-dark-en.png)
+
+Keys in landscape orientation; the desktop size stays stable.
+
+![The same controls in the light theme.](../assets/guide/mobile-rdp-portrait-controls-light-en.png)
+
+The same controls in the light theme.
 
 <a name="quick-connect"></a>
 
@@ -433,19 +462,25 @@ Demo Android terminal with its special-key bar.
 
 The 0.5 series lets macOS and Windows open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
 
-1. Open Terminal and use its new-tab button, Cmd+T on macOS or Ctrl+T on Windows. Under Local shells choose zsh, Windows PowerShell, Command Prompt or installed PowerShell 7. The app’s global “+” still opens the SSH/RDP host picker.
+1. In the Cmd+K / Ctrl+K palette, choose New local terminal. macOS opens zsh immediately; Windows offers PowerShell, cmd and individual WSL distributions.
 
-2. Each installed WSL distribution appears separately. Choose Ubuntu, Debian or another available distribution; you can open several tabs for one shell. The client does not install WSL itself.
+2. Open Terminal and use its new-tab button, Cmd+T on macOS or Ctrl+T on Windows. Under Local shells choose zsh, Windows PowerShell, Command Prompt or installed PowerShell 7. The app’s global “+” still opens the SSH/RDP host picker.
 
-3. Check the This computer label and WSL distribution name when switching between local and SSH tabs. Input, resizing, Ctrl+C and interactive programs use a real PTY/ConPTY. SFTP is an SSH-host action and is absent from the local tab.
+3. Each installed WSL distribution appears separately. Choose Ubuntu, Debian or another available distribution; you can open several tabs for one shell. The client does not install WSL itself.
 
-4. AI receives the active shell dialect and only explicitly selected context. AI commands and snippets can be inserted into a local tab without Enter; automatic execution is disabled. Review the text and press Enter yourself if you want to run it.
+4. Check the This computer label and WSL distribution name when switching between local and SSH tabs. Input, resizing, Ctrl+C and interactive programs use a real PTY/ConPTY. SFTP is an SSH-host action and is absent from the local tab.
 
-5. Closing a tab ends its process. Restart shell starts a new session. Vault lock, profile switch and quit close the shell and its current foreground process group. Detached/background processes such as nohup are not searched for, and the entire WSL distribution is not stopped.
+5. AI receives the active shell dialect and only explicitly selected context. AI commands and snippets can be inserted into a local tab without Enter; automatic execution is disabled. Review the text and press Enter yourself if you want to run it.
+
+6. Closing a tab ends its process. Restart shell starts a new session. Vault lock, profile switch and quit close the shell and its current foreground process group. Detached/background processes such as nohup are not searched for, and the entire WSL distribution is not stopped.
 
 > **Keep in mind**
 >
 > Local shells in 0.5 support macOS and Windows. The macOS package runs without App Sandbox and reuses existing storage in place; keep the 0.4.1 container, models, vault and Keychain. Conflicting or unreadable storage stops startup before creating a new profile. The screenshots below use widgets with synthetic profiles, not a native WSL run.
+
+![New local terminal in the command palette.](../assets/guide/local-terminal-palette-en.png)
+
+New local terminal in the command palette.
 
 ![Choosing local zsh and SSH hosts: real interface with demo profiles.](../assets/guide/terminal-local-picker-en.png)
 
@@ -597,7 +632,7 @@ On macOS and Windows, the model answers on your computer. The 0.5 series offers 
 | --- | --- | --- |
 | Light | Qwen2.5-Coder 1.5B Q4\_K\_M · 1.1 GB | 4 GiB |
 | Medium | Qwen3.5 4B Q4\_K\_M · 2.7 GB | 8 GiB |
-| Strong | Qwen3.5 9B Q4\_K\_M · 5.7 GB | 16 GiB |
+| Heavy | Qwen3.5 9B Q4\_K\_M · 5.7 GB | 16 GiB |
 
 1. In Settings, open Built-in local AI and select a model. The star recommends a tier based on total system RAM but never changes your choice automatically. Unknown RAM or less than 4 GiB shows no star. RAM guidance is not a speed guarantee.
 
