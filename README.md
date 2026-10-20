@@ -4,7 +4,7 @@
 
 Руководство по SSH, RDP, SFTP, Kubernetes, зашифрованному хранилищу, синхронизации,
 сниппетам, ИИ и совместной работе. Руководство и опубликованные пакеты ниже
-относятся к клиенту 0.6.3.
+относятся к клиенту 0.6.4.
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
@@ -28,27 +28,27 @@
 - [Исправление комплекта восстановления на телефоне](docs/public/RELEASE_0_5_6.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 0.6.3](docs/public/RELEASE_0_6_3.md).
+- [Обновления](docs/public/UPDATES.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).
 
-## Готовые сборки 0.6.3
+## Готовые сборки 0.6.4
 
-Шесть файлов выпущены из одного тега [v0.6.3](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.6.3).
-Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.3/SHA256SUMS-0.6.3.txt).
+Шесть файлов выпущены из одного тега [v0.6.4](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.6.4).
+Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/SHA256SUMS-0.6.4.txt).
 
 | Платформа | Сборка | Файл | Размер, байт |
 | --- | --- | --- | ---: |
-| macOS, Apple Silicon и Intel | 0.6.3+27011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.3/ConsoleCrypt-0.6.3%2B27011-macos-universal.dmg) | 163 038 248 |
-| Windows x64 | 0.6.3+27012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.3/ConsoleCrypt-0.6.3%2B27012-windows-x64-setup.exe) | 30 447 166 |
-| Windows x64 | 0.6.3+27012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.3/ConsoleCrypt-0.6.3%2B27012-windows-x64.zip) | 43 074 979 |
-| Linux x64 | 0.6.3+27013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.3/ConsoleCrypt-0.6.3%2B27013-linux-x64.deb) | 32 190 258 |
-| Linux x64 | 0.6.3+27013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.3/ConsoleCrypt-0.6.3%2B27013-linux-x64.rpm) | 43 564 273 |
-| Android ARM64 | 0.6.3+27014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.3/ConsoleCrypt-0.6.3%2B27014-android-arm64.apk) | 87 140 598 |
+| macOS, Apple Silicon и Intel | 0.6.4+29011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29011-macos-universal.dmg) | 163 395 353 |
+| Windows x64 | 0.6.4+29012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29012-windows-x64-setup.exe) | 30 558 053 |
+| Windows x64 | 0.6.4+29012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29012-windows-x64.zip) | 43 248 715 |
+| Linux x64 | 0.6.4+29013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29013-linux-x64.deb) | 32 280 196 |
+| Linux x64 | 0.6.4+29013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29013-linux-x64.rpm) | 43 744 459 |
+| Android ARM64 | 0.6.4+29014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29014-android-arm64.apk) | 87 325 136 |
 | iOS Simulator на Mac (прежняя сборка) | 0.5.6+23015 | [ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/ConsoleCrypt-0.5.6%2B23015-ios-simulator-universal.zip) | 154 939 478 |
 
-Выпуск 0.6.3 для iOS отложен; доступна прежняя предварительная сборка 0.5.6.
+Выпуск 0.6.4 для iOS отложен; доступна прежняя предварительная сборка 0.5.6.
 Архив iOS предназначен для Simulator, а не для установки на физический iPhone; [порядок запуска](docs/public/BUILD_IOS.md).
 
 ## Структура
