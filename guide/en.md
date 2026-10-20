@@ -206,11 +206,13 @@ A host stores SSH or RDP connection settings. Cards and list rows show its addre
 
 3. Import creates connections without importing key trust. Hashed names, patterns, revoked keys and CA records are skipped. Verify the server key normally when first connecting.
 
-4. Search names, addresses, groups and tags. The grid/list toggle changes the view; opening a group card shows its contents.
+4. “From ~/.ssh/config”, next to Import, reads your OpenSSH configuration (including Include files). Each Host entry becomes a host with its address, port and user; wildcard blocks such as Host \* apply as defaults. ProxyJump hosts are imported with the chosen host, and IdentityFile keys can be added to the vault at once — an encrypted key keeps its passphrase. ProxyCommand is not supported.
 
-5. Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.
+5. Search names, addresses, groups and tags. The grid/list toggle changes the view; opening a group card shows its contents.
 
-6. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. Sharing appears when supported by the server.
+6. Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.
+
+7. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. Sharing appears when supported by the server.
 
 ![An overview of demo hosts and their connection details.](../assets/guide/hosts-en.png)
 
@@ -292,7 +294,7 @@ On a phone, the connected desktop automatically opens fullscreen. Touchpad is th
 | Two-finger double tap | Fit the desktop to the screen. |
 | Three-finger tap | Show or hide the keyboard. |
 
-1. Tap the floating button at the edge. Its menu provides the keyboard, touchpad or direct touch, extra keys, clipboard, sessions, orientation and minimize. Drag the button to a convenient edge; its position is remembered separately for both orientations.
+1. Tap the floating button at the edge. A grid of tiles opens with the keyboard, touchpad or direct touch, extra keys, clipboard, sessions, orientation and minimize. Drag the button to a convenient edge; its position is remembered separately for both orientations.
 
 2. In Direct touch mode, a tap acts under your finger. The selected mode for a host is remembered only on this device. An attached mouse works normally.
 
@@ -440,7 +442,9 @@ Each tab is one terminal session: SSH, plus local shells on macOS and Windows in
 
 5. Multiline paste and control characters require review. Check the target and text before confirming; execution remains your action.
 
-6. After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.
+6. Right-click a tab to rename, duplicate, close it, close others or close tabs to the right. A background tab with new output is highlighted, and the sidebar shows a separate count of such tabs next to the tab count. Settings → Terminal sets the font (from installed monospace fonts) and the tab subtitle: the list name, the address or computer name, or nothing.
+
+7. After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.
 
 > **Keep in mind**
 >
@@ -504,7 +508,7 @@ Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-ho
 
 ## 15. Keyboard shortcuts
 
-The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command.
+The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command. App shortcuts can be remapped in Settings → Keyboard shortcuts: choose Change and press a new combination with ⌘/Ctrl or Alt. If another command has it, that command loses it; if the system or terminal uses it, you are warned. Restore defaults brings back the table below.
 
 | Action | macOS | Windows / Linux |
 | --- | --- | --- |
@@ -619,6 +623,8 @@ You choose the provider, context and subsequent action. A model’s answer does 
 3. Select the required terminal text and choose “Ask AI”, or enable attaching the selection in chat. Review the context before Send; do not paste secrets into free text.
 
 4. Before “Insert” or “Execute…”, review the proposed command and target host. Execution requires confirmation; assess the command yourself.
+
+5. Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings.
 
 > **Keep in mind**
 >
@@ -954,15 +960,17 @@ Kubernetes interface with demonstration data.
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
-1. Select a namespace and resource kind. Use search, filtering and column settings; the list updates automatically.
+1. On desktop, the navigator on the left lists clusters and collapsible resource groups, custom resources by API group and favourites. A cluster opens on an overview with nodes, running Pods, problems, CPU and memory charts and Pod states. Without metrics-server the overview offers a basic one; turn on --kubelet-insecure-tls for local clusters. Right-click a cluster for rename, properties, test/production, colour label, sharing and kubeconfig export.
 
-2. Open an object for status, YAML, events and related resources. Supported workloads expose rollout history and revision comparisons.
+2. Select a namespace and resource kind. Use search, filtering and column settings; the list updates automatically.
 
-3. To edit YAML, open the editor, review the diff and dry-run result, then confirm applying. Field ownership conflicts require a separate decision.
+3. Open an object for status, YAML, events and related resources. Supported workloads expose rollout history and revision comparisons.
 
-4. Deletion, restart and scaling require confirmation. Secret values are hidden and revealed separately.
+4. To edit YAML, open the editor and choose Apply: the change is validated on the server first, then the diff and confirmation follow. A refusal shows which controller owns a field or which fields were rejected. Field ownership conflicts require a separate decision.
 
-5. A production context blocks writes. Desktop allows a temporary write window; bulk production mutations remain prohibited.
+5. Deletion, restart and scaling require confirmation. Secret values are hidden and revealed separately.
+
+6. A production context blocks writes. Desktop allows a 10-minute write window confirmed with the vault passphrase; bulk production mutations remain prohibited.
 
 [Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
 
@@ -988,11 +996,13 @@ Logs, shell and port forwarding are built into the client and require no externa
 
 2. Open related Pod logs from a workload. Save output to a file on desktop or use system sharing on mobile.
 
-3. Open the Pod terminal. Automatic selection tries bash, ash and sh, or choose a command explicitly. Production requires the corresponding context permission.
+3. Running port forwards live in the right panel: each shows its status, local address with a copy button, Pod and port, traffic and a stop button. The panel opens after a forward starts, and the cluster header has a “Port forwards: N” button.
 
-4. Create a port forward for the desired port. Use the displayed local address and stop the tunnel when finished.
+4. Open the Pod terminal. Automatic selection tries bash, ash and sh, or choose a command explicitly. Production requires the corresponding context permission.
 
-5. On Android, active tunnels appear in a notification with a stop action. Kubernetes testing and a new build for iOS are deferred. Locking the vault closes sessions.
+5. Create a port forward for the desired port. Use the displayed local address and stop the tunnel when finished.
+
+6. On Android, active tunnels appear in a notification with a stop action. Kubernetes testing and a new build for iOS are deferred. Locking the vault closes sessions.
 
 [Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
 

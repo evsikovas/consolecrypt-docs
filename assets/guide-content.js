@@ -90,6 +90,7 @@ export const guideSections = [
       b('Откройте «Хосты → Новый хост» и сначала выберите SSH или RDP. Задайте имя, адрес, порт, пользователя и учётные данные. Для SSH доступны наследование из группы и jump-хосты; для RDP — пароль и необязательный домен Windows, порт по умолчанию 3389.', 'Open “Hosts → New host” and first choose SSH or RDP. Enter a name, address, port, username and credential. SSH supports group defaults and jump hosts; RDP uses a password, an optional Windows domain and port 3389 by default.'),
       b('На компьютере в форме нового SSH-хоста нажмите «Импорт». Клиент читает ~/.ssh/known_hosts и /etc/ssh/ssh_known_hosts на Linux/macOS, либо %USERPROFILE%\\\\.ssh\\\\known_hosts на Windows. Просмотрите адреса и отметьте нужные; уже сохранённые подключения исключаются. Пользователя и учётные данные укажите отдельно.', 'On desktop, click Import in the new SSH-host form. It reads ~/.ssh/known_hosts and /etc/ssh/ssh_known_hosts on Linux/macOS, or %USERPROFILE%\\\\.ssh\\\\known_hosts on Windows. Review and select addresses; existing connections are excluded. Supply usernames and credentials separately.'),
       b('Импорт создаёт подключения, но не переносит доверие к ключам. Хешированные имена, шаблоны, отозванные ключи и записи CA пропускаются. При первом подключении проверьте ключ сервера обычным способом.', 'Import creates connections without importing key trust. Hashed names, patterns, revoked keys and CA records are skipped. Verify the server key normally when first connecting.'),
+      b("Кнопка «Из ~/.ssh/config» рядом с «Импорт» читает конфигурацию OpenSSH (с Include). Каждая запись Host становится хостом с адресом, портом и пользователем; блоки с масками вроде Host * применяются как значения по умолчанию. Хосты из ProxyJump импортируются вместе с выбранным, а ключи из IdentityFile можно сразу добавить в хранилище — зашифрованный ключ сохраняет свою парольную фразу. ProxyCommand не поддерживается.", "“From ~/.ssh/config”, next to Import, reads your OpenSSH configuration (including Include files). Each Host entry becomes a host with its address, port and user; wildcard blocks such as Host * apply as defaults. ProxyJump hosts are imported with the chosen host, and IdentityFile keys can be added to the vault at once — an encrypted key keeps its passphrase. ProxyCommand is not supported."),
       b('Используйте поиск по именам, адресам, группам и тегам. Переключатель карточки/список меняет представление; карточка группы открывает её содержимое.', 'Search names, addresses, groups and tags. The grid/list toggle changes the view; opening a group card shows its contents.'),
       b('Нажмите в центре карточки хоста или на значок подключения. В зависимости от типа откроется терминал или удалённый рабочий стол.', 'Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.'),
       b('В меню «…» доступны подключение, SFTP, редактирование, удаление и добавление в существующую группу. Возможность поделиться показывается при поддержке сервером.', 'The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. Sharing appears when supported by the server.'),
@@ -249,8 +250,8 @@ export const guideSections = [
   },
   "steps": [
     {
-      "ru": "Нажмите плавающую кнопку у края. В меню доступны клавиатура, тачпад или прямое касание, специальные клавиши, буфер, сеансы, ориентация и сворачивание. Перетащите кнопку к удобному краю; её положение запоминается отдельно для двух ориентаций.",
-      "en": "Tap the floating button at the edge. Its menu provides the keyboard, touchpad or direct touch, extra keys, clipboard, sessions, orientation and minimize. Drag the button to a convenient edge; its position is remembered separately for both orientations."
+      "ru": "Нажмите плавающую кнопку у края. Откроется сетка плиток: клавиатура, тачпад или прямое касание, специальные клавиши, буфер, сеансы, ориентация и сворачивание. Перетащите кнопку к удобному краю; её положение запоминается отдельно для двух ориентаций.",
+      "en": "Tap the floating button at the edge. A grid of tiles opens with the keyboard, touchpad or direct touch, extra keys, clipboard, sessions, orientation and minimize. Drag the button to a convenient edge; its position is remembered separately for both orientations."
     },
     {
       "ru": "В режиме «Касание» нажатие действует под пальцем. Выбранный для хоста режим сохраняется только на этом устройстве. Подключённая мышь работает обычным способом.",
@@ -396,6 +397,7 @@ export const guideSections = [
       b('Выделите текст и откройте меню правой кнопкой мыши. Доступны «Копировать», «Вставить», выделение всего, «Спросить ИИ» и сохранение выделенного в сниппет. Shift+F10 открывает меню с клавиатуры.', 'Select text and right-click for the menu. It offers Copy, Paste, Select all, Ask AI and saving the selection as a snippet. Shift+F10 opens it from the keyboard.'),
       b('На телефоне используйте значок клавиатуры и «…» под терминалом. Рядом доступны Esc, Tab, Ctrl+C, Ctrl+D, Ctrl+L и стрелки; полоса прокручивается.', 'On a phone, use the keyboard icon and “…” below the terminal. Esc, Tab, Ctrl+C, Ctrl+D, Ctrl+L and arrows are also available in the scrollable bar.'),
       b('Многострочная вставка и управляющие символы требуют проверки. Проверьте хост и текст до подтверждения; команды после вставки выполняются по вашему действию.', 'Multiline paste and control characters require review. Check the target and text before confirming; execution remains your action.'),
+      b("Правый клик по вкладке открывает меню: переименовать, дублировать, закрыть, закрыть другие и вкладки справа. Фоновая вкладка, в которой появился новый вывод, подсвечивается, а в боковом меню рядом с числом вкладок появляется отдельный счётчик таких вкладок. В «Настройки → Терминал» выбираются шрифт (из установленных моноширинных) и подпись вкладки: имя из списка, адрес или имя компьютера, либо ничего.", "Right-click a tab to rename, duplicate, close it, close others or close tabs to the right. A background tab with new output is highlighted, and the sidebar shows a separate count of such tabs next to the tab count. Settings → Terminal sets the font (from installed monospace fonts) and the tab subtitle: the list name, the address or computer name, or nothing."),
       b('При обрыве связи используйте переподключение в баннере вкладки. Буфер вывода сохраняется до закрытия вкладки; закрытие завершает эту сессию.', 'After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.'),
     ],
     note: b('После обновления откройте новую SSH-сессию. Встроенный SSH запрашивает UTF-8 для ввода и удаления кириллицы. Если символы всё ещё искажаются, проверьте UTF-8 локаль удалённого хоста: настройки его оболочки и SSH-сервера могут перекрывать запрос клиента.', 'Open a new SSH session after updating. Built-in SSH requests UTF-8 for entering and deleting Cyrillic text. If characters are still corrupted, check the remote host’s UTF-8 locale: its shell and SSH-server settings can override the client’s request.'),
@@ -483,7 +485,7 @@ export const guideSections = [
   },
   {
     id: 'shortcuts', group: 'workspace', title: b('Горячие клавиши', 'Keyboard shortcuts'),
-    intro: b('Основной модификатор — ⌘ на macOS и Ctrl на Windows/Linux. Копирование на Windows не занимает Ctrl+C: эта комбинация прерывает команду.', 'The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command.'),
+    intro: b("Основной модификатор — ⌘ на macOS и Ctrl на Windows/Linux. Копирование на Windows не занимает Ctrl+C: эта комбинация прерывает команду. Сочетания приложения можно переназначить в «Настройки → Горячие клавиши»: нажмите «Изменить» и новую комбинацию с ⌘/Ctrl или Alt. Если она занята другой командой, у той сочетание снимется; если её использует система или терминал, появится предупреждение. «Восстановить по умолчанию» возвращает таблицу ниже.", "The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command. App shortcuts can be remapped in Settings → Keyboard shortcuts: choose Change and press a new combination with ⌘/Ctrl or Alt. If another command has it, that command loses it; if the system or terminal uses it, you are warned. Restore defaults brings back the table below."),
     table: { headings: [b('Действие', 'Action'), b('macOS', 'macOS'), b('Windows / Linux', 'Windows / Linux')], rows: [
       [b('Найти хост, сниппет или действие', 'Find a host, snippet or action'), b('⌘K', '⌘K'), b('Ctrl+K', 'Ctrl+K')],
       [b('Новая вкладка SSH', 'New SSH tab'), b('⌘T', '⌘T'), b('Ctrl+T', 'Ctrl+T')],
@@ -551,6 +553,7 @@ export const guideSections = [
       b('«Строгий» профиль скрывает секреты, адреса, имена хостов, пользователей и БД. «Стандартный» сохраняет метаданные хостов; «Локальный» даёт больше контекста, продолжая скрывать секреты.', 'The Strict profile hides secrets, addresses, hostnames, usernames and database names. Standard keeps host metadata; Local provides more context while still hiding secrets.'),
       b('Выделите нужный текст терминала и выберите «Спросить ИИ» либо включите добавление выделения в чате. Проверьте контекст перед «Отправить»; не вставляйте секреты в свободный текст.', 'Select the required terminal text and choose “Ask AI”, or enable attaching the selection in chat. Review the context before Send; do not paste secrets into free text.'),
       b('Перед «Вставить» или «Выполнить…» проверьте предложенную команду и целевой хост. Для исполнения приложение запрашивает подтверждение; оцените команду самостоятельно.', 'Before “Insert” or “Execute…”, review the proposed command and target host. Execution requires confirmation; assess the command yourself.'),
+      b("Ответы отображают Markdown: заголовки, списки, выделение и код; команды из блоков кода показываются карточками с действиями. Значок внизу бокового меню показывает, кто отвечает по умолчанию: встроенная модель (чип), локальный сервер (сервер) или облачный API (глобус); по нажатию открываются настройки.", "Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings."),
     ],
     note: b('Подсистема ИИ не имеет API к парольной фразе и приватным ключам хранилища. Текущий чат хранится в памяти сессии: не рассчитывайте на сохранение или синхронизацию переписки. Блокировка хранилища или смена профиля очищает чат и отменяет текущий ответ; уже отправленный провайдеру контекст этим не удаляется.', 'The AI subsystem has no API access to the vault passphrase or private keys. The current chat is held in session memory: do not rely on conversation persistence or sync. Locking the vault or switching profiles clears the chat and cancels the current response; this does not erase context already sent to the provider.'),
     image: shot('workspace-ai-selection', 'ИИ-чат с выбранным контекстом демонстрационного терминала.', 'AI chat with selected context from the demo terminal.'),
@@ -931,6 +934,10 @@ export const guideSections = [
   ],
   "steps": [
     {
+      "ru": "На компьютере слева находится навигатор: кластеры и сворачиваемые группы ресурсов, пользовательские ресурсы по API-группам и избранное. Кластер открывается на обзоре с узлами, запущенными подами, проблемами, графиками CPU и памяти и состояниями подов. Если metrics-server не установлен, обзор предложит базовую версию; для локальных кластеров включите --kubelet-insecure-tls. Правый клик по кластеру: переименовать, свойства, тест/прод, цвет метки, поделиться и экспорт kubeconfig.",
+      "en": "On desktop, the navigator on the left lists clusters and collapsible resource groups, custom resources by API group and favourites. A cluster opens on an overview with nodes, running Pods, problems, CPU and memory charts and Pod states. Without metrics-server the overview offers a basic one; turn on --kubelet-insecure-tls for local clusters. Right-click a cluster for rename, properties, test/production, colour label, sharing and kubeconfig export."
+    },
+    {
       "ru": "Выберите namespace и тип ресурса. Используйте поиск, фильтр и настройки колонок; список обновляется автоматически.",
       "en": "Select a namespace and resource kind. Use search, filtering and column settings; the list updates automatically."
     },
@@ -939,16 +946,16 @@ export const guideSections = [
       "en": "Open an object for status, YAML, events and related resources. Supported workloads expose rollout history and revision comparisons."
     },
     {
-      "ru": "Для изменения YAML откройте редактор, проверьте diff и результат dry-run, затем подтвердите применение. Конфликт владения полями требует отдельного решения.",
-      "en": "To edit YAML, open the editor, review the diff and dry-run result, then confirm applying. Field ownership conflicts require a separate decision."
+      "ru": "Для изменения YAML откройте редактор и нажмите «Применить»: изменения сначала проверяются на сервере, затем показываются diff и подтверждение. При отказе видно, какой контроллер владеет полем или какие поля отклонены. Конфликт владения полями требует отдельного решения.",
+      "en": "To edit YAML, open the editor and choose Apply: the change is validated on the server first, then the diff and confirmation follow. A refusal shows which controller owns a field or which fields were rejected. Field ownership conflicts require a separate decision."
     },
     {
       "ru": "Удаление, restart и масштабирование выполняются после подтверждения. Значения Secret скрыты и раскрываются отдельно.",
       "en": "Deletion, restart and scaling require confirmation. Secret values are hidden and revealed separately."
     },
     {
-      "ru": "В контексте «Прод» изменения заблокированы. На компьютере можно открыть временное окно записи; массовые изменения в production всё равно запрещены.",
-      "en": "A production context blocks writes. Desktop allows a temporary write window; bulk production mutations remain prohibited."
+      "ru": "В контексте «Прод» изменения заблокированы. На компьютере можно открыть временное окно записи на 10 минут, подтвердив его паролем хранилища; массовые изменения в production всё равно запрещены.",
+      "en": "A production context blocks writes. Desktop allows a 10-minute write window confirmed with the vault passphrase; bulk production mutations remain prohibited."
     }
   ],
   "links": [
@@ -1011,6 +1018,10 @@ export const guideSections = [
     {
       "ru": "В workload откройте логи связанных Pod. Сохраните результат в файл на компьютере или через системный обмен на телефоне.",
       "en": "Open related Pod logs from a workload. Save output to a file on desktop or use system sharing on mobile."
+    },
+    {
+      "ru": "Запущенные пробросы портов собраны в правой панели: у каждого — статус, локальный адрес с кнопкой копирования, Pod и порт, трафик и остановка. Панель открывается сама после запуска проброса, а в шапке кластера есть кнопка «Пробросы: N».",
+      "en": "Running port forwards live in the right panel: each shows its status, local address with a copy button, Pod and port, traffic and a stop button. The panel opens after a forward starts, and the cluster header has a “Port forwards: N” button."
     },
     {
       "ru": "Откройте терминал Pod. Автовыбор пробует bash, ash и sh; отдельный выбор позволяет задать команду. В production нужен соответствующий доступ контекста.",
