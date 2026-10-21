@@ -13,6 +13,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Which password do I need?](#passwords)
 - [Vault, recovery and biometrics](#vault)
 - [Sync and trusted devices](#devices)
+- [Protection against sign-ins from new devices](#device-protection)
 
 **Your workspace**
 
@@ -41,6 +42,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Databases: connections and routes](#databases-connections)
 - [Databases: structure, queries and results](#databases-queries)
 - [Databases: production, changes, history and export](#databases-changes)
+- [Databases: writing to production](#databases-production)
 - [Databases: AI assistant](#databases-ai)
 - [Docker: hosts and containers](#docker-containers)
 - [Docker: details, logs, volumes and forwards](#docker-details)
@@ -50,6 +52,7 @@ Step-by-step instructions with the real application interface and demonstration 
 
 - [Sharing: getting started](#sharing-start)
 - [Shared hosts, groups and secrets](#sharing-items)
+- [Shared database connections](#databases-sharing)
 - [A colleague’s new personal devices](#sharing-devices)
 - [Revocation, queues and trust recovery](#sharing-revoke)
 
@@ -173,9 +176,9 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 >
 > Device unlock is a setting of this device for this vault: it does not sync and does not replace your passphrase and Recovery Kit. The system dialog may offer your device password. Face ID on a physical iPhone still needs separate verification.
 
-![Vault settings and available unlock methods; no secrets are revealed.](../assets/guide/vault-settings-en.png)
+![Unlock with Touch ID is on and protected by the system; no secrets are revealed.](../assets/guide/vault-settings-en.png)
 
-Vault settings and available unlock methods; no secrets are revealed.
+Unlock with Touch ID is on and protected by the system; no secrets are revealed.
 
 ![Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.](../assets/guide/recovery-kit-mobile-en.png)
 
@@ -207,9 +210,33 @@ Demo device list; access approval is a separate step.
 
 Sync status and queue for the demo profile.
 
+<a name="device-protection"></a>
+
+## 6. Protection against sign-ins from new devices
+
+If someone signs in to your account from a new device, you find out right away, and the device is restricted for a while. This protection needs sync server 0.1.16 or later.
+
+1. For every new device, the server sends an email to your account address. The email contains a “This wasn’t me” link.
+
+2. Your trusted devices show a “New device signed in” notice with the device name and system. If it was you, choose “It’s me” to dismiss the notice.
+
+3. In Devices, such a device is marked “Not confirmed” and “New, restricted until …”. For its first 14 days it cannot revoke your trusted devices or end their sessions, and attempts to open the vault from new devices are rate-limited.
+
+4. If it was not you, revoke the device: “Revoke…” in the notice, the device menu in Devices or the “This wasn’t me” link in the email, which opens your website account. Then change your account password: whoever signed in knows it.
+
+5. “Settings → Account &amp; sync → Sign out on all devices…” ends every session of the account, including this one. Devices sign in again with the account password; their local data is kept.
+
+> **Keep in mind**
+>
+> Signing in does not open the vault by itself: a new device still needs approval with a code check on a trusted device. Signing out everywhere or changing the password from a new device leaves trusted devices untouched during its first days.
+
+![The new sign-in notice and a new device marked “Not confirmed” and “New, restricted until …”; all devices are demo devices.](../assets/guide/devices-en.png)
+
+The new sign-in notice and a new device marked “Not confirmed” and “New, restricted until …”; all devices are demo devices.
+
 <a name="hosts"></a>
 
-## 6. Hosts: add, find and connect
+## 7. Hosts: add, find and connect
 
 A host stores SSH or RDP connection settings. Cards and list rows show its address, user and group.
 
@@ -245,7 +272,7 @@ Importing addresses from a demo known\_hosts: select before saving.
 
 <a name="rdp"></a>
 
-## 7. RDP: Windows remote desktop
+## 8. RDP: Windows remote desktop
 
 ConsoleCrypt now supports RDP connections. It connects directly to a standard Microsoft RDP server; no IronRDP add-on needs to be installed on Windows.
 
@@ -291,7 +318,7 @@ Full-screen connection bar: session switching, permissions and window controls. 
 
 <a name="rdp-mobile"></a>
 
-## 8. RDP on a phone: touchpad and keyboard
+## 9. RDP on a phone: touchpad and keyboard
 
 On a phone, the connected desktop automatically opens fullscreen. Touchpad is the default: your finger moves the pointer relative to its current position. One floating button opens the session controls.
 
@@ -349,7 +376,7 @@ The same controls in the light theme.
 
 <a name="quick-connect"></a>
 
-## 9. Quick search and connect
+## 10. Quick search and connect
 
 Find a saved host from anywhere in the app and open an SSH or RDP session. The command palette brings together hosts, snippets and quick actions.
 
@@ -377,7 +404,7 @@ The global “+”: choosing saved SSH and RDP hosts.
 
 <a name="groups"></a>
 
-## 10. Groups and jump hosts
+## 11. Groups and jump hosts
 
 Groups organize your inventory and provide common settings. A jump-host chain reaches an SSH host through intermediate machines.
 
@@ -403,7 +430,7 @@ Adding a demo host to an existing group.
 
 <a name="credentials"></a>
 
-## 11. Passwords, keys and credentials
+## 12. Passwords, keys and credentials
 
 Credentials are separate from hosts: one credential can be assigned to multiple connections.
 
@@ -425,7 +452,7 @@ Credentials in a demo vault; values are masked.
 
 <a name="host-keys"></a>
 
-## 12. Known hosts and SSH-key verification
+## 13. Known hosts and SSH-key verification
 
 A server key identifies the SSH host you are connecting to. This is separate from trusting a ConsoleCrypt device.
 
@@ -441,7 +468,7 @@ A separate known-host list with demo fingerprints.
 
 <a name="terminal"></a>
 
-## 13. Terminal, tabs and selection
+## 14. Terminal, tabs and selection
 
 Each tab is one terminal session: SSH, plus local shells on macOS and Windows. Phones have a special-key bar; computers have shortcuts and a context menu.
 
@@ -481,7 +508,7 @@ Demo Android terminal with its special-key bar.
 
 <a name="local-terminals"></a>
 
-## 14. Local terminals: zsh, PowerShell and WSL
+## 15. Local terminals: zsh, PowerShell and WSL
 
 On macOS and Windows you can open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
 
@@ -519,7 +546,7 @@ Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-ho
 
 <a name="shortcuts"></a>
 
-## 15. Keyboard shortcuts
+## 16. Keyboard shortcuts
 
 The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command. App shortcuts can be remapped in Settings → Keyboard shortcuts: choose Change and press a new combination with ⌘/Ctrl or Alt. If another command has it, that command loses it; if the system or terminal uses it, you are warned. Restore defaults brings back the table below.
 
@@ -541,7 +568,7 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 
 <a name="sftp"></a>
 
-## 16. SFTP: transfers and file preview
+## 17. SFTP: transfers and file preview
 
 Open SFTP from a host’s menu or the sidebar. Files travel directly between your device and the SSH host.
 
@@ -559,7 +586,7 @@ Quick Look for a demo file with a separate line-number gutter.
 
 <a name="sftp-editor"></a>
 
-## 17. SFTP: default editor
+## 18. SFTP: default editor
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
@@ -581,7 +608,7 @@ The remembered-editor local preference in the demo client.
 
 <a name="tunnels"></a>
 
-## 18. SSH tunnels
+## 19. SSH tunnels
 
 A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.
 
@@ -601,7 +628,7 @@ Demo tunnel definitions and statuses.
 
 <a name="snippets"></a>
 
-## 19. Snippets, variables and starter sets
+## 20. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
@@ -627,7 +654,7 @@ Filtering and managing snippet sets.
 
 <a name="ai"></a>
 
-## 20. AI chat and the context you send
+## 21. AI chat and the context you send
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
@@ -651,7 +678,7 @@ AI chat with selected context from the demo terminal.
 
 <a name="local-ai"></a>
 
-## 21. Local AI: three models and upgrades
+## 22. Local AI: three models and upgrades
 
 On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates.
 
@@ -695,7 +722,7 @@ The selected model is ready with stop and remove actions; the process state is s
 
 <a name="sharing-start"></a>
 
-## 22. Sharing: getting started
+## 23. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -727,7 +754,7 @@ Selecting Reader or Editor access.
 
 <a name="sharing-items"></a>
 
-## 23. Shared hosts, groups and secrets
+## 24. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -747,9 +774,39 @@ Each item has its own access rights. A group does not automatically grant access
 
 The separate secret-publishing dialog: the value is masked and consent has not been given.
 
+<a name="databases-sharing"></a>
+
+## 25. Shared database connections
+
+A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden.
+
+1. In Databases, open the connection’s “…” menu and choose “Sharing”. “What will be shared” lists everything the colleague receives: the name, engine, address, port, database, user, route type and production marker. The TLS mode and limits are shared too.
+
+2. Groups, query history, AI settings and session permissions are never shared. The password and client key are sent only with “Include the saved password and client key” ticked, and only if the server supports shared secrets.
+
+3. A route through an SSH host, jump profile, proxy or tunnel is not shared: the recipient picks their own. A Kubernetes forward keeps its namespace and workload while the recipient picks the context; a Docker forward keeps the container name while the recipient picks the engine. Such a connection cannot be saved as direct.
+
+4. Find your colleague’s devices by email, compare the device code through an independent channel, choose the role and select Share.
+
+5. For the recipient, the connection appears at the top of Databases under “Shared connections” with a “Shared” badge; your own published ones say “Shared by you”. “Verify and accept” confirms the owner, and “Details” opens saving a personal copy, members and revoking access. The password and client key are imported into the copy only when explicitly ticked.
+
+6. A copy of a production connection stays a production connection and opens read-only. Connections can be added to shared groups.
+
+> **Keep in mind**
+>
+> Revoking access does not invalidate a password that has already been copied; change it on the database server.
+
+![Shared connections: received ones marked “Shared”, your own “Shared by you”, and an invitation awaiting verification.](../assets/guide/db-shared-en.png)
+
+Shared connections: received ones marked “Shared”, your own “Shared by you”, and an invitation awaiting verification.
+
+![Sharing a connection: what the colleague receives; the route is not shared, and the password only when ticked.](../assets/guide/db-share-en.png)
+
+Sharing a connection: what the colleague receives; the route is not shared, and the password only when ticked.
+
 <a name="sharing-devices"></a>
 
-## 24. A colleague’s new personal devices
+## 26. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -771,7 +828,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 25. Revocation, queues and trust recovery
+## 27. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -789,7 +846,7 @@ The owner manages participants. An editor changes content; participant access re
 
 <a name="appearance"></a>
 
-## 26. Colors, text size and glass effects
+## 28. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -813,7 +870,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 27. Right panel: bubbles or one workspace
+## 29. Right panel: bubbles or one workspace
 
 Snippets, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -839,7 +896,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 28. Screenshots and screen protection
+## 30. Screenshots and screen protection
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device.
 
@@ -863,7 +920,7 @@ The macOS security section explains the OS limitation.
 
 <a name="backups"></a>
 
-## 29. Backups and restore
+## 31. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -883,7 +940,7 @@ Encrypted backups and scheduling in the demo client.
 
 <a name="about"></a>
 
-## 30. Version, author and licenses
+## 32. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -899,7 +956,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 31. Client updates
+## 33. Client updates
 
 On Windows, macOS and Android, “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself. On Linux, download the new package from the website and install it manually.
 
@@ -907,13 +964,15 @@ On Windows, macOS and Android, “Settings → Updates” offers startup checks 
 
 2. Save a backup and finish important sessions before installation. When downloaded through the app, the package is checked against signed metadata and a checksum; installation requires your action.
 
-3. Windows uses an installer; Android uses the system APK installer.
+3. On Windows, “Download and install” downloads and verifies the installer; then ConsoleCrypt closes, the installer updates the app and starts it again. SSH sessions close; profiles and vaults are kept. A copy unpacked from the ZIP archive cannot update itself: download the installer or a new archive from Downloads. Android uses the system APK installer.
 
-4. On Linux, download the new DEB or RPM from Downloads and install it manually with your package manager. See the Linux installation chapter for instructions.
+4. On Windows, updating from 0.8.5 or earlier through the app may fail. Download 0.8.6 from Downloads once and install it manually over the previous version; profiles and vaults are kept. Later updates install from the app.
 
-5. With ConsoleCrypt 0.2.2 or newer on macOS, choose a new DMG filename or folder in the system “Save and open” dialog after downloading. Once the DMG opens, quit the app, drag the new copy to Applications and confirm replacement.
+5. On Linux, download the new DEB or RPM from Downloads and install it manually with your package manager. See the Linux installation chapter for instructions.
 
-6. Cancelling the dialog keeps the verified download ready for retry. Choose a new filename when saving: an existing file is never overwritten.
+6. With ConsoleCrypt 0.2.2 or newer on macOS, choose a new DMG filename or folder in the system “Save and open” dialog after downloading. Once the DMG opens, quit the app, drag the new copy to Applications and confirm replacement.
+
+7. Cancelling the dialog keeps the verified download ready for retry. Choose a new filename when saving: an existing file is never overwritten.
 
 [Full client update instructions ↗](../docs/public/UPDATES.md)
 
@@ -927,7 +986,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 32. Website account
+## 34. Website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -943,7 +1002,7 @@ The website account manages your public-server account. Decrypted hosts, keys an
 
 <a name="kubernetes-connections"></a>
 
-## 33. Kubernetes: connections and access
+## 35. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -973,7 +1032,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-resources"></a>
 
-## 34. Kubernetes: resources and changes
+## 36. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -1005,7 +1064,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 35. Kubernetes: logs, shell and tunnels
+## 37. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -1039,7 +1098,7 @@ A PostgreSQL Pod with the “Connect to database” button. Demonstration data.
 
 <a name="kubernetes-gitops"></a>
 
-## 36. Kubernetes: GitOps and problems
+## 38. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -1071,7 +1130,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 37. Kubernetes: Helm
+## 39. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -1099,7 +1158,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 38. Kubernetes: context terminal and AI
+## 40. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -1121,7 +1180,7 @@ The context remains explicit for both local commands and AI assistance.
 
 <a name="databases-connections"></a>
 
-## 39. Databases: connections and routes
+## 41. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis and MongoDB. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -1129,15 +1188,21 @@ The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redi
 
 2. Save the password in the vault or type it each time you open the connection; a typed password is used once and not kept. Under “TLS protection”, the certificate and hostname are verified by default; for a local address or a port forward the mode switches to “Prefer encryption” by itself.
 
-3. Under “Connection route”, choose how to reach the database: directly, through a saved SSH host or SSH jump profile, through a saved SSH tunnel, a Kubernetes port forward (Pod, Service, Deployment or StatefulSet) or a Docker container. Tunnels and forwards start by themselves on connect; running ones are reused.
+3. Encryption is never dropped silently. “Prefer encryption” goes without TLS only inside a tunnel or forward (SSH host, jump profile, SSH tunnel, Kubernetes, Docker) and on this computer. A direct connection to another host without TLS fails and the password is not sent; if an unencrypted connection is acceptable, choose “Disable TLS” explicitly.
 
-4. When the host is localhost and the port matches a saved tunnel’s local port, the form offers to use that tunnel. Through any route, TLS still verifies the original database hostname.
+4. With “Require encryption”, PostgreSQL binds the password to the TLS connection (SCRAM-SHA-256-PLUS), so an interceptor with a forged certificate cannot obtain it. Servers that use md5 or password authentication need “Allow sign-in without TLS binding (less secure)”, which is off by default. Over the network without TLS, PostgreSQL never sends the password in plain text.
 
-5. “Import connection” accepts a connection string (postgres://, mysql://, clickhouse://, redis://, mongodb://, mongodb+srv://) or a .pgpass file. Review the connections found before saving: for each one, mark production, pick a route and decide whether to keep the password.
+5. The actual protection shows in the workspace header and on the connection card: “TLS (verified)”, “TLS (certificate not verified)”, “No TLS — protected by a tunnel” or “No TLS”.
 
-6. Turn on “Production — always read only” for live databases. Under “Group”, set the group, tags and colour; the colour shows on the card and in the workspace header. Search matches the name, host, database, engine and tags, and the tags above the list act as filters.
+6. Under “Connection route”, choose how to reach the database: directly, through a saved SSH host or SSH jump profile, through a saved SSH tunnel, a Kubernetes port forward (Pod, Service, Deployment or StatefulSet) or a Docker container. Tunnels and forwards start by themselves on connect; running ones are reused.
 
-7. The toggle next to search switches between cards and a compact list, as in Hosts; the choice is remembered on this device. The icon next to a name shows the route, and the “…” menu connects, edits or deletes.
+7. When the host is localhost and the port matches a saved tunnel’s local port, the form offers to use that tunnel. Through any route, TLS still verifies the original database hostname.
+
+8. “Import connection” accepts a connection string (postgres://, mysql://, clickhouse://, redis://, mongodb://, mongodb+srv://) or a .pgpass file. Review the connections found before saving: for each one, mark production, pick a route and decide whether to keep the password.
+
+9. Turn on “Production — read only, writes only in a temporary window” for live databases. Under “Group”, set the group, tags and colour; the colour shows on the card and in the workspace header. Search matches the name, host, database, engine and tags, and the tags above the list act as filters.
+
+10. The toggle next to search switches between cards and a compact list, as in Hosts; the choice is remembered on this device. The icon next to a name shows the route, and the “…” menu connects, edits or deletes.
 
 [Full Databases instructions ↗](../docs/public/DATABASES.md)
 
@@ -1159,13 +1224,13 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-queries"></a>
 
-## 40. Databases: structure, queries and results
+## 42. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
 | Editor action | macOS | Windows / Linux |
 | --- | --- | --- |
-| Run the selection or the statement under the caret | ⌘↵ | Ctrl+Enter |
+| Run the selection or the statement on the caret’s line | ⌘↵ | Ctrl+Enter |
 | Run the whole script | ⌥X or ⇧⌘↵ | Alt+X or Ctrl+Shift+Enter |
 | Complete at the caret | ⌃Space | Ctrl+Space |
 | Format the query | ⇧⌘F | Ctrl+Shift+F |
@@ -1180,53 +1245,97 @@ Click a connection to open its workspace: the database structure on the left, qu
 
 2. An object’s menu offers “Preview first 100 rows”, “Show DDL”, “Insert identifier” and “Object details”. A MongoDB collection also has “Infer schema from sample”: field types and the share of documents that contain each field.
 
-3. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
+3. DDL is shown highlighted with line numbers, each statement (CREATE TABLE, every CREATE INDEX) separated by a rule, and long lines scroll sideways. “Copy” copies the whole text, and “Open in editor” puts it into a new query tab.
 
-4. “Run” executes the selection or, without one, the statement under the caret. The arrow next to it offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
+4. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
 
-5. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; a long value opens in full. The first rows load right away (the limit is set under the connection’s Limits), the rest with “Load more”. The status bar shows the row count and time. On a phone, results appear as record cards.
+5. “Run” and ⌘↵ / Ctrl+Enter execute the selection or, without one, the statement on the caret’s line, as in familiar SQL clients. Statements end at a semicolon or a blank line; from any line of a multi-line statement the whole statement runs, and on a blank line the nearest statement above runs. The arrow next to Run offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
 
-6. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first.
+6. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; a long value opens in full. The first rows load right away (the limit is set under the connection’s Limits), the rest with “Load more”. The status bar shows the row count and time. On a phone, results appear as record cards.
 
-7. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered in a new tab instead. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
+7. A click frames a cell, and ⌘C / Ctrl+C copies its value. A click on a row number selects the row, Shift+click extends the selection, ⌘/Ctrl+click adds or removes a row and Esc clears the selection. The status line shows “Selected: N rows”, and copy, export and the AI assistant use the selected rows.
+
+8. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first.
+
+9. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered in a new tab instead. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
 
 > **Keep in mind**
 >
 > Values in columns named like password, token or secret are masked. Data copied from results is cleared from the clipboard by the timer in security settings.
 
-![The workspace: the expanded orders table, a highlighted query and its result on demo data.](../assets/guide/db-workspace-en.png)
+![The workspace: the expanded orders table, a highlighted query and its result on demo data; the header shows the TLS status and Unlock production.](../assets/guide/db-workspace-en.png)
 
-The workspace: the expanded orders table, a highlighted query and its result on demo data.
+The workspace: the expanded orders table, a highlighted query and its result on demo data; the header shows the TLS status and Unlock production.
 
 ![An EXPLAIN plan: steps, estimated rows and cost; bars show each step’s share.](../assets/guide/db-explain-en.png)
 
 An EXPLAIN plan: steps, estimated rows and cost; bars show each step’s share.
 
+![DDL of the orders table: highlighting, line numbers and statements separated by rules.](../assets/guide/db-ddl-en.png)
+
+DDL of the orders table: highlighting, line numbers and statements separated by rules.
+
+![Three rows selected: the status line reads “Selected: 3 rows”.](../assets/guide/db-row-selection-en.png)
+
+Three rows selected: the status line reads “Selected: 3 rows”.
+
 <a name="databases-changes"></a>
 
-## 41. Databases: production, changes, history and export
+## 43. Databases: production, changes, history and export
 
-A production connection is read-only, and any change elsewhere is shown to you before it runs. Writes in a non-production session are turned on explicitly.
+A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
-1. Production has two layers of protection. On the server, PostgreSQL and MySQL/MariaDB run queries in read-only transactions and ClickHouse gets readonly. In the app, each query is parsed before sending: changing commands and attempts to lift the protection never reach the server. Production has no temporary write window; use a separate non-production connection for changes.
+1. Production has two layers of protection. On the server, PostgreSQL and MySQL/MariaDB run queries in read-only transactions and ClickHouse gets readonly. In the app, each query is parsed before sending: changing commands and attempts to lift the protection never reach the server. When production must be changed, open a temporary write window; see “Databases: writing to production”.
 
 2. “Check privileges” in the workspace header reports whether server-side protection is verified and whether the role can write. For production, prefer a read-only role: SELECT or pg\_read\_all\_data in PostgreSQL, SELECT in MySQL, a readonly profile in ClickHouse, ACL +@read -@write in Redis and the read role in MongoDB.
 
 3. A non-production connection also opens read-only. The lock button in the header allows writes until the connection closes. A changing query is shown for confirmation; dangerous ones (DROP, TRUNCATE, UPDATE or DELETE without WHERE, FLUSHALL, dropping a collection) also require typing the connection name.
 
-4. On desktop, in a non-production session with writes allowed, you can edit cells of a simple single-table SELECT with a primary key. Edits accumulate; “Review pending edits” shows the generated UPDATE statements keyed by the primary key. Once confirmed, they apply in one transaction and roll back entirely on failure.
+4. On desktop, when writes are allowed (a non-production session or production with an open write window), cells of a simple single-table SELECT with a primary key are edited right in the grid. Double-click a cell: Enter keeps the value, Esc cancels the edit and Tab moves to the next cell. The value type comes from the column and is checked as you type; NULL has its own button. Changed cells are highlighted.
 
-5. “Query history” keeps the text, time, duration, row count and errors, but not parameter values or data. Filter by Successful, With errors or Favorites. By default history is encrypted and stays on this device; you can sync it or turn it off. Save a query from history as a snippet, and its {{name}} placeholders become snippet variables.
+5. Edits accumulate. “Review pending edits” shows the generated UPDATE statements keyed by the primary key, and “Discard changes” drops them. Once confirmed, the edits apply in one transaction; if any of them does not find its row, all of them roll back. Without write access, a double-click opens the value viewer.
 
-6. Copy a cell, a row, a selection or the whole loaded result. “Export result” re-runs the read query and streams every row to a file as CSV, TSV, JSON, NDJSON, Markdown or SQL INSERT, with progress and cancellation. A changing query is never repeated for export.
+6. “Query history” keeps the text, time, duration, row count and errors, but not parameter values or data. Filter by Successful, With errors or Favorites. By default history is encrypted and stays on this device; you can sync it or turn it off. Save a query from history as a snippet, and its {{name}} placeholders become snippet variables.
+
+7. Copy a cell, a row, a selection or the whole loaded result. “Export result” re-runs the read query and streams every row to a file as CSV, TSV, JSON, NDJSON, Markdown or SQL INSERT, with progress and cancellation. A changing query is never repeated for export.
 
 > **Keep in mind**
 >
 > The app’s protection complements database privileges but does not replace them. For production, a read-only account remains the main safeguard.
 
+![Editing in the grid: the changed cell is highlighted, the next one is open for input, and “Review pending edits (1)” shows the UPDATE.](../assets/guide/db-prod-write-en.png)
+
+Editing in the grid: the changed cell is highlighted, the next one is open for input, and “Review pending edits (1)” shows the UPDATE.
+
+<a name="databases-production"></a>
+
+## 44. Databases: writing to production
+
+A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
+
+1. Choose “Unlock production” in the workspace header. Enter the vault passphrase, type the connection name and pick 5, 15 or 30 minutes. The passphrase is checked by the app core.
+
+2. While the window is open, the header shows a red “Production writes until HH:MM” badge with a countdown and a Lock button. Every changing statement is still shown for review and needs the connection name typed. Result cells can be edited right in the grid.
+
+3. The window closes by itself when the time runs out, on Lock, on disconnect, when the vault locks or when the profile changes. Reads still run in read-only transactions while it is open.
+
+4. The server still refuses a read-only role: after unlocking, the app checks privileges and warns when the role cannot write. Changes made in the window are marked “Production change” in query history.
+
+> **Keep in mind**
+>
+> Phones never get a write window. For everyday work with production, prefer a read-only database account: then an accidental change is impossible even with the window open.
+
+![Unlocking production: the vault passphrase, the connection name and the length of the write window.](../assets/guide/db-prod-unlock-en.png)
+
+Unlocking production: the vault passphrase, the connection name and the length of the write window.
+
+![An open write window: the red badge with its end time, the countdown and the Lock button.](../assets/guide/db-prod-write-en.png)
+
+An open write window: the red badge with its end time, the countdown and the Lock button.
+
 <a name="databases-ai"></a>
 
-## 42. Databases: AI assistant
+## 45. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -1248,7 +1357,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 43. Docker: hosts and containers
+## 46. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -1276,25 +1385,31 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 44. Docker: details, logs, volumes and forwards
+## 47. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
 1. The Overview tab shows the image, command, restarts, ports, networks with IP addresses, mounts, labels and environment variables. JSON holds the full inspect output with a copy button.
 
-2. Passwords and tokens in environment variables are masked. “Show secrets” asks for the vault passphrase; copied values clear from the clipboard automatically, and “Hide secrets” masks them again.
+2. Passwords, tokens and keys are masked not only in environment variables but also in URLs, commands and arguments, labels, the JSON tab and the compose view. References such as ${POSTGRES\_PASSWORD} stay visible: they are not the secret itself.
 
-3. The Logs tab follows new lines, with stderr in its own colour. Pause (new lines are kept), timestamps, search with a match count, copying the shown lines and clearing are available. Terminal opens a shell inside the container in its own terminal tab: automatic detection tries bash, ash and sh, or choose the shell yourself.
+3. “Show secrets” in the environment and “Show in full” on the JSON tab ask for the vault passphrase. Copied text clears from the clipboard automatically, “Hide secrets” masks the values again, and revealed data is forgotten when the details close or reload and when the vault locks.
 
-4. The Volumes view lists volumes by compose project with the containers that use them; unused ones are marked. A volume or mount path opens in SFTP on that SSH host, or in the file manager for local Docker. Docker Desktop keeps volumes inside its virtual machine, so their folders cannot be opened from the computer.
+4. The Logs tab follows new lines, with stderr in its own colour. Pause (new lines are kept), timestamps, search with a match count, copying the shown lines and clearing are available. Terminal opens a shell inside the container in its own terminal tab: automatic detection tries bash, ash and sh, or choose the shell yourself.
 
-5. “Forward port” links a local port to a container port; 0 picks a free one. On an SSH host, the forward runs through the SSH connection. Running Docker and Kubernetes forwards share the right-hand “Port forwards” panel with the address, a copy button, traffic and Stop.
+5. The Volumes view lists volumes by compose project with the containers that use them; unused ones are marked. A volume or mount path opens in SFTP on that SSH host, or in the file manager for local Docker. Docker Desktop keeps volumes inside its virtual machine, so their folders cannot be opened from the computer.
 
-6. A container with a standard database port has a “Connect to database” button. If a connection with the same route is already saved, it opens in Databases at once. Otherwise a form appears with the engine, port and route filled in, plus the database name and user when the environment has them; only the password is left. A published port is saved as an ordinary address; for an unpublished one, the forward is restored on every connect.
+6. “Forward port” links a local port to a container port; 0 picks a free one. On an SSH host, the forward runs through the SSH connection. Running Docker and Kubernetes forwards share the right-hand “Port forwards” panel with the address, a copy button, traffic and Stop.
+
+7. A container with a standard database port has a “Connect to database” button. If a connection with the same route is already saved, it opens in Databases at once. Otherwise a form appears with the engine, port and route filled in, plus the database name and user when the environment has them; only the password is left. A published port is saved as an ordinary address; for an unpublished one, the forward is restored on every connect.
 
 ![Container details: ports, networks, mounts, labels and masked environment secrets.](../assets/guide/docker-details-en.png)
 
 Container details: ports, networks, mounts, labels and masked environment secrets.
+
+![The JSON tab: the password in the command is masked; the full text needs the vault passphrase.](../assets/guide/docker-json-en.png)
+
+The JSON tab: the password in the command is masked; the full text needs the vault passphrase.
 
 ![Volumes by project and the containers that use them.](../assets/guide/docker-volumes-en.png)
 
@@ -1310,19 +1425,21 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 45. Docker: compose projects
+## 48. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
 1. Choose “…” on the project header or right-click it. “Start all” starts only the stopped containers; “Stop all” and “Restart all” say how many containers are affected and wait for confirmation.
 
-2. “View YAML” opens the project files as tabs with line numbers and highlighting; the project folder and environment files are listed at the top. A file the SSH user cannot read is marked as such. Copying goes through the self-clearing clipboard.
+2. “View YAML” opens the project files as tabs with line numbers and highlighting; the project folder and environment files are listed at the top. A file the SSH user cannot read is marked as such. Passwords and tokens in the files are masked; “Show in full” shows the original text after the vault passphrase. Copying goes through the self-clearing clipboard.
 
 3. To edit, choose “Edit YAML” and enter the vault passphrase: compose files can contain passwords and decide what runs on the host. Editing permission lasts a limited time; after that the passphrase is asked again.
 
 4. “Save and apply” first validates the configuration on the host with compose config; on errors nothing is saved. Then a backup such as compose.yaml.bak-YYYYMMDD-HHMMSS is kept next to the file, the file is written and the project is updated with compose up -d, whose output appears in the window. “Save without applying” leaves the running containers on the previous configuration.
 
 5. If a file changed on the host after you opened it, saving is refused: copy your edits and open the file again. Without write permission, the file stays unchanged.
+
+6. Saving is protected against file swaps. The temporary file and the backup are created without following symbolic links, and before and after the replacement the app checks that the file is still the one it wrote. If a file was swapped, saving stops and the original is restored from the backup. If other users can write to the project folder, a warning appears before saving.
 
 > **Keep in mind**
 >
@@ -1332,13 +1449,13 @@ The menu on a compose group header controls the whole project and opens its file
 
 The compose project menu: YAML and actions on every container.
 
-![Compose files as tabs with line numbers; editing requires the vault passphrase.](../assets/guide/docker-compose-yaml-en.png)
+![Compose files as tabs with line numbers: passwords are masked; “Show in full” and editing require the vault passphrase.](../assets/guide/docker-compose-yaml-en.png)
 
-Compose files as tabs with line numbers; editing requires the vault passphrase.
+Compose files as tabs with line numbers: passwords are masked; “Show in full” and editing require the vault passphrase.
 
 <a name="server-setup"></a>
 
-## 46. Your own server: Kubernetes
+## 49. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -1404,7 +1521,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 47. Your own server: Docker Compose
+## 50. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
