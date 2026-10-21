@@ -37,22 +37,22 @@
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).
 
-## Готовые сборки 0.6.4
+## Готовые сборки 0.8.5
 
-Шесть файлов выпущены из одного тега [v0.6.4](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.6.4).
-Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/SHA256SUMS-0.6.4.txt).
+Шесть файлов выпущены из одного тега [v0.8.5](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.8.5).
+Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.8.5/SHA256SUMS-0.8.5.txt).
 
 | Платформа | Сборка | Файл | Размер, байт |
 | --- | --- | --- | ---: |
-| macOS, Apple Silicon и Intel | 0.6.4+29011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29011-macos-universal.dmg) | 163 395 353 |
-| Windows x64 | 0.6.4+29012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29012-windows-x64-setup.exe) | 30 558 053 |
-| Windows x64 | 0.6.4+29012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29012-windows-x64.zip) | 43 248 715 |
-| Linux x64 | 0.6.4+29013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29013-linux-x64.deb) | 32 280 196 |
-| Linux x64 | 0.6.4+29013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29013-linux-x64.rpm) | 43 744 459 |
-| Android ARM64 | 0.6.4+29014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.6.4/ConsoleCrypt-0.6.4%2B29014-android-arm64.apk) | 87 325 136 |
+| macOS, Apple Silicon и Intel | 0.8.5+32011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.8.5/ConsoleCrypt-0.8.5%2B32011-macos-universal.dmg) | 179 431 577 |
+| Windows x64 | 0.8.5+32012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.8.5/ConsoleCrypt-0.8.5%2B32012-windows-x64-setup.exe) | 36 104 641 |
+| Windows x64 | 0.8.5+32012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.8.5/ConsoleCrypt-0.8.5%2B32012-windows-x64.zip) | 52 439 532 |
+| Linux x64 | 0.8.5+32013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.8.5/ConsoleCrypt-0.8.5%2B32013-linux-x64.deb) | 38 935 588 |
+| Linux x64 | 0.8.5+32013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.8.5/ConsoleCrypt-0.8.5%2B32013-linux-x64.rpm) | 53 586 257 |
+| Android ARM64 | 0.8.5+32014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.8.5/ConsoleCrypt-0.8.5%2B32014-android-arm64.apk) | 108 921 924 |
 | iOS Simulator на Mac (прежняя сборка) | 0.5.6+23015 | [ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/ConsoleCrypt-0.5.6%2B23015-ios-simulator-universal.zip) | 154 939 478 |
 
-Выпуск 0.6.4 для iOS отложен; доступна прежняя предварительная сборка 0.5.6.
+Выпуск 0.8.5 для iOS отложен; доступна прежняя предварительная сборка 0.5.6.
 Архив iOS предназначен для Simulator, а не для установки на физический iPhone; [порядок запуска](docs/public/BUILD_IOS.md).
 
 ## Структура
