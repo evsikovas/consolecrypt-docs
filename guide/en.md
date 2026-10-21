@@ -18,26 +18,33 @@ Step-by-step instructions with the real application interface and demonstration 
 
 - [Hosts: add, find and connect](#hosts)
 - [RDP: Windows remote desktop](#rdp)
-- [RDP on a phone: touchpad and keyboard (0.5.5)](#rdp-mobile)
+- [RDP on a phone: touchpad and keyboard](#rdp-mobile)
 - [Quick search and connect](#quick-connect)
 - [Groups and jump hosts](#groups)
 - [Passwords, keys and credentials](#credentials)
 - [Known hosts and SSH-key verification](#host-keys)
 - [Terminal, tabs and selection](#terminal)
-- [Local terminals: zsh, PowerShell and WSL (0.5)](#local-terminals)
+- [Local terminals: zsh, PowerShell and WSL](#local-terminals)
 - [Keyboard shortcuts](#shortcuts)
 - [SFTP: transfers and file preview](#sftp)
 - [SFTP: default editor](#sftp-editor)
 - [SSH tunnels](#tunnels)
 - [Snippets, variables and starter sets](#snippets)
 - [AI chat and the context you send](#ai)
-- [Local AI: three models and upgrades (0.5)](#local-ai)
+- [Local AI: three models and upgrades](#local-ai)
 - [Kubernetes: connections and access](#kubernetes-connections)
 - [Kubernetes: resources and changes](#kubernetes-resources)
 - [Kubernetes: logs, shell and tunnels](#kubernetes-logs-shell)
 - [Kubernetes: GitOps and problems](#kubernetes-gitops)
 - [Kubernetes: Helm](#kubernetes-helm)
 - [Kubernetes: context terminal and AI](#kubernetes-terminal-ai)
+- [Databases: connections and routes](#databases-connections)
+- [Databases: structure, queries and results](#databases-queries)
+- [Databases: production, changes, history and export](#databases-changes)
+- [Databases: AI assistant](#databases-ai)
+- [Docker: hosts and containers](#docker-containers)
+- [Docker: details, logs, volumes and forwards](#docker-details)
+- [Docker: compose projects](#docker-compose)
 
 **Working together**
 
@@ -278,7 +285,7 @@ Full-screen connection bar: session switching, permissions and window controls. 
 
 <a name="rdp-mobile"></a>
 
-## 8. RDP on a phone: touchpad and keyboard (0.5.5)
+## 8. RDP on a phone: touchpad and keyboard
 
 On a phone, the connected desktop automatically opens fullscreen. Touchpad is the default: your finger moves the pointer relative to its current position. One floating button opens the session controls.
 
@@ -430,7 +437,7 @@ A separate known-host list with demo fingerprints.
 
 ## 13. Terminal, tabs and selection
 
-Each tab is one terminal session: SSH, plus local shells on macOS and Windows in 0.5. Phones have a special-key bar; computers have shortcuts and a context menu.
+Each tab is one terminal session: SSH, plus local shells on macOS and Windows. Phones have a special-key bar; computers have shortcuts and a context menu.
 
 1. Click inside the terminal to type. The “+” button opens another connection. When tabs overflow, scroll the strip with the mouse wheel or its edge arrows. The total number of open tabs appears in parentheses beside the arrows.
 
@@ -468,9 +475,9 @@ Demo Android terminal with its special-key bar.
 
 <a name="local-terminals"></a>
 
-## 14. Local terminals: zsh, PowerShell and WSL (0.5)
+## 14. Local terminals: zsh, PowerShell and WSL
 
-The 0.5 series lets macOS and Windows open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
+On macOS and Windows you can open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
 
 1. In the Cmd+K / Ctrl+K palette, choose New local terminal. macOS opens zsh immediately; Windows offers PowerShell, cmd and individual WSL distributions.
 
@@ -537,6 +544,8 @@ Open SFTP from a host’s menu or the sidebar. Files travel directly between you
 2. Select a file and choose upload or download. The activity panel shows transfer progress and cancellation.
 
 3. For reading, open “Quick Look”. Line numbers are in a separate gutter and are excluded from text selection and copying.
+
+4. A folder the SSH user cannot read is marked as inaccessible instead of looking empty. From Docker, a volume or mount path on an SSH host opens straight in SFTP.
 
 ![Quick Look for a demo file with a separate line-number gutter.](../assets/guide/sftp-preview-en.png)
 
@@ -624,7 +633,7 @@ You choose the provider, context and subsequent action. A model’s answer does 
 
 4. Before “Insert” or “Execute…”, review the proposed command and target host. Execution requires confirmation; assess the command yourself.
 
-5. Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings.
+5. Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings. The chip is green only while the built-in model is actually running: blue while it starts, red after an error and grey when it is not running yet; it starts with the first request.
 
 > **Keep in mind**
 >
@@ -636,9 +645,9 @@ AI chat with selected context from the demo terminal.
 
 <a name="local-ai"></a>
 
-## 21. Local AI: three models and upgrades (0.5)
+## 21. Local AI: three models and upgrades
 
-On macOS and Windows, the model answers on your computer. The 0.5 series offers Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates.
+On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates.
 
 | Tier | Model and download | Total RAM guidance |
 | --- | --- | --- |
@@ -786,6 +795,8 @@ Appearance preferences are stored on this device. Interface text size and termin
 
 4. Choose Clear, Default, Tinted or Solid glass. If effects are simplified, check the performance message and system transparency settings.
 
+5. Drop-down lists across the app use the same glass style with compact type. Menus, tooltips and dialogs take the background colour you choose.
+
 > **Keep in mind**
 >
 > Security dialogs stay opaque. System transparency reduction and performance mode can limit glass effects; terminal palette selection is independent of the interface.
@@ -798,7 +809,7 @@ Theme, scale and glass settings in the demo interface.
 
 ## 27. Right panel: bubbles or one workspace
 
-Snippets and AI are in the right-side tool panel. Choose its behavior in appearance settings.
+Snippets, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
 1. Bubbles opens the tool as a separate floating card. The close button dismisses it.
 
@@ -806,7 +817,7 @@ Snippets and AI are in the right-side tool panel. Choose its behavior in appeara
 
 3. When finished with a tool, close it and click inside the active terminal to resume typing. This returns input to the SSH session after using the palette or right-panel fields.
 
-4. Switch between the snippet and AI icons. On a narrow screen, the tool opens over the workspace so its controls remain usable.
+4. Switch between the snippet, AI and port-forward icons. The forwards panel lists running Kubernetes and Docker forwards together and opens by itself when a new one starts. On a narrow screen, the tool opens over the workspace so its controls remain usable.
 
 ![The two right-panel modes in settings.](../assets/guide/panel-mode-settings-en.png)
 
@@ -996,13 +1007,15 @@ Logs, shell and port forwarding are built into the client and require no externa
 
 2. Open related Pod logs from a workload. Save output to a file on desktop or use system sharing on mobile.
 
-3. Running port forwards live in the right panel: each shows its status, local address with a copy button, Pod and port, traffic and a stop button. The panel opens after a forward starts, and the cluster header has a “Port forwards: N” button.
+3. Running port forwards live in the right panel together with Docker forwards: each shows its status, local address with a copy button, Pod and port, traffic and a stop button. The panel opens after a forward starts, and the cluster header has a “Port forwards: N” button.
 
 4. Open the Pod terminal. Automatic selection tries bash, ash and sh, or choose a command explicitly. Production requires the corresponding context permission.
 
 5. Create a port forward for the desired port. Use the displayed local address and stop the tunnel when finished.
 
-6. On Android, active tunnels appear in a notification with a stop action. Kubernetes testing and a new build for iOS are deferred. Locking the vault closes sessions.
+6. A Pod with a standard database port (PostgreSQL, MySQL, MariaDB, ClickHouse, Redis, MongoDB) has a “Connect to database” button. It opens a saved connection with the same route, or a Databases form with a Kubernetes route: to the Pod itself for a StatefulSet, otherwise to its only Service or Deployment, so the connection survives Pod restarts. The forward is restored on every connect.
+
+7. On Android, active tunnels appear in a notification with a stop action. Kubernetes testing and a new build for iOS are deferred. Locking the vault closes sessions.
 
 [Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
 
@@ -1013,6 +1026,10 @@ Kubernetes interface with demonstration data.
 ![Kubernetes interface with demonstration data.](../assets/guide/kube-details-412-en.png)
 
 Kubernetes interface with demonstration data.
+
+![A PostgreSQL Pod with the “Connect to database” button. Demonstration data.](../assets/guide/kube-database-1400-en.png)
+
+A PostgreSQL Pod with the “Connect to database” button. Demonstration data.
 
 <a name="kubernetes-gitops"></a>
 
@@ -1096,9 +1113,226 @@ The context remains explicit for both local commands and AI assistance.
 >
 > An external provider receives selected sanitized data. WSL requires access to the Windows loopback proxy; incompatible networking never exposes an external proxy listener.
 
+<a name="databases-connections"></a>
+
+## 39. Databases: connections and routes
+
+The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis and MongoDB. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
+
+1. Open Databases in the sidebar and choose “New database connection”. Enter a name, engine, host, port, database (an index for Redis), username and password. “Test connection” shows the server version before you save.
+
+2. Save the password in the vault or type it each time you open the connection; a typed password is used once and not kept. Under “TLS protection”, the certificate and hostname are verified by default; for a local address or a port forward the mode switches to “Prefer encryption” by itself.
+
+3. Under “Connection route”, choose how to reach the database: directly, through a saved SSH host or SSH jump profile, through a saved SSH tunnel, a Kubernetes port forward (Pod, Service, Deployment or StatefulSet) or a Docker container. Tunnels and forwards start by themselves on connect; running ones are reused.
+
+4. When the host is localhost and the port matches a saved tunnel’s local port, the form offers to use that tunnel. Through any route, TLS still verifies the original database hostname.
+
+5. “Import connection” accepts a connection string (postgres://, mysql://, clickhouse://, redis://, mongodb://, mongodb+srv://) or a .pgpass file. Review the connections found before saving: for each one, mark production, pick a route and decide whether to keep the password.
+
+6. Turn on “Production — always read only” for live databases. Under “Group”, set the group, tags and colour; the colour shows on the card and in the workspace header. Search matches the name, host, database, engine and tags, and the tags above the list act as filters.
+
+7. The toggle next to search switches between cards and a compact list, as in Hosts; the choice is remembered on this device. The icon next to a name shows the route, and the “…” menu connects, edits or deletes.
+
+[Full Databases instructions ↗](../docs/public/DATABASES.md)
+
+> **Keep in mind**
+>
+> Connections sync between your devices only in encrypted form; the sync server sees neither passwords nor queries. Queries travel from the device to the database over the chosen route.
+
+![Demo connections: route icons, colour labels, the PROD badge and tag filters.](../assets/guide/db-connections-en.png)
+
+Demo connections: route icons, colour labels, the PROD badge and tag filters.
+
+![The same connections as a compact list.](../assets/guide/db-connections-list-en.png)
+
+The same connections as a compact list.
+
+![Choosing the route in the connection form: SSH host, jump profile, Kubernetes, tunnel or Docker container.](../assets/guide/db-connection-form-en.png)
+
+Choosing the route in the connection form: SSH host, jump profile, Kubernetes, tunnel or Docker container.
+
+<a name="databases-queries"></a>
+
+## 40. Databases: structure, queries and results
+
+Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
+
+| Editor action | macOS | Windows / Linux |
+| --- | --- | --- |
+| Run the selection or the statement under the caret | ⌘↵ | Ctrl+Enter |
+| Run the whole script | ⌥X or ⇧⌘↵ | Alt+X or Ctrl+Shift+Enter |
+| Complete at the caret | ⌃Space | Ctrl+Space |
+| Format the query | ⇧⌘F | Ctrl+Shift+F |
+| Toggle line comments | ⌘/ | Ctrl+/ |
+| Find and replace | ⌘F | Ctrl+F |
+| Cancel the query | ⌘. | Ctrl+. |
+| EXPLAIN | ⌘E | Ctrl+E |
+| Query history | ⌘H | Ctrl+H |
+| AI assistant | ⌘I | Ctrl+I |
+
+1. The structure loads as you expand it and sorts objects into folders: tables, views, functions, sequences, dictionaries; a table holds columns, indexes, constraints and triggers. The expanded table is framed, and key columns carry icons. Search filters the objects already loaded; the button next to it collapses everything.
+
+2. An object’s menu offers “Preview first 100 rows”, “Show DDL”, “Insert identifier” and “Object details”. A MongoDB collection also has “Infer schema from sample”: field types and the share of documents that contain each field.
+
+3. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
+
+4. “Run” executes the selection or, without one, the statement under the caret. The arrow next to it offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
+
+5. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; a long value opens in full. The first rows load right away (the limit is set under the connection’s Limits), the rest with “Load more”. The status bar shows the row count and time. On a phone, results appear as record cards.
+
+6. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first.
+
+7. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered in a new tab instead. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
+
+> **Keep in mind**
+>
+> Values in columns named like password, token or secret are masked. Data copied from results is cleared from the clipboard by the timer in security settings.
+
+![The workspace: the expanded orders table, a highlighted query and its result on demo data.](../assets/guide/db-workspace-en.png)
+
+The workspace: the expanded orders table, a highlighted query and its result on demo data.
+
+![An EXPLAIN plan: steps, estimated rows and cost; bars show each step’s share.](../assets/guide/db-explain-en.png)
+
+An EXPLAIN plan: steps, estimated rows and cost; bars show each step’s share.
+
+<a name="databases-changes"></a>
+
+## 41. Databases: production, changes, history and export
+
+A production connection is read-only, and any change elsewhere is shown to you before it runs. Writes in a non-production session are turned on explicitly.
+
+1. Production has two layers of protection. On the server, PostgreSQL and MySQL/MariaDB run queries in read-only transactions and ClickHouse gets readonly. In the app, each query is parsed before sending: changing commands and attempts to lift the protection never reach the server. Production has no temporary write window; use a separate non-production connection for changes.
+
+2. “Check privileges” in the workspace header reports whether server-side protection is verified and whether the role can write. For production, prefer a read-only role: SELECT or pg\_read\_all\_data in PostgreSQL, SELECT in MySQL, a readonly profile in ClickHouse, ACL +@read -@write in Redis and the read role in MongoDB.
+
+3. A non-production connection also opens read-only. The lock button in the header allows writes until the connection closes. A changing query is shown for confirmation; dangerous ones (DROP, TRUNCATE, UPDATE or DELETE without WHERE, FLUSHALL, dropping a collection) also require typing the connection name.
+
+4. On desktop, in a non-production session with writes allowed, you can edit cells of a simple single-table SELECT with a primary key. Edits accumulate; “Review pending edits” shows the generated UPDATE statements keyed by the primary key. Once confirmed, they apply in one transaction and roll back entirely on failure.
+
+5. “Query history” keeps the text, time, duration, row count and errors, but not parameter values or data. Filter by Successful, With errors or Favorites. By default history is encrypted and stays on this device; you can sync it or turn it off. Save a query from history as a snippet, and its {{name}} placeholders become snippet variables.
+
+6. Copy a cell, a row, a selection or the whole loaded result. “Export result” re-runs the read query and streams every row to a file as CSV, TSV, JSON, NDJSON, Markdown or SQL INSERT, with progress and cancellation. A changing query is never repeated for export.
+
+> **Keep in mind**
+>
+> The app’s protection complements database privileges but does not replace them. For production, a read-only account remains the main safeguard.
+
+<a name="databases-ai"></a>
+
+## 42. Databases: AI assistant
+
+The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
+
+1. Open the panel with the AI button in the workspace header or ⌘I / Ctrl+I. Pick the provider and the task: compose, explain, fix or optimize a query using its EXPLAIN plan, translate it to another dialect, turn it into a parameterized snippet, suggest example queries or explain selected rows.
+
+2. Describe what you need and choose “AI assistant”. In “Review AI context”, tick what may be shared: schema metadata, explicitly selected rows, a sample of up to 20 rows or one read-only query of up to 50 rows. Everything starts off, and without consent the model receives neither schema nor data.
+
+3. The answer arrives as a draft with an explanation and the list of context that was shared. “Accept draft” opens it in a new editor tab; running it is up to you, with the usual checks. “Refine” continues the conversation and “Reject” discards the draft.
+
+4. Passwords, connection strings and server addresses are never sent to the model. For external providers with Strict privacy, table and column names are replaced with aliases before sending and restored in the answer. For production connections, DDL drafts are shown but cannot be run.
+
+> **Keep in mind**
+>
+> The shield button in the panel revokes the consent given for the current connection.
+
+![The AI assistant: a draft query from a description; only two table names were shared with the model.](../assets/guide/db-ai-en.png)
+
+The AI assistant: a draft query from a description; only two table names were shared with the model.
+
+<a name="docker-containers"></a>
+
+## 43. Docker: hosts and containers
+
+The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
+
+1. Open Docker in the sidebar. The list shows This computer and your saved SSH hosts; find one and choose Connect. The header then shows the engine version, platform and the number of running containers.
+
+2. If the SSH user cannot access the Docker socket, you see it right away, along with the command that adds the user to the docker group. Run it on the host yourself and reconnect; the new group applies to new SSH sessions. If sshd forbids socket forwarding, set AllowStreamLocalForwarding yes or install the docker CLI on the host.
+
+3. Containers are grouped by compose project, with running ones first and standalone containers last. A group header shows how many are running and collapses the group. The filter matches names and images, and the All / Running / Stopped switch narrows the list.
+
+4. Each row shows the state, health check, image, short ID and ports. Buttons start, stop and restart the container and open its logs and terminal. The “…” menu adds pause, kill, remove, port forwarding, details and Copy ID. Kill and Remove ask for confirmation; named volumes survive removal.
+
+[Full Docker instructions ↗](../docs/public/DOCKER.md)
+
+> **Keep in mind**
+>
+> Actions run with the Docker user’s rights on the host: the app never elevates privileges or runs sudo. Switching profiles or locking the vault closes the Docker session.
+
+![Choosing an engine: this computer or a saved SSH host.](../assets/guide/docker-hosts-en.png)
+
+Choosing an engine: this computer or a saved SSH host.
+
+![Demo containers grouped by compose project, with the state filter.](../assets/guide/docker-containers-en.png)
+
+Demo containers grouped by compose project, with the state filter.
+
+<a name="docker-details"></a>
+
+## 44. Docker: details, logs, volumes and forwards
+
+Click a container to open its details on the right while keeping the list in view.
+
+1. The Overview tab shows the image, command, restarts, ports, networks with IP addresses, mounts, labels and environment variables. JSON holds the full inspect output with a copy button.
+
+2. Passwords and tokens in environment variables are masked. “Show secrets” asks for the vault passphrase; copied values clear from the clipboard automatically, and “Hide secrets” masks them again.
+
+3. The Logs tab follows new lines, with stderr in its own colour. Pause (new lines are kept), timestamps, search with a match count, copying the shown lines and clearing are available. Terminal opens a shell inside the container in its own terminal tab: automatic detection tries bash, ash and sh, or choose the shell yourself.
+
+4. The Volumes view lists volumes by compose project with the containers that use them; unused ones are marked. A volume or mount path opens in SFTP on that SSH host, or in the file manager for local Docker. Docker Desktop keeps volumes inside its virtual machine, so their folders cannot be opened from the computer.
+
+5. “Forward port” links a local port to a container port; 0 picks a free one. On an SSH host, the forward runs through the SSH connection. Running Docker and Kubernetes forwards share the right-hand “Port forwards” panel with the address, a copy button, traffic and Stop.
+
+6. A container with a standard database port has a “Connect to database” button. If a connection with the same route is already saved, it opens in Databases at once. Otherwise a form appears with the engine, port and route filled in, plus the database name and user when the environment has them; only the password is left. A published port is saved as an ordinary address; for an unpublished one, the forward is restored on every connect.
+
+![Container details: ports, networks, mounts, labels and masked environment secrets.](../assets/guide/docker-details-en.png)
+
+Container details: ports, networks, mounts, labels and masked environment secrets.
+
+![Volumes by project and the containers that use them.](../assets/guide/docker-volumes-en.png)
+
+Volumes by project and the containers that use them.
+
+![A container port forward in the shared right panel.](../assets/guide/docker-forwards-en.png)
+
+A container port forward in the shared right panel.
+
+![“Connect to database”: the form with the Docker container route; only the password is left.](../assets/guide/docker-database-en.png)
+
+“Connect to database”: the form with the Docker container route; only the password is left.
+
+<a name="docker-compose"></a>
+
+## 45. Docker: compose projects
+
+The menu on a compose group header controls the whole project and opens its files.
+
+1. Choose “…” on the project header or right-click it. “Start all” starts only the stopped containers; “Stop all” and “Restart all” say how many containers are affected and wait for confirmation.
+
+2. “View YAML” opens the project files as tabs with line numbers and highlighting; the project folder and environment files are listed at the top. A file the SSH user cannot read is marked as such. Copying goes through the self-clearing clipboard.
+
+3. To edit, choose “Edit YAML” and enter the vault passphrase: compose files can contain passwords and decide what runs on the host. Editing permission lasts a limited time; after that the passphrase is asked again.
+
+4. “Save and apply” first validates the configuration on the host with compose config; on errors nothing is saved. Then a backup such as compose.yaml.bak-YYYYMMDD-HHMMSS is kept next to the file, the file is written and the project is updated with compose up -d, whose output appears in the window. “Save without applying” leaves the running containers on the previous configuration.
+
+5. If a file changed on the host after you opened it, saving is refused: copy your edits and open the file again. Without write permission, the file stays unchanged.
+
+> **Keep in mind**
+>
+> Projects whose containers do not carry the compose labels with file paths (older compose versions or other tools) cannot show or edit their YAML.
+
+![The compose project menu: YAML and actions on every container.](../assets/guide/docker-compose-menu-en.png)
+
+The compose project menu: YAML and actions on every container.
+
+![Compose files as tabs with line numbers; editing requires the vault passphrase.](../assets/guide/docker-compose-yaml-en.png)
+
+Compose files as tabs with line numbers; editing requires the vault passphrase.
+
 <a name="server-setup"></a>
 
-## 39. Your own server: Kubernetes
+## 46. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -1164,7 +1398,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 40. Your own server: Docker Compose
+## 47. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 

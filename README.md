@@ -2,15 +2,17 @@
 
 # ConsoleCrypt — документация
 
-Руководство по SSH, RDP, SFTP, Kubernetes, зашифрованному хранилищу, синхронизации,
-сниппетам, ИИ и совместной работе. Руководство и опубликованные пакеты ниже
-относятся к клиенту 0.6.4.
+Руководство по SSH, RDP, SFTP, Kubernetes, базам данных, Docker, зашифрованному
+хранилищу, синхронизации, сниппетам, ИИ и совместной работе. Руководство
+описывает клиент 0.8.5; таблица готовых сборок ниже относится к последнему
+опубликованному выпуску.
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
-В руководстве 40 глав и 134 скриншота для двух языков: первый запуск,
+В руководстве 47 глав и 164 скриншота для двух языков: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
-файлы, Kubernetes, буфер обмена, общие папки, резервные копии и запуск своего сервера.
+файлы, Kubernetes, базы данных, Docker, буфер обмена, общие папки, резервные
+копии и запуск своего сервера.
 Изображения получены из демонстрационного интерфейса с синтетическими данными.
 
 ## Быстрые ссылки
@@ -18,17 +20,19 @@
 - [Готовые выпуски клиента](https://github.com/evsikovas/consolecrypt-client/releases).
 - [Клиент: исходники и сборка](https://github.com/evsikovas/consolecrypt-client).
 - [Сервер и протокол](https://github.com/evsikovas/consolecrypt-server).
-- [Docker и Kubernetes](docs/public/HOSTING.md).
+- [Свой сервер в Docker и Kubernetes](docs/public/HOSTING.md).
 - [Совместный доступ](docs/public/SHARING.md).
 - [RDP](docs/public/RDP.md), включая мобильный тачпад.
 - [Локальные терминалы: zsh, PowerShell, cmd и WSL](docs/public/LOCAL_TERMINALS.md).
 - [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md): три модели и сохранение установленных файлов при обновлении.
 - [Kubernetes](docs/public/KUBERNETES.md): подключения, ресурсы, логи, Helm и GitOps.
+- [Базы данных](docs/public/DATABASES.md): подключения и маршруты, запросы, защита прода и ИИ-помощник.
+- [Docker](docs/public/DOCKER.md): контейнеры, логи, тома, пробросы и compose-проекты.
 - [Мобильный RDP и настольные улучшения](docs/public/RELEASE_0_5_5.md).
 - [Исправление комплекта восстановления на телефоне](docs/public/RELEASE_0_5_6.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
+- [Обновления](docs/public/UPDATES.md), [версия 0.8.5](docs/public/RELEASE_0_8_5.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).
