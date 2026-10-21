@@ -1047,7 +1047,7 @@ Flux and Argo CD are discovered from available CRDs. Overview combines status, d
 
 2. Use resource flow and dependencies to navigate from a source to its workload. Status and events help explain failures.
 
-3. For Flux, select reconcile, reconcile with source or suspend/resume. Review the object and confirm. Argo provides sync and refresh.
+3. For Flux, select Sync now, Sync with source or Pause/Resume sync — the tooltip explains what Flux will do. Review the object and confirm. Argo provides sync and refresh.
 
 4. Set a suspension reason and reminder separately. A reminder never resumes an object automatically.
 

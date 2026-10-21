@@ -1112,8 +1112,8 @@ export const guideSections = [
       "en": "Use resource flow and dependencies to navigate from a source to its workload. Status and events help explain failures."
     },
     {
-      "ru": "Для Flux откройте действие reconcile, reconcile с источником или suspend/resume. Проверьте объект и подтвердите действие. Для Argo доступны sync и refresh.",
-      "en": "For Flux, select reconcile, reconcile with source or suspend/resume. Review the object and confirm. Argo provides sync and refresh."
+      "ru": "Для Flux выберите «Синхронизировать сейчас», «Синхронизировать вместе с источником» или «Приостановить/Возобновить синхронизацию» — подсказка у кнопки объясняет, что сделает Flux. Проверьте объект и подтвердите действие. Для Argo доступны sync и refresh.",
+      "en": "For Flux, select Sync now, Sync with source or Pause/Resume sync — the tooltip explains what Flux will do. Review the object and confirm. Argo provides sync and refresh."
     },
     {
       "ru": "Причина приостановки и напоминание задаются отдельно. Напоминание не возобновляет объект автоматически.",
