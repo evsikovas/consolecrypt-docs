@@ -14,6 +14,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Vault, recovery and biometrics](#vault)
 - [Sync and trusted devices](#devices)
 - [Protection against sign-ins from new devices](#device-protection)
+- [Corporate sign-in: SSO and Active Directory](#enterprise-sign-in)
 
 **Your workspace**
 
@@ -33,6 +34,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Snippets, variables and starter sets](#snippets)
 - [AI chat and the context you send](#ai)
 - [Local AI: three models and upgrades](#local-ai)
+- [Notes, tasks and reminders](#notes)
 - [Kubernetes: connections and access](#kubernetes-connections)
 - [Kubernetes: resources and changes](#kubernetes-resources)
 - [Kubernetes: logs, shell and tunnels](#kubernetes-logs-shell)
@@ -50,9 +52,11 @@ Step-by-step instructions with the real application interface and demonstration 
 
 **Working together**
 
+- [Teams](#teams)
 - [Sharing: getting started](#sharing-start)
 - [Shared hosts, groups and secrets](#sharing-items)
 - [Shared database connections](#databases-sharing)
+- [Shared notes on shared objects](#shared-notes)
 - [A colleague’s new personal devices](#sharing-devices)
 - [Revocation, queues and trust recovery](#sharing-revoke)
 
@@ -67,6 +71,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Website account](#server-account)
 - [Your own server: Kubernetes](#server-setup)
 - [Your own server: Docker Compose](#server-docker)
+- [Your own server: corporate sign-in and shared notes](#server-enterprise)
 
 <a name="first-start"></a>
 
@@ -238,9 +243,49 @@ If someone signs in to your account from a new device, you find out right away, 
 
 The new sign-in notice and a new device marked “Not confirmed” and “New, restricted until …”; all devices are demo devices.
 
+<a name="enterprise-sign-in"></a>
+
+## 7. Corporate sign-in: SSO and Active Directory
+
+Sync server 0.2.0 and later can admit accounts only through your organisation’s authorization server. Client 0.9.0 detects the server’s mode and shows the matching form. Only the account sign-in changes: your vault passphrase still opens the vault.
+
+1. Choose “Connect to a server”, enter the HTTPS address from your administrator and press Check. A corporate server shows a “Corporate sign-in” block naming the authorization server; registration, the account password and “Forgot password” are not offered in this mode.
+
+2. SSO (OIDC): optionally enter your e-mail and press “Sign in with …”. Your organisation’s sign-in page opens in the system browser and returns you to the app afterwards. While signing in, the app shows a waiting state with Cancel.
+
+3. Active Directory: enter your login (e-mail or DOMAIN\\user) and domain password. The password goes to the server once over TLS, is never stored and is cleared from the field after every attempt.
+
+4. A new user creates a vault after the first sign-in as usual. A known device opens the vault with the vault passphrase; a new device is approved with a code check, the Recovery Key or the vault passphrase.
+
+5. The app remembers the sign-in method and login (never the password) for every server: next time they are prefilled, and the hint “Last time you signed in with …” offers Forget. Settings, Sync and Devices show the corporate server and when this device signed in under “Authorization”.
+
+6. If your organisation disables your account, the app shows “Access disabled by the administrator” and locks the profile. Data on the device stays encrypted; you can delete the profile from the device or sign in again once access is restored.
+
+[Account, sync and corporate sign-in ↗](../docs/public/SYNC_ACCOUNT.md)
+
+> **Keep in mind**
+>
+> Your organisation’s password does not open the vault, and neither the authorization server nor the sync server receives vault keys. Sign-in errors — domain not allowed, group missing, second factor required, identity already linked to another account, sign-in service unavailable — are explained in plain words; contact your administrator about them.
+
+![A server with SSO sign-in: the “Corporate sign-in” block, an optional e-mail and the “Sign in with Acme SSO” button; the server is a demo one.](../assets/guide/enterprise-login-sso-en.png)
+
+A server with SSO sign-in: the “Corporate sign-in” block, an optional e-mail and the “Sign in with Acme SSO” button; the server is a demo one.
+
+![Active Directory sign-in: the domain login and the organisation’s password.](../assets/guide/enterprise-login-ldap-en.png)
+
+Active Directory sign-in: the domain login and the organisation’s password.
+
+![Settings: the Authorization row names the corporate server and shows when this device signed in.](../assets/guide/enterprise-settings-en.png)
+
+Settings: the Authorization row names the corporate server and shows when this device signed in.
+
+![The account was disabled by the organisation: the profile is locked and the data stays encrypted.](../assets/guide/enterprise-disabled-en.png)
+
+The account was disabled by the organisation: the profile is locked and the data stays encrypted.
+
 <a name="hosts"></a>
 
-## 7. Hosts: add, find and connect
+## 8. Hosts: add, find and connect
 
 A host stores SSH or RDP connection settings. Cards and list rows show its address, user and group.
 
@@ -276,7 +321,7 @@ Importing addresses from a demo known\_hosts: select before saving.
 
 <a name="rdp"></a>
 
-## 8. RDP: Windows remote desktop
+## 9. RDP: Windows remote desktop
 
 ConsoleCrypt now supports RDP connections. It connects directly to a standard Microsoft RDP server; no IronRDP add-on needs to be installed on Windows.
 
@@ -322,7 +367,7 @@ Full-screen connection bar: session switching, permissions and window controls. 
 
 <a name="rdp-mobile"></a>
 
-## 9. RDP on a phone: touchpad and keyboard
+## 10. RDP on a phone: touchpad and keyboard
 
 On a phone, the connected desktop automatically opens fullscreen. Touchpad is the default: your finger moves the pointer relative to its current position. One floating button opens the session controls.
 
@@ -380,7 +425,7 @@ The same controls in the light theme.
 
 <a name="quick-connect"></a>
 
-## 10. Quick search and connect
+## 11. Quick search and connect
 
 Find a saved host from anywhere in the app and open an SSH or RDP session. The command palette brings together hosts, snippets and quick actions.
 
@@ -408,7 +453,7 @@ The global “+”: choosing saved SSH and RDP hosts.
 
 <a name="groups"></a>
 
-## 11. Groups and jump hosts
+## 12. Groups and jump hosts
 
 Groups organize your inventory and provide common settings. A jump-host chain reaches an SSH host through intermediate machines.
 
@@ -434,7 +479,7 @@ Adding a demo host to an existing group.
 
 <a name="credentials"></a>
 
-## 12. Passwords, keys and credentials
+## 13. Passwords, keys and credentials
 
 Credentials are separate from hosts: one credential can be assigned to multiple connections.
 
@@ -456,7 +501,7 @@ Credentials in a demo vault; values are masked.
 
 <a name="host-keys"></a>
 
-## 13. Known hosts and SSH-key verification
+## 14. Known hosts and SSH-key verification
 
 A server key identifies the SSH host you are connecting to. This is separate from trusting a ConsoleCrypt device.
 
@@ -472,7 +517,7 @@ A separate known-host list with demo fingerprints.
 
 <a name="terminal"></a>
 
-## 14. Terminal, tabs and selection
+## 15. Terminal, tabs and selection
 
 Each tab is one terminal session: SSH, plus local shells on macOS and Windows. Phones have a special-key bar; computers have shortcuts and a context menu.
 
@@ -512,7 +557,7 @@ Demo Android terminal with its special-key bar.
 
 <a name="local-terminals"></a>
 
-## 15. Local terminals: zsh, PowerShell and WSL
+## 16. Local terminals: zsh, PowerShell and WSL
 
 On macOS and Windows you can open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
 
@@ -550,7 +595,7 @@ Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-ho
 
 <a name="shortcuts"></a>
 
-## 16. Keyboard shortcuts
+## 17. Keyboard shortcuts
 
 The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command. App shortcuts can be remapped in Settings → Keyboard shortcuts: choose Change and press a new combination with ⌘/Ctrl or Alt. If another command has it, that command loses it; if the system or terminal uses it, you are warned. Restore defaults brings back the table below.
 
@@ -572,7 +617,7 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 
 <a name="sftp"></a>
 
-## 17. SFTP: transfers and file preview
+## 18. SFTP: transfers and file preview
 
 Open SFTP from a host’s menu or the sidebar. Files travel directly between your device and the SSH host.
 
@@ -590,7 +635,7 @@ Quick Look for a demo file with a separate line-number gutter.
 
 <a name="sftp-editor"></a>
 
-## 18. SFTP: default editor
+## 19. SFTP: default editor
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
@@ -618,7 +663,7 @@ Open on a script: the file opens as text and never runs.
 
 <a name="tunnels"></a>
 
-## 19. SSH tunnels
+## 20. SSH tunnels
 
 A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.
 
@@ -638,7 +683,7 @@ Demo tunnel definitions and statuses.
 
 <a name="snippets"></a>
 
-## 20. Snippets, variables and starter sets
+## 21. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
@@ -666,7 +711,7 @@ Filtering and managing snippet sets.
 
 <a name="ai"></a>
 
-## 21. AI chat and the context you send
+## 22. AI chat and the context you send
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
@@ -690,7 +735,7 @@ AI chat with selected context from the demo terminal.
 
 <a name="local-ai"></a>
 
-## 22. Local AI: three models and upgrades
+## 23. Local AI: three models and upgrades
 
 On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates.
 
@@ -732,9 +777,67 @@ Download and verification progress with cancellation; progress is synthetic.
 
 The selected model is ready with stop and remove actions; the process state is simulated.
 
+<a name="notes"></a>
+
+## 24. Notes, tasks and reminders
+
+Notes is a right-panel tool next to Snippets and AI. Open it with the note icon, from the command palette or from the phone header. Notes are encrypted on the device and sync with the vault.
+
+1. The Object tab shows notes about what is open now: the SSH host of the active terminal tab, the RDP host, the SFTP host, the database connection, the Kubernetes resource or context, the selected Docker container. “+” creates a note already attached to that object.
+
+2. “All” lists every note and what it is attached to; “Tasks” lists only tasks, with overdue ones first and highlighted, and completed ones grouped separately. Search covers titles, text and tags.
+
+3. Write the text in Markdown; the Preview tab shows the result. Add comma-separated tags or pin a note from its menu. The Task switch adds a due time and a Done mark.
+
+4. Reminder offers in an hour, today at 18:00, tomorrow at 09:00, in a week or a time of your choice. While the app is open a notice with Open appears on time; the Notes icon counts overdue tasks and reminders that went off.
+
+5. The host card’s free-text notes move into a regular note with “Move to notes”. Deleting a host or database keeps its notes, marked “Object not found”.
+
+> **Keep in mind**
+>
+> There are no system notifications while the app is closed yet: a reminder fires when the app is open again.
+
+![Notes about the SSH host of the active tab: an overdue task, a tagged note and the host’s shared notes; all data is demo data.](../assets/guide/notes-object-en.png)
+
+Notes about the SSH host of the active tab: an overdue task, a tagged note and the host’s shared notes; all data is demo data.
+
+![The Tasks tab: overdue first, each task with its due time, reminder and attachment.](../assets/guide/notes-tasks-en.png)
+
+The Tasks tab: overdue first, each task with its due time, reminder and attachment.
+
+![A task with Markdown, a tag, a due time and a reminder.](../assets/guide/notes-editor-en.png)
+
+A task with Markdown, a tag, a due time and a reminder.
+
+<a name="teams"></a>
+
+## 25. Teams
+
+A team is a vault shared by several accounts on the same server. All members see its hosts, groups, credentials and snippets; roles decide who may change them. Team names, settings and resources are end-to-end encrypted: the server only sees who is a member.
+
+1. Open “Settings → Teams” and choose “Create team”. Set a name, a colour and a description. The team appears on all your devices after they unlock.
+
+2. In the team window, on “Members”, choose “Invite member”: enter the email, the role and, optionally, a note. The note is not encrypted — the server can read it. If no such account exists, the server does not say so.
+
+3. The invitee sees the invitation in “Settings → Teams” (and gets an email) and chooses “Accept”. A code of 6 groups of digits appears — read it to the admin by phone or in person.
+
+4. The admin chooses “Compare code”, checks every group against their own screen, ticks the confirmation and chooses “Add to team”. If the codes differ, choose “Codes don’t match”: nobody is added.
+
+5. In “Hosts”, the sidebar shows “Personal” and each team in its colour. In a team section choose “New team group”: everything created in a team group belongs to the team. An existing host can be copied or moved into a team from its menu — the credentials it needs are copied along.
+
+6. Roles: Owner and Admin manage members and settings, Editor changes resources, Viewer only views and connects. Team resources carry the team colour in lists and on terminal tabs.
+
+7. On “Settings”, admins set policies: mark new Kubernetes contexts and databases as production, never send team resources to AI assistants, shorten how long copied passwords stay in the clipboard, and require confirming every command. “My colour for this team” changes the colour on your devices only.
+
+8. When a member leaves or is removed, the team key is rotated: new resources are encrypted with the next key generation and the former member cannot read them. The “History” tab shows the signed log: who added, removed or promoted whom, and when.
+
+> **Keep in mind**
+>
+> Every membership change is signed by an admin, and every client verifies the whole log itself. If the server shows a member nobody signed, or an older membership, the team is paused read-only with a warning and no keys are handed out. A removed member keeps only what they had already downloaded.
+
 <a name="sharing-start"></a>
 
-## 23. Sharing: getting started
+## 26. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -766,7 +869,7 @@ Selecting Reader or Editor access.
 
 <a name="sharing-items"></a>
 
-## 24. Shared hosts, groups and secrets
+## 27. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -788,7 +891,7 @@ The separate secret-publishing dialog: the value is masked and consent has not b
 
 <a name="databases-sharing"></a>
 
-## 25. Shared database connections
+## 28. Shared database connections
 
 A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden.
 
@@ -816,9 +919,33 @@ Shared connections: received ones marked “Shared”, your own “Shared by you
 
 Sharing a connection: what the colleague receives; the route is not shared, and the password only when ticked.
 
+<a name="shared-notes"></a>
+
+## 29. Shared notes on shared objects
+
+A shared host, database connection or Kubernetes context has shared notes that every member sees. This needs sync server 0.2.0 with shared notes enabled by the administrator.
+
+1. Open the shared object and the Notes tool on the Object tab. Below your personal notes, a “Shared notes” block appears; its “+” creates a shared note.
+
+2. Any member can write. Only the author edits a note; the author or the object’s owner deletes it. Each note shows its author: You, Owner or Member.
+
+3. A note about a Docker container of a shared SSH host or a resource of a shared Kubernetes context shows only with that container or resource.
+
+4. Until the owner has opened the notes panel for the object once, members see a waiting message. After a member is removed, the owner’s device moves the notes to a new key the next time the panel opens.
+
+5. The link between an object and its share is remembered when you publish it or save a personal copy. For objects published before 0.9.0 (other than copied hosts), publish or copy the object again.
+
+> **Keep in mind**
+>
+> The owner’s device issues and signs the shared-notes key, and the author’s device signs every note: the server can neither read the text, substitute the key nor pass someone else’s note off as yours.
+
+![The Shared notes block of a shared host: a member’s note and your own note with its delete button.](../assets/guide/notes-object-en.png)
+
+The Shared notes block of a shared host: a member’s note and your own note with its delete button.
+
 <a name="sharing-devices"></a>
 
-## 26. A colleague’s new personal devices
+## 30. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -840,7 +967,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 27. Revocation, queues and trust recovery
+## 31. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -868,7 +995,7 @@ Recently deleted: shared items can be restored for 30 days.
 
 <a name="appearance"></a>
 
-## 28. Colors, text size and glass effects
+## 32. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -892,9 +1019,9 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 29. Right panel: bubbles or one workspace
+## 33. Right panel: bubbles or one workspace
 
-Snippets, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
+Snippets, notes, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
 1. Bubbles opens the tool as a separate floating card. The close button dismisses it.
 
@@ -918,7 +1045,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 30. Screenshots and screen protection
+## 34. Screenshots and screen protection
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device.
 
@@ -949,7 +1076,7 @@ Windows: “Hide window from screen capture” — Never, While secrets are show
 
 <a name="backups"></a>
 
-## 31. Backups and restore
+## 35. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -969,7 +1096,7 @@ Encrypted backups and scheduling in the demo client.
 
 <a name="about"></a>
 
-## 32. Version, author and licenses
+## 36. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -985,7 +1112,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 33. Client updates
+## 37. Client updates
 
 On Windows, macOS and Android, “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself. On Linux, download the new package from the website and install it manually.
 
@@ -1015,7 +1142,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 34. Website account
+## 38. Website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -1031,7 +1158,7 @@ The website account manages your public-server account. Decrypted hosts, keys an
 
 <a name="kubernetes-connections"></a>
 
-## 35. Kubernetes: connections and access
+## 39. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -1061,7 +1188,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-resources"></a>
 
-## 36. Kubernetes: resources and changes
+## 40. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -1093,7 +1220,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 37. Kubernetes: logs, shell and tunnels
+## 41. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -1127,7 +1254,7 @@ A PostgreSQL Pod with the “Connect to database” button. Demonstration data.
 
 <a name="kubernetes-gitops"></a>
 
-## 38. Kubernetes: GitOps and problems
+## 42. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -1159,7 +1286,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 39. Kubernetes: Helm
+## 43. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -1187,7 +1314,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 40. Kubernetes: context terminal and AI
+## 44. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -1209,7 +1336,7 @@ The context remains explicit for both local commands and AI assistance.
 
 <a name="databases-connections"></a>
 
-## 41. Databases: connections and routes
+## 45. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis and MongoDB. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -1253,7 +1380,7 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-queries"></a>
 
-## 42. Databases: structure, queries and results
+## 46. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -1322,7 +1449,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 43. Databases: production, changes, history and export
+## 47. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -1354,7 +1481,7 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 44. Databases: writing to production
+## 48. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
@@ -1380,7 +1507,7 @@ An open write window: the red badge with its end time, the countdown and the Loc
 
 <a name="databases-ai"></a>
 
-## 45. Databases: AI assistant
+## 49. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -1402,7 +1529,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 46. Docker: hosts and containers
+## 50. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -1430,7 +1557,7 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 47. Docker: details, logs, volumes and forwards
+## 51. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
@@ -1470,7 +1597,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 48. Docker: compose projects
+## 52. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -1500,7 +1627,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 49. Your own server: Kubernetes
+## 53. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -1566,7 +1693,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 50. Your own server: Docker Compose
+## 54. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
@@ -1630,3 +1757,65 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 ![Choose your own server in the client and enter its HTTPS address.](../assets/guide/welcome-en.png)
 
 Choose your own server in the client and enter its HTTPS address.
+
+<a name="server-enterprise"></a>
+
+## 55. Your own server: corporate sign-in and shared notes
+
+Server 0.2.0 (protocol 1.9) can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices and sharing stay the same.
+
+1. Upgrade the server to 0.2.0 and back up the database first: migration 0011 only adds tables. Review the accounts with admin list-users.
+
+2. OIDC: register the server with your IdP as a confidential client with the redirect URI https://&lt;server&gt;/v1/auth/oidc/callback, pick a preset (entra, adfs, keycloak, google, okta or generic) and put the client secret and a 32-byte refresh-token sealing key into a Secret. Set config.publicUrl.
+
+3. LDAP / AD: use ldaps:// (or ldap:// with STARTTLS), a service account for searches and optionally a required group. Keep the server’s failed sign-in limit below the domain’s account lockout threshold.
+
+4. Set auth.mode: enterprise and restart the server. On start it checks the IdP or directory and fails with a clear error; admin auth status and admin auth test repeat the checks. Users need client 0.9.0.
+
+5. Employees disabled in the IdP or AD lose sync access within auth.recheckMinutes + 1 minute: their sessions are revoked and the app locks the profile. There is no password back door; emergency actions use the admin commands (identity link/unlink, session revoke).
+
+6. Shared notes are enabled separately with the sharedNotesEnabled flag (CC\_SHARED\_NOTES\_ENABLED) together with objectSharingEnabled, in either sign-in mode.
+
+### Helm: sign-in with Entra ID
+
+A fragment of your private values.yaml. Replace the identifiers and the Secret name with your own; keep secrets only in the Secret.
+
+```text
+config:
+  publicUrl: https://sync.example.com
+  objectSharingEnabled: true
+  sharedNotesEnabled: true
+auth:
+  mode: enterprise
+  provider: oidc
+  displayName: Acme SSO
+  allowedDomains: [example.com]
+  oidc:
+    preset: entra
+    issuer: https://login.microsoftonline.com/<tenant-id>/v2.0
+    clientId: <application-id>
+    requiredClaim: groups=<group-object-id>
+    existingSecret: consolecrypt-oidc
+```
+
+### Check the configuration
+
+Run the commands inside the server container. --password-stdin performs a real bind and counts towards the domain lockout policy.
+
+```text
+consolecrypt-server admin auth status
+consolecrypt-server admin auth test
+consolecrypt-server admin auth test --login alice@example.com
+```
+
+[Full enterprise-mode instructions: every setting, IdP and AD recipes ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
+
+[Installation and sharing flags ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+
+> **Keep in mind**
+>
+> The authorization server only proves identity. Neither the IdP, AD nor the sync server receives anything that decrypts a vault; after signing in, the device is an ordinary new device covered by new-device protection.
+
+![How the client sees a server in enterprise mode with Active Directory.](../assets/guide/enterprise-login-ldap-en.png)
+
+How the client sees a server in enterprise mode with Active Directory.
