@@ -162,15 +162,19 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 
 3. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
 
-4. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
+4. A new vault passphrase needs at least 12 characters. Existing vaults still open with their current passphrase; at the next passphrase unlock the key is re-wrapped with stronger Argon2id parameters (at least 64 MiB).
 
-5. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
+5. Dangerous actions are confirmed with the vault passphrase instead of typing a connection, context or resource name: changing database queries and cell edits, Unlock production, YAML apply, deletion, restart and scaling in Kubernetes. A wrong passphrase runs nothing, the field is cleared after every attempt and Enter confirms.
 
-6. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
+6. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
 
-7. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+7. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
 
-8. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
+8. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
+
+9. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+
+10. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
 
 > **Keep in mind**
 >
@@ -594,9 +598,11 @@ On a computer, files can open in an external editor. ConsoleCrypt remembers the 
 
 2. “Open” and “Open in editor” use that choice. “Open with…” selects another application for one file; “System default” resets the preference.
 
-3. Read the first-use notice: a working copy is stored locally, and each save uploads it to the remote server automatically.
+3. ConsoleCrypt never runs files whose default action would execute code (scripts, shortcuts, .exe, .command, .desktop and similar). “Open” first warns “This file can run code”, then “Open as Text” opens the file in a text editor. When no editor is found, “Choose an Editor…” is offered. Downloaded files are marked as coming from the Internet (Windows) and quarantined (macOS).
 
-4. If another user changes the remote file, resolve the conflict in the editing panel. Stop editing through ConsoleCrypt to complete the upload and remove the working copy.
+4. Read the first-use notice: a working copy is stored locally, and each save uploads it to the remote server automatically.
+
+5. If another user changes the remote file, resolve the conflict in the editing panel. Stop editing through ConsoleCrypt to complete the upload and remove the working copy.
 
 > **Keep in mind**
 >
@@ -605,6 +611,10 @@ On a computer, files can open in an external editor. ConsoleCrypt remembers the 
 ![The remembered-editor local preference in the demo client.](../assets/guide/sftp-settings-en.png)
 
 The remembered-editor local preference in the demo client.
+
+![Open on a script: the file opens as text and never runs.](../assets/guide/sftp-open-as-text-en.png)
+
+Open on a script: the file opens as text and never runs.
 
 <a name="tunnels"></a>
 
@@ -634,19 +644,21 @@ A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon 
 
 1. Choose “New snippet” and enter its name, command, type, tags and optional set. Use variables such as {{service}} in the template.
 
-2. “Starter packages” offers Linux diagnostics, Docker and Kubernetes. Add the sets explicitly; their commands become ordinary vault objects.
+2. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis and MongoDB (15 each) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
 
-3. Edit commands, move them to another set or delete them. Deleting a set deletes its snippets after confirmation and syncs the change; examples do not reappear automatically.
+3. Database snippets also run inside psql, mysql, clickhouse-client, redis-cli and mongosh in an SSH session: a multi-line query is sent as one paste, and changing commands need confirmation.
 
-4. Fill variables and inspect the rendered command before using it. “Insert” puts it in the terminal; running on multiple hosts requires choosing targets and a separate confirmation.
+4. Edit commands, move them to another set or delete them. Deleting a set deletes its snippets after confirmation and syncs the change; examples do not reappear automatically.
+
+5. Fill variables and inspect the rendered command before using it. “Insert” puts it in the terminal; running on multiple hosts requires choosing targets and a separate confirmation.
 
 > **Keep in mind**
 >
 > Snippet changes sync in a server-connected profile. They stay local in a local profile. A snippet received from a colleague never executes automatically either.
 
-![Three starter sets in the real interface with demo data.](../assets/guide/snippet-catalog-en.png)
+![Starter packages: Linux, Docker, Kubernetes and the database sets.](../assets/guide/snippet-catalog-en.png)
 
-Three starter sets in the real interface with demo data.
+Starter packages: Linux, Docker, Kubernetes and the database sets.
 
 ![Filtering and managing snippet sets.](../assets/guide/snippet-packages-en.png)
 
@@ -740,9 +752,9 @@ Share individual items with verified devices of people on the same server. Your 
 >
 > Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public sync.consolecrypt.dev. Each item is published only through an explicit action by its owner.
 
-![Sharing: a separate device card and synthetic items with a masked secret.](../assets/guide/sharing-main-en.png)
+![Sharing: the device card and received items with a masked secret and Leave share.](../assets/guide/sharing-main-en.png)
 
-Sharing: a separate device card and synthetic items with a masked secret.
+Sharing: the device card and received items with a masked secret and Leave share.
 
 ![A complete example device code for independent verification; never use the demo code to establish real trust.](../assets/guide/sharing-recipient-en.png)
 
@@ -840,9 +852,19 @@ The owner manages participants. An editor changes content; participant access re
 
 4. When warned about stale state, use explicit trust recovery with the owner and the saved public package. Do not delete system keys to bypass the check.
 
+5. Only the owner can delete a shared item: “Delete shared item” removes recipients’ access at once. For 30 days it can be restored from “Shared by me” → “Recently deleted” → “Restore”. A restored item is shared again with the same people except those who left, and they accept it again.
+
+6. A recipient can leave with “Leave share” on the item or on an incoming invitation. The item stops arriving on all of their devices, saved personal copies stay, and the owner sees who left.
+
+7. A shared entry that cannot be read is hidden, and a warning above the list says how many entries were skipped; the other items show as usual.
+
 > **Keep in mind**
 >
-> If a secret may have leaked, revoking access in ConsoleCrypt does not replace changing the password or SSH key on the target server. Neither Manual nor Automatic enrollment erases a recipient’s saved data.
+> If a secret may have leaked, revoking access in ConsoleCrypt does not replace changing the password or SSH key on the target server. Neither Manual nor Automatic enrollment erases a recipient’s saved data. Restoring deleted items and leaving a share need sync server 0.1.17 or later; with an older server these buttons are hidden.
+
+![Recently deleted: shared items can be restored for 30 days.](../assets/guide/sharing-deleted-en.png)
+
+Recently deleted: shared items can be restored for 30 days.
 
 <a name="appearance"></a>
 
@@ -905,6 +927,9 @@ Whether an app can block screen capture depends on the OS. Capture preferences a
 | Android | Enable “Allow screenshots” in security settings. Capture is blocked by default; the toggle also affects recording and recent-app previews. |
 | macOS | Screenshots are allowed. Modern macOS does not provide a reliable way for an app to block all screenshots and recording; there is no working block toggle. |
 | iOS | There is no universal screenshot block. An app-switcher cover protects the preview when backgrounded; physical-iPhone checks remain separate. |
+| Windows | “Settings → Security → Hide window from screen capture”: Never, While secrets are shown (default) or Always. While a password, key or recovery words are shown, the window stays out of screenshots, recordings and screen sharing. |
+
+1. In the same section, “Clear clipboard” sets when a copied secret is removed from the clipboard: from 30 seconds to 1 day. Clearing also completes after an app restart and never touches what you copied later in other apps.
 
 > **Keep in mind**
 >
@@ -914,9 +939,13 @@ Whether an app can block screen capture depends on the OS. Capture preferences a
 
 Screenshot permission in the demo Android interface; this shows the UI, not capture enforcement on a physical phone.
 
-![The macOS security section explains the OS limitation.](../assets/guide/security-settings-en.png)
+![The macOS security section: the clipboard clearing time and the OS limitation.](../assets/guide/security-settings-en.png)
 
-The macOS security section explains the OS limitation.
+The macOS security section: the clipboard clearing time and the OS limitation.
+
+![Windows: “Hide window from screen capture” — Never, While secrets are shown or Always.](../assets/guide/security-settings-windows-en.png)
+
+Windows: “Hide window from screen capture” — Never, While secrets are shown or Always.
 
 <a name="backups"></a>
 
@@ -1042,9 +1071,9 @@ Live lists and details show objects from available APIs, including installed CRD
 
 3. Open an object for status, YAML, events and related resources. Supported workloads expose rollout history and revision comparisons.
 
-4. To edit YAML, open the editor and choose Apply: the change is validated on the server first, then the diff and confirmation follow. A refusal shows which controller owns a field or which fields were rejected. Field ownership conflicts require a separate decision.
+4. To edit YAML, open the editor and choose Apply: the change is validated on the server first, then the diff and a vault passphrase confirmation follow. A refusal shows which controller owns a field or which fields were rejected. Field ownership conflicts require a separate decision.
 
-5. Deletion, restart and scaling require confirmation. Secret values are hidden and revealed separately.
+5. Deletion, restart, scaling, cordon/drain and debug containers require confirmation with the vault passphrase; no resource name needs typing. Secret values are hidden and revealed separately.
 
 6. A production context blocks writes. Desktop allows a 10-minute write window confirmed with the vault passphrase; bulk production mutations remain prohibited.
 
@@ -1106,7 +1135,7 @@ Flux and Argo CD are discovered from available CRDs. Overview combines status, d
 
 2. Use resource flow and dependencies to navigate from a source to its workload. Status and events help explain failures.
 
-3. For Flux, select Sync now, Sync with source or Pause/Resume sync — the tooltip explains what Flux will do. Review the object and confirm. Argo provides sync and refresh.
+3. For Flux, select Sync now, Sync with source or Pause/Resume sync — the tooltip explains what Flux will do. Review the object and confirm with the vault passphrase. Argo provides sync and refresh.
 
 4. Set a suspension reason and reminder separately. A reminder never resumes an object automatically.
 
@@ -1140,7 +1169,7 @@ Inspect stored Helm releases and compare them with the current cluster.
 
 3. Compare two revisions or select live comparison. Unavailable and masked data are indicated separately.
 
-4. Desktop rollback requires installed helm and separate approval. Production restrictions apply to this operation too.
+4. Desktop rollback requires installed helm and separate approval with the vault passphrase. Production restrictions apply to this operation too.
 
 [Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
 
@@ -1194,7 +1223,7 @@ The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redi
 
 5. The actual protection shows in the workspace header and on the connection card: “TLS (verified)”, “TLS (certificate not verified)”, “No TLS — protected by a tunnel” or “No TLS”.
 
-6. Under “Connection route”, choose how to reach the database: directly, through a saved SSH host or SSH jump profile, through a saved SSH tunnel, a Kubernetes port forward (Pod, Service, Deployment or StatefulSet) or a Docker container. Tunnels and forwards start by themselves on connect; running ones are reused.
+6. Under “Connection route”, choose how to reach the database: directly, through a saved SSH host or SSH jump profile, through a saved SSH tunnel, a Kubernetes port forward (Pod, Service, Deployment or StatefulSet) or a Docker container. Tunnels and forwards start by themselves on connect; running ones are reused. A saved tunnel with a network bind address starts on 127.0.0.1 only when a database connection uses it.
 
 7. When the host is localhost and the port matches a saved tunnel’s local port, the form offers to use that tunnel. Through any route, TLS still verifies the original database hostname.
 
@@ -1245,19 +1274,23 @@ Click a connection to open its workspace: the database structure on the left, qu
 
 2. An object’s menu offers “Preview first 100 rows”, “Show DDL”, “Insert identifier” and “Object details”. A MongoDB collection also has “Infer schema from sample”: field types and the share of documents that contain each field.
 
-3. DDL is shown highlighted with line numbers, each statement (CREATE TABLE, every CREATE INDEX) separated by a rule, and long lines scroll sideways. “Copy” copies the whole text, and “Open in editor” puts it into a new query tab.
+3. Double-clicking a table or choosing “Preview first 100 rows” runs the query right away and shows the data below in a preview tab named “name — data”. There is one such tab, reused for the next table; once you edit its text it becomes an ordinary tab.
 
-4. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
+4. “Object details” for PostgreSQL, MySQL/MariaDB, ClickHouse and Redis are grouped in sections: owner, estimated rows, data and index sizes, column and index counts, partitioning and sorting keys, last VACUUM and ANALYZE, and for a Redis key its type, TTL, length and memory. Sizes are in KiB/MiB, estimates are marked “≈” and “Copy” copies everything as text. Where there is nothing to show, the menu item is hidden.
 
-5. “Run” and ⌘↵ / Ctrl+Enter execute the selection or, without one, the statement on the caret’s line, as in familiar SQL clients. Statements end at a semicolon or a blank line; from any line of a multi-line statement the whole statement runs, and on a blank line the nearest statement above runs. The arrow next to Run offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
+5. DDL is shown highlighted with line numbers, each statement (CREATE TABLE, every CREATE INDEX) separated by a rule. The dialog follows the window width; long lines wrap with an indent, and turning off “Wrap lines” scrolls them sideways instead, a choice that is remembered. “Copy” copies the whole text, and “Open in editor” adds it to the current tab below the existing text; nothing runs.
 
-6. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; a long value opens in full. The first rows load right away (the limit is set under the connection’s Limits), the rest with “Load more”. The status bar shows the row count and time. On a phone, results appear as record cards.
+6. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
 
-7. A click frames a cell, and ⌘C / Ctrl+C copies its value. A click on a row number selects the row, Shift+click extends the selection, ⌘/Ctrl+click adds or removes a row and Esc clears the selection. The status line shows “Selected: N rows”, and copy, export and the AI assistant use the selected rows.
+7. “Run” and ⌘↵ / Ctrl+Enter execute the selection or, without one, the statement on the caret’s line, as in familiar SQL clients. Statements end at a semicolon or a blank line; from any line of a multi-line statement the whole statement runs, and on a blank line the nearest statement above runs. The arrow next to Run offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
 
-8. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first.
+8. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; a long value opens in full. The first rows load right away (the limit is set under the connection’s Limits), the rest with “Load more”. The status bar shows the row count and time. On a phone, results appear as record cards.
 
-9. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered in a new tab instead. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
+9. A click frames a cell, and ⌘C / Ctrl+C copies its value. A click on a row number selects the row, Shift+click extends the selection, ⌘/Ctrl+click adds or removes a row and Esc clears the selection. The status line shows “Selected: N rows”, and copy, export and the AI assistant use the selected rows.
+
+10. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first.
+
+11. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered instead and added to the current tab. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
 
 > **Keep in mind**
 >
@@ -1267,13 +1300,21 @@ Click a connection to open its workspace: the database structure on the left, qu
 
 The workspace: the expanded orders table, a highlighted query and its result on demo data; the header shows the TLS status and Unlock production.
 
+![The “orders — data” preview tab: the table’s first rows appear right away.](../assets/guide/db-preview-tab-en.png)
+
+The “orders — data” preview tab: the table’s first rows appear right away.
+
+![Details of the orders table: sections, sizes in MiB and estimates marked “≈”.](../assets/guide/db-details-en.png)
+
+Details of the orders table: sections, sizes in MiB and estimates marked “≈”.
+
 ![An EXPLAIN plan: steps, estimated rows and cost; bars show each step’s share.](../assets/guide/db-explain-en.png)
 
 An EXPLAIN plan: steps, estimated rows and cost; bars show each step’s share.
 
-![DDL of the orders table: highlighting, line numbers and statements separated by rules.](../assets/guide/db-ddl-en.png)
+![DDL of the orders table: highlighting, line numbers, statements separated by rules and the line-wrap button.](../assets/guide/db-ddl-en.png)
 
-DDL of the orders table: highlighting, line numbers and statements separated by rules.
+DDL of the orders table: highlighting, line numbers, statements separated by rules and the line-wrap button.
 
 ![Three rows selected: the status line reads “Selected: 3 rows”.](../assets/guide/db-row-selection-en.png)
 
@@ -1289,15 +1330,15 @@ A production connection is read-only, and any change is shown to you before it r
 
 2. “Check privileges” in the workspace header reports whether server-side protection is verified and whether the role can write. For production, prefer a read-only role: SELECT or pg\_read\_all\_data in PostgreSQL, SELECT in MySQL, a readonly profile in ClickHouse, ACL +@read -@write in Redis and the read role in MongoDB.
 
-3. A non-production connection also opens read-only. The lock button in the header allows writes until the connection closes. A changing query is shown for confirmation; dangerous ones (DROP, TRUNCATE, UPDATE or DELETE without WHERE, FLUSHALL, dropping a collection) also require typing the connection name.
+3. A non-production connection also opens read-only. The lock button in the header allows writes until the connection closes. A changing or dangerous query (DROP, TRUNCATE, UPDATE or DELETE without WHERE, FLUSHALL, dropping a collection) is shown in “Review query” as a highlighted code block with line numbers that you can select and copy. It runs only after you enter the vault passphrase; a wrong passphrase runs nothing.
 
 4. On desktop, when writes are allowed (a non-production session or production with an open write window), cells of a simple single-table SELECT with a primary key are edited right in the grid. Double-click a cell: Enter keeps the value, Esc cancels the edit and Tab moves to the next cell. The value type comes from the column and is checked as you type; NULL has its own button. Changed cells are highlighted.
 
-5. Edits accumulate. “Review pending edits” shows the generated UPDATE statements keyed by the primary key, and “Discard changes” drops them. Once confirmed, the edits apply in one transaction; if any of them does not find its row, all of them roll back. Without write access, a double-click opens the value viewer.
+5. Edits accumulate. “Review pending edits” shows the generated UPDATE statements keyed by the primary key with the actual values — quoted strings, NULL for empty cells, long values shortened — while what runs is still the parameterized query. Applying needs the vault passphrase, and “Discard changes” drops the edits. Once confirmed, the edits apply in one transaction; if any of them does not find its row, all of them roll back. Without write access, a double-click opens the value viewer.
 
 6. “Query history” keeps the text, time, duration, row count and errors, but not parameter values or data. Filter by Successful, With errors or Favorites. By default history is encrypted and stays on this device; you can sync it or turn it off. Save a query from history as a snippet, and its {{name}} placeholders become snippet variables.
 
-7. Copy a cell, a row, a selection or the whole loaded result. “Export result” re-runs the read query and streams every row to a file as CSV, TSV, JSON, NDJSON, Markdown or SQL INSERT, with progress and cancellation. A changing query is never repeated for export.
+7. Copy a cell, a row, a selection or the whole loaded result. “Export result” re-runs the read query and streams every row to a file as CSV, TSV, JSON, NDJSON, Markdown or SQL INSERT, with progress and cancellation. CSV and TSV escape spreadsheet formulas (“Escape formulas (for Excel)”, on by default), and SQL INSERT escapes quotes and backslashes correctly for each database. A changing query is never repeated for export.
 
 > **Keep in mind**
 >
@@ -1307,15 +1348,19 @@ A production connection is read-only, and any change is shown to you before it r
 
 Editing in the grid: the changed cell is highlighted, the next one is open for input, and “Review pending edits (1)” shows the UPDATE.
 
+![Reviewing edits: the UPDATE statements with the actual values and the vault passphrase field.](../assets/guide/db-query-review-en.png)
+
+Reviewing edits: the UPDATE statements with the actual values and the vault passphrase field.
+
 <a name="databases-production"></a>
 
 ## 44. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
-1. Choose “Unlock production” in the workspace header. Enter the vault passphrase, type the connection name and pick 5, 15 or 30 minutes. The passphrase is checked by the app core.
+1. Choose “Unlock production” in the workspace header. Enter the vault passphrase and pick 5, 15 or 30 minutes. The passphrase is checked by the app core.
 
-2. While the window is open, the header shows a red “Production writes until HH:MM” badge with a countdown and a Lock button. Every changing statement is still shown for review and needs the connection name typed. Result cells can be edited right in the grid.
+2. While the window is open, the header shows a red “Production writes until HH:MM” badge with a countdown and a Lock button. Every changing statement is still shown for review and runs only after you enter the vault passphrase. Result cells can be edited right in the grid.
 
 3. The window closes by itself when the time runs out, on Lock, on disconnect, when the vault locks or when the profile changes. Reads still run in read-only transactions while it is open.
 
@@ -1325,9 +1370,9 @@ A production connection opens read-only. When production must be changed, open a
 >
 > Phones never get a write window. For everyday work with production, prefer a read-only database account: then an accidental change is impossible even with the window open.
 
-![Unlocking production: the vault passphrase, the connection name and the length of the write window.](../assets/guide/db-prod-unlock-en.png)
+![Unlocking production: the vault passphrase and the length of the write window.](../assets/guide/db-prod-unlock-en.png)
 
-Unlocking production: the vault passphrase, the connection name and the length of the write window.
+Unlocking production: the vault passphrase and the length of the write window.
 
 ![An open write window: the red badge with its end time, the countdown and the Lock button.](../assets/guide/db-prod-write-en.png)
 
@@ -1343,7 +1388,7 @@ The assistant writes, explains, fixes and speeds up queries. It uses the provide
 
 2. Describe what you need and choose “AI assistant”. In “Review AI context”, tick what may be shared: schema metadata, explicitly selected rows, a sample of up to 20 rows or one read-only query of up to 50 rows. Everything starts off, and without consent the model receives neither schema nor data.
 
-3. The answer arrives as a draft with an explanation and the list of context that was shared. “Accept draft” opens it in a new editor tab; running it is up to you, with the usual checks. “Refine” continues the conversation and “Reject” discards the draft.
+3. The answer arrives as a draft with an explanation and the list of context that was shared. “Accept draft” adds it to the current editor tab below the existing text; running it is up to you, with the usual checks. “Refine” continues the conversation and “Reject” discards the draft.
 
 4. Passwords, connection strings and server addresses are never sent to the model. For external providers with Strict privacy, table and column names are replaced with aliases before sending and restored in the answer. For production connections, DDL drafts are shown but cannot be run.
 
