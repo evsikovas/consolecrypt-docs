@@ -62,16 +62,19 @@ Step-by-step instructions with the real application interface and demonstration 
 
 **Settings and maintenance**
 
+- [Settings: what is where](#settings-overview)
 - [Colors, text size and glass effects](#appearance)
 - [Right panel: bubbles or one workspace](#right-panel)
 - [Screenshots and screen protection](#screenshots)
 - [Backups and restore](#backups)
 - [Version, author and licenses](#about)
 - [Client updates](#updates)
-- [Website account](#server-account)
+- [Account: password, disconnecting and the website account](#server-account)
 - [Your own server: Kubernetes](#server-setup)
 - [Your own server: Docker Compose](#server-docker)
 - [Your own server: corporate sign-in and shared notes](#server-enterprise)
+- [Your own server: features, flags and limits](#server-config)
+- [Your own server: backups, upgrades and commands](#server-maintenance)
 
 <a name="first-start"></a>
 
@@ -89,6 +92,10 @@ Start locally or connect encrypted sync. A profile contains its own vault and, w
 
 5. Switch profiles at the top of the sidebar. Settings lets you add profiles or enable sync; data from different profiles stays separate.
 
+6. When connecting a server, Check first shows the server version, protocol and whether registration is open. Enter a name for this device — it appears in your device list. “Forgot account password?” resets the account password by email, not the vault passphrase.
+
+7. “Settings → Profiles” renames and deletes profiles. Deleting removes the profile from this device only and needs the “I understand that this cannot be undone” tick; a synced profile’s encrypted vault on the server is not touched, while a local vault can come back only from a backup. The “Open the last profile at startup” checkbox in Appearance opens the last profile right away (the system may ask for keychain access).
+
 > **Keep in mind**
 >
 > The account portal serves public sync.consolecrypt.dev and retains consolecrypt.evsikov.net accounts. Use your existing email and password. The old domain is currently unavailable, and existing profile addresses do not change automatically. Save a backup before reconfiguring the server. Accounts from other servers do not appear here automatically.
@@ -96,6 +103,14 @@ Start locally or connect encrypted sync. A profile contains its own vault and, w
 ![First launch: local use, server connection and restoring a backup.](../assets/guide/welcome-en.png)
 
 First launch: local use, server connection and restoring a backup.
+
+![Connecting to your own server: Check shows its version and protocol, then sign in or register with an email and account password.](../assets/guide/login-standard-en.png)
+
+Connecting to your own server: Check shows its version and protocol, then sign in or register with an email and account password.
+
+![The profile switcher at the top of the sidebar: the active profile, “Add profile…” and “Manage profiles”.](../assets/guide/profiles-menu-en.png)
+
+The profile switcher at the top of the sidebar: the active profile, “Add profile…” and “Manage profiles”.
 
 <a name="linux-install"></a>
 
@@ -163,23 +178,27 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 
 1. Save the Recovery Kit offline and complete the word check. Its words and QR code grant vault access: do not send them by email, chat or AI.
 
-2. In 0.5.6, Recovery Kit words remain whole on phones. The column count follows the screen width and text size, with the QR code below the words. Scroll to save the complete kit.
+2. On phones, Recovery Kit words remain whole. The column count follows the screen width and text size, with the QR code below the words. Scroll to save the complete kit.
 
-3. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
+3. A locked vault opens with its passphrase or, when enabled, Touch ID, Windows Hello or a fingerprint. The same screen offers “Forgot passphrase?”, Sign out, “Delete this profile…” and “Add profile”.
 
-4. A new vault passphrase needs at least 12 characters. Existing vaults still open with their current passphrase; at the next passphrase unlock the key is re-wrapped with stronger Argon2id parameters (at least 64 MiB).
+4. “Forgot passphrase?” opens recovery: enter the kit’s 24 words (or its QR-code text) or, on a trusted device with device unlock enabled, choose “This trusted device”. Then set a new passphrase.
 
-5. Dangerous actions are confirmed with the vault passphrase instead of typing a connection, context or resource name: changing database queries and cell edits, Unlock production, YAML apply, deletion, restart and scaling in Kubernetes. A wrong passphrase runs nothing, the field is cleared after every attempt and Enter confirms.
+5. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
 
-6. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
+6. A new vault passphrase needs at least 12 characters. Existing vaults still open with their current passphrase; at the next passphrase unlock the key is re-wrapped with stronger Argon2id parameters (at least 64 MiB).
 
-7. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
+7. Dangerous actions are confirmed with the vault passphrase instead of typing a connection, context or resource name: changing database queries and cell edits, Unlock production, YAML apply, deletion, restart and scaling in Kubernetes. A wrong passphrase runs nothing, the field is cleared after every attempt and Enter confirms.
 
-8. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
+8. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
 
-9. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+9. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
 
-10. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
+10. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
+
+11. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+
+12. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
 
 > **Keep in mind**
 >
@@ -193,6 +212,22 @@ Unlock with Touch ID is on and protected by the system; no secrets are revealed.
 
 Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.
 
+![The unlock screen: passphrase, system unlock, “Forgot passphrase?” and profile actions.](../assets/guide/unlock-en.png)
+
+The unlock screen: passphrase, system unlock, “Forgot passphrase?” and profile actions.
+
+![Recovering access: the 24-word Recovery Key or this trusted device, then a new passphrase.](../assets/guide/recovery-en.png)
+
+Recovering access: the 24-word Recovery Key or this trusted device, then a new passphrase.
+
+![“Change passphrase…” in the vault settings.](../assets/guide/change-passphrase-en.png)
+
+“Change passphrase…” in the vault settings.
+
+![“New Recovery Kit…”: the old kit stops working.](../assets/guide/recovery-kit-new-en.png)
+
+“New Recovery Kit…”: the old kit stops working.
+
 <a name="devices"></a>
 
 ## 5. Sync and trusted devices
@@ -203,9 +238,13 @@ Signing in and being allowed to decrypt the vault are separate actions. A new de
 
 2. Select the pending device, choose “Verify and approve” and compare the entire displayed code on both devices through an independent channel.
 
-3. In “Synchronization”, check the connection, pending changes and conflicts. Offline changes remain local and are sent when connectivity returns.
+3. Tick “All 6 groups exactly match…” and choose Approve. If any group differs, choose “Codes don’t match”: the request is rejected and no vault key is handed over.
 
-4. Revoke a lost device in the client or website account. Reconnecting it requires a new approval.
+4. In “Synchronization”, check the connection, pending changes and conflicts. Offline changes remain local and are sent when connectivity returns. The Sync indicator in the top bar shows the same at a glance: last sync, server, queue, “Sync now” and “Details”.
+
+5. “Settings → Account &amp; sync → Disconnect (keep data locally)…” turns the profile into a local one: the data stays on the device and the encrypted copy on the server is unchanged. “Also revoke this device on the server” revokes it at the same time.
+
+6. Revoke a lost device in the client or website account. Reconnecting it requires a new approval.
 
 > **Keep in mind**
 >
@@ -215,9 +254,21 @@ Signing in and being allowed to decrypt the vault are separate actions. A new de
 
 Demo device list; access approval is a separate step.
 
+![Approving a new device: the 6 code groups are compared with the new device’s screen; demo codes.](../assets/guide/device-approve-en.png)
+
+Approving a new device: the 6 code groups are compared with the new device’s screen; demo codes.
+
 ![Sync status and queue for the demo profile.](../assets/guide/sync-en.png)
 
 Sync status and queue for the demo profile.
+
+![The Sync indicator in the top bar: last sync, server and queue.](../assets/guide/sync-popover-en.png)
+
+The Sync indicator in the top bar: last sync, server and queue.
+
+![“Disconnect (keep data locally)…” with optional revocation of this device.](../assets/guide/disconnect-en.png)
+
+“Disconnect (keep data locally)…” with optional revocation of this device.
 
 <a name="device-protection"></a>
 
@@ -253,7 +304,7 @@ Sync server 0.2.0 and later can admit accounts only through your organisation’
 
 2. SSO (OIDC): optionally enter your e-mail and press “Sign in with …”. Your organisation’s sign-in page opens in the system browser and returns you to the app afterwards. While signing in, the app shows a waiting state with Cancel.
 
-3. Active Directory: enter your login (e-mail or DOMAIN\\user) and domain password. The password goes to the server once over TLS, is never stored and is cleared from the field after every attempt.
+3. Active Directory: enter your login (e-mail, UPN or DOMAIN\\user) and domain password. The password goes to the server once over TLS, is never stored and is cleared from the field after every attempt.
 
 4. A new user creates a vault after the first sign-in as usual. A known device opens the vault with the vault passphrase; a new device is approved with a code check, the Recovery Key or the vault passphrase.
 
@@ -301,7 +352,13 @@ A host stores SSH or RDP connection settings. Cards and list rows show its addre
 
 6. Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.
 
-7. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. Sharing appears when supported by the server.
+7. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. “Share…” appears when the server supports it, “Copy to team…” and “Move to team…” when you have teams (see Teams).
+
+8. The host form is made of cards. Authentication: a password (saved in the vault or entered at connect time), an SSH key (pick, generate or import it right here), an agent (the system SSH agent or a socket path) or “Inherit from group”. “Choose credential…” assigns a saved one.
+
+9. Security: the host-key policy — Ask (confirm unknown keys), Strict (only keys from known hosts) or Accept new (save unknown keys automatically); a changed key always blocks the connection. It also holds the SSH implementation (“Built-in (russh)” or “System OpenSSH (compatibility)” for old servers), the keepalive interval and “Agent forwarding” — enable it only for hosts you trust.
+
+10. Organisation holds tags and free-text notes. At the bottom, “Effective settings” show what a connection will actually use — group, user, port, credential and route — and where each value comes from; problems such as a deleted jump host appear there too.
 
 ![An overview of demo hosts and their connection details.](../assets/guide/hosts-en.png)
 
@@ -315,9 +372,25 @@ Hosts in a demo group: cards, search and connection actions.
 
 The selected host’s action menu.
 
+![A new SSH host: connection type, address, user, group and authentication.](../assets/guide/host-editor-en.png)
+
+A new SSH host: connection type, address, user, group and authentication.
+
+![The Security card: host-key policy, SSH implementation, keepalive and agent forwarding.](../assets/guide/host-editor-security-en.png)
+
+The Security card: host-key policy, SSH implementation, keepalive and agent forwarding.
+
+![“Effective settings”: what a connection will use and where it comes from.](../assets/guide/host-effective-en.png)
+
+“Effective settings”: what a connection will use and where it comes from.
+
 ![Importing addresses from a demo known\_hosts: select before saving.](../assets/guide/host-import-en.png)
 
 Importing addresses from a demo known\_hosts: select before saving.
+
+![Importing from ~/.ssh/config: Host entries with documentation-range addresses.](../assets/guide/ssh-config-import-en.png)
+
+Importing from ~/.ssh/config: Host entries with documentation-range addresses.
 
 <a name="rdp"></a>
 
@@ -463,7 +536,9 @@ Groups organize your inventory and provide common settings. A jump-host chain re
 
 3. Create a jump-host profile and choose existing hosts in the required order. Assign the profile to a group or individual host.
 
-4. Before moving or deleting a group, check the resulting inherited settings: changing its parent can change the connection.
+4. In the host form’s Jump hosts card choose “Inherit / direct” (the group’s profile, if any), “Jump profile” or “Custom chain”. A custom chain is built from existing hosts with the add-hop button; there is no limit on hops, and the resulting route is shown below the chain.
+
+5. Before moving or deleting a group, check the resulting inherited settings: changing its parent can change the connection.
 
 > **Keep in mind**
 >
@@ -472,6 +547,18 @@ Groups organize your inventory and provide common settings. A jump-host chain re
 ![Demo group inventory and workspace navigation.](../assets/guide/inventory-groups-en.png)
 
 Demo group inventory and workspace navigation.
+
+![A new group: its name, parent and defaults for its hosts.](../assets/guide/group-editor-en.png)
+
+A new group: its name, parent and defaults for its hosts.
+
+![Jump profiles: named chains of intermediate hosts.](../assets/guide/jump-profiles-en.png)
+
+Jump profiles: named chains of intermediate hosts.
+
+![A custom chain of two jump hosts and the resulting route to the host.](../assets/guide/host-editor-jump-en.png)
+
+A custom chain of two jump hosts and the resulting route to the host.
 
 ![Adding a demo host to an existing group.](../assets/guide/host-groups-en.png)
 
@@ -483,13 +570,15 @@ Adding a demo host to an existing group.
 
 Credentials are separate from hosts: one credential can be assigned to multiple connections.
 
-1. In “Credentials → New credential”, add a password, generate an SSH key or import a supported key. Available agents and hardware methods depend on the platform.
+1. In “Credentials → New credential”, choose a type: a password, a new SSH key, an imported key, an SSH certificate (a private key plus its OpenSSH certificate) or an SSH agent — the system one or an external agent by socket or pipe path.
 
-2. Use a descriptive name. Assign the credential to a host or group; enter a key passphrase separately when required.
+2. A new key is generated on the device as Ed25519, RSA 3072 or RSA 4096; the private part goes straight into the vault and the public key is shown for authorized\_keys. FIDO2 keys cannot be created yet.
 
-3. Open its card for metadata and the public key. A secret is revealed only after an explicit action; handle clipboard copies carefully.
+3. Use a descriptive name. Assign the credential to a host or group; enter a key passphrase separately when required.
 
-4. A copied secret is cleared after the selected timeout if the clipboard has not been replaced with another value. Changing the setting affects future copies. An app crash or system clipboard history can prevent removal.
+4. Open its card for metadata and the public key. A secret is revealed only after an explicit action; handle clipboard copies carefully.
+
+5. A copied secret is cleared after the selected timeout if the clipboard has not been replaced with another value. Changing the setting affects future copies. An app crash or system clipboard history can prevent removal.
 
 > **Keep in mind**
 >
@@ -498,6 +587,14 @@ Credentials are separate from hosts: one credential can be assigned to multiple 
 ![Credentials in a demo vault; values are masked.](../assets/guide/credentials-en.png)
 
 Credentials in a demo vault; values are masked.
+
+![Choosing the type of a new credential.](../assets/guide/credential-chooser-en.png)
+
+Choosing the type of a new credential.
+
+![Generating an SSH key: name and algorithm.](../assets/guide/credential-generate-en.png)
+
+Generating an SSH key: name and algorithm.
 
 <a name="host-keys"></a>
 
@@ -542,6 +639,14 @@ Each tab is one terminal session: SSH, plus local shells on macOS and Windows. P
 ![Context menu over a selection in the demo terminal.](../assets/guide/terminal-menu-en.png)
 
 Context menu over a selection in the demo terminal.
+
+![The tab menu on right-click: rename, duplicate and close.](../assets/guide/terminal-tab-menu-en.png)
+
+The tab menu on right-click: rename, duplicate and close.
+
+![“Settings → Terminal”: font, size, colour scheme and tab subtitle.](../assets/guide/terminal-settings-en.png)
+
+“Settings → Terminal”: font, size, colour scheme and tab subtitle.
 
 ![Text selected in the middle of the demo terminal’s scrollback history.](../assets/guide/terminal-selection-scroll-en.png)
 
@@ -615,6 +720,10 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 >
 > Application shortcuts take priority over terminal input. To send Ctrl+L to the remote shell on a phone, use its special-key button.
 
+![“Settings → Keyboard shortcuts”: every action can be remapped or restored to its default.](../assets/guide/shortcuts-settings-en.png)
+
+“Settings → Keyboard shortcuts”: every action can be remapped or restored to its default.
+
 <a name="sftp"></a>
 
 ## 18. SFTP: transfers and file preview
@@ -629,9 +738,23 @@ Open SFTP from a host’s menu or the sidebar. Files travel directly between you
 
 4. A folder the SSH user cannot read is marked as inaccessible instead of looking empty. From Docker, a volume or mount path on an SSH host opens straight in SFTP.
 
+5. The actions menu (toolbar button or right-click) gathers everything for the selected files: open, open with, Quick Look, download, upload here, new folder and new file, rename, duplicate, delete, Get Info, copy path or name and refresh.
+
+6. Get Info shows the size, location, owner and permissions. Change permissions with the Read, Write and Execute checkboxes for owner, group and others or with an octal code; Apply saves them on the server. For a symbolic link, permissions apply to the item it points to.
+
+7. The path bar can be edited or copied; search filters the current folder. Columns, “Folders first” and showing hidden files are set in the list header, and failed transfers can be retried from the activity panel.
+
 ![Quick Look for a demo file with a separate line-number gutter.](../assets/guide/sftp-preview-en.png)
 
 Quick Look for a demo file with a separate line-number gutter.
+
+![The actions menu for a selected file on a demo host.](../assets/guide/sftp-actions-en.png)
+
+The actions menu for a selected file on a demo host.
+
+![Get Info for a file: size, owner and permissions with the octal code.](../assets/guide/sftp-get-info-en.png)
+
+Get Info for a file: size, owner and permissions with the octal code.
 
 <a name="sftp-editor"></a>
 
@@ -669,9 +792,9 @@ A tunnel uses an SSH connection to the chosen host. Local forwarding, remote for
 
 1. Open “Tunnels” and create one. Select the host, type, listening address and port; for local or remote forwarding, specify a destination address and port.
 
-2. Prefer 127.0.0.1 for a local service needed only by you. Binding to 0.0.0.0 can expose the port to other devices on the network.
+2. Prefer 127.0.0.1 for a local service needed only by you. A non-loopback address (such as 0.0.0.0) shows a “Not bound to loopback” warning, and the tunnel can be saved only after ticking “I understand this tunnel is reachable from the network”. For remote forwarding such an address works only if the SSH server allows GatewayPorts.
 
-3. Start the tunnel and check its status. Stop it when finished.
+3. Start the tunnel with its switch and check its status: the row shows active connections and uptime, or the reason after an error. Stop it when finished. “Start automatically after unlock” brings the tunnel up every time the vault is unlocked on this device.
 
 > **Keep in mind**
 >
@@ -681,21 +804,27 @@ A tunnel uses an SSH connection to the chosen host. Local forwarding, remote for
 
 Demo tunnel definitions and statuses.
 
+![Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.](../assets/guide/tunnel-editor-en.png)
+
+Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.
+
 <a name="snippets"></a>
 
 ## 21. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
-1. Choose “New snippet” and enter its name, command, type, tags and optional set. Use variables such as {{service}} in the template.
+1. Choose “New snippet” and enter its name, command, type, tags and optional set. Use variables such as {{service}} in the template; each can have a description and a default value.
 
-2. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis and MongoDB (15 each) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
+2. The risk level — Read-only, Modifying, Destructive or Unknown — decides how strictly a run is confirmed: modifying and destructive commands run only after you tick that you checked the command. On team hosts with the “Ask before running risky commands” policy the tick is always required.
 
-3. Database snippets also run inside psql, mysql, clickhouse-client, redis-cli and mongosh in an SSH session: a multi-line query is sent as one paste, and changing commands need confirmation.
+3. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis and MongoDB (15 each) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
 
-4. Edit commands, move them to another set or delete them. Deleting a set deletes its snippets after confirmation and syncs the change; examples do not reappear automatically.
+4. Database snippets also run inside psql, mysql, clickhouse-client, redis-cli and mongosh in an SSH session: a multi-line query is sent as one paste, and changing commands need confirmation.
 
-5. Fill variables and inspect the rendered command before using it. “Insert” puts it in the terminal; running on multiple hosts requires choosing targets and a separate confirmation.
+5. Edit commands, move them to another set or delete them. Deleting a set deletes its snippets after confirmation and syncs the change; examples do not reappear automatically.
+
+6. Fill variables and inspect the rendered command before using it: the variables dialog shows a preview. “Insert” puts it in the terminal without Enter; “Run” opens a confirmation with the host, the command and the risk level. “Run in multiple terminals…” in the snippet menu runs the command in the open terminal tabs you select after a separate confirmation.
 
 > **Keep in mind**
 >
@@ -704,6 +833,18 @@ A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon 
 ![Starter packages: Linux, Docker, Kubernetes and the database sets.](../assets/guide/snippet-catalog-en.png)
 
 Starter packages: Linux, Docker, Kubernetes and the database sets.
+
+![The snippet editor: a template with variables, their defaults and the risk level.](../assets/guide/snippets-editor-en.png)
+
+The snippet editor: a template with variables, their defaults and the risk level.
+
+![Before running: variable values and a preview of the final command.](../assets/guide/snippets-variables-en.png)
+
+Before running: variable values and a preview of the final command.
+
+![Confirming a destructive command: the host, the command and the required tick.](../assets/guide/snippets-run-confirm-en.png)
+
+Confirming a destructive command: the host, the command and the required tick.
 
 ![Filtering and managing snippet sets.](../assets/guide/snippet-packages-en.png)
 
@@ -715,15 +856,17 @@ Filtering and managing snippet sets.
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
-1. Add a local or remote provider in AI settings and choose a model. For a remote provider, check its address and data-handling policy.
+1. In “Settings → AI providers”, choose “Add provider”: pick the type, address, model and, if needed, an API key (kept in the vault), then “Save &amp; test”. One provider is marked as the default. For a remote provider, check its address and data-handling policy.
 
-2. The Strict profile hides secrets, addresses, hostnames, usernames and database names. Standard keeps host metadata; Local provides more context while still hiding secrets.
+2. “Default privacy” sets the redaction profile; the provider dialog can set a different profile for that provider.
 
-3. Select the required terminal text and choose “Ask AI”, or enable attaching the selection in chat. Review the context before Send; do not paste secrets into free text.
+3. The Strict profile hides secrets, addresses, hostnames, usernames and database names. Standard keeps host metadata; Local provides more context while still hiding secrets.
 
-4. Before “Insert” or “Execute…”, review the proposed command and target host. Execution requires confirmation; assess the command yourself.
+4. Select the required terminal text and choose “Ask AI”, or enable attaching the selection in chat. Review the context before Send; do not paste secrets into free text.
 
-5. Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings. The chip is green only while the built-in model is actually running: blue while it starts, red after an error and grey when it is not running yet; it starts with the first request.
+5. Before “Insert” or “Execute…”, review the proposed command and target host. Execution requires confirmation; assess the command yourself.
+
+6. Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings. The chip is green only while the built-in model is actually running: blue while it starts, red after an error and grey when it is not running yet; it starts with the first request.
 
 > **Keep in mind**
 >
@@ -732,6 +875,14 @@ You choose the provider, context and subsequent action. A model’s answer does 
 ![AI chat with selected context from the demo terminal.](../assets/guide/workspace-ai-selection-en.png)
 
 AI chat with selected context from the demo terminal.
+
+![“Settings → AI providers”: local and remote providers, the default provider and default privacy.](../assets/guide/ai-providers-en.png)
+
+“Settings → AI providers”: local and remote providers, the default provider and default privacy.
+
+![Adding a provider: address, model, an API key kept in the vault and the privacy profile.](../assets/guide/ai-provider-dialog-en.png)
+
+Adding a provider: address, model, an API key kept in the vault and the privacy profile.
 
 <a name="local-ai"></a>
 
@@ -813,27 +964,92 @@ A task with Markdown, a tag, a due time and a reminder.
 
 ## 25. Teams
 
-A team is a vault shared by several accounts on the same server. All members see its hosts, groups, credentials and snippets; roles decide who may change them. Team names, settings and resources are end-to-end encrypted: the server only sees who is a member.
+A team is a vault shared by several accounts on the same server. All members see its hosts, groups, credentials and snippets; roles decide who may change them. Team names, settings and resources are end-to-end encrypted: the server only sees who is a member. Teams are available in a synced profile on server 0.2.1 or later (public sync.consolecrypt.dev supports them); a local profile has no Teams section.
 
-1. Open “Settings → Teams” and choose “Create team”. Set a name, a colour and a description. The team appears on all your devices after they unlock.
+| Server limit | Default |
+| --- | --- |
+| Teams per account | 50 (CC\_MAX\_TEAMS\_PER\_ACCOUNT) |
+| Members per team | 200 (CC\_MAX\_TEAM\_MEMBERS) |
+| Invitation lifetime | 7 days |
+| Invitations per team | at most 20 per hour |
 
-2. In the team window, on “Members”, choose “Invite member”: enter the email, the role and, optionally, a note. The note is not encrypted — the server can read it. If no such account exists, the server does not say so.
+1. Open “Settings → Teams”. It lists your teams with your role and the member count, incoming invitations and the “Create team” and Refresh buttons. Click a team to open its window.
 
-3. The invitee sees the invitation in “Settings → Teams” (and gets an email) and chooses “Accept”. A code of 6 groups of digits appears — read it to the admin by phone or in person.
+2. “Create team”: set a name, a description and a colour from the palette or “Custom…”. The creator becomes the owner, and the team appears on all your devices after they unlock. If the server requires a verified email, verify your address first.
 
-4. The admin chooses “Compare code”, checks every group against their own screen, ticks the confirmation and chooses “Add to team”. If the codes differ, choose “Codes don’t match”: nobody is added.
+3. On “Members”, choose “Invite member”: enter the email, the role and, optionally, a note. The note is not encrypted — the server can read it. The server does not reveal whether such an account exists; an email is sent only if the account exists and the server has mail configured. An invitation is valid for 7 days; pending invitations can be cancelled.
 
-5. In “Hosts”, the sidebar shows “Personal” and each team in its colour. In a team section choose “New team group”: everything created in a team group belongs to the team. An existing host can be copied or moved into a team from its menu — the credentials it needs are copied along.
+4. The invitee sees the invitation in “Settings → Teams” and chooses Accept (or Decline). A code of 6 groups of 5 digits appears — read it to the admin in person, by phone or in a messenger.
 
-6. Roles: Owner and Admin manage members and settings, Editor changes resources, Viewer only views and connects. Team resources carry the team colour in lists and on terminal tabs.
+5. The admin’s team window shows “… accepted the invitation” with “Compare code”. Compare every group with your colleague’s screen, tick the confirmation and choose “Add to team”. If the codes differ, choose “Codes don’t match”: nobody is added and the invitation is rejected.
 
-7. On “Settings”, admins set policies: mark new Kubernetes contexts and databases as production, never send team resources to AI assistants, shorten how long copied passwords stay in the clipboard, and require confirming every command. “My colour for this team” changes the colour on your devices only.
+6. Roles: there is one Owner, who can appoint admins and hand over ownership (“Make owner”). An Admin invites editors and viewers, changes their roles, removes members and edits settings. An Editor changes resources; a Viewer only views and connects, and their team is marked “Read only” in lists.
 
-8. When a member leaves or is removed, the team key is rotated: new resources are encrypted with the next key generation and the former member cannot read them. The “History” tab shows the signed log: who added, removed or promoted whom, and when.
+7. In Hosts, the sidebar shows Personal and each team with its colour and host count; team hosts carry a coloured label in lists. In a team section, “New team group” creates a group inside the team: everything created in a team group belongs to the team.
+
+8. A host’s “…” menu offers “Copy to team…” and “Move to team…” (into teams you can edit), and “Move to personal” for a team host. The credentials the host needs are copied along. Terminal tabs of team hosts carry a stripe in the team colour.
+
+9. The team’s Settings tab holds the name, description, colour and policies. “Mark new Kubernetes contexts and databases as production” makes the team’s new connections production right away. “Never send these resources to AI assistants” keeps team resources out of AI context. “Ask before running risky commands” runs snippet and AI commands on team hosts only after ticking “I checked this command…”, even read-only ones; text you type into the terminal yourself is not checked. Owners and admins change settings; everyone else sees them read-only.
+
+10. “My colour for this team” changes the colour on your devices only. “Leave team” is available to everyone except the owner (hand over ownership first). “Rotate key” issues a new key generation manually; the generation number is shown at the bottom of the tab.
+
+11. When a member leaves or is removed, the team key is rotated: new resources are encrypted with the next key generation and the former member cannot read them. If a rotation is still due, admins see a badge and a warning with “Rotate key”. The History tab shows the signed log: who added, removed or promoted whom, handed over ownership or rotated the key, and when.
 
 > **Keep in mind**
 >
-> Every membership change is signed by an admin, and every client verifies the whole log itself. If the server shows a member nobody signed, or an older membership, the team is paused read-only with a warning and no keys are handed out. A removed member keeps only what they had already downloaded.
+> Every membership change is signed by an admin, and every client verifies the whole log itself. If the server shows a member nobody signed, or an older membership, the team is paused read-only with a warning and no keys are handed out. A removed member keeps only what they had already downloaded. The “Clear copied secrets after” policy is saved in the team settings, but client 0.9.1 clears the clipboard according to the local Security setting.
+
+![“Settings → Teams”: an incoming invitation with a note and two teams with your role and member count; all addresses are demo addresses.](../assets/guide/teams-settings-en.png)
+
+“Settings → Teams”: an incoming invitation with a note and two teams with your role and member count; all addresses are demo addresses.
+
+![Creating a team: name, description and colour.](../assets/guide/teams-create-en.png)
+
+Creating a team: name, description and colour.
+
+![The Members tab: a join request with “Compare code”, member roles and a sent invitation.](../assets/guide/teams-members-en.png)
+
+The Members tab: a join request with “Compare code”, member roles and a sent invitation.
+
+![Inviting a member: email, role and a note the server can read.](../assets/guide/teams-invite-en.png)
+
+Inviting a member: email, role and a note the server can read.
+
+![The invitee accepted: the 6-group code to compare with the admin (a demo code).](../assets/guide/teams-join-code-en.png)
+
+The invitee accepted: the 6-group code to compare with the admin (a demo code).
+
+![The admin compares the same code, ticks the match and adds the member.](../assets/guide/teams-compare-en.png)
+
+The admin compares the same code, ticks the match and adds the member.
+
+![The Settings tab: the team’s name, description, colour and policies.](../assets/guide/teams-policies-en.png)
+
+The Settings tab: the team’s name, description, colour and policies.
+
+![The History tab: the signed log of additions, a role change, a removal and a key rotation.](../assets/guide/teams-history-en.png)
+
+The History tab: the signed log of additions, a role change, a removal and a key rotation.
+
+![Hosts: Personal and team sections in their colours, with team labels on hosts.](../assets/guide/teams-hosts-en.png)
+
+Hosts: Personal and team sections in their colours, with team labels on hosts.
+
+![A team section: only its groups and hosts, with “New team group”.](../assets/guide/teams-hosts-section-en.png)
+
+A team section: only its groups and hosts, with “New team group”.
+
+![A personal host’s menu: “Copy to team…” and “Move to team…”.](../assets/guide/teams-host-menu-en.png)
+
+A personal host’s menu: “Copy to team…” and “Move to team…”.
+
+![Terminal tabs of team hosts carry stripes in the team colours.](../assets/guide/teams-terminal-en.png)
+
+Terminal tabs of team hosts carry stripes in the team colours.
+
+![The “Ask before running risky commands” policy: even a harmless snippet on a team host needs the tick.](../assets/guide/teams-run-confirm-en.png)
+
+The “Ask before running risky commands” policy: even a harmless snippet on a team host needs the tick.
 
 <a name="sharing-start"></a>
 
@@ -853,7 +1069,7 @@ Share individual items with verified devices of people on the same server. Your 
 
 > **Keep in mind**
 >
-> Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public sync.consolecrypt.dev. Each item is published only through an explicit action by its owner.
+> Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public sync.consolecrypt.dev. Each item is published only through an explicit action by its owner. On your own server sharing is off by default; the flags are described in “Your own server: features, flags and limits”.
 
 ![Sharing: the device card and received items with a masked secret and Leave share.](../assets/guide/sharing-main-en.png)
 
@@ -889,11 +1105,15 @@ Each item has its own access rights. A group does not automatically grant access
 
 The separate secret-publishing dialog: the value is masked and consent has not been given.
 
+![“Verify and accept”: the owner, their device and the code to compare through an independent channel; demo data.](../assets/guide/share-accept-en.png)
+
+“Verify and accept”: the owner, their device and the code to compare through an independent channel; demo data.
+
 <a name="databases-sharing"></a>
 
 ## 28. Shared database connections
 
-A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden.
+A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden. On your own server the CC\_SHARED\_DB\_CONNECTIONS\_ENABLED flag turns it on (see “Your own server: features, flags and limits”).
 
 1. In Databases, open the connection’s “…” menu and choose “Sharing”. “What will be shared” lists everything the colleague receives: the name, engine, address, port, database, user, route type and production marker. The TLS mode and limits are shared too.
 
@@ -923,7 +1143,7 @@ Sharing a connection: what the colleague receives; the route is not shared, and 
 
 ## 29. Shared notes on shared objects
 
-A shared host, database connection or Kubernetes context has shared notes that every member sees. This needs sync server 0.2.0 with shared notes enabled by the administrator.
+A shared host, database connection or Kubernetes context has shared notes that every member sees. This needs sync server 0.2.0 or later with shared notes enabled by the administrator (CC\_SHARED\_NOTES\_ENABLED). An object holds up to 500 notes of up to 288 KiB each, encrypted.
 
 1. Open the shared object and the Notes tool on the Object tab. Below your personal notes, a “Shared notes” block appears; its “+” creates a shared note.
 
@@ -959,7 +1179,7 @@ A grant applies only to new devices belonging to an already verified colleague. 
 
 > **Keep in mind**
 >
-> Completing the workflow requires the owner to be online with an unlocked vault. Both modes require full code verification; importing a package alone grants no access. Public packages contain public keys and signatures, not recovery words or private keys.
+> Completing the workflow requires the owner to be online with an unlocked vault. Both modes require full code verification; importing a package alone grants no access. Public packages contain public keys and signatures, not recovery words or private keys. On your own server the CC\_SHARING\_OWNER\_ONLINE\_ENROLLMENT\_ENABLED flag turns this on.
 
 ![Configuring a new-device grant: Manual approval remains the initial choice.](../assets/guide/enrollment-owner-en.png)
 
@@ -993,9 +1213,48 @@ The owner manages participants. An editor changes content; participant access re
 
 Recently deleted: shared items can be restored for 30 days.
 
+![“Manage access”: a colleague’s verified device and its role; future changes are encrypted with a new key.](../assets/guide/share-access-en.png)
+
+“Manage access”: a colleague’s verified device and its role; future changes are encrypted with a new key.
+
+<a name="settings-overview"></a>
+
+## 32. Settings: what is where
+
+Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page of cards; some cards appear only where the feature is available. Appearance, terminal, shortcut and editor preferences stay on the device, while vault data lives in the encrypted profile.
+
+| Card | What it holds |
+| --- | --- |
+| Profiles | The profile list, “Add profile”, renaming and removing from this device. |
+| Account &amp; sync (or Sync for a local profile) | Server, sign-in method, account, device; changing the account password, disconnecting, signing out. A local profile offers enabling sync. |
+| Vault | Auto-lock, device unlock, changing the passphrase, a new Recovery Kit, backups, “Lock now”. |
+| Teams | The profile’s teams and invitations; only on a server with teams. |
+| Appearance | Theme, glass effect, text size, colours, sidebar and right panel, language, opening the last profile. |
+| Security | Clipboard clearing and screenshot and screen-recording protection. |
+| Local AI and AI providers | The built-in model (where available), providers, default privacy. |
+| Terminal | Command history, font size and family, colour theme, tab subtitle, scrollback. |
+| Keyboard shortcuts and SFTP | Remapping shortcuts and the default editor — on computers. |
+| Updates and About | Update checks, version, author and licences. |
+
+1. Cards follow the order of the table. The chapters of this guide describe each one: “Vault, recovery and biometrics”, “Teams”, “Colors, text size and glass effects”, “Screenshots and screen protection”, “AI chat”, “Terminal”, “Keyboard shortcuts”, “Client updates”.
+
+2. Terminal scrollback stays on this device and never syncs. The Remote desktop card appears on phones only.
+
+![The top of Settings: profiles, account and sync, the vault.](../assets/guide/settings-overview-en.png)
+
+The top of Settings: profiles, account and sync, the vault.
+
+![Terminal: command history, font, colour theme, tab subtitle and scrollback.](../assets/guide/terminal-settings-en.png)
+
+Terminal: command history, font, colour theme, tab subtitle and scrollback.
+
+![Security and AI providers: clipboard clearing, local and remote providers, default privacy.](../assets/guide/ai-providers-en.png)
+
+Security and AI providers: clipboard clearing, local and remote providers, default privacy.
+
 <a name="appearance"></a>
 
-## 32. Colors, text size and glass effects
+## 33. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -1019,7 +1278,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 33. Right panel: bubbles or one workspace
+## 34. Right panel: bubbles or one workspace
 
 Snippets, notes, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -1045,7 +1304,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 34. Screenshots and screen protection
+## 35. Screenshots and screen protection
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device.
 
@@ -1076,7 +1335,7 @@ Windows: “Hide window from screen capture” — Never, While secrets are show
 
 <a name="backups"></a>
 
-## 35. Backups and restore
+## 36. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -1084,7 +1343,7 @@ Sync does not replace a backup. Keep the encrypted file apart from your device a
 
 2. To restore, choose the file from the welcome screen or backup section. Review its information first.
 
-3. Unlock the backup with its passphrase, or with the Recovery Kit and a new passphrase. Restoring creates a new profile.
+3. Unlock the backup with its passphrase, or with the Recovery Kit and a new passphrase. Restoring creates a new local profile on this device; existing profiles are not touched. To sync the data again, enable sync in that profile.
 
 > **Keep in mind**
 >
@@ -1094,9 +1353,13 @@ Sync does not replace a backup. Keep the encrypted file apart from your device a
 
 Encrypted backups and scheduling in the demo client.
 
+![Restoring from the welcome screen: a .ccbackup file opens into a new local profile.](../assets/guide/restore-backup-en.png)
+
+Restoring from the welcome screen: a .ccbackup file opens into a new local profile.
+
 <a name="about"></a>
 
-## 36. Version, author and licenses
+## 37. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -1112,7 +1375,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 37. Client updates
+## 38. Client updates
 
 On Windows, macOS and Android, “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself. On Linux, download the new package from the website and install it manually.
 
@@ -1142,7 +1405,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 38. Website account
+## 39. Account: password, disconnecting and the website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -1150,15 +1413,27 @@ The website account manages your public-server account. Decrypted hosts, keys an
 
 2. For a private environment, deploy a compatible server from the repository’s server component. Docker and Helm instructions are intended for administrators.
 
-3. Create a client profile using your server’s HTTPS address. Register an account there; the administrator configures email, server backups and sharing availability.
+3. Create a client profile using your server’s HTTPS address and sign in, or register if the server allows registration; a corporate server signs you in through your organisation. The administrator configures email, server backups and sharing availability.
+
+4. In the app, “Settings → Account &amp; sync” shows the server, the sign-in method, the account and this device’s name. “Change account password” asks for the current and a new password (at least 10 characters); the vault passphrase does not change. On a corporate server the password is changed in your organisation.
+
+5. “Sign out” ends this device’s session; “Sign out on all devices…” ends every session of the account. “Disconnect (keep data locally)…” turns the profile into a local one and can also revoke this device on the server.
 
 > **Keep in mind**
 >
 > The server sees accounts and operational metadata, stores encrypted objects and has no decryption key. Signing in to this website does not transfer an account from another server.
 
+![Settings: profiles, “Account &amp; sync” with the account actions, and the vault.](../assets/guide/settings-overview-en.png)
+
+Settings: profiles, “Account &amp; sync” with the account actions, and the vault.
+
+![“Change account password”: the vault passphrase stays the same.](../assets/guide/account-password-en.png)
+
+“Change account password”: the vault passphrase stays the same.
+
 <a name="kubernetes-connections"></a>
 
-## 39. Kubernetes: connections and access
+## 40. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -1188,7 +1463,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-resources"></a>
 
-## 40. Kubernetes: resources and changes
+## 41. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -1220,7 +1495,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 41. Kubernetes: logs, shell and tunnels
+## 42. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -1254,7 +1529,7 @@ A PostgreSQL Pod with the “Connect to database” button. Demonstration data.
 
 <a name="kubernetes-gitops"></a>
 
-## 42. Kubernetes: GitOps and problems
+## 43. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -1286,7 +1561,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 43. Kubernetes: Helm
+## 44. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -1314,7 +1589,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 44. Kubernetes: context terminal and AI
+## 45. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -1336,7 +1611,7 @@ The context remains explicit for both local commands and AI assistance.
 
 <a name="databases-connections"></a>
 
-## 45. Databases: connections and routes
+## 46. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis and MongoDB. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -1380,7 +1655,7 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-queries"></a>
 
-## 46. Databases: structure, queries and results
+## 47. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -1449,7 +1724,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 47. Databases: production, changes, history and export
+## 48. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -1481,7 +1756,7 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 48. Databases: writing to production
+## 49. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
@@ -1507,7 +1782,7 @@ An open write window: the red badge with its end time, the countdown and the Loc
 
 <a name="databases-ai"></a>
 
-## 49. Databases: AI assistant
+## 50. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -1529,7 +1804,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 50. Docker: hosts and containers
+## 51. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -1557,7 +1832,7 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 51. Docker: details, logs, volumes and forwards
+## 52. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
@@ -1597,7 +1872,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 52. Docker: compose projects
+## 53. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -1627,7 +1902,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 53. Your own server: Kubernetes
+## 54. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -1639,9 +1914,11 @@ A server enables device sync and collaboration. The client does not need one for
 
 4. Validate the values with helm lint and install the chart. The example below assumes external PostgreSQL and an already configured TLS Ingress; substitute your own domains and file paths.
 
-5. Check /readyz and /v1/meta. In the client, choose a server connection and enter its base HTTPS address without /v1. Create an account on that server and test sync on a second device.
+5. The Ingress should pass only /v1, /healthz and /readyz, forward the /v1/events/ws WebSocket, accept request bodies up to 16 MiB and never rewrite the path, query or body: requests are signed. Do not publish metrics port 9090 through the Ingress.
 
-6. For email, configure SMTP with TLS and a separate Secret. The administrator separately enables sharing for teamwork. Schedule PostgreSQL backups and verify restoration before upgrades.
+6. Check /readyz and /v1/meta: the reply shows server\_version, protocol\_version and the server’s capabilities. Teams need server 0.2.1, corporate sign-in and shared notes need 0.2.0; if the version is older, pin a newer image digest in your values (see “Your own server: backups, upgrades and commands”). In the client, choose a server connection and enter its base HTTPS address without /v1. Sign in or register and test sync on a second device.
+
+7. For email, configure SMTP with TLS and a separate Secret (mail.transport: smtp); without mail, the administrator verifies addresses with admin verify-email. Teams are on by default, while sharing, shared notes and new-device protection are enabled with separate flags — see “Your own server: features, flags and limits”. Schedule PostgreSQL backups and verify restoration before upgrades.
 
 ### 1. Source and database Secret
 
@@ -1693,11 +1970,11 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 54. Your own server: Docker Compose
+## 55. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
-1. Prepare an AMD64 or ARM64 Linux server with Docker Engine, Docker Compose v2, Git and Python 3. Point your domain’s DNS at the server and make inbound TCP ports 80 and 443 available for HTTPS.
+1. Prepare an AMD64 or ARM64 Linux server with Docker Engine, Docker Compose 2.24.4 or newer, Git and Python 3.9 or newer. Point your domain’s DNS at the server and make inbound TCP ports 80 and 443 available for HTTPS (Caddy uses UDP 443 for optional HTTP/3). No other proxy may hold these ports.
 
 2. Download the example and run the configuration generator. It creates random database passwords and a private server.env outside the repository, asks for SMTP settings and refuses to overwrite an existing file. Keep this file when upgrading.
 
@@ -1705,9 +1982,13 @@ Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server 
 
 4. Check /readyz and /v1/meta through your HTTPS domain. PostgreSQL does not publish a host port; the API’s HTTP port is bound to 127.0.0.1 only. Clients connect through Caddy; do not expose port 8080 to the internet.
 
-5. In the client, choose your own server and enter https://sync.example.com without /v1. Create an account, check email delivery and sync between two devices. The full instructions explain email verification and enabling collaboration.
+5. In the client, choose your own server and enter https://sync.example.com without /v1. Create an account, check email delivery and sync between two devices. This example requires email verification; without SMTP (the generator with --mail-disabled) the administrator verifies an address with admin verify-email. To close registration, set CC\_REGISTRATION\_OPEN=false in server.env and recreate the server service.
 
-6. Schedule PostgreSQL backups and test restoration. Before upgrading, save the database, private configuration and current image digest. Restarting containers preserves data; deleting volumes does not.
+6. Check server\_version in /v1/meta: the example pins a tested image and may lag behind the latest release. Teams need server 0.2.1, corporate sign-in and shared notes need 0.2.0; “Your own server: backups, upgrades and commands” explains changing the image. Sharing flags go into server.env, while settings that compose.yaml does not list (team limits, corporate sign-in) go into a separate compose.override.yaml.
+
+7. If the host already runs your own HTTPS reverse proxy, drop --profile https and point the proxy at http://127.0.0.1:8080 (CC\_HTTP\_PORT changes the port). The proxy must overwrite X-Forwarded-For, forward the /v1/events/ws WebSocket, accept bodies up to 16 MiB and never change the path, query or body of signed requests.
+
+8. Schedule PostgreSQL backups and test restoration (commands are in “Your own server: backups, upgrades and commands”). Before upgrading, save the database, private configuration and current image digest. The Compose project name is consolecrypt-selfhost: another name creates another database. Restarting containers preserves data; down -v and docker volume prune delete it.
 
 ### 1. Example and private configuration
 
@@ -1760,9 +2041,9 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-enterprise"></a>
 
-## 55. Your own server: corporate sign-in and shared notes
+## 56. Your own server: corporate sign-in and shared notes
 
-Server 0.2.0 (protocol 1.9) can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices and sharing stay the same.
+Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices, sharing and teams (server 0.2.1) work in both modes.
 
 1. Upgrade the server to 0.2.0 and back up the database first: migration 0011 only adds tables. Review the accounts with admin list-users.
 
@@ -1770,11 +2051,17 @@ Server 0.2.0 (protocol 1.9) can run in enterprise mode: accounts sign in only th
 
 3. LDAP / AD: use ldaps:// (or ldap:// with STARTTLS), a service account for searches and optionally a required group. Keep the server’s failed sign-in limit below the domain’s account lockout threshold.
 
-4. Set auth.mode: enterprise and restart the server. On start it checks the IdP or directory and fails with a clear error; admin auth status and admin auth test repeat the checks. Users need client 0.9.0.
+4. Set auth.mode: enterprise (CC\_AUTH\_MODE=enterprise) and restart the server. On start it checks the IdP or directory and fails with a clear error; admin auth status and admin auth test repeat the checks. Users need client 0.9.0 or later. With Docker Compose, put the CC\_AUTH\_\*, CC\_OIDC\_\* and CC\_LDAP\_\* keys and secret files into a separate compose.override.yaml; secret files must be readable by the container user (UID 65532), and OIDC needs CC\_PUBLIC\_URL.
 
-5. Employees disabled in the IdP or AD lose sync access within auth.recheckMinutes + 1 minute: their sessions are revoked and the app locks the profile. There is no password back door; emergency actions use the admin commands (identity link/unlink, session revoke).
+5. After the switch, registration, sign-in, password reset and password change answer enterprise\_auth\_required, and sessions opened with a password stop refreshing: every user signs in once through the IdP or AD. An existing password account is linked automatically only if its domain is in allowedDomains (CC\_AUTH\_ALLOWED\_DOMAINS); otherwise sign-in fails with identity\_conflict and the administrator links it with admin identity link (the OIDC sub or the AD objectGUID). Linking removes the account password and ends earlier sessions; devices and vaults are kept.
 
-6. Shared notes are enabled separately with the sharedNotesEnabled flag (CC\_SHARED\_NOTES\_ENABLED) together with objectSharingEnabled, in either sign-in mode.
+6. Employees disabled in the IdP or AD lose sync access within auth.recheckMinutes (15 by default) + 1 minute: their sessions are revoked and the app locks the profile. If the IdP or AD is unreachable, sessions keep working for auth.recheckGraceHours (24 hours by default), after which refresh answers idp\_unavailable until the source returns.
+
+7. LDAP sign-in protects domain accounts from lockout: after 3 failed attempts in 15 minutes per login (and 30 per IP) the server answers 429 without contacting AD. Google Workspace requires the allowed-domain list and does not support the MFA check; Entra ID needs an issuer with the tenant id, /common is rejected.
+
+8. There is no emergency password sign-in in enterprise mode. If the IdP or AD fails, temporarily switch back to CC\_AUTH\_MODE=standard and set a password with admin set-password --email … --password-stdin; once enterprise is on again, the password is removed at the user’s next sign-in. admin identity unlink removes a link, admin session revoke ends sessions, and admin list-users shows each account’s sign-in method.
+
+9. Shared notes are enabled separately with the sharedNotesEnabled flag (CC\_SHARED\_NOTES\_ENABLED) together with objectSharingEnabled, in either sign-in mode.
 
 ### Helm: sign-in with Entra ID
 
@@ -1800,12 +2087,16 @@ auth:
 
 ### Check the configuration
 
-Run the commands inside the server container. --password-stdin performs a real bind and counts towards the domain lockout policy.
+Kubernetes and Docker Compose (the cc\_compose helper from the Docker chapter). For LDAP, --login looks up the user, its group and disabled state; with --password-stdin it performs a real bind that counts towards the domain lockout policy. For OIDC, --login re-checks the account with the IdP right away.
 
 ```text
-consolecrypt-server admin auth status
-consolecrypt-server admin auth test
-consolecrypt-server admin auth test --login alice@example.com
+kubectl -n consolecrypt exec deployment/consolecrypt -- \
+  /usr/local/bin/consolecrypt-server admin auth status
+kubectl -n consolecrypt exec deployment/consolecrypt -- \
+  /usr/local/bin/consolecrypt-server admin auth test --login alice@example.com
+
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth status
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 ```
 
 [Full enterprise-mode instructions: every setting, IdP and AD recipes ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
@@ -1819,3 +2110,168 @@ consolecrypt-server admin auth test --login alice@example.com
 ![How the client sees a server in enterprise mode with Active Directory.](../assets/guide/enterprise-login-ldap-en.png)
 
 How the client sees a server in enterprise mode with Active Directory.
+
+<a name="server-config"></a>
+
+## 57. Your own server: features, flags and limits
+
+Your own server’s features are turned on with CC\_\* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.
+
+| Feature | Variable (Helm) | Default |
+| --- | --- | --- |
+| New account registration | CC\_REGISTRATION\_OPEN (config.registrationOpen) | on |
+| Required email verification | CC\_REQUIRE\_EMAIL\_VERIFICATION (config.requireEmailVerification) | off; on in the Docker example |
+| Mail | CC\_MAIL\_TRANSPORT: smtp, file or disabled (mail.transport) | disabled; smtp in the Docker example |
+| Device request signatures | CC\_REQUIRE\_REQUEST\_PROOF (config.requireRequestProof) | on |
+| Teams | CC\_TEAMS\_ENABLED (via extraEnv in Helm) | on |
+| Teams per account / members per team | CC\_MAX\_TEAMS\_PER\_ACCOUNT / CC\_MAX\_TEAM\_MEMBERS | 50 / 200 |
+| Sharing (main flag) | CC\_OBJECT\_SHARING\_ENABLED (config.objectSharingEnabled) | off |
+| Shared groups and shared secrets | CC\_SHARED\_GROUPS\_ENABLED, CC\_SHARED\_SECRETS\_ENABLED | off |
+| Shared Kubernetes contexts and database connections | CC\_SHARED\_KUBE\_CONTEXTS\_ENABLED, CC\_SHARED\_DB\_CONNECTIONS\_ENABLED | off |
+| Shared notes | CC\_SHARED\_NOTES\_ENABLED (config.sharedNotesEnabled) | off |
+| A colleague’s new devices with the owner online | CC\_SHARING\_OWNER\_ONLINE\_ENROLLMENT\_ENABLED | off |
+| New-device protection | CC\_DEVICE\_PROTECTION\_ENABLED (config.deviceProtection.enabled), quarantine CC\_DEVICE\_QUARANTINE\_DAYS | off; 14-day quarantine |
+| Corporate sign-in | CC\_AUTH\_MODE (auth.mode) | standard |
+| Vaults per account / vault size | CC\_MAX\_VAULTS\_PER\_ACCOUNT / CC\_MAX\_VAULT\_BYTES | 50 / 1 GiB |
+| Prometheus metrics (/metrics) | CC\_METRICS\_LISTEN (metrics.enabled) | port 9090; off in the Docker example |
+
+1. Sharing is off by default. Every extension — groups, secrets, Kubernetes, databases, notes, a colleague’s new devices — needs the main CC\_OBJECT\_SHARING\_ENABLED flag and request signatures turned on, otherwise the server refuses to start. Enable only what you need; turning a flag off hides shared objects and notes without deleting their encrypted content. The client learns the capabilities from the authenticated /v1/shares/capabilities, not from /v1/meta.
+
+2. Teams (server 0.2.1) are on by default and do not depend on the sharing flags. CC\_TEAMS\_ENABLED accepts only true or false; with false the team routes answer 404 and clients hide the Teams section. If email verification is required, an account without a verified address cannot create a team. Invitations last 7 days, a team sends at most 20 per hour, and only the owner can appoint admins.
+
+3. New-device protection sends emails with a “This wasn’t me” link to the account page at CC\_PUBLIC\_URL/account. Publish such a page and configure mail before turning it on; without SMTP no emails are sent, while the rest of the protection works. In the Docker example CC\_PUBLIC\_URL is empty and Caddy serves only the API.
+
+4. Without mail (CC\_MAIL\_TRANSPORT=disabled) the administrator verifies addresses with admin verify-email and issues a one-time password-reset token with admin reset-token. To close the server to newcomers, turn registration off; on a corporate server accounts are created at the first sign-in through the IdP or AD (CC\_AUTH\_AUTO\_CREATE).
+
+5. Docker Compose passes the server only the variables listed in compose.yaml: change registration, mail, sharing flags and device protection in server.env and recreate the server service. Put team limits, corporate sign-in and other keys into a compose.override.yaml in your private directory and add it as a second -f in the cc\_compose helper. In Helm the flags live in the config block, and variables without their own key (such as team limits) go into extraEnv.
+
+### Docker Compose: flags in server.env
+
+Lines of the private server.env: this example enables sharing and shared notes and closes registration. After editing, recreate only the server service: cc\_compose up -d --wait --wait-timeout 180 server.
+
+```text
+CC_OBJECT_SHARING_ENABLED=true
+CC_SHARED_NOTES_ENABLED=true
+CC_REGISTRATION_OPEN=false
+```
+
+### Docker Compose: team limits in compose.override.yaml
+
+A file in the private $CC\_INSTALL\_DIR directory next to server.env.
+
+```text
+# $CC_INSTALL_DIR/compose.override.yaml
+services:
+  server:
+    environment:
+      CC_MAX_TEAMS_PER_ACCOUNT: "20"
+      CC_MAX_TEAM_MEMBERS: "50"
+```
+
+### Docker Compose: the cc\_compose helper with the override file
+
+Without the second -f, Docker Compose does not read an override file from another directory. Use this helper for all commands.
+
+```text
+cc_compose() {
+  docker compose --env-file "$CC_INSTALL_DIR/server.env" \
+    -f server/deploy/docker/compose.yaml \
+    -f "$CC_INSTALL_DIR/compose.override.yaml" --profile https "$@"
+}
+cc_compose config --quiet
+cc_compose up -d --wait --wait-timeout 180 server
+```
+
+### Helm: a values.yaml fragment
+
+Add the keys you need to your complete values file and apply it with the same helm upgrade --install command.
+
+```text
+config:
+  requireRequestProof: true
+  objectSharingEnabled: true
+  sharedNotesEnabled: true
+extraEnv:
+  - name: CC_MAX_TEAM_MEMBERS
+    value: "50"
+```
+
+[Full instructions: sharing flags, device protection, mail ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+
+> **Keep in mind**
+>
+> Flags change only what the server allows. The server still stores only ciphertext and operational metadata: no setting gives it the keys of vaults, teams or shared objects.
+
+![The client shows Teams only when the server supports them.](../assets/guide/teams-settings-en.png)
+
+The client shows Teams only when the server supports them.
+
+<a name="server-maintenance"></a>
+
+## 58. Your own server: backups, upgrades and commands
+
+All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
+
+| Admin command | What it does |
+| --- | --- |
+| admin list-users | Accounts: status, sign-in method (password, oidc, ldap), device and vault counts. |
+| admin verify-email --email … | Marks the account email as verified (a server without SMTP). |
+| admin reset-token --email … | Prints a single-use account password-reset token. |
+| admin set-password --email … --password-stdin | Sets a new account password from stdin and signs out all sessions. |
+| admin disable-user / enable-user --email … | Disables an account and revokes its sessions, or enables it again. |
+| admin session revoke --email … | Signs out every session of the account. |
+| admin rotate-epoch --all \| --vault &lt;id&gt; | After a database restore: rotates vault epochs so clients detect the rollback. |
+| admin auth status \| test, admin identity link \| unlink | Corporate sign-in: IdP or AD checks and account linking (see the corporate sign-in chapter). |
+
+1. Run pg\_dump in custom format regularly and keep encrypted copies off the database node. Separately keep server.env or your values file, secrets and the Caddy volumes. A copy contains account metadata even though vault contents are encrypted.
+
+2. Test restoring into a separate empty database that no live client uses: compare tables, migrations, row counts and sharing\_instance.instance\_id. An archive listing does not replace a test restore.
+
+3. After a disaster restore, close client access, restore the whole database before starting the API and run admin rotate-epoch --all before reopening: clients notice the rollback and re-upload what the backup lacks. The command does not reset trust in shared items; the server instance UUID must be preserved.
+
+4. Upgrading: make and verify a backup, keep the previous digest and configuration. Take the image digest from the manifest attached to the server release on the consolecrypt-server repository’s Releases page and set it in CC\_SERVER\_IMAGE (Docker) or image.digest (Helm), with CC\_SOURCE\_CODE\_URL / config.sourceCodeUrl pointing at that release’s source. Then check /readyz, /v1/meta, mail and sync between two devices.
+
+5. Migrations are built into the server and run at start; going back to an older image does not undo them. Use CC\_RUN\_MIGRATIONS=false (migrations.runAtStartup: false and migrations.job.enabled: false in Helm) only for a rollback you have verified as compatible. Recent migrations: 0008 device protection (0.1.16), 0009 owner deletion of shared items (0.1.17), 0010 shared notes and 0011 corporate sign-in (0.2.0), 0012 teams (0.2.1).
+
+6. Do not change the PostgreSQL major version by switching the tag, and do not use down -v, docker volume prune or helm uninstall, or delete PVCs to upgrade. /healthz answers without touching the database (liveness), /readyz checks the database, /v1/meta shows the version, protocol and capabilities; Prometheus metrics are served on a separate port 9090.
+
+### Docker Compose: backup and check
+
+pg\_dump runs inside the PostgreSQL container over its local socket, so no password appears in arguments. The cc\_compose helper comes from the Docker chapter.
+
+```text
+umask 077
+CC_BACKUP_FILE="$CC_INSTALL_DIR/backups/consolecrypt-$(date -u +%Y%m%dT%H%M%SZ).dump"
+mkdir -p "$CC_INSTALL_DIR/backups"
+cc_compose exec -T postgres pg_dump -U postgres -d consolecrypt \
+  --format=custom --no-owner --no-acl > "$CC_BACKUP_FILE"
+cc_compose exec -T postgres pg_restore --list < "$CC_BACKUP_FILE" > "$CC_BACKUP_FILE.list"
+```
+
+### Docker Compose: upgrading the image
+
+First replace CC\_SERVER\_IMAGE and CC\_SOURCE\_CODE\_URL in server.env with the new release’s values.
+
+```text
+cc_compose config --quiet
+cc_compose pull server
+cc_compose up -d --wait --wait-timeout 180 server
+curl --fail "https://$CC_API_DOMAIN/readyz"
+curl --fail "https://$CC_API_DOMAIN/v1/meta"
+```
+
+### Admin commands
+
+The first line is Docker Compose, the second Kubernetes. After a database restore, rotate-epoch runs before client access returns.
+
+```text
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin verify-email --email user@example.com
+kubectl -n consolecrypt exec deployment/consolecrypt -- \
+  /usr/local/bin/consolecrypt-server admin rotate-epoch --all
+```
+
+[Full instructions: backups, restore and upgrades ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+
+> **Keep in mind**
+>
+> Restoring the server from a backup does not replace client backups: each user’s encrypted .ccbackup file and Recovery Kit remain their own safety net.
