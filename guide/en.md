@@ -204,7 +204,9 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 
 13. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
 
-14. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
+14. The device remembers the fingerprint of its vault key and checks every key it receives against it — on passphrase, Recovery Key or biometric unlock, device approval and enabling sync. If the server sends a different key, the “Different vault key” screen appears: data on the device stays unchanged, sync stops and there is no way to accept the “new” key. Do not enter secrets on that device; choose “Copy diagnostics” and tell the server administrator.
+
+15. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
 
 > **Keep in mind**
 >
@@ -217,6 +219,10 @@ Unlock with Touch ID is on and protected by the system, next to “Confirm actio
 ![Unlocking production is confirmed with Touch ID; “Enter the vault passphrase” remains the fallback.](../assets/guide/step-up-biometric-en.png)
 
 Unlocking production is confirmed with Touch ID; “Enter the vault passphrase” remains the fallback.
+
+![“Different vault key”: sync is stopped, and the only choices are Lock, Copy diagnostics and More; demo values.](../assets/guide/vault-key-mismatch-en.png)
+
+“Different vault key”: sync is stopped, and the only choices are Lock, Copy diagnostics and More; demo values.
 
 ![Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.](../assets/guide/recovery-kit-mobile-en.png)
 
@@ -248,13 +254,21 @@ Signing in and being allowed to decrypt the vault are separate actions. A new de
 
 2. Select the pending device, choose “Verify and approve” and compare the entire displayed code on both devices through an independent channel.
 
-3. Tick “All 6 groups exactly match…” and choose Approve. If any group differs, choose “Codes don’t match”: the request is rejected and no vault key is handed over.
+3. With server 0.2.2 and later, as soon as the request is opened on a trusted device, the new device shows that device’s name and the same pairing code, computed from both devices’ keys. On the new device, tick “The code matches the one on “…”” and choose “Codes match”; without the tick you cannot confirm. The approval signature covers the vault key, and the new device checks it with the key you confirmed.
 
-4. In “Synchronization”, check the connection, pending changes and conflicts. Offline changes remain local and are sent when connectivity returns. The Sync indicator in the top bar shows the same at a glance: last sync, server, queue, “Sync now” and “Details”.
+4. With an older server, approval works as before and the vault key is marked “Vault key not confirmed”. Choose “Confirm with passphrase” in Devices or “Settings → Vault” and enter the vault passphrase once. If another device of the account reports a different key, Devices shows “A device received a different vault key” with a Revoke button.
 
-5. “Settings → Account &amp; sync → Disconnect (keep data locally)…” turns the profile into a local one: the data stays on the device and the encrypted copy on the server is unchanged. “Also revoke this device on the server” revokes it at the same time.
+5. Tick “All 6 groups exactly match…” and choose Approve. If any group differs, choose “Codes don’t match”: the request is rejected and no vault key is handed over.
 
-6. Revoke a lost device in the client or website account. Reconnecting it requires a new approval.
+6. In “Synchronization”, check the connection, pending changes and conflicts. Offline changes remain local and are sent when connectivity returns. The Sync indicator in the top bar shows the same at a glance: last sync, server, queue, “Sync now” and “Details”.
+
+7. “Settings → Account &amp; sync → Disconnect (keep data locally)…” turns the profile into a local one: the data stays on the device and the encrypted copy on the server is unchanged. “Also revoke this device on the server” revokes it at the same time.
+
+8. Revoke a lost device in the client or website account. Reconnecting it requires a new approval.
+
+9. The server may limit sync. When it temporarily limits requests, the indicator and Sync show “The server temporarily limited sync; resuming at HH:MM”: changes stay on the device and go out by themselves. When the server refuses changes because of the vault’s object or storage limit, the “Changes not accepted by the server” card explains why — delete items you no longer need and choose Retry.
+
+10. When you sign in from a new device, the server may answer “Device limit (N) reached — revoke devices you no longer use, then sign in again” or “Too many new devices today. Try again after …”. Colleague lookup, sharing and adding your own devices show how many seconds to wait when requests are limited.
 
 > **Keep in mind**
 >
@@ -267,6 +281,18 @@ Demo device list; access approval is a separate step.
 ![Approving a new device: the 6 code groups are compared with the new device’s screen; demo codes.](../assets/guide/device-approve-en.png)
 
 Approving a new device: the 6 code groups are compared with the new device’s screen; demo codes.
+
+![The new device: the pairing code with “Office Mac” and the mandatory match tick; demo codes.](../assets/guide/approval-pairing-en.png)
+
+The new device: the pairing code with “Office Mac” and the mandatory match tick; demo codes.
+
+![“Vault key not confirmed” in Devices with “Confirm with passphrase”.](../assets/guide/devices-key-unconfirmed-en.png)
+
+“Vault key not confirmed” in Devices with “Confirm with passphrase”.
+
+![Sync paused by the server until the shown time; changes over the object limit wait for Retry.](../assets/guide/sync-limits-en.png)
+
+Sync paused by the server until the shown time; changes over the object limit wait for Retry.
 
 ![Sync status and queue for the demo profile.](../assets/guide/sync-en.png)
 
@@ -1103,25 +1129,41 @@ Share individual items with verified devices of people on the same server. Your 
 
 3. Choose “Share…” in a host or snippet menu. Review the data: a host is shared without private credentials; pay particular attention to notes.
 
-4. Find your colleague’s devices by email. They open “My device verification code”; compare the whole code through an independent channel and confirm it.
+4. Find your colleague’s devices by email and tick “Give access to this device”: the device’s keys are pinned on your device as “Chosen (not verified)”. The email address and the server’s device list do not prove the keys on their own.
 
-5. Keep “Read” for viewing, or explicitly choose “Edit”. Check recipients and publish. The recipient verifies the owner’s code in “Verify and accept”.
+5. Choose Verify next to the device. The “Safety number” tab shows 12 groups of digits computed from both devices’ keys; your colleague opens the same check for your device and reads their number out by phone or in person, and you type it — pasting is disabled. In person, scan the colleague’s “QR code” or enter its text. Once it matches, the status becomes “Verified” with the date.
+
+6. If the server later reports other keys for a known device, it is marked “Keys changed” and gets no new access until verified again. Secrets, Kubernetes contexts and database connections go only to verified devices by default — the “Sharing: verified recipients only” setting in “Settings → Vault” (it can also require verification for hosts, groups and snippets). It applies to new access and new devices; existing recipients keep theirs.
+
+7. Keep “Read” for viewing, or explicitly choose “Edit”. Check recipients and publish. In “Verify and accept”, the recipient sees the owner and may verify them the same way; an item from an unverified owner is marked “Owner not verified” and its hosts never connect automatically. After updating to 0.9.2, a one-time list shows the recipients of secrets, Kubernetes contexts and databases worth verifying.
 
 > **Keep in mind**
 >
 > Availability depends on a compatible server, verified email and device trust. Sharing, groups, secrets and verified enrollment of a colleague’s new devices are enabled on public sync.consolecrypt.dev. Each item is published only through an explicit action by its owner. On your own server sharing is off by default; the flags are described in “Your own server: features, flags and limits”.
 
-![Sharing: the device card and received items with a masked secret and Leave share.](../assets/guide/sharing-main-en.png)
+![Sharing: the device card, “My device key fingerprint” and received items marked “Owner not verified”.](../assets/guide/sharing-main-en.png)
 
-Sharing: the device card and received items with a masked secret and Leave share.
+Sharing: the device card, “My device key fingerprint” and received items marked “Owner not verified”.
 
-![A complete example device code for independent verification; never use the demo code to establish real trust.](../assets/guide/sharing-recipient-en.png)
+![The colleague’s device is chosen: “Chosen (not verified)”, the Verify button and the key fingerprint; demo data.](../assets/guide/sharing-recipient-en.png)
 
-A complete example device code for independent verification; never use the demo code to establish real trust.
+The colleague’s device is chosen: “Chosen (not verified)”, the Verify button and the key fingerprint; demo data.
+
+![Verifying the colleague’s device: the 12-group safety number and the number typed as the colleague reads it; demo digits.](../assets/guide/sharing-verify-en.png)
+
+Verifying the colleague’s device: the 12-group safety number and the number typed as the colleague reads it; demo digits.
 
 ![Selecting Reader or Editor access.](../assets/guide/sharing-roles-en.png)
 
 Selecting Reader or Editor access.
+
+![“Sharing: verified recipients only” in the Vault card: secrets, Kubernetes contexts and databases are on by default.](../assets/guide/sharing-policy-en.png)
+
+“Sharing: verified recipients only” in the Vault card: secrets, Kubernetes contexts and databases are on by default.
+
+![The one-time list of secret recipients worth verifying and the “Owner not verified” mark.](../assets/guide/sharing-verify-banner-en.png)
+
+The one-time list of secret recipients worth verifying and the “Owner not verified” mark.
 
 <a name="sharing-items"></a>
 
@@ -1145,9 +1187,9 @@ Each item has its own access rights. A group does not automatically grant access
 
 The separate secret-publishing dialog: the value is masked and consent has not been given.
 
-![“Verify and accept”: the owner, their device and the code to compare through an independent channel; demo data.](../assets/guide/share-accept-en.png)
+![“Verify and accept”: the owner, their device, the key status and the Verify button; demo data.](../assets/guide/share-accept-en.png)
 
-“Verify and accept”: the owner, their device and the code to compare through an independent channel; demo data.
+“Verify and accept”: the owner, their device, the key status and the Verify button; demo data.
 
 <a name="databases-sharing"></a>
 
@@ -1167,7 +1209,9 @@ A saved database connection can be shared with a colleague’s verified device, 
 
 6. A copy of a production connection stays a production connection and opens read-only. Connections can be added to shared groups.
 
-7. SQLite and Cassandra / ScyllaDB connections cannot be shared in 0.9.2: they stay on this device and have no Sharing item.
+7. Like secrets and Kubernetes contexts, database connections go only to verified colleague devices by default: choose Verify first and compare the safety number (see “Sharing: getting started”).
+
+8. SQLite and Cassandra / ScyllaDB connections cannot be shared in 0.9.2: they stay on this device and have no Sharing item.
 
 > **Keep in mind**
 >
@@ -1215,7 +1259,7 @@ A grant applies only to new devices belonging to an already verified colleague. 
 
 2. Forward the public grant package to the new device. Choose “Add this device” in the “Access on another device” card: it inspects the package and creates a request with Reader as the default.
 
-3. On the colleague’s already verified device, choose “Confirm another device”, compare the new device’s entire code and return the endorsed package.
+3. On the colleague’s already verified device, choose “Confirm another device”, open the package and type the code (6 groups of 5 digits) from the new device’s screen — at this step the code is neither shown nor filled in. Then return the endorsed package; when continuing the enrollment, the new device likewise types the code shown on the confirming device.
 
 4. The new device continues enrollment and responds to the key-possession challenge through “Device requests”. In Manual mode, the owner approves the request; Automatic acts only within the pre-authorized limits.
 
@@ -1226,6 +1270,10 @@ A grant applies only to new devices belonging to an already verified colleague. 
 ![Configuring a new-device grant: Manual approval remains the initial choice.](../assets/guide/enrollment-owner-en.png)
 
 Configuring a new-device grant: Manual approval remains the initial choice.
+
+![“Confirm another device”: the code is typed from the other device’s screen; pasting and autofill are off; demo data.](../assets/guide/enrollment-endorse-en.png)
+
+“Confirm another device”: the code is typed from the other device’s screen; pasting and autofill are off; demo data.
 
 <a name="sharing-revoke"></a>
 
@@ -1269,7 +1317,7 @@ Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page o
 | --- | --- |
 | Profiles | The profile list, “Add profile”, renaming and removing from this device. |
 | Account &amp; sync (or Sync for a local profile) | Server, sign-in method, account, device; changing the account password, disconnecting, signing out. A local profile offers enabling sync. |
-| Vault | Auto-lock, device unlock, confirming actions with biometrics, changing the passphrase, a new Recovery Kit, backups, “Lock now”. |
+| Vault | Auto-lock, device unlock, confirming actions with biometrics, “Sharing: verified recipients only”, changing the passphrase, a new Recovery Kit, backups, “Lock now”. |
 | Teams | The profile’s teams and invitations; only on a server with teams. |
 | Appearance | Theme, glass effect, text size, colours, sidebar and right panel, language, opening the last profile. |
 | Security | Clipboard clearing (on Android, also in the background) and screenshot and screen-recording protection. |
@@ -1958,6 +2006,10 @@ Designing a new invoices table: columns with types, NOT NULL and defaults; the d
 ![CSV import, step 2 of 5: encoding, delimiter, NULL, decimal separator and a preview of the file’s first rows.](../assets/guide/db-csv-read-en.png)
 
 CSV import, step 2 of 5: encoding, delimiter, NULL, decimal separator and a preview of the file’s first rows.
+
+![Step 3 of 5: file columns mapped by name, manager\_note skipped, and total values with a decimal comma flagged.](../assets/guide/db-csv-map-en.png)
+
+Step 3 of 5: file columns mapped by name, manager\_note skipped, and total values with a decimal comma flagged.
 
 <a name="databases-ai"></a>
 
