@@ -756,6 +756,14 @@ The actions menu for a selected file on a demo host.
 
 Get Info for a file: size, owner and permissions with the octal code.
 
+![The local pane on the left and the remote host on the right; a demo “disk” /Users/demo is shown.](../assets/guide/sftp-local-pane-en.png)
+
+The local pane on the left and the remote host on the right; a demo “disk” /Users/demo is shown.
+
+![The Transfers panel: downloads and an upload are done, and a failed transfer has a retry button.](../assets/guide/sftp-transfers-en.png)
+
+The Transfers panel: downloads and an upload are done, and a failed transfer has a retry button.
+
 <a name="sftp-editor"></a>
 
 ## 19. SFTP: default editor
@@ -938,7 +946,7 @@ Notes is a right-panel tool next to Snippets and AI. Open it with the note icon,
 
 2. “All” lists every note and what it is attached to; “Tasks” lists only tasks, with overdue ones first and highlighted, and completed ones grouped separately. Search covers titles, text and tags.
 
-3. Write the text in Markdown; the Preview tab shows the result. Add comma-separated tags or pin a note from its menu. The Task switch adds a due time and a Done mark.
+3. Write the text in Markdown; the Preview tab shows the result. Add comma-separated tags. A note’s “…” menu pins it, snoozes it for an hour (“Remind in an hour”), attaches it to the current object or detaches it, and deletes it. The Task switch adds a due time and a Done mark.
 
 4. Reminder offers in an hour, today at 18:00, tomorrow at 09:00, in a week or a time of your choice. While the app is open a notice with Open appears on time; the Notes icon counts overdue tasks and reminders that went off.
 
@@ -959,6 +967,10 @@ The Tasks tab: overdue first, each task with its due time, reminder and attachme
 ![A task with Markdown, a tag, a due time and a reminder.](../assets/guide/notes-editor-en.png)
 
 A task with Markdown, a tag, a due time and a reminder.
+
+![A note’s menu: pin, remind in an hour, detach from the object and delete.](../assets/guide/notes-menu-en.png)
+
+A note’s menu: pin, remind in an hour, detach from the object and delete.
 
 <a name="teams"></a>
 
@@ -1461,6 +1473,10 @@ Kubernetes interface with demonstration data.
 
 Kubernetes interface with demonstration data.
 
+![kubeconfig import: contexts of a demo file, their authentication, the Production switch and a certificate file that needs separate approval.](../assets/guide/kube-import-en.png)
+
+kubeconfig import: contexts of a demo file, their authentication, the Production switch and a certificate file that needs separate approval.
+
 <a name="kubernetes-resources"></a>
 
 ## 41. Kubernetes: resources and changes
@@ -1492,6 +1508,14 @@ Kubernetes interface with demonstration data.
 ![Kubernetes interface with demonstration data.](../assets/guide/kube-resources-412-en.png)
 
 Kubernetes interface with demonstration data.
+
+![Editing YAML: after “Validate on the server” the difference is shown, and applying needs a separate confirmation.](../assets/guide/kube-yaml-en.png)
+
+Editing YAML: after “Validate on the server” the difference is shown, and applying needs a separate confirmation.
+
+![Rollout history: two Deployment revisions compared field by field.](../assets/guide/kube-rollout-en.png)
+
+Rollout history: two Deployment revisions compared field by field.
 
 <a name="kubernetes-logs-shell"></a>
 
@@ -1526,6 +1550,18 @@ Kubernetes interface with demonstration data.
 ![A PostgreSQL Pod with the “Connect to database” button. Demonstration data.](../assets/guide/kube-database-1400-en.png)
 
 A PostgreSQL Pod with the “Connect to database” button. Demonstration data.
+
+![Pod logs in the resource card: container choice, the previous run, following, filtering and levels.](../assets/guide/kube-logs-en.png)
+
+Pod logs in the resource card: container choice, the previous run, following, filtering and levels.
+
+![The Pod terminal in the bottom panel: the container and Pod address in its header; the output is a demo.](../assets/guide/kube-shell-en.png)
+
+The Pod terminal in the bottom panel: the container and Pod address in its header; the output is a demo.
+
+![A Pod port forward: the address on this device and the list of active forwards on the right.](../assets/guide/kube-forward-en.png)
+
+A Pod port forward: the address on this device and the list of active forwards on the right.
 
 <a name="kubernetes-gitops"></a>
 
@@ -1608,6 +1644,10 @@ The context remains explicit for both local commands and AI assistance.
 > **Keep in mind**
 >
 > An external provider receives selected sanitized data. WSL requires access to the Windows loopback proxy; incompatible networking never exposes an external proxy listener.
+
+![AI in Kubernetes: a question about a failing Pod, the logs and events it read and the local model’s answer; the answer is a scripted demo.](../assets/guide/kube-ai-en.png)
+
+AI in Kubernetes: a question about a failing Pod, the logs and events it read and the local model’s answer; the answer is a scripted demo.
 
 <a name="databases-connections"></a>
 

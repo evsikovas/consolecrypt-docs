@@ -598,6 +598,8 @@ export const guideSections = [
     images: [
       shot('sftp-actions', 'Меню действий для выбранного файла на демонстрационном хосте.', 'The actions menu for a selected file on a demo host.'),
       shot('sftp-get-info', '«Свойства» файла: размер, владелец и права с восьмеричным кодом.', 'Get Info for a file: size, owner and permissions with the octal code.'),
+      shot('sftp-local-pane', 'Локальная панель слева и удалённый хост справа; показан демонстрационный «диск» /Users/demo.', 'The local pane on the left and the remote host on the right; a demo “disk” /Users/demo is shown.'),
+      shot('sftp-transfers', 'Панель «Передачи»: скачивания и загрузка завершены, у неудачной передачи есть кнопка повтора.', 'The Transfers panel: downloads and an upload are done, and a failed transfer has a retry button.'),
     ],
     image: shot('sftp-preview', 'Быстрый просмотр демонстрационного файла с отдельной колонкой номеров строк.', 'Quick Look for a demo file with a separate line-number gutter.'),
   },
@@ -823,7 +825,7 @@ export const guideSections = [
     steps: [
       b('Вкладка «Объект» показывает заметки к тому, что открыто сейчас: SSH-хосту активной вкладки терминала, RDP-хосту, хосту SFTP, подключению к базе данных, ресурсу или контексту Kubernetes, выбранному Docker-контейнеру. «+» создаёт заметку, уже привязанную к этому объекту.', 'The Object tab shows notes about what is open now: the SSH host of the active terminal tab, the RDP host, the SFTP host, the database connection, the Kubernetes resource or context, the selected Docker container. “+” creates a note already attached to that object.'),
       b('«Все» показывает все заметки и к чему они привязаны, «Задачи» — только задачи: просроченные выше и выделены, выполненные собраны отдельно. Поиск ищет по заголовку, тексту и меткам.', '“All” lists every note and what it is attached to; “Tasks” lists only tasks, with overdue ones first and highlighted, and completed ones grouped separately. Search covers titles, text and tags.'),
-      b('Текст пишется в Markdown, вкладка «Просмотр» показывает результат. Добавьте метки через запятую или закрепите заметку из её меню. Переключатель «Задача» добавляет срок и отметку «Выполнено».', 'Write the text in Markdown; the Preview tab shows the result. Add comma-separated tags or pin a note from its menu. The Task switch adds a due time and a Done mark.'),
+      b('Текст пишется в Markdown, вкладка «Просмотр» показывает результат. Добавьте метки через запятую. Меню «…» заметки закрепляет её, откладывает напоминание на час («Напомнить через час»), привязывает к текущему объекту или отвязывает и удаляет заметку. Переключатель «Задача» добавляет срок и отметку «Выполнено».', 'Write the text in Markdown; the Preview tab shows the result. Add comma-separated tags. A note’s “…” menu pins it, snoozes it for an hour (“Remind in an hour”), attaches it to the current object or detaches it, and deletes it. The Task switch adds a due time and a Done mark.'),
       b('«Напоминание» предлагает «Через час», «Сегодня в 18:00», «Завтра в 09:00», «Через неделю» или своё время. Пока приложение открыто, в срок появляется уведомление с кнопкой «Открыть»; число просроченных задач и сработавших напоминаний видно на значке «Заметок».', 'Reminder offers in an hour, today at 18:00, tomorrow at 09:00, in a week or a time of your choice. While the app is open a notice with Open appears on time; the Notes icon counts overdue tasks and reminders that went off.'),
       b('Текст из поля «Заметки» карточки хоста можно перенести в обычную заметку кнопкой «Перенести в заметки». Удаление хоста или базы заметки не удаляет: у них появляется пометка «Объект не найден».', 'The host card’s free-text notes move into a regular note with “Move to notes”. Deleting a host or database keeps its notes, marked “Object not found”.'),
     ],
@@ -832,6 +834,7 @@ export const guideSections = [
     images: [
       shot('notes-tasks', 'Вкладка «Задачи»: просроченные выше, у каждой задачи срок, напоминание и привязка.', 'The Tasks tab: overdue first, each task with its due time, reminder and attachment.'),
       shot('notes-editor', 'Задача с Markdown, меткой, сроком и напоминанием.', 'A task with Markdown, a tag, a due time and a reminder.'),
+      shot('notes-menu', 'Меню заметки: закрепить, напомнить через час, отвязать от объекта и удалить.', 'A note’s menu: pin, remind in an hour, detach from the object and delete.'),
     ],
   },
   {
@@ -1145,6 +1148,15 @@ export const guideSections = [
       },
       "width": 412,
       "height": 915
+    },
+    {
+      "name": "kube-import",
+      "caption": {
+        "ru": "Импорт kubeconfig: контексты демонстрационного файла, способ входа, отметка «Прод» и файл сертификата, который нужно разрешить отдельно.",
+        "en": "kubeconfig import: contexts of a demo file, their authentication, the Production switch and a certificate file that needs separate approval."
+      },
+      "width": 1440,
+      "height": 900
     }
   ],
   "note": {
@@ -1223,6 +1235,24 @@ export const guideSections = [
       },
       "width": 412,
       "height": 915
+    },
+    {
+      "name": "kube-yaml",
+      "caption": {
+        "ru": "Изменение YAML: после «Проверить на сервере» видна разница, а применение требует отдельного подтверждения.",
+        "en": "Editing YAML: after “Validate on the server” the difference is shown, and applying needs a separate confirmation."
+      },
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "kube-rollout",
+      "caption": {
+        "ru": "История развёртываний: сравнение двух ревизий Deployment по изменённым полям.",
+        "en": "Rollout history: two Deployment revisions compared field by field."
+      },
+      "width": 1440,
+      "height": 900
     }
   ],
   "note": {
@@ -1314,6 +1344,33 @@ export const guideSections = [
       },
       "width": 1400,
       "height": 1000
+    },
+    {
+      "name": "kube-logs",
+      "caption": {
+        "ru": "Логи Pod в карточке ресурса: выбор контейнера, предыдущий запуск, поток, фильтр и уровни.",
+        "en": "Pod logs in the resource card: container choice, the previous run, following, filtering and levels."
+      },
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "kube-shell",
+      "caption": {
+        "ru": "Терминал Pod в нижней панели: контейнер и адрес Pod в заголовке; вывод демонстрационный.",
+        "en": "The Pod terminal in the bottom panel: the container and Pod address in its header; the output is a demo."
+      },
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "kube-forward",
+      "caption": {
+        "ru": "Проброс порта Pod: адрес на этом устройстве и список активных пробросов справа.",
+        "en": "A Pod port forward: the address on this device and the list of active forwards on the right."
+      },
+      "width": 1440,
+      "height": 900
     }
   ]
 },
@@ -1512,6 +1569,17 @@ export const guideSections = [
         "ru": "Подробная инструкция Kubernetes ↗",
         "en": "Full Kubernetes instructions ↗"
       }
+    }
+  ],
+  "images": [
+    {
+      "name": "kube-ai",
+      "caption": {
+        "ru": "ИИ в Kubernetes: вопрос о падающем Pod, прочитанные логи и события и ответ локальной модели; ответ подготовлен для демонстрации.",
+        "en": "AI in Kubernetes: a question about a failing Pod, the logs and events it read and the local model’s answer; the answer is a scripted demo."
+      },
+      "width": 1440,
+      "height": 900
     }
   ],
   "note": {
