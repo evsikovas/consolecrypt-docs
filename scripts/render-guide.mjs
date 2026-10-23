@@ -55,7 +55,7 @@ const sectionIds = new Set();
 const requiredImages = new Map();
 const allowedFields = new Set([
   'id', 'group', 'title', 'intro', 'steps', 'note', 'image', 'keywords',
-  'blocks', 'table', 'images', 'links',
+  'blocks', 'table', 'images', 'links', 'parts',
 ]);
 for (const section of guideSections) {
   assert.match(section.id, /^[a-z][a-z0-9-]+$/);
@@ -84,6 +84,20 @@ for (const section of guideSections) {
     paired(block.title, `${section.id}.block.title`);
     paired(block.caption, `${section.id}.block.caption`);
     assert.equal(typeof block.code, 'string');
+  }
+  const partIds = new Set();
+  for (const part of section.parts ?? []) {
+    assert.match(part.id, /^[a-z][a-z0-9-]+$/);
+    assert(!partIds.has(part.id), `Duplicate part: ${section.id}.${part.id}`);
+    partIds.add(part.id);
+    paired(part.title, `${section.id}.${part.id}.title`);
+    paired(part.body, `${section.id}.${part.id}.body`);
+    for (const locale of ['ru', 'en']) {
+      // Part bodies are Markdown generated from the server documentation; raw
+      // HTML is not part of that subset.
+      assert(!/<\/?[a-z][^>]*>/i.test(part.body[locale].replace(/```[\s\S]*?```|`[^`\n]+`/g, '')),
+        `Raw HTML in ${section.id}.${part.id}.${locale}`);
+    }
   }
   for (const link of section.links ?? []) {
     paired(link.text, `${section.id}.link.text`);
@@ -141,6 +155,8 @@ function prose(value) {
 const text = (value, locale) => prose(value[locale]);
 const tableText = (value, locale) => text(value, locale).replace(/\r?\n/g, '<br>');
 function linkTarget(href) {
+  const local = href.match(/^https:\/\/consolecrypt\.dev\/guide#([a-z0-9-]+)$/);
+  if (local) return `#${local[1]}`;
   const prefix = 'https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/';
   return href.startsWith(prefix) ? `../docs/public/${href.slice(prefix.length)}` : href;
 }
@@ -185,6 +201,14 @@ for (const locale of ['ru', 'en']) {
     for (const block of section.blocks ?? []) {
       out.push(`### ${text(block.title, locale)}`, '', text(block.caption, locale), '', fence(block.code), '');
     }
+    if (section.parts?.length) {
+      out.push(`**${locale === 'ru' ? 'В этой главе' : 'In this chapter'}:** ${section.parts
+        .map(part => `[${text(part.title, locale)}](#${section.id}-${part.id})`).join(' · ')}`, '');
+      for (const part of section.parts) {
+        out.push(`<a id="${section.id}-${part.id}"></a>`, '', `### ${text(part.title, locale)}`, '',
+          part.body[locale].trim(), '');
+      }
+    }
     for (const link of section.links ?? []) {
       out.push(`[${text(link.text, locale)}](${linkTarget(link.href)})`, '');
     }
@@ -219,6 +243,7 @@ console.log(JSON.stringify({
   sectionsPerLanguage: guideSections.length,
   stepsPerLanguage: guideSections.reduce((count, section) => count + (section.steps?.length ?? 0), 0),
   codeBlocksPerLanguage: guideSections.reduce((count, section) => count + (section.blocks?.length ?? 0), 0),
+  partsPerLanguage: guideSections.reduce((count, section) => count + (section.parts?.length ?? 0), 0),
   tablesPerLanguage: guideSections.filter(section => section.table).length,
   notesPerLanguage: guideSections.filter(section => section.note).length,
   screenshots: requiredImages.size,

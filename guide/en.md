@@ -74,10 +74,11 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Account: password, disconnecting and the website account](#server-account)
 - [Your own server: Kubernetes](#server-setup)
 - [Your own server: Docker Compose](#server-docker)
-- [Your own server: where and how to set parameters](#server-settings)
+- [Your own server: installation and parameters by method](#server-settings)
 - [Your own server: corporate sign-in and shared notes](#server-enterprise)
-- [Your own server: connecting an IdP or LDAP step by step](#server-idp)
+- [Your own server: corporate sign-in recipes](#server-idp)
 - [Your own server: features, flags and limits](#server-config)
+- [Your own server: configuration reference](#server-reference)
 - [Your own server: backups, upgrades and commands](#server-maintenance)
 
 <a name="first-start"></a>
@@ -2151,7 +2152,7 @@ A server enables device sync and collaboration. The client does not need one for
 
 6. Check /readyz and /v1/meta: the reply shows server\_version, protocol\_version and the server’s capabilities. Teams need server 0.2.1, corporate sign-in and shared notes need 0.2.0; if the version is older, pin a newer image digest in your values (see “Your own server: backups, upgrades and commands”). In the client, choose a server connection and enter its base HTTPS address without /v1. Sign in or register and test sync on a second device.
 
-7. All server settings in Helm come from values blocks: config (features, limits, quotas, tokens, Argon2), auth (corporate sign-in), mail, database (connection and pool), migrations and metrics. The chart turns them into CC\_\* variables in a ConfigMap; an empty "" is not passed and the server default applies. Keys without their own path (for example CC\_TEAMS\_ENABLED and the team limits) go into extraEnv. The mapping table is in CONFIGURATION.md and in “Your own server: where and how to set parameters”.
+7. All server settings in Helm come from values blocks: config (features, limits, quotas, tokens, Argon2), auth (corporate sign-in), mail, database (connection and pool), migrations and metrics. The chart turns them into CC\_\* variables in a ConfigMap; an empty "" is not passed and the server default applies. Keys without their own path (for example CC\_TEAMS\_ENABLED and the team limits) go into extraEnv. The mapping table is in “Your own server: configuration reference” and “Your own server: installation and parameters by method”.
 
 8. For email, configure SMTP with TLS and a separate Secret (mail.transport: smtp); without mail, the administrator verifies addresses with admin verify-email. Teams are on by default, while sharing, shared notes and new-device protection are enabled with separate flags — see “Your own server: features, flags and limits”. Schedule PostgreSQL backups and verify restoration before upgrades.
 
@@ -2213,9 +2214,11 @@ curl --fail https://sync.example.com/readyz
 curl --fail https://sync.example.com/v1/meta
 ```
 
-[Full instructions: Docker, Helm, HTTPS, email and backups ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+[How to set any parameter: Compose, docker run, Helm, JSON, systemd →](#server-settings)
 
-[Every server setting: variables, Helm paths, defaults ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+[Every server parameter: Helm paths, defaults, allowed values →](#server-reference)
+
+[Source file on GitHub: HOSTING.md — full Helm install, HTTPS, email, backups ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **Keep in mind**
 >
@@ -2245,7 +2248,7 @@ Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server 
 
 5. In the client, choose your own server and enter https://sync.example.com without /v1. Create an account, check email delivery and sync between two devices. This example requires email verification; without SMTP (the generator with --mail-disabled) the administrator verifies an address with admin verify-email. To close registration, set CC\_REGISTRATION\_OPEN=false in server.env and recreate the server service.
 
-6. Check server\_version in /v1/meta: the example pins a tested image and may lag behind the latest release. Teams need server 0.2.1, corporate sign-in and shared notes need 0.2.0; “Your own server: backups, upgrades and commands” explains changing the image. Sharing flags go into server.env, while settings that compose.yaml does not list (team limits, corporate sign-in) go into a separate compose.override.yaml; “Your own server: where and how to set parameters” explains which key goes where.
+6. Check server\_version in /v1/meta: the example pins a tested image and may lag behind the latest release. Teams need server 0.2.1, corporate sign-in and shared notes need 0.2.0; “Your own server: backups, upgrades and commands” explains changing the image. Sharing flags go into server.env, while settings that compose.yaml does not list (team limits, corporate sign-in) go into a separate compose.override.yaml; “Your own server: installation and parameters by method” explains which key goes where.
 
 7. If the host already runs your own HTTPS reverse proxy, drop --profile https and point the proxy at http://127.0.0.1:8080 (CC\_HTTP\_PORT changes the port). The proxy must overwrite X-Forwarded-For, forward the /v1/events/ws WebSocket, accept bodies up to 16 MiB and never change the path, query or body of signed requests.
 
@@ -2288,11 +2291,11 @@ curl --fail "https://$CC_API_DOMAIN/readyz"
 curl --fail "https://$CC_API_DOMAIN/v1/meta"
 ```
 
-[Full Docker instructions: HTTPS, SMTP, backups and upgrades ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose)
+[Which key goes into server.env and which into compose.override.yaml →](#server-settings-compose)
 
-[Every server setting and how to set it in server.env or compose.override.yaml ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+[Every server parameter: Helm paths, defaults, allowed values →](#server-reference)
 
-[SMTP settings and installation without Docker: private configuration file ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md)
+[Source file on GitHub: HOSTING.md — full Docker installation ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose)
 
 > **Keep in mind**
 >
@@ -2304,9 +2307,9 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-settings"></a>
 
-## 58. Your own server: where and how to set parameters
+## 58. Your own server: installation and parameters by method
 
-Every server setting is a CC\_\* variable. The server reads only the keys it knows (the full list with types, defaults and Helm paths is in CONFIGURATION.md), validates them at start and, on an error, refuses to start with “invalid configuration: &lt;key&gt;: …” without printing the value. Below: where to put a key for each installation method and how to apply the change.
+Every server setting is a CC\_\* variable; the full list with Helm paths, defaults and allowed values is in “Your own server: configuration reference”. This chapter shows where to put a key for each installation method (Docker Compose, docker run, Helm, a JSON file and systemd), how to apply and verify a change, and worked examples: shared notes and teams, sign-in with Entra ID and Active Directory, switching limits to enforce, raising quotas.
 
 | Method | Where to put it | How to apply |
 | --- | --- | --- |
@@ -2317,121 +2320,443 @@ Every server setting is a CC\_\* variable. The server reads only the keys it kno
 | Binary / systemd | A private JSON file (--config or CC\_CONFIG\_FILE) or Environment= in the unit file | systemctl restart consolecrypt-server: nothing is reloaded on the fly |
 | Corporate sign-in secrets | Files only: CC\_OIDC\_CLIENT\_SECRET\_FILE, CC\_OIDC\_TOKEN\_KEY\_FILE, CC\_LDAP\_BIND\_PASSWORD\_FILE and the certificates CC\_OIDC\_CA\_FILE, CC\_LDAP\_CA\_FILE | Mount read-only, readable by UID 65532, restart the server |
 
-1. Docker Compose: server.env is not the container environment but the substitution file for compose.yaml. The server only receives the keys compose.yaml takes through ${…}: CC\_REGISTRATION\_OPEN, CC\_RUN\_MIGRATIONS, CC\_DATABASE\_PASSWORD, CC\_MAIL\_TRANSPORT, CC\_MAIL\_FROM, CC\_SMTP\_HOST, CC\_SMTP\_PORT, CC\_SMTP\_TLS, CC\_SMTP\_USERNAME, CC\_SMTP\_PASSWORD, the seven sharing flags, CC\_DEVICE\_PROTECTION\_ENABLED, CC\_NEW\_DEVICE\_MAIL\_ENABLED, CC\_DEVICE\_QUARANTINE\_DAYS, CC\_TEAMS\_ENABLED, CC\_RATE\_LIMIT\_MODE, CC\_QUOTAS\_V2\_ENABLED, CC\_MAX\_DEVICES\_PER\_ACCOUNT and CC\_MAX\_VAULT\_OBJECTS. server.env also holds Compose’s own variables: CC\_SERVER\_VERSION, CC\_SERVER\_IMAGE, CC\_DOMAIN, CC\_HTTP\_PORT and CC\_POSTGRES\_ADMIN\_PASSWORD. Any other key added to server.env never reaches the server.
+**In this chapter:** [Rules for every method](#server-settings-rules) · [Docker Compose](#server-settings-compose) · [Plain docker run](#server-settings-docker-run) · [Kubernetes: Helm](#server-settings-helm) · [JSON file, binary and systemd](#server-settings-native) · [Example: shared notes and teams](#server-settings-example-notes) · [Example: corporate sign-in with Entra ID](#server-settings-example-entra) · [Example: Active Directory (LDAP) sign-in](#server-settings-example-ldap) · [Example: request limits from observe to enforce](#server-settings-example-limits) · [Example: raising quotas](#server-settings-example-quotas)
 
-2. Every other key — CC\_LIMIT\_\*, corporate sign-in, team limits, CC\_MAX\_VAULT\_BYTES and so on — and the keys that compose.yaml sets to a fixed value (CC\_PUBLIC\_URL, CC\_REQUIRE\_EMAIL\_VERIFICATION, CC\_REQUIRE\_REQUEST\_PROOF, CC\_TRUST\_PROXY\_HEADERS, CC\_METRICS\_LISTEN, CC\_LOG\_FORMAT, CC\_HSTS, CC\_EVENT\_BUS) go into services.server.environment of a private compose.override.yaml next to server.env. Add it as a second -f in the cc\_compose helper and use that helper for every command: without the second -f Compose recreates the server without your settings. Use absolute paths inside the override. Leave CC\_LISTEN\_ADDR and CC\_DATABASE\_URL alone: the example’s port and database depend on them.
+<a id="server-settings-rules"></a>
 
-3. The server reads corporate sign-in secrets from files only. In Compose, declare them in the top-level secrets block of the override file and attach them to the server service — they appear in /run/secrets/&lt;name&gt;. Without Swarm, Compose mounts the file as is, with the host owner and mode, while the server runs as UID 65532: run chown 65532:65532 and chmod 0400. A trailing newline in the file is ignored. There are no generic \*\_FILE variants for other keys: the database and SMTP passwords are passed as CC\_DATABASE\_PASSWORD and CC\_SMTP\_PASSWORD, in Helm from a Kubernetes Secret.
+### Rules for every method
 
-4. docker run without Compose: pass keys with -e CC\_KEY=value or --env-file with a private file (KEY=value lines; Docker keeps quotes, so write values without them). Mount secret files with -v /path:/run/secrets/name:ro. The image already sets CC\_LISTEN\_ADDR=0.0.0.0:8080, CC\_METRICS\_LISTEN=0.0.0.0:9090, CC\_LOG\_FORMAT=json and its own source link; publish port 8080 on 127.0.0.1 only, behind your HTTPS proxy, and set CC\_TRUST\_PROXY\_HEADERS=true when exactly one trusted proxy sits in front.
+- Parameter names are the same everywhere: the `CC_*` variables of
+  [“Your own server: configuration reference”](#server-reference).
+- The process environment wins over the JSON file; an empty variable means "not
+  set" (the default applies).
+- A variable with a typo in its name is silently ignored; an invalid **value**
+  stops the start with `invalid configuration: <KEY>: …`.
+- Changes apply only after a restart (except `admin limits set`).
+- Enterprise secrets are files only (`*_FILE`); database and SMTP passwords go
+  through the environment or a private JSON file. There are no other `*_FILE`
+  variants.
 
-5. Helm: the chart writes non-secret keys into a ConfigMap from the config, auth, mail, database, migrations and metrics blocks; an empty "" is not passed. The database URL, SMTP password and sign-in secrets come from existing Secrets (database.existingSecret, mail.smtp.existingSecret, auth.oidc.existingSecret, auth.ldap.existingSecret; sign-in secrets are mounted at /run/secrets/consolecrypt-auth). Keys without their own path — CC\_TEAMS\_ENABLED, CC\_MAX\_TEAMS\_PER\_ACCOUNT, CC\_MAX\_TEAM\_MEMBERS and any other — go into extraEnv: a variable from env wins over the same name from the ConfigMap, so extraEnv also overrides chart keys. Limit overrides go into config.rateLimit.limits: {name: {rate, burst, perHour, perDay}}.
+To verify: the `starting` log line shows the effective configuration (passwords
+redacted); `/v1/meta` shows registration, address verification, sign-in mode,
+teams and device protection; `admin limits show` and `admin auth status` show
+limits, quotas and sign-in.
 
-6. Without containers: a private JSON file (--config /etc/consolecrypt/server.json or CC\_CONFIG\_FILE; the flag wins over the variable) — one object with the same key names, every value a string ("true", "587"). It must be a regular file of at most 64 KiB, mode 0600 or 0400 on Unix. An unknown or duplicate key, a non-string value or group access stops the start without printing the contents. Environment variables win over the file, and even an empty variable hides the file value. CC\_LOG, RUST\_LOG and OTEL\_\* are not accepted in JSON — only in the process environment.
+<a id="server-settings-compose"></a>
 
-7. Value format: boolean keys accept true/false, 1/0, yes/no, on/off; the exception is CC\_TEAMS\_ENABLED, which understands only true or false. Durations use the unit in the key name (\_SECS, \_MINUTES, \_HOURS, \_DAYS). An empty value equals an absent key. The server checks ranges (for example CC\_ACCESS\_TOKEN\_TTL\_SECS 60–86400, CC\_WS\_SESSION\_RECHECK\_SECS 1–30, CC\_MAX\_DEVICES\_PER\_ACCOUNT 1–64) and dependencies: sharing extensions need CC\_OBJECT\_SHARING\_ENABLED and CC\_REQUIRE\_REQUEST\_PROOF=true, OIDC sign-in needs CC\_PUBLIC\_URL with https://.
+### Docker Compose
 
-8. After a restart, check the result: the “starting” log line shows the effective configuration with passwords hidden; /v1/meta shows the version, protocol, registration\_open, email\_verification\_required and capabilities (auth, teams, device\_protection); admin limits show prints the effective limits, quotas and the observe or enforce mode; admin auth status shows the sign-in mode and the last IdP or directory check.
+Compose passes the server only the `environment:` block of the `server`
+service. `server.env` is interpolated into `compose.yaml` (`--env-file`) but does
+not reach the container itself: `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` in
+`server.env` changes nothing unless `compose.yaml` uses it.
 
-### Docker Compose: a private compose.override.yaml
+1. **Keys changed in `server.env`** — written as `${KEY:-value}` in
+   `compose.yaml`: `CC_DATABASE_PASSWORD`, `CC_RUN_MIGRATIONS`,
+   `CC_REGISTRATION_OPEN`, `CC_MAIL_TRANSPORT`, `CC_MAIL_FROM`, `CC_SMTP_HOST`,
+   `CC_SMTP_PORT`, `CC_SMTP_TLS`, `CC_SMTP_USERNAME`, `CC_SMTP_PASSWORD`, the seven
+   sharing flags, `CC_DEVICE_PROTECTION_ENABLED`, `CC_NEW_DEVICE_MAIL_ENABLED`,
+   `CC_DEVICE_QUARANTINE_DAYS`, `CC_TEAMS_ENABLED`, `CC_RATE_LIMIT_MODE`,
+   `CC_QUOTAS_V2_ENABLED`, `CC_MAX_DEVICES_PER_ACCOUNT`, `CC_MAX_VAULT_OBJECTS`,
+   plus Compose's own `CC_SERVER_VERSION`, `CC_SERVER_IMAGE`, `CC_DOMAIN`,
+   `CC_HTTP_PORT`, `CC_POSTGRES_ADMIN_PASSWORD`. Quote values containing `$`, `#`,
+   spaces or quotes with single quotes.
+2. **Every other key goes into a private `compose.override.yaml`** next to
+   `server.env` — keys that `compose.yaml` does not list (`CC_LIMIT_*`,
+   `CC_MAX_VAULT_BYTES`, `CC_MAX_TEAM_MEMBERS`, `CC_AUTH_*`, `CC_OIDC_*`,
+   `CC_LDAP_*`, retention…) and keys it hard-codes (`CC_DATABASE_URL`,
+   `CC_DATABASE_CONNECT_TIMEOUT_SECS`, `CC_LISTEN_ADDR`, `CC_METRICS_LISTEN`,
+   `CC_PUBLIC_URL`, `CC_REQUIRE_EMAIL_VERIFICATION`, `CC_REQUIRE_REQUEST_PROOF`,
+   `CC_TRUST_PROXY_HEADERS`, `CC_EVENT_BUS`, `CC_HSTS`, `CC_LOG_FORMAT`). The
+   override's `environment:` replaces values of the same name. Write values as
+   quoted strings and paths as absolute paths, and include the file with a
+   second `-f` in every command:
 
-A file next to server.env. The example raises the team member limit and the push rate and turns on metrics on the host loopback only.
+   ```sh
+   cc_compose() {
+     docker compose --env-file "$CC_INSTALL_DIR/server.env" \
+       -f "$CC_COMPOSE_FILE" -f "$CC_INSTALL_DIR/compose.override.yaml" \
+       --profile https "$@"
+   }
+   ```
 
-```text
-# $CC_INSTALL_DIR/compose.override.yaml
+   An `env_file:` entry on the service works too, but `compose.yaml`'s
+   `environment:` wins over `env_file`, so the keys listed above still belong in
+   `environment:`.
+3. **Secret files** (enterprise `*_FILE` keys and CA certificates): non-Swarm
+   Compose mounts `secrets:` as plain files at `/run/secrets/<name>` with the host
+   owner and mode. The image runs as UID 65532, so
+   `sudo chown 65532:65532 "$CC_INSTALL_DIR"/secrets/*` and
+   `sudo chmod 0400 "$CC_INSTALL_DIR"/secrets/*`. A read-only bind mount
+   (`…/secrets:/run/secrets/consolecrypt:ro`) works as well.
+4. **Apply and verify**:
+
+   ```sh
+   cc_compose config --quiet
+   cc_compose up -d --wait --wait-timeout 180 server
+   cc_compose logs --no-log-prefix server | grep '"starting"' | tail -n 1
+   curl --fail --silent --show-error "$CC_API_ORIGIN/v1/meta" | python3 -m json.tool
+   cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show
+   ```
+
+   `up -d` recreates the container only when its configuration changed; volume
+   data is kept. Never use `down -v`.
+
+<a id="server-settings-docker-run"></a>
+
+### Plain docker run
+
+Pass keys with `-e KEY=value` or `--env-file`. Note that `docker run --env-file`
+takes values literally and **does not strip quotes**, so the quoted `server.env`
+written by `init-config.py` does not fit it — write unquoted values. Passwords are
+easier to keep in a private JSON file mounted read-only:
+
+```sh
+sudo install -d -m 0750 /etc/consolecrypt
+sudo install -m 0400 -o 65532 -g 65532 server.json /etc/consolecrypt/server.json
+docker run -d --name consolecrypt-server --restart unless-stopped \
+  --read-only --cap-drop ALL --security-opt no-new-privileges:true \
+  -p 127.0.0.1:8080:8080 \
+  -v /etc/consolecrypt/server.json:/etc/consolecrypt/server.json:ro \
+  -v /etc/consolecrypt/secrets:/run/secrets/consolecrypt:ro \
+  -e CC_TRUST_PROXY_HEADERS=true \
+  "ghcr.io/evsikovas/consolecrypt-server:$CC_SERVER_VERSION" \
+  --config /etc/consolecrypt/server.json serve
+```
+
+`CC_SERVER_VERSION` is the server release (as in the Docker Compose example).
+The image already sets `CC_LISTEN_ADDR=0.0.0.0:8080`,
+`CC_METRICS_LISTEN=0.0.0.0:9090`, `CC_LOG_FORMAT=json` and `CC_SOURCE_CODE_URL`;
+container environment wins over the JSON file, so change these four with `-e`.
+To change parameters, `docker rm -f consolecrypt-server` and run the same
+`docker run` again (data lives in PostgreSQL). Admin commands:
+`docker exec consolecrypt-server /usr/local/bin/consolecrypt-server --config
+/etc/consolecrypt/server.json admin …`.
+
+<a id="server-settings-helm"></a>
+
+### Kubernetes: Helm
+
+The chart turns values blocks into `CC_*` variables: non-secret ones into a
+ConfigMap, the database URL and SMTP password into a Secret or `secretKeyRef`
+references to yours. The "Helm" column of [“Your own server: configuration reference”](#server-reference)
+maps every key. Empty strings are omitted, so the server default applies.
+
+| What | Where in values |
+|---|---|
+| flags, tokens, quotas, limits, WebSocket, maintenance, logging | `config.*` (`config.rateLimit.limits` → `CC_LIMIT_*`) |
+| enterprise sign-in | `auth.*`; secrets `auth.oidc.existingSecret` / `auth.ldap.existingSecret` |
+| mail | `mail.*`; password `mail.smtp.existingSecret` |
+| database | `database.*` or `postgresql.*`; migrations `migrations.*` |
+| metrics | `metrics.enabled` (`CC_METRICS_LISTEN`) |
+| keys without a chart path (`CC_TEAMS_ENABLED`, `CC_MAX_TEAMS_PER_ACCOUNT`, `CC_MAX_TEAM_MEMBERS`, `RUST_LOG`, `OTEL_*`, an external `CC_DATABASE_PASSWORD`) | `extraEnv` |
+
+```yaml
+extraEnv:
+  - name: CC_MAX_TEAM_MEMBERS
+    value: "50"
+  - name: CC_DATABASE_PASSWORD          # external database password apart from the URL
+    valueFrom:
+      secretKeyRef: {name: consolecrypt-database, key: password}
+```
+
+`extraEnv` (the container's `env`) wins over the chart ConfigMap (`envFrom`);
+`extraEnvFrom` is added after the chart ConfigMap and overrides it as well. Use
+this only for keys without their own path, or values and effective settings drift
+apart. Apply with `helm upgrade` and the **complete** private values file — pods
+roll by themselves because the ConfigMap checksum changes; after changing the
+content of an existing Secret, run `kubectl rollout restart
+deployment/consolecrypt`. `kubectl get configmap consolecrypt -o yaml` shows the
+non-secret `CC_*` values as the pod sees them.
+
+<a id="server-settings-native"></a>
+
+### JSON file, binary and systemd
+
+Without containers keep settings in a private JSON file (`--config
+/etc/consolecrypt/server.json` or `CC_CONFIG_FILE`): one JSON object, string values
+only, mode `0600` or `0400`, owned by the service user. An unknown or duplicated
+key, invalid JSON or an unreadable file stops the start without printing the
+content. `CC_LOG`, `RUST_LOG` and `OTEL_*` are not accepted in the file — set them
+in the service environment with a drop-in (`sudo systemctl edit
+consolecrypt-server`, `[Service]` / `Environment=CC_LOG=info,sqlx=warn`). See
+[server.example.json](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/server.example.json), the
+[systemd unit](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/consolecrypt-server.service) and the
+[native README](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md). After editing:
+`sudo systemctl restart consolecrypt-server`, then
+`sudo -u consolecrypt consolecrypt-server --config /etc/consolecrypt/server.json healthcheck`.
+If neither `CC_DATABASE_PASSWORD` nor the URL holds the database password, the
+driver reads the standard `PGPASSWORD` from the service environment.
+
+<a id="server-settings-example-notes"></a>
+
+### Example: shared notes and teams
+
+Shared notes need the main sharing flag; teams are on by default and independent
+of it. Docker Compose, `server.env` (then `cc_compose up -d --wait
+--wait-timeout 180 server`):
+
+```dotenv
+CC_OBJECT_SHARING_ENABLED=true
+CC_SHARED_NOTES_ENABLED=true
+CC_TEAMS_ENABLED=true
+```
+
+Team limits in `compose.override.yaml`:
+
+```yaml
 services:
   server:
     environment:
+      CC_MAX_TEAMS_PER_ACCOUNT: "20"
       CC_MAX_TEAM_MEMBERS: "50"
-      CC_LIMIT_PUSH_ACCOUNT_RATE: 600/min
-      CC_LIMIT_PUSH_ACCOUNT_BURST: "600"
+```
+
+Helm:
+
+```yaml
+config:
+  requireRequestProof: true
+  objectSharingEnabled: true
+  sharedNotesEnabled: true
+extraEnv:
+  - name: CC_TEAMS_ENABLED
+    value: "true"
+  - name: CC_MAX_TEAM_MEMBERS
+    value: "50"
+```
+
+JSON: `"CC_OBJECT_SHARING_ENABLED": "true", "CC_SHARED_NOTES_ENABLED": "true",
+"CC_MAX_TEAM_MEMBERS": "50"`. Check `capabilities.teams: true` in `/v1/meta`; the
+client sees note support in `/v1/shares/capabilities` (`supports_notes_v1`).
+
+<a id="server-settings-example-entra"></a>
+
+### Example: corporate sign-in with Entra ID
+
+Register the app as described in [“Your own server: corporate sign-in recipes”](#server-idp-entra)
+with the redirect URI `https://sync.example.org/v1/auth/oidc/callback`.
+
+Docker Compose — secrets:
+
+```sh
+mkdir -p "$CC_INSTALL_DIR/secrets"
+( umask 077
+  openssl rand -hex 32 > "$CC_INSTALL_DIR/secrets/oidc-token-key"
+  read -rs CC_SECRET && printf '%s' "$CC_SECRET" > "$CC_INSTALL_DIR/secrets/oidc-client-secret"
+  unset CC_SECRET )
+sudo chown 65532:65532 "$CC_INSTALL_DIR"/secrets/*
+sudo chmod 0400 "$CC_INSTALL_DIR"/secrets/*
+```
+
+`$CC_INSTALL_DIR/compose.override.yaml` (replace
+`/home/admin/.config/consolecrypt-docker` with your `$CC_INSTALL_DIR`):
+
+```yaml
+services:
+  server:
+    environment:
+      CC_PUBLIC_URL: https://sync.example.org
+      CC_AUTH_MODE: enterprise
+      CC_AUTH_PROVIDER: oidc
+      CC_AUTH_DISPLAY_NAME: Example SSO
+      CC_AUTH_ALLOWED_DOMAINS: example.org
+      CC_OIDC_PRESET: entra
+      CC_OIDC_ISSUER: https://login.microsoftonline.com/<tenant-id>/v2.0
+      CC_OIDC_CLIENT_ID: <application-client-id>
+      CC_OIDC_REQUIRED_CLAIM: roles=ConsoleCrypt.User
+      CC_OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc-client-secret
+      CC_OIDC_TOKEN_KEY_FILE: /run/secrets/oidc-token-key
+    secrets: [oidc-client-secret, oidc-token-key]
+secrets:
+  oidc-client-secret:
+    file: /home/admin/.config/consolecrypt-docker/secrets/oidc-client-secret
+  oidc-token-key:
+    file: /home/admin/.config/consolecrypt-docker/secrets/oidc-token-key
+```
+
+Then `cc_compose config --quiet`, `cc_compose up -d --wait --wait-timeout 180
+server` and `cc_compose exec -T server /usr/local/bin/consolecrypt-server admin
+auth test`. The example Caddy serves only the API, so mail links to
+`https://sync.example.org/account` answer 404; the codes in mails work in the app.
+
+Helm:
+
+```sh
+cc_kubectl create secret generic consolecrypt-oidc \
+  --from-file=client-secret="$CC_INSTALL_DIR/secrets/oidc-client-secret" \
+  --from-file=token-key="$CC_INSTALL_DIR/secrets/oidc-token-key"
+```
+
+```yaml
+config:
+  publicUrl: https://sync.example.org
+auth:
+  mode: enterprise
+  provider: oidc
+  displayName: Example SSO
+  allowedDomains: [example.org]
+  oidc:
+    preset: entra
+    issuer: https://login.microsoftonline.com/<tenant-id>/v2.0
+    clientId: <application-client-id>
+    requiredClaim: roles=ConsoleCrypt.User
+    existingSecret: consolecrypt-oidc
+```
+
+JSON or systemd: the same keys as the override file; the `*_FILE` paths point at
+files with mode `0400` owned by the service user.
+
+<a id="server-settings-example-ldap"></a>
+
+### Example: Active Directory (LDAP) sign-in
+
+Prepare the service account and certificate as in
+[“Your own server: corporate sign-in recipes”](#server-idp-ldap). Docker Compose,
+`compose.override.yaml` (`ldap-bind-password` and `ad-ca.pem` in
+`$CC_INSTALL_DIR/secrets`, owner 65532, mode `0400`):
+
+```yaml
+services:
+  server:
+    environment:
+      CC_AUTH_MODE: enterprise
+      CC_AUTH_PROVIDER: ldap
+      CC_AUTH_DISPLAY_NAME: ACME
+      CC_AUTH_ALLOWED_DOMAINS: acme.com
+      CC_LDAP_URL: ldaps://dc1.acme.local:636
+      CC_LDAP_CA_FILE: /run/secrets/ad-ca.pem
+      CC_LDAP_BIND_DN: CN=svc-consolecrypt,OU=Service,DC=acme,DC=local
+      CC_LDAP_BIND_PASSWORD_FILE: /run/secrets/ldap-bind-password
+      CC_LDAP_BASE_DN: DC=acme,DC=local
+      CC_LDAP_REQUIRED_GROUP: CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local
+      CC_LDAP_MAX_FAILURES: "3"
+      CC_LDAP_FAILURE_WINDOW_MINUTES: "30"
+    secrets: [ldap-bind-password, ad-ca.pem]
+secrets:
+  ldap-bind-password:
+    file: /home/admin/.config/consolecrypt-docker/secrets/ldap-bind-password
+  ad-ca.pem:
+    file: /home/admin/.config/consolecrypt-docker/secrets/ad-ca.pem
+```
+
+The container must resolve the domain controller's DNS name (add `dns:` or
+`extra_hosts:` to the service if Docker uses another resolver). Look a user up
+without a password: `cc_compose exec -T server /usr/local/bin/consolecrypt-server
+admin auth test --login alice@acme.com`.
+
+Helm:
+
+```sh
+cc_kubectl create secret generic consolecrypt-ldap \
+  --from-file=bind-password="$CC_INSTALL_DIR/secrets/ldap-bind-password" \
+  --from-file=ca.pem="$CC_INSTALL_DIR/secrets/ad-ca.pem"
+```
+
+```yaml
+auth:
+  mode: enterprise
+  provider: ldap
+  displayName: ACME
+  allowedDomains: [acme.com]
+  ldap:
+    url: ldaps://dc1.acme.local:636
+    bindDn: CN=svc-consolecrypt,OU=Service,DC=acme,DC=local
+    baseDn: DC=acme,DC=local
+    requiredGroup: CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local
+    maxFailures: 3
+    failureWindowMinutes: 30
+    existingSecret: consolecrypt-ldap
+    caKey: ca.pem
+```
+
+<a id="server-settings-example-limits"></a>
+
+### Example: request limits from observe to enforce
+
+1. For a week after upgrading to 0.2.2 watch `cc_rate_limit_observed_total{limiter}`
+   (the metrics port; the Docker example turns it off — enable `CC_METRICS_LISTEN`
+   in the override and publish the port on `127.0.0.1` only) or the
+   `limit_exceeded` audit events.
+2. If ordinary users hit a limit, raise it (e.g.
+   `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min`) or override it for one account with
+   `admin limits set`.
+3. Switch the mode. Docker Compose: `CC_RATE_LIMIT_MODE=enforce` in `server.env`,
+   raised limits in `compose.override.yaml`:
+
+```yaml
+services:
+  server:
+    environment:
       CC_METRICS_LISTEN: 0.0.0.0:9090
+      CC_LIMIT_PUSH_ACCOUNT_RATE: "600/min"
+      CC_LIMIT_PUSH_ACCOUNT_BURST: "600"
+      CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY: "100"
     ports:
       - "127.0.0.1:9090:9090"
 ```
 
-### Docker Compose: apply and check
+Helm:
 
-The cc\_compose helper with the second -f; run the commands from the clone directory.
-
-```text
-cc_compose() {
-  docker compose --env-file "$CC_INSTALL_DIR/server.env" \
-    -f server/deploy/docker/compose.yaml \
-    -f "$CC_INSTALL_DIR/compose.override.yaml" --profile https "$@"
-}
-cc_compose config --quiet
-cc_compose up -d --wait --wait-timeout 180 server
-cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show
-curl --fail "https://$CC_API_DOMAIN/v1/meta"
-```
-
-### docker run without Compose
-
-&lt;version&gt; is the server release you want. The server-run.env file (mode 0600) holds CC\_DATABASE\_URL, CC\_DATABASE\_PASSWORD, mail and the other keys.
-
-```text
-docker run -d --name consolecrypt-server --restart unless-stopped \
-  --read-only --cap-drop ALL --security-opt no-new-privileges:true \
-  -p 127.0.0.1:8080:8080 \
-  --env-file /private/path/server-run.env \
-  -e CC_TRUST_PROXY_HEADERS=true \
-  -e CC_LDAP_BIND_PASSWORD_FILE=/run/secrets/ldap-bind-password \
-  -v /private/path/secrets/ldap-bind-password:/run/secrets/ldap-bind-password:ro \
-  ghcr.io/evsikovas/consolecrypt-server:<version>
-```
-
-### Helm: config keys, extraEnv and limits
-
-A fragment of the complete private values file; apply it with helm upgrade --install.
-
-```text
+```yaml
 config:
   rateLimit:
     mode: enforce
     limits:
       push_account: {rate: "600/min", burst: 600}
       recipient_lookup_account: {perDay: 100}
+```
+
+After the restart `admin limits show` starts with `request limits: enforce` and
+lists the effective values (account overrides are marked `*`); refusals are
+counted by `cc_rate_limited_total{limiter}`.
+
+<a id="server-settings-example-quotas"></a>
+
+### Example: raising quotas
+
+Server-wide. Docker Compose: `CC_MAX_VAULT_OBJECTS` and
+`CC_MAX_DEVICES_PER_ACCOUNT` in `server.env`, the rest in the override:
+
+```dotenv
+CC_MAX_VAULT_OBJECTS=200000
+CC_MAX_DEVICES_PER_ACCOUNT=40
+```
+
+```yaml
+services:
+  server:
+    environment:
+      CC_MAX_VAULT_BYTES: "4294967296"
+      CC_MAX_VAULTS_PER_ACCOUNT: "100"
+      CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY: "20"
+```
+
+Helm:
+
+```yaml
+config:
   quotas:
+    maxVaultBytes: 4294967296
+    maxVaultsPerAccount: 100
     maxVaultObjects: 200000
-extraEnv:
-  - name: CC_MAX_TEAM_MEMBERS
-    value: "50"
-  - name: CC_TEAMS_ENABLED
-    value: "true"
+    maxDevicesPerAccount: 40
+    newDevicesPerAccountPerDay: 20
 ```
 
-### Without containers: a private JSON file
+One account, without a restart (applies within 30 seconds):
 
-Every value is a string. Replace the password placeholder and keep the file out of Git.
-
-```text
-{
-  "CC_DATABASE_URL": "postgres://consolecrypt@127.0.0.1:5432/consolecrypt",
-  "CC_DATABASE_PASSWORD": "<database-password>",
-  "CC_LISTEN_ADDR": "127.0.0.1:8080",
-  "CC_REQUIRE_EMAIL_VERIFICATION": "true",
-  "CC_RATE_LIMIT_MODE": "enforce",
-  "CC_LIMIT_PUSH_ACCOUNT_RATE": "600/min"
-}
+```sh
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \
+  --email user@example.org max_vault_bytes=4294967296 max_vault_objects=200000
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.org
 ```
 
-### systemd: apply
+`CC_MAX_DEVICES_PER_ACCOUNT` cannot exceed 64 and `CC_MAX_VAULT_BYTES` cannot be
+below 1 MiB. Plan PostgreSQL disk space for the per-vault quota and the number of
+accounts.
 
-The file belongs to the service user with mode 0600; restart the service after editing.
-
-```text
-sudo install -m 0600 -o consolecrypt -g consolecrypt server.json /etc/consolecrypt/server.json
-sudo systemctl restart consolecrypt-server
-sudo -u consolecrypt /usr/local/bin/consolecrypt-server \
-  --config /etc/consolecrypt/server.json healthcheck
-```
-
-[Reference of every setting: types, defaults, Helm paths, validation ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
-
-[How to set a parameter for each installation method: complete examples ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
-
-[Installation without Docker: private JSON and systemd ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md)
+[Source file on GitHub: HOSTING.md ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **Keep in mind**
 >
@@ -2471,7 +2796,7 @@ Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: account
 
 8. There is no emergency password sign-in in enterprise mode. If the IdP or AD fails, temporarily switch back to CC\_AUTH\_MODE=standard and set a password with admin set-password --email … --password-stdin; once enterprise is on again, the password is removed at the user’s next sign-in. admin identity unlink removes a link, admin session revoke ends sessions, and admin list-users shows each account’s sign-in method.
 
-9. Step-by-step recipes for Entra ID, AD FS, Keycloak, Google Workspace, Okta, any OIDC provider and Active Directory, the first-link rules and an error table are in the next chapter, “Your own server: connecting an IdP or LDAP step by step”.
+9. Step-by-step recipes for Entra ID, AD FS, Keycloak, Google Workspace, Okta, any OIDC provider and Active Directory, the first-link rules and an error table are in the next chapter, “Your own server: corporate sign-in recipes”.
 
 10. Shared notes are enabled separately with the sharedNotesEnabled flag (CC\_SHARED\_NOTES\_ENABLED) together with objectSharingEnabled, in either sign-in mode.
 
@@ -2511,11 +2836,11 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth status
 cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 ```
 
-[Full enterprise-mode instructions: every setting, IdP and AD recipes ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
+[Recipes: Entra ID, AD FS, Keycloak, Google Workspace, Okta, Active Directory →](#server-idp)
 
-[Installation and sharing flags ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+[Every CC\_AUTH\_\*, CC\_OIDC\_\* and CC\_LDAP\_\* key with its checks →](#server-reference-enterprise)
 
-[Every CC\_AUTH\_\*, CC\_OIDC\_\* and CC\_LDAP\_\* key with its checks ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+[Example: Entra ID with Docker Compose and Helm →](#server-settings-example-entra)
 
 > **Keep in mind**
 >
@@ -2527,196 +2852,535 @@ How the client sees a server in enterprise mode with Active Directory.
 
 <a name="server-idp"></a>
 
-## 60. Your own server: connecting an IdP or LDAP step by step
+## 60. Your own server: corporate sign-in recipes
 
-Step-by-step corporate sign-in setup for every supported identity source. In the examples the server is https://sync.example.com, the mail domain is acme.com, and angle brackets mark your own values. Keep secrets only in files and Secrets, never in values, server.env or logs.
+The complete enterprise-mode guide: what the server needs from the IdP, step-by-step recipes for Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta and any OIDC provider, Active Directory over LDAPS or STARTTLS, account linking at first sign-in, commands, deployment, a troubleshooting table and switching back to standard sign-in. In the examples the server is https://sync.acme.com and angle brackets mark your own values; keep secrets only in files and Secrets.
 
-| Error or code | Cause | Fix |
-| --- | --- | --- |
-| “OIDC discovery: issuer mismatch” at start | CC\_OIDC\_ISSUER differs from the issuer in /.well-known/openid-configuration (often a trailing /) | Copy the issuer from discovery unchanged |
-| “Entra ID multi-tenant endpoints … are not allowed” | An issuer with /common, /organizations or /consumers | https://login.microsoftonline.com/&lt;tenant-id&gt;/v2.0 with the Directory (tenant) ID |
-| “OIDC sign-in requires CC\_PUBLIC\_URL” | CC\_PUBLIC\_URL (config.publicUrl) with https:// is missing | Set the external HTTPS address of the server without /v1 |
-| “CC\_OIDC\_TOKEN\_KEY\_FILE … expected 32 random bytes” | The file holds neither 32 random bytes, 64 hex characters nor base64 of 32 bytes | openssl rand -hex 32 &gt; oidc-token-key |
-| “… cannot open the file” or “file is empty” | The file is not mounted, is empty or is unreadable for the server user (UID 65532) | Check the path, chown 65532:65532 and chmod 0400; in Kubernetes, the Secret key names |
-| domain\_not\_allowed | The email domain is not in CC\_AUTH\_ALLOWED\_DOMAINS, the identity has no email or (google) the hd claim is not listed | Add the domain, check CC\_OIDC\_EMAIL\_CLAIM or the CC\_LDAP\_EMAIL\_ATTR attribute |
-| group\_required | The ID token lacks the CC\_OIDC\_REQUIRED\_CLAIM value or the user is outside CC\_LDAP\_REQUIRED\_GROUP; Entra omits the groups claim above 200 groups | Assign the group or role; in Entra use app roles (roles=…) |
-| mfa\_required | CC\_OIDC\_REQUIRE\_MFA=true but amr lacks mfa (or multipleauthn) and acr is not in CC\_OIDC\_MFA\_ACR\_VALUES | Enforce MFA in the IdP policy or list the acr values |
-| identity\_conflict | The account with this email is linked to another identity, CC\_AUTH\_ALLOWED\_DOMAINS is empty or the IdP sent email\_verified=false | admin identity link --email … --subject …, or add the domain to the list |
-| idp\_unavailable (503) | The IdP or directory has been unreachable longer than CC\_AUTH\_RECHECK\_GRACE\_HOURS or answered unexpectedly | admin auth test; check the network, TLS and service account |
-| “plain ldap:// is refused” | ldap:// without CC\_LDAP\_STARTTLS=true | ldaps://…:636 or STARTTLS |
-| “cannot connect (network or TLS certificate problem)” | The port is closed, the name in CC\_LDAP\_URL does not match the controller certificate or the CA is unknown | The DNS name from the certificate, the root CA in CC\_LDAP\_CA\_FILE (PEM) |
-| “service account bind rejected” | Wrong CC\_LDAP\_BIND\_DN or password, the account is disabled or its password expired | Check the DN and the password file |
-| “LDAP base DN … not found” or “CC\_LDAP\_REQUIRED\_GROUP … not found” | A typo in the DN, or the service account cannot see that branch | Copy the distinguishedName from the directory |
-| 429 rate\_limited on LDAP sign-in | The lockout guard: CC\_LDAP\_MAX\_FAILURES failures per login in the window or CC\_LDAP\_MAX\_FAILURES\_PER\_IP per address | Wait for the window to pass (Retry-After); meanwhile the server does not contact AD |
+**In this chapter:** [Encryption does not change](#server-idp-encryption) · [How it works](#server-idp-how) · [What the server needs from the IdP](#server-idp-needs) · [OIDC recipes](#server-idp-oidc) · [Microsoft Entra ID](#server-idp-entra) · [AD FS 2016+](#server-idp-adfs) · [Keycloak](#server-idp-keycloak) · [Google Workspace](#server-idp-google) · [Okta](#server-idp-okta) · [Any other OIDC provider](#server-idp-generic) · [Active Directory and LDAP](#server-idp-ldap) · [First sign-in and account linking](#server-idp-linking) · [Switching from standard to enterprise](#server-idp-switch) · [Start-up checks and admin commands](#server-idp-commands) · [Deployment](#server-idp-deployment) · [Troubleshooting](#server-idp-troubleshooting) · [Switching back to standard mode](#server-idp-standard) · [Errors for apps (protocol 1.9)](#server-idp-errors)
 
-1. How OIDC sign-in works: the app opens the system browser at the server; the server — a confidential IdP client with PKCE S256, state and nonce — redirects to the IdP; the IdP returns the browser to https://&lt;server&gt;/v1/auth/oidc/callback; the server exchanges the code, verifies the ID token (an RS256, PS256 or ES256 signature, exact iss, aud, azp, exp, nonce), applies the domain, group and MFA rules and hands the app a one-time code. The server talks to the IdP itself, so it needs outbound HTTPS to the addresses from discovery.
+<a id="server-idp-encryption"></a>
 
-2. What the server needs: the exact issuer (CC\_OIDC\_ISSUER — with or without a trailing /, exactly as in discovery), the client id (CC\_OIDC\_CLIENT\_ID), a client secret file (CC\_OIDC\_CLIENT\_SECRET\_FILE), a file with the 32-byte key that seals IdP refresh tokens in the database (CC\_OIDC\_TOKEN\_KEY\_FILE, openssl rand -hex 32; after a key change users sign in once more), and CC\_PUBLIC\_URL. Register the redirect URI CC\_PUBLIC\_URL + /v1/auth/oidc/callback with the IdP. Default scopes are openid email profile offline\_access (adfs: openid email profile allatclaims; google: openid email profile); the refresh token lets the server re-check users without a new sign-in.
+### Encryption does not change
 
-3. Claims: the email comes from CC\_OIDC\_EMAIL\_CLAIM (email by default; preferred\_username for entra, upn for adfs). CC\_OIDC\_REQUIRED\_CLAIM=claim=value admits only identities whose claim equals the value or, for an array (groups, roles), contains it. CC\_OIDC\_REQUIRE\_MFA=true requires mfa (for AD FS http://schemas.microsoft.com/claims/multipleauthn) in amr or one of CC\_OIDC\_MFA\_ACR\_VALUES in acr. The client secret is sent as client\_secret\_basic by default; set CC\_OIDC\_TOKEN\_AUTH\_METHOD=client\_secret\_post when the IdP accepts it only in the request body.
+The account password — or now the IdP or AD — only proves identity to the server.
+Data is opened by the vault passphrase (Argon2id on the client), the Recovery Key
+or approval from a trusted device. Neither the IdP, AD nor the server receives
+anything that decrypts a vault. After an IdP/AD sign-in the device is an ordinary
+new device, covered by new-device protection.
 
-4. Microsoft Entra ID: App registrations → New registration, Accounts in this organizational directory only (single tenant), Redirect URI with the Web platform = https://sync.example.com/v1/auth/oidc/callback. Certificates &amp; secrets → New client secret: put the value into a file and note the secret’s expiry date. The issuer is https://login.microsoftonline.com/&lt;tenant-id&gt;/v2.0; the server rejects /common, /organizations and /consumers. The email defaults to preferred\_username (the UPN); if the UPN differs from the mailbox, add the optional email claim and set CC\_OIDC\_EMAIL\_CLAIM=email. Restrict access with an app role: App roles → ConsoleCrypt.User, assign it to a group in Enterprise applications → Users and groups and set CC\_OIDC\_REQUIRED\_CLAIM=roles=ConsoleCrypt.User. The groups claim (Token configuration → Add groups claim, CC\_OIDC\_REQUIRED\_CLAIM=groups=&lt;object-id&gt;) is omitted for users in more than 200 groups. For MFA use Conditional Access and CC\_OIDC\_REQUIRE\_MFA=true.
+<a id="server-idp-how"></a>
 
-5. AD FS 2016 and later: Application Groups → Add Application Group → Server application (a confidential client) with the redirect URI https://sync.example.com/v1/auth/oidc/callback; Generate a shared secret and save it to a file. Add a Web API whose identifier is the client id, an access policy (for example, one group only) and the permissions openid, profile, email, allatclaims. Use issuance rules to send upn and email, and for group access Send Group Membership as a Claim (for example group = ConsoleCrypt with CC\_OIDC\_REQUIRED\_CLAIM=group=ConsoleCrypt). The issuer is https://&lt;adfs-host&gt;/adfs and the email defaults to upn. Put an internal root CA into CC\_OIDC\_CA\_FILE; if AD FS rejects Basic client authentication, set CC\_OIDC\_TOKEN\_AUTH\_METHOD=client\_secret\_post.
+### How it works
 
-6. Keycloak: in the realm create an OpenID Connect client (for example consolecrypt-server) with Client authentication: On, Standard flow: On, Direct access grants: Off, Valid redirect URIs = https://sync.example.com/v1/auth/oidc/callback and PKCE Code Challenge Method S256; save the secret from the Credentials tab to a file. For groups, add a Group Membership mapper to the dedicated client scope: Token Claim Name groups, Full group path: Off, Add to ID token: On — and set CC\_OIDC\_REQUIRED\_CLAIM=groups=consolecrypt-users. The issuer is https://&lt;host&gt;/realms/&lt;realm&gt;: without /realms/ the keycloak preset refuses to start. A user with Enabled: Off loses access at the next re-check.
+**OIDC.** The server is a confidential client of the IdP and the app is a public
+client of the server, with PKCE (S256) on both legs. The app opens the system
+browser at `/v1/auth/oidc/start`; the server redirects to the IdP with its own
+`state`, `nonce` and PKCE; the IdP returns the browser to
+`https://<server>/v1/auth/oidc/callback`; the server exchanges the code, verifies
+the ID token (RS256/PS256/ES256 signature via JWKS, exact `iss`, `aud`, `azp`,
+`exp`, `iat`, `nonce`, 60 s clock skew), the domain, group and MFA, and finds or
+creates the account; the browser returns to the app with a one-time `login_code`
+(60 s, bound to the app's PKCE and device). Only the server's
+`/v1/auth/oidc/callback` is registered at the IdP; the app's loopback and
+`consolecrypt://auth/callback` addresses are not.
 
-7. Google Workspace: an OAuth consent screen of type Internal, then Credentials → OAuth client ID → Web application with the Authorized redirect URI https://sync.example.com/v1/auth/oidc/callback. No issuer setting is needed (https://accounts.google.com). CC\_AUTH\_ALLOWED\_DOMAINS is mandatory: the server admits only accounts whose hd claim is in that list. The preset requests offline access itself (access\_type=offline, prompt=consent), and Google rejects offline\_access in CC\_OIDC\_SCOPES. Google puts neither groups nor MFA into the ID token: CC\_OIDC\_REQUIRE\_MFA=true without CC\_OIDC\_MFA\_ACR\_VALUES is refused for google; configure 2-Step Verification and app access in the Workspace admin console.
+**LDAP / AD.** The app sends the login (e-mail, UPN or `DOMAIN\user`) and the
+domain password to `POST /v1/auth/ldap/login` over TLS. The server finds the user
+with the service account, then binds as that user's DN with the given password.
+The password is never stored or logged. "No such user" and "wrong password" look
+the same.
 
-8. Okta: Applications → Create App Integration → OIDC → Web Application, grant types Authorization Code and Refresh Token, Sign-in redirect URI https://sync.example.com/v1/auth/oidc/callback, Client authentication: Client secret, Require PKCE on. Assign the app to a group; for a groups claim set the ID token Groups claim filter (groups, Matches regex, for example ConsoleCrypt.\*) and CC\_OIDC\_REQUIRED\_CLAIM=groups=&lt;group&gt;. The issuer is the org domain (https://&lt;org&gt;.okta.com) or an authorization server (https://&lt;org&gt;.okta.com/oauth2/default); it must match the issuer in discovery.
+**Account link.** An account is tied to an external identity — OIDC `(iss, sub)`
+or the AD `objectGUID`. The e-mail is only an attribute: a changed address does
+not break the account, and someone else's account with the same address is never
+taken over (`identity_conflict`).
 
-9. Any other OIDC provider (the generic preset): discovery at &lt;issuer&gt;/.well-known/openid-configuration with an https authorization\_endpoint, token\_endpoint and jwks\_uri, ID tokens signed with RS256, PS256 or ES256, and PKCE S256 when the provider lists its methods. http:// is allowed only for 127.0.0.1 and localhost during development. To re-check users the IdP must issue refresh tokens; without them a user signs in again every CC\_AUTH\_RECHECK\_GRACE\_HOURS.
+**Re-checks (leavers).** At most every `CC_AUTH_RECHECK_MINUTES` the server asks
+the IdP (by refreshing the IdP refresh token) or AD (by searching the
+`objectGUID`) whether the user may still work — on app token refresh and in a
+background pass every minute for accounts with active sessions. A disabled or
+deleted user, a user who left the group or lost the required claim, has all
+sessions revoked; the app receives `account_disabled` and locks the synced
+profile within `CC_AUTH_RECHECK_MINUTES` + 1 minute. While the IdP or AD is
+unreachable, sessions keep working for `CC_AUTH_RECHECK_GRACE_HOURS` after the
+last successful check; then refresh answers `503 idp_unavailable` (without
+revoking) until the source is back.
 
-10. Active Directory / LDAP: CC\_LDAP\_URL=ldaps://dc1.acme.local:636, or ldap://…:389 together with CC\_LDAP\_STARTTLS=true; the server refuses plain ldap:// without STARTTLS. The name in the URL must match the controller certificate; put the root CA in PEM into CC\_LDAP\_CA\_FILE (otherwise system roots are used). The service account (CC\_LDAP\_BIND\_DN and the password file CC\_LDAP\_BIND\_PASSWORD\_FILE) only searches: an ordinary domain user’s read access is enough. CC\_LDAP\_BASE\_DN is where to search; the default filter finds a user by mail, userPrincipalName or sAMAccountName, so people sign in with an email, UPN or DOMAIN\\login, and the input is escaped. The stable identifier is objectGUID (CC\_LDAP\_ID\_ATTR), the email is mail (CC\_LDAP\_EMAIL\_ATTR). CC\_LDAP\_REQUIRED\_GROUP is a group DN; nested groups count (LDAP\_MATCHING\_RULE\_IN\_CHAIN). Disabled AD accounts cannot sign in.
+<a id="server-idp-needs"></a>
 
-11. Lockout guard: the server counts failed sign-ins in PostgreSQL per login and per directory user, and after CC\_LDAP\_MAX\_FAILURES (3 by default, 1–100) within CC\_LDAP\_FAILURE\_WINDOW\_MINUTES (15, 1–1440) it answers 429 without contacting AD. Keep the threshold below the domain’s Account lockout threshold and the window no shorter than Reset account lockout counter after. CC\_LDAP\_MAX\_FAILURES\_PER\_IP (30, 0 = no limit) caps failures from one address, CC\_LDAP\_TIMEOUT\_SECS (10, 1–60) is the connection and operation timeout.
+### What the server needs from the IdP
 
-12. First sign-in: the account is found by its external identifier (OIDC iss and sub, LDAP objectGUID); the email is only an attribute and follows changes in the IdP. An existing password account with the same email is linked automatically only if its domain is in CC\_AUTH\_ALLOWED\_DOMAINS, it has no link yet, the IdP did not send email\_verified=false and the account is not disabled; the account password is then removed and earlier sessions end. Otherwise sign-in answers identity\_conflict and the administrator links the account: admin identity link --email … --subject &lt;sub or objectGUID&gt;. A new user gets an account when CC\_AUTH\_AUTO\_CREATE=true; with false the answer is 403 (reason not\_provisioned in the log).
+| What | Value | Key |
+|---|---|---|
+| Public server URL | `https://sync.acme.com` (what users enter in the client, without `/v1`) | `CC_PUBLIC_URL` |
+| Redirect URI at the IdP | `https://sync.acme.com/v1/auth/oidc/callback` — exactly `CC_PUBLIC_URL` + `/v1/auth/oidc/callback`, client type "Web" / confidential | — |
+| Issuer | exactly as in `https://<issuer>/.well-known/openid-configuration` (the `issuer` field, with or without a trailing `/` as the IdP writes it) | `CC_OIDC_ISSUER` |
+| Client ID | the registered application's id | `CC_OIDC_CLIENT_ID` |
+| Client secret | a file with the secret; `client_secret_basic` or `client_secret_post` | `CC_OIDC_CLIENT_SECRET_FILE`, `CC_OIDC_TOKEN_AUTH_METHOD` |
+| Refresh token sealing key | a file with 32 random bytes (`openssl rand -hex 32`) | `CC_OIDC_TOKEN_KEY_FILE` |
+| Grant types | Authorization Code with PKCE S256, and Refresh Token | — |
+| Scopes | `openid email profile offline_access` (presets have their own) | `CC_OIDC_SCOPES` |
+| Claims in the **ID token** | `sub`; an e-mail (`email`, `preferred_username` or `upn`); `groups` or `roles` to restrict access; `amr`/`acr` for MFA | `CC_OIDC_EMAIL_CLAIM`, `CC_OIDC_REQUIRED_CLAIM`, `CC_OIDC_REQUIRE_MFA` |
 
-13. Checks and rollback: at start the server checks discovery and JWKS, or the connection, TLS, service account bind, base DN and group, and refuses to start on an error. admin auth test repeats the checks; admin auth test --login &lt;login&gt; looks up the user and group (LDAP) or re-checks the account with the IdP right away (OIDC; if the IdP refuses, the sessions are revoked); with --password-stdin it performs a real bind that counts towards the lockout policy. To return to passwords set CC\_AUTH\_MODE=standard: standard mode ignores the CC\_OIDC\_\* and CC\_LDAP\_\* keys, so switching is a one-key change; set a password with admin set-password --email … --password-stdin.
+At start-up the server checks: discovery over HTTPS, a matching `issuer`, HTTPS
+`authorization_endpoint`, `token_endpoint` and `jwks_uri`, at least one RS256,
+PS256 or ES256 key in the JWKS, and S256 if the IdP lists PKCE methods. Claims are
+read only from the ID token (no userinfo call), so groups, roles and the e-mail
+must be in the ID token. The IdP **refresh token** powers leaver re-checks; without
+it users simply sign in through the IdP again every `CC_AUTH_RECHECK_GRACE_HOURS`,
+and `admin auth test --login <email>` reports `no IdP refresh token stored
+(request offline access)`.
 
-### Entra ID: variables
+<a id="server-idp-oidc"></a>
 
-Lines for compose.override.yaml (as KEY: value), JSON or the service environment. Secret files live in /run/secrets.
+### OIDC recipes
 
-```text
+All recipes assume the server at `https://sync.acme.com`, so the IdP redirect URI
+is `https://sync.acme.com/v1/auth/oidc/callback`. Prepare the secret files first
+(owned by the server process user — UID 65532 in the container):
+
+```sh
+install -d -m 700 /etc/consolecrypt/secrets
+( umask 077
+  openssl rand -hex 32 > /etc/consolecrypt/secrets/oidc-token-key
+  # the IdP client secret, without a newline and without echoing it:
+  read -rs CC_SECRET && printf '%s' "$CC_SECRET" > /etc/consolecrypt/secrets/oidc-client-secret
+  unset CC_SECRET )
+```
+
+Do not rotate `oidc-token-key` without need: stored IdP refresh tokens become
+unreadable and users sign in once more. Many IdPs expire client secrets: set a
+reminder, then replace the file and restart the server. Keys shared by every
+recipe:
+
+```dotenv
 CC_AUTH_MODE=enterprise
 CC_AUTH_PROVIDER=oidc
 CC_AUTH_DISPLAY_NAME=Acme SSO
 CC_AUTH_ALLOWED_DOMAINS=acme.com
-CC_PUBLIC_URL=https://sync.example.com
-CC_OIDC_PRESET=entra
-CC_OIDC_ISSUER=https://login.microsoftonline.com/<tenant-id>/v2.0
-CC_OIDC_CLIENT_ID=<client-id>
-CC_OIDC_CLIENT_SECRET_FILE=/run/secrets/oidc-client-secret
-CC_OIDC_TOKEN_KEY_FILE=/run/secrets/oidc-token-key
-CC_OIDC_REQUIRED_CLAIM=roles=ConsoleCrypt.User
-CC_OIDC_REQUIRE_MFA=true
+CC_PUBLIC_URL=https://sync.acme.com
+CC_OIDC_CLIENT_SECRET_FILE=/etc/consolecrypt/secrets/oidc-client-secret
+CC_OIDC_TOKEN_KEY_FILE=/etc/consolecrypt/secrets/oidc-token-key
 ```
 
-### Other presets: what changes
+<a id="server-idp-entra"></a>
 
-The other keys are as for Entra ID. Google needs no issuer.
+### Microsoft Entra ID
 
-```text
-# AD FS 2016+
+1. Microsoft Entra admin center → **App registrations → New registration**: name
+   "ConsoleCrypt Sync", **Accounts in this organizational directory only**
+   (single tenant), redirect URI on the **Web** platform:
+   `https://sync.acme.com/v1/auth/oidc/callback`. Do not pick "SPA" or "Mobile and
+   desktop" — the server is a confidential client.
+2. On **Overview** copy the **Application (client) ID** → `CC_OIDC_CLIENT_ID` and
+   the **Directory (tenant) ID** → issuer
+   `https://login.microsoftonline.com/<tenant-id>/v2.0`.
+3. **Certificates & secrets → Client secrets → New client secret**: store the value
+   (not the Secret ID) in `oidc-client-secret`. Note its expiry date.
+4. **API permissions**: Microsoft Graph delegated `openid`, `email`, `profile`,
+   `offline_access`; **Grant admin consent** so employees see no consent prompt.
+5. **Token configuration → Add optional claim → ID → `email`**. The preset uses
+   `preferred_username` (usually the UPN) as the e-mail; if UPNs differ from mail
+   addresses, set `CC_OIDC_EMAIL_CLAIM=email` (users need the mail attribute).
+6. Restrict access — one of:
+   - **App roles** (recommended): **App roles → Create app role**, allowed member
+     types Users/Groups, value `ConsoleCrypt.User`; then **Enterprise applications
+     → ConsoleCrypt Sync → Users and groups → Add user/group** and assign the role
+     to a group. On the server: `CC_OIDC_REQUIRED_CLAIM=roles=ConsoleCrypt.User`;
+   - **groups claim**: **Token configuration → Add groups claim → Security
+     groups**, **Group ID** in the ID token; on the server
+     `CC_OIDC_REQUIRED_CLAIM=groups=<group-object-id>`. For users in more than 200
+     groups Entra omits `groups` (overage) and the server logs a warning — use app
+     roles or "Groups assigned to the application".
+   Also set **Enterprise applications → Properties → Assignment required = Yes** so
+   Entra issues no token to unassigned users.
+7. MFA: require it with a **Conditional Access** policy for the app.
+   `CC_OIDC_REQUIRE_MFA=true` additionally checks `amr`/`acr` in the ID token;
+   enable it only after a test sign-in succeeds — if the IdP does not report the
+   method, every sign-in gets `mfa_required`.
+
+```dotenv
+CC_OIDC_PRESET=entra
+CC_OIDC_ISSUER=https://login.microsoftonline.com/<tenant-id>/v2.0
+CC_OIDC_CLIENT_ID=<application-client-id>
+CC_OIDC_REQUIRED_CLAIM=roles=ConsoleCrypt.User
+```
+
+The preset refuses `/common`, `/organizations` and `/consumers` issuers: a tenant
+id is required. A user disabled in Entra can no longer refresh, and the server
+revokes their sessions at the next re-check.
+
+<a id="server-idp-adfs"></a>
+
+### AD FS 2016+
+
+1. AD FS Management → **Application Groups → Add Application Group → Server
+   application** (or "Web browser accessing a web application" with a confidential
+   client). Copy the Client Identifier → `CC_OIDC_CLIENT_ID`. Redirect URI:
+   `https://sync.acme.com/v1/auth/oidc/callback`.
+2. **Configure Application Credentials → Generate a shared secret** → the
+   `oidc-client-secret` file.
+3. Add a **Web API** to the group with identifier = the server's client id, an
+   access control policy (e.g. "Permit specific group") and the permissions
+   `openid`, `profile`, `email`, `allatclaims`.
+4. Issuance Transform Rules of the Web API: "Send LDAP Attributes as Claims" —
+   `E-Mail-Addresses → email`, `User-Principal-Name → upn`; to restrict by group,
+   "Send Group Membership as a Claim" (e.g. `group` = `ConsoleCrypt`). The
+   `allatclaims` scope (in the preset) puts these claims into the ID token.
+5. If the AD FS certificate comes from an internal CA, put the root certificate
+   (PEM) in `CC_OIDC_CA_FILE`.
+6. The issuer is `https://adfs.acme.com/adfs` — check the `issuer` field of
+   `https://adfs.acme.com/adfs/.well-known/openid-configuration`.
+
+```dotenv
 CC_OIDC_PRESET=adfs
 CC_OIDC_ISSUER=https://adfs.acme.com/adfs
+CC_OIDC_CLIENT_ID=<client-id>
+CC_OIDC_EMAIL_CLAIM=upn
 CC_OIDC_REQUIRED_CLAIM=group=ConsoleCrypt
-CC_OIDC_CA_FILE=/run/secrets/adfs-ca.pem
-# Keycloak
+CC_OIDC_CA_FILE=/etc/consolecrypt/secrets/adfs-ca.pem
+# CC_OIDC_TOKEN_AUTH_METHOD=client_secret_post   # if AD FS rejects Basic
+```
+
+AD FS reports MFA in `amr` as `http://schemas.microsoft.com/claims/multipleauthn`,
+which `CC_OIDC_REQUIRE_MFA=true` accepts.
+
+<a id="server-idp-keycloak"></a>
+
+### Keycloak
+
+1. Pick the realm (e.g. `acme`) → **Clients → Create client**: OpenID Connect,
+   Client ID `consolecrypt-server`, **Client authentication: On**, Standard flow:
+   On, Direct access grants: Off.
+2. **Valid redirect URIs**: `https://sync.acme.com/v1/auth/oidc/callback`.
+   **Advanced → Proof Key for Code Exchange Code Challenge Method: S256**.
+3. **Credentials** → client secret → the secret file.
+4. E-mail: the `email` and `profile` client scopes must be Default for the client.
+   Keycloak sends `email_verified`; an unverified address blocks automatic linking
+   of an existing password account (`email_not_verified`).
+5. Group: **Client scopes → consolecrypt-server-dedicated → Add mapper → By
+   configuration → Group Membership**, Token Claim Name `groups`, **Full group
+   path: Off** (otherwise the value is `/consolecrypt-users`), Add to ID token: On.
+   Then `CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users`. A client role with the
+   "User Client Role" mapper works too.
+6. Disable a user with **Users → Enabled: Off**: their refresh token stops working
+   and the server revokes the sessions at the next re-check.
+
+```dotenv
 CC_OIDC_PRESET=keycloak
 CC_OIDC_ISSUER=https://sso.acme.com/realms/acme
+CC_OIDC_CLIENT_ID=consolecrypt-server
 CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users
-# Google Workspace
+```
+
+<a id="server-idp-google"></a>
+
+### Google Workspace
+
+1. Google Cloud Console (a project of your organisation) → **APIs & Services →
+   OAuth consent screen**: User type **Internal**, scopes `openid`, `email`,
+   `profile`.
+2. **Credentials → Create credentials → OAuth client ID → Web application**,
+   authorized redirect URI `https://sync.acme.com/v1/auth/oidc/callback`. Client ID
+   → `CC_OIDC_CLIENT_ID`, client secret → the file.
+3. No issuer is needed (`https://accounts.google.com`). The preset requests offline
+   access itself (`access_type=offline`, `prompt=consent`); Google rejects
+   `offline_access` in `CC_OIDC_SCOPES` and the server refuses to start with it.
+4. `CC_AUTH_ALLOWED_DOMAINS` is mandatory: only Workspace accounts whose ID token
+   `hd` is in the list may sign in. A consumer Google account with a
+   corporate-looking address has no `hd` and is refused.
+5. Google puts neither groups nor MFA into the ID token: restrict who may use the
+   app in the Admin console and enforce 2-Step Verification by Workspace policy.
+   The server refuses `CC_OIDC_REQUIRE_MFA=true` for google.
+
+```dotenv
 CC_OIDC_PRESET=google
 CC_AUTH_ALLOWED_DOMAINS=acme.com
-# Okta
+CC_OIDC_CLIENT_ID=<client-id>.apps.googleusercontent.com
+```
+
+<a id="server-idp-okta"></a>
+
+### Okta
+
+1. Admin Console → **Applications → Create App Integration → OIDC - OpenID
+   Connect → Web Application**. Grant types: Authorization Code and **Refresh
+   Token**. Sign-in redirect URI: `https://sync.acme.com/v1/auth/oidc/callback`.
+2. **Client authentication: Client secret**; turn on **Require PKCE as additional
+   verification**. Client ID and secret → `CC_OIDC_CLIENT_ID` and the file.
+3. **Assignments**: assign the app to a group. For a groups claim in the ID token:
+   **Sign On → OpenID Connect ID Token → Groups claim** named `groups`, filter
+   Matches regex `ConsoleCrypt.*` (on a custom authorization server add the
+   `groups` claim under **Security → API → Authorization Servers → Claims**).
+4. The issuer is the org domain (`https://acme.okta.com`) or an authorization
+   server (`https://acme.okta.com/oauth2/default`) and must match `issuer` in
+   discovery exactly. On a custom authorization server the access policy must
+   allow the `offline_access` scope.
+
+```dotenv
 CC_OIDC_PRESET=okta
-CC_OIDC_ISSUER=https://acme.okta.com/oauth2/default
+CC_OIDC_ISSUER=https://acme.okta.com
+CC_OIDC_CLIENT_ID=<client-id>
 CC_OIDC_REQUIRED_CLAIM=groups=ConsoleCrypt-Users
 ```
 
-### Docker Compose: secret files
+<a id="server-idp-generic"></a>
 
-The client secret is typed without echo. The files must belong to UID 65532, the server user in the container.
+### Any other OIDC provider
 
-```text
-mkdir -p "$CC_INSTALL_DIR/secrets"
-( umask 077
-  openssl rand -hex 32 > "$CC_INSTALL_DIR/secrets/oidc-token-key"
-  read -rs CC_SECRET && printf "%s" "$CC_SECRET" > "$CC_INSTALL_DIR/secrets/oidc-client-secret" )
-sudo chown 65532:65532 "$CC_INSTALL_DIR"/secrets/*
-sudo chmod 0400 "$CC_INSTALL_DIR"/secrets/*
+Use `CC_OIDC_PRESET=generic` (the default) and check that: the client is
+confidential with Authorization Code + PKCE S256 and Refresh Token and the
+redirect URI above; the ID token is signed with RS256, PS256 or ES256 and carries
+`sub`, an e-mail (`email` or another claim — `CC_OIDC_EMAIL_CLAIM`) and, if
+needed, the group claim for `CC_OIDC_REQUIRED_CLAIM`; discovery
+`<issuer>/.well-known/openid-configuration` is reachable over HTTPS (internal CA:
+`CC_OIDC_CA_FILE`) and its `issuer` equals `CC_OIDC_ISSUER`. If the IdP rejects
+the secret in a Basic header, set `CC_OIDC_TOKEN_AUTH_METHOD=client_secret_post`.
+For MFA find out which `amr`/`acr` the IdP writes and list non-standard `acr`
+values in `CC_OIDC_MFA_ACR_VALUES`.
+
+```dotenv
+CC_OIDC_PRESET=generic
+CC_OIDC_ISSUER=https://idp.acme.com
+CC_OIDC_CLIENT_ID=consolecrypt-server
+CC_OIDC_SCOPES=openid email profile offline_access
+CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users
 ```
 
-### Docker Compose: compose.override.yaml for OIDC
+<a id="server-idp-ldap"></a>
 
-Replace /home/admin/.config/consolecrypt-docker with your $CC\_INSTALL\_DIR (an absolute path) and add the file as a second -f in cc\_compose.
+### Active Directory and LDAP
 
-```text
-services:
-  server:
-    environment:
-      CC_PUBLIC_URL: https://sync.example.com
-      CC_AUTH_MODE: enterprise
-      CC_AUTH_PROVIDER: oidc
-      CC_AUTH_ALLOWED_DOMAINS: acme.com
-      CC_OIDC_PRESET: keycloak
-      CC_OIDC_ISSUER: https://sso.acme.com/realms/acme
-      CC_OIDC_CLIENT_ID: consolecrypt-server
-      CC_OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc-client-secret
-      CC_OIDC_TOKEN_KEY_FILE: /run/secrets/oidc-token-key
-      CC_OIDC_REQUIRED_CLAIM: groups=consolecrypt-users
-    secrets: [oidc-client-secret, oidc-token-key]
-secrets:
-  oidc-client-secret:
-    file: /home/admin/.config/consolecrypt-docker/secrets/oidc-client-secret
-  oidc-token-key:
-    file: /home/admin/.config/consolecrypt-docker/secrets/oidc-token-key
+1. **Service account** with minimal rights: an ordinary domain user can read the
+   directory; no admin rights are needed. Use a non-expiring password (or your
+   rotation procedure: update the file, restart the server). Store the password in
+   `ldap-bind-password`, the DN in `CC_LDAP_BIND_DN`.
+2. **LDAPS**: domain controllers need a certificate (AD CS "Domain Controller" or
+   "Kerberos Authentication"). Export the root CA as PEM → `CC_LDAP_CA_FILE`. The
+   host in `CC_LDAP_URL` must match the controller certificate (a DNS name, not an
+   IP). Check from the server host:
+   `openssl s_client -connect dc1.acme.local:636 -CAfile ad-ca.pem </dev/null`
+   (expect `Verify return code: 0 (ok)`). With only port 389 available use
+   `ldap://dc1.acme.local:389` and `CC_LDAP_STARTTLS=true`; plain `ldap://` without
+   TLS is refused.
+3. **Search filter**: by default a user is found by `mail`, `userPrincipalName` or
+   `sAMAccountName`, so people may type an e-mail, a UPN or `ACME\alice`. Several
+   matches refuse the sign-in. A custom filter must contain `{login}`.
+4. **Access group**, e.g. `CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local`; nested
+   groups count through the AD rule `LDAP_MATCHING_RULE_IN_CHAIN`. Membership is
+   checked at sign-in and every re-check.
+5. **Stable id**: `objectGUID` — a changed e-mail, UPN or account rename does not
+   break the link. For `admin identity link` take it with
+   `(Get-ADUser alice).ObjectGUID`. Disabled accounts (`userAccountControl` with
+   `ACCOUNTDISABLE`) cannot sign in and lose their sessions at the next re-check.
+6. **Test the search** before switching (the password is prompted, not passed as
+   an argument):
+   `ldapsearch -H ldaps://dc1.acme.local:636 -D '<service account DN>' -W -b 'DC=acme,DC=local' '(sAMAccountName=alice)' mail objectGUID userAccountControl`.
+7. **Domain lockout policy**: keep `CC_LDAP_MAX_FAILURES` below the lockout
+   threshold (see below).
+
+```dotenv
+CC_AUTH_MODE=enterprise
+CC_AUTH_PROVIDER=ldap
+CC_AUTH_DISPLAY_NAME=ACME
+CC_AUTH_ALLOWED_DOMAINS=acme.com
+CC_LDAP_URL=ldaps://dc1.acme.local:636
+CC_LDAP_CA_FILE=/etc/consolecrypt/secrets/ad-ca.pem
+CC_LDAP_BIND_DN=CN=svc-consolecrypt,OU=Service,DC=acme,DC=local
+CC_LDAP_BIND_PASSWORD_FILE=/etc/consolecrypt/secrets/ldap-bind-password
+CC_LDAP_BASE_DN=DC=acme,DC=local
+CC_LDAP_REQUIRED_GROUP=CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local
+CC_LDAP_MAX_FAILURES=3
+CC_LDAP_FAILURE_WINDOW_MINUTES=30
 ```
 
-### Helm: Active Directory
+An empty password is refused before AD is contacted (it would be an anonymous
+bind). The server is built for Active Directory; with another LDAP directory set
+your own `CC_LDAP_USER_FILTER`, `CC_LDAP_EMAIL_ATTR` and a stable
+`CC_LDAP_ID_ATTR` (such as `entryUUID`); `CC_LDAP_REQUIRED_GROUP` uses the AD rule
+`LDAP_MATCHING_RULE_IN_CHAIN`, which another directory may not support — test with
+`admin auth test --login`.
 
-A values.yaml fragment. The consolecrypt-ldap Secret is mounted at /run/secrets/consolecrypt-auth; caKey names the CA certificate key in it.
+**Lockout guard.** Failed binds count towards the domain lockout policy, so an
+attacker could lock employees out through `/v1/auth/ldap/login`. The server counts
+attempts in PostgreSQL (shared by all replicas) per typed login and per directory
+user (e-mail, UPN and `DOMAIN\user` spellings count together). After
+`CC_LDAP_MAX_FAILURES` failures within `CC_LDAP_FAILURE_WINDOW_MINUTES` further
+attempts are refused **without contacting AD** (`429 rate_limited` with
+`Retry-After`) until the window passes; unknown logins behave the same, so
+existence is not revealed, and a successful sign-in resets the counter. Failures
+per client IP are counted separately (`CC_LDAP_MAX_FAILURES_PER_IP`). **Keep
+`CC_LDAP_MAX_FAILURES` below the domain's Account lockout threshold and
+`CC_LDAP_FAILURE_WINDOW_MINUTES` at least the "Reset account lockout counter
+after" time** — e.g. a domain threshold of 5 per 30 minutes → `CC_LDAP_MAX_FAILURES=3`,
+`CC_LDAP_FAILURE_WINDOW_MINUTES=30`.
 
-```text
-auth:
-  mode: enterprise
-  provider: ldap
-  displayName: ACME
-  allowedDomains: [acme.com]
-  ldap:
-    url: ldaps://dc1.acme.local:636
-    bindDn: CN=svc-consolecrypt,OU=Service,DC=acme,DC=local
-    baseDn: DC=acme,DC=local
-    requiredGroup: CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local
-    maxFailures: 3
-    failureWindowMinutes: 30
-    existingSecret: consolecrypt-ldap
-    caKey: ca.pem
+<a id="server-idp-linking"></a>
+
+### First sign-in and account linking
+
+1. **Known identity** (`(iss, sub)` or `objectGUID`): sign in to the linked
+   account. If the IdP/AD e-mail changed and no other account uses it, the
+   account's address is updated.
+2. **New identity, an account with the same address exists** (e.g. created in
+   standard mode): it is linked automatically only if the domain is in
+   `CC_AUTH_ALLOWED_DOMAINS`, the account has no external identity yet, the IdP did
+   not report `email_verified=false`, and the account is not disabled. The account
+   password is removed, password sessions end, devices and vaults stay. Otherwise
+   sign-in answers `409 identity_conflict` with the reason in the log
+   (`linked_to_other_identity`, `link_requires_allowed_domain`,
+   `email_not_verified`) — link by hand with
+   `consolecrypt-server admin identity link --email alice@acme.com --subject <sub or objectGUID>`
+   (`--subject` is the user's ID token `sub` claim — the user ID in the Keycloak
+   console, the `00u…` user id in Okta; in Entra ID `sub` is not the Object ID
+   `oid` — or the AD `objectGUID`; without `--issuer` the configured
+   `CC_OIDC_ISSUER` or base DN is used).
+3. **New identity, no account**: an account with a verified address is created
+   when `CC_AUTH_AUTO_CREATE=true`. With `false` sign-in answers `403` with reason
+   `not_provisioned`; only accounts created beforehand (in standard mode) or linked
+   with `admin identity link` may sign in.
+
+An identity without an e-mail (`email_missing`) or with a domain outside
+`CC_AUTH_ALLOWED_DOMAINS` is refused with `403 domain_not_allowed`.
+
+<a id="server-idp-switch"></a>
+
+### Switching from standard to enterprise
+
+1. Upgrade to server 0.2.0 or later and back up the database (migration
+   `0011_enterprise_auth` only adds tables and makes `users.password_hash`
+   optional).
+2. Register the app at the IdP or create the AD service account (recipes above);
+   put the secrets into files / a Secret.
+3. Review the accounts with `admin list-users` and decide which domains go into
+   `CC_AUTH_ALLOWED_DOMAINS` so existing accounts link themselves.
+4. Set `CC_AUTH_MODE=enterprise` and restart. Check `admin auth status`,
+   `admin auth test` and `"auth": {"mode": "enterprise", …}` in `/v1/meta`.
+   Update the apps to a version with enterprise sign-in (client 0.9.0).
+5. Sign in with your own account and check the `sign_in` column of
+   `admin list-users`.
+
+Afterwards registration, password sign-in, password reset and change and address
+verification answer `403 enterprise_auth_required`; sessions opened with a password
+stop refreshing, so every user signs in once through the IdP/AD; devices and vaults
+are kept, and an already registered device signs in with its device key as before.
+
+<a id="server-idp-commands"></a>
+
+### Start-up checks and admin commands
+
+At start-up the server validates the configuration and fails with a clear
+message: for OIDC the secret files, discovery, the matching `issuer` and a JWKS
+with RS256/PS256/ES256 keys; for LDAP the files, connection, TLS, the service
+account bind, the base DN and the group.
+
+```sh
+consolecrypt-server admin auth status                       # mode, provider, last check, linked accounts
+consolecrypt-server admin auth test                         # repeat the start-up checks
+consolecrypt-server admin auth test --login alice@acme.com  # LDAP: find the user, group, disabled state
+consolecrypt-server admin auth test --login alice@acme.com --password-stdin   # LDAP: a real bind
+consolecrypt-server admin auth test --login alice@acme.com  # OIDC: re-check the account at the IdP now
+consolecrypt-server admin identity link --email alice@acme.com --subject <sub or objectGUID>
+consolecrypt-server admin identity unlink --email alice@acme.com
+consolecrypt-server admin session revoke --email alice@acme.com
+consolecrypt-server admin list-users                        # sign_in column: password, oidc, ldap
 ```
 
-### Kubernetes: Secrets for OIDC and LDAP
+OIDC `admin auth test --login` performs a real re-check: if the IdP refuses, the
+account's sessions are revoked. LDAP `--password-stdin` performs a real bind that
+counts towards the domain lockout policy. With Docker Compose or Kubernetes run the
+commands inside the container (`cc_compose exec -T server
+/usr/local/bin/consolecrypt-server admin …`, `kubectl -n consolecrypt exec
+deployment/consolecrypt -- /usr/local/bin/consolecrypt-server admin …`).
 
-Default key names: client-secret and token-key (auth.oidc), bind-password (auth.ldap).
+The log and `audit_events` record sign-ins (`login`, `metadata.method`), account
+creation, links, refusals (`login_failed` with `metadata.reason`, the same values
+as in the Russian section above), re-check revocations
+(`enterprise_access_revoked`) and admin revocations — never passwords, client
+secrets, tokens or login codes. Metrics: `cc_enterprise_logins_total{method,result}`,
+`cc_enterprise_rechecks_total{result}`, `cc_ldap_lockout_guard_total{scope}`,
+`cc_oidc_jwks_refetch_total`.
 
-```text
-kubectl -n consolecrypt create secret generic consolecrypt-oidc \
-  --from-file=client-secret=/private/path/oidc-client-secret \
-  --from-file=token-key=/private/path/oidc-token-key
-kubectl -n consolecrypt create secret generic consolecrypt-ldap \
-  --from-file=bind-password=/private/path/ldap-bind-password \
-  --from-file=ca.pem=/private/path/ad-ca.pem
-```
+<a id="server-idp-deployment"></a>
 
-### Active Directory: service account and objectGUID
+### Deployment
 
-PowerShell on a machine with the ActiveDirectory module. The password is typed hidden; objectGUID is what admin identity link needs.
+- **Helm**: the `auth:` block shown in the Russian section; secrets come from an
+  existing Secret (`client-secret` and `token-key` for OIDC, `bind-password` and
+  an optional CA key for LDAP) mounted read-only at
+  `/run/secrets/consolecrypt-auth`. The chart fills in the `*_FILE` paths and
+  refuses `ldap://` without `starttls: true` and OIDC without an `https://`
+  `config.publicUrl`.
+- **Docker Compose**: keep the keys and secrets in a private
+  `compose.override.yaml` next to `server.env`, mount the secrets as Compose
+  secrets owned by UID 65532 with mode 0400, and add the override as a second `-f`
+  to `cc_compose` (the Russian section shows the full files).
+- **Binary**: the same keys in a private JSON file (`--config`, mode 0600) or the
+  service environment; `*_FILE` paths point at files owned by the service user
+  with mode 0600.
 
-```text
-New-ADUser -Name svc-consolecrypt -Path "OU=Service,DC=acme,DC=local" `
-  -AccountPassword (Read-Host -AsSecureString) -Enabled $true -PasswordNeverExpires $true
-(Get-ADUser alice).ObjectGUID
-```
+Complete worked examples: [“Your own server: installation and parameters by method”](#server-settings).
 
-### Checks, links and sessions
+<a id="server-idp-troubleshooting"></a>
 
-Docker Compose (the cc\_compose helper); in Kubernetes use kubectl -n consolecrypt exec deployment/consolecrypt -- with the same command.
+### Troubleshooting
 
-```text
-cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth status
-cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth test
-cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth test --login alice@acme.com
-cc_compose exec -T server /usr/local/bin/consolecrypt-server \
-  admin identity link --email alice@acme.com --subject <sub-or-objectGUID>
-cc_compose exec -T server /usr/local/bin/consolecrypt-server admin identity unlink --email alice@acme.com
-cc_compose exec -T server /usr/local/bin/consolecrypt-server admin session revoke --email alice@acme.com
-```
+| Symptom | Cause | Fix |
+|---|---|---|
+| No start: `OIDC sign-in requires CC_PUBLIC_URL (https://…)` | `CC_PUBLIC_URL` missing or not `https://` | set the public server URL; in Helm `config.publicUrl` |
+| `CC_OIDC_ISSUER: Entra ID multi-tenant endpoints … are not allowed` | `/common`, `/organizations` or `/consumers` issuer | `https://login.microsoftonline.com/<tenant-id>/v2.0` |
+| `CC_OIDC_ISSUER: for adfs expected …/adfs`, `for keycloak expected …/realms/<realm>` | issuer does not fit the preset | copy `issuer` from the IdP's discovery |
+| `OIDC discovery: issuer mismatch` | `CC_OIDC_ISSUER` differs from discovery `issuer` (often a trailing `/`) | copy it character for character |
+| `OIDC discovery at …`: request or certificate error | the server cannot reach the IdP over HTTPS or does not trust its CA | check DNS, egress and proxies; internal CA → `CC_OIDC_CA_FILE` |
+| `… none of RS256, PS256, ES256` or `does not support PKCE S256` | another signing algorithm or no PKCE S256 | enable RS256/ES256 and PKCE S256 for the client |
+| `CC_OIDC_CLIENT_SECRET_FILE (…): cannot open the file` / `file is empty` | wrong path, UID 65532 cannot read it, empty file | check the mount, `chown 65532:65532`, `chmod 0400`, the content |
+| `CC_OIDC_TOKEN_KEY_FILE (…): expected 32 random bytes …` | not 64 hex characters or base64 of 32 bytes | `openssl rand -hex 32 > oidc-token-key` |
+| `CC_OIDC_PRESET=google requires CC_AUTH_ALLOWED_DOMAINS` | no domain list for Google | list your Workspace domains |
+| The IdP shows a redirect URI error | another redirect URI is registered | `CC_PUBLIC_URL` + `/v1/auth/oidc/callback`, Web client type |
+| `403 domain_not_allowed` (`email_missing`) | domain outside `CC_AUTH_ALLOWED_DOMAINS` or no address in the ID token | check `CC_OIDC_EMAIL_CLAIM` (Entra: `email` vs `preferred_username`), the mail attribute, the domain list |
+| `403 group_required` | the `CC_OIDC_REQUIRED_CLAIM` claim is missing, or the user is outside `CC_LDAP_REQUIRED_GROUP` | put the claim into the **ID token**, check its value (Keycloak: Full group path Off); Entra overage above 200 groups → app roles |
+| `403 mfa_required` | the IdP reported no MFA in `amr`/`acr` | enforce MFA at the IdP; non-standard `acr` → `CC_OIDC_MFA_ACR_VALUES`; otherwise turn `CC_OIDC_REQUIRE_MFA` off |
+| `409 identity_conflict` | the address belongs to an account linked elsewhere, the domain is not listed, or `email_verified=false` | `admin identity link` / `unlink`; add the domain to `CC_AUTH_ALLOWED_DOMAINS` |
+| `403` with reason `not_provisioned` | `CC_AUTH_AUTO_CREATE=false` and no account | create/link the account or enable auto-creation |
+| `503 idp_unavailable` | IdP/directory unreachable for longer than `CC_AUTH_RECHECK_GRACE_HOURS` | restore access; `admin auth status` shows the last check |
+| A leaver still syncs | the re-check has not run yet, or no IdP refresh token | wait up to `CC_AUTH_RECHECK_MINUTES` + 1 min; `admin session revoke`; `admin auth test --login` |
+| `CC_LDAP_URL: plain ldap:// is refused` | `ldap://` without STARTTLS | `ldaps://…:636` or `CC_LDAP_STARTTLS=true` |
+| `LDAP …: cannot connect (network or TLS certificate problem)` | network, port, a host name not in the certificate, wrong CA | the certificate's DNS name, `CC_LDAP_CA_FILE`, `openssl s_client` |
+| `LDAP TLS: no system root certificates found` | the image lacks the needed root | set `CC_LDAP_CA_FILE` |
+| `service account bind rejected (check CC_LDAP_BIND_DN and password)` | wrong DN or password, disabled service account | check the DN, a password file without extra characters, the account state |
+| `LDAP base DN … not found` / `CC_LDAP_REQUIRED_GROUP … not found` | a typo in the DN | copy the DN from the directory |
+| `401 invalid_credentials` with the right password | the account is disabled, locked, its password expired, or the search found several entries | check the account in AD; narrow `CC_LDAP_USER_FILTER` |
+| `429 rate_limited` at LDAP sign-in | the lockout guard (`CC_LDAP_MAX_FAILURES` or `CC_LDAP_MAX_FAILURES_PER_IP`) | wait for `CC_LDAP_FAILURE_WINDOW_MINUTES`; find out who is guessing passwords |
 
-[Enterprise-mode recipes: Entra ID, AD FS, Keycloak, Google, Okta, AD ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
+<a id="server-idp-standard"></a>
 
-[Every CC\_AUTH\_\*, CC\_OIDC\_\* and CC\_LDAP\_\* key: defaults and checks ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+### Switching back to standard mode
+
+There is **no emergency password sign-in in enterprise mode**. If the IdP or AD
+is down or misconfigured, start with `admin auth status` and `admin auth test`. To
+let people in with passwords for a while:
+
+1. Set `CC_AUTH_MODE=standard` (Helm: `auth.mode: standard`) and restart. The
+   `CC_OIDC_*` and `CC_LDAP_*` keys may stay: standard mode does not read them, so
+   switching back is a one-key change.
+2. Linked accounts have no password: set one with
+   `admin set-password --email … --password-stdin` (or issue a code with
+   `admin reset-token --email …`). The account password still does not open a
+   vault.
+3. Links are kept. Once enterprise mode is back on, sign-in is IdP/AD only again
+   and the password is removed at the user's next sign-in. To remove a link for
+   good: `admin identity unlink --email …`.
+
+<a id="server-idp-errors"></a>
+
+### Errors for apps (protocol 1.9)
+
+`enterprise_auth_required` (403), `identity_conflict` (409), `domain_not_allowed`
+(403), `group_required` (403), `mfa_required` (403), `idp_unavailable` (503),
+`account_disabled` (403), `invalid_credentials` (401), `rate_limited` (429) — see
+the table in the Russian section and [PROTOCOL_CHANGELOG.md](https://github.com/evsikovas/consolecrypt-server/blob/main/PROTOCOL_CHANGELOG.md).
+
+[Source file on GitHub: ENTERPRISE.md ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
 
 > **Keep in mind**
 >
@@ -2734,7 +3398,7 @@ Your own server’s features are turned on with CC\_\* variables. With Docker Co
 | Required email verification | CC\_REQUIRE\_EMAIL\_VERIFICATION (config.requireEmailVerification) | off; on in the Docker example |
 | Mail | CC\_MAIL\_TRANSPORT: smtp, file or disabled (mail.transport) | disabled; smtp in the Docker example |
 | Device request signatures | CC\_REQUIRE\_REQUEST\_PROOF (config.requireRequestProof) | on |
-| Teams | CC\_TEAMS\_ENABLED (via extraEnv in Helm; true or false only) | on |
+| Teams | CC\_TEAMS\_ENABLED (via extraEnv in Helm) | on |
 | Teams per account / members per team | CC\_MAX\_TEAMS\_PER\_ACCOUNT / CC\_MAX\_TEAM\_MEMBERS | 50 / 200 |
 | Sharing (main flag) | CC\_OBJECT\_SHARING\_ENABLED (config.objectSharingEnabled) | off |
 | Shared groups and shared secrets | CC\_SHARED\_GROUPS\_ENABLED, CC\_SHARED\_SECRETS\_ENABLED | off |
@@ -2753,7 +3417,7 @@ Your own server’s features are turned on with CC\_\* variables. With Docker Co
 
 1. Sharing is off by default. Every extension — groups, secrets, Kubernetes, databases, notes, a colleague’s new devices — needs the main CC\_OBJECT\_SHARING\_ENABLED flag and request signatures turned on, otherwise the server refuses to start. Enable only what you need; turning a flag off hides shared objects and notes without deleting their encrypted content. The client learns the capabilities from the authenticated /v1/shares/capabilities, not from /v1/meta.
 
-2. Teams (server 0.2.1) are on by default and do not depend on the sharing flags. CC\_TEAMS\_ENABLED accepts only true or false; with false the team routes answer 404 and clients hide the Teams section. If email verification is required, an account without a verified address cannot create a team. Invitations last 7 days, a team sends at most 20 per hour, and only the owner can appoint admins.
+2. Teams (server 0.2.1) are on by default and do not depend on the sharing flags. With CC\_TEAMS\_ENABLED=false the team routes answer 404 and clients hide the Teams section. If email verification is required, an account without a verified address cannot create a team. Invitations last 7 days, a team sends at most 20 per hour, and only the owner can appoint admins.
 
 3. New-device protection sends emails with a “This wasn’t me” link to the account page at CC\_PUBLIC\_URL/account. Publish such a page and configure mail before turning it on; without SMTP no emails are sent, while the rest of the protection works. In the Docker example CC\_PUBLIC\_URL is empty and Caddy serves only the API.
 
@@ -2878,9 +3542,11 @@ extraEnv:
     value: "50"
 ```
 
-[Full instructions: sharing flags, device protection, mail ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+[All 18 request limits and their CC\_LIMIT\_\* keys →](#server-reference-limits)
 
-[Settings reference: every limit, quota and its checks ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+[Quotas: vaults, objects, devices →](#server-reference-sync)
+
+[Example: limits from observe to enforce →](#server-settings-example-limits)
 
 > **Keep in mind**
 >
@@ -2890,9 +3556,428 @@ extraEnv:
 
 The client shows Teams only when the server supports them.
 
+<a name="server-reference"></a>
+
+## 62. Your own server: configuration reference
+
+Every sync server parameter: each CC\_\* key with its Helm path, default, allowed values, secret flag and purpose, grouped as in the source reference; the order of configuration sources and start-up checks; all 18 request limits and the admin commands. The reference is checked against the server code at every release. Where to put a key for each installation method is in “Your own server: installation and parameters by method”.
+
+**In this chapter:** [How the server reads its settings](#server-reference-sources) · [Network, public URL, TLS and proxy](#server-reference-network) · [Database and connection pool](#server-reference-database) · [Mail (SMTP)](#server-reference-mail) · [Registration, address verification, tokens and account passwords](#server-reference-registration) · [Devices and new-device protection](#server-reference-devices) · [Sync, WebSocket and quotas](#server-reference-sync) · [Sharing and teams](#server-reference-sharing) · [Request limits](#server-reference-rate-limits) · [PostgreSQL limits: CC\_LIMIT\_&lt;NAME&gt;\_\*](#server-reference-limits) · [Enterprise sign-in: CC\_AUTH\_\*, CC\_OIDC\_\*, CC\_LDAP\_\*](#server-reference-enterprise) · [Common keys](#server-reference-auth) · [OIDC](#server-reference-oidc) · [LDAP / Active Directory](#server-reference-ldap) · [Observability: metrics, logs, tracing](#server-reference-observability) · [Maintenance and data retention](#server-reference-maintenance) · [Service variables](#server-reference-service) · [Admin commands](#server-reference-admin)
+
+<a id="server-reference-sources"></a>
+
+### How the server reads its settings
+
+**Sources and precedence.** The server reads `CC_*` environment variables and,
+optionally, a private JSON file:
+
+1. the process environment (including an **explicitly empty** variable);
+2. the JSON file given by `--config <path>`, or, without the flag, by
+   `CC_CONFIG_FILE`;
+3. the built-in default.
+
+An empty value means "not set": with `CC_X=` (empty) in the environment the
+server uses the default **and does not look at the JSON file** for that key. Only
+the known keys of this reference are read from the environment; a variable with
+a typo in its name is silently ignored. In the JSON file, by contrast, an unknown
+or duplicated key stops the start.
+
+**Value formats.**
+
+| Type | How to write it |
+|---|---|
+| boolean | `true`/`false`, `1`/`0`, `yes`/`no`, `on`/`off` (lower case) |
+| integer | plain decimal without units or separators: `1073741824`, not `1GiB` |
+| duration | an integer in the unit named by the key: `_SECS` seconds, `_MINUTES` minutes, `_HOURS` hours, `_DAYS` days |
+| address | `host:port`, e.g. `0.0.0.0:8080` or `[::]:8080` |
+| list | comma and/or space separated (`CC_AUTH_ALLOWED_DOMAINS`, `CC_OIDC_MFA_ACR_VALUES`); `CC_OIDC_SCOPES` is space separated |
+| file path | an absolute path inside the container or on the service host |
+
+In the JSON file every value is a string, numbers and booleans included:
+`{"CC_MAX_VAULT_OBJECTS": "200000", "CC_HSTS": "true"}`.
+
+**Validation at start-up.** An invalid value stops the server with
+`invalid configuration: <KEY>: …`; the value itself is never printed. Ranges
+(listed in the tables) and cross-key rules are checked:
+
+- every sharing flag requires `CC_OBJECT_SHARING_ENABLED=true` and
+  `CC_REQUIRE_REQUEST_PROOF=true`;
+- `CC_REFRESH_TOKEN_TTL_SECS` must be at least `CC_ACCESS_TOKEN_TTL_SECS`;
+- `CC_AUTH_MODE=enterprise` requires `CC_AUTH_PROVIDER` and the provider's keys;
+  OIDC also requires an `https://` `CC_PUBLIC_URL`.
+
+Enterprise mode also checks the network at start-up: the IdP's discovery and
+JWKS, or the directory connection, TLS and bind (see
+[“Your own server: corporate sign-in recipes”](#server-idp)). At start-up the server logs a `starting`
+line with the effective configuration, passwords and the database URL redacted —
+a quick way to confirm a key reached the process.
+
+**When changes apply.** Only when the process restarts; neither the file nor
+the environment is re-read at run time. The exception is per-account limit
+overrides (`admin limits set`), which apply within 30 seconds without a restart.
+
+**Secrets.** Secret values are `CC_DATABASE_URL` (when it contains a password),
+`CC_DATABASE_PASSWORD`, `CC_SMTP_PASSWORD` and the enterprise sign-in files. The
+server never logs them. There is no generic `*_FILE` mechanism: the server does
+not know `CC_DATABASE_PASSWORD_FILE` or `CC_SMTP_PASSWORD_FILE`. Only five keys,
+which are paths themselves, point at files: `CC_OIDC_CLIENT_SECRET_FILE`,
+`CC_OIDC_TOKEN_KEY_FILE`, `CC_LDAP_BIND_PASSWORD_FILE`, `CC_OIDC_CA_FILE`,
+`CC_LDAP_CA_FILE`. Pass the database and SMTP passwords through the environment
+(a Kubernetes `secretKeyRef`, the private `server.env`) or a private JSON file
+with mode `0600`.
+
+**Which commands read the configuration.** `serve` (the default), `migrate` and
+`admin …` load and validate the whole configuration, so `admin` needs the same
+keys as the server (inside the container they are already there). `healthcheck`
+reads only `CC_LISTEN_ADDR` and probes `http://127.0.0.1:<port>/readyz`.
+
+<a id="server-reference-network"></a>
+
+### Network, public URL, TLS and proxy
+
+The server does not terminate TLS and has no certificate settings: a reverse
+proxy or Ingress in front provides HTTPS. The proxy must forward the
+`/v1/events/ws` WebSocket, accept request bodies up to 16 MiB and leave the path,
+query and body untouched: they are covered by the device signature.
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_LISTEN_ADDR` | — (the chart always uses `0.0.0.0:8080`) | `0.0.0.0:8080` | `host:port` | no | Address and port of the HTTP/WebSocket API. On a host without containers, with the proxy on the same machine, use `127.0.0.1:8080` so the API is not reachable directly. `healthcheck` uses its port. |
+| `CC_PUBLIC_URL` | `config.publicUrl` | not set | `https://…` URL | no | Public base URL of the instance (`https://sync.example.org`, without `/v1`). Mail links (`/account#action=verify`, `reset`, `deny-device`) and the OIDC redirect URI `CC_PUBLIC_URL/v1/auth/oidc/callback` are built from it. Without it mails carry only a code. Required for OIDC and must start with `https://` (`http://` only on `127.0.0.1`/`localhost` for development). If no account page is served at this origin, mail links answer 404 — the codes in the mails still work in the app. |
+| `CC_TRUST_PROXY_HEADERS` | `config.trustProxyHeaders` (`auto` = `ingress.enabled`, `"true"`, `"false"`) | `false` | boolean | no | Take the client address from the **last** `X-Forwarded-For` entry (the one your proxy added). Enable only with exactly one trusted proxy that sets or appends the header and with direct access to the API port closed — otherwise clients can spoof their address. Without it every per-IP limit sees only the proxy's address. |
+| `CC_HSTS` | `config.hsts` | `true` | boolean | no | Send `Strict-Transport-Security: max-age=63072000; includeSubDomains`. Turn it off only if the proxy sets HSTS itself or subdomains must stay reachable over HTTP. |
+| `CC_SOURCE_CODE_URL` | `config.sourceCodeUrl` | the build's source URL (the image sets it) | URL | no | Source link that `/v1/meta` returns as `source_code_url` (AGPL-3.0 §13). Leave it unset for the official image. If you run a **modified** server, point it at your modified source. |
+
+<a id="server-reference-database"></a>
+
+### Database and connection pool
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_DATABASE_URL` | `database.url`, `database.existingSecret` + `database.existingSecretKey`, or the bundled `postgresql.*` | **required** | `postgres://…` URL | yes, with a password | PostgreSQL 16 URL: `postgres://user@host:5432/db?sslmode=verify-full`. For an external database use `sslmode=verify-full` and, with a private CA, `sslrootcert=<path in the container>`. A password inside the URL must be percent-encoded; passing it separately in `CC_DATABASE_PASSWORD` is simpler. **Secret** when it contains a password. In Helm `database.url` is stored in the chart's Secret, `existingSecret` in yours. |
+| `CC_DATABASE_PASSWORD` | only with the bundled database (`postgresql.auth.password` / `existingSecret`); for an external one use `extraEnv` with a `secretKeyRef` | not set | string | yes | Password applied on top of the URL; no escaping needed. **Secret.** When neither this nor the URL has a password, the driver uses the standard `PGPASSWORD` variable. |
+| `DATABASE_URL` | — | not set | `postgres://…` URL | yes, with a password | Legacy name of `CC_DATABASE_URL`, **environment only**. Used when `CC_DATABASE_URL` is not in the process environment; it then wins over `CC_DATABASE_URL` from the JSON file. **Secret** when it contains a password. |
+| `CC_DATABASE_MAX_CONNECTIONS` | `database.maxConnections` | `20` | integer ≥ 1 | no | Pool size per process (pod), at least 1. Each process holds one more connection for `LISTEN/NOTIFY`. Keep `replicas × (value + 1)` below PostgreSQL's `max_connections`. Waiting for a free connection times out after 5 seconds. |
+| `CC_DATABASE_CONNECT_TIMEOUT_SECS` | `database.connectTimeoutSecs` | `60` | seconds, integer | no | How many seconds start-up keeps retrying an unreachable database (back-off from 0.25 to 5 seconds) before exiting with an error. Applies to `serve`, `migrate` and `admin`. |
+| `CC_RUN_MIGRATIONS` | `migrations.runAtStartup` | `true` | boolean | no | Apply the built-in migrations at start-up (under an advisory lock — safe with several replicas). Use `false` only when migrations run separately (`consolecrypt-server migrate`, Helm `migrations.job.enabled`) or for a rollback you have verified. Rolling the image back does not undo migrations. |
+| `CC_EVENT_BUS` | `config.eventBus` | `postgres` | `postgres`, `local` | no | How real-time events reach WebSocket clients: `postgres` (`LISTEN/NOTIFY`, any number of replicas) or `local` (in-process, one replica only; the chart refuses `local` with `replicaCount > 1` or autoscaling). |
+
+<a id="server-reference-mail"></a>
+
+### Mail (SMTP)
+
+Mail carries address verification and password reset codes, device protection
+mails, failed sign-in warnings and team invitations.
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_MAIL_TRANSPORT` | `mail.transport` | `disabled` | `disabled` (`none`), `smtp`, `file` | no | `disabled` (or `none`): nothing is sent, the operator uses `admin verify-email` and `admin reset-token`; `smtp`: send through SMTP; `file`: development only, each message is written as a file into `CC_MAIL_DIR`. |
+| `CC_MAIL_DIR` | `mail.file.dir` (an emptyDir in the pod) | `./.dev-mail` | directory path | no | Directory for `file`; relative to the process working directory. Files are created with mode `0600`. |
+| `CC_MAIL_FROM` | `mail.from` | `ConsoleCrypt <no-reply@localhost>` | address `Name <a@example.org>` | no | Sender. Your SMTP server and the sender's DNS records must allow it. |
+| `CC_SMTP_HOST` | `mail.smtp.host` | — | host name | no | SMTP host name; required with `smtp`. |
+| `CC_SMTP_PORT` | `mail.smtp.port` | `587` | 1–65535 | no | SMTP port (1–65535). |
+| `CC_SMTP_TLS` | `mail.smtp.tls` | `starttls` | `starttls`, `tls`, `none` | no | `starttls` (usually 587), `tls` — implicit TLS (usually 465), `none` — unencrypted, only for a local relay or a test mail catcher. |
+| `CC_SMTP_USERNAME` | `mail.smtp.username` | not set | string | no | SMTP login. Empty: no authentication (an IP-authorised relay). |
+| `CC_SMTP_PASSWORD` | `mail.smtp.password` (chart Secret) or `mail.smtp.existingSecret` + `existingSecretPasswordKey` | not set | string | yes | SMTP password. **Secret**: use `existingSecret` in Helm. |
+
+<a id="server-reference-registration"></a>
+
+### Registration, address verification, tokens and account passwords
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_REGISTRATION_OPEN` | `config.registrationOpen` | `true` | boolean | no | Allow new account registration. `false`: registration answers 403 and `/v1/meta` reports `registration_open: false`; existing accounts keep working. Ignored in enterprise mode, where the first IdP/directory sign-in creates accounts (`CC_AUTH_AUTO_CREATE`). |
+| `CC_REQUIRE_EMAIL_VERIFICATION` | `config.requireEmailVerification` | `false` | boolean | no | Require a verified address: without it, sign-in and creating a vault, team or shared item answer `email_not_verified`. Needs mail or `admin verify-email`. The Docker Compose example turns it on. |
+| `CC_EMAIL_VERIFY_TTL_SECS` | `config.tokens.emailVerifyTtlSecs` | `172800` (48 h) | seconds, integer | no | Lifetime of an address verification code. |
+| `CC_PASSWORD_RESET_TTL_SECS` | `config.tokens.passwordResetTtlSecs` | `3600` (1 h) | seconds, integer | no | Lifetime of an account password reset code (from a mail or `admin reset-token`). |
+| `CC_ACCESS_TOKEN_TTL_SECS` | `config.tokens.accessTtlSecs` | `900` (15 min) | seconds, 60–86400 | no | Access token lifetime, 60–86400. Shorter means revocation bites sooner but refreshes are more frequent. |
+| `CC_REFRESH_TOKEN_TTL_SECS` | `config.tokens.refreshTtlSecs` | `2592000` (30 days) | seconds, ≥ `CC_ACCESS_TOKEN_TTL_SECS` | no | Refresh token lifetime (a device session without a refresh); at least the access token lifetime. After it the device signs in again. |
+| `CC_ARGON2_MEMORY_KIB` | `config.argon2.memoryKib` | `19456` (19 MiB) | KiB, integer | no | Argon2id memory for **account password** hashes (the server never gets vault keys). New parameters apply to new hashes; existing hashes are verified with their own parameters until the password changes. |
+| `CC_ARGON2_ITERATIONS` | `config.argon2.iterations` | `2` | integer ≥ 1 | no | Argon2id passes. |
+| `CC_ARGON2_PARALLELISM` | `config.argon2.parallelism` | `1` | integer ≥ 1 | no | Argon2id parallelism. |
+| `CC_ARGON2_MAX_CONCURRENT` | `config.argon2.maxConcurrent` (`4`) | number of CPUs, at most 4 | integer ≥ 1 | no | Hashes computed at the same time (a CPU and memory guard against sign-in floods), at least 1. Peak memory ≈ `CC_ARGON2_MEMORY_KIB × CC_ARGON2_MAX_CONCURRENT` — keep it well below the container's memory limit. |
+
+<a id="server-reference-devices"></a>
+
+### Devices and new-device protection
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_REQUIRE_REQUEST_PROOF` | `config.requireRequestProof` | `true` | boolean | no | Require every request to be signed with the device key (protocol 1.5): a stolen token is useless without the key. `false` is a temporary exception for old clients: invalid proofs are still refused, missing ones are only counted (`cc_request_proofs_total{result="missing"}`). Sharing requires `true`. |
+| `CC_DEVICE_REQUEST_TTL_SECS` | `config.tokens.deviceRequestTtlSecs` | `86400` (24 h) | seconds, integer | no | How long a new device's trust request waits for approval on a trusted device. |
+| `CC_DEVICE_PROTECTION_ENABLED` | `config.deviceProtection.enabled` | `false` | boolean | no | Protection against sign-ins from new devices: quarantine, limits on unlock material for untrusted devices, "new device" mails, the `device_registered` event, revoking unused devices on password reset. "This wasn't me" links point to `CC_PUBLIC_URL/account`. Details: [“Protection against sign-ins from new devices”](#device-protection). |
+| `CC_NEW_DEVICE_MAIL_ENABLED` | `config.deviceProtection.newDeviceMail` | `true` | boolean | no | "New device" mails (with protection on and mail configured). |
+| `CC_DEVICE_QUARANTINE_DAYS` | `config.deviceProtection.quarantineDays` | `14` | days, 0–365 | no | Quarantine of a new device in days, 0–365: meanwhile it cannot revoke trusted devices, and a password change or "sign out everywhere" from it does not end trusted devices' sessions. `0`: no quarantine. |
+| `CC_ENVELOPE_LIMIT_ACCOUNT_PER_HOUR` | `config.deviceProtection.envelopesPerAccountPerHour` | `5` | integer ≥ 0, `0` = no limit | no | How often per hour the account's untrusted devices may receive vault unlock material (`0` = no limit). Counters are shared by all replicas. |
+| `CC_ENVELOPE_LIMIT_ACCOUNT_PER_DAY` | `config.deviceProtection.envelopesPerAccountPerDay` | `20` | integer ≥ 0, `0` = no limit | no | The same per day. |
+| `CC_ENVELOPE_LIMIT_DEVICE_PER_HOUR` | `config.deviceProtection.envelopesPerDevicePerHour` | `3` | integer ≥ 0, `0` = no limit | no | The same for one untrusted device per hour. |
+| `CC_NEW_DEVICE_MAIL_PER_HOUR` | `config.deviceProtection.newDeviceMailsPerHour` | `10` | integer ≥ 0 | no | "New device" mails per account per hour; later sign-ins of that hour are folded into one mail. |
+
+<a id="server-reference-sync"></a>
+
+### Sync, WebSocket and quotas
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_SYNC_PAGE_BYTES` | `config.sync.pageBytes` | `8388608` (8 MiB) | bytes, ≥ 65536 | no | Byte budget of one `changes`/`snapshot` page and of sharing lists, at least 65536. |
+| `CC_QUOTAS_V2_ENABLED` | `config.quotas.v2Enabled` | `true` | boolean | no | Server 0.2.2 quotas: tombstone and object accounting, device limits, deleting an unknown object without a tombstone. `false` restores the 0.2.1 behaviour (counters are still maintained). |
+| `CC_MAX_VAULT_BYTES` | `config.quotas.maxVaultBytes` | `1073741824` (1 GiB) | bytes, ≥ 1048576 | no | Ciphertext plus tombstones per vault, at least 1 MiB. Beyond: `413`, `details.reason = "vault_quota"`. |
+| `CC_TOMBSTONE_COST_BYTES` | `config.quotas.tombstoneCostBytes` | `256` | bytes, 0–1048576 | no | Quota bytes each tombstone (deleted object) costs, 0–1048576. |
+| `CC_MAX_VAULT_OBJECTS` | `config.quotas.maxVaultObjects` | `100000` | integer ≥ 1 | no | Live objects plus tombstones per vault, at least 1. Beyond: `413`, `object_limit`. |
+| `CC_MAX_VAULTS_PER_ACCOUNT` | `config.quotas.maxVaultsPerAccount` | `50` | integer ≥ 1 | no | Vaults an account may own, at least 1. Beyond: `403`, `vault_limit`. |
+| `CC_MAX_DEVICES_PER_ACCOUNT` | `config.quotas.maxDevicesPerAccount` | `20` | 1–64 | no | Non-revoked devices per account, 1–64 (64 is the recipient limit of a shared item). One more: `403`, `device_limit`. |
+| `CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY` | `config.quotas.newDevicesPerAccountPerDay` | `10` | integer ≥ 0, `0` = no limit | no | New devices per account in any 24 hours, `0` = no limit. Beyond: `403`, `device_daily_limit` with `details.until`. |
+| `CC_WS_PING_INTERVAL_SECS` | `config.websocket.pingIntervalSecs` | `30` | seconds, ≥ 1 | no | WebSocket ping interval, at least 1. Lower it if your proxy closes idle connections sooner. |
+| `CC_WS_SESSION_RECHECK_SECS` | `config.websocket.sessionRecheckSecs` | `30` | seconds, 1–30 | no | How often an open WebSocket checks that its session is not revoked, 1–30: revocation reaches sockets within 30 seconds. |
+| `CC_WS_MAX_CONNECTIONS_PER_USER` | `config.websocket.maxConnectionsPerUser` | `32` | integer ≥ 1 | no | Concurrent WebSocket connections per account per replica, at least 1; more answer `429`. |
+
+Quotas of a single account change without a restart: `admin limits set --email …
+max_vault_bytes=… max_vault_objects=… max_devices_per_account=…
+new_devices_per_account_per_day=…`. `CC_MAX_VAULTS_PER_ACCOUNT` cannot be
+overridden this way.
+
+<a id="server-reference-sharing"></a>
+
+### Sharing and teams
+
+Every sharing flag is off by default and requires `CC_OBJECT_SHARING_ENABLED=true`
+and `CC_REQUIRE_REQUEST_PROOF=true` (otherwise the server does not start). Turning
+a flag off hides objects of that kind without deleting their ciphertext. Clients
+learn the capabilities from the authenticated `/v1/shares/capabilities`. Details:
+[“Sharing: getting started”](#sharing-start).
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_OBJECT_SHARING_ENABLED` | `config.objectSharingEnabled` | `false` | boolean | no | The main sharing mechanism for hosts. |
+| `CC_SHARED_GROUPS_ENABLED` | `config.sharedGroupsEnabled` | `false` | boolean | no | Shared groups (collections). |
+| `CC_SHARED_SECRETS_ENABLED` | `config.sharedSecretsEnabled` | `false` | boolean | no | Individual shared secrets. |
+| `CC_SHARED_KUBE_CONTEXTS_ENABLED` | `config.sharedKubeContextsEnabled` | `false` | boolean | no | Shared Kubernetes connections (`supports_kube_contexts`). |
+| `CC_SHARED_DB_CONNECTIONS_ENABLED` | `config.sharedDbConnectionsEnabled` | `false` | boolean | no | Shared database connections (`supports_db_connections`). |
+| `CC_SHARED_NOTES_ENABLED` | `config.sharedNotesEnabled` | `false` | boolean | no | Shared notes on shared objects (`supports_notes_v1`): up to 500 notes per object, up to 288 KiB of ciphertext per note. |
+| `CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED` | `config.sharingOwnerOnlineEnrollmentEnabled` | `false` | boolean | no | Adding a recipient's new personal devices with the owner online. |
+| `CC_TEAMS_ENABLED` | `extraEnv` | `true` | boolean | no | Teams (shared vaults, `/v1/teams/*`, `capabilities.teams` in `/v1/meta`). Independent of the sharing flags. With `false` the team routes answer 404; data is kept. |
+| `CC_MAX_TEAMS_PER_ACCOUNT` | `extraEnv` | `50` | integer ≥ 1 | no | Teams an account may belong to, at least 1. |
+| `CC_MAX_TEAM_MEMBERS` | `extraEnv` | `200` | integer ≥ 2 | no | Members of one team, at least 2. |
+
+<a id="server-reference-rate-limits"></a>
+
+### Request limits
+
+Limits protect the server from any single account, device or address. Most
+limits live in PostgreSQL (token buckets on database time) and act the same on
+every replica; three first-stage limits live in each replica's memory. A refusal
+is `429 rate_limited` with `Retry-After` and `details.limit`.
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_RATE_LIMIT_ENABLED` | `config.rateLimit.enabled` | `true` | boolean | no | `false` turns off **every** request limit (quotas stay). Debugging only. |
+| `CC_RATE_LIMIT_MODE` | `config.rateLimit.mode` | `observe` | `observe`, `enforce` | no | `observe`: excess on the PostgreSQL limits and the read limit is only counted (`cc_rate_limit_observed_total{limiter}`, audit event `limit_exceeded` at most hourly per account and limit); `enforce`: it is refused. Sign-in and recovery limits (marked below) and the first stages `CC_RATE_LIMIT_AUTH_PER_IP_PER_MINUTE` and `CC_RATE_LIMIT_PROOF_PER_DEVICE_PER_MINUTE` act in both modes. Procedure: watch the metric for a week, raise thresholds if needed, then `enforce`. |
+| `CC_RATE_LIMIT_AUTH_PER_IP_PER_MINUTE` | `config.rateLimit.authPerIpPerMinute` | `30` | integer, per minute | no | First stage in replica memory: public sign-in, registration and recovery requests per IP (IPv6 per /64) per minute. While `CC_LIMIT_AUTH_IP_RATE` is unset, the same value sets the shared `auth_ip` limit. |
+| `CC_RATE_LIMIT_PROOF_PER_DEVICE_PER_MINUTE` | `config.rateLimit.proofPerDevicePerMinute` | `20` | integer, per minute | no | In replica memory: key proof attempts (attest/approve) per device per minute. |
+| `CC_RATE_LIMIT_READ_PER_DEVICE_PER_MINUTE` | `config.rateLimit.readPerDevicePerMinute` | `1200` | integer, per minute; `0` = off | no | In replica memory: authenticated reads (GET) per device per minute; `0` = off. Follows `CC_RATE_LIMIT_MODE`. |
+| `CC_RATE_LIMIT_LOGIN_PER_EMAIL_PER_MINUTE` | `config.rateLimit.loginPerEmailPerMinute` | not set (`10`) | integer, per minute | no | Pre-0.2.2 name: the per-minute rate (and capacity) of `login_email`. Ignored when `CC_LIMIT_LOGIN_EMAIL_RATE` is set. |
+| `CC_RATE_LIMIT_RECOVERY_PER_EMAIL_PER_HOUR` | `config.rateLimit.recoveryPerEmailPerHour` | not set (`5`) | integer, per hour | no | Pre-0.2.2 name: the hourly rate of `recovery_email`. Ignored when `CC_LIMIT_RECOVERY_EMAIL_RATE` is set. |
+
+<a id="server-reference-limits"></a>
+
+### PostgreSQL limits: CC\_LIMIT\_&lt;NAME&gt;\_\*
+
+Each limit has four keys (`<NAME>` is the limit name in upper case):
+
+- `CC_LIMIT_<NAME>_RATE` — rate of the main bucket: `N` per the limit's natural
+  period (see the table) or `N/s`, `N/sec`, `N/min` (`N/m`), `N/hour` (`N/h`),
+  `N/day` (`N/d`); a fractional `N` is allowed; `0` = no main bucket. Setting only
+  the rate makes the capacity one period of that rate.
+- `CC_LIMIT_<NAME>_BURST` — bucket capacity (requests in a row), an integer of at
+  least 1. Default: one period of the rate unless the table lists a burst.
+- `CC_LIMIT_<NAME>_PER_HOUR`, `CC_LIMIT_<NAME>_PER_DAY` — extra hourly and daily
+  ceilings, integers; `0` = no ceiling.
+
+A limit with no rate and no ceilings limits nothing. In Helm all four keys come
+from `config.rateLimit.limits`, e.g.
+`{push_account: {rate: "600/min", burst: 600, perHour: 0, perDay: 0}}` (fields
+`rate`, `burst`, `perHour`, `perDay`). For one account:
+`admin limits set --email … push_account_rate=600/min` (suffixes `_rate`,
+`_burst`, `_per_hour`, `_per_day`); sign-in limits cannot be overridden this way.
+
+| Name | What it limits | Default | Keys |
+|---|---|---|---|
+| `push_device` | pushes from one device | 120/min, burst 60 | `CC_LIMIT_PUSH_DEVICE_RATE`, `CC_LIMIT_PUSH_DEVICE_BURST`, `CC_LIMIT_PUSH_DEVICE_PER_HOUR`, `CC_LIMIT_PUSH_DEVICE_PER_DAY` |
+| `push_account` | pushes from all devices of an account | 300/min | `CC_LIMIT_PUSH_ACCOUNT_RATE`, `CC_LIMIT_PUSH_ACCOUNT_BURST`, `CC_LIMIT_PUSH_ACCOUNT_PER_HOUR`, `CC_LIMIT_PUSH_ACCOUNT_PER_DAY` |
+| `mutations_account` | changes inside an account's pushes | 50,000/hour | `CC_LIMIT_MUTATIONS_ACCOUNT_RATE`, `CC_LIMIT_MUTATIONS_ACCOUNT_BURST`, `CC_LIMIT_MUTATIONS_ACCOUNT_PER_HOUR`, `CC_LIMIT_MUTATIONS_ACCOUNT_PER_DAY` |
+| `unknown_delete_account` | deletes of objects the server never had | 1000/day | `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_RATE`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_BURST`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_PER_HOUR`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_PER_DAY` |
+| `share_write_account` | creating shared objects | 60/hour, burst 20 | `CC_LIMIT_SHARE_WRITE_ACCOUNT_RATE`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_BURST`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_PER_HOUR`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_PER_DAY` |
+| `share_revision_account` | shared object revisions, access changes, shared notes | 600/hour | `CC_LIMIT_SHARE_REVISION_ACCOUNT_RATE`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_BURST`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_PER_HOUR`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_PER_DAY` |
+| `recipient_lookup_account` | recipient lookups by e-mail address | 30/min and 300/day | `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_RATE`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_BURST`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_HOUR`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY` |
+| `enrollment_account` | adding a recipient's own devices | 30/hour | `CC_LIMIT_ENROLLMENT_ACCOUNT_RATE`, `CC_LIMIT_ENROLLMENT_ACCOUNT_BURST`, `CC_LIMIT_ENROLLMENT_ACCOUNT_PER_HOUR`, `CC_LIMIT_ENROLLMENT_ACCOUNT_PER_DAY` |
+| `trust_request_device` | trust requests from one device | 10/hour | `CC_LIMIT_TRUST_REQUEST_DEVICE_RATE`, `CC_LIMIT_TRUST_REQUEST_DEVICE_BURST`, `CC_LIMIT_TRUST_REQUEST_DEVICE_PER_HOUR`, `CC_LIMIT_TRUST_REQUEST_DEVICE_PER_DAY` |
+| `trust_request_account` | trust requests from all devices of an account | 30/day | `CC_LIMIT_TRUST_REQUEST_ACCOUNT_RATE`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_BURST`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_PER_HOUR`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_PER_DAY` |
+| `verification_account` | key verification: approving-device announcements, signed vault key fingerprints | 20/hour | `CC_LIMIT_VERIFICATION_ACCOUNT_RATE`, `CC_LIMIT_VERIFICATION_ACCOUNT_BURST`, `CC_LIMIT_VERIFICATION_ACCOUNT_PER_HOUR`, `CC_LIMIT_VERIFICATION_ACCOUNT_PER_DAY` |
+| `account_security` | password change, recovery kit reissue, envelope replacement | 10/hour | `CC_LIMIT_ACCOUNT_SECURITY_RATE`, `CC_LIMIT_ACCOUNT_SECURITY_BURST`, `CC_LIMIT_ACCOUNT_SECURITY_PER_HOUR`, `CC_LIMIT_ACCOUNT_SECURITY_PER_DAY` |
+| `ws_connect_account` | new WebSocket connections of an account | 60/min | `CC_LIMIT_WS_CONNECT_ACCOUNT_RATE`, `CC_LIMIT_WS_CONNECT_ACCOUNT_BURST`, `CC_LIMIT_WS_CONNECT_ACCOUNT_PER_HOUR`, `CC_LIMIT_WS_CONNECT_ACCOUNT_PER_DAY` |
+| `auth_ip` (always enforced) | public sign-in, registration and recovery requests from one address, shared by replicas | 30/min | `CC_LIMIT_AUTH_IP_RATE`, `CC_LIMIT_AUTH_IP_BURST`, `CC_LIMIT_AUTH_IP_PER_HOUR`, `CC_LIMIT_AUTH_IP_PER_DAY` |
+| `login_email` (always enforced) | **failed** sign-ins to one e-mail address from one network (/24 IPv4, /64 IPv6) | 10/min and 50/hour | `CC_LIMIT_LOGIN_EMAIL_RATE`, `CC_LIMIT_LOGIN_EMAIL_BURST`, `CC_LIMIT_LOGIN_EMAIL_PER_HOUR`, `CC_LIMIT_LOGIN_EMAIL_PER_DAY` |
+| `login_email_total` (always enforced) | failed sign-ins to an address from all networks | 200/hour | `CC_LIMIT_LOGIN_EMAIL_TOTAL_RATE`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_BURST`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_PER_HOUR`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_PER_DAY` |
+| `recovery_email` (always enforced) | password reset requests to an address from one network | 5/hour | `CC_LIMIT_RECOVERY_EMAIL_RATE`, `CC_LIMIT_RECOVERY_EMAIL_BURST`, `CC_LIMIT_RECOVERY_EMAIL_PER_HOUR`, `CC_LIMIT_RECOVERY_EMAIL_PER_DAY` |
+| `recovery_email_total` (always enforced) | reset mails to an address from all networks (the answer is always `202`) | 20/day | `CC_LIMIT_RECOVERY_EMAIL_TOTAL_RATE`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_BURST`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_PER_HOUR`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_PER_DAY` |
+
+Other people's attempts do not lock the owner out: a successful sign-in spends no
+e-mail limit, and a sign-in from one of the account's known devices is limited
+only by address. Effective values: `consolecrypt-server admin limits show` (with
+`--email` for an account).
+
+<a id="server-reference-enterprise"></a>
+
+### Enterprise sign-in: CC\_AUTH\_\*, CC\_OIDC\_\*, CC\_LDAP\_\*
+
+In `standard` mode the provider keys are neither read nor validated, so switching
+back and forth is a change of `CC_AUTH_MODE` alone. Setup order, IdP and
+directory recipes, commands and troubleshooting: [“Your own server: corporate sign-in recipes”](#server-idp).
+In Helm this is the `auth:` block; secrets come from an existing Secret that the
+chart mounts read-only at `/run/secrets/consolecrypt-auth`, and the chart fills in
+the `*_FILE` paths itself.
+
+<a id="server-reference-auth"></a>
+
+### Common keys
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_AUTH_MODE` | `auth.mode` | `standard` | `standard`, `enterprise` | no | `standard`: e-mail and account password; `enterprise`: sign-in only through the IdP (OIDC) or the directory (LDAP); registration and account passwords are off. |
+| `CC_AUTH_PROVIDER` | `auth.provider` | — | `oidc`, `ldap` | no | `oidc` or `ldap`; required in enterprise mode. |
+| `CC_AUTH_DISPLAY_NAME` | `auth.displayName` | not set | up to 64 printable characters | no | Label of the app's sign-in button ("Sign in with …"), up to 64 printable characters. |
+| `CC_AUTH_ALLOWED_DOMAINS` | `auth.allowedDomains` (a list) | empty — any | list of domains | no | Allowed e-mail domains (`acme.com, acme.ru`; a leading `@` is dropped, case-insensitive, subdomains are not included). Required for automatically linking existing password accounts; mandatory for the `google` preset. |
+| `CC_AUTH_AUTO_CREATE` | `auth.autoCreate` | `true` | boolean | no | Create an account at a new identity's first sign-in. `false`: only existing or linked accounts sign in; everyone else gets `403` (`not_provisioned`). |
+| `CC_AUTH_RECHECK_MINUTES` | `auth.recheckMinutes` | `15` | minutes, 1–1440 | no | How often (1–1440 min) to re-check the user at the IdP/directory. A disabled employee loses sync within this time + 1 minute. |
+| `CC_AUTH_RECHECK_GRACE_HOURS` | `auth.recheckGraceHours` | `24` | hours, 0–720 | no | How many hours (0–720) sessions survive while the IdP/directory is unreachable; then refresh answers `503 idp_unavailable`. |
+
+<a id="server-reference-oidc"></a>
+
+### OIDC
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_OIDC_PRESET` | `auth.oidc.preset` | `generic` | `generic`, `entra`, `adfs`, `keycloak`, `google`, `okta` | no | `generic`, `entra`, `adfs`, `keycloak`, `google`, `okta`: defaults and start-up checks (Entra: tenant-id issuer, no `/common`, `/organizations`, `/consumers`; AD FS: ends with `/adfs`; Keycloak: contains `/realms/`; Google: fixed issuer, mandatory domain list, `hd` check). |
+| `CC_OIDC_ISSUER` | `auth.oidc.issuer` | required (`google`: `https://accounts.google.com`) | `https://…` URL | no | Exact issuer: character for character equal to `issuer` in discovery and `iss` in the ID token, trailing `/` included. `https://` only (`http://` on loopback for development), no query or fragment. |
+| `CC_OIDC_CLIENT_ID` | `auth.oidc.clientId` | required | string | no | The server's client (application) id at the IdP. |
+| `CC_OIDC_CLIENT_SECRET_FILE` | `auth.oidc.existingSecret` + `clientSecretKey` (`client-secret`) | required | file path | the file: yes | Path of the file with the client secret (UTF-8, trailing newline dropped, up to 64 KiB). **Secret**: the process user must be able to read it (UID 65532 in the container). |
+| `CC_OIDC_TOKEN_KEY_FILE` | `auth.oidc.existingSecret` + `tokenKeyKey` (`token-key`) | required | file path | the file: yes | Path of the file with the 32-byte key that seals IdP refresh tokens in the database (ChaCha20-Poly1305): 64 hex characters (`openssl rand -hex 32`), base64 of 32 bytes, or 32 random bytes. **Secret.** Changing it makes stored refresh tokens unreadable — users sign in once more. |
+| `CC_OIDC_SCOPES` | `auth.oidc.scopes` | `openid email profile offline_access`; `adfs`: `openid email profile allatclaims`; `google`: `openid email profile` | space-separated list incl. `openid` | no | Space-separated scopes; `openid` is required. `offline_access` provides the refresh token for re-checks; Google rejects it (the preset adds `access_type=offline` and `prompt=consent` itself). |
+| `CC_OIDC_EMAIL_CLAIM` | `auth.oidc.emailClaim` | `email`; `entra`: `preferred_username`; `adfs`: `upn` | claim name | no | ID token claim used as the account e-mail (the value must contain `@`). |
+| `CC_OIDC_REQUIRED_CLAIM` | `auth.oidc.requiredClaim` | not set | `claim=value` | no | `name=value`: admit only identities whose claim equals the value or, for arrays such as `groups` and `roles`, contains it. Otherwise `403 group_required`. |
+| `CC_OIDC_REQUIRE_MFA` | `auth.oidc.requireMfa` | `false` | boolean | no | Require multi-factor sign-in: `mfa` or `http://schemas.microsoft.com/claims/multipleauthn` in `amr`, or an `acr` from `CC_OIDC_MFA_ACR_VALUES`. Otherwise `403 mfa_required`. Refused for `google` without `acr` values. |
+| `CC_OIDC_MFA_ACR_VALUES` | `auth.oidc.mfaAcrValues` | empty | list | no | `acr` values that count as multi-factor (comma or space separated). |
+| `CC_OIDC_TOKEN_AUTH_METHOD` | `auth.oidc.tokenAuthMethod` | `client_secret_basic` | `client_secret_basic` (`basic`), `client_secret_post` (`post`) | no | How the server authenticates at the token endpoint: `client_secret_basic` (`basic`) or `client_secret_post` (`post`). |
+| `CC_OIDC_CA_FILE` | `auth.oidc.caKey` (a key in the same Secret) | system roots | path to a PEM file | no | PEM certificate of an extra root CA for an IdP behind an internal CA (e.g. AD FS). |
+
+<a id="server-reference-ldap"></a>
+
+### LDAP / Active Directory
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_LDAP_URL` | `auth.ldap.url` | required | `ldaps://…`, `ldap://…` | no | `ldaps://dc1.acme.local:636`, or `ldap://dc1.acme.local:389` together with `CC_LDAP_STARTTLS=true`. Plain `ldap://` without STARTTLS is refused: domain passwords must not travel in clear text. The host name must match the domain controller's certificate. |
+| `CC_LDAP_STARTTLS` | `auth.ldap.starttls` | `false` | boolean | no | STARTTLS for `ldap://`; not allowed with `ldaps://`. |
+| `CC_LDAP_CA_FILE` | `auth.ldap.caKey` (a key in the same Secret) | system roots | path to a PEM file | no | PEM with the domain's root CA certificate (one or more certificates). |
+| `CC_LDAP_BIND_DN` | `auth.ldap.bindDn` | required | DN | no | DN of the service account for searches and re-checks, e.g. `CN=svc-consolecrypt,OU=Service,DC=acme,DC=local`. Read access to the directory is enough. |
+| `CC_LDAP_BIND_PASSWORD_FILE` | `auth.ldap.existingSecret` + `bindPasswordKey` (`bind-password`) | required | file path | the file: yes | Path of the file with the service account password. **Secret.** |
+| `CC_LDAP_BASE_DN` | `auth.ldap.baseDn` | required | DN | no | Where to search for users (`DC=acme,DC=local`). It also identifies the source of identity links: after changing it the links must be recreated. |
+| `CC_LDAP_USER_FILTER` | `auth.ldap.userFilter` | `(&(objectClass=user)(\|(mail={login})(userPrincipalName={login})(sAMAccountName={login})))` | LDAP filter with `{login}` | no | Search filter with `{login}`; must start with `(`. User input is escaped per RFC 4515 and a `DOMAIN\` prefix is dropped. If several entries match, sign-in is refused. |
+| `CC_LDAP_EMAIL_ATTR` | `auth.ldap.emailAttr` | `mail` | attribute name | no | Attribute holding the e-mail address. |
+| `CC_LDAP_ID_ATTR` | `auth.ldap.idAttr` | `objectGUID` | attribute name | no | Stable user identifier; `objectGUID` is stored as a GUID string. A changed e-mail or name does not break the link. |
+| `CC_LDAP_REQUIRED_GROUP` | `auth.ldap.requiredGroup` | not set | DN | no | DN of the group the user must belong to (nested groups count, AD rule `LDAP_MATCHING_RULE_IN_CHAIN`); checked at sign-in and re-check. At start-up the server checks that the group exists. |
+| `CC_LDAP_TIMEOUT_SECS` | `auth.ldap.timeoutSecs` | `10` | seconds, 1–60 | no | Connection and operation timeout, 1–60 seconds. |
+| `CC_LDAP_MAX_FAILURES` | `auth.ldap.maxFailures` | `3` | 1–100 | no | Failed sign-ins per login and per directory user within the window, 1–100; after that the server answers `429` **without contacting AD**. Keep it **below** the domain's account lockout threshold. |
+| `CC_LDAP_FAILURE_WINDOW_MINUTES` | `auth.ldap.failureWindowMinutes` | `15` | minutes, 1–1440 | no | Failed sign-in window, 1–1440 minutes; not shorter than the domain policy's lockout counter reset time. |
+| `CC_LDAP_MAX_FAILURES_PER_IP` | `auth.ldap.maxFailuresPerIp` | `30` | integer ≥ 0, `0` = no limit | no | Failed sign-ins per IP within the window; `0` = no limit. |
+
+<a id="server-reference-observability"></a>
+
+### Observability: metrics, logs, tracing
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_METRICS_LISTEN` | `metrics.enabled` (`true` → `0.0.0.0:9090`, `false` → `off`) | `0.0.0.0:9090` | `host:port`, `off`, `disabled` | no | Separate Prometheus listener (`GET /metrics`). `off` or `disabled` turns it off. Metrics are unauthenticated: never publish the port or route it through the Ingress. The Docker Compose example turns them off. |
+| `CC_LOG_FORMAT` | `config.log.format` | `json` | `json`, `pretty` (`text`) | no | Log format on stderr: `json` or `pretty` (`text`). `admin` commands always log `pretty`. |
+| `CC_LOG` | `config.log.filter` | `info,sqlx=warn` | EnvFilter directive | no | **Environment only** (not accepted in the JSON file). Log filter in `tracing` EnvFilter syntax: `info`, `debug,sqlx=warn`. Without it `RUST_LOG` is read. |
+| `RUST_LOG` | `extraEnv` | — | EnvFilter directive | no | **Environment only.** Fallback log filter when `CC_LOG` is unset. |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | `extraEnv` | not set | URL | no | **Environment only.** Enables OpenTelemetry trace export (OTLP HTTP/protobuf), e.g. `http://otel-collector:4318`. Standard `OTEL_*` variables apply. Spans carry only non-secret fields (request id, route, status, user and device UUIDs). |
+| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | `extraEnv` | not set | URL | no | **Environment only.** The same with a traces-only endpoint. |
+
+<a id="server-reference-maintenance"></a>
+
+### Maintenance and data retention
+
+The maintenance pass deletes expired bookkeeping rows. It runs on one replica at a
+time (advisory lock). Retention is in days, `0` keeps forever, at most 36500.
+The server makes no backups: use `pg_dump` as described in [“Your own server: installation and parameters by method”](#server-settings).
+
+| Variable | Helm | Default | Values | Secret | What it does |
+|---|---|---|---|---|---|
+| `CC_MAINTENANCE_INTERVAL_SECS` | `config.maintenance.intervalSecs` | `3600` | seconds, `0` = off | no | Period of the maintenance pass; `0` turns it off. |
+| `CC_RETENTION_SESSION_DAYS` | `config.maintenance.retention.sessionDays` | `7` | days, 0–36500, `0` = forever | no | How long revoked and expired sessions are kept. |
+| `CC_RETENTION_SYNC_MUTATION_DAYS` | `config.maintenance.retention.syncMutationDays` | `30` | days, 0–36500, `0` = forever | no | Idempotency records of accepted sync changes. |
+| `CC_RETENTION_AUDIT_DAYS` | `config.maintenance.retention.auditDays` | `365` | days, 0–36500, `0` = forever | no | The audit trail (`audit_events`). |
+| `CC_RETENTION_DELETED_VAULT_DAYS` | `config.maintenance.retention.deletedVaultDays` | `30` | days, 0–36500, `0` = forever | no | After how many days a deleted vault's ciphertext is purged. |
+| `CC_RETENTION_DEVICE_REQUEST_DAYS` | `config.maintenance.retention.deviceRequestDays` | `90` | days, 0–36500, `0` = forever | no | Decided and expired device trust requests. |
+
+<a id="server-reference-service"></a>
+
+### Service variables
+
+| Variable | Where | What it does |
+|---|---|---|
+| `CC_CONFIG_FILE` | environment only | Path of the private JSON settings file when `--config` is not given. The file: regular, up to 64 KiB, one JSON object of known keys with string values, mode `0600` or `0400` on Unix. It is never looked up in the working directory, never executed, and `$` or commands are not expanded. |
+
+Variables of the Docker Compose example — read by Compose, not by the server:
+
+| Variable | What it does |
+|---|---|
+| `CC_SERVER_VERSION` | Image version `ghcr.io/evsikovas/consolecrypt-server:<version>`. |
+| `CC_SERVER_IMAGE` | The full image reference instead of a version, e.g. with an `@sha256:` digest. |
+| `CC_DOMAIN` | Domain Caddy obtains the certificate for. |
+| `CC_HTTP_PORT` | API port on the host's `127.0.0.1` (default `8080`). |
+| `CC_POSTGRES_ADMIN_PASSWORD` | PostgreSQL administrator password inside the database container (created by `init-config.py`). |
+| `CC_POSTGRES_PASSWORD`, `CC_METRICS_PORT` | Only for the development `server/docker-compose.yml`: the bundled database password and the host metrics port. |
+
+<a id="server-reference-admin"></a>
+
+### Admin commands
+
+Commands run with the same binary and the same configuration (`--config` is a
+global flag): `docker compose … exec -T server /usr/local/bin/consolecrypt-server
+admin …` or `kubectl exec deployment/… -- /usr/local/bin/consolecrypt-server admin
+…`. They never give access to vault contents.
+
+| Command | What it does |
+|---|---|
+| `serve` | Run the server (the default). |
+| `migrate` | Apply migrations and exit. |
+| `healthcheck` | Probe `/readyz` of the local listener; exit code 0 means ready. |
+| `admin list-users` | Accounts: status, sign-in method (`password`, `oidc`, `ldap`), address verification, device and vault counts. |
+| `admin verify-email --email …` | Mark the address verified (a server without mail). |
+| `admin reset-token --email …` | Print a single-use account password reset code (valid for `CC_PASSWORD_RESET_TTL_SECS`). |
+| `admin set-password --email … --password-stdin` | Set the password from the first stdin line; all sessions end. |
+| `admin disable-user --email …` / `admin enable-user --email …` | Disable the account and revoke its sessions / enable it again. |
+| `admin session revoke --email …` | End every session of the account. |
+| `admin rotate-epoch --all` / `--vault <id>` | After restoring the database from a backup: rotate vault epochs so clients notice the rollback. |
+| `admin limits show [--email …]` | Effective limits and quotas (of the server or an account). |
+| `admin limits set --email … key=value…` | Override an account's limits and quotas; applies within 30 seconds. |
+| `admin limits reset --email … [key…]` | Remove overrides (all of them without keys). |
+| `admin auth status` | Sign-in mode, provider, last IdP/directory check, linked accounts. |
+| `admin auth test [--login … [--password-stdin]]` | Repeat the start-up checks; with `--login` look up an LDAP user (a real bind with `--password-stdin`) or re-check an OIDC account at the IdP. |
+| `admin identity link --email … --subject … [--issuer …]` | Link the account to an OIDC `sub` or an `objectGUID`; the account password is removed and sessions end. |
+| `admin identity unlink --email … [--subject …]` | Remove the account's links (or one of them). |
+
+[Source file on GitHub: CONFIGURATION.md ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+
+> **Keep in mind**
+>
+> Secret values — the database and SMTP passwords, a database URL with a password and the enterprise sign-in files — must never be published or committed. The server never logs them; \*\_FILE files should be readable only by the server process user.
+
 <a name="server-maintenance"></a>
 
-## 62. Your own server: backups, upgrades and commands
+## 63. Your own server: backups, upgrades and commands
 
 All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
 
@@ -2955,7 +4040,9 @@ kubectl -n consolecrypt exec deployment/consolecrypt -- \
   /usr/local/bin/consolecrypt-server admin rotate-epoch --all
 ```
 
-[Full instructions: backups, restore and upgrades ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+[Every admin command →](#server-reference-admin)
+
+[Source file on GitHub: HOSTING.md — backups, restore and upgrades ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **Keep in mind**
 >
