@@ -74,7 +74,9 @@
 - [Аккаунт: пароль, отключение и личный кабинет](#server-account)
 - [Свой сервер: Kubernetes](#server-setup)
 - [Свой сервер: Docker Compose](#server-docker)
+- [Свой сервер: где и как задавать параметры](#server-settings)
 - [Свой сервер: корпоративный вход и общие заметки](#server-enterprise)
+- [Свой сервер: подключение IdP и LDAP по шагам](#server-idp)
 - [Свой сервер: возможности, флаги и лимиты](#server-config)
 - [Свой сервер: резервные копии, обновления и команды](#server-maintenance)
 
@@ -2149,7 +2151,9 @@ DDL таблицы orders: подсветка, номера строк, опер
 
 6. Проверьте /readyz и /v1/meta: в ответе видны server\_version, protocol\_version и возможности сервера. Для команд нужен сервер 0.2.1, для корпоративного входа и общих заметок — 0.2.0; если версия старше, закрепите в values свежий digest образа (см. «Свой сервер: резервные копии, обновления и команды»). В клиенте выберите подключение к серверу и укажите базовый HTTPS-адрес без /v1. Войдите или зарегистрируйтесь и проверьте синхронизацию на втором устройстве.
 
-7. Для почты настройте SMTP с TLS и отдельным Secret (mail.transport: smtp); без почты администратор подтверждает адреса командой admin verify-email. Команды включены по умолчанию, а совместный доступ, общие заметки и защита от входа с нового устройства включаются отдельными флагами — см. «Свой сервер: возможности, флаги и лимиты». Настройте резервные копии PostgreSQL и проверяйте восстановление до обновлений.
+7. Все настройки сервера в Helm задаются блоками values: config (возможности, лимиты, квоты, токены, Argon2), auth (корпоративный вход), mail (почта), database (подключение и пул), migrations и metrics. Chart превращает их в переменные CC\_\* в ConfigMap; пустое значение "" не передаётся, и действует значение сервера по умолчанию. Ключи без собственного пути (например, CC\_TEAMS\_ENABLED и лимиты команд) задаются в extraEnv. Таблица соответствия — в CONFIGURATION.md и главе «Свой сервер: где и как задавать параметры».
+
+8. Для почты настройте SMTP с TLS и отдельным Secret (mail.transport: smtp); без почты администратор подтверждает адреса командой admin verify-email. Команды включены по умолчанию, а совместный доступ, общие заметки и защита от входа с нового устройства включаются отдельными флагами — см. «Свой сервер: возможности, флаги и лимиты». Настройте резервные копии PostgreSQL и проверяйте восстановление до обновлений.
 
 ### 1. Исходники и Secret базы
 
@@ -2176,6 +2180,30 @@ helm upgrade --install consolecrypt server/helm/consolecrypt-server \
   --history-max 10 --wait --timeout 10m
 ```
 
+### 2a. Почта и основные флаги в values.yaml
+
+Фрагмент приватного values-файла. Пароль SMTP лежит в существующем Secret; trustProxyHeaders: auto включает доверие X-Forwarded-For, когда включён Ingress.
+
+```text
+config:
+  registrationOpen: true
+  requireEmailVerification: true
+  requireRequestProof: true
+  trustProxyHeaders: auto
+mail:
+  transport: smtp
+  from: "ConsoleCrypt <no-reply@example.com>"
+  smtp:
+    host: smtp.example.com
+    port: 587
+    tls: starttls
+    username: mailer@example.com
+    existingSecret: consolecrypt-smtp
+    existingSecretPasswordKey: smtp-password
+metrics:
+  enabled: true
+```
+
 ### 3. Проверка работающего API
 
 Используйте свой домен. /readyz подтверждает готовность базы, /v1/meta показывает версию и протокол сервера.
@@ -2186,6 +2214,8 @@ curl --fail https://sync.example.com/v1/meta
 ```
 
 [Полная инструкция: Docker, Helm, HTTPS, почта и резервные копии ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+
+[Все параметры сервера: переменные, пути Helm, значения по умолчанию ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
 
 > **Обратите внимание**
 >
@@ -2215,7 +2245,7 @@ curl --fail https://sync.example.com/v1/meta
 
 5. В клиенте выберите свой сервер и введите https://sync.example.com без /v1. Создайте учётную запись, проверьте доставку почты и синхронизацию двух устройств. В этом примере подтверждение email обязательно; без SMTP (генератор с --mail-disabled) администратор подтверждает адрес командой admin verify-email. Чтобы закрыть регистрацию, задайте CC\_REGISTRATION\_OPEN=false в server.env и пересоздайте сервис server.
 
-6. Проверьте server\_version в /v1/meta: пример закреплён за проверенным образом и может отставать от последнего выпуска. Для команд нужен сервер 0.2.1, для корпоративного входа и общих заметок — 0.2.0; как сменить образ, описано в главе «Свой сервер: резервные копии, обновления и команды». Флаги совместного доступа задаются в server.env, а настройки, которых нет в compose.yaml (лимиты команд, корпоративный вход), — в отдельном compose.override.yaml.
+6. Проверьте server\_version в /v1/meta: пример закреплён за проверенным образом и может отставать от последнего выпуска. Для команд нужен сервер 0.2.1, для корпоративного входа и общих заметок — 0.2.0; как сменить образ, описано в главе «Свой сервер: резервные копии, обновления и команды». Флаги совместного доступа задаются в server.env, а настройки, которых нет в compose.yaml (лимиты команд, корпоративный вход), — в отдельном compose.override.yaml; какие ключи куда записывать, описано в главе «Свой сервер: где и как задавать параметры».
 
 7. Если на хосте уже работает свой HTTPS reverse proxy, уберите --profile https и направьте proxy на http://127.0.0.1:8080 (порт меняет CC\_HTTP\_PORT). Proxy должен перезаписывать X-Forwarded-For, передавать WebSocket /v1/events/ws, принимать тела до 16 МиБ и не менять путь, параметры и тело подписанных запросов.
 
@@ -2260,6 +2290,8 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
 [Полная инструкция Docker: HTTPS, SMTP, резервные копии и обновления ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose)
 
+[Все параметры сервера и как их задать в server.env или compose.override.yaml ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+
 [Настройки SMTP и установка без Docker: приватный файл конфигурации ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md)
 
 > **Обратите внимание**
@@ -2270,11 +2302,158 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
 В клиенте выберите свой сервер и укажите его HTTPS-адрес.
 
+<a name="server-settings"></a>
+
+## 58. Свой сервер: где и как задавать параметры
+
+Каждая настройка сервера — переменная CC\_\*. Сервер читает только известные ему ключи (полный список с типами, значениями по умолчанию и путями Helm — в CONFIGURATION.md), проверяет их при старте и при ошибке не запускается с сообщением «invalid configuration: &lt;ключ&gt;: …», не печатая само значение. Ниже — куда записать ключ при каждом способе установки и как применить изменение.
+
+| Способ | Куда записать | Как применить |
+| --- | --- | --- |
+| Docker Compose: ключи, которые compose.yaml подставляет через ${…} | Приватный server.env | cc\_compose up -d --wait --wait-timeout 180 server |
+| Docker Compose: все остальные ключи и ключи с готовым значением в compose.yaml | services.server.environment в приватном compose.override.yaml (второй -f в cc\_compose) | Та же команда; значения override заменяют одноимённые значения compose.yaml |
+| docker run | -e CC\_КЛЮЧ=значение или --env-file с приватным файлом | Пересоздать контейнер: docker rm -f, затем тот же docker run |
+| Kubernetes / Helm | Блоки config, auth, mail, database, migrations и metrics файла values; ключи без пути Helm — extraEnv | helm upgrade с полным values-файлом; поды перезапускаются сами при изменении настроек |
+| Бинарный файл / systemd | Приватный JSON (--config или CC\_CONFIG\_FILE) или Environment= в unit-файле | systemctl restart consolecrypt-server: перечитывания на лету нет |
+| Секреты корпоративного входа | Только файлы: CC\_OIDC\_CLIENT\_SECRET\_FILE, CC\_OIDC\_TOKEN\_KEY\_FILE, CC\_LDAP\_BIND\_PASSWORD\_FILE и сертификаты CC\_OIDC\_CA\_FILE, CC\_LDAP\_CA\_FILE | Смонтировать только для чтения, доступно UID 65532, перезапустить сервер |
+
+1. Docker Compose: server.env — не окружение контейнера, а файл подстановок для compose.yaml. Серверу попадают только ключи, которые compose.yaml берёт через ${…}: CC\_REGISTRATION\_OPEN, CC\_RUN\_MIGRATIONS, CC\_DATABASE\_PASSWORD, CC\_MAIL\_TRANSPORT, CC\_MAIL\_FROM, CC\_SMTP\_HOST, CC\_SMTP\_PORT, CC\_SMTP\_TLS, CC\_SMTP\_USERNAME, CC\_SMTP\_PASSWORD, семь флагов совместного доступа, CC\_DEVICE\_PROTECTION\_ENABLED, CC\_NEW\_DEVICE\_MAIL\_ENABLED, CC\_DEVICE\_QUARANTINE\_DAYS, CC\_TEAMS\_ENABLED, CC\_RATE\_LIMIT\_MODE, CC\_QUOTAS\_V2\_ENABLED, CC\_MAX\_DEVICES\_PER\_ACCOUNT и CC\_MAX\_VAULT\_OBJECTS. Ещё server.env хранит переменные самого Compose: CC\_SERVER\_VERSION, CC\_SERVER\_IMAGE, CC\_DOMAIN, CC\_HTTP\_PORT и CC\_POSTGRES\_ADMIN\_PASSWORD. Любой другой ключ, дописанный в server.env, сервер не увидит.
+
+2. Все остальные ключи — CC\_LIMIT\_\*, корпоративный вход, лимиты команд, CC\_MAX\_VAULT\_BYTES и другие — и ключи, которым compose.yaml задаёт готовое значение (CC\_PUBLIC\_URL, CC\_REQUIRE\_EMAIL\_VERIFICATION, CC\_REQUIRE\_REQUEST\_PROOF, CC\_TRUST\_PROXY\_HEADERS, CC\_METRICS\_LISTEN, CC\_LOG\_FORMAT, CC\_HSTS, CC\_EVENT\_BUS), задайте в services.server.environment приватного compose.override.yaml рядом с server.env. Подключите его вторым -f в помощнике cc\_compose и используйте этот помощник для всех команд: без второго -f Compose пересоздаст сервер без ваших настроек. Пути внутри override указывайте абсолютными. CC\_LISTEN\_ADDR и CC\_DATABASE\_URL не меняйте: на них настроены порт и база примера.
+
+3. Секреты корпоративного входа сервер читает только из файлов. В Compose объявите их в верхнем блоке secrets override-файла и подключите к сервису server — они появятся в /run/secrets/&lt;имя&gt;. Без Swarm Compose монтирует файл как есть, с владельцем и правами хоста, а сервер работает как UID 65532: выполните chown 65532:65532 и chmod 0400. Завершающий перевод строки в файле сервер отбрасывает. Общих вариантов \*\_FILE для остальных ключей нет: пароли базы и SMTP передаются переменными CC\_DATABASE\_PASSWORD и CC\_SMTP\_PASSWORD, в Helm — из Kubernetes Secret.
+
+4. docker run без Compose: передайте ключи через -e CC\_КЛЮЧ=значение или --env-file с приватным файлом (строки KEY=value; Docker не снимает кавычки, пишите значения без них). Файлы секретов монтируйте через -v /путь:/run/secrets/имя:ro. Образ уже задаёт CC\_LISTEN\_ADDR=0.0.0.0:8080, CC\_METRICS\_LISTEN=0.0.0.0:9090, CC\_LOG\_FORMAT=json и ссылку на свои исходники; публикуйте порт 8080 только на 127.0.0.1 за своим HTTPS proxy и задайте CC\_TRUST\_PROXY\_HEADERS=true, если перед сервером ровно один доверенный proxy.
+
+5. Helm: несекретные ключи chart записывает в ConfigMap из блоков config, auth, mail, database, migrations и metrics; пустое значение "" не передаётся. URL базы, пароль SMTP и секреты корпоративного входа берутся из существующих Secret (database.existingSecret, mail.smtp.existingSecret, auth.oidc.existingSecret, auth.ldap.existingSecret; секреты входа монтируются в /run/secrets/consolecrypt-auth). Ключи без собственного пути — CC\_TEAMS\_ENABLED, CC\_MAX\_TEAMS\_PER\_ACCOUNT, CC\_MAX\_TEAM\_MEMBERS и любые другие — задайте в extraEnv: переменная из env сильнее одноимённой из ConfigMap, поэтому extraEnv переопределяет и ключи chart. Переопределения лимитов — config.rateLimit.limits: {имя: {rate, burst, perHour, perDay}}.
+
+6. Без контейнеров: приватный JSON-файл (--config /etc/consolecrypt/server.json или CC\_CONFIG\_FILE; флаг сильнее переменной) — один объект с теми же именами ключей, все значения строки ("true", "587"). Файл должен быть обычным, не больше 64 КиБ, на Unix — с правами 0600 или 0400. Неизвестный или повторный ключ, нестроковое значение или доступ для группы останавливают запуск без вывода содержимого. Переменные окружения сильнее файла, и даже пустая переменная скрывает значение из файла. CC\_LOG, RUST\_LOG и OTEL\_\* в JSON не принимаются — только в окружении процесса.
+
+7. Формат значений: логические ключи принимают true/false, 1/0, yes/no, on/off; исключение — CC\_TEAMS\_ENABLED, который понимает только true или false. Длительности задаются в единицах из имени ключа (\_SECS, \_MINUTES, \_HOURS, \_DAYS). Пустое значение равно отсутствию ключа. Сервер проверяет диапазоны (например, CC\_ACCESS\_TOKEN\_TTL\_SECS 60–86400, CC\_WS\_SESSION\_RECHECK\_SECS 1–30, CC\_MAX\_DEVICES\_PER\_ACCOUNT 1–64) и зависимости: расширения совместного доступа требуют CC\_OBJECT\_SHARING\_ENABLED и CC\_REQUIRE\_REQUEST\_PROOF=true, вход через OIDC — CC\_PUBLIC\_URL с https://.
+
+8. После перезапуска проверьте результат: строка журнала «starting» показывает действующую конфигурацию со скрытыми паролями; /v1/meta — версию, протокол, registration\_open, email\_verification\_required и capabilities (auth, teams, device\_protection); admin limits show — действующие лимиты, квоты и режим observe или enforce; admin auth status — режим входа и последнюю проверку IdP или каталога.
+
+### Docker Compose: приватный compose.override.yaml
+
+Файл рядом с server.env. Пример поднимает лимит участников команды и скорость отправки изменений и включает метрики только на loopback хоста.
+
+```text
+# $CC_INSTALL_DIR/compose.override.yaml
+services:
+  server:
+    environment:
+      CC_MAX_TEAM_MEMBERS: "50"
+      CC_LIMIT_PUSH_ACCOUNT_RATE: 600/min
+      CC_LIMIT_PUSH_ACCOUNT_BURST: "600"
+      CC_METRICS_LISTEN: 0.0.0.0:9090
+    ports:
+      - "127.0.0.1:9090:9090"
+```
+
+### Docker Compose: применить и проверить
+
+Помощник cc\_compose со вторым -f; запускайте команды из каталога клона.
+
+```text
+cc_compose() {
+  docker compose --env-file "$CC_INSTALL_DIR/server.env" \
+    -f server/deploy/docker/compose.yaml \
+    -f "$CC_INSTALL_DIR/compose.override.yaml" --profile https "$@"
+}
+cc_compose config --quiet
+cc_compose up -d --wait --wait-timeout 180 server
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show
+curl --fail "https://$CC_API_DOMAIN/v1/meta"
+```
+
+### docker run без Compose
+
+&lt;version&gt; — нужный выпуск сервера. Файл server-run.env (права 0600) содержит CC\_DATABASE\_URL, CC\_DATABASE\_PASSWORD, почту и остальные ключи.
+
+```text
+docker run -d --name consolecrypt-server --restart unless-stopped \
+  --read-only --cap-drop ALL --security-opt no-new-privileges:true \
+  -p 127.0.0.1:8080:8080 \
+  --env-file /private/path/server-run.env \
+  -e CC_TRUST_PROXY_HEADERS=true \
+  -e CC_LDAP_BIND_PASSWORD_FILE=/run/secrets/ldap-bind-password \
+  -v /private/path/secrets/ldap-bind-password:/run/secrets/ldap-bind-password:ro \
+  ghcr.io/evsikovas/consolecrypt-server:<version>
+```
+
+### Helm: ключи в config, extraEnv и лимиты
+
+Фрагмент полного приватного values-файла; примените его командой helm upgrade --install.
+
+```text
+config:
+  rateLimit:
+    mode: enforce
+    limits:
+      push_account: {rate: "600/min", burst: 600}
+      recipient_lookup_account: {perDay: 100}
+  quotas:
+    maxVaultObjects: 200000
+extraEnv:
+  - name: CC_MAX_TEAM_MEMBERS
+    value: "50"
+  - name: CC_TEAMS_ENABLED
+    value: "true"
+```
+
+### Без контейнеров: приватный JSON
+
+Все значения — строки. Пароль замените своим и не храните файл в Git.
+
+```text
+{
+  "CC_DATABASE_URL": "postgres://consolecrypt@127.0.0.1:5432/consolecrypt",
+  "CC_DATABASE_PASSWORD": "<database-password>",
+  "CC_LISTEN_ADDR": "127.0.0.1:8080",
+  "CC_REQUIRE_EMAIL_VERIFICATION": "true",
+  "CC_RATE_LIMIT_MODE": "enforce",
+  "CC_LIMIT_PUSH_ACCOUNT_RATE": "600/min"
+}
+```
+
+### systemd: применить
+
+Файл принадлежит пользователю службы и имеет права 0600; после правки служба перезапускается.
+
+```text
+sudo install -m 0600 -o consolecrypt -g consolecrypt server.json /etc/consolecrypt/server.json
+sudo systemctl restart consolecrypt-server
+sudo -u consolecrypt /usr/local/bin/consolecrypt-server \
+  --config /etc/consolecrypt/server.json healthcheck
+```
+
+[Справочник всех параметров: типы, значения по умолчанию, пути Helm, проверки ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+
+[Как задать параметр при каждом способе установки: полные примеры ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+
+[Установка без Docker: приватный JSON и systemd ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md)
+
+> **Обратите внимание**
+>
+> server.env, override-файл с секретами, values-файл и JSON содержат пароли: не публикуйте их и не выводите docker compose config без --quiet. Доступ к Docker daemon или к Secrets кластера позволяет прочитать эти значения — ограничьте его администраторами.
+
 <a name="server-enterprise"></a>
 
-## 58. Свой сервер: корпоративный вход и общие заметки
+## 59. Свой сервер: корпоративный вход и общие заметки
 
 Начиная с сервера 0.2.0 (протокол 1.9) сервер умеет работать в режиме enterprise: вход в аккаунты только через IdP по OpenID Connect или через Active Directory / LDAP. Это часть открытого сервера, без отдельной сборки и лицензии. Шифрование, хранилища, устройства, общий доступ и команды (сервер 0.2.1) работают в обоих режимах.
+
+| Ключ (Helm) | По умолчанию | Что делает |
+| --- | --- | --- |
+| CC\_AUTH\_MODE (auth.mode) | standard | standard — вход по email и паролю аккаунта; enterprise — только через IdP или каталог |
+| CC\_AUTH\_PROVIDER (auth.provider) | — | oidc или ldap; обязателен в режиме enterprise |
+| CC\_AUTH\_DISPLAY\_NAME (auth.displayName) | — | Подпись кнопки входа в приложении, до 64 печатных символов |
+| CC\_AUTH\_ALLOWED\_DOMAINS (auth.allowedDomains) | любые | Домены email через запятую или пробел; нужен для автоматической привязки существующих аккаунтов, обязателен для google |
+| CC\_AUTH\_AUTO\_CREATE (auth.autoCreate) | true | Создавать аккаунт при первом входе; false — неизвестным пользователям отказ 403 |
+| CC\_AUTH\_RECHECK\_MINUTES (auth.recheckMinutes) | 15 | Как часто перепроверять пользователя в IdP или каталоге, 1–1440 |
+| CC\_AUTH\_RECHECK\_GRACE\_HOURS (auth.recheckGraceHours) | 24 | Сколько сессии работают при недоступном IdP или каталоге, 0–720 |
+| CC\_PUBLIC\_URL (config.publicUrl) | — | Для OIDC обязателен https://…: IdP возвращает браузер на CC\_PUBLIC\_URL/v1/auth/oidc/callback |
+| CC\_OIDC\_\* (auth.oidc.\*), CC\_LDAP\_\* (auth.ldap.\*) | — | Настройки провайдера, см. следующую главу; в режиме standard игнорируются |
 
 1. Обновите сервер до 0.2.0 и сохраните резервную копию базы: миграция 0011 только добавляет таблицы. Проверьте аккаунты командой admin list-users.
 
@@ -2292,7 +2471,9 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
 8. Аварийного входа по паролю в режиме enterprise нет. Если IdP или AD неисправен, временно верните CC\_AUTH\_MODE=standard и задайте пароль командой admin set-password --email … --password-stdin; при повторном включении enterprise пароль снова удаляется при входе пользователя. admin identity unlink снимает привязку, admin session revoke завершает сеансы, admin list-users показывает способ входа каждого аккаунта.
 
-9. Общие заметки включаются отдельно флагом sharedNotesEnabled (CC\_SHARED\_NOTES\_ENABLED) вместе с objectSharingEnabled — в любом режиме входа.
+9. Пошаговые рецепты для Entra ID, AD FS, Keycloak, Google Workspace, Okta, любого OIDC и Active Directory, правила первой привязки и таблица ошибок — в следующей главе «Свой сервер: подключение IdP и LDAP по шагам».
+
+10. Общие заметки включаются отдельно флагом sharedNotesEnabled (CC\_SHARED\_NOTES\_ENABLED) вместе с objectSharingEnabled — в любом режиме входа.
 
 ### Helm: вход через Entra ID
 
@@ -2334,6 +2515,8 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 
 [Установка и флаги совместного доступа ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
+[Все ключи CC\_AUTH\_\*, CC\_OIDC\_\* и CC\_LDAP\_\* с проверками ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+
 > **Обратите внимание**
 >
 > Сервер авторизации только подтверждает личность. Ни IdP, ни AD, ни сервер синхронизации не получают ничего, чем можно расшифровать хранилище; после входа устройство — обычное новое устройство с защитой от входа с нового устройства.
@@ -2342,9 +2525,206 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 
 Так клиент видит сервер в режиме enterprise с Active Directory.
 
+<a name="server-idp"></a>
+
+## 60. Свой сервер: подключение IdP и LDAP по шагам
+
+Пошаговая настройка корпоративного входа для каждого поддерживаемого источника учётных записей. В примерах сервер — https://sync.example.com, домен почты — acme.com, в угловых скобках — ваши значения. Секреты кладите только в файлы и Secret, никогда — в values, server.env или журнал.
+
+| Ошибка или код | Причина | Что сделать |
+| --- | --- | --- |
+| «OIDC discovery: issuer mismatch» при старте | CC\_OIDC\_ISSUER не совпадает посимвольно с issuer из /.well-known/openid-configuration (часто — завершающий /) | Скопируйте issuer из discovery без изменений |
+| «Entra ID multi-tenant endpoints … are not allowed» | Issuer с /common, /organizations или /consumers | https://login.microsoftonline.com/&lt;tenant-id&gt;/v2.0 с Directory (tenant) ID |
+| «OIDC sign-in requires CC\_PUBLIC\_URL» | Не задан CC\_PUBLIC\_URL (config.publicUrl) с https:// | Задайте внешний HTTPS-адрес сервера без /v1 |
+| «CC\_OIDC\_TOKEN\_KEY\_FILE … expected 32 random bytes» | В файле не 32 случайных байта, не 64 hex-символа и не base64 32 байт | openssl rand -hex 32 &gt; oidc-token-key |
+| «… cannot open the file» или «file is empty» | Файл не смонтирован, пуст или недоступен пользователю сервера (UID 65532) | Проверьте путь, chown 65532:65532 и chmod 0400; в Kubernetes — имена ключей Secret |
+| domain\_not\_allowed | Домен email не из CC\_AUTH\_ALLOWED\_DOMAINS, у учётки нет email или (google) claim hd не из списка | Добавьте домен, проверьте CC\_OIDC\_EMAIL\_CLAIM или атрибут CC\_LDAP\_EMAIL\_ATTR |
+| group\_required | В ID token нет значения из CC\_OIDC\_REQUIRED\_CLAIM или пользователь вне CC\_LDAP\_REQUIRED\_GROUP; в Entra при более чем 200 группах claim groups не приходит | Назначьте группу или роль; в Entra используйте app roles (roles=…) |
+| mfa\_required | CC\_OIDC\_REQUIRE\_MFA=true, а в amr нет mfa (или multipleauthn) и acr не из CC\_OIDC\_MFA\_ACR\_VALUES | Включите MFA политикой IdP или перечислите значения acr |
+| identity\_conflict | Аккаунт с этим email уже привязан к другой учётке, CC\_AUTH\_ALLOWED\_DOMAINS пуст или IdP прислал email\_verified=false | admin identity link --email … --subject … или добавьте домен в список |
+| idp\_unavailable (503) | IdP или каталог недоступен дольше CC\_AUTH\_RECHECK\_GRACE\_HOURS или ответил неожиданно | admin auth test; проверьте сеть, TLS и сервисную учётку |
+| «plain ldap:// is refused» | ldap:// без CC\_LDAP\_STARTTLS=true | ldaps://…:636 или STARTTLS |
+| «cannot connect (network or TLS certificate problem)» | Порт закрыт, имя в CC\_LDAP\_URL не совпадает с сертификатом контроллера или CA неизвестен | DNS-имя из сертификата, корневой CA в CC\_LDAP\_CA\_FILE (PEM) |
+| «service account bind rejected» | Неверный CC\_LDAP\_BIND\_DN или пароль, учётка отключена или пароль истёк | Проверьте DN и файл пароля |
+| «LDAP base DN … not found» или «CC\_LDAP\_REQUIRED\_GROUP … not found» | Опечатка в DN или ветка не видна сервисной учётке | Скопируйте distinguishedName из каталога |
+| 429 rate\_limited при входе LDAP | Защита от блокировки: CC\_LDAP\_MAX\_FAILURES неудач за окно на логин или CC\_LDAP\_MAX\_FAILURES\_PER\_IP с адреса | Дождитесь конца окна (Retry-After); сервер в это время не обращается к AD |
+
+1. Как устроен вход по OIDC: приложение открывает системный браузер на сервере; сервер — конфиденциальный клиент IdP с PKCE S256, state и nonce — перенаправляет на IdP; IdP возвращает браузер на https://&lt;сервер&gt;/v1/auth/oidc/callback; сервер обменивает код, проверяет ID token (подпись RS256, PS256 или ES256, точные iss, aud, azp, exp, nonce), применяет правила домена, группы и MFA и отдаёт приложению одноразовый код. К IdP сервер обращается сам: ему нужен исходящий HTTPS к адресам из discovery.
+
+2. Что нужно серверу: точный issuer (CC\_OIDC\_ISSUER — с завершающим / или без, как в discovery), client id (CC\_OIDC\_CLIENT\_ID), файл client secret (CC\_OIDC\_CLIENT\_SECRET\_FILE), файл 32-байтового ключа, которым сервер шифрует refresh token IdP в базе (CC\_OIDC\_TOKEN\_KEY\_FILE, openssl rand -hex 32; после смены ключа пользователи один раз входят заново), и CC\_PUBLIC\_URL. В IdP регистрируется redirect URI CC\_PUBLIC\_URL + /v1/auth/oidc/callback. Scopes по умолчанию — openid email profile offline\_access (adfs: openid email profile allatclaims; google: openid email profile); refresh token нужен для перепроверки без повторного входа.
+
+3. Claims: email берётся из CC\_OIDC\_EMAIL\_CLAIM (по умолчанию email; у entra — preferred\_username, у adfs — upn). CC\_OIDC\_REQUIRED\_CLAIM=claim=значение пускает только тех, у кого claim равен значению или, если это массив (groups, roles), содержит его. CC\_OIDC\_REQUIRE\_MFA=true требует mfa (у AD FS — http://schemas.microsoft.com/claims/multipleauthn) в amr или одно из CC\_OIDC\_MFA\_ACR\_VALUES в acr. Секрет клиента по умолчанию передаётся как client\_secret\_basic; CC\_OIDC\_TOKEN\_AUTH\_METHOD=client\_secret\_post — если IdP принимает его только в теле запроса.
+
+4. Microsoft Entra ID: App registrations → New registration, Accounts in this organizational directory only (один tenant), Redirect URI с платформой Web = https://sync.example.com/v1/auth/oidc/callback. Certificates &amp; secrets → New client secret: значение — в файл, дату окончания секрета внесите в календарь. Issuer — https://login.microsoftonline.com/&lt;tenant-id&gt;/v2.0; /common, /organizations и /consumers сервер отклоняет. Email по умолчанию — preferred\_username (UPN); если UPN не совпадает с почтой, добавьте optional claim email и задайте CC\_OIDC\_EMAIL\_CLAIM=email. Доступ лучше ограничить app role: App roles → ConsoleCrypt.User, назначьте её группе в Enterprise applications → Users and groups и задайте CC\_OIDC\_REQUIRED\_CLAIM=roles=ConsoleCrypt.User. Claim groups (Token configuration → Add groups claim, CC\_OIDC\_REQUIRED\_CLAIM=groups=&lt;object-id&gt;) не приходит, если у пользователя больше 200 групп. MFA — Conditional Access и CC\_OIDC\_REQUIRE\_MFA=true.
+
+5. AD FS 2016 и новее: Application Groups → Add Application Group → Server application (конфиденциальный клиент) с redirect URI https://sync.example.com/v1/auth/oidc/callback; Generate a shared secret — в файл. Добавьте Web API с identifier = client id, политику доступа (например, только группе) и разрешения openid, profile, email, allatclaims. Правилами выдачи отправьте upn и email, для доступа по группе — Send Group Membership as a Claim (например, group = ConsoleCrypt и CC\_OIDC\_REQUIRED\_CLAIM=group=ConsoleCrypt). Issuer — https://&lt;adfs-host&gt;/adfs, email по умолчанию — upn. Корневой сертификат внутреннего CA — в CC\_OIDC\_CA\_FILE; если AD FS отклоняет Basic-аутентификацию клиента, задайте CC\_OIDC\_TOKEN\_AUTH\_METHOD=client\_secret\_post.
+
+6. Keycloak: в realm создайте клиент OpenID Connect (например, consolecrypt-server) с Client authentication: On, Standard flow: On, Direct access grants: Off, Valid redirect URIs = https://sync.example.com/v1/auth/oidc/callback и PKCE Code Challenge Method S256; секрет со вкладки Credentials — в файл. Для групп добавьте в dedicated client scope mapper Group Membership: Token Claim Name groups, Full group path: Off, Add to ID token: On — и задайте CC\_OIDC\_REQUIRED\_CLAIM=groups=consolecrypt-users. Issuer — https://&lt;host&gt;/realms/&lt;realm&gt;: без /realms/ пресет keycloak не запустится. Пользователь с Enabled: Off теряет доступ при ближайшей перепроверке.
+
+7. Google Workspace: OAuth consent screen с типом Internal, затем Credentials → OAuth client ID → Web application с Authorized redirect URI https://sync.example.com/v1/auth/oidc/callback. Issuer задавать не нужно (https://accounts.google.com). CC\_AUTH\_ALLOWED\_DOMAINS обязателен: сервер пускает только аккаунты, у которых claim hd входит в этот список. Пресет сам запрашивает офлайн-доступ (access\_type=offline, prompt=consent), а offline\_access в CC\_OIDC\_SCOPES Google отклоняет. Google не передаёт группы и MFA в ID token: CC\_OIDC\_REQUIRE\_MFA=true без CC\_OIDC\_MFA\_ACR\_VALUES для google не принимается; двухэтапную проверку и доступ к приложению настройте в консоли администратора Workspace.
+
+8. Okta: Applications → Create App Integration → OIDC → Web Application, grant types Authorization Code и Refresh Token, Sign-in redirect URI https://sync.example.com/v1/auth/oidc/callback, Client authentication: Client secret, Require PKCE включён. Назначьте приложение группе; для claim групп задайте в настройках ID token Groups claim filter (groups, Matches regex, например ConsoleCrypt.\*) и CC\_OIDC\_REQUIRED\_CLAIM=groups=&lt;группа&gt;. Issuer — домен организации (https://&lt;org&gt;.okta.com) или authorization server (https://&lt;org&gt;.okta.com/oauth2/default); он должен совпасть с issuer в discovery.
+
+9. Любой другой OIDC-провайдер (пресет generic): discovery по адресу &lt;issuer&gt;/.well-known/openid-configuration с authorization\_endpoint, token\_endpoint и jwks\_uri по https, подпись ID token одним из RS256, PS256, ES256 и PKCE S256, если провайдер перечисляет методы. http:// допускается только для 127.0.0.1 и localhost при разработке. Чтобы перепроверять пользователей, IdP должен выдавать refresh token; без него пользователь повторно входит раз в CC\_AUTH\_RECHECK\_GRACE\_HOURS.
+
+10. Active Directory / LDAP: CC\_LDAP\_URL=ldaps://dc1.acme.local:636 или ldap://…:389 вместе с CC\_LDAP\_STARTTLS=true; простой ldap:// без STARTTLS сервер не запускает. Имя в URL должно совпадать с сертификатом контроллера, корневой CA в PEM — в CC\_LDAP\_CA\_FILE (иначе используются системные корни). Сервисная учётка (CC\_LDAP\_BIND\_DN и файл пароля CC\_LDAP\_BIND\_PASSWORD\_FILE) только ищет: хватает прав обычного пользователя домена на чтение каталога. CC\_LDAP\_BASE\_DN — где искать; фильтр по умолчанию ищет user по mail, userPrincipalName или sAMAccountName, поэтому вход возможен по email, UPN или ДОМЕН\\логин, а ввод экранируется. Стабильный идентификатор — objectGUID (CC\_LDAP\_ID\_ATTR), email — mail (CC\_LDAP\_EMAIL\_ATTR). CC\_LDAP\_REQUIRED\_GROUP — DN группы, вложенные группы учитываются (LDAP\_MATCHING\_RULE\_IN\_CHAIN). Отключённые учётки AD не входят.
+
+11. Защита учёток от блокировки: сервер считает неудачные входы в PostgreSQL на логин и на пользователя каталога и после CC\_LDAP\_MAX\_FAILURES (по умолчанию 3, допустимо 1–100) за CC\_LDAP\_FAILURE\_WINDOW\_MINUTES (15, 1–1440) отвечает 429, не обращаясь к AD. Порог задайте ниже Account lockout threshold домена, окно — не короче Reset account lockout counter after. CC\_LDAP\_MAX\_FAILURES\_PER\_IP (30, 0 — без ограничения) ограничивает неудачи с одного адреса, CC\_LDAP\_TIMEOUT\_SECS (10, 1–60) — таймаут соединения и операций.
+
+12. Первый вход: аккаунт ищется по внешнему идентификатору (OIDC iss и sub, LDAP objectGUID); email — только атрибут и при смене в IdP обновляется. Существующий аккаунт с паролем и тем же email привязывается автоматически, только если его домен есть в CC\_AUTH\_ALLOWED\_DOMAINS, у него ещё нет привязки, IdP не прислал email\_verified=false и аккаунт не отключён; пароль аккаунта при этом удаляется, прежние сеансы завершаются. Иначе вход отвечает identity\_conflict, и администратор привязывает аккаунт сам: admin identity link --email … --subject &lt;sub или objectGUID&gt;. Новый пользователь получает аккаунт при CC\_AUTH\_AUTO\_CREATE=true; при false — отказ 403 (причина not\_provisioned в журнале).
+
+13. Проверка и возврат: при старте сервер проверяет discovery и JWKS либо соединение, TLS, bind сервисной учётки, base DN и группу и при ошибке не запускается. admin auth test повторяет проверки; admin auth test --login &lt;логин&gt; ищет пользователя и группу (LDAP) или сразу перепроверяет аккаунт в IdP (OIDC; при отказе IdP сессии отзываются); с --password-stdin выполняется настоящий bind, который учитывается политикой блокировки. Чтобы вернуться к паролям, задайте CC\_AUTH\_MODE=standard: в стандартном режиме ключи CC\_OIDC\_\* и CC\_LDAP\_\* игнорируются, поэтому переключение — один ключ; пароль задайте командой admin set-password --email … --password-stdin.
+
+### Entra ID: переменные
+
+Строки для compose.override.yaml (в виде KEY: value), JSON или окружения службы. Файлы секретов — в /run/secrets.
+
+```text
+CC_AUTH_MODE=enterprise
+CC_AUTH_PROVIDER=oidc
+CC_AUTH_DISPLAY_NAME=Acme SSO
+CC_AUTH_ALLOWED_DOMAINS=acme.com
+CC_PUBLIC_URL=https://sync.example.com
+CC_OIDC_PRESET=entra
+CC_OIDC_ISSUER=https://login.microsoftonline.com/<tenant-id>/v2.0
+CC_OIDC_CLIENT_ID=<client-id>
+CC_OIDC_CLIENT_SECRET_FILE=/run/secrets/oidc-client-secret
+CC_OIDC_TOKEN_KEY_FILE=/run/secrets/oidc-token-key
+CC_OIDC_REQUIRED_CLAIM=roles=ConsoleCrypt.User
+CC_OIDC_REQUIRE_MFA=true
+```
+
+### Другие пресеты: что меняется
+
+Остальные ключи — как у Entra ID. Для Google issuer не задаётся.
+
+```text
+# AD FS 2016+
+CC_OIDC_PRESET=adfs
+CC_OIDC_ISSUER=https://adfs.acme.com/adfs
+CC_OIDC_REQUIRED_CLAIM=group=ConsoleCrypt
+CC_OIDC_CA_FILE=/run/secrets/adfs-ca.pem
+# Keycloak
+CC_OIDC_PRESET=keycloak
+CC_OIDC_ISSUER=https://sso.acme.com/realms/acme
+CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users
+# Google Workspace
+CC_OIDC_PRESET=google
+CC_AUTH_ALLOWED_DOMAINS=acme.com
+# Okta
+CC_OIDC_PRESET=okta
+CC_OIDC_ISSUER=https://acme.okta.com/oauth2/default
+CC_OIDC_REQUIRED_CLAIM=groups=ConsoleCrypt-Users
+```
+
+### Docker Compose: файлы секретов
+
+Секрет клиента вводится без отображения. Файлы должны принадлежать UID 65532 — пользователю сервера в контейнере.
+
+```text
+mkdir -p "$CC_INSTALL_DIR/secrets"
+( umask 077
+  openssl rand -hex 32 > "$CC_INSTALL_DIR/secrets/oidc-token-key"
+  read -rs CC_SECRET && printf "%s" "$CC_SECRET" > "$CC_INSTALL_DIR/secrets/oidc-client-secret" )
+sudo chown 65532:65532 "$CC_INSTALL_DIR"/secrets/*
+sudo chmod 0400 "$CC_INSTALL_DIR"/secrets/*
+```
+
+### Docker Compose: compose.override.yaml для OIDC
+
+Замените /home/admin/.config/consolecrypt-docker своим $CC\_INSTALL\_DIR (путь абсолютный) и подключите файл вторым -f в cc\_compose.
+
+```text
+services:
+  server:
+    environment:
+      CC_PUBLIC_URL: https://sync.example.com
+      CC_AUTH_MODE: enterprise
+      CC_AUTH_PROVIDER: oidc
+      CC_AUTH_ALLOWED_DOMAINS: acme.com
+      CC_OIDC_PRESET: keycloak
+      CC_OIDC_ISSUER: https://sso.acme.com/realms/acme
+      CC_OIDC_CLIENT_ID: consolecrypt-server
+      CC_OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc-client-secret
+      CC_OIDC_TOKEN_KEY_FILE: /run/secrets/oidc-token-key
+      CC_OIDC_REQUIRED_CLAIM: groups=consolecrypt-users
+    secrets: [oidc-client-secret, oidc-token-key]
+secrets:
+  oidc-client-secret:
+    file: /home/admin/.config/consolecrypt-docker/secrets/oidc-client-secret
+  oidc-token-key:
+    file: /home/admin/.config/consolecrypt-docker/secrets/oidc-token-key
+```
+
+### Helm: Active Directory
+
+Фрагмент values.yaml. Secret consolecrypt-ldap монтируется в /run/secrets/consolecrypt-auth; caKey — ключ сертификата CA в нём.
+
+```text
+auth:
+  mode: enterprise
+  provider: ldap
+  displayName: ACME
+  allowedDomains: [acme.com]
+  ldap:
+    url: ldaps://dc1.acme.local:636
+    bindDn: CN=svc-consolecrypt,OU=Service,DC=acme,DC=local
+    baseDn: DC=acme,DC=local
+    requiredGroup: CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local
+    maxFailures: 3
+    failureWindowMinutes: 30
+    existingSecret: consolecrypt-ldap
+    caKey: ca.pem
+```
+
+### Kubernetes: Secret для OIDC и LDAP
+
+Имена ключей по умолчанию: client-secret и token-key (auth.oidc), bind-password (auth.ldap).
+
+```text
+kubectl -n consolecrypt create secret generic consolecrypt-oidc \
+  --from-file=client-secret=/private/path/oidc-client-secret \
+  --from-file=token-key=/private/path/oidc-token-key
+kubectl -n consolecrypt create secret generic consolecrypt-ldap \
+  --from-file=bind-password=/private/path/ldap-bind-password \
+  --from-file=ca.pem=/private/path/ad-ca.pem
+```
+
+### Active Directory: сервисная учётка и objectGUID
+
+PowerShell на машине с модулем ActiveDirectory. Пароль вводится скрыто; objectGUID нужен для admin identity link.
+
+```text
+New-ADUser -Name svc-consolecrypt -Path "OU=Service,DC=acme,DC=local" `
+  -AccountPassword (Read-Host -AsSecureString) -Enabled $true -PasswordNeverExpires $true
+(Get-ADUser alice).ObjectGUID
+```
+
+### Проверка, привязка и сеансы
+
+Docker Compose (помощник cc\_compose); в Kubernetes — kubectl -n consolecrypt exec deployment/consolecrypt -- с той же командой.
+
+```text
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth status
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth test
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth test --login alice@acme.com
+cc_compose exec -T server /usr/local/bin/consolecrypt-server \
+  admin identity link --email alice@acme.com --subject <sub-or-objectGUID>
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin identity unlink --email alice@acme.com
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin session revoke --email alice@acme.com
+```
+
+[Рецепты enterprise-режима: Entra ID, AD FS, Keycloak, Google, Okta, AD ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
+
+[Все ключи CC\_AUTH\_\*, CC\_OIDC\_\* и CC\_LDAP\_\*: значения по умолчанию и проверки ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
+
+> **Обратите внимание**
+>
+> IdP и каталог только подтверждают личность. Шифрование хранилищ от них не зависит: ни IdP, ни AD, ни сервер не получают ключей хранилищ, а смена способа входа не меняет данные.
+
 <a name="server-config"></a>
 
-## 59. Свой сервер: возможности, флаги и лимиты
+## 61. Свой сервер: возможности, флаги и лимиты
 
 Возможности своего сервера включаются переменными CC\_\*. В Docker Compose они задаются в приватном server.env (для переменных, которые перечислены в compose.yaml) или в отдельном compose.override.yaml, в Helm — блоками config, auth и mail файла values, а для запуска без контейнеров — в окружении службы или приватном JSON-файле (--config). Значения ниже — значения сервера по умолчанию.
 
@@ -2354,7 +2734,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 | Обязательное подтверждение email | CC\_REQUIRE\_EMAIL\_VERIFICATION (config.requireEmailVerification) | выключено; в примере Docker включено |
 | Почта | CC\_MAIL\_TRANSPORT: smtp, file или disabled (mail.transport) | disabled; в примере Docker smtp |
 | Подписи запросов устройств | CC\_REQUIRE\_REQUEST\_PROOF (config.requireRequestProof) | включены |
-| Команды | CC\_TEAMS\_ENABLED (в Helm через extraEnv) | включены |
+| Команды | CC\_TEAMS\_ENABLED (в Helm через extraEnv; только true или false) | включены |
 | Команд на аккаунт / участников в команде | CC\_MAX\_TEAMS\_PER\_ACCOUNT / CC\_MAX\_TEAM\_MEMBERS | 50 / 200 |
 | Совместный доступ (основной флаг) | CC\_OBJECT\_SHARING\_ENABLED (config.objectSharingEnabled) | выключен |
 | Общие группы и общие секреты | CC\_SHARED\_GROUPS\_ENABLED, CC\_SHARED\_SECRETS\_ENABLED | выключены |
@@ -2363,7 +2743,12 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 | Новые устройства коллеги при участии владельца | CC\_SHARING\_OWNER\_ONLINE\_ENROLLMENT\_ENABLED | выключено |
 | Защита от входа с нового устройства | CC\_DEVICE\_PROTECTION\_ENABLED (config.deviceProtection.enabled), карантин CC\_DEVICE\_QUARANTINE\_DAYS | выключена; карантин 14 дней |
 | Корпоративный вход | CC\_AUTH\_MODE (auth.mode) | standard |
-| Хранилищ на аккаунт / размер хранилища | CC\_MAX\_VAULTS\_PER\_ACCOUNT / CC\_MAX\_VAULT\_BYTES | 50 / 1 ГиБ |
+| Хранилищ на аккаунт / размер хранилища | CC\_MAX\_VAULTS\_PER\_ACCOUNT / CC\_MAX\_VAULT\_BYTES (не меньше 1 МиБ; config.quotas.maxVaultsPerAccount / maxVaultBytes) | 50 / 1 ГиБ |
+| Квоты 0.2.2: объекты, надгробия, устройства | CC\_QUOTAS\_V2\_ENABLED (config.quotas.v2Enabled) | включены |
+| Объектов в хранилище / стоимость надгробия | CC\_MAX\_VAULT\_OBJECTS / CC\_TOMBSTONE\_COST\_BYTES (0–1048576) | 100 000 / 256 байт |
+| Устройств на аккаунт / новых устройств в сутки | CC\_MAX\_DEVICES\_PER\_ACCOUNT (1–64) / CC\_NEW\_DEVICES\_PER\_ACCOUNT\_PER\_DAY (0 — без ограничения) | 20 / 10 |
+| Лимиты запросов | CC\_RATE\_LIMIT\_ENABLED, режим CC\_RATE\_LIMIT\_MODE: observe или enforce (config.rateLimit.enabled / mode) | включены, observe |
+| WebSocket-подключений на аккаунт (на реплику) | CC\_WS\_MAX\_CONNECTIONS\_PER\_USER (config.websocket.maxConnectionsPerUser) | 32 |
 | Метрики Prometheus (/metrics) | CC\_METRICS\_LISTEN (metrics.enabled) | порт 9090; в примере Docker выключены |
 
 1. Совместный доступ выключен по умолчанию. Каждое расширение — группы, секреты, Kubernetes, базы данных, заметки, новые устройства коллеги — требует основного флага CC\_OBJECT\_SHARING\_ENABLED и включённых подписей запросов, иначе сервер не запустится. Включайте только нужное; выключение флага скрывает общие объекты и заметки, не удаляя их зашифрованное содержимое. Клиент узнаёт возможности авторизованным запросом /v1/shares/capabilities, а не по /v1/meta.
@@ -2374,7 +2759,13 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 
 4. Без почты (CC\_MAIL\_TRANSPORT=disabled) администратор подтверждает адреса командой admin verify-email и выдаёт одноразовый код сброса пароля командой admin reset-token. Чтобы закрыть сервер для новых людей, выключите регистрацию; на корпоративном сервере аккаунты создаются при первом входе через IdP или AD (CC\_AUTH\_AUTO\_CREATE).
 
-5. Docker Compose передаёт серверу только переменные, перечисленные в compose.yaml: регистрацию, почту, флаги совместного доступа и защиту устройств меняйте в server.env и пересоздавайте сервис server. Лимиты команд, корпоративный вход и другие ключи задайте в compose.override.yaml в приватном каталоге и подключите его вторым -f в помощнике cc\_compose. В Helm флаги лежат в блоке config, а переменные без собственного ключа (например, лимиты команд) — в extraEnv.
+5. Лимиты запросов (сервер 0.2.2) хранятся в PostgreSQL и общие для всех реплик. В режиме observe (по умолчанию) превышения только считаются в метрике cc\_rate\_limit\_observed\_total и журнале аудита (limit\_exceeded); в режиме enforce запрос получает 429 rate\_limited с Retry-After и details.limit. Лимиты входа и восстановления (auth\_ip, login\_email, login\_email\_total, recovery\_email, recovery\_email\_total) действуют в обоих режимах. Порядок перехода: неделю наблюдайте метрику, при необходимости поднимите пороги, затем задайте enforce. CC\_RATE\_LIMIT\_ENABLED=false выключает все лимиты запросов, но не квоты.
+
+6. Каждый лимит настраивается четырьмя ключами: CC\_LIMIT\_&lt;ИМЯ&gt;\_RATE — N в естественном периоде лимита или N/s, N/min, N/hour, N/day (0 — без основного ограничения); \_BURST — ёмкость, целое не меньше 1 (по умолчанию — один период скорости); \_PER\_HOUR и \_PER\_DAY — дополнительные потолки (0 — нет). Например, CC\_LIMIT\_PUSH\_ACCOUNT\_RATE=600/min. Прежние CC\_RATE\_LIMIT\_AUTH\_PER\_IP\_PER\_MINUTE, CC\_RATE\_LIMIT\_LOGIN\_PER\_EMAIL\_PER\_MINUTE и CC\_RATE\_LIMIT\_RECOVERY\_PER\_EMAIL\_PER\_HOUR задают скорость auth\_ip, login\_email и recovery\_email, пока не задан новый ключ \_RATE. В памяти каждой реплики дополнительно работают CC\_RATE\_LIMIT\_AUTH\_PER\_IP\_PER\_MINUTE (30, первая ступень входа), CC\_RATE\_LIMIT\_PROOF\_PER\_DEVICE\_PER\_MINUTE (20) и CC\_RATE\_LIMIT\_READ\_PER\_DEVICE\_PER\_MINUTE (1200 чтений в минуту, 0 — выключено).
+
+7. Квоты (CC\_QUOTAS\_V2\_ENABLED=true; false возвращает поведение 0.2.1): шифротекст плюс надгробия по CC\_TOMBSTONE\_COST\_BYTES каждое — не больше CC\_MAX\_VAULT\_BYTES на хранилище (413 vault\_quota), живые объекты и надгробия — не больше CC\_MAX\_VAULT\_OBJECTS (413 object\_limit), неотозванных устройств — CC\_MAX\_DEVICES\_PER\_ACCOUNT (403 device\_limit), новых устройств за сутки — CC\_NEW\_DEVICES\_PER\_ACCOUNT\_PER\_DAY (403 device\_daily\_limit). Удаление живого объекта принимается всегда. Отдельному аккаунту лимиты и квоты меняет admin limits set --email … ключ=значение (ключи &lt;имя&gt;\_rate, \_burst, \_per\_hour, \_per\_day и max\_vault\_bytes, max\_vault\_objects, max\_devices\_per\_account, new\_devices\_per\_account\_per\_day): работающие серверы применяют их в течение 30 секунд, лимиты входа так не меняются, admin limits reset снимает переопределения.
+
+8. Docker Compose передаёт серверу только переменные, перечисленные в compose.yaml: регистрацию, почту, флаги совместного доступа и защиту устройств меняйте в server.env и пересоздавайте сервис server. Лимиты команд, корпоративный вход и другие ключи задайте в compose.override.yaml в приватном каталоге и подключите его вторым -f в помощнике cc\_compose. В Helm флаги лежат в блоке config, а переменные без собственного ключа (например, лимиты команд) — в extraEnv.
 
 ### Docker Compose: флаги в server.env
 
@@ -2413,6 +2804,60 @@ cc_compose config --quiet
 cc_compose up -d --wait --wait-timeout 180 server
 ```
 
+### Имена лимитов и значения по умолчанию
+
+Имя лимита даёт ключи CC\_LIMIT\_&lt;ИМЯ&gt;\_\* (push\_account → CC\_LIMIT\_PUSH\_ACCOUNT\_RATE). \* — лимиты входа и восстановления: действуют и в режиме observe и не переопределяются для аккаунта. login\_email считает неудачные входы на почту из одной сети (/24 IPv4, /64 IPv6).
+
+```text
+push_device               120/min, burst 60
+push_account              300/min
+mutations_account         50000/hour
+unknown_delete_account    1000/day
+share_write_account       60/hour, burst 20
+share_revision_account    600/hour
+recipient_lookup_account  30/min + 300/day
+enrollment_account        30/hour
+trust_request_device      10/hour
+trust_request_account     30/day
+verification_account      20/hour
+account_security          10/hour
+ws_connect_account        60/min
+auth_ip                *  30/min
+login_email            *  10/min + 50/hour
+login_email_total      *  200/hour
+recovery_email         *  5/hour
+recovery_email_total   *  20/day
+```
+
+### Docker Compose: enforce и квоты
+
+Первые строки — в server.env (их подставляет compose.yaml), остальные — в compose.override.yaml. Затем cc\_compose up -d --wait --wait-timeout 180 server.
+
+```text
+# server.env
+CC_RATE_LIMIT_MODE=enforce
+CC_MAX_VAULT_OBJECTS=200000
+CC_MAX_DEVICES_PER_ACCOUNT=30
+
+# compose.override.yaml
+services:
+  server:
+    environment:
+      CC_MAX_VAULT_BYTES: "2147483648"
+      CC_LIMIT_PUSH_ACCOUNT_RATE: 600/min
+```
+
+### Переопределения для одного аккаунта
+
+Действуют без перезапуска, не позже чем через 30 секунд. В Kubernetes — через kubectl exec deployment/consolecrypt.
+
+```text
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.com
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \
+  --email user@example.com push_account_rate=600/min max_vault_objects=200000
+cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits reset --email user@example.com
+```
+
 ### Helm: фрагмент values.yaml
 
 Добавьте нужные ключи в свой полный values-файл и примените его той же командой helm upgrade --install.
@@ -2422,12 +2867,20 @@ config:
   requireRequestProof: true
   objectSharingEnabled: true
   sharedNotesEnabled: true
+  rateLimit:
+    mode: enforce
+    limits:
+      push_account: {rate: "600/min", burst: 600}
+  quotas:
+    maxVaultObjects: 200000
 extraEnv:
   - name: CC_MAX_TEAM_MEMBERS
     value: "50"
 ```
 
 [Полная инструкция: флаги совместного доступа, защита устройств, почта ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+
+[Справочник параметров: все лимиты, квоты и их проверки ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
 
 > **Обратите внимание**
 >
@@ -2439,7 +2892,7 @@ extraEnv:
 
 <a name="server-maintenance"></a>
 
-## 60. Свой сервер: резервные копии, обновления и команды
+## 62. Свой сервер: резервные копии, обновления и команды
 
 Все постоянные данные сервера лежат в PostgreSQL. Резервная копия базы и приватной конфигурации — главное, что нужно для восстановления. Команды администратора работают с аккаунтами и сеансами, но никогда не дают доступа к содержимому хранилищ.
 
@@ -2451,6 +2904,7 @@ extraEnv:
 | admin set-password --email … --password-stdin | Задаёт новый пароль аккаунта из stdin и завершает все сеансы. |
 | admin disable-user / enable-user --email … | Отключает аккаунт с отзывом сеансов или включает его снова. |
 | admin session revoke --email … | Завершает все сеансы аккаунта. |
+| admin limits show \| set \| reset --email … | Действующие лимиты и квоты; переопределения для одного аккаунта (применяются в течение 30 секунд). |
 | admin rotate-epoch --all \| --vault &lt;id&gt; | После восстановления базы: меняет эпохи хранилищ, чтобы клиенты заметили откат. |
 | admin auth status \| test, admin identity link \| unlink | Корпоративный вход: проверки IdP или AD и привязка аккаунтов (глава о корпоративном входе). |
 
@@ -2460,9 +2914,9 @@ extraEnv:
 
 3. После аварийного восстановления закройте клиентский доступ, восстановите всю базу до запуска API и перед возвратом доступа выполните admin rotate-epoch --all: клиенты заметят откат и дозагрузят то, чего нет в копии. Эта команда не сбрасывает доверие общих элементов; UUID экземпляра сервера должен сохраниться.
 
-4. Обновление: сделайте и проверьте копию, сохраните прежний digest и конфигурацию. Возьмите digest образа из манифеста, приложенного к выпуску сервера на странице Releases репозитория consolecrypt-server, и задайте его в CC\_SERVER\_IMAGE (Docker) или image.digest (Helm), а CC\_SOURCE\_CODE\_URL / config.sourceCodeUrl — на исходники этого выпуска. Затем проверьте /readyz, /v1/meta, почту и синхронизацию двух устройств.
+4. Обновление: сделайте и проверьте копию, сохраните прежний digest и конфигурацию. Обновите клон (git pull) и в server.env замените CC\_SERVER\_VERSION на новую версию — или задайте CC\_SERVER\_IMAGE с digest из server-image.json, приложенного к выпуску на странице Releases репозитория consolecrypt-server. В Helm новая версия приходит с appVersion chart, для воспроизводимости закрепите image.digest. Образ сам сообщает ссылку на свои исходники: CC\_SOURCE\_CODE\_URL (config.sourceCodeUrl) задают только для изменённой сборки, строку от старого генератора удалите. Затем проверьте /readyz, /v1/meta, почту и синхронизацию двух устройств.
 
-5. Миграции встроены в сервер и выполняются при старте; возврат к старому образу их не откатывает. CC\_RUN\_MIGRATIONS=false (в Helm migrations.runAtStartup: false и migrations.job.enabled: false) используйте только для заранее проверенного совместимого отката. Последние миграции: 0008 — защита устройств (0.1.16), 0009 — удаление общих объектов владельцем (0.1.17), 0010 — общие заметки и 0011 — корпоративный вход (0.2.0), 0012 — команды (0.2.1).
+5. Миграции встроены в сервер и выполняются при старте; возврат к старому образу их не откатывает. CC\_RUN\_MIGRATIONS=false (в Helm migrations.runAtStartup: false и migrations.job.enabled: false) используйте только для заранее проверенного совместимого отката. Последние миграции: 0008 — защита устройств (0.1.16), 0009 — удаление общих объектов владельцем (0.1.17), 0010 — общие заметки и 0011 — корпоративный вход (0.2.0), 0012 — команды (0.2.1), 0013\_quotas\_limits — квоты и лимиты запросов (0.2.2; один раз пересчитывает объекты и надгробия каждого хранилища, на больших базах старт дольше).
 
 6. Не меняйте major-версию PostgreSQL сменой тега, не используйте down -v, docker volume prune и helm uninstall и не удаляйте PVC ради обновления. /healthz отвечает без обращения к базе (проверка живости), /readyz проверяет базу, /v1/meta показывает версию, протокол и возможности; метрики Prometheus доступны на отдельном порту 9090.
 
@@ -2481,7 +2935,7 @@ cc_compose exec -T postgres pg_restore --list < "$CC_BACKUP_FILE" > "$CC_BACKUP_
 
 ### Docker Compose: обновление образа
 
-Сначала замените CC\_SERVER\_IMAGE и CC\_SOURCE\_CODE\_URL в server.env на значения нового выпуска.
+Сначала обновите клон (git pull) и замените CC\_SERVER\_VERSION в server.env на новую версию (или CC\_SERVER\_IMAGE — на её digest).
 
 ```text
 cc_compose config --quiet
