@@ -42,9 +42,11 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Kubernetes: Helm](#kubernetes-helm)
 - [Kubernetes: context terminal and AI](#kubernetes-terminal-ai)
 - [Databases: connections and routes](#databases-connections)
+- [Databases: SQLite, Cassandra and ScyllaDB](#databases-sqlite-cassandra)
 - [Databases: structure, queries and results](#databases-queries)
 - [Databases: production, changes, history and export](#databases-changes)
 - [Databases: writing to production](#databases-production)
+- [Databases: table designer and CSV import](#databases-designer)
 - [Databases: AI assistant](#databases-ai)
 - [Docker: hosts and containers](#docker-containers)
 - [Docker: details, logs, volumes and forwards](#docker-details)
@@ -65,7 +67,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [Settings: what is where](#settings-overview)
 - [Colors, text size and glass effects](#appearance)
 - [Right panel: bubbles or one workspace](#right-panel)
-- [Screenshots and screen protection](#screenshots)
+- [Screenshots, screen protection and clipboard](#screenshots)
 - [Backups and restore](#backups)
 - [Version, author and licenses](#about)
 - [Client updates](#updates)
@@ -157,7 +159,7 @@ ConsoleCrypt has separate access layers. Resetting your account password by emai
 | What | Purpose |
 | --- | --- |
 | Account password | Signing in to the server and website account; it can be reset by email. |
-| Vault passphrase | Decrypting data on your device. The server does not know it. |
+| Vault passphrase | Decrypting data on your device and confirming dangerous actions (where enabled, also with Touch ID, Windows Hello or a fingerprint). The server does not know it. |
 | Recovery Kit | Recovering vault access after losing the passphrase. |
 | macOS Keychain password | System permission to access a device key; usually your Mac user account password. |
 | SSH password or key | Signing in to a remote host, separate from the sync server. |
@@ -190,23 +192,31 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 
 7. Dangerous actions are confirmed with the vault passphrase instead of typing a connection, context or resource name: changing database queries and cell edits, Unlock production, YAML apply, deletion, restart and scaling in Kubernetes. A wrong passphrase runs nothing, the field is cleared after every attempt and Enter confirms.
 
-8. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
+8. With device unlock on, these actions can be confirmed with Touch ID, Windows Hello or a fingerprint: “Confirm actions with biometrics” in “Settings → Vault” turns on together with it. The confirmation offers a button such as “Confirm with Touch ID” first and “Enter the vault passphrase” as the fallback; if the check is cancelled or fails, the passphrase field appears. A confirmation is single-use and covers only that action and object.
 
-9. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
+9. The vault passphrase is still always required to change the passphrase, create a new Recovery Kit, turn off device unlock, work with backups, approve devices and change account or organisation security. On Linux, where the key sits in the desktop keyring, biometric confirmation is not offered.
 
-10. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
+10. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
 
-11. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+11. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
 
-12. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
+12. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
+
+13. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+
+14. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
 
 > **Keep in mind**
 >
 > Device unlock is a setting of this device for this vault: it does not sync and does not replace your passphrase and Recovery Kit. The system dialog may offer your device password. Face ID on a physical iPhone still needs separate verification.
 
-![Unlock with Touch ID is on and protected by the system; no secrets are revealed.](../assets/guide/vault-settings-en.png)
+![Unlock with Touch ID is on and protected by the system, next to “Confirm actions with biometrics”; no secrets are revealed.](../assets/guide/vault-settings-en.png)
 
-Unlock with Touch ID is on and protected by the system; no secrets are revealed.
+Unlock with Touch ID is on and protected by the system, next to “Confirm actions with biometrics”; no secrets are revealed.
+
+![Unlocking production is confirmed with Touch ID; “Enter the vault passphrase” remains the fallback.](../assets/guide/step-up-biometric-en.png)
+
+Unlocking production is confirmed with Touch ID; “Enter the vault passphrase” remains the fallback.
 
 ![Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.](../assets/guide/recovery-kit-mobile-en.png)
 
@@ -368,9 +378,9 @@ An overview of demo hosts and their connection details.
 
 Hosts in a demo group: cards, search and connection actions.
 
-![The selected host’s action menu.](../assets/guide/host-menu-en.png)
+![The selected host’s action menu: connect, notes, group, SFTP, sharing and edit.](../assets/guide/host-menu-en.png)
 
-The selected host’s action menu.
+The selected host’s action menu: connect, notes, group, SFTP, sharing and edit.
 
 ![A new SSH host: connection type, address, user, group and authentication.](../assets/guide/host-editor-en.png)
 
@@ -578,7 +588,7 @@ Credentials are separate from hosts: one credential can be assigned to multiple 
 
 4. Open its card for metadata and the public key. A secret is revealed only after an explicit action; handle clipboard copies carefully.
 
-5. A copied secret is cleared after the selected timeout if the clipboard has not been replaced with another value. Changing the setting affects future copies. An app crash or system clipboard history can prevent removal.
+5. A copied secret stays out of clipboard history and other devices and is cleared after the timeout in “Settings → Security” if the clipboard has not been replaced with another value. Changing the setting affects future copies; if the app closed before the deadline, the clear completes at the next start. See “Screenshots, screen protection and clipboard” for details.
 
 > **Keep in mind**
 >
@@ -826,9 +836,9 @@ A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon 
 
 2. The risk level — Read-only, Modifying, Destructive or Unknown — decides how strictly a run is confirmed: modifying and destructive commands run only after you tick that you checked the command. On team hosts with the “Ask before running risky commands” policy the tick is always required.
 
-3. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis and MongoDB (15 each) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
+3. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis and MongoDB (15 each), Cassandra / ScyllaDB (17) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
 
-4. Database snippets also run inside psql, mysql, clickhouse-client, redis-cli and mongosh in an SSH session: a multi-line query is sent as one paste, and changing commands need confirmation.
+4. Database snippets also run inside psql, mysql, clickhouse-client, redis-cli and mongosh in an SSH session: a multi-line query is sent as one paste, and changing commands need confirmation. In a database workspace, the Snippets button (⌘J / Ctrl+J) inserts a snippet for that engine into the editor without running it.
 
 5. Edit commands, move them to another set or delete them. Deleting a set deletes its snippets after confirmation and syncs the change; examples do not reappear automatically.
 
@@ -946,11 +956,17 @@ Notes is a right-panel tool next to Snippets and AI. Open it with the note icon,
 
 2. “All” lists every note and what it is attached to; “Tasks” lists only tasks, with overdue ones first and highlighted, and completed ones grouped separately. Search covers titles, text and tags.
 
-3. Write the text in Markdown; the Preview tab shows the result. Add comma-separated tags. A note’s “…” menu pins it, snoozes it for an hour (“Remind in an hour”), attaches it to the current object or detaches it, and deletes it. The Task switch adds a due time and a Done mark.
+3. Write the text in Markdown; the Preview tab shows the result. Add comma-separated tags. A note’s “…” menu pins it, snoozes it for an hour (“Remind in an hour”), attaches it to the current object or to any host (“Attach to…”) or detaches it, and deletes it. The Task switch adds a due time and a Done mark.
 
-4. Reminder offers in an hour, today at 18:00, tomorrow at 09:00, in a week or a time of your choice. While the app is open a notice with Open appears on time; the Notes icon counts overdue tasks and reminders that went off.
+4. Changes save themselves a moment after you type; Save (⌘S / Ctrl+S) saves at once. The status below reads “Saved” or “Unsaved changes”. If the note could not be saved, leaving the editor asks “Leave without saving?”.
 
-5. The host card’s free-text notes move into a regular note with “Move to notes”. Deleting a host or database keeps its notes, marked “Object not found”.
+5. A host card in Hosts shows how many notes the host has. The button with the number, or Notes in the host’s “…” menu, opens its notes without connecting. On the Object tab, pick a host with the search icon or clear it with the cross; the editor’s “Attached to” field offers “Choose a host…”.
+
+6. Reminder offers in an hour, today at 18:00, tomorrow at 09:00, in a week or a time of your choice. While the app is open a notice with Open appears on time; the Notes icon counts overdue tasks and reminders that went off.
+
+7. The host card’s free-text notes move into a regular note with “Move to notes”. When a note’s object is deleted, leaves with a share or a team, or was attached by a newer app version, the note stays, marked “Not linked” with the object’s former name. In All, “Show → Not linked (N)” collects such notes, and “Attach to…” in their menu attaches them again.
+
+8. New notes are always personal, also about team hosts: only you see them, and they stay after you leave the team.
 
 > **Keep in mind**
 >
@@ -964,9 +980,21 @@ Notes about the SSH host of the active tab: an overdue task, a tagged note and t
 
 The Tasks tab: overdue first, each task with its due time, reminder and attachment.
 
-![A task with Markdown, a tag, a due time and a reminder.](../assets/guide/notes-editor-en.png)
+![A task with Markdown, a tag, a due time and a reminder, with Save and the “Saved” status.](../assets/guide/notes-editor-en.png)
 
-A task with Markdown, a tag, a due time and a reminder.
+A task with Markdown, a tag, a due time and a reminder, with Save and the “Saved” status.
+
+![Edited text: the status reads “Unsaved changes” until the autosave or Save.](../assets/guide/notes-editor-save-en.png)
+
+Edited text: the status reads “Unsaved changes” until the autosave or Save.
+
+![The note count on a host card opens its notes without connecting.](../assets/guide/notes-host-en.png)
+
+The note count on a host card opens its notes without connecting.
+
+![The “Not linked” filter: a note of the removed host old-db-1 and “Attach to…”.](../assets/guide/notes-not-linked-en.png)
+
+The “Not linked” filter: a note of the removed host old-db-1 and “Attach to…”.
 
 ![A note’s menu: pin, remind in an hour, detach from the object and delete.](../assets/guide/notes-menu-en.png)
 
@@ -1139,6 +1167,8 @@ A saved database connection can be shared with a colleague’s verified device, 
 
 6. A copy of a production connection stays a production connection and opens read-only. Connections can be added to shared groups.
 
+7. SQLite and Cassandra / ScyllaDB connections cannot be shared in 0.9.2: they stay on this device and have no Sharing item.
+
 > **Keep in mind**
 >
 > Revoking access does not invalidate a password that has already been copied; change it on the database server.
@@ -1239,10 +1269,10 @@ Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page o
 | --- | --- |
 | Profiles | The profile list, “Add profile”, renaming and removing from this device. |
 | Account &amp; sync (or Sync for a local profile) | Server, sign-in method, account, device; changing the account password, disconnecting, signing out. A local profile offers enabling sync. |
-| Vault | Auto-lock, device unlock, changing the passphrase, a new Recovery Kit, backups, “Lock now”. |
+| Vault | Auto-lock, device unlock, confirming actions with biometrics, changing the passphrase, a new Recovery Kit, backups, “Lock now”. |
 | Teams | The profile’s teams and invitations; only on a server with teams. |
 | Appearance | Theme, glass effect, text size, colours, sidebar and right panel, language, opening the last profile. |
-| Security | Clipboard clearing and screenshot and screen-recording protection. |
+| Security | Clipboard clearing (on Android, also in the background) and screenshot and screen-recording protection. |
 | Local AI and AI providers | The built-in model (where available), providers, default privacy. |
 | Terminal | Command history, font size and family, colour theme, tab subtitle, scrollback. |
 | Keyboard shortcuts and SFTP | Remapping shortcuts and the default editor — on computers. |
@@ -1316,9 +1346,9 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 35. Screenshots and screen protection
+## 35. Screenshots, screen protection and clipboard
 
-Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device.
+Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device. Copied secrets stay out of clipboard history and are removed after a timeout.
 
 | Platform | Behavior |
 | --- | --- |
@@ -1327,15 +1357,25 @@ Whether an app can block screen capture depends on the OS. Capture preferences a
 | iOS | There is no universal screenshot block. An app-switcher cover protects the preview when backgrounded; physical-iPhone checks remain separate. |
 | Windows | “Settings → Security → Hide window from screen capture”: Never, While secrets are shown (default) or Always. While a password, key or recovery words are shown, the window stays out of screenshots, recordings and screen sharing. |
 
-1. In the same section, “Clear clipboard” sets when a copied secret is removed from the clipboard: from 30 seconds to 1 day. Clearing also completes after an app restart and never touches what you copied later in other apps.
+1. In the same section, “Clear clipboard” sets when a copied secret is removed from the clipboard: from 30 seconds (the default) to 1 day. A team policy can only shorten it. Clearing also completes after an app restart and never touches what you copied later in other apps.
+
+2. Secrets — passwords, keys, revealed Kubernetes Secret and Docker environment values, sensitive database cells, recovery words — are copied in a protected way: they stay out of the Windows clipboard history and cloud clipboard (Win+V), are not sent to iPhone or iPad through Universal Clipboard, are marked as secret for clipboard managers and, on Linux, never land in the middle-click selection. Closing the window (Windows) or quitting the app (macOS, Linux) removes the secret.
+
+3. Terminal and log selections and query results also stay out of clipboard history and other devices but are not removed by the timer; a selection that looks like a secret (password=…, a token, a private key) is copied as a secret. If the protected clipboard is unavailable, the app says “Couldn’t copy securely” and copies nothing.
+
+4. Android does not let a background app read the clipboard, so “Clear the clipboard in the background even if the secret can’t be verified” (on by default) clears it at the deadline without a check, which may also erase text you copied in another app meanwhile. With it off, the secret stays until you return to ConsoleCrypt. In battery saver, the clear may come up to about 10 minutes later.
 
 > **Keep in mind**
 >
-> Do not capture revealed secrets or your Recovery Kit. Every image in this guide uses demo data.
+> Do not capture revealed secrets or your Recovery Kit. Every image in this guide uses demo data. An app that read the clipboard before it was cleared, or a clipboard manager that ignores the hints, may have kept the secret.
 
-![Screenshot permission in the demo Android interface; this shows the UI, not capture enforcement on a physical phone.](../assets/guide/mobile-screen-capture-en.png)
+![Android: the clipboard clearing time, clearing in the background and screenshot permission in the demo interface; this shows the UI, not enforcement on a physical phone.](../assets/guide/mobile-screen-capture-en.png)
 
-Screenshot permission in the demo Android interface; this shows the UI, not capture enforcement on a physical phone.
+Android: the clipboard clearing time, clearing in the background and screenshot permission in the demo interface; this shows the UI, not enforcement on a physical phone.
+
+![“Clear clipboard”: from 30 seconds to 1 day after copying a secret.](../assets/guide/clipboard-settings-en.png)
+
+“Clear clipboard”: from 30 seconds to 1 day after copying a secret.
 
 ![The macOS security section: the clipboard clearing time and the OS limitation.](../assets/guide/security-settings-en.png)
 
@@ -1653,7 +1693,7 @@ AI in Kubernetes: a question about a failing Pod, the logs and events it read an
 
 ## 46. Databases: connections and routes
 
-The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis and MongoDB. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
+The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis, MongoDB, Cassandra and ScyllaDB, and with SQLite files. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
 1. Open Databases in the sidebar and choose “New database connection”. Enter a name, engine, host, port, database (an index for Redis), username and password. “Test connection” shows the server version before you save.
 
@@ -1679,11 +1719,11 @@ The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redi
 
 > **Keep in mind**
 >
-> Connections sync between your devices only in encrypted form; the sync server sees neither passwords nor queries. Queries travel from the device to the database over the chosen route.
+> Connections sync between your devices only in encrypted form; the sync server sees neither passwords nor queries. Queries travel from the device to the database over the chosen route. SQLite and Cassandra / ScyllaDB connections stay on this device for now; see the next chapter.
 
-![Demo connections: route icons, colour labels, the PROD badge and tag filters.](../assets/guide/db-connections-en.png)
+![Demo connections: route icons, colour labels, the PROD badge, tag filters and the “This device only” icon on SQLite and Cassandra.](../assets/guide/db-connections-en.png)
 
-Demo connections: route icons, colour labels, the PROD badge and tag filters.
+Demo connections: route icons, colour labels, the PROD badge, tag filters and the “This device only” icon on SQLite and Cassandra.
 
 ![The same connections as a compact list.](../assets/guide/db-connections-list-en.png)
 
@@ -1693,9 +1733,47 @@ The same connections as a compact list.
 
 Choosing the route in the connection form: SSH host, jump profile, Kubernetes, tunnel or Docker container.
 
+<a name="databases-sqlite-cassandra"></a>
+
+## 47. Databases: SQLite, Cassandra and ScyllaDB
+
+SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2, and their connections stay on the device that created them for now.
+
+1. For SQLite, choose “New database connection”, pick the “SQLite” engine and set “File location” to “This computer” (macOS, Windows, Linux). Type the path or use “Choose file…”. Only “Create new database…” creates an empty file: the app never connects to a missing file and refuses a file that is not an SQLite database (or an encrypted one).
+
+2. A file on a server, in a container or a Pod opens through “SSH host”, “Docker container” or “Kubernetes Pod”: the sqlite3 program (3.16 or newer) runs the queries where the file is, and the file itself is never copied. A production Kubernetes context must allow running commands. Phones offer only these options.
+
+3. “Read only” is on by default: the file opens read-only and no query can change it. Without it, the usual rules apply: changes are reviewed, and production needs a temporary write window. ATTACH, VACUUM INTO, loading extensions and changing pragmas are always refused.
+
+4. A file’s structure: Tables, Views, Indexes, Sequences (AUTOINCREMENT counters), Table triggers and Data types. A table holds Columns shown as “name (TYPE)”, Keys, Foreign keys, Indexes, References (other tables’ foreign keys pointing here) and Triggers. DDL, object details, the EXPLAIN QUERY PLAN tree, export and cell editing by primary key or rowid work as for the other engines.
+
+5. For Cassandra and ScyllaDB, choose the “Cassandra / ScyllaDB” engine (port 9042): “Host” is the first contact point and “Keyspace” the default keyspace. Under “Driver settings”, set “More contact points”, “Local data center”, the read (LOCAL\_ONE by default) and write (LOCAL\_QUORUM) consistency and “Rows per page” (500).
+
+6. A session works through one coordinator node: the first contact point that answers; other cluster nodes are never contacted directly. That is why the connection works the same directly and through an SSH host, a tunnel, Kubernetes or Docker. With a local data center set, the coordinator must be in it.
+
+7. Queries are written in CQL, and each one is parsed in the app before it is sent: SELECT, DESCRIBE, LIST and USE read; INSERT, UPDATE, DELETE and BATCH go through the change review; DROP and TRUNCATE count as dangerous; GRANT, REVOKE and role management are refused on production even in a write window. A SELECT with ALLOW FILTERING, or without WHERE and LIMIT, asks for confirmation first. The next result page loads only on “Load more”.
+
+8. Cassandra structure: keyspaces with their replication → tables, materialized views, user types, functions and aggregates → columns marked PARTITION KEY, CLUSTERING ASC/DESC and STATIC. A cell can be edited when the result holds the whole primary key: each row is updated by its own UPDATE … IF EXISTS, so edits of several rows are not atomic.
+
+> **Keep in mind**
+>
+> “This device only”: in 0.9.2, SQLite and Cassandra / ScyllaDB connections are not synced, stored in the vault or its backups, or shared, and their query history stays local, because app versions up to 0.9.1 cannot open them. The connection and its password are kept in the profile’s local database, encrypted with the vault’s keys. Syncing comes in a later release.
+
+![An SQLite file on this computer: the items table with “name (TYPE)” columns, foreign keys, references and a trigger; below, the sequence, table trigger and data type folders. The session is read-only.](../assets/guide/db-sqlite-tree-en.png)
+
+An SQLite file on this computer: the items table with “name (TYPE)” columns, foreign keys, references and a trigger; below, the sequence, table trigger and data type folders. The session is read-only.
+
+![An SQLite connection: a file on this computer, “Read only” on, and the “This device only” note.](../assets/guide/db-sqlite-connection-en.png)
+
+An SQLite connection: a file on this computer, “Read only” on, and the “This device only” note.
+
+![Cassandra / ScyllaDB: contact points, the local data center, consistency levels and the note on the single coordinator.](../assets/guide/db-cassandra-connection-en.png)
+
+Cassandra / ScyllaDB: contact points, the local data center, consistency levels and the note on the single coordinator.
+
 <a name="databases-queries"></a>
 
-## 47. Databases: structure, queries and results
+## 48. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -1711,6 +1789,7 @@ Click a connection to open its workspace: the database structure on the left, qu
 | EXPLAIN | ⌘E | Ctrl+E |
 | Query history | ⌘H | Ctrl+H |
 | AI assistant | ⌘I | Ctrl+I |
+| Insert a snippet | ⌘J | Ctrl+J |
 
 1. The structure loads as you expand it and sorts objects into folders: tables, views, functions, sequences, dictionaries; a table holds columns, indexes, constraints and triggers. The expanded table is framed, and key columns carry icons. Search filters the objects already loaded; the button next to it collapses everything.
 
@@ -1724,15 +1803,19 @@ Click a connection to open its workspace: the database structure on the left, qu
 
 6. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
 
-7. “Run” and ⌘↵ / Ctrl+Enter execute the selection or, without one, the statement on the caret’s line, as in familiar SQL clients. Statements end at a semicolon or a blank line; from any line of a multi-line statement the whole statement runs, and on a blank line the nearest statement above runs. The arrow next to Run offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
+7. The Snippets button in the editor toolbar (⌘J / Ctrl+J) opens “Insert a snippet”: your snippets for this engine, with search. After you fill in its variables, the chosen query is added to the current tab below the existing text; nothing runs.
 
-8. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; a long value opens in full. The first rows load right away (the limit is set under the connection’s Limits), the rest with “Load more”. The status bar shows the row count and time. On a phone, results appear as record cards.
+8. “Run” and ⌘↵ / Ctrl+Enter execute the selection or, without one, the statement on the caret’s line, as in familiar SQL clients. Statements end at a semicolon or a blank line; from any line of a multi-line statement the whole statement runs, and on a blank line the nearest statement above runs. The arrow next to Run offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
 
-9. A click frames a cell, and ⌘C / Ctrl+C copies its value. A click on a row number selects the row, Shift+click extends the selection, ⌘/Ctrl+click adds or removes a row and Esc clears the selection. The status line shows “Selected: N rows”, and copy, export and the AI assistant use the selected rows.
+9. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; headers carry a type glyph and a key on key columns, NULL shows as \[NULL\], and a long value opens in full. The first rows load right away, the rest with “Load more” or from the toolbar under the result (see “Databases: production, changes, history and export”). On a phone, results appear as record cards.
 
-10. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first.
+10. The switcher on the left of the result shows it as a Table, Text (an aligned monospace table of up to 2,000 rows that is easy to select and copy) or a Record (one row as a field → value form; ⇧↵ opens it for the current row). The view is remembered per tab.
 
-11. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered instead and added to the current tab. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
+11. A click frames a cell, and ⌘C / Ctrl+C copies its value. A click on a row number selects the row, Shift+click extends the selection, ⌘/Ctrl+click adds or removes a row and Esc clears the selection. The status line shows “Selected: N rows”, and copy, export and the AI assistant use the selected rows.
+
+12. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first.
+
+13. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered instead and added to the current tab. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
 
 > **Keep in mind**
 >
@@ -1745,6 +1828,14 @@ The workspace: the expanded orders table, a highlighted query and its result on 
 ![The “orders — data” preview tab: the table’s first rows appear right away.](../assets/guide/db-preview-tab-en.png)
 
 The “orders — data” preview tab: the table’s first rows appear right away.
+
+![The Record view: the third result row as a field → value form.](../assets/guide/db-result-record-en.png)
+
+The Record view: the third result row as a field → value form.
+
+![“Insert a snippet” (⌘J / Ctrl+J): searching PostgreSQL snippets with their risk levels.](../assets/guide/db-snippets-picker-en.png)
+
+“Insert a snippet” (⌘J / Ctrl+J): searching PostgreSQL snippets with their risk levels.
 
 ![Details of the orders table: sections, sizes in MiB and estimates marked “≈”.](../assets/guide/db-details-en.png)
 
@@ -1764,7 +1855,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 48. Databases: production, changes, history and export
+## 49. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -1774,21 +1865,31 @@ A production connection is read-only, and any change is shown to you before it r
 
 3. A non-production connection also opens read-only. The lock button in the header allows writes until the connection closes. A changing or dangerous query (DROP, TRUNCATE, UPDATE or DELETE without WHERE, FLUSHALL, dropping a collection) is shown in “Review query” as a highlighted code block with line numbers that you can select and copy. It runs only after you enter the vault passphrase; a wrong passphrase runs nothing.
 
-4. On desktop, when writes are allowed (a non-production session or production with an open write window), cells of a simple single-table SELECT with a primary key are edited right in the grid. Double-click a cell: Enter keeps the value, Esc cancels the edit and Tab moves to the next cell. The value type comes from the column and is checked as you type; NULL has its own button. Changed cells are highlighted.
+4. A toolbar sits under the result. Refresh (F5, ⌘R / Ctrl+R) runs the tab’s last read query again after a fresh review, and the menu next to it turns on auto-refresh every 5, 10 or 30 seconds, 1 or 5 minutes. It repeats read queries only (production included) and skips a beat while changes are pending, a query runs or the window is hidden.
 
-5. Edits accumulate. “Review pending edits” shows the generated UPDATE statements keyed by the primary key with the actual values — quoted strings, NULL for empty cells, long values shortened — while what runs is still the parameterized query. Applying needs the vault passphrase, and “Discard changes” drops the edits. Once confirmed, the edits apply in one transaction; if any of them does not find its row, all of them roll back. Without write access, a double-click opens the value viewer.
+5. The gear and the “Rows per fetch” field set the size of the next page (1–1,000, remembered per connection), next to “Load the next rows” and “Fetch all rows”. The arrows move to the first, previous, next and last row. The status line shows the rows fetched, the elapsed time, the date and time the query finished, “more available”, the selected rows and the pending changes.
 
-6. “Query history” keeps the text, time, duration, row count and errors, but not parameter values or data. Filter by Successful, With errors or Favorites. By default history is encrypted and stays on this device; you can sync it or turn it off. Save a query from history as a snippet, and its {{name}} placeholders become snippet variables.
+6. On desktop, when writes are allowed (a non-production session or production with an open write window), rows of a simple single-table SELECT on PostgreSQL, MySQL or MariaDB can be changed, added and deleted. A row is identified by its primary key or, without one, by the first unique key of NOT NULL columns; otherwise the buttons are off and the tooltip says why. Without write access, a double-click opens the value viewer.
 
-7. Copy a cell, a row, a selection or the whole loaded result. “Export result” re-runs the read query and streams every row to a file as CSV, TSV, JSON, NDJSON, Markdown or SQL INSERT, with progress and cancellation. CSV and TSV escape spreadsheet formulas (“Escape formulas (for Excel)”, on by default), and SQL INSERT escapes quotes and backslashes correctly for each database. A changing query is never repeated for export.
+7. Double-click a cell (or press Enter or F2) to edit it in place: Enter keeps the value, Esc cancels and Tab moves to the next cell; the type comes from the column and NULL is its own toggle. Changed cells are highlighted yellow. “Add a row” (⌥⌘N / Ctrl+Alt+N) adds a green row marked “+”: columns the server fills show \[DEFAULT\], and required ones must be filled in. “Duplicate the row” (⌘D / Ctrl+D) copies a row without its key. “Delete the row” (⌘⌫ / Ctrl+Delete) strikes the row through in red (or every selected row); pressing it again clears the mark.
+
+8. Nothing runs before Save (⌘S / Ctrl+S). The review shows the DELETE, UPDATE and INSERT statements by key with the actual values and asks for the vault passphrase (or Touch ID, Windows Hello, a fingerprint); then everything runs in one transaction where each statement must change exactly one row, or all of it rolls back. “Show SQL” in the Save button’s menu opens the statements to copy them or put them in the editor; “Discard changes” (⌥⌘Z / Ctrl+Alt+Z) drops the edits. Leaving with pending changes — running again, refreshing, closing the tab — asks whether to save, discard or stay.
+
+9. “Query history” keeps the text, time, duration, row count and errors, but not parameter values or data. Filter by Successful, With errors or Favorites. By default history is encrypted and stays on this device; you can sync it or turn it off. Save a query from history as a snippet, and its {{name}} placeholders become snippet variables.
+
+10. Copy a cell, a row, a selection or the whole loaded result. “Export result” re-runs the read query and streams every row to a file as CSV, TSV, JSON, NDJSON, Markdown or SQL INSERT, with progress and cancellation. CSV and TSV escape spreadsheet formulas (“Escape formulas (for Excel)”, on by default), and SQL INSERT escapes quotes and backslashes correctly for each database. A changing query is never repeated for export.
 
 > **Keep in mind**
 >
 > The app’s protection complements database privileges but does not replace them. For production, a read-only account remains the main safeguard.
 
-![Editing in the grid: the changed cell is highlighted, the next one is open for input, and “Review pending edits (1)” shows the UPDATE.](../assets/guide/db-prod-write-en.png)
+![Pending changes: an edited cell (yellow), a row to delete (red) and a new row (green), with Save (3) and the toolbar under the result.](../assets/guide/db-result-toolbar-en.png)
 
-Editing in the grid: the changed cell is highlighted, the next one is open for input, and “Review pending edits (1)” shows the UPDATE.
+Pending changes: an edited cell (yellow), a row to delete (red) and a new row (green), with Save (3) and the toolbar under the result.
+
+![Editing a production table in an open write window: the changed cell is highlighted, the next one is open for input.](../assets/guide/db-prod-write-en.png)
+
+Editing a production table in an open write window: the changed cell is highlighted, the next one is open for input.
 
 ![Reviewing edits: the UPDATE statements with the actual values and the vault passphrase field.](../assets/guide/db-query-review-en.png)
 
@@ -1796,11 +1897,11 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 49. Databases: writing to production
+## 50. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
-1. Choose “Unlock production” in the workspace header. Enter the vault passphrase and pick 5, 15 or 30 minutes. The passphrase is checked by the app core.
+1. Choose “Unlock production” in the workspace header. Enter the vault passphrase — or confirm with Touch ID, Windows Hello or a fingerprint when “Confirm actions with biometrics” is on — and pick 5, 15 or 30 minutes. The confirmation is checked by the app core.
 
 2. While the window is open, the header shows a red “Production writes until HH:MM” badge with a countdown and a Lock button. Every changing statement is still shown for review and runs only after you enter the vault passphrase. Result cells can be edited right in the grid.
 
@@ -1820,9 +1921,47 @@ Unlocking production: the vault passphrase and the length of the write window.
 
 An open write window: the red badge with its end time, the countdown and the Lock button.
 
+<a name="databases-designer"></a>
+
+## 51. Databases: table designer and CSV import
+
+Create or change a table without writing SQL, and load CSV data into a table. In both cases nothing runs on the server until you confirm.
+
+1. “Create table…” is in the menu of a schema (PostgreSQL), a database (MySQL/MariaDB, ClickHouse) and the Tables folder, and on a button in the workspace header; for MongoDB it reads “Create collection…”. “Edit structure…” in a table’s menu loads its current structure. Redis, SQLite and Cassandra have no designer.
+
+2. The designer opens as a “Design: name” tab next to the query tabs: name, schema or database, comment and the Columns, Keys, Foreign keys, Indexes, Checks, Options and DDL sections. For each column, set the name, the type (the engine’s searchable list or your own), length and scale, NOT NULL, the default (presets such as now() or gen\_random\_uuid()), auto increment, primary key, uniqueness and a comment. Plain text in the default becomes a string: active turns into 'active'.
+
+3. While you design, changes collect in a draft. The new table and its columns show in the tree at once in green with a dot, changed ones in orange; clicking them brings you back to the designer. You can undo the last step or “Revert all changes”, and problems — empty or repeated names, a type without its length, ORDER BY for MergeTree — are flagged right away. The DDL section shows the resulting script.
+
+4. “Save changes” (⌘S / Ctrl+S) opens “‹table› — save changes” with the whole script, and that is the confirmation. The window warns about dropped data or a table rewrite and asks for the vault passphrase; the usual production guard applies, so a write window must be open. “Open in editor” and “Copy” run nothing.
+
+5. On PostgreSQL the script runs in one transaction, so a failure changes nothing. On MySQL/MariaDB, ClickHouse and MongoDB DDL is not transactional: the window says so and, on a failure, shows which statements were already applied. Closing a tab with pending changes asks Save, Don’t save or Cancel.
+
+6. CSV import for PostgreSQL, MySQL and MariaDB on desktop: “Import data…” on the toolbar under the result (into the result’s table) or “Import from CSV…” in a table’s menu; writes must be allowed. The wizard has five steps: a CSV, TSV or text file up to 200 MB (read as a stream on this device); “Reading settings” with a preview of the first 100 rows — encoding, delimiter (detected), quote character, header row, lines to skip, what counts as NULL, the decimal separator and the date order.
+
+7. Then Columns: each file column goes to the table column with the same name or is skipped, and the first 1,000 rows are checked against the types, with sample values that do not fit. Under “Import options” choose insert, insert skipping existing keys, or insert and update by key; the batch size; on a bad row, stop or skip it into a ‹file›.errors.csv report; one transaction for the file or one per batch; and “Delete all rows of the table first” (off). Then comes the usual review with the vault passphrase and a run with progress and Cancel.
+
+8. “Create table from CSV…” in a schema (PostgreSQL) or database (MySQL) menu builds a simple CREATE TABLE from the file’s first rows; copy it or open it in the editor and run it through the usual review.
+
+> **Keep in mind**
+>
+> Cancelling an import rolls back the open transaction; with one transaction per batch, only finished batches are kept. Values that look like formulas are imported as they are. Other queries of the connection wait while an import runs.
+
+![Designing a new invoices table: columns with types, NOT NULL and defaults; the draft table and its columns show in the tree in green.](../assets/guide/db-designer-en.png)
+
+Designing a new invoices table: columns with types, NOT NULL and defaults; the draft table and its columns show in the tree in green.
+
+![“Save changes”: the whole script, the transaction note and the vault passphrase before anything runs.](../assets/guide/db-designer-save-en.png)
+
+“Save changes”: the whole script, the transaction note and the vault passphrase before anything runs.
+
+![CSV import, step 2 of 5: encoding, delimiter, NULL, decimal separator and a preview of the file’s first rows.](../assets/guide/db-csv-read-en.png)
+
+CSV import, step 2 of 5: encoding, delimiter, NULL, decimal separator and a preview of the file’s first rows.
+
 <a name="databases-ai"></a>
 
-## 50. Databases: AI assistant
+## 52. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -1844,7 +1983,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 51. Docker: hosts and containers
+## 53. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -1872,7 +2011,7 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 52. Docker: details, logs, volumes and forwards
+## 54. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
@@ -1912,7 +2051,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 53. Docker: compose projects
+## 55. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -1942,7 +2081,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 54. Your own server: Kubernetes
+## 56. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -2010,7 +2149,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 55. Your own server: Docker Compose
+## 57. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
@@ -2081,7 +2220,7 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-enterprise"></a>
 
-## 56. Your own server: corporate sign-in and shared notes
+## 58. Your own server: corporate sign-in and shared notes
 
 Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices, sharing and teams (server 0.2.1) work in both modes.
 
@@ -2153,7 +2292,7 @@ How the client sees a server in enterprise mode with Active Directory.
 
 <a name="server-config"></a>
 
-## 57. Your own server: features, flags and limits
+## 59. Your own server: features, flags and limits
 
 Your own server’s features are turned on with CC\_\* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.
 
@@ -2248,7 +2387,7 @@ The client shows Teams only when the server supports them.
 
 <a name="server-maintenance"></a>
 
-## 58. Your own server: backups, upgrades and commands
+## 60. Your own server: backups, upgrades and commands
 
 All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
 
