@@ -1335,6 +1335,7 @@ Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page o
 | Local AI and AI providers | The built-in model (where available), providers, default privacy. |
 | Terminal | Command history, font size and family, colour theme, tab subtitle, scrollback. |
 | Keyboard shortcuts and SFTP | Remapping shortcuts and the default editor — on computers. |
+| Command line | “Install CLI commands”: the consolecrypt-cli terminal command — on computers. |
 | Updates and About | Update checks, version, author and licences. |
 
 1. Cards follow the order of the table. The chapters of this guide describe each one: “Vault, recovery and biometrics”, “Teams”, “Colors, text size and glass effects”, “Screenshots and screen protection”, “AI chat”, “Terminal”, “Keyboard shortcuts”, “Client updates”.

@@ -1008,6 +1008,7 @@ export const guideSections = [
       [b('Локальный ИИ и ИИ-провайдеры', 'Local AI and AI providers'), b('Встроенная модель (где доступна), провайдеры, приватность по умолчанию.', 'The built-in model (where available), providers, default privacy.')],
       [b('Терминал', 'Terminal'), b('История команд, размер и семейство шрифта, цветовая тема, подпись вкладки, буфер прокрутки.', 'Command history, font size and family, colour theme, tab subtitle, scrollback.')],
       [b('Горячие клавиши и SFTP', 'Keyboard shortcuts and SFTP'), b('Переназначение сочетаний и редактор по умолчанию — на компьютере.', 'Remapping shortcuts and the default editor — on computers.')],
+      [b('Командная строка', 'Command line'), b('«Установить команды CLI»: команда consolecrypt-cli в терминале — на компьютере.', '“Install CLI commands”: the consolecrypt-cli terminal command — on computers.')],
       [b('Обновления и О программе', 'Updates and About'), b('Проверка обновлений, версия, автор и лицензии.', 'Update checks, version, author and licences.')],
     ] },
     steps: [
