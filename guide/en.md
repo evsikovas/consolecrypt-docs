@@ -1003,7 +1003,7 @@ Notes is a right-panel tool next to Snippets and AI. Open it with the note icon,
 
 > **Keep in mind**
 >
-> There are no system notifications while the app is closed yet: a reminder fires when the app is open again.
+> Reminders arrive with the app closed too, as a system notification “A reminder from ConsoleCrypt” without the note text: the notification centre is not encrypted. The system holds up to 64 nearest reminders of the unlocked profile; signing out of the profile removes them. On Android the time may drift by a few minutes (battery saving); on Linux reminders work only while the app is open.
 
 ![Notes about the SSH host of the active tab: an overdue task, a tagged note and the host’s shared notes; all data is demo data.](../assets/guide/notes-object-en.png)
 
