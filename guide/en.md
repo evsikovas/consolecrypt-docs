@@ -913,11 +913,13 @@ You choose the provider, context and subsequent action. A model’s answer does 
 
 5. Before “Insert” or “Execute…”, review the proposed command and target host. Execution requires confirmation; assess the command yourself.
 
-6. Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings. The chip is green only while the built-in model is actually running: blue while it starts, red after an error and grey when it is not running yet; it starts with the first request.
+6. The “Conversation history” button in the chat header lists this session’s conversations and those kept in the vault. Pick one to continue it: the messages come back to the chat and the model gets the earlier turns again (with the same data hidden as before). A conversation can be deleted there too.
+
+7. Answers render Markdown: headings, lists, emphasis and code; commands in code blocks appear as cards with actions. The icon at the bottom of the sidebar shows who answers by default: the built-in model (chip), a local server (server) or a cloud API (globe); clicking it opens Settings. The chip is green only while the built-in model is actually running: blue while it starts, red after an error and grey when it is not running yet; it starts with the first request.
 
 > **Keep in mind**
 >
-> The AI subsystem has no API access to the vault passphrase or private keys. The current chat is held in session memory: do not rely on conversation persistence or sync. Locking the vault or switching profiles clears the chat and cancels the current response; this does not erase context already sent to the provider.
+> The AI subsystem has no API access to the vault passphrase or private keys. Conversations last until the vault locks; with “Keep AI conversations in the vault” every completed turn is stored in the vault (and synced with it), and secrets typed into a question are replaced by placeholders. Locking the vault or switching profiles clears the chat and cancels the current response; this does not erase context already sent to the provider.
 
 ![AI chat with selected context from the demo terminal.](../assets/guide/workspace-ai-selection-en.png)
 
