@@ -187,7 +187,7 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 
 3. A locked vault opens with its passphrase or, when enabled, Touch ID, Windows Hello or a fingerprint. The same screen offers “Forgot passphrase?”, Sign out, “Delete this profile…” and “Add profile”.
 
-4. “Forgot passphrase?” opens recovery: enter the kit’s 24 words (or its QR-code text) or, on a trusted device with device unlock enabled, choose “This trusted device”. Then set a new passphrase.
+4. “Forgot passphrase?” opens recovery: enter the kit’s 24 words or its QR-code text, or read the QR: “Scan the QR” with the camera on phones, “QR from a picture” from a photo or screenshot everywhere (decoded on the device, sent nowhere), or, on a trusted device with device unlock enabled, choose “This trusted device”. Then set a new passphrase.
 
 5. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
 
