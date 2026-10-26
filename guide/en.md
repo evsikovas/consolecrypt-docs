@@ -1064,7 +1064,7 @@ A team is a vault shared by several accounts on the same server. All members see
 
 7. In Hosts, the sidebar shows Personal and each team with its colour and host count; team hosts carry a coloured label in lists. In a team section, “New team group” creates a group inside the team: everything created in a team group belongs to the team.
 
-8. A host’s “…” menu offers “Copy to team…” and “Move to team…” (into teams you can edit), and “Move to personal” for a team host. The credentials the host needs are copied along. Terminal tabs of team hosts carry a stripe in the team colour.
+8. A host’s “…” menu offers “Copy to team…” and “Move to team…” (into teams you can edit), and “Move to personal” for a team host. The credentials the host needs are copied along. Terminal tabs of team hosts carry a stripe in the team colour. Only the team owner can take a host out of the team (to personal or another team); other members can copy it. When the same key is already in the vault the host goes to, that key is used instead of another copy. Team credentials carry the team label in the list.
 
 9. The team’s Settings tab holds the name, description, colour and policies. “Mark new Kubernetes contexts and databases as production” makes the team’s new connections production right away. “Never send these resources to AI assistants” keeps team resources out of AI context. “Ask before running risky commands” runs snippet and AI commands on team hosts only after ticking “I checked this command…”, even read-only ones; text you type into the terminal yourself is not checked. Owners and admins change settings; everyone else sees them read-only.
 
