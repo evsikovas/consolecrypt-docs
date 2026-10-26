@@ -1206,7 +1206,7 @@ A saved database connection can be shared with a colleague’s verified device, 
 
 3. A route through an SSH host, jump profile, proxy or tunnel is not shared: the recipient picks their own. A Kubernetes forward keeps its namespace and workload while the recipient picks the context; a Docker forward keeps the container name while the recipient picks the engine. Such a connection cannot be saved as direct.
 
-4. Find your colleague’s devices by email, compare the device code through an independent channel, choose the role and select Share.
+4. Find your colleague’s devices by email, compare the device code through an independent channel, choose the role and select Share. Your own other devices are not picked as recipients: they get shared items through a verified device enrollment, and a device the server presents as yours is refused.
 
 5. For the recipient, the connection appears at the top of Databases under “Shared connections” with a “Shared” badge; your own published ones say “Shared by you”. “Verify and accept” confirms the owner, and “Details” opens saving a personal copy, members and revoking access. The password and client key are imported into the copy only when explicitly ticked.
 
