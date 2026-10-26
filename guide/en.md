@@ -609,7 +609,7 @@ Adding a demo host to an existing group.
 
 Credentials are separate from hosts: one credential can be assigned to multiple connections.
 
-1. In “Credentials → New credential”, choose a type: a password, a new SSH key, an imported key, an SSH certificate (a private key plus its OpenSSH certificate) or an SSH agent — the system one or an external agent by socket or pipe path.
+1. In “Credentials → New credential”, choose a type: a password, a new SSH key, an imported key, an SSH certificate (a private key plus its OpenSSH certificate) or an SSH agent — the system one or an external agent by socket or pipe path. To import a key, paste it or choose “Choose file…”: the file (up to 64 KB) is read without making a copy.
 
 2. A new key is generated on the device as Ed25519, RSA 3072 or RSA 4096; the private part goes straight into the vault and the public key is shown for authorized\_keys. FIDO2 keys cannot be created yet.
 
