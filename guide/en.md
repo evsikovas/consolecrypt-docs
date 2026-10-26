@@ -257,7 +257,7 @@ Signing in and being allowed to decrypt the vault are separate actions. A new de
 
 2. Select the pending device, choose “Verify and approve” and compare the entire displayed code on both devices through an independent channel.
 
-3. With server 0.2.2 and later, as soon as the request is opened on a trusted device, the new device shows that device’s name and the same pairing code, computed from both devices’ keys. On the new device, tick “The code matches the one on “…”” and choose “Codes match”; without the tick you cannot confirm. The approval signature covers the vault key, and the new device checks it with the key you confirmed.
+3. With server 0.2.2 and later, as soon as the request is opened on a trusted device, the new device shows that device’s name and the same pairing code, computed from both devices’ keys. On the new device, tick “The code matches the one on “…”” and choose “Codes match”; without the tick you cannot confirm. The approval signature covers the vault key, and the new device checks it with the key you confirmed. Once the server has shown this pairing code, it cannot go back to the old unchecked way — the app refuses the approval.
 
 4. With an older server, approval works as before and the vault key is marked “Vault key not confirmed”. Choose “Confirm with passphrase” in Devices or “Settings → Vault” and enter the vault passphrase once. If another device of the account reports a different key, Devices shows “A device received a different vault key” with a Revoke button.
 
