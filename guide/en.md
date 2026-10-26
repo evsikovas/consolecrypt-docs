@@ -459,7 +459,7 @@ ConsoleCrypt now supports RDP connections. It connects directly to a standard Mi
 
 > **Keep in mind**
 >
-> Before creating RDP hosts, update every workspace device to version 0.3 or later. Older clients cannot see RDP hosts but can change their related credentials and groups. RDP hosts sync between your devices running a current client. Sharing RDP hosts with colleagues is not available yet. Folder redirection is unavailable on mobile. Clipboard and drive availability also depends on Windows server policy.
+> Before creating RDP hosts, update every workspace device to version 0.3 or later. Older clients cannot see RDP hosts but can change their related credentials and groups. RDP hosts sync between your devices running a current client. An RDP host can be shared with a verified colleague: “Share” in the host menu sends the address, port, user and domain, and the notes and password only when ticked. Folder redirection is unavailable on mobile. Clipboard and drive availability also depends on Windows server policy.
 
 ![Creating an RDP host: Windows-specific fields and saving its password in the vault. Demo data.](../assets/guide/rdp-host-editor-en.png)
 
