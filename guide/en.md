@@ -1988,11 +1988,13 @@ Create or change a table without writing SQL, and load CSV data into a table. In
 
 5. On PostgreSQL the script runs in one transaction, so a failure changes nothing. On MySQL/MariaDB, ClickHouse and MongoDB DDL is not transactional: the window says so and, on a failure, shows which statements were already applied. Closing a tab with pending changes asks Save, Don’t save or Cancel.
 
-6. CSV import for PostgreSQL, MySQL and MariaDB on desktop: “Import data…” on the toolbar under the result (into the result’s table) or “Import from CSV…” in a table’s menu; writes must be allowed. The wizard has five steps: a CSV, TSV or text file up to 200 MB (read as a stream on this device); “Reading settings” with a preview of the first 100 rows — encoding, delimiter (detected), quote character, header row, lines to skip, what counts as NULL, the decimal separator and the date order.
+6. CSV import for PostgreSQL, MySQL, MariaDB, SQLite and Cassandra/ScyllaDB on desktop: “Import data…” on the toolbar under the result (into the result’s table) or “Import from CSV…” in a table’s menu; writes must be allowed. The wizard has five steps: a CSV, TSV or text file up to 200 MB (read as a stream on this device); “Reading settings” with a preview of the first 100 rows — encoding, delimiter (detected), quote character, header row, lines to skip, what counts as NULL, the decimal separator and the date order.
 
 7. Then Columns: each file column goes to the table column with the same name or is skipped, and the first 1,000 rows are checked against the types, with sample values that do not fit. Under “Import options” choose insert, insert skipping existing keys, or insert and update by key; the batch size; on a bad row, stop or skip it into a ‹file›.errors.csv report; one transaction for the file or one per batch; and “Delete all rows of the table first” (off). Then comes the usual review with the vault passphrase and a run with progress and Cancel.
 
-8. “Create table from CSV…” in a schema (PostgreSQL) or database (MySQL) menu builds a simple CREATE TABLE from the file’s first rows; copy it or open it in the editor and run it through the usual review.
+8. SQLite through sqlite3 on a host (SSH, Docker, Kubernetes) and Cassandra/ScyllaDB write without a shared transaction: every statement commits on its own, so there is no one-transaction-per-file option and a stopped import keeps the rows already written. In Cassandra, insert and insert skipping existing keys never overwrite a row with the same key (INSERT … IF NOT EXISTS), insert and update is a plain INSERT, and “Delete all rows of the table first” is a TRUNCATE. Counter columns are not imported.
+
+9. “Create table from CSV…” in a schema (PostgreSQL) or database (MySQL, SQLite) menu builds a simple CREATE TABLE from the file’s first rows; copy it or open it in the editor and run it through the usual review. Cassandra has no such item: a CQL table needs a primary key.
 
 > **Keep in mind**
 >
