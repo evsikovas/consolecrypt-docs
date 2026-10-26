@@ -11,7 +11,8 @@
     "7d0ec6f41faae95ede4dc72568088736ddea74e8",
     "22dc20f49a634afa27a19658f43f36307bfda4aa",
     "f3b44abc23caaf7359db5c49f8d832fa6fa1c4fe",
-    "0c8c145317671b8ae53e8ad9ba0233b0cae54138"
+    "0c8c145317671b8ae53e8ad9ba0233b0cae54138",
+    "4d8c7f1a4b50deafde7f098e273c23d706a06a1e"
   ],
   "generatorCommits": [
     "153f5858191e630185cb18891644cc17d07fa9cf",
@@ -22,7 +23,8 @@
     "7d0ec6f41faae95ede4dc72568088736ddea74e8",
     "22dc20f49a634afa27a19658f43f36307bfda4aa",
     "f3b44abc23caaf7359db5c49f8d832fa6fa1c4fe",
-    "0c8c145317671b8ae53e8ad9ba0233b0cae54138"
+    "0c8c145317671b8ae53e8ad9ba0233b0cae54138",
+    "4d8c7f1a4b50deafde7f098e273c23d706a06a1e"
   ],
   "capturedAt": "2026-10-23T06:05:55.767596+00:00",
   "review": "All 26 new 0.5.5 and 6 updated/new 0.5.6 images visually reviewed in RU/EN. Earlier image bytes retain their original provenance. Recovery Kit illustrations contain unusable synthetic example data. All 20 new Kubernetes images and 6 version-bearing images refreshed from 0.6.4 were visually reviewed in RU/EN; older image records retain their existing provenance. The 12 phone RDP images were recaptured from 0.6.4 (tile-grid controls, cursor kept across resizes) and visually reviewed in RU/EN. The 20 Kubernetes images were recaptured from 0.6.4 (desktop navigator, details drawer and GitOps layout) and visually reviewed in RU/EN. For 0.8.5 every guide capture tool was re-run in RU/EN; 100 images whose pixels changed (new sidebar sections, glass drop-downs, AI indicator) and 30 new Databases, Docker and Kubernetes \"Connect to database\" images were visually reviewed; images with byte-identical output keep their earlier provenance. For 0.8.6, 7 new cases (database sharing dialog and shared section, production unlock dialog and open write window with in-grid edits, row selection, DDL view, masked Docker inspect JSON) and 10 updated cases (Databases screens with TLS status and production wording, masked compose view, Docker connect form, devices with the new-device notice and restriction badge, vault settings with system-protected device unlock) were captured in RU/EN and visually reviewed. For 0.8.7 every design_preview case was re-run in RU/EN (72 each); 6 new cases (database query review with values and the vault passphrase, the reusable data preview tab, object details, Recently deleted shared items, the SFTP open-as-text notice, the Windows screen-capture protection setting) and 9 updated cases (production unlock without the typed name, DDL with line wrapping, sharing with Leave share, starter packages with database sets, security and right-panel settings with the new clipboard wording, About, Updates and SFTP settings showing 0.8.7) were visually reviewed; images whose only differences were dates, random demo IDs or fingerprints keep their earlier provenance. All 79 RU and 79 EN desktop images were recaptured from the 0.9.0 source (the right panel gains Notes; Settings and Sync show Authorization); the 14 new notes, shared-notes and corporate sign-in images were visually reviewed. For 0.9.1 every design_preview case was re-run in RU/EN (126 each) from the 0.9.1 source; 47 new cases were visually reviewed: 13 Teams screens rendered with a synthetic in-memory team service (Settings -> Teams, create, members with a join request, invite, join code, code comparison, policies, history, team sections and host menu in Hosts, team colours on terminal tabs, the team policy acknowledgement) and 34 screens across sign-in, unlock and recovery, account and vault dialogs, device approval, host/group/credential/tunnel/snippet editors, SFTP actions and Get Info, terminal tab menu, settings close-ups, AI providers and sharing dialogs. About, SFTP settings and Updates now show 0.9.1, and the SSO/Active Directory sign-in screens show the mock server 0.2.1, protocol 1.10; other images keep their 0.9.0 provenance because the rendered screens are unchanged without teams. A follow-up 0.9.1 capture added 10 cases in RU/EN, visually reviewed: Kubernetes inside the app on a synthetic service (kubeconfig import preview, Pod logs, Pod shell, port forward, YAML review with the server diff, rollout comparison, Kubernetes AI chat with a scripted local answer), the SFTP local pane over the mock local disk /Users/demo, the Transfers panel with synthetic finished and failed jobs, and a note menu. Client 0.9.2 guide capture from guide/092 (f3b44ab): 14 new cases in RU/EN, visually reviewed — SQLite connection and file tree, Cassandra / ScyllaDB connection options, table designer and its save dialog, pending row changes on the result toolbar, the Record view, CSV import reading settings, the snippet picker, a production unlock confirmed with Touch ID, clipboard clearing choices, the note Save status, host notes and not-linked notes. 22 cases were recaptured because 0.9.2 changed what they show (result toolbar and views, editor Snippets button, SQLite/Cassandra connections in the list, the note Save button, Notes in the host menu, Confirm actions with biometrics, the Android background clipboard option); other images keep their provenance because they differ only by run-time dates and random IDs. The CSV column-mapping step was not captured: its rows overflow the 480 px dialog. Key trust and sync limits from client 0.9.2 (0c8c145): 9 new cases in RU/EN, visually reviewed — the Different vault key screen, Vault key not confirmed on Devices, the new device pairing code, colleague verification by safety number, the one-time unverified-recipients banner, Sharing: verified recipients only, an own-device enrollment code typed from the other screen, sync paused by the server with changes rejected over the object limit, and the CSV column mapping at full width. 21 cases were recaptured because 0.9.2 changed what they show (recipient pins and trust badges, owner-unverified marks, the key fingerprint button, the sharing policy in the vault card, the production help text, the full-width CSV dialog, the visible version 0.9.2).",
@@ -570,13 +572,13 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a0e0a145243bc0651619d5a986a1e4d59eeb87acce2489ea323b572aecb58a0e",
-      "sourceRelease": "0.9.2",
-      "sourceVersion": "0.9.2+21056",
-      "sourceCommit": "0c8c145317671b8ae53e8ad9ba0233b0cae54138",
-      "generatorCommit": "0c8c145317671b8ae53e8ad9ba0233b0cae54138",
-      "captureNote": "Production widgets of client 0.9.2 with the synthetic MockDbService demo backend; no database server, file, user data or revealed secrets.",
-      "capturedAt": "2026-10-23T06:05:55.767596+00:00"
+      "sha256": "0d53865d607402b1e07a02b500046d18c954711565968741f255abc6767a74b0",
+      "sourceRelease": "0.9.3",
+      "sourceVersion": "0.9.3+21063",
+      "sourceCommit": "4d8c7f1a4b50deafde7f098e273c23d706a06a1e",
+      "generatorCommit": "4d8c7f1a4b50deafde7f098e273c23d706a06a1e",
+      "captureNote": "Production widgets of client 0.9.3 (FEAT-12 help text) with the synthetic MockDbService demo backend; no database server, file, user data or revealed secrets.",
+      "capturedAt": "2026-10-26T15:11:02.553483+00:00"
     },
     {
       "name": "db-cassandra-connection-ru",
@@ -587,13 +589,13 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "96540405cfbb4eadaf7ec34a50093797a5acfe47bda8c5b488a352cfe889d38c",
-      "sourceRelease": "0.9.2",
-      "sourceVersion": "0.9.2+21056",
-      "sourceCommit": "0c8c145317671b8ae53e8ad9ba0233b0cae54138",
-      "generatorCommit": "0c8c145317671b8ae53e8ad9ba0233b0cae54138",
-      "captureNote": "Production widgets of client 0.9.2 with the synthetic MockDbService demo backend; no database server, file, user data or revealed secrets.",
-      "capturedAt": "2026-10-23T06:05:55.767596+00:00"
+      "sha256": "724cb99a8a993deca21e61f96abed2487f7bda25ba449e3c3f9b85692ff983d2",
+      "sourceRelease": "0.9.3",
+      "sourceVersion": "0.9.3+21063",
+      "sourceCommit": "4d8c7f1a4b50deafde7f098e273c23d706a06a1e",
+      "generatorCommit": "4d8c7f1a4b50deafde7f098e273c23d706a06a1e",
+      "captureNote": "Production widgets of client 0.9.3 (FEAT-12 help text) with the synthetic MockDbService demo backend; no database server, file, user data or revealed secrets.",
+      "capturedAt": "2026-10-26T15:11:02.553483+00:00"
     },
     {
       "name": "db-connection-form-en",
@@ -6286,7 +6288,8 @@
     "0.8.5",
     "0.9.0",
     "0.9.1",
-    "0.9.2"
+    "0.9.2",
+    "0.9.3"
   ],
   "sourceVersions": [
     "0.5.0+18016",
@@ -6295,7 +6298,8 @@
     "0.8.5+21051",
     "0.9.0+21054",
     "0.9.1+21055",
-    "0.9.2+21056"
+    "0.9.2+21056",
+    "0.9.3+21063"
   ],
-  "updatedAt": "2026-10-23T06:05:55.767596+00:00"
+  "updatedAt": "2026-10-26T15:11:02.553483+00:00"
 }

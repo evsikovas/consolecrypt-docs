@@ -1804,7 +1804,7 @@ SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines a
 
 5. For Cassandra and ScyllaDB, choose the “Cassandra / ScyllaDB” engine (port 9042): “Host” is the first contact point and “Keyspace” the default keyspace. Under “Driver settings”, set “More contact points”, “Local data center”, the read (LOCAL\_ONE by default) and write (LOCAL\_QUORUM) consistency and “Rows per page” (500).
 
-6. A session works through one coordinator node: the first contact point that answers; other cluster nodes are never contacted directly. That is why the connection works the same directly and through an SSH host, a tunnel, Kubernetes or Docker. With a local data center set, the coordinator must be in it.
+6. Directly, requests spread over every node in the data center of the first contact point that answers and move to other nodes when one fails; through SSH, tunnels and forwards the session works through one node. That is why the connection works the same directly and through an SSH host, a tunnel, Kubernetes or Docker. With a local data center set, the contact point must be in it.
 
 7. Queries are written in CQL, and each one is parsed in the app before it is sent: SELECT, DESCRIBE, LIST and USE read; INSERT, UPDATE, DELETE and BATCH go through the change review; DROP and TRUNCATE count as dangerous; GRANT, REVOKE and role management are refused on production even in a write window. A SELECT with ALLOW FILTERING, or without WHERE and LIMIT, asks for confirmation first. The next result page loads only on “Load more”.
 
@@ -1822,9 +1822,9 @@ An SQLite file on this computer: the items table with “name (TYPE)” columns,
 
 An SQLite connection: a file on this computer, “Read only” on, and the “This device only” note.
 
-![Cassandra / ScyllaDB: contact points, the local data center, consistency levels and the note on the single coordinator.](../assets/guide/db-cassandra-connection-en.png)
+![Cassandra / ScyllaDB: contact points, the local data center, consistency levels and the note on which nodes a session uses.](../assets/guide/db-cassandra-connection-en.png)
 
-Cassandra / ScyllaDB: contact points, the local data center, consistency levels and the note on the single coordinator.
+Cassandra / ScyllaDB: contact points, the local data center, consistency levels and the note on which nodes a session uses.
 
 <a name="databases-queries"></a>
 
