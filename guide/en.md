@@ -775,15 +775,17 @@ Open SFTP from a host’s menu or the sidebar. Files travel directly between you
 
 2. Select a file and choose upload or download. The activity panel shows transfer progress and cancellation.
 
-3. For reading, open “Quick Look”. Line numbers are in a separate gutter and are excluded from text selection and copying.
+3. Files can be dragged: from Finder or Explorer onto the host list to upload, from the host list onto the local pane to download, onto a folder or the path bar to move on the server. On macOS and Windows, files from the host list can be dragged straight into Finder or Explorer: the file is downloaded into a temporary folder, handed to the system and deleted, with progress in Transfers. Folders do not go this way; use Download for them. Linux has no drag out.
 
-4. A folder the SSH user cannot read is marked as inaccessible instead of looking empty. From Docker, a volume or mount path on an SSH host opens straight in SFTP.
+4. For reading, open “Quick Look”. Line numbers are in a separate gutter and are excluded from text selection and copying.
 
-5. The actions menu (toolbar button or right-click) gathers everything for the selected files: open, open with, Quick Look, download, upload here, new folder and new file, rename, duplicate, delete, Get Info, copy path or name and refresh.
+5. A folder the SSH user cannot read is marked as inaccessible instead of looking empty. From Docker, a volume or mount path on an SSH host opens straight in SFTP.
 
-6. Get Info shows the size, location, owner and permissions. Change permissions with the Read, Write and Execute checkboxes for owner, group and others or with an octal code; Apply saves them on the server. For a symbolic link, permissions apply to the item it points to.
+6. The actions menu (toolbar button or right-click) gathers everything for the selected files: open, open with, Quick Look, download, upload here, new folder and new file, rename, duplicate, delete, Get Info, copy path or name and refresh.
 
-7. The path bar can be edited or copied; search filters the current folder. Columns, “Folders first” and showing hidden files are set in the list header, and failed transfers can be retried from the activity panel.
+7. Get Info shows the size, location, owner and permissions. Change permissions with the Read, Write and Execute checkboxes for owner, group and others or with an octal code; Apply saves them on the server. For a symbolic link, permissions apply to the item it points to.
+
+8. The path bar can be edited or copied; search filters the current folder. Columns, “Folders first” and showing hidden files are set in the list header, and failed transfers can be retried from the activity panel.
 
 ![Quick Look for a demo file with a separate line-number gutter.](../assets/guide/sftp-preview-en.png)
 
