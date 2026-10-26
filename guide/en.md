@@ -1046,7 +1046,7 @@ A team is a vault shared by several accounts on the same server. All members see
 
 2. “Create team”: set a name, a description and a colour from the palette or “Custom…”. The creator becomes the owner, and the team appears on all your devices after they unlock. If the server requires a verified email, verify your address first.
 
-3. On “Members”, choose “Invite member”: enter the email, the role and, optionally, a note. The note is not encrypted — the server can read it. The server does not reveal whether such an account exists; an email is sent only if the account exists and the server has mail configured. An invitation is valid for 7 days; pending invitations can be cancelled.
+3. On “Members”, choose “Invite member”: enter the email, the role and, optionally, a note. The note is not encrypted — the server can read it. The server does not reveal whether such an account exists; only an account with a verified address gets the invitation and the email (server 0.2.4 and later), and the email is sent only if the server has mail configured. An invitation is valid for 7 days; pending invitations can be cancelled.
 
 4. The invitee sees the invitation in “Settings → Teams” and chooses Accept (or Decline). A code of 6 groups of 5 digits appears — read it to the admin in person, by phone or in a messenger. The code covers that admin’s key: the team opens only if that admin adds you; a team the server made up is not opened and shows “The team is paused”.
 
