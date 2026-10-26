@@ -863,7 +863,7 @@ A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon 
 
 1. Choose “New snippet” and enter its name, command, type, tags and optional set. Use variables such as {{service}} in the template; each can have a description and a default value.
 
-2. The risk level — Read-only, Modifying, Destructive or Unknown — decides how strictly a run is confirmed: modifying and destructive commands run only after you tick that you checked the command. On team hosts with the “Ask before running risky commands” policy the tick is always required.
+2. The risk level — Read-only, Modifying, Destructive or Unknown — decides how strictly a run is confirmed: modifying and destructive commands run only after you tick that you checked the command. Commands that start other programs or write files themselves are never Read-only: \`env -S\`, \`fd -x\`, \`rg --pre\`, \`sed\` with \`e\`/\`w\`, \`awk\` with \`\| getline\`, \`git -c\` — the level comes from the wrapped command, or is Unknown. On team hosts with the “Ask before running risky commands” policy the tick is always required.
 
 3. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis and MongoDB (15 each), Cassandra / ScyllaDB (17) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
 
