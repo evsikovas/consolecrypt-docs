@@ -1050,7 +1050,7 @@ A team is a vault shared by several accounts on the same server. All members see
 
 4. The invitee sees the invitation in “Settings → Teams” and chooses Accept (or Decline). A code of 6 groups of 5 digits appears — read it to the admin in person, by phone or in a messenger.
 
-5. The admin’s team window shows “… accepted the invitation” with “Compare code”. Compare every group with your colleague’s screen, tick the confirmation and choose “Add to team”. If the codes differ, choose “Codes don’t match”: nobody is added and the invitation is rejected.
+5. The admin’s team window shows “… accepted the invitation” with “Compare code”. Compare every group with your colleague’s screen, tick the confirmation and choose “Add to team”. If the codes differ, choose “Codes don’t match”: nobody is added and the invitation is rejected. The team key goes only to the member keys the code on your screen was computed from: if the server reports other keys or another role after the check, adding fails with “Verification codes do not match” — open the request and compare the code again.
 
 6. Roles: there is one Owner, who can appoint admins and hand over ownership (“Make owner”). An Admin invites editors and viewers, changes their roles, removes members and edits settings. An Editor changes resources; a Viewer only views and connects, and their team is marked “Read only” in lists.
 
