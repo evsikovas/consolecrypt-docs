@@ -867,7 +867,7 @@ A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon 
 
 2. The risk level — Read-only, Modifying, Destructive or Unknown — decides how strictly a run is confirmed: modifying and destructive commands run only after you tick that you checked the command. Commands that start other programs or write files themselves are never Read-only: \`env -S\`, \`fd -x\`, \`rg --pre\`, \`sed\` with \`e\`/\`w\`, \`awk\` with \`\| getline\`, \`git -c\` — the level comes from the wrapped command, or is Unknown. On team hosts with the “Ask before running risky commands” policy the tick is always required.
 
-3. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis and MongoDB (15 each), Cassandra / ScyllaDB (17) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
+3. “Starter packages” offers Linux diagnostics, Docker, Kubernetes and database sets: SQL · PostgreSQL, SQL · MySQL/MariaDB and SQL · ClickHouse (20 queries each), Redis, MongoDB and SQLite (15 each), Cassandra / ScyllaDB (17) — active and long-running queries, locks, sizes, indexes, replication and top queries. Add the sets explicitly; their commands become ordinary vault objects.
 
 4. Database snippets also run inside psql, mysql, clickhouse-client, redis-cli and mongosh in an SSH session: a multi-line query is sent as one paste, and changing commands need confirmation. In a database workspace, the Snippets button (⌘J / Ctrl+J) inserts a snippet for that engine into the editor without running it.
 
@@ -1764,7 +1764,7 @@ The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redi
 
 7. When the host is localhost and the port matches a saved tunnel’s local port, the form offers to use that tunnel. Through any route, TLS still verifies the original database hostname.
 
-8. “Import connection” accepts a connection string (postgres://, mysql://, clickhouse://, redis://, mongodb://, mongodb+srv://) or a .pgpass file. Review the connections found before saving: for each one, mark production, pick a route and decide whether to keep the password.
+8. “Import connection” accepts a connection string (postgres://, mysql://, clickhouse://, redis://, mongodb://, mongodb+srv://, cassandra:// or scylla://, sqlite:///path/to/file.db) or a .pgpass file. Review the connections found before saving: for each one, mark production, pick a route and decide whether to keep the password.
 
 9. Turn on “Production — read only, writes only in a temporary window” for live databases. Under “Group”, set the group, tags and colour; the colour shows on the card and in the workspace header. Search matches the name, host, database, engine and tags, and the tags above the list act as filters.
 
