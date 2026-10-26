@@ -131,7 +131,7 @@ The client targets x86-64 (x64) graphical desktops: Ubuntu 22.04, Debian 12 and 
 
 4. Device keys require a running, unlocked system keyring with Secret Service, such as GNOME Keyring. Create and unlock the default keyring using your desktop tools before starting the client. The keyring password is separate from your ConsoleCrypt account password and vault passphrase.
 
-5. Linux updates are installed manually: download the new DEB or RPM from Downloads and install it in the same way. Before updating, save an encrypted backup and finish important SSH sessions; keep your vault and keyring.
+5. From 0.9.3, a DEB or RPM copy updates from the app: Settings → Updates → Download and install, the administrator password, then Restart. Update 0.9.3 itself and a copy not installed from the package manually: download the new DEB or RPM from Downloads and install it in the same way. Before updating, save an encrypted backup and finish important SSH sessions; keep your vault and keyring.
 
 ### Ubuntu / Debian — DEB package
 
@@ -1488,7 +1488,7 @@ About: version, author and the client and server license labels.
 
 ## 38. Client updates
 
-On Windows, macOS and Android, “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself. On Linux, download the new package from the website and install it manually.
+On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.3), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
 1. Turn off automatic checks if you prefer manual checks. Choose “Check for updates” and review the new version and notes.
 
@@ -1498,7 +1498,7 @@ On Windows, macOS and Android, “Settings → Updates” offers startup checks 
 
 4. On Windows, updating from 0.8.5 or earlier through the app may fail. Download 0.8.6 from Downloads once and install it manually over the previous version; profiles and vaults are kept. Later updates install from the app.
 
-5. On Linux, download the new DEB or RPM from Downloads and install it manually with your package manager. See the Linux installation chapter for instructions.
+5. On Linux, Download and install checks the package against the separate signed Linux feed and SHA-256; the system then asks for the administrator password, and apt, dnf or zypper installs it. Choose Restart to open the new version; profiles, vaults and the keyring are kept. Closing the password dialog cancels. Without pkexec, or on an error, install the DEB or RPM from Downloads manually (see the Linux installation chapter).
 
 6. With ConsoleCrypt 0.2.2 or newer on macOS, choose a new DMG filename or folder in the system “Save and open” dialog after downloading. Once the DMG opens, quit the app, drag the new copy to Applications and confirm replacement.
 
