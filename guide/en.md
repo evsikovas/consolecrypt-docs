@@ -33,7 +33,7 @@ Step-by-step instructions with the real application interface and demonstration 
 - [SSH tunnels](#tunnels)
 - [Snippets, variables and starter sets](#snippets)
 - [AI chat and the context you send](#ai)
-- [Local AI: three models and upgrades](#local-ai)
+- [Local AI: models, your own GGUF and upgrades](#local-ai)
 - [Notes, tasks and reminders](#notes)
 - [Kubernetes: connections and access](#kubernetes-connections)
 - [Kubernetes: resources and changes](#kubernetes-resources)
@@ -65,6 +65,7 @@ Step-by-step instructions with the real application interface and demonstration 
 **Settings and maintenance**
 
 - [Settings: what is where](#settings-overview)
+- [Command line: consolecrypt-cli](#cli)
 - [Colors, text size and glass effects](#appearance)
 - [Right panel: bubbles or one workspace](#right-panel)
 - [Screenshots, screen protection and clipboard](#screenshots)
@@ -181,35 +182,37 @@ ConsoleCrypt has separate access layers. Resetting your account password by emai
 
 Your vault unlocks on your device. Configure locking and unlocking after creating it.
 
-1. Save the Recovery Kit offline and complete the word check. Its words and QR code grant vault access: do not send them by email, chat or AI.
+1. In the Recovery Kit window, “Print / Save as PDF” opens the system print dialog: print the sheet or save a PDF. A saved PDF is as secret as the printed sheet; keep it out of cloud-synced folders.
 
-2. On phones, Recovery Kit words remain whole. The column count follows the screen width and text size, with the QR code below the words. Scroll to save the complete kit.
+2. Save the Recovery Kit offline and complete the word check. Its words and QR code grant vault access: do not send them by email, chat or AI.
 
-3. A locked vault opens with its passphrase or, when enabled, Touch ID, Windows Hello or a fingerprint. The same screen offers “Forgot passphrase?”, Sign out, “Delete this profile…” and “Add profile”.
+3. On phones, Recovery Kit words remain whole. The column count follows the screen width and text size, with the QR code below the words. Scroll to save the complete kit.
 
-4. “Forgot passphrase?” opens recovery: enter the kit’s 24 words or its QR-code text, or read the QR: “Scan the QR” with the camera on phones, “QR from a picture” from a photo or screenshot everywhere (decoded on the device, sent nowhere), or, on a trusted device with device unlock enabled, choose “This trusted device”. Then set a new passphrase.
+4. A locked vault opens with its passphrase or, when enabled, Touch ID, Windows Hello or a fingerprint. The same screen offers “Forgot passphrase?”, Sign out, “Delete this profile…” and “Add profile”.
 
-5. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
+5. “Forgot passphrase?” opens recovery: enter the kit’s 24 words or its QR-code text, or read the QR: “Scan the QR” with the camera on phones, “QR from a picture” from a photo or screenshot everywhere (decoded on the device, sent nowhere), or, on a trusted device with device unlock enabled, choose “This trusted device”. Then set a new passphrase.
 
-6. A new vault passphrase needs at least 12 characters. Existing vaults still open with their current passphrase; at the next passphrase unlock the key is re-wrapped with stronger Argon2id parameters (at least 64 MiB).
+6. In “Settings → Vault”, select the auto-lock interval. “Lock now” locks the vault; “Change passphrase…” changes the vault passphrase.
 
-7. Dangerous actions are confirmed with the vault passphrase instead of typing a connection, context or resource name: changing database queries and cell edits, Unlock production, YAML apply, deletion, restart and scaling in Kubernetes. A wrong passphrase runs nothing, the field is cleared after every attempt and Enter confirms.
+7. A new vault passphrase needs at least 12 characters. Existing vaults still open with their current passphrase; at the next passphrase unlock the key is re-wrapped with stronger Argon2id parameters (at least 64 MiB).
 
-8. With device unlock on, these actions can be confirmed with Touch ID, Windows Hello or a fingerprint: “Confirm actions with biometrics” in “Settings → Vault” turns on together with it. The confirmation offers a button such as “Confirm with Touch ID” first and “Enter the vault passphrase” as the fallback; if the check is cancelled or fails, the passphrase field appears. A confirmation is single-use and covers only that action and object.
+8. Dangerous actions are confirmed with the vault passphrase instead of typing a connection, context or resource name: changing database queries and cell edits, Unlock production, YAML apply, deletion, restart and scaling in Kubernetes. A wrong passphrase runs nothing, the field is cleared after every attempt and Enter confirms.
 
-9. The vault passphrase is still always required to change the passphrase, create a new Recovery Kit, turn off device unlock, work with backups, approve devices and change account or organisation security. On Linux, where the key sits in the desktop keyring, biometric confirmation is not offered.
+9. With device unlock on, these actions can be confirmed with Touch ID, Windows Hello or a fingerprint: “Confirm actions with biometrics” in “Settings → Vault” turns on together with it. The confirmation offers a button such as “Confirm with Touch ID” first and “Enter the vault passphrase” as the fallback; if the check is cancelled or fails, the passphrase field appears. A confirmation is single-use and covers only that action and object.
 
-10. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
+10. The vault passphrase is still always required to change the passphrase, create a new Recovery Kit, turn off device unlock, work with backups, approve devices and change account or organisation security. On Linux, where the key sits in the desktop keyring, biometric confirmation is not offered.
 
-11. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
+11. Unlocking with this device is off by default. To turn it on, unlock the vault with its passphrase and in “Settings → Vault” enable “Unlock with Touch ID”, “… Windows Hello” or “… fingerprint”. The system asks for confirmation once; set up biometrics in system settings first.
 
-12. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
+12. What it protects: on Mac and iPhone the unlock key is held by the Secure Enclave, on Windows by Windows Hello, on Android by the Keystore. The system releases it only after your fingerprint, face or device password, so another program cannot get the key without your confirmation. Adding a fingerprint or resetting Windows Hello switches device unlock off: unlock with the vault passphrase and turn it on again.
 
-13. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+13. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
 
-14. The device remembers the fingerprint of its vault key and checks every key it receives against it — on passphrase, Recovery Key or biometric unlock, device approval and enabling sync. If the server sends a different key, the “Different vault key” screen appears: data on the device stays unchanged, sync stops and there is no way to accept the “new” key. Do not enter secrets on that device; choose “Copy diagnostics” and tell the server administrator.
+14. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
 
-15. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
+15. The device remembers the fingerprint of its vault key and checks every key it receives against it — on passphrase, Recovery Key or biometric unlock, device approval and enabling sync. If the server sends a different key, the “Different vault key” screen appears: data on the device stays unchanged, sync stops and there is no way to accept the “new” key. Do not enter secrets on that device; choose “Copy diagnostics” and tell the server administrator.
+
+16. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
 
 > **Keep in mind**
 >
@@ -272,6 +275,10 @@ Signing in and being allowed to decrypt the vault are separate actions. A new de
 9. The server may limit sync. When it temporarily limits requests, the indicator and Sync show “The server temporarily limited sync; resuming at HH:MM”: changes stay on the device and go out by themselves. When the server refuses changes because of the vault’s object or storage limit, the “Changes not accepted by the server” card explains why — delete items you no longer need and choose Retry.
 
 10. When you sign in from a new device, the server may answer “Device limit (N) reached — revoke devices you no longer use, then sign in again” or “Too many new devices today. Try again after …”. Colleague lookup, sharing and adding your own devices show how many seconds to wait when requests are limited.
+
+11. With server 0.2.4, deleting the vault from a device that is not trusted yet takes effect after 7 days. Trusted devices show “This vault will be deleted on …” with “Keep the vault”; if you did not ask for it, choose it and change the account password.
+
+12. When the vault was deleted on the server, sync stops and names the reason (“vault not found on server”) instead of retrying forever. Data from the server that fails the authenticity check never replaces the last decrypted copy on the device.
 
 > **Keep in mind**
 >
@@ -459,11 +466,15 @@ ConsoleCrypt now supports RDP connections. It connects directly to a standard Mi
 
 > **Keep in mind**
 >
-> Before creating RDP hosts, update every workspace device to version 0.3 or later. Older clients cannot see RDP hosts but can change their related credentials and groups. RDP hosts sync between your devices running a current client. An RDP host can be shared with a verified colleague: “Share” in the host menu sends the address, port, user and domain, and the notes and password only when ticked. Folder redirection is unavailable on mobile. Clipboard and drive availability also depends on Windows server policy.
+> Before creating RDP hosts, update every workspace device to version 0.3 or later. Older clients cannot see RDP hosts but can change their related credentials and groups. RDP hosts sync between your devices running a current client. An RDP host can be shared with a verified colleague: “Share” in the host menu sends the address, port, user and domain, and the notes and password only when ticked; clients before 0.9.3 do not show such a card. Folder redirection is unavailable on mobile. Clipboard and drive availability also depends on Windows server policy.
 
 ![Creating an RDP host: Windows-specific fields and saving its password in the vault. Demo data.](../assets/guide/rdp-host-editor-en.png)
 
 Creating an RDP host: Windows-specific fields and saving its password in the vault. Demo data.
+
+![Sharing an RDP host: what the colleague sees, the notes and password options and the chosen recipient device.](../assets/guide/sharing-rdp-en.png)
+
+Sharing an RDP host: what the colleague sees, the notes and password options and the chosen recipient device.
 
 ![Choosing a saved RDP host from Remote desktop.](../assets/guide/rdp-host-picker-en.png)
 
@@ -509,7 +520,7 @@ On a phone, the connected desktop automatically opens fullscreen. Touchpad is th
 
 > **Keep in mind**
 >
-> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The earlier iOS 0.5.6 preview is available for Simulator on Mac; iOS 0.6.3 is deferred. Screenshots use real widgets with a drawn, synthetic Windows desktop; the empty area is reserved for the system keyboard.
+> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. iOS is built and checked on the Simulator; its release is still deferred. Screenshots use real widgets with a drawn, synthetic Windows desktop; the empty area is reserved for the system keyboard.
 
 ![Desktop and floating button, with permanent panels hidden.](../assets/guide/mobile-rdp-portrait-dark-en.png)
 
@@ -655,7 +666,7 @@ A separate known-host list with demo fingerprints.
 
 ## 15. Terminal, tabs and selection
 
-Each tab is one terminal session: SSH, plus local shells on macOS and Windows. Phones have a special-key bar; computers have shortcuts and a context menu.
+A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or up to four side by side when split into panes. Phones have a special-key bar; computers have shortcuts and a context menu.
 
 1. Click inside the terminal to type. The “+” button opens another connection. When tabs overflow, scroll the strip with the mouse wheel or its edge arrows. The total number of open tabs appears in parentheses beside the arrows.
 
@@ -673,6 +684,8 @@ Each tab is one terminal session: SSH, plus local shells on macOS and Windows. P
 
 8. After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.
 
+9. “Settings → Terminal → Tab placement”: Top or Left. Left is a column of tabs with names and addresses; drag its edge to change the width or fold it to icons. While the column is shown, the app sidebar stays folded until you unfold it. The choice is kept on this device.
+
 > **Keep in mind**
 >
 > Open a new SSH session after updating. Built-in SSH requests UTF-8 for entering and deleting Cyrillic text. If characters are still corrupted, check the remote host’s UTF-8 locale: its shell and SSH-server settings can override the client’s request.
@@ -680,6 +693,10 @@ Each tab is one terminal session: SSH, plus local shells on macOS and Windows. P
 ![Context menu over a selection in the demo terminal.](../assets/guide/terminal-menu-en.png)
 
 Context menu over a selection in the demo terminal.
+
+![A tab split into two panes: a command on the left and a log of the same host on the right, each pane with its own session.](../assets/guide/terminal-split-en.png)
+
+A tab split into two panes: a command on the left and a log of the same host on the right, each pane with its own session.
 
 ![The tab menu on right-click: rename, duplicate and close.](../assets/guide/terminal-tab-menu-en.png)
 
@@ -756,6 +773,9 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 | Snippets | ⌘. | Ctrl+. |
 | Copy in terminal | ⌘C | Ctrl+Shift+C |
 | Paste in terminal | ⌘V | Ctrl+V; also Shift+Insert on Windows |
+| Split terminal right | ⌘⇧\\ | Ctrl+Shift+\\ |
+| Split terminal down | ⌘⇧− | Ctrl+Shift+− |
+| Next terminal pane | ⌘\] | Ctrl+\] |
 
 > **Keep in mind**
 >
@@ -939,9 +959,9 @@ Adding a provider: address, model, an API key kept in the vault and the privacy 
 
 <a name="local-ai"></a>
 
-## 23. Local AI: three models and upgrades
+## 23. Local AI: models, your own GGUF and upgrades
 
-On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates.
+On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates. You can add your own GGUF model too.
 
 | Tier | Model and download | Total RAM guidance |
 | --- | --- | --- |
@@ -1222,7 +1242,7 @@ A saved database connection can be shared with a colleague’s verified device, 
 
 7. Like secrets and Kubernetes contexts, database connections go only to verified colleague devices by default: choose Verify first and compare the safety number (see “Sharing: getting started”).
 
-8. SQLite and Cassandra / ScyllaDB connections cannot be shared in 0.9.2: they stay on this device and have no Sharing item.
+8. SQLite and Cassandra / ScyllaDB connections cannot be shared with colleagues: they have no Sharing item. Between your own devices, Cassandra / ScyllaDB and SQLite-through-a-host connections sync after “Sync with the vault”.
 
 > **Keep in mind**
 >
@@ -1354,9 +1374,31 @@ Terminal: command history, font, colour theme, tab subtitle and scrollback.
 
 Security and AI providers: clipboard clearing, local and remote providers, default privacy.
 
+<a name="cli"></a>
+
+## 33. Command line: consolecrypt-cli
+
+consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macOS, Windows and Linux installers and works with the same profiles as the app.
+
+1. Open “Settings → Command line” and choose “Install CLI commands”. macOS gets a link /usr/local/bin/consolecrypt-cli (the system may ask for the administrator password), Windows adds the app’s bin folder to the user PATH, and Linux gets a link ~/.local/bin/consolecrypt-cli.
+
+2. Open a new terminal window and run consolecrypt-cli --help. There are commands for profiles, hosts, credentials, SSH (interactive or one command after --), tunnels, SFTP, sync, devices, backups and AI; flags --profile, --json and --offline.
+
+3. The command asks for the passphrase and other secrets itself; scripts can pass them in environment variables (CC\_PASSPHRASE and the others in docs/public/CLI.md). “Remove CLI commands” removes only what ConsoleCrypt created.
+
+[consolecrypt-cli commands and flags ↗](../docs/public/CLI.md)
+
+> **Keep in mind**
+>
+> Phones have no command line. When ~/.local/bin is not on PATH on Linux, the section says so; add it in your shell settings.
+
+![“Settings → Command line” before installation: what the command does and the “Install CLI commands” button.](../assets/guide/settings-cli-en.png)
+
+“Settings → Command line” before installation: what the command does and the “Install CLI commands” button.
+
 <a name="appearance"></a>
 
-## 33. Colors, text size and glass effects
+## 34. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -1380,7 +1422,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 34. Right panel: bubbles or one workspace
+## 35. Right panel: bubbles or one workspace
 
 Snippets, notes, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -1406,7 +1448,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 35. Screenshots, screen protection and clipboard
+## 36. Screenshots, screen protection and clipboard
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device. Copied secrets stay out of clipboard history and are removed after a timeout.
 
@@ -1447,7 +1489,7 @@ Windows: “Hide window from screen capture” — Never, While secrets are show
 
 <a name="backups"></a>
 
-## 36. Backups and restore
+## 37. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -1471,7 +1513,7 @@ Restoring from the welcome screen: a .ccbackup file opens into a new local profi
 
 <a name="about"></a>
 
-## 37. Version, author and licenses
+## 38. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -1479,7 +1521,9 @@ About shows details of the installed app: its version, build number, author and 
 
 2. When contacting support, include the version and build number from this dialog along with your operating system. They identify the update you have installed.
 
-3. Client and server licenses are listed separately; both are labelled AGPL-3.0 in the interface. Check for new versions in Updates.
+3. In a synced profile the dialog also shows “Source code of your sync server:”, the link the server reports about itself (an AGPL-3.0 requirement for network services).
+
+4. Client and server licenses are listed separately; both are labelled AGPL-3.0 in the interface. Check for new versions in Updates.
 
 ![About: version, author and the client and server license labels.](../assets/guide/about-license-en.png)
 
@@ -1487,7 +1531,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 38. Client updates
+## 39. Client updates
 
 On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.3), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
@@ -1517,7 +1561,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 39. Account: password, disconnecting and the website account
+## 40. Account: password, disconnecting and the website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -1545,7 +1589,7 @@ Settings: profiles, “Account &amp; sync” with the account actions, and the v
 
 <a name="kubernetes-connections"></a>
 
-## 40. Kubernetes: connections and access
+## 41. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -1579,7 +1623,7 @@ kubeconfig import: contexts of a demo file, their authentication, the Production
 
 <a name="kubernetes-resources"></a>
 
-## 41. Kubernetes: resources and changes
+## 42. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -1619,7 +1663,7 @@ Rollout history: two Deployment revisions compared field by field.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 42. Kubernetes: logs, shell and tunnels
+## 43. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -1635,7 +1679,7 @@ Logs, shell and port forwarding are built into the client and require no externa
 
 6. A Pod with a standard database port (PostgreSQL, MySQL, MariaDB, ClickHouse, Redis, MongoDB) has a “Connect to database” button. It opens a saved connection with the same route, or a Databases form with a Kubernetes route: to the Pod itself for a StatefulSet, otherwise to its only Service or Deployment, so the connection survives Pod restarts. The forward is restored on every connect.
 
-7. On Android, active tunnels appear in a notification with a stop action. Kubernetes testing and a new build for iOS are deferred. Locking the vault closes sessions.
+7. On Android, active tunnels appear in a notification with a stop action. The iOS release is still deferred. Locking the vault closes sessions.
 
 [Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
 
@@ -1665,7 +1709,7 @@ A Pod port forward: the address on this device and the list of active forwards o
 
 <a name="kubernetes-gitops"></a>
 
-## 43. Kubernetes: GitOps and problems
+## 44. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -1697,7 +1741,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 44. Kubernetes: Helm
+## 45. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -1725,7 +1769,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 45. Kubernetes: context terminal and AI
+## 46. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -1751,7 +1795,7 @@ AI in Kubernetes: a question about a failing Pod, the logs and events it read an
 
 <a name="databases-connections"></a>
 
-## 46. Databases: connections and routes
+## 47. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis, MongoDB, Cassandra and ScyllaDB, and with SQLite files. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -1779,7 +1823,7 @@ The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redi
 
 > **Keep in mind**
 >
-> Connections sync between your devices only in encrypted form; the sync server sees neither passwords nor queries. Queries travel from the device to the database over the chosen route. SQLite and Cassandra / ScyllaDB connections stay on this device for now; see the next chapter.
+> Connections sync between your devices only in encrypted form; the sync server sees neither passwords nor queries. Queries travel from the device to the database over the chosen route. SQLite connections to a file on this computer stay here; Cassandra / ScyllaDB and SQLite-through-a-host connections move into the vault with “Sync with the vault”; see the next chapter.
 
 ![Demo connections: route icons, colour labels, the PROD badge, tag filters and the “This device only” icon on SQLite and Cassandra.](../assets/guide/db-connections-en.png)
 
@@ -1795,9 +1839,9 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 47. Databases: SQLite, Cassandra and ScyllaDB
+## 48. Databases: SQLite, Cassandra and ScyllaDB
 
-SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2, and their connections stay on the device that created them for now.
+SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2. From 0.9.3, Cassandra / ScyllaDB and SQLite-through-a-host connections can move into the vault, while an SQLite file on this computer stays here.
 
 1. For SQLite, choose “New database connection”, pick the “SQLite” engine and set “File location” to “This computer” (macOS, Windows, Linux). Type the path or use “Choose file…”. Only “Create new database…” creates an empty file: the app never connects to a missing file and refuses a file that is not an SQLite database (or an encrypted one).
 
@@ -1809,7 +1853,7 @@ SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines a
 
 5. For Cassandra and ScyllaDB, choose the “Cassandra / ScyllaDB” engine (port 9042): “Host” is the first contact point and “Keyspace” the default keyspace. Under “Driver settings”, set “More contact points”, “Local data center”, the read (LOCAL\_ONE by default) and write (LOCAL\_QUORUM) consistency and “Rows per page” (500).
 
-6. Directly, requests spread over every node in the data center of the first contact point that answers and move to other nodes when one fails; through SSH, tunnels and forwards the session works through one node. That is why the connection works the same directly and through an SSH host, a tunnel, Kubernetes or Docker. With a local data center set, the contact point must be in it.
+6. Directly, requests spread over every node in the data center of the first contact point that answers and move to other nodes when one fails; through SSH, tunnels and forwards the session works through one node. With ScyllaDB on a direct route the session opens a connection per node shard (the shard-aware port 19042) and falls back to the regular port when that is unreachable. Through tunnels keep the nodes on the computer’s local network or use one node. With a local data center set, the contact point must be in it.
 
 7. Queries are written in CQL, and each one is parsed in the app before it is sent: SELECT, DESCRIBE, LIST and USE read; INSERT, UPDATE, DELETE and BATCH go through the change review; DROP and TRUNCATE count as dangerous; GRANT, REVOKE and role management are refused on production even in a write window. A SELECT with ALLOW FILTERING, or without WHERE and LIMIT, asks for confirmation first. The next result page loads only on “Load more”.
 
@@ -1833,7 +1877,7 @@ Cassandra / ScyllaDB: contact points, the local data center, consistency levels 
 
 <a name="databases-queries"></a>
 
-## 48. Databases: structure, queries and results
+## 49. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -1885,6 +1929,10 @@ Click a connection to open its workspace: the database structure on the left, qu
 
 The workspace: the expanded orders table, a highlighted query and its result on demo data; the header shows the TLS status and Unlock production.
 
+![A ScyllaDB query trace: the coordinator and two replicas, each node’s steps with their time; the slowest step is marked.](../assets/guide/db-cassandra-trace-en.png)
+
+A ScyllaDB query trace: the coordinator and two replicas, each node’s steps with their time; the slowest step is marked.
+
 ![The “orders — data” preview tab: the table’s first rows appear right away.](../assets/guide/db-preview-tab-en.png)
 
 The “orders — data” preview tab: the table’s first rows appear right away.
@@ -1915,7 +1963,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 49. Databases: production, changes, history and export
+## 50. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -1957,7 +2005,7 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 50. Databases: writing to production
+## 51. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
@@ -1983,7 +2031,7 @@ An open write window: the red badge with its end time, the countdown and the Loc
 
 <a name="databases-designer"></a>
 
-## 51. Databases: table designer and CSV import
+## 52. Databases: table designer and CSV import
 
 Create or change a table without writing SQL, and load CSV data into a table. In both cases nothing runs on the server until you confirm.
 
@@ -2003,9 +2051,11 @@ Create or change a table without writing SQL, and load CSV data into a table. In
 
 8. Then Columns: each file column goes to the table column with the same name or is skipped, and the first 1,000 rows are checked against the types, with sample values that do not fit. Under “Import options” choose insert, insert skipping existing keys, or insert and update by key; the batch size; on a bad row, stop or skip it into a ‹file›.errors.csv report; one transaction for the file or one per batch; and “Delete all rows of the table first” (off). Then comes the usual review with the vault passphrase and a run with progress and Cancel.
 
-9. SQLite through sqlite3 on a host (SSH, Docker, Kubernetes) and Cassandra/ScyllaDB write without a shared transaction: every statement commits on its own, so there is no one-transaction-per-file option and a stopped import keeps the rows already written. In Cassandra, insert and insert skipping existing keys never overwrite a row with the same key (INSERT … IF NOT EXISTS), insert and update is a plain INSERT, and “Delete all rows of the table first” is a TRUNCATE. Counter columns are not imported.
+9. SQLite through sqlite3 on a host (SSH, Docker, Kubernetes) and Cassandra/ScyllaDB write without a shared transaction: every statement commits on its own, so there is no one-transaction-per-file option and a stopped import keeps the rows already written. In Cassandra, insert and insert skipping existing keys never overwrite a row with the same key (INSERT … IF NOT EXISTS), insert and update is a plain INSERT, and “Delete all rows of the table first” is a TRUNCATE. Counter columns are not imported. ClickHouse takes rows in INSERT batches without a shared transaction, and “Delete all rows of the table first” is a TRUNCATE TABLE. MongoDB writes documents into a collection: new fields come from the headers, and skip-existing and insert-and-update match by \`\_id\`. Redis writes into a database or key folder as strings (SET) or hashes (HSET), without a transaction.
 
-10. “Create table from CSV…” in a schema (PostgreSQL) or database (MySQL, SQLite) menu builds a simple CREATE TABLE from the file’s first rows; copy it or open it in the editor and run it through the usual review. Cassandra has no such item: a CQL table needs a primary key.
+10. “Create table from CSV…” in a schema (PostgreSQL) or database (MySQL, SQLite, ClickHouse with a MergeTree table) menu builds a simple CREATE TABLE from the file’s first rows; copy it or open it in the editor and run it through the usual review. Cassandra has no such item: a CQL table needs a primary key.
+
+11. In PostgreSQL the designer drops a column identity and switches ALWAYS ↔ BY DEFAULT, and Options offer UNLOGGED. In ClickHouse it renames the table and removes a column default and comment. Comments with an apostrophe are saved in every engine except MySQL comments with a backslash, which the designer refuses.
 
 > **Keep in mind**
 >
@@ -2029,7 +2079,7 @@ Step 3 of 5: file columns mapped by name, manager\_note skipped, and total value
 
 <a name="databases-ai"></a>
 
-## 52. Databases: AI assistant
+## 53. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -2051,7 +2101,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 53. Docker: hosts and containers
+## 54. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -2079,7 +2129,7 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 54. Docker: details, logs, volumes and forwards
+## 55. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
@@ -2119,7 +2169,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 55. Docker: compose projects
+## 56. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -2149,7 +2199,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 56. Your own server: Kubernetes
+## 57. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -2247,7 +2297,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 57. Your own server: Docker Compose
+## 58. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
@@ -2320,7 +2370,7 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-settings"></a>
 
-## 58. Your own server: installation and parameters by method
+## 59. Your own server: installation and parameters by method
 
 Every server setting is a CC\_\* variable; the full list with Helm paths, defaults and allowed values is in “Your own server: configuration reference”. This chapter shows where to put a key for each installation method (Docker Compose, docker run, Helm, a JSON file and systemd), how to apply and verify a change, and worked examples: shared notes and teams, sign-in with Entra ID and Active Directory, switching limits to enforce, raising quotas.
 
@@ -2777,7 +2827,7 @@ accounts.
 
 <a name="server-enterprise"></a>
 
-## 59. Your own server: corporate sign-in and shared notes
+## 60. Your own server: corporate sign-in and shared notes
 
 Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices, sharing and teams (server 0.2.1) work in both modes.
 
@@ -2865,7 +2915,7 @@ How the client sees a server in enterprise mode with Active Directory.
 
 <a name="server-idp"></a>
 
-## 60. Your own server: corporate sign-in recipes
+## 61. Your own server: corporate sign-in recipes
 
 The complete enterprise-mode guide: what the server needs from the IdP, step-by-step recipes for Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta and any OIDC provider, Active Directory over LDAPS or STARTTLS, account linking at first sign-in, commands, deployment, a troubleshooting table and switching back to standard sign-in. In the examples the server is https://sync.acme.com and angle brackets mark your own values; keep secrets only in files and Secrets.
 
@@ -3401,7 +3451,7 @@ the table in the Russian section and [PROTOCOL_CHANGELOG.md](https://github.com/
 
 <a name="server-config"></a>
 
-## 61. Your own server: features, flags and limits
+## 62. Your own server: features, flags and limits
 
 Your own server’s features are turned on with CC\_\* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.
 
@@ -3571,7 +3621,7 @@ The client shows Teams only when the server supports them.
 
 <a name="server-reference"></a>
 
-## 62. Your own server: configuration reference
+## 63. Your own server: configuration reference
 
 Every sync server parameter: each CC\_\* key with its Helm path, default, allowed values, secret flag and purpose, grouped as in the source reference; the order of configuration sources and start-up checks; all 18 request limits and the admin commands. The reference is checked against the server code at every release. Where to put a key for each installation method is in “Your own server: installation and parameters by method”.
 
@@ -3992,7 +4042,7 @@ admin …` or `kubectl exec deployment/… -- /usr/local/bin/consolecrypt-server
 
 <a name="server-maintenance"></a>
 
-## 63. Your own server: backups, upgrades and commands
+## 64. Your own server: backups, upgrades and commands
 
 All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
 
