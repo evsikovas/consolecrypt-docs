@@ -1066,7 +1066,7 @@ A team is a vault shared by several accounts on the same server. All members see
 
 > **Keep in mind**
 >
-> Every membership change is signed by an admin, and every client verifies the whole log itself. If the server shows a member nobody signed, or an older membership, the team is paused read-only with a warning and no keys are handed out. A removed member keeps only what they had already downloaded. The “Clear copied secrets after” policy shortens how long a team credential’s password stays in the clipboard; it never extends the local Security setting.
+> Every membership change is signed by an admin, and every client verifies the whole log itself. If the server shows a member nobody signed, or an older membership, the team is paused read-only with a warning and no keys are handed out. The app also remembers the team key: if the server hands out another key for the same epoch, or a new key that does not chain back to the previous one, the team is paused too. A removed member keeps only what they had already downloaded. The “Clear copied secrets after” policy shortens how long a team credential’s password stays in the clipboard; it never extends the local Security setting.
 
 ![“Settings → Teams”: an incoming invitation with a note and two teams with your role and member count; all addresses are demo addresses.](../assets/guide/teams-settings-en.png)
 
