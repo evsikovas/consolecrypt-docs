@@ -58,8 +58,10 @@ MongoDB, Apache Cassandra и ScyllaDB, а также с файлами SQLite. �
 работают как фильтры.
 
 Подключение можно импортировать из строки (`postgres://`, `mysql://`,
-`clickhouse://`, `redis://`, `mongodb://`, `mongodb+srv://`) или из файла
-`.pgpass`. Перед сохранением показывается список найденных подключений: для
+`clickhouse://`, `redis://`, `mongodb://`, `mongodb+srv://`,
+`cassandra://` или `scylla://` — keyspace в пути, `?datacenter=` для
+локального дата-центра, — и `sqlite:///абсолютный/путь.db`, `?mode=ro` — только
+чтение) или из файла `.pgpass`. Перед сохранением показывается список найденных подключений: для
 каждого можно включить «Прод», выбрать маршрут и решить, сохранять ли пароль.
 Строки с подстановками `*` и локальными сокетами пропускаются.
 
@@ -134,10 +136,14 @@ MongoDB, Apache Cassandra и ScyllaDB, а также с файлами SQLite. �
   колонки и ключевые слова CQL.
 - **Правка ячеек** доступна для результата SELECT одной таблицы, в котором
   есть весь первичный ключ (ключ партиции и кластерные колонки). Каждая
-  строка обновляется отдельным `UPDATE … IF EXISTS` (лёгкая транзакция):
-  удалённая строка не будет создана заново, а изменения разных строк не
-  атомарны. Колонки ключа и счётчики не редактируются. Для keyspace ScyllaDB
-  с tablets лёгкие транзакции поддерживаются не во всех версиях.
+  строка обновляется через `UPDATE … IF EXISTS` (лёгкая транзакция), поэтому
+  удалённая строка не будет создана заново. Строки одной партиции меняются
+  одним условным `BEGIN BATCH … APPLY BATCH`: если хотя бы одной из них уже
+  нет, не меняется ни одна. Разные партиции меняются по очереди и не вместе —
+  об этом предупреждает окно проверки. Колонки ключа и счётчики не
+  редактируются, строки не добавляются и не удаляются (в CQL запись — это
+  upsert). Для keyspace ScyllaDB с tablets лёгкие транзакции поддерживаются
+  не во всех версиях.
 - **Экспорт** в CSV/JSON и «INSERT» — как `INSERT INTO … JSON '…';`, что
   сохраняет все типы CQL.
 
@@ -744,7 +750,9 @@ compact list with the same toggle as Hosts, remembered on this device. Search
 matches names, hosts, databases, engines and tags, and tags act as filters.
 
 Import a connection string (`postgres://`, `mysql://`, `clickhouse://`,
-`redis://`, `mongodb://`, `mongodb+srv://`) or a `.pgpass` file and review
+`redis://`, `mongodb://`, `mongodb+srv://`, `cassandra://` or `scylla://` with
+the keyspace in the path and `?datacenter=` for the local data center, and
+`sqlite:///absolute/path.db` with `?mode=ro` for read-only) or a `.pgpass` file and review
 each entry — production flag, route, whether to keep the password — before
 saving. Connections and passwords live in the encrypted vault and sync
 end-to-end encrypted. Queries go from the device to the database; the sync
@@ -811,11 +819,14 @@ works with Apache Cassandra 3.11+, 4.x, 5.x and ScyllaDB.
   size (`system.size_estimates`). Completion covers keyspaces, tables, columns
   and CQL keywords.
 - **Cell editing** works on a single-table SELECT that returns the whole
-  primary key (partition and clustering columns). Each row is updated with
-  its own `UPDATE … IF EXISTS` (a lightweight transaction): a deleted row is
-  not recreated, and edits of several rows are not atomic. Key columns and
-  counters are not editable. ScyllaDB keyspaces with tablets support
-  lightweight transactions only in recent versions.
+  primary key (partition and clustering columns). Rows are updated with
+  `UPDATE … IF EXISTS` (a lightweight transaction), so a deleted row is not
+  recreated. Rows of one partition change in one conditional
+  `BEGIN BATCH … APPLY BATCH`: if any of them is gone, none changes.
+  Different partitions change one after another, not together — the review
+  warns about it. Key columns and counters are not editable, and rows are not
+  added or deleted (a CQL write is an upsert). ScyllaDB keyspaces with tablets
+  support lightweight transactions only in recent versions.
 - **Export** to CSV/JSON, and “INSERT” as `INSERT INTO … JSON '…';`, which
   keeps every CQL type.
 

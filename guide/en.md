@@ -1808,7 +1808,7 @@ SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines a
 
 7. Queries are written in CQL, and each one is parsed in the app before it is sent: SELECT, DESCRIBE, LIST and USE read; INSERT, UPDATE, DELETE and BATCH go through the change review; DROP and TRUNCATE count as dangerous; GRANT, REVOKE and role management are refused on production even in a write window. A SELECT with ALLOW FILTERING, or without WHERE and LIMIT, asks for confirmation first. The next result page loads only on “Load more”.
 
-8. Cassandra structure: keyspaces with their replication → tables, materialized views, user types, functions and aggregates → columns marked PARTITION KEY, CLUSTERING ASC/DESC and STATIC. A cell can be edited when the result holds the whole primary key: each row is updated by its own UPDATE … IF EXISTS, so edits of several rows are not atomic.
+8. Cassandra structure: keyspaces with their replication → tables, materialized views, user types, functions and aggregates → columns marked PARTITION KEY, CLUSTERING ASC/DESC and STATIC. A cell can be edited when the result holds the whole primary key: rows are updated with UPDATE … IF EXISTS, and rows of one partition in one conditional BATCH (all or none). Different partitions do not change together — the review warns about it.
 
 > **Keep in mind**
 >
