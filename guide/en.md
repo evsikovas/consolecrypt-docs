@@ -393,7 +393,7 @@ A host stores SSH or RDP connection settings. Cards and list rows show its addre
 
 7. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. “Share…” appears when the server supports it, “Copy to team…” and “Move to team…” when you have teams (see Teams).
 
-8. The host form is made of cards. Authentication: a password (saved in the vault or entered at connect time), an SSH key (pick, generate or import it right here), an agent (the system SSH agent or a socket path) or “Inherit from group”. “Choose credential…” assigns a saved one.
+8. The host form is made of cards. Authentication: a password (saved in the vault or entered at connect time), an SSH key (pick, generate or import it right here), an agent (the system SSH agent or a socket path) or “Inherit from group”. “Choose credential…” assigns a saved one. If the key is encrypted and its passphrase is not saved, connecting shows “Passphrase for key “…”” — used for that connection only.
 
 9. Security: the host-key policy — Ask (confirm unknown keys), Strict (only keys from known hosts) or Accept new (save unknown keys automatically); a changed key always blocks the connection. It also holds the SSH implementation (“Built-in (russh)” or “System OpenSSH (compatibility)” for old servers), the keepalive interval and “Agent forwarding” — enable it only for hosts you trust.
 
