@@ -48,7 +48,7 @@ iOS-пакет предназначен для Simulator, а не для уст�
 | iOS Simulator на Mac | 0.5.2+21015 | Universal ZIP |
 
 Windows-пакеты не имеют Authenticode-подписи. APK сохраняет сертификат предыдущего
-выпуска. iOS preview прошёл установку и запуск в Simulator; [инструкция запуска](https://github.com/evsikovas/consolecrypt-client/blob/main/docs/public/BUILD_IOS.md).
+выпуска. iOS preview прошёл установку и запуск в Simulator; [инструкция запуска](BUILD_IOS.md).
 Это не проверка RDP на физическом телефоне. На Windows подтверждены настоящие
 PowerShell/cmd и генерация всеми тремя локальными моделями на CPU. Несколько
 реальных WSL-дистрибутивов и обновление установленной 0.4.1 не входили в
@@ -105,7 +105,7 @@ verify downloads against [SHA256SUMS-0.5.2.txt](https://github.com/evsikovas/con
 
 Windows packages are not Authenticode-signed. The APK retains the previous
 release's signing certificate. The iOS preview was installed and launched in
-Simulator; see the [launch instructions](https://github.com/evsikovas/consolecrypt-client/blob/main/docs/public/BUILD_IOS.md).
+Simulator; see the [launch instructions](BUILD_IOS.md).
 This does not verify RDP on a physical phone. Native PowerShell/cmd and CPU
 generation with all three local models passed on Windows. Multiple real WSL
 distributions and upgrading an installed 0.4.1 were outside the verified matrix.

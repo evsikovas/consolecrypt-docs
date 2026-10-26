@@ -1,6 +1,6 @@
 # Signed update-feed renewal
 
-[`.github/workflows/update-feeds.yml`](https://github.com/evsikovas/consolecrypt-client/blob/main/.github/workflows/update-feeds.yml) runs on GitHub-hosted Ubuntu, independently
+`.github/workflows/update-feeds.yml` runs on GitHub-hosted Ubuntu, independently
 of native builds. It checks daily and supports a manual run from `main`. A
 published stable-release event only dispatches a separate run on `main`; the
 release-tag job never receives the signing secret. There are no PR triggers or

@@ -7,27 +7,40 @@ packages. No pull request code executes on persistent native runners.
 
 | Runner labels | Jobs | Required tools |
 |---|---|---|
-| `self-hosted, macOS, ARM64, consolecrypt, client` | Android; macOS/iOS by default | Flutter 3.47.5, Rust 1.98, Python; Android SDK 36, build-tools 36.0.0, NDK 28.2.13676358, CMake 3.22.1; full Xcode and CocoaPods for Apple builds |
+| `self-hosted, macOS, ARM64, consolecrypt, client` | Android; macOS unless `MACOS_BUILD_RUNNER` is set | Flutter 3.47.5, Rust 1.98, Python; Android SDK 36, build-tools 36.0.0, NDK 28.2.13676358, CMake 3.22.1; full Xcode and CocoaPods for Apple builds |
 | `self-hosted, Windows, X64, consolecrypt, client` | Windows x64 | MSVC C++/Windows SDK, Git, Python, Rust; Flutter, Strawberry Perl and Inno Setup are discovered or provisioned by `ci-windows.ps1` |
 | `cc-linux-k3s` | Linux DEB/RPM | Home ARC scale set with Docker-in-Docker, Python 3 and a shared work/temp volume; pinned Ubuntu 22.04 builder contains native tools and isolated Secret Service tests |
 
-Repository variable `MACOS_BUILD_RUNNER` can override only the macOS/iOS runner
-with a JSON array, for example `["macos-26"]` for a hosted runner with full Xcode.
-Remove the override after installing Xcode on the dedicated Mac. Android always
-uses the dedicated Mac and its existing signing key. `ci-macos-tools.sh` provisions
-the pinned Flutter SDK when it is absent. iOS follows macOS; Android, Windows and
-Linux can build independently. A single self-hosted Mac serializes its jobs.
+Repository variable `MACOS_BUILD_RUNNER` can override only the macOS runner
+with a JSON array, for example `["macos-26"]` for a hosted runner with full Xcode
+(set this way since October 2026). Remove the override after installing Xcode on
+the dedicated Mac. Android always uses the dedicated Mac and its existing signing
+key. `ci-macos-tools.sh` provisions the pinned Flutter SDK when it is absent.
+macOS, Android, Windows and Linux build independently. A single self-hosted Mac
+serializes its jobs. The tag workflow builds no iOS package: iOS builds and
+testing are deferred, and the last iOS artifact is the 0.5.6 Simulator ZIP
+(`client/scripts/build-ios.sh` still builds one locally).
 
 The ARC runner and Docker daemon must mount `RUNNER_TEMP` at the same absolute
 path. `ci-linux.sh` stages the source snapshot there, not in an unshared `/tmp`.
 The home cluster is a build environment; these jobs do not deploy production there.
 
-Native jobs have `contents: read`. After all five platforms succeed, a hosted
-publisher validates the version receipts, assembles a closed list of seven
-installers plus SHA-256 checksums, creates a draft GitHub Release, uploads its
+Native jobs have `contents: read`. After all four platforms succeed, a hosted
+publisher validates the version receipts, assembles a closed list of six
+installers (macOS DMG, Windows EXE and portable ZIP, Linux DEB and RPM, Android
+APK) plus SHA-256 checksums, creates a draft GitHub Release, uploads its
 files, and publishes it. Only that job gets `contents: write` and `actions: write`.
 It then dispatches `update-feeds.yml` on trusted `main` to refresh signed metadata.
 Website and sync-server deployment use their own tag workflows.
+
+Dependency checks run only on GitHub-hosted `ubuntu-24.04`. The release
+`validate` job runs `client/scripts/dependency-audit.py` (pinned `cargo-deny`
+and `osv-scanner`, SHA-256 verified) before any native job starts.
+`dependency-audit.yml` repeats it weekly, on manual dispatch and on pull requests
+that touch manifests or lockfiles, including Dependabot's. Its audit job has
+`contents: read`; a separate job with `issues: write` (never on pull requests)
+opens, updates or closes the "Уязвимые зависимости" issue. Policy and exceptions:
+[BUILDING.md](BUILDING.md#проверка-зависимостей).
 
 On Windows, enable Developer Mode so Flutter can create plugin symlinks, and
 choose a short work directory when registering the runner:
@@ -80,7 +93,8 @@ below this limit. Do not reset the GitHub run sequence to work around it.
 - Optional repository variable `CC_CODESIGN_IDENTITY` selects an existing
   macOS keychain signing identity by name or SHA-1. Without it, builds retain
   the previous ad-hoc behavior. Developer ID distribution needs notarization.
-- iOS output is a Simulator preview; no provisioning credentials are requested.
+- No iOS job runs; a local iOS build is a Simulator preview and requests no
+  provisioning credentials.
 - The update signing key remains confined to the separate update-feed workflow.
   Native build jobs do not receive production credentials or update signing keys.
   See [RELEASING.md](RELEASING.md).
@@ -185,7 +199,8 @@ live user containers.
 release notes, отправьте коммит в `main`, затем тег `vX.Y.Z` на этот коммит.
 Только тег запускает сборки. После успешной сборки всех платформ workflow
 публикует полный GitHub Release и запускает обновление подписанной ленты.
-Пакеты Android подписываются прежним ключом раннера. iOS — только Simulator preview.
+Пакеты Android подписываются прежним ключом раннера. iOS в CI не собирается
+(сборки отложены; локально — только Simulator preview).
 
 
 ### Диагностический тег Windows

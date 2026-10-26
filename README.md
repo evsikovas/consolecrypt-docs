@@ -24,6 +24,9 @@
 - [Свой сервер в Docker и Kubernetes](docs/public/HOSTING.md).
 - Свой сервер: [справочник параметров](guide/ru.md#server-reference), [корпоративный вход — рецепты](guide/ru.md#server-idp), [параметры по способам установки](guide/ru.md#server-settings).
 - [Совместный доступ](docs/public/SHARING.md).
+- [Аккаунт и синхронизация](docs/public/SYNC_ACCOUNT.md): подключение к серверу, одобрение нового устройства, корпоративный вход.
+- [Буфер обмена](docs/public/CLIPBOARD.md): защищённое копирование секретов и автоочистка.
+- Свой сервер: [параметры](docs/public/CONFIGURATION.md), [корпоративный вход](docs/public/ENTERPRISE.md).
 - [RDP](docs/public/RDP.md), включая мобильный тачпад.
 - [Локальные терминалы: zsh, PowerShell, cmd и WSL](docs/public/LOCAL_TERMINALS.md).
 - [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md): три модели и сохранение установленных файлов при обновлении.
@@ -62,7 +65,11 @@
 - `guide/ru.md`, `guide/en.md` — руководство, которое читается прямо на GitHub.
 - `assets/guide-content.js` — структурированный текст обеих локалей.
 - `assets/guide/` — скриншоты и manifest с их происхождением/контрольными суммами.
-- `docs/public/` — инструкции, технические требования и заметки выпусков.
+- `docs/public/` — инструкции, технические требования и заметки выпусков:
+  копия `docs/public` клиента и сервера, которую обновляет
+  `python3 scripts/sync-public-docs.py --client ../consolecrypt-client --server ../consolecrypt-server`
+  (`--check` только сообщает о расхождениях). Черновики заметок ещё не
+  выпущенной версии не копируются.
 - `docs/brand/` — знак проекта.
 
 Команды в инструкциях сборки выполняются в соответствующем репозитории клиента
