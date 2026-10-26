@@ -1810,7 +1810,7 @@ SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines a
 
 > **Keep in mind**
 >
-> “This device only”: in 0.9.2, SQLite and Cassandra / ScyllaDB connections are not synced, stored in the vault or its backups, or shared, and their query history stays local, because app versions up to 0.9.1 cannot open them. The connection and its password are kept in the profile’s local database, encrypted with the vault’s keys. Syncing comes in a later release.
+> “This device only”: in 0.9.2, SQLite and Cassandra / ScyllaDB connections are not synced, stored in the vault or its backups, or shared, and their query history stays local, because app versions up to 0.9.1 cannot open them. The connection and its password are kept in the profile’s local database, encrypted with the vault’s keys. Since 0.9.3 “Sync with the vault” moves Cassandra and SQLite-through-a-host connections into the vault once every device of the account runs 0.9.2 or later; an SQLite file on this computer stays here.
 
 ![An SQLite file on this computer: the items table with “name (TYPE)” columns, foreign keys, references and a trigger; below, the sequence, table trigger and data type folders. The session is read-only.](../assets/guide/db-sqlite-tree-en.png)
 
