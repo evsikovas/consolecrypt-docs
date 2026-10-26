@@ -669,7 +669,9 @@ Each tab is one terminal session: SSH, plus local shells on macOS and Windows. P
 
 6. Right-click a tab to rename, duplicate, close it, close others or close tabs to the right. A background tab with new output is highlighted, and the sidebar shows a separate count of such tabs next to the tab count. Settings → Terminal sets the font (from installed monospace fonts) and the tab subtitle: the list name, the address or computer name, or nothing.
 
-7. After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.
+7. On desktop a tab can be dragged to another place, in the strip at the top and in the column on the left; in the column Alt+↑ / Alt+↓ do the same. The active tab stays active.
+
+8. After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.
 
 > **Keep in mind**
 >
