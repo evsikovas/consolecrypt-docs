@@ -955,11 +955,13 @@ On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-C
 
 3. Use by default after installation is saved only on this device. Turning it off returns to your usual provider. After a local model is installed with local default enabled, selecting another model that is not downloaded asks for installation instead of silently sending the request to the cloud.
 
-4. Switching models stops the current process and retains the other GGUF files. Remove deletes only the selected model and its partial downloads. Updating or repairing the runtime reuses a verified model; the original Qwen2.5-Coder 1.5B and default preference are preserved.
+4. Add your own model (GGUF)… picks a GGUF file on the computer: the app checks its header, copies it into the models folder with a SHA-256 check and selects it; you can delete the original. Your own model is marked Custom, memory guidance is estimated from the file size, and its origin and license are yours to check. Remove deletes the copy and returns the selection to Qwen2.5-Coder 1.5B.
 
-5. The model starts on the first request or with Start. It stops after 15 idle minutes, vault lock, profile switch or quit. Apple Silicon uses Metal; Intel Mac and Windows x64 use CPU. Built-in installation is unavailable on Linux and mobile platforms.
+5. Switching models stops the current process and retains the other GGUF files. Remove deletes only the selected model and its partial downloads. Updating or repairing the runtime reuses a verified model; the original Qwen2.5-Coder 1.5B and default preference are preserved.
 
-6. Open Model sources and licenses: Qwen publishes the 1.5B GGUF, and Unsloth provides GGUF quantizations of Qwen 4B/9B; all three use Apache-2.0. License text is available offline.
+6. The model starts on the first request or with Start. It stops after 15 idle minutes, vault lock, profile switch or quit. Apple Silicon uses Metal; Intel Mac and Windows x64 use CPU. Built-in installation is unavailable on Linux and mobile platforms.
+
+7. Open Model sources and licenses: Qwen publishes the 1.5B GGUF, and Unsloth provides GGUF quantizations of Qwen 4B/9B; all three use Apache-2.0. License text is available offline.
 
 > **Keep in mind**
 >

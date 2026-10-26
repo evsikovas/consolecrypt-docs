@@ -779,6 +779,10 @@ export const guideSections = [
         "en": "Use by default after installation is saved only on this device. Turning it off returns to your usual provider. After a local model is installed with local default enabled, selecting another model that is not downloaded asks for installation instead of silently sending the request to the cloud."
       },
       {
+        "ru": "«Добавить свою модель (GGUF)…» выбирает файл GGUF на компьютере: приложение проверяет заголовок, копирует файл в папку моделей со сверкой SHA-256 и выбирает его, оригинал можно удалить. Своя модель помечена «Своя», объём памяти оценивается по размеру файла, а происхождение и лицензию проверяйте сами. «Удалить» убирает копию и возвращает выбор к Qwen2.5-Coder 1.5B.",
+        "en": "Add your own model (GGUF)… picks a GGUF file on the computer: the app checks its header, copies it into the models folder with a SHA-256 check and selects it; you can delete the original. Your own model is marked Custom, memory guidance is estimated from the file size, and its origin and license are yours to check. Remove deletes the copy and returns the selection to Qwen2.5-Coder 1.5B."
+      },
+      {
         "ru": "Смена модели останавливает текущий процесс и сохраняет остальные GGUF-файлы. «Удалить» удаляет только выбранную модель и её частичные загрузки. Обновление или ремонт движка повторно использует проверенную модель; прежний Qwen2.5-Coder 1.5B и настройки default сохраняются.",
         "en": "Switching models stops the current process and retains the other GGUF files. Remove deletes only the selected model and its partial downloads. Updating or repairing the runtime reuses a verified model; the original Qwen2.5-Coder 1.5B and default preference are preserved."
       },
