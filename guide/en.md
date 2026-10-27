@@ -132,7 +132,7 @@ The client targets x86-64 (x64) graphical desktops: Ubuntu 22.04, Debian 12 and 
 
 4. Device keys require a running, unlocked system keyring with Secret Service, such as GNOME Keyring. Create and unlock the default keyring using your desktop tools before starting the client. The keyring password is separate from your ConsoleCrypt account password and vault passphrase.
 
-5. From 0.9.12, a DEB or RPM copy updates from the app: Settings → Updates → Download and install, the administrator password, then Restart. Update 0.9.12 itself and a copy not installed from the package manually: download the new DEB or RPM from Downloads and install it in the same way. Before updating, save an encrypted backup and finish important SSH sessions; keep your vault and keyring.
+5. From 0.9.13, a DEB or RPM copy updates from the app: Settings → Updates → Download and install, the administrator password, then Restart. Update 0.9.13 itself and a copy not installed from the package manually: download the new DEB or RPM from Downloads and install it in the same way. Before updating, save an encrypted backup and finish important SSH sessions; keep your vault and keyring.
 
 ### Ubuntu / Debian — DEB package
 
@@ -466,7 +466,7 @@ ConsoleCrypt now supports RDP connections. It connects directly to a standard Mi
 
 > **Keep in mind**
 >
-> Before creating RDP hosts, update every workspace device to version 0.3 or later. Older clients cannot see RDP hosts but can change their related credentials and groups. RDP hosts sync between your devices running a current client. An RDP host can be shared with a verified colleague: “Share” in the host menu sends the address, port, user and domain, and the notes and password only when ticked; clients before 0.9.12 do not show such a card. Folder redirection is unavailable on mobile. Clipboard and drive availability also depends on Windows server policy.
+> Before creating RDP hosts, update every workspace device to version 0.3 or later. Older clients cannot see RDP hosts but can change their related credentials and groups. RDP hosts sync between your devices running a current client. An RDP host can be shared with a verified colleague: “Share” in the host menu sends the address, port, user and domain, and the notes and password only when ticked; clients before 0.9.13 do not show such a card. Folder redirection is unavailable on mobile. Clipboard and drive availability also depends on Windows server policy.
 
 ![Creating an RDP host: Windows-specific fields and saving its password in the vault. Demo data.](../assets/guide/rdp-host-editor-en.png)
 
@@ -1533,7 +1533,7 @@ About: version, author and the client and server license labels.
 
 ## 39. Client updates
 
-On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.12), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
+On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.13), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
 1. Turn off automatic checks if you prefer manual checks. Choose “Check for updates” and review the new version and notes.
 
@@ -1841,7 +1841,7 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 ## 48. Databases: SQLite, Cassandra and ScyllaDB
 
-SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2. From 0.9.12, Cassandra / ScyllaDB and SQLite-through-a-host connections can move into the vault, while an SQLite file on this computer stays here.
+SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2. From 0.9.13, Cassandra / ScyllaDB and SQLite-through-a-host connections can move into the vault, while an SQLite file on this computer stays here.
 
 1. For SQLite, choose “New database connection”, pick the “SQLite” engine and set “File location” to “This computer” (macOS, Windows, Linux). Type the path or use “Choose file…”. Only “Create new database…” creates an empty file: the app never connects to a missing file and refuses a file that is not an SQLite database (or an encrypted one).
 
@@ -1861,7 +1861,7 @@ SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines a
 
 > **Keep in mind**
 >
-> “This device only”: in 0.9.2, SQLite and Cassandra / ScyllaDB connections are not synced, stored in the vault or its backups, or shared, and their query history stays local, because app versions up to 0.9.1 cannot open them. The connection and its password are kept in the profile’s local database, encrypted with the vault’s keys. Since 0.9.12 “Sync with the vault” moves Cassandra and SQLite-through-a-host connections into the vault once every device of the account runs 0.9.2 or later; an SQLite file on this computer stays here.
+> “This device only”: in 0.9.2, SQLite and Cassandra / ScyllaDB connections are not synced, stored in the vault or its backups, or shared, and their query history stays local, because app versions up to 0.9.1 cannot open them. The connection and its password are kept in the profile’s local database, encrypted with the vault’s keys. Since 0.9.13 “Sync with the vault” moves Cassandra and SQLite-through-a-host connections into the vault once every device of the account runs 0.9.2 or later; an SQLite file on this computer stays here.
 
 ![An SQLite file on this computer: the items table with “name (TYPE)” columns, foreign keys, references and a trigger; below, the sequence, table trigger and data type folders. The session is read-only.](../assets/guide/db-sqlite-tree-en.png)
 
