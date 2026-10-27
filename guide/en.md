@@ -845,7 +845,7 @@ On a computer, files can open in an external editor. ConsoleCrypt remembers the 
 
 > **Keep in mind**
 >
-> External-editor autosave, backups and cloud features are outside ConsoleCrypt’s control. This preference is for desktop systems; mobile file handling depends on system capabilities.
+> External-editor autosave, backups and cloud features are outside ConsoleCrypt’s control. The working-copy folder carries CACHEDIR.TAG and .nobackup, so borg, restic, tar and other backup tools that honour them skip it; on macOS it is excluded from Time Machine. This preference is for desktop systems; mobile file handling depends on system capabilities.
 
 ![The remembered-editor local preference in the demo client.](../assets/guide/sftp-settings-en.png)
 
