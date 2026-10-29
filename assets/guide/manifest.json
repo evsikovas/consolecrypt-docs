@@ -8,7 +8,8 @@
     "621bbc5a08470a9c21bf19685f19c9edf0063410",
     "fd21173e806dbd47f049c1e896351e6a7d080a70",
     "f3b44abc23caaf7359db5c49f8d832fa6fa1c4fe",
-    "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a"
+    "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
+    "435fc0e049bc2b06054fb9057935a65104245f21"
   ],
   "generatorCommits": [
     "153f5858191e630185cb18891644cc17d07fa9cf",
@@ -16,10 +17,11 @@
     "80b8d02de4fcd45b8a3fa94de65bc48df91a1591",
     "fd21173e806dbd47f049c1e896351e6a7d080a70",
     "f3b44abc23caaf7359db5c49f8d832fa6fa1c4fe",
-    "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a"
+    "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
+    "435fc0e049bc2b06054fb9057935a65104245f21"
   ],
-  "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-  "review": "All 26 new 0.5.5 and 6 updated/new 0.5.6 images visually reviewed in RU/EN. Earlier image bytes retain their original provenance. Recovery Kit illustrations contain unusable synthetic example data. All 20 new Kubernetes images and 6 version-bearing images refreshed from 0.6.4 were visually reviewed in RU/EN; older image records retain their existing provenance. The 12 phone RDP images were recaptured from 0.6.4 (tile-grid controls, cursor kept across resizes) and visually reviewed in RU/EN. The 20 Kubernetes images were recaptured from 0.6.4 (desktop navigator, details drawer and GitOps layout) and visually reviewed in RU/EN. For 0.8.5 every guide capture tool was re-run in RU/EN; 100 images whose pixels changed (new sidebar sections, glass drop-downs, AI indicator) and 30 new Databases, Docker and Kubernetes \"Connect to database\" images were visually reviewed; images with byte-identical output keep their earlier provenance. For 0.8.6, 7 new cases (database sharing dialog and shared section, production unlock dialog and open write window with in-grid edits, row selection, DDL view, masked Docker inspect JSON) and 10 updated cases (Databases screens with TLS status and production wording, masked compose view, Docker connect form, devices with the new-device notice and restriction badge, vault settings with system-protected device unlock) were captured in RU/EN and visually reviewed. For 0.8.7 every design_preview case was re-run in RU/EN (72 each); 6 new cases (database query review with values and the vault passphrase, the reusable data preview tab, object details, Recently deleted shared items, the SFTP open-as-text notice, the Windows screen-capture protection setting) and 9 updated cases (production unlock without the typed name, DDL with line wrapping, sharing with Leave share, starter packages with database sets, security and right-panel settings with the new clipboard wording, About, Updates and SFTP settings showing 0.8.7) were visually reviewed; images whose only differences were dates, random demo IDs or fingerprints keep their earlier provenance. All 79 RU and 79 EN desktop images were recaptured from the 0.9.0 source (the right panel gains Notes; Settings and Sync show Authorization); the 14 new notes, shared-notes and corporate sign-in images were visually reviewed. For 0.9.1 every design_preview case was re-run in RU/EN (126 each) from the 0.9.1 source; 47 new cases were visually reviewed: 13 Teams screens rendered with a synthetic in-memory team service (Settings -> Teams, create, members with a join request, invite, join code, code comparison, policies, history, team sections and host menu in Hosts, team colours on terminal tabs, the team policy acknowledgement) and 34 screens across sign-in, unlock and recovery, account and vault dialogs, device approval, host/group/credential/tunnel/snippet editors, SFTP actions and Get Info, terminal tab menu, settings close-ups, AI providers and sharing dialogs. About, SFTP settings and Updates now show 0.9.1, and the SSO/Active Directory sign-in screens show the mock server 0.2.1, protocol 1.10; other images keep their 0.9.0 provenance because the rendered screens are unchanged without teams. A follow-up 0.9.1 capture added 10 cases in RU/EN, visually reviewed: Kubernetes inside the app on a synthetic service (kubeconfig import preview, Pod logs, Pod shell, port forward, YAML review with the server diff, rollout comparison, Kubernetes AI chat with a scripted local answer), the SFTP local pane over the mock local disk /Users/demo, the Transfers panel with synthetic finished and failed jobs, and a note menu. Client 0.9.2 guide capture from guide/092 (f3b44ab): 14 new cases in RU/EN, visually reviewed — SQLite connection and file tree, Cassandra / ScyllaDB connection options, table designer and its save dialog, pending row changes on the result toolbar, the Record view, CSV import reading settings, the snippet picker, a production unlock confirmed with Touch ID, clipboard clearing choices, the note Save status, host notes and not-linked notes. 22 cases were recaptured because 0.9.2 changed what they show (result toolbar and views, editor Snippets button, SQLite/Cassandra connections in the list, the note Save button, Notes in the host menu, Confirm actions with biometrics, the Android background clipboard option); other images keep their provenance because they differ only by run-time dates and random IDs. The CSV column-mapping step was not captured: its rows overflow the 480 px dialog. Key trust and sync limits from client 0.9.2 (0c8c145): 9 new cases in RU/EN, visually reviewed — the Different vault key screen, Vault key not confirmed on Devices, the new device pairing code, colleague verification by safety number, the one-time unverified-recipients banner, Sharing: verified recipients only, an own-device enrollment code typed from the other screen, sync paused by the server with changes rejected over the object limit, and the CSV column mapping at full width. 21 cases were recaptured because 0.9.2 changed what they show (recipient pins and trust badges, owner-unverified marks, the key fingerprint button, the sharing policy in the vault card, the production help text, the full-width CSV dialog, the visible version 0.9.2). 0.9.14 (0.9.3 to 0.9.13 were never published): all 163 design_preview cases recaptured in RU/EN from client 4eb7193; the cases new since 0.9.2 (terminal-split, sharing-rdp, settings-cli, db-cassandra-trace) and the changed ones were visually reviewed; About, SFTP settings and Updates show 0.9.14.",
+  "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+  "review": "All 26 new 0.5.5 and 6 updated/new 0.5.6 images visually reviewed in RU/EN. Earlier image bytes retain their original provenance. Recovery Kit illustrations contain unusable synthetic example data. All 20 new Kubernetes images and 6 version-bearing images refreshed from 0.6.4 were visually reviewed in RU/EN; older image records retain their existing provenance. The 12 phone RDP images were recaptured from 0.6.4 (tile-grid controls, cursor kept across resizes) and visually reviewed in RU/EN. The 20 Kubernetes images were recaptured from 0.6.4 (desktop navigator, details drawer and GitOps layout) and visually reviewed in RU/EN. For 0.8.5 every guide capture tool was re-run in RU/EN; 100 images whose pixels changed (new sidebar sections, glass drop-downs, AI indicator) and 30 new Databases, Docker and Kubernetes \"Connect to database\" images were visually reviewed; images with byte-identical output keep their earlier provenance. For 0.8.6, 7 new cases (database sharing dialog and shared section, production unlock dialog and open write window with in-grid edits, row selection, DDL view, masked Docker inspect JSON) and 10 updated cases (Databases screens with TLS status and production wording, masked compose view, Docker connect form, devices with the new-device notice and restriction badge, vault settings with system-protected device unlock) were captured in RU/EN and visually reviewed. For 0.8.7 every design_preview case was re-run in RU/EN (72 each); 6 new cases (database query review with values and the vault passphrase, the reusable data preview tab, object details, Recently deleted shared items, the SFTP open-as-text notice, the Windows screen-capture protection setting) and 9 updated cases (production unlock without the typed name, DDL with line wrapping, sharing with Leave share, starter packages with database sets, security and right-panel settings with the new clipboard wording, About, Updates and SFTP settings showing 0.8.7) were visually reviewed; images whose only differences were dates, random demo IDs or fingerprints keep their earlier provenance. All 79 RU and 79 EN desktop images were recaptured from the 0.9.0 source (the right panel gains Notes; Settings and Sync show Authorization); the 14 new notes, shared-notes and corporate sign-in images were visually reviewed. For 0.9.1 every design_preview case was re-run in RU/EN (126 each) from the 0.9.1 source; 47 new cases were visually reviewed: 13 Teams screens rendered with a synthetic in-memory team service (Settings -> Teams, create, members with a join request, invite, join code, code comparison, policies, history, team sections and host menu in Hosts, team colours on terminal tabs, the team policy acknowledgement) and 34 screens across sign-in, unlock and recovery, account and vault dialogs, device approval, host/group/credential/tunnel/snippet editors, SFTP actions and Get Info, terminal tab menu, settings close-ups, AI providers and sharing dialogs. About, SFTP settings and Updates now show 0.9.1, and the SSO/Active Directory sign-in screens show the mock server 0.2.1, protocol 1.10; other images keep their 0.9.0 provenance because the rendered screens are unchanged without teams. A follow-up 0.9.1 capture added 10 cases in RU/EN, visually reviewed: Kubernetes inside the app on a synthetic service (kubeconfig import preview, Pod logs, Pod shell, port forward, YAML review with the server diff, rollout comparison, Kubernetes AI chat with a scripted local answer), the SFTP local pane over the mock local disk /Users/demo, the Transfers panel with synthetic finished and failed jobs, and a note menu. Client 0.9.2 guide capture from guide/092 (f3b44ab): 14 new cases in RU/EN, visually reviewed — SQLite connection and file tree, Cassandra / ScyllaDB connection options, table designer and its save dialog, pending row changes on the result toolbar, the Record view, CSV import reading settings, the snippet picker, a production unlock confirmed with Touch ID, clipboard clearing choices, the note Save status, host notes and not-linked notes. 22 cases were recaptured because 0.9.2 changed what they show (result toolbar and views, editor Snippets button, SQLite/Cassandra connections in the list, the note Save button, Notes in the host menu, Confirm actions with biometrics, the Android background clipboard option); other images keep their provenance because they differ only by run-time dates and random IDs. The CSV column-mapping step was not captured: its rows overflow the 480 px dialog. Key trust and sync limits from client 0.9.2 (0c8c145): 9 new cases in RU/EN, visually reviewed — the Different vault key screen, Vault key not confirmed on Devices, the new device pairing code, colleague verification by safety number, the one-time unverified-recipients banner, Sharing: verified recipients only, an own-device enrollment code typed from the other screen, sync paused by the server with changes rejected over the object limit, and the CSV column mapping at full width. 21 cases were recaptured because 0.9.2 changed what they show (recipient pins and trust badges, owner-unverified marks, the key fingerprint button, the sharing policy in the vault card, the production help text, the full-width CSV dialog, the visible version 0.9.2). 0.9.14 (0.9.3 to 0.9.13 were never published): all 163 design_preview cases recaptured in RU/EN from client 4eb7193; the cases new since 0.9.2 (terminal-split, sharing-rdp, settings-cli, db-cassandra-trace) and the changed ones were visually reviewed; About, SFTP settings and Updates show 0.9.14. 0.9.15: all 165 design_preview cases re-run in RU/EN from client 435fc0e; 2 new cases (security key PIN prompt, touch prompt) and 2 changed ones (vault settings with the Physical security key switch, unlock screen with Unlock with security key) were visually reviewed; About, SFTP settings and Updates show 0.9.15. The security key is simulated by the demo vault. Other images keep their 0.9.14 provenance.",
   "knownLimitations": [
     "These are Flutter widget-test renderings with synthetic services, terminal output, local model states and 16 GiB AI hardware recommendation; no native shell, WSL distribution or model inference is started by captures.",
     "Windows widget variants run on a macOS test host with system font aliases; these images do not establish native Windows or WSL compatibility.",
@@ -89,14 +91,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "7b6539830406754de2800aef4a7e2c6f7bed4e0abd34e8bddf667d8cbc037571",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "visibleAppVersion": "0.9.14+21074"
+      "sha256": "c6afb5aedc81cdf9cff338241de922f9323724898b0f1f056ac5ea1eb6da1267",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "visibleAppVersion": "0.9.15+21075"
     },
     {
       "name": "about-license-ru",
@@ -107,14 +109,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "08044f87c1c149f0fe1b7c37e7c982c11d222be226fe99aeba583beefc2fb2fa",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "visibleAppVersion": "0.9.14+21074"
+      "sha256": "9c226a86f4ee2b202b7e6cf94095f6c8f27fdfc4a1f74d10f07079675229090b",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "visibleAppVersion": "0.9.15+21075"
     },
     {
       "name": "account-password-en",
@@ -4511,14 +4513,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "774bc39470a1b5bd0ee8edc886b0600ecf20c78156125d82b3da4462216dadfb",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "visibleAppVersion": "0.9.14+21074"
+      "sha256": "29d9a9d6d20f92af338341ae85c6e27e70527349c3728e65a126933cdcbdd136",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "visibleAppVersion": "0.9.15+21075"
     },
     {
       "name": "sftp-settings-ru",
@@ -4529,14 +4531,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "120595312eae27e0667fd036fa86f2100c239615b244f7f375dbb36c4c4ed406",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "visibleAppVersion": "0.9.14+21074"
+      "sha256": "49c91a1a78c4d8a9c17026e8dd6150765a9415882496369a51e2d68dfadfa63a",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "visibleAppVersion": "0.9.15+21075"
     },
     {
       "name": "sftp-transfers-en",
@@ -6145,13 +6147,13 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "ec9d2757355d5447133f75be55fc52c43b2dac4c0a331c84022469a814d05ac4",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00"
+      "sha256": "396c3289078ec29e01d044beb3bb8b66fb5c27b9c85e5e4f39f0aa96e4c23949",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00"
     },
     {
       "name": "unlock-ru",
@@ -6162,13 +6164,13 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "8c89db1279ac28fc3f05cdf0a55ebd015a2f7148c1ab3adfad2e915166b75984",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00"
+      "sha256": "ad35c9f15c3703f567f884e7c2fc0cb050bd895ffa54125c5360585680bb17fe",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00"
     },
     {
       "name": "updates-en",
@@ -6179,14 +6181,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "ce2aacfa6d7832940d7000b6daed71f833394a404b143a820b1bc941ed700c4b",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "visibleAppVersion": "0.9.14+21074"
+      "sha256": "67dc6fe76e3cc5504533301af4942098ce682c4c48f2e138f8927a35e0b0d2da",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "visibleAppVersion": "0.9.15+21075"
     },
     {
       "name": "updates-ru",
@@ -6197,14 +6199,14 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "0bae4605270e5526056b8ab5a8fb67bc2ae0fd16e9172b06783d1c4c621b6b32",
-      "sourceRelease": "0.9.14",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
-      "sourceVersion": "0.9.14+21074",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "visibleAppVersion": "0.9.14+21074"
+      "sha256": "1e83f9812b39920a0e99b9dfd2d3bf6c72bbd92914e154574025cace912ab837",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "visibleAppVersion": "0.9.15+21075"
     },
     {
       "name": "vault-key-mismatch-en",
@@ -6249,13 +6251,13 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "a2bf15866c69bfbb645ee5672c19d4dc28cd1fddc761ed4f544f1c9352f39eb3",
-      "sourceRelease": "0.9.14",
-      "sourceVersion": "0.9.14+21074",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced."
+      "sha256": "d7c6af9da02d725c487aab690b2ab3ae1040e79b3689b1286e75e79730b0314a",
+      "sourceRelease": "0.9.15",
+      "sourceVersion": "0.9.15+21075",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used."
     },
     {
       "name": "vault-settings-ru",
@@ -6266,13 +6268,13 @@
       "reviewed": true,
       "width": 1440,
       "height": 900,
-      "sha256": "e15f91d4e97df39ddc10b2858c9720c72e13dd27e7dd638eaa94a0576b81ecd6",
-      "sourceRelease": "0.9.14",
-      "sourceVersion": "0.9.14+21074",
-      "sourceCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "capturedAt": "2026-10-27T21:33:44.739357+00:00",
-      "generatorCommit": "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
-      "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced."
+      "sha256": "ceb843d295cd013bb5a683ea83b88db353415d1a61861656c43cf51eb3fade4e",
+      "sourceRelease": "0.9.15",
+      "sourceVersion": "0.9.15+21075",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used."
     },
     {
       "name": "welcome-en",
@@ -6409,6 +6411,74 @@
       "captureNote": "Production widgets of client 0.9.14 with synthetic demo services; no user data, native shell, model inference or revealed secrets. Keys, codes, safety numbers and pins are synthetic examples; nothing is approved, pinned, verified or synced.",
       "sourceVersion": "0.9.14+21074",
       "capturedAt": "2026-10-27T21:33:44.739357+00:00"
+    },
+    {
+      "name": "security-key-pin-ru",
+      "case": "security-key-pin",
+      "locale": "ru",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "7ecaad4b13d49feafefde09d4bc7314a5095ba5b8269a8a5ab97ad743f42c79e",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00"
+    },
+    {
+      "name": "security-key-pin-en",
+      "case": "security-key-pin",
+      "locale": "en",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "30b46d84bcff1629827e73768bda74da4be782859f802a2614b8109917f6a241",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00"
+    },
+    {
+      "name": "security-key-touch-ru",
+      "case": "security-key-touch",
+      "locale": "ru",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "05d0d2e6c78c98c1bbcad835a13ead88c7e10524ed6f0198c08a4c34cfd6f411",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00"
+    },
+    {
+      "name": "security-key-touch-en",
+      "case": "security-key-touch",
+      "locale": "en",
+      "platform": "macOS widget-test rendering",
+      "generator": "client/flutter/tool/design_preview.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "72bb37533ad0fc4b36d88bc1f2fabd315e9fbae5ec747e56838a9947040d8264",
+      "sourceRelease": "0.9.15",
+      "sourceCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "generatorCommit": "435fc0e049bc2b06054fb9057935a65104245f21",
+      "captureNote": "Production widgets of client 0.9.15 with synthetic demo services; no user data, native shell, model inference or revealed secrets. The security key is simulated by the demo vault; no FIDO2 device was used.",
+      "sourceVersion": "0.9.15+21075",
+      "capturedAt": "2026-10-29T19:03:46.272916+00:00"
     }
   ],
   "releaseSeries": "0.9",
@@ -6418,7 +6488,8 @@
     "0.6.4",
     "0.8.5",
     "0.9.1",
-    "0.9.14"
+    "0.9.14",
+    "0.9.15"
   ],
   "sourceVersions": [
     "0.5.0+18016",
@@ -6426,7 +6497,8 @@
     "0.6.4+21029",
     "0.8.5+21051",
     "0.9.1+21055",
-    "0.9.14+21074"
+    "0.9.14+21074",
+    "0.9.15+21075"
   ],
-  "updatedAt": "2026-10-27T21:33:44.739357+00:00"
+  "updatedAt": "2026-10-29T19:03:46.272916+00:00"
 }

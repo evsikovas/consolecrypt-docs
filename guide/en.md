@@ -208,19 +208,21 @@ Your vault unlocks on your device. Configure locking and unlocking after creatin
 
 13. Linux has no such protection: the key sits in the desktop keyring, so unlocking without a passphrase is available to any program running under your user account. It is off by default there and can be turned on only after a warning.
 
-14. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
+14. Physical security key (preview, Windows and macOS): the vault can be opened with a USB FIDO2 key such as a YubiKey and its PIN. Unlock with the passphrase and turn on “Settings → Vault → Physical security key”: enter the PIN and touch the key twice. The lock screen then offers “Unlock with security key”; after the PIN the key blinks and waits for a touch. On Windows, Windows asks for the PIN and the touch. The key seals the vault key in a local envelope on this device only; the passphrase and the Recovery Kit keep working.
 
-15. The device remembers the fingerprint of its vault key and checks every key it receives against it — on passphrase, Recovery Key or biometric unlock, device approval and enabling sync. If the server sends a different key, the “Different vault key” screen appears: data on the device stays unchanged, sync stops and there is no way to accept the “new” key. Do not enter secrets on that device; choose “Copy diagnostics” and tell the server administrator.
+15. Without device unlock, the local vault database opens only with the passphrase or the Recovery Kit. After the update, device unlock stays off until you unlock with the passphrase; the app then offers to turn it on again.
 
-16. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
+16. The device remembers the fingerprint of its vault key and checks every key it receives against it — on passphrase, Recovery Key or biometric unlock, device approval and enabling sync. If the server sends a different key, the “Different vault key” screen appears: data on the device stays unchanged, sync stops and there is no way to accept the “new” key. Do not enter secrets on that device; choose “Copy diagnostics” and tell the server administrator.
+
+17. If the kit is lost while the vault is still unlocked, create and save a “New Recovery Kit…”. The previous kit will stop working.
 
 > **Keep in mind**
 >
 > Device unlock is a setting of this device for this vault: it does not sync and does not replace your passphrase and Recovery Kit. The system dialog may offer your device password. Face ID on a physical iPhone still needs separate verification.
 
-![Unlock with Touch ID is on and protected by the system, next to “Confirm actions with biometrics”; no secrets are revealed.](../assets/guide/vault-settings-en.png)
+![Unlock with Touch ID is on and protected by the system, next to “Confirm actions with biometrics” and “Physical security key”; no secrets are revealed.](../assets/guide/vault-settings-en.png)
 
-Unlock with Touch ID is on and protected by the system, next to “Confirm actions with biometrics”; no secrets are revealed.
+Unlock with Touch ID is on and protected by the system, next to “Confirm actions with biometrics” and “Physical security key”; no secrets are revealed.
 
 ![Unlocking production is confirmed with Touch ID; “Enter the vault passphrase” remains the fallback.](../assets/guide/step-up-biometric-en.png)
 
@@ -234,9 +236,17 @@ Unlocking production is confirmed with Touch ID; “Enter the vault passphrase�
 
 Recovery Kit on a phone: whole words with the QR code below. The illustration contains demonstration data only.
 
-![The unlock screen: passphrase, system unlock, “Forgot passphrase?” and profile actions.](../assets/guide/unlock-en.png)
+![The unlock screen: passphrase, system unlock, “Unlock with security key”, “Forgot passphrase?” and profile actions.](../assets/guide/unlock-en.png)
 
-The unlock screen: passphrase, system unlock, “Forgot passphrase?” and profile actions.
+The unlock screen: passphrase, system unlock, “Unlock with security key”, “Forgot passphrase?” and profile actions.
+
+![The app asks for the security key PIN (macOS); on Windows, Windows asks for it.](../assets/guide/security-key-pin-en.png)
+
+The app asks for the security key PIN (macOS); on Windows, Windows asks for it.
+
+![After the PIN the key blinks and waits for a touch; the app says so until the key answers.](../assets/guide/security-key-touch-en.png)
+
+After the PIN the key blinks and waits for a touch; the app says so until the key answers.
 
 ![Recovering access: the 24-word Recovery Key or this trusted device, then a new passphrase.](../assets/guide/recovery-en.png)
 
@@ -462,7 +472,7 @@ ConsoleCrypt now supports RDP connections. It connects directly to a standard Mi
 
 9. File exchange supports files up to 256 MiB and up to 512 MiB of attempted writes per session. Reconnect after reaching the limit. Symbolic links, original timestamps and file locks are not transferred.
 
-10. Turn off folder or clipboard access in the session panel when finished. Locking the vault or signing out closes connections and revokes temporary permissions.
+10. Turn off folder or clipboard access in the session panel when finished. Locking the vault (also automatically) hides the desktop and closes dialogs but not the session: after unlocking the tab carries on. Signing out closes connections and revokes temporary permissions.
 
 > **Keep in mind**
 >
@@ -734,7 +744,7 @@ On macOS and Windows you can open a shell on this computer alongside SSH tabs. I
 
 5. AI receives the active shell dialect and only explicitly selected context. AI commands and snippets can be inserted into a local tab without Enter; automatic execution is disabled. Review the text and press Enter yourself if you want to run it.
 
-6. Closing a tab ends its process. Restart shell starts a new session. Vault lock, profile switch and quit close the shell and its current foreground process group. Detached/background processes such as nohup are not searched for, and the entire WSL distribution is not stopped.
+6. Closing a tab ends its process. Restart shell starts a new session. Profile switch and quit close the shell and its current foreground process group. Locking the vault (also automatically) keeps terminals open: local and SSH tabs carry on after unlocking. Detached/background processes such as nohup are not searched for, and the entire WSL distribution is not stopped.
 
 > **Keep in mind**
 >
@@ -1679,7 +1689,7 @@ Logs, shell and port forwarding are built into the client and require no externa
 
 6. A Pod with a standard database port (PostgreSQL, MySQL, MariaDB, ClickHouse, Redis, MongoDB) has a “Connect to database” button. It opens a saved connection with the same route, or a Databases form with a Kubernetes route: to the Pod itself for a StatefulSet, otherwise to its only Service or Deployment, so the connection survives Pod restarts. The forward is restored on every connect.
 
-7. On Android, active tunnels appear in a notification with a stop action. The iOS release is still deferred. Locking the vault closes sessions.
+7. On Android, active tunnels appear in a notification with a stop action. The iOS release is still deferred. Locking the vault keeps the cluster session: pod terminals and port forwards keep running, and after unlocking the section reopens the same cluster.
 
 [Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
 
