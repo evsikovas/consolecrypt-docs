@@ -9,7 +9,7 @@
 
 **[Руководство на русском](guide/ru.md)** · **[User guide in English](guide/en.md)**
 
-В руководстве 63 главы и 364 скриншота для двух языков: первый запуск,
+В руководстве 68 глав и 404 скриншота для двух языков: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
 файлы, Kubernetes, базы данных, Docker, заметки, команды, совместный доступ,
 буфер обмена, общие папки, резервные копии, настройки, а также запуск,
@@ -25,12 +25,14 @@
 - Свой сервер: [справочник параметров](guide/ru.md#server-reference), [корпоративный вход — рецепты](guide/ru.md#server-idp), [параметры по способам установки](guide/ru.md#server-settings).
 - [Совместный доступ](docs/public/SHARING.md).
 - [Аккаунт и синхронизация](docs/public/SYNC_ACCOUNT.md): подключение к серверу, одобрение нового устройства, корпоративный вход.
+- [Менеджер паролей KDBX](docs/public/KEEPASS.md): WebDAV, генератор, папки и поиск через палитру.
+- [Поддержка платформ 1.0](docs/public/PLATFORM_SUPPORT.md), [совместимость сервера](docs/public/COMPATIBILITY_1_0.md).
 - [Буфер обмена](docs/public/CLIPBOARD.md): защищённое копирование секретов и автоочистка.
 - [Ключ безопасности (YubiKey, FIDO2)](docs/public/SECURITY_KEY.md): разблокировка хранилища физическим ключом на Windows и macOS.
 - Свой сервер: [параметры](docs/public/CONFIGURATION.md), [корпоративный вход](docs/public/ENTERPRISE.md).
 - [RDP](docs/public/RDP.md), включая мобильный тачпад.
 - [Локальные терминалы: zsh, PowerShell, cmd и WSL](docs/public/LOCAL_TERMINALS.md).
-- [Локальный ИИ на Windows и macOS](docs/public/LOCAL_AI.md): три модели и сохранение установленных файлов при обновлении.
+- [Локальный ИИ на Windows, macOS и Linux x64](docs/public/LOCAL_AI.md): три модели и сохранение установленных файлов при обновлении.
 - [Kubernetes](docs/public/KUBERNETES.md): подключения, ресурсы, логи, Helm и GitOps.
 - [Базы данных](docs/public/DATABASES.md): подключения и маршруты, запросы, защита прода и ИИ-помощник.
 - [Docker](docs/public/DOCKER.md): контейнеры, логи, тома, пробросы и compose-проекты.

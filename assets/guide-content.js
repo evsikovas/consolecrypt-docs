@@ -464,6 +464,66 @@ export const guideSections = [
     ],
   },
   {
+    id: 'password-manager', group: 'workspace', title: b('Менеджер паролей KDBX', 'KDBX password manager'),
+    intro: b('Раздел «Пароли» открывает базы KeePass KDBX 3/4. Учётные данные SSH/RDP остаются в отдельном разделе: записи KDBX туда автоматически не копируются.', 'Passwords opens KeePass KDBX 3/4 databases. SSH/RDP credentials remain in their own section; KDBX entries are not automatically copied there.'),
+    steps: [
+      b('На начальном экране выберите «Создать KDBX», «Открыть KDBX» или «Подключить WebDAV». Задайте пароль базы; при необходимости выберите ключевой файл. Для добавления другой базы используйте «+» рядом с «Базы паролей».', 'On the welcome screen, choose Create KDBX, Open KDBX or Connect WebDAV. Enter the database password and select a key file when needed. Use + beside Password databases to add another database.'),
+      b('Слева находятся папки выбранной базы, снизу — открытые и запомненные базы. В центре ищите записи по названию, логину или URL, справа откройте карточку. Разделитель между списком и карточкой можно перетаскивать.', 'Folders of the selected database appear on the left, with open and remembered databases at the bottom. Search entries by title, username or URL in the middle and open a card on the right. Drag the divider to resize the list and card.'),
+      b('«Добавить запись» и «Добавить группу» создают содержимое. В записи доступны название, логин, URL, пароль, заметки и собственные поля. Подтверждение формы сразу запускает сохранение зашифрованного файла; статус рядом с названием показывает результат.', 'Add entry and Add group create content. Entries support a title, username, URL, password, notes and custom fields. Confirming a form immediately saves the encrypted file; the status beside the database name shows the result.'),
+      b('ПКМ по записи открывает меню: открыть карточку, переместить в другую группу, удалить. Перенос доступен и перетаскиванием на папку. На телефоне используйте кнопку «…» или долгое нажатие.', 'Right-click an entry to open its card, move it to another group or delete it. You can also drag entries onto folders. On a phone, use the … button or a long press.'),
+      b('Меню базы по ПКМ или «…» позволяет заблокировать её, сохранить локальную копию и убрать из списка; для WebDAV есть настройки подключения. Удаление из списка не удаляет исходный KDBX. Пароль и ключевой файл остаются способом повторного открытия.', 'Right-click a database or use … to lock it, save a local copy or remove it from the list; WebDAV also has connection settings. Removing a database from the list does not delete its source KDBX. The password and key file remain available for reopening.'),
+      b('На Android/iOS локальный файл импортируется в постоянное приватное хранилище приложения. Автосохранение меняет эту копию; «Сохранить локальную копию» экспортирует её через системный диалог. Для изменения одного удалённого файла на нескольких устройствах используйте WebDAV.', 'On Android/iOS, a local file is imported into durable private app storage. Autosave changes that copy; Save local copy exports it through the system picker. Use WebDAV to edit one remote file from several devices.'),
+      b('После первого открытия паролем можно включить быструю разблокировку для этой базы на устройстве: Windows Hello, системную защиту Apple или Android Keystore. FIDO2/PRF доступен на Windows/macOS. На Linux быстрая биометрическая разблокировка пока не реализована; возможности iOS Simulator ограничены его средой.', 'After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.'),
+    ],
+    note: b('KDBX не отправляется на сервер синхронизации ConsoleCrypt. Локальные пути и ключи быстрой разблокировки принадлежат этому устройству. Кнопки копирования используют общий таймер очистки секретного буфера из настроек безопасности.', 'KDBX files are not sent to the ConsoleCrypt sync server. Local paths and quick-unlock keys belong to this device. Copy buttons use the shared secret-clipboard clearing timer in Security settings.'),
+    images: [
+      shot('passwords-welcome', 'Начальный экран KDBX: создать, открыть или подключить WebDAV.', 'KDBX welcome: create, open or connect WebDAV.'),
+      shot('passwords-workspace', 'Папки, список и компактная карточка с демонстрационными данными.', 'Folders, entry list and compact card with demo data.'),
+      shot('passwords-editor', 'Редактор записи и собственные поля; секреты скрыты.', 'Entry editor and custom fields; secrets are masked.'),
+      shot('passwords-entry-menu', 'Меню записи по правой кнопке мыши.', 'The entry context menu.'),
+      shot('passwords-move', 'Выбор другой папки для записи.', 'Choosing another folder for an entry.'),
+      shot('passwords-phone', 'Список записей и доступные пальцем меню на узком экране.', 'Entry list and touch menus on a narrow screen.', { width: 390, height: 844 }),
+      shot('passwords-phone-card', 'Карточка записи на телефоне.', 'Entry card on a phone.', { width: 390, height: 844 }),
+    ],
+  },
+  {
+    id: 'password-generator', group: 'workspace', title: b('Генератор паролей', 'Password generator'),
+    intro: b('Генератор доступен на начальном экране менеджера, в открытой базе и в редакторе пароля. Он работает на устройстве без сервера.', 'The generator is available on the manager welcome screen, in an open database and in the password editor. It runs on your device without a server.'),
+    steps: [
+      b('Выберите длину от 8 до 128 символов ползунком или числом. Включите нужные наборы: заглавные и строчные буквы, цифры, специальные символы. Можно исключить похожие символы.', 'Choose a length from 8 to 128 using the slider or number. Enable uppercase letters, lowercase letters, digits and special characters as needed. You can exclude similar characters.'),
+      b('«Сгенерировать заново» создаёт новый случайный пароль. Индикатор показывает энтропию выбранного способа генерации, а не результат проверки утечек.', 'Generate again creates another random password. The indicator estimates the entropy of the generation settings; it is not a breach check.'),
+      b('В редакторе нажмите «Использовать пароль», затем сохраните запись. При отдельном запуске можно скопировать пароль; буфер очищается по общим настройкам безопасности.', 'In the editor, choose Use password, then save the entry. When opened separately, copy the password; the clipboard follows the shared Security settings.'),
+    ],
+    image: shot('passwords-generator', 'Длина, наборы символов и оценка энтропии; пароль скрыт.', 'Length, character sets and entropy estimate; the password is masked.'),
+  },
+  {
+    id: 'password-webdav', group: 'workspace', title: b('KDBX через WebDAV и синхронизация', 'KDBX over WebDAV and sync'),
+    intro: b('Настройте WebDAV до открытия базы. ConsoleCrypt хранит параметры подключения зашифрованными, а сам KDBX читает и сохраняет на вашем WebDAV.', 'Configure WebDAV before opening a database. ConsoleCrypt encrypts connection settings and reads and saves the KDBX on your WebDAV server.'),
+    steps: [
+      b('Выберите «Подключить WebDAV», задайте имя, полный HTTPS URL файла с окончанием .kdbx, логин и пароль WebDAV или токен приложения. Один адрес хоста или каталог не подходит и отклоняется до сетевого открытия.', 'Choose Connect WebDAV and enter a name, the full HTTPS URL ending in .kdbx, a username and a WebDAV password or app token. A host address or folder alone is rejected before the network open.'),
+      b('После сохранения подключения откройте базу её паролем и, если нужен, ключевым файлом. Пароль WebDAV и пароль KDBX — разные секреты. Открытие можно отменить; сетевые операции имеют таймауты.', 'After saving the connection, unlock the database using its password and key file if required. The WebDAV and KDBX passwords are different secrets. Opening can be cancelled; network operations have timeouts.'),
+      b('Подтверждённые правки автоматически сохраняются на WebDAV. Для безопасной записи используется ETag; сервер без надёжного ETag должен поддерживать блокировку WebDAV LOCK. Изменившийся удалённый файл не перезаписывается молча.', 'Confirmed changes save automatically to WebDAV. Safe writes use an ETag; a server without a reliable ETag must support WebDAV LOCK. An externally changed file is never silently overwritten.'),
+      b('При конфликте или ошибке сохранения правки остаются в открытой базе. Сохраните локальную копию, затем разберите конфликт. «Повторить сохранение» подходит для временной сетевой ошибки; оно не отменяет защиту от перезаписи.', 'After a save error or conflict, changes stay in the open database. Save a local copy before resolving the conflict. Retry save handles temporary network errors without disabling overwrite protection.'),
+      b('Обновите все устройства до 1.0.0 перед добавлением WebDAV-подключений. Их параметры находятся в зашифрованных настройках хранилища, пароль — в отдельном зашифрованном секрете. Старый клиент может потерять незнакомое поле при сохранении настроек.', 'Update every device to 1.0.0 before adding WebDAV connections. Settings live inside encrypted vault settings and the password in a separate encrypted secret. An older client can drop an unfamiliar field when saving settings.'),
+    ],
+    note: b('Сервер ConsoleCrypt 0.2.4 / протокол 1.13 уже передаёт эти зашифрованные объекты: новый API и миграция БД не нужны. Файл KDBX, ключевой файл и ключи быстрой разблокировки через него не передаются.', 'ConsoleCrypt server 0.2.4 / protocol 1.13 already transports these encrypted objects; no new API or database migration is needed. It does not transport the KDBX, key file or quick-unlock keys.'),
+    image: shot('passwords-webdav', 'Настройки подключения с примером полного HTTPS URL файла.', 'Connection settings with an example of a full HTTPS file URL.'),
+  },
+  {
+    id: 'password-palette', group: 'workspace', title: b('Пароли через палитру команд', 'Passwords in the command palette'),
+    intro: b('Найдите логин, пароль или API-ключ из любого раздела, включая терминал. Сначала выбирается запись, затем конкретное поле.', 'Find a username, password or API key from any section, including the terminal. Choose the entry first, then the field.'),
+    steps: [
+      b('Откройте палитру Ctrl+K (на Mac Cmd+K) или кнопкой поиска и введите «пароли:»; в английском интерфейсе — «passwords:». При необходимости откройте KDBX из самой палитры.', 'Open the palette with Ctrl+K (Cmd+K on Mac) or the search button and enter passwords: (or the localized Passwords label followed by a colon). You can open a KDBX directly from the palette when needed.'),
+      b('Допишите часть названия, логина или URL. Выберите нужную карточку стрелками и Enter или мышью. На этом шаге секрет ещё не копируется.', 'Type part of a title, username or URL. Choose a card with the arrows and Enter or by clicking. This step does not copy a secret.'),
+      b('В следующем меню выберите поле: пароль, логин, URL, заметки или собственное поле, например API token. Enter копирует только выбранное поле и закрывает палитру. Esc возвращает к списку записей.', 'In the next menu, select a password, username, URL, notes or custom field such as API token. Enter copies only that field and closes the palette. Esc returns to the entry list.'),
+      b('База должна быть разблокирована; блокировка профиля закрывает открытые базы. Значения секретов не показываются в результатах поиска. Копирование использует общий таймер очистки буфера.', 'The database must be unlocked; locking the profile closes open databases. Secret values are not shown in search results. Copies use the shared clipboard clearing timer.'),
+    ],
+    images: [
+      shot('passwords-palette', 'Поиск карточки по названию: копирования ещё нет.', 'Find an entry by title before copying anything.'),
+      shot('passwords-palette-fields', 'Второй шаг: выбрать поле для копирования.', 'Second step: choose the field to copy.'),
+    ],
+  },
+  {
     id: 'credentials', group: 'workspace', title: b('Пароли, ключи и учётные данные', 'Passwords, keys and credentials'),
     intro: b('Учётные данные хранятся отдельно от хостов: один набор можно назначить нескольким подключениям.', 'Credentials are separate from hosts: one credential can be assigned to multiple connections.'),
     steps: [
@@ -646,13 +706,16 @@ export const guideSections = [
     id: 'tunnels', group: 'workspace', title: b('SSH-туннели', 'SSH tunnels'),
     intro: b('Туннель использует SSH-соединение к выбранному хосту. Есть локальное перенаправление, удалённое перенаправление и динамический SOCKS5.', 'A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.'),
     steps: [
+      b('При пробросе порта из Docker или Kubernetes отметьте «Сохранить туннель». План появится в разделе «Туннели»: его можно повторно запустить, остановить и удалить. Для порта 0 при каждом запуске выбирается свободный локальный порт.', 'When forwarding a port from Docker or Kubernetes, enable Save tunnel. The preset appears in Tunnels, where you can start, stop or remove it. Port 0 selects an available local port on each start.'),
       b('Откройте «Туннели» и создайте туннель. Выберите хост, тип, адрес и порт прослушивания; для локального или удалённого типа задайте целевой адрес и порт.', 'Open “Tunnels” and create one. Select the host, type, listening address and port; for local or remote forwarding, specify a destination address and port.'),
       b('Предпочитайте 127.0.0.1 для локального сервиса, который нужен только вам. При адресе не из loopback (например, 0.0.0.0) форма показывает предупреждение «Привязка не к loopback-интерфейсу», и сохранить туннель можно только после отметки «Я понимаю, что этот туннель доступен из сети». Для удалённого перенаправления такой адрес работает, только если на SSH-сервере разрешён GatewayPorts.', 'Prefer 127.0.0.1 for a local service needed only by you. A non-loopback address (such as 0.0.0.0) shows a “Not bound to loopback” warning, and the tunnel can be saved only after ticking “I understand this tunnel is reachable from the network”. For remote forwarding such an address works only if the SSH server allows GatewayPorts.'),
       b('Запустите туннель переключателем и проверьте его состояние: строка показывает число активных соединений и время работы, а при ошибке — её причину. После завершения работы остановите его. «Запускать автоматически после разблокировки» поднимает туннель при каждом открытии хранилища на этом устройстве.', 'Start the tunnel with its switch and check its status: the row shows active connections and uptime, or the reason after an error. Stop it when finished. “Start automatically after unlock” brings the tunnel up every time the vault is unlocked on this device.'),
     ],
-    note: b('Определение туннеля может синхронизироваться вместе с хранилищем; запущенный туннель работает на конкретном устройстве. На телефоне работа в фоне зависит от ограничений ОС.', 'A tunnel definition can sync with the vault; a running tunnel belongs to the device where it was started. On phones, background operation depends on OS restrictions.'),
+    note: b('Обычное определение SSH-туннеля может синхронизироваться с хранилищем. Сохранённые пробросы Docker/Kubernetes принадлежат этому профилю на устройстве и не синхронизируются; запущенный туннель работает на конкретном устройстве. На телефоне работа в фоне зависит от ограничений ОС.', 'Ordinary SSH tunnel definitions can sync with the vault. Saved Docker/Kubernetes forwards stay local to this profile and device; a running tunnel belongs to the device where it was started. On phones, background operation depends on OS restrictions.'),
     image: shot('tunnels', 'Демонстрационные определения туннелей и их состояния.', 'Demo tunnel definitions and statuses.'),
-    images: [shot('tunnel-editor', 'Удалённое перенаправление на 0.0.0.0: предупреждение и обязательное подтверждение.', 'Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.')],
+    images: [
+      shot('tunnels-save-forward', 'Сохранить план при создании проброса Docker; показаны только демонстрационные данные.', 'Save a preset while creating a Docker forward; demo data only.'),
+      shot('tunnels-saved', 'Повторный запуск сохранённых пробросов из раздела «Туннели».', 'Restart saved forwards from Tunnels.'),shot('tunnel-editor', 'Удалённое перенаправление на 0.0.0.0: предупреждение и обязательное подтверждение.', 'Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.')],
   },
   {
     id: 'snippets', group: 'workspace', title: b('Сниппеты, переменные и базовые наборы', 'Snippets, variables and starter sets'),
@@ -712,8 +775,8 @@ export const guideSections = [
       "en": "Local AI: models, your own GGUF and upgrades"
     },
     "intro": {
-      "ru": "На macOS и Windows модель отвечает на вашем компьютере. Можно выбрать лёгкую Qwen2.5-Coder 1.5B, среднюю Qwen3.5 4B или мощную Qwen3.5 9B; уже скачанные модели сохраняются при обновлении. Можно добавить и свою модель GGUF.",
-      "en": "On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates. You can add your own GGUF model too."
+      "ru": "На macOS, Windows и Linux x64 модель отвечает на вашем компьютере. Можно выбрать лёгкую Qwen2.5-Coder 1.5B, среднюю Qwen3.5 4B или мощную Qwen3.5 9B; уже скачанные модели сохраняются при обновлении. Можно добавить и свою модель GGUF.",
+      "en": "On macOS, Windows and Linux x64, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates. You can add your own GGUF model too."
     },
     "table": {
       "headings": [
@@ -806,10 +869,11 @@ export const guideSections = [
       }
     ],
     "note": {
-      "ru": "Локальный запрос идёт только на 127.0.0.1 со случайным токеном; фильтрация контекста сохраняется. В локальном терминале AI-команда вставляется без Enter и выполняется вами вручную после проверки. На macOS не удаляйте прежний контейнер данных при обновлении 0.4.1 → 0.5: профиль и модель используются на месте. Снимки показывают синтетические состояния, не реальную загрузку или скорость ответов.",
-      "en": "Local requests use only 127.0.0.1 with a random token; context filtering remains active. In local terminals, AI commands are inserted without Enter and executed manually after your review. On macOS, keep the previous data container when upgrading 0.4.1 to 0.5: the profile and model are reused in place. Screenshots show synthetic states, not real downloads or response speeds."
+      "ru": "Локальный запрос идёт только на 127.0.0.1 со случайным токеном; фильтрация контекста сохраняется. В локальном терминале AI-команда вставляется без Enter и выполняется вами вручную после проверки. На Linux используется CPU x64; GPU/CUDA и встроенный ИИ на Android/iOS пока не поддерживаются. На macOS не удаляйте прежний контейнер данных при обновлении 0.4.1 → 0.5: профиль и модель используются на месте. Снимки показывают синтетические состояния, не реальную загрузку или скорость ответов.",
+      "en": "Local requests use only 127.0.0.1 with a random token; context filtering remains active. In local terminals, AI commands are inserted without Enter and executed manually after your review. Linux uses x64 CPU inference; GPU/CUDA and built-in model installation on Android/iOS are not supported yet. On macOS, keep the previous data container when upgrading 0.4.1 to 0.5: the profile and model are reused in place. Screenshots show synthetic states, not real downloads or response speeds."
     },
     "images": [
+      shot('local-ai-linux', 'Linux x64: выбор и установка локальной CPU-модели. Показано синтетическое состояние до загрузки.', 'Linux x64: choose and install a local CPU model. Synthetic state before downloading.'),
       {
         "name": "local-ai-catalog",
         "caption": {

@@ -23,6 +23,10 @@ Step-by-step instructions with the real application interface and demonstration 
 - [RDP on a phone: touchpad and keyboard](#rdp-mobile)
 - [Quick search and connect](#quick-connect)
 - [Groups and jump hosts](#groups)
+- [KDBX password manager](#password-manager)
+- [Password generator](#password-generator)
+- [KDBX over WebDAV and sync](#password-webdav)
+- [Passwords in the command palette](#password-palette)
 - [Passwords, keys and credentials](#credentials)
 - [Known hosts and SSH-key verification](#host-keys)
 - [Terminal, tabs and selection](#terminal)
@@ -624,9 +628,123 @@ A custom chain of two jump hosts and the resulting route to the host.
 
 Adding a demo host to an existing group.
 
+<a name="password-manager"></a>
+
+## 13. KDBX password manager
+
+Passwords opens KeePass KDBX 3/4 databases. SSH/RDP credentials remain in their own section; KDBX entries are not automatically copied there.
+
+1. On the welcome screen, choose Create KDBX, Open KDBX or Connect WebDAV. Enter the database password and select a key file when needed. Use + beside Password databases to add another database.
+
+2. Folders of the selected database appear on the left, with open and remembered databases at the bottom. Search entries by title, username or URL in the middle and open a card on the right. Drag the divider to resize the list and card.
+
+3. Add entry and Add group create content. Entries support a title, username, URL, password, notes and custom fields. Confirming a form immediately saves the encrypted file; the status beside the database name shows the result.
+
+4. Right-click an entry to open its card, move it to another group or delete it. You can also drag entries onto folders. On a phone, use the … button or a long press.
+
+5. Right-click a database or use … to lock it, save a local copy or remove it from the list; WebDAV also has connection settings. Removing a database from the list does not delete its source KDBX. The password and key file remain available for reopening.
+
+6. On Android/iOS, a local file is imported into durable private app storage. Autosave changes that copy; Save local copy exports it through the system picker. Use WebDAV to edit one remote file from several devices.
+
+7. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
+
+> **Keep in mind**
+>
+> KDBX files are not sent to the ConsoleCrypt sync server. Local paths and quick-unlock keys belong to this device. Copy buttons use the shared secret-clipboard clearing timer in Security settings.
+
+![KDBX welcome: create, open or connect WebDAV.](../assets/guide/passwords-welcome-en.png)
+
+KDBX welcome: create, open or connect WebDAV.
+
+![Folders, entry list and compact card with demo data.](../assets/guide/passwords-workspace-en.png)
+
+Folders, entry list and compact card with demo data.
+
+![Entry editor and custom fields; secrets are masked.](../assets/guide/passwords-editor-en.png)
+
+Entry editor and custom fields; secrets are masked.
+
+![The entry context menu.](../assets/guide/passwords-entry-menu-en.png)
+
+The entry context menu.
+
+![Choosing another folder for an entry.](../assets/guide/passwords-move-en.png)
+
+Choosing another folder for an entry.
+
+![Entry list and touch menus on a narrow screen.](../assets/guide/passwords-phone-en.png)
+
+Entry list and touch menus on a narrow screen.
+
+![Entry card on a phone.](../assets/guide/passwords-phone-card-en.png)
+
+Entry card on a phone.
+
+<a name="password-generator"></a>
+
+## 14. Password generator
+
+The generator is available on the manager welcome screen, in an open database and in the password editor. It runs on your device without a server.
+
+1. Choose a length from 8 to 128 using the slider or number. Enable uppercase letters, lowercase letters, digits and special characters as needed. You can exclude similar characters.
+
+2. Generate again creates another random password. The indicator estimates the entropy of the generation settings; it is not a breach check.
+
+3. In the editor, choose Use password, then save the entry. When opened separately, copy the password; the clipboard follows the shared Security settings.
+
+![Length, character sets and entropy estimate; the password is masked.](../assets/guide/passwords-generator-en.png)
+
+Length, character sets and entropy estimate; the password is masked.
+
+<a name="password-webdav"></a>
+
+## 15. KDBX over WebDAV and sync
+
+Configure WebDAV before opening a database. ConsoleCrypt encrypts connection settings and reads and saves the KDBX on your WebDAV server.
+
+1. Choose Connect WebDAV and enter a name, the full HTTPS URL ending in .kdbx, a username and a WebDAV password or app token. A host address or folder alone is rejected before the network open.
+
+2. After saving the connection, unlock the database using its password and key file if required. The WebDAV and KDBX passwords are different secrets. Opening can be cancelled; network operations have timeouts.
+
+3. Confirmed changes save automatically to WebDAV. Safe writes use an ETag; a server without a reliable ETag must support WebDAV LOCK. An externally changed file is never silently overwritten.
+
+4. After a save error or conflict, changes stay in the open database. Save a local copy before resolving the conflict. Retry save handles temporary network errors without disabling overwrite protection.
+
+5. Update every device to 1.0.0 before adding WebDAV connections. Settings live inside encrypted vault settings and the password in a separate encrypted secret. An older client can drop an unfamiliar field when saving settings.
+
+> **Keep in mind**
+>
+> ConsoleCrypt server 0.2.4 / protocol 1.13 already transports these encrypted objects; no new API or database migration is needed. It does not transport the KDBX, key file or quick-unlock keys.
+
+![Connection settings with an example of a full HTTPS file URL.](../assets/guide/passwords-webdav-en.png)
+
+Connection settings with an example of a full HTTPS file URL.
+
+<a name="password-palette"></a>
+
+## 16. Passwords in the command palette
+
+Find a username, password or API key from any section, including the terminal. Choose the entry first, then the field.
+
+1. Open the palette with Ctrl+K (Cmd+K on Mac) or the search button and enter passwords: (or the localized Passwords label followed by a colon). You can open a KDBX directly from the palette when needed.
+
+2. Type part of a title, username or URL. Choose a card with the arrows and Enter or by clicking. This step does not copy a secret.
+
+3. In the next menu, select a password, username, URL, notes or custom field such as API token. Enter copies only that field and closes the palette. Esc returns to the entry list.
+
+4. The database must be unlocked; locking the profile closes open databases. Secret values are not shown in search results. Copies use the shared clipboard clearing timer.
+
+![Find an entry by title before copying anything.](../assets/guide/passwords-palette-en.png)
+
+Find an entry by title before copying anything.
+
+![Second step: choose the field to copy.](../assets/guide/passwords-palette-fields-en.png)
+
+Second step: choose the field to copy.
+
 <a name="credentials"></a>
 
-## 13. Passwords, keys and credentials
+## 17. Passwords, keys and credentials
 
 Credentials are separate from hosts: one credential can be assigned to multiple connections.
 
@@ -658,7 +776,7 @@ Generating an SSH key: name and algorithm.
 
 <a name="host-keys"></a>
 
-## 14. Known hosts and SSH-key verification
+## 18. Known hosts and SSH-key verification
 
 A server key identifies the SSH host you are connecting to. This is separate from trusting a ConsoleCrypt device.
 
@@ -674,7 +792,7 @@ A separate known-host list with demo fingerprints.
 
 <a name="terminal"></a>
 
-## 15. Terminal, tabs and selection
+## 19. Terminal, tabs and selection
 
 A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or up to four side by side when split into panes. Phones have a special-key bar; computers have shortcuts and a context menu.
 
@@ -730,7 +848,7 @@ Demo Android terminal with its special-key bar.
 
 <a name="local-terminals"></a>
 
-## 16. Local terminals: zsh, PowerShell and WSL
+## 20. Local terminals: zsh, PowerShell and WSL
 
 On macOS and Windows you can open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
 
@@ -768,7 +886,7 @@ Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-ho
 
 <a name="shortcuts"></a>
 
-## 17. Keyboard shortcuts
+## 21. Keyboard shortcuts
 
 The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command. App shortcuts can be remapped in Settings → Keyboard shortcuts: choose Change and press a new combination with ⌘/Ctrl or Alt. If another command has it, that command loses it; if the system or terminal uses it, you are warned. Restore defaults brings back the table below.
 
@@ -797,7 +915,7 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 
 <a name="sftp"></a>
 
-## 18. SFTP: transfers and file preview
+## 22. SFTP: transfers and file preview
 
 Open SFTP from a host’s menu or the sidebar. Files travel directly between your device and the SSH host.
 
@@ -839,7 +957,7 @@ The Transfers panel: downloads and an upload are done, and a failed transfer has
 
 <a name="sftp-editor"></a>
 
-## 19. SFTP: default editor
+## 23. SFTP: default editor
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
@@ -867,23 +985,33 @@ Open on a script: the file opens as text and never runs.
 
 <a name="tunnels"></a>
 
-## 20. SSH tunnels
+## 24. SSH tunnels
 
 A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.
 
-1. Open “Tunnels” and create one. Select the host, type, listening address and port; for local or remote forwarding, specify a destination address and port.
+1. When forwarding a port from Docker or Kubernetes, enable Save tunnel. The preset appears in Tunnels, where you can start, stop or remove it. Port 0 selects an available local port on each start.
 
-2. Prefer 127.0.0.1 for a local service needed only by you. A non-loopback address (such as 0.0.0.0) shows a “Not bound to loopback” warning, and the tunnel can be saved only after ticking “I understand this tunnel is reachable from the network”. For remote forwarding such an address works only if the SSH server allows GatewayPorts.
+2. Open “Tunnels” and create one. Select the host, type, listening address and port; for local or remote forwarding, specify a destination address and port.
 
-3. Start the tunnel with its switch and check its status: the row shows active connections and uptime, or the reason after an error. Stop it when finished. “Start automatically after unlock” brings the tunnel up every time the vault is unlocked on this device.
+3. Prefer 127.0.0.1 for a local service needed only by you. A non-loopback address (such as 0.0.0.0) shows a “Not bound to loopback” warning, and the tunnel can be saved only after ticking “I understand this tunnel is reachable from the network”. For remote forwarding such an address works only if the SSH server allows GatewayPorts.
+
+4. Start the tunnel with its switch and check its status: the row shows active connections and uptime, or the reason after an error. Stop it when finished. “Start automatically after unlock” brings the tunnel up every time the vault is unlocked on this device.
 
 > **Keep in mind**
 >
-> A tunnel definition can sync with the vault; a running tunnel belongs to the device where it was started. On phones, background operation depends on OS restrictions.
+> Ordinary SSH tunnel definitions can sync with the vault. Saved Docker/Kubernetes forwards stay local to this profile and device; a running tunnel belongs to the device where it was started. On phones, background operation depends on OS restrictions.
 
 ![Demo tunnel definitions and statuses.](../assets/guide/tunnels-en.png)
 
 Demo tunnel definitions and statuses.
+
+![Save a preset while creating a Docker forward; demo data only.](../assets/guide/tunnels-save-forward-en.png)
+
+Save a preset while creating a Docker forward; demo data only.
+
+![Restart saved forwards from Tunnels.](../assets/guide/tunnels-saved-en.png)
+
+Restart saved forwards from Tunnels.
 
 ![Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.](../assets/guide/tunnel-editor-en.png)
 
@@ -891,7 +1019,7 @@ Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.
 
 <a name="snippets"></a>
 
-## 21. Snippets, variables and starter sets
+## 25. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
@@ -933,7 +1061,7 @@ Filtering and managing snippet sets.
 
 <a name="ai"></a>
 
-## 22. AI chat and the context you send
+## 26. AI chat and the context you send
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
@@ -969,9 +1097,9 @@ Adding a provider: address, model, an API key kept in the vault and the privacy 
 
 <a name="local-ai"></a>
 
-## 23. Local AI: models, your own GGUF and upgrades
+## 27. Local AI: models, your own GGUF and upgrades
 
-On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates. You can add your own GGUF model too.
+On macOS, Windows and Linux x64, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates. You can add your own GGUF model too.
 
 | Tier | Model and download | Total RAM guidance |
 | --- | --- | --- |
@@ -995,7 +1123,11 @@ On macOS and Windows, the model answers on your computer. Choose Light Qwen2.5-C
 
 > **Keep in mind**
 >
-> Local requests use only 127.0.0.1 with a random token; context filtering remains active. In local terminals, AI commands are inserted without Enter and executed manually after your review. On macOS, keep the previous data container when upgrading 0.4.1 to 0.5: the profile and model are reused in place. Screenshots show synthetic states, not real downloads or response speeds.
+> Local requests use only 127.0.0.1 with a random token; context filtering remains active. In local terminals, AI commands are inserted without Enter and executed manually after your review. Linux uses x64 CPU inference; GPU/CUDA and built-in model installation on Android/iOS are not supported yet. On macOS, keep the previous data container when upgrading 0.4.1 to 0.5: the profile and model are reused in place. Screenshots show synthetic states, not real downloads or response speeds.
+
+![Linux x64: choose and install a local CPU model. Synthetic state before downloading.](../assets/guide/local-ai-linux-en.png)
+
+Linux x64: choose and install a local CPU model. Synthetic state before downloading.
 
 ![Three models, sizes and RAM guidance. The 9B star uses synthetic 16 GiB hardware, not a measurement of the user’s computer.](../assets/guide/local-ai-catalog-en.png)
 
@@ -1015,7 +1147,7 @@ The selected model is ready with stop and remove actions; the process state is s
 
 <a name="notes"></a>
 
-## 24. Notes, tasks and reminders
+## 28. Notes, tasks and reminders
 
 Notes is a right-panel tool next to Snippets and AI. Open it with the note icon, from the command palette or from the phone header. Notes are encrypted on the device and sync with the vault.
 
@@ -1069,7 +1201,7 @@ A note’s menu: pin, remind in an hour, detach from the object and delete.
 
 <a name="teams"></a>
 
-## 25. Teams
+## 29. Teams
 
 A team is a vault shared by several accounts on the same server. All members see its hosts, groups, credentials and snippets; roles decide who may change them. Team names, settings and resources are end-to-end encrypted: the server only sees who is a member. Teams are available in a synced profile on server 0.2.1 or later (public sync.consolecrypt.dev supports them); a local profile has no Teams section.
 
@@ -1160,7 +1292,7 @@ The “Ask before running risky commands” policy: even a harmless snippet on a
 
 <a name="sharing-start"></a>
 
-## 26. Sharing: getting started
+## 30. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -1208,7 +1340,7 @@ The one-time list of secret recipients worth verifying and the “Owner not veri
 
 <a name="sharing-items"></a>
 
-## 27. Shared hosts, groups and secrets
+## 31. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -1234,7 +1366,7 @@ The separate secret-publishing dialog: the value is masked and consent has not b
 
 <a name="databases-sharing"></a>
 
-## 28. Shared database connections
+## 32. Shared database connections
 
 A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden. On your own server the CC\_SHARED\_DB\_CONNECTIONS\_ENABLED flag turns it on (see “Your own server: features, flags and limits”).
 
@@ -1268,7 +1400,7 @@ Sharing a connection: what the colleague receives; the route is not shared, and 
 
 <a name="shared-notes"></a>
 
-## 29. Shared notes on shared objects
+## 33. Shared notes on shared objects
 
 A shared host, database connection or Kubernetes context has shared notes that every member sees. This needs sync server 0.2.0 or later with shared notes enabled by the administrator (CC\_SHARED\_NOTES\_ENABLED). An object holds up to 500 notes of up to 288 KiB each, encrypted.
 
@@ -1292,7 +1424,7 @@ The Shared notes block of a shared host: a member’s note and your own note wit
 
 <a name="sharing-devices"></a>
 
-## 30. A colleague’s new personal devices
+## 34. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -1318,7 +1450,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 31. Revocation, queues and trust recovery
+## 35. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -1350,7 +1482,7 @@ Recently deleted: shared items can be restored for 30 days.
 
 <a name="settings-overview"></a>
 
-## 32. Settings: what is where
+## 36. Settings: what is where
 
 Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page of cards; some cards appear only where the feature is available. Appearance, terminal, shortcut and editor preferences stay on the device, while vault data lives in the encrypted profile.
 
@@ -1386,7 +1518,7 @@ Security and AI providers: clipboard clearing, local and remote providers, defau
 
 <a name="cli"></a>
 
-## 33. Command line: consolecrypt-cli
+## 37. Command line: consolecrypt-cli
 
 consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macOS, Windows and Linux installers and works with the same profiles as the app.
 
@@ -1408,7 +1540,7 @@ consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macO
 
 <a name="appearance"></a>
 
-## 34. Colors, text size and glass effects
+## 38. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -1432,7 +1564,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 35. Right panel: bubbles or one workspace
+## 39. Right panel: bubbles or one workspace
 
 Snippets, notes, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -1458,7 +1590,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 36. Screenshots, screen protection and clipboard
+## 40. Screenshots, screen protection and clipboard
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device. Copied secrets stay out of clipboard history and are removed after a timeout.
 
@@ -1499,7 +1631,7 @@ Windows: “Hide window from screen capture” — Never, While secrets are show
 
 <a name="backups"></a>
 
-## 37. Backups and restore
+## 41. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -1523,7 +1655,7 @@ Restoring from the welcome screen: a .ccbackup file opens into a new local profi
 
 <a name="about"></a>
 
-## 38. Version, author and licenses
+## 42. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -1541,7 +1673,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 39. Client updates
+## 43. Client updates
 
 On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.14), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
@@ -1571,7 +1703,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 40. Account: password, disconnecting and the website account
+## 44. Account: password, disconnecting and the website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -1599,7 +1731,7 @@ Settings: profiles, “Account &amp; sync” with the account actions, and the v
 
 <a name="kubernetes-connections"></a>
 
-## 41. Kubernetes: connections and access
+## 45. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -1633,7 +1765,7 @@ kubeconfig import: contexts of a demo file, their authentication, the Production
 
 <a name="kubernetes-resources"></a>
 
-## 42. Kubernetes: resources and changes
+## 46. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -1673,7 +1805,7 @@ Rollout history: two Deployment revisions compared field by field.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 43. Kubernetes: logs, shell and tunnels
+## 47. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -1719,7 +1851,7 @@ A Pod port forward: the address on this device and the list of active forwards o
 
 <a name="kubernetes-gitops"></a>
 
-## 44. Kubernetes: GitOps and problems
+## 48. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -1751,7 +1883,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 45. Kubernetes: Helm
+## 49. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -1779,7 +1911,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 46. Kubernetes: context terminal and AI
+## 50. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -1805,7 +1937,7 @@ AI in Kubernetes: a question about a failing Pod, the logs and events it read an
 
 <a name="databases-connections"></a>
 
-## 47. Databases: connections and routes
+## 51. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis, MongoDB, Cassandra and ScyllaDB, and with SQLite files. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -1849,7 +1981,7 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 48. Databases: SQLite, Cassandra and ScyllaDB
+## 52. Databases: SQLite, Cassandra and ScyllaDB
 
 SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2. From 0.9.14, Cassandra / ScyllaDB and SQLite-through-a-host connections can move into the vault, while an SQLite file on this computer stays here.
 
@@ -1887,7 +2019,7 @@ Cassandra / ScyllaDB: contact points, the local data center, consistency levels 
 
 <a name="databases-queries"></a>
 
-## 49. Databases: structure, queries and results
+## 53. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -1973,7 +2105,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 50. Databases: production, changes, history and export
+## 54. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -2015,7 +2147,7 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 51. Databases: writing to production
+## 55. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
@@ -2041,7 +2173,7 @@ An open write window: the red badge with its end time, the countdown and the Loc
 
 <a name="databases-designer"></a>
 
-## 52. Databases: table designer and CSV import
+## 56. Databases: table designer and CSV import
 
 Create or change a table without writing SQL, and load CSV data into a table. In both cases nothing runs on the server until you confirm.
 
@@ -2089,7 +2221,7 @@ Step 3 of 5: file columns mapped by name, manager\_note skipped, and total value
 
 <a name="databases-ai"></a>
 
-## 53. Databases: AI assistant
+## 57. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -2111,7 +2243,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 54. Docker: hosts and containers
+## 58. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -2139,7 +2271,7 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 55. Docker: details, logs, volumes and forwards
+## 59. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
@@ -2179,7 +2311,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 56. Docker: compose projects
+## 60. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -2209,7 +2341,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 57. Your own server: Kubernetes
+## 61. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -2307,7 +2439,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 58. Your own server: Docker Compose
+## 62. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
@@ -2380,7 +2512,7 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-settings"></a>
 
-## 59. Your own server: installation and parameters by method
+## 63. Your own server: installation and parameters by method
 
 Every server setting is a CC\_\* variable; the full list with Helm paths, defaults and allowed values is in “Your own server: configuration reference”. This chapter shows where to put a key for each installation method (Docker Compose, docker run, Helm, a JSON file and systemd), how to apply and verify a change, and worked examples: shared notes and teams, sign-in with Entra ID and Active Directory, switching limits to enforce, raising quotas.
 
@@ -2837,7 +2969,7 @@ accounts.
 
 <a name="server-enterprise"></a>
 
-## 60. Your own server: corporate sign-in and shared notes
+## 64. Your own server: corporate sign-in and shared notes
 
 Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices, sharing and teams (server 0.2.1) work in both modes.
 
@@ -2925,7 +3057,7 @@ How the client sees a server in enterprise mode with Active Directory.
 
 <a name="server-idp"></a>
 
-## 61. Your own server: corporate sign-in recipes
+## 65. Your own server: corporate sign-in recipes
 
 The complete enterprise-mode guide: what the server needs from the IdP, step-by-step recipes for Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta and any OIDC provider, Active Directory over LDAPS or STARTTLS, account linking at first sign-in, commands, deployment, a troubleshooting table and switching back to standard sign-in. In the examples the server is https://sync.acme.com and angle brackets mark your own values; keep secrets only in files and Secrets.
 
@@ -3461,7 +3593,7 @@ the table in the Russian section and [PROTOCOL_CHANGELOG.md](https://github.com/
 
 <a name="server-config"></a>
 
-## 62. Your own server: features, flags and limits
+## 66. Your own server: features, flags and limits
 
 Your own server’s features are turned on with CC\_\* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.
 
@@ -3631,7 +3763,7 @@ The client shows Teams only when the server supports them.
 
 <a name="server-reference"></a>
 
-## 63. Your own server: configuration reference
+## 67. Your own server: configuration reference
 
 Every sync server parameter: each CC\_\* key with its Helm path, default, allowed values, secret flag and purpose, grouped as in the source reference; the order of configuration sources and start-up checks; all 18 request limits and the admin commands. The reference is checked against the server code at every release. Where to put a key for each installation method is in “Your own server: installation and parameters by method”.
 
@@ -4052,7 +4184,7 @@ admin …` or `kubectl exec deployment/… -- /usr/local/bin/consolecrypt-server
 
 <a name="server-maintenance"></a>
 
-## 64. Your own server: backups, upgrades and commands
+## 68. Your own server: backups, upgrades and commands
 
 All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
 
