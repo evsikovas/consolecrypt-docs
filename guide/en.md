@@ -640,13 +640,15 @@ Passwords opens KeePass KDBX 3/4 databases. SSH/RDP credentials remain in their 
 
 3. Add entry and Add group create content. Entries support a title, username, URL, password, notes and custom fields. Confirming a form immediately saves the encrypted file; the status beside the database name shows the result.
 
-4. Right-click an entry to open its card, move it to another group or delete it. You can also drag entries onto folders. On a phone, use the … button or a long press.
+4. Starting with 1.0.1, notes in an open card are always visible as plain text, including multiple lines. The password and custom secret fields stay masked; the KDBX file remains encrypted.
 
-5. Right-click a database or use … to lock it, save a local copy or remove it from the list; WebDAV also has connection settings. Removing a database from the list does not delete its source KDBX. The password and key file remain available for reopening.
+5. Right-click an entry to open its card, move it to another group or delete it. You can also drag entries onto folders. On a phone, use the … button or a long press.
 
-6. On Android/iOS, a local file is imported into durable private app storage. Autosave changes that copy; Save local copy exports it through the system picker. Use WebDAV to edit one remote file from several devices.
+6. Right-click a database or use … to lock it, save a local copy or remove it from the list; WebDAV also has connection settings. Removing a database from the list does not delete its source KDBX. The password and key file remain available for reopening.
 
-7. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
+7. On Android/iOS, a local file is imported into durable private app storage. Autosave changes that copy; Save local copy exports it through the system picker. Use WebDAV to edit one remote file from several devices.
+
+8. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
 
 > **Keep in mind**
 >
