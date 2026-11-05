@@ -13,12 +13,14 @@
     "ac1216d9d8d6bef1479c9b0f241f21b87637ecc8",
     "f15977cb777bc7d30b155af457d6ffa44260b96b",
     "f3b44abc23caaf7359db5c49f8d832fa6fa1c4fe",
+    "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
     "fd21173e806dbd47f049c1e896351e6a7d080a70"
   ],
   "generatorCommits": [
     "153f5858191e630185cb18891644cc17d07fa9cf",
     "1701742a3d1a5c7f23e83a244f73010d1460042d",
     "1c2541d95719faa6bbad3fbaa43487c8cb79e851",
+    "22b22beae473251b4f63c2e4a389ec85c16080b7",
     "42c6743a8a2a51516fdaa0f6a6d8b199d4446f3f",
     "435fc0e049bc2b06054fb9057935a65104245f21",
     "4eb719348bd9b0a5fa67cdd81c0fd77cc939857a",
@@ -28,7 +30,7 @@
     "fd21173e806dbd47f049c1e896351e6a7d080a70"
   ],
   "capturedAt": "2026-11-03T11:27:49.776061+00:00",
-  "review": "All 26 new 0.5.5 and 6 updated/new 0.5.6 images visually reviewed in RU/EN. Earlier image bytes retain their original provenance. Recovery Kit illustrations contain unusable synthetic example data. All 20 new Kubernetes images and 6 version-bearing images refreshed from 0.6.4 were visually reviewed in RU/EN; older image records retain their existing provenance. The 12 phone RDP images were recaptured from 0.6.4 (tile-grid controls, cursor kept across resizes) and visually reviewed in RU/EN. The 20 Kubernetes images were recaptured from 0.6.4 (desktop navigator, details drawer and GitOps layout) and visually reviewed in RU/EN. For 0.8.5 every guide capture tool was re-run in RU/EN; 100 images whose pixels changed (new sidebar sections, glass drop-downs, AI indicator) and 30 new Databases, Docker and Kubernetes \"Connect to database\" images were visually reviewed; images with byte-identical output keep their earlier provenance. For 0.8.6, 7 new cases (database sharing dialog and shared section, production unlock dialog and open write window with in-grid edits, row selection, DDL view, masked Docker inspect JSON) and 10 updated cases (Databases screens with TLS status and production wording, masked compose view, Docker connect form, devices with the new-device notice and restriction badge, vault settings with system-protected device unlock) were captured in RU/EN and visually reviewed. For 0.8.7 every design_preview case was re-run in RU/EN (72 each); 6 new cases (database query review with values and the vault passphrase, the reusable data preview tab, object details, Recently deleted shared items, the SFTP open-as-text notice, the Windows screen-capture protection setting) and 9 updated cases (production unlock without the typed name, DDL with line wrapping, sharing with Leave share, starter packages with database sets, security and right-panel settings with the new clipboard wording, About, Updates and SFTP settings showing 0.8.7) were visually reviewed; images whose only differences were dates, random demo IDs or fingerprints keep their earlier provenance. All 79 RU and 79 EN desktop images were recaptured from the 0.9.0 source (the right panel gains Notes; Settings and Sync show Authorization); the 14 new notes, shared-notes and corporate sign-in images were visually reviewed. For 0.9.1 every design_preview case was re-run in RU/EN (126 each) from the 0.9.1 source; 47 new cases were visually reviewed: 13 Teams screens rendered with a synthetic in-memory team service (Settings -> Teams, create, members with a join request, invite, join code, code comparison, policies, history, team sections and host menu in Hosts, team colours on terminal tabs, the team policy acknowledgement) and 34 screens across sign-in, unlock and recovery, account and vault dialogs, device approval, host/group/credential/tunnel/snippet editors, SFTP actions and Get Info, terminal tab menu, settings close-ups, AI providers and sharing dialogs. About, SFTP settings and Updates now show 0.9.1, and the SSO/Active Directory sign-in screens show the mock server 0.2.1, protocol 1.10; other images keep their 0.9.0 provenance because the rendered screens are unchanged without teams. A follow-up 0.9.1 capture added 10 cases in RU/EN, visually reviewed: Kubernetes inside the app on a synthetic service (kubeconfig import preview, Pod logs, Pod shell, port forward, YAML review with the server diff, rollout comparison, Kubernetes AI chat with a scripted local answer), the SFTP local pane over the mock local disk /Users/demo, the Transfers panel with synthetic finished and failed jobs, and a note menu. Client 0.9.2 guide capture from guide/092 (f3b44ab): 14 new cases in RU/EN, visually reviewed — SQLite connection and file tree, Cassandra / ScyllaDB connection options, table designer and its save dialog, pending row changes on the result toolbar, the Record view, CSV import reading settings, the snippet picker, a production unlock confirmed with Touch ID, clipboard clearing choices, the note Save status, host notes and not-linked notes. 22 cases were recaptured because 0.9.2 changed what they show (result toolbar and views, editor Snippets button, SQLite/Cassandra connections in the list, the note Save button, Notes in the host menu, Confirm actions with biometrics, the Android background clipboard option); other images keep their provenance because they differ only by run-time dates and random IDs. The CSV column-mapping step was not captured: its rows overflow the 480 px dialog. Key trust and sync limits from client 0.9.2 (0c8c145): 9 new cases in RU/EN, visually reviewed — the Different vault key screen, Vault key not confirmed on Devices, the new device pairing code, colleague verification by safety number, the one-time unverified-recipients banner, Sharing: verified recipients only, an own-device enrollment code typed from the other screen, sync paused by the server with changes rejected over the object limit, and the CSV column mapping at full width. 21 cases were recaptured because 0.9.2 changed what they show (recipient pins and trust badges, owner-unverified marks, the key fingerprint button, the sharing policy in the vault card, the production help text, the full-width CSV dialog, the visible version 0.9.2). 0.9.14 (0.9.3 to 0.9.13 were never published): all 163 design_preview cases recaptured in RU/EN from client 4eb7193; the cases new since 0.9.2 (terminal-split, sharing-rdp, settings-cli, db-cassandra-trace) and the changed ones were visually reviewed; About, SFTP settings and Updates show 0.9.14. 0.9.15: all 165 design_preview cases re-run in RU/EN from client 435fc0e; 2 new cases (security key PIN prompt, touch prompt) and 2 changed ones (vault settings with the Physical security key switch, unlock screen with Unlock with security key) were visually reviewed; About, SFTP settings and Updates show 0.9.15. The security key is simulated by the demo vault. Other images keep their 0.9.14 provenance. 1.0.0: 30 RU/EN captures visually reviewed: KDBX welcome, workspace, entry menus and movement, editor, generator, WebDAV settings, the two palette steps, phone list/card, saved forwards, credentials and Linux CPU local-AI settings. Earlier images retain their provenance. Linux CPU helper wording recaptured from ac1216d and both images visually reviewed. For 1.0.1, the four RU/EN desktop and phone password-card images were recaptured and visually reviewed: notes are visible while passwords and custom secrets remain masked. Synthetic data only. 1.0.2: eight new RU/EN captures of group menus, rename, recycle confirmation and phone group actions were visually reviewed from the tagged production widgets with synthetic data. Final 1.0.3: the eight normal group-action captures were recaptured from f602c90 after nested-bin protection; the UI pixels remain unchanged where noted. Final 1.0.4: all eight group-action images recaptured from aa184d9; their bytes are identical to the visually reviewed UI because the subsequent changes only affect CI, release metadata and documentation.",
+  "review": "All 26 new 0.5.5 and 6 updated/new 0.5.6 images visually reviewed in RU/EN. Earlier image bytes retain their original provenance. Recovery Kit illustrations contain unusable synthetic example data. All 20 new Kubernetes images and 6 version-bearing images refreshed from 0.6.4 were visually reviewed in RU/EN; older image records retain their existing provenance. The 12 phone RDP images were recaptured from 0.6.4 (tile-grid controls, cursor kept across resizes) and visually reviewed in RU/EN. The 20 Kubernetes images were recaptured from 0.6.4 (desktop navigator, details drawer and GitOps layout) and visually reviewed in RU/EN. For 0.8.5 every guide capture tool was re-run in RU/EN; 100 images whose pixels changed (new sidebar sections, glass drop-downs, AI indicator) and 30 new Databases, Docker and Kubernetes \"Connect to database\" images were visually reviewed; images with byte-identical output keep their earlier provenance. For 0.8.6, 7 new cases (database sharing dialog and shared section, production unlock dialog and open write window with in-grid edits, row selection, DDL view, masked Docker inspect JSON) and 10 updated cases (Databases screens with TLS status and production wording, masked compose view, Docker connect form, devices with the new-device notice and restriction badge, vault settings with system-protected device unlock) were captured in RU/EN and visually reviewed. For 0.8.7 every design_preview case was re-run in RU/EN (72 each); 6 new cases (database query review with values and the vault passphrase, the reusable data preview tab, object details, Recently deleted shared items, the SFTP open-as-text notice, the Windows screen-capture protection setting) and 9 updated cases (production unlock without the typed name, DDL with line wrapping, sharing with Leave share, starter packages with database sets, security and right-panel settings with the new clipboard wording, About, Updates and SFTP settings showing 0.8.7) were visually reviewed; images whose only differences were dates, random demo IDs or fingerprints keep their earlier provenance. All 79 RU and 79 EN desktop images were recaptured from the 0.9.0 source (the right panel gains Notes; Settings and Sync show Authorization); the 14 new notes, shared-notes and corporate sign-in images were visually reviewed. For 0.9.1 every design_preview case was re-run in RU/EN (126 each) from the 0.9.1 source; 47 new cases were visually reviewed: 13 Teams screens rendered with a synthetic in-memory team service (Settings -> Teams, create, members with a join request, invite, join code, code comparison, policies, history, team sections and host menu in Hosts, team colours on terminal tabs, the team policy acknowledgement) and 34 screens across sign-in, unlock and recovery, account and vault dialogs, device approval, host/group/credential/tunnel/snippet editors, SFTP actions and Get Info, terminal tab menu, settings close-ups, AI providers and sharing dialogs. About, SFTP settings and Updates now show 0.9.1, and the SSO/Active Directory sign-in screens show the mock server 0.2.1, protocol 1.10; other images keep their 0.9.0 provenance because the rendered screens are unchanged without teams. A follow-up 0.9.1 capture added 10 cases in RU/EN, visually reviewed: Kubernetes inside the app on a synthetic service (kubeconfig import preview, Pod logs, Pod shell, port forward, YAML review with the server diff, rollout comparison, Kubernetes AI chat with a scripted local answer), the SFTP local pane over the mock local disk /Users/demo, the Transfers panel with synthetic finished and failed jobs, and a note menu. Client 0.9.2 guide capture from guide/092 (f3b44ab): 14 new cases in RU/EN, visually reviewed — SQLite connection and file tree, Cassandra / ScyllaDB connection options, table designer and its save dialog, pending row changes on the result toolbar, the Record view, CSV import reading settings, the snippet picker, a production unlock confirmed with Touch ID, clipboard clearing choices, the note Save status, host notes and not-linked notes. 22 cases were recaptured because 0.9.2 changed what they show (result toolbar and views, editor Snippets button, SQLite/Cassandra connections in the list, the note Save button, Notes in the host menu, Confirm actions with biometrics, the Android background clipboard option); other images keep their provenance because they differ only by run-time dates and random IDs. The CSV column-mapping step was not captured: its rows overflow the 480 px dialog. Key trust and sync limits from client 0.9.2 (0c8c145): 9 new cases in RU/EN, visually reviewed — the Different vault key screen, Vault key not confirmed on Devices, the new device pairing code, colleague verification by safety number, the one-time unverified-recipients banner, Sharing: verified recipients only, an own-device enrollment code typed from the other screen, sync paused by the server with changes rejected over the object limit, and the CSV column mapping at full width. 21 cases were recaptured because 0.9.2 changed what they show (recipient pins and trust badges, owner-unverified marks, the key fingerprint button, the sharing policy in the vault card, the production help text, the full-width CSV dialog, the visible version 0.9.2). 0.9.14 (0.9.3 to 0.9.13 were never published): all 163 design_preview cases recaptured in RU/EN from client 4eb7193; the cases new since 0.9.2 (terminal-split, sharing-rdp, settings-cli, db-cassandra-trace) and the changed ones were visually reviewed; About, SFTP settings and Updates show 0.9.14. 0.9.15: all 165 design_preview cases re-run in RU/EN from client 435fc0e; 2 new cases (security key PIN prompt, touch prompt) and 2 changed ones (vault settings with the Physical security key switch, unlock screen with Unlock with security key) were visually reviewed; About, SFTP settings and Updates show 0.9.15. The security key is simulated by the demo vault. Other images keep their 0.9.14 provenance. 1.0.0: 30 RU/EN captures visually reviewed: KDBX welcome, workspace, entry menus and movement, editor, generator, WebDAV settings, the two palette steps, phone list/card, saved forwards, credentials and Linux CPU local-AI settings. Earlier images retain their provenance. Linux CPU helper wording recaptured from ac1216d and both images visually reviewed. For 1.0.1, the four RU/EN desktop and phone password-card images were recaptured and visually reviewed: notes are visible while passwords and custom secrets remain masked. Synthetic data only. 1.0.2: eight new RU/EN captures of group menus, rename, recycle confirmation and phone group actions were visually reviewed from the tagged production widgets with synthetic data. Final 1.0.3: the eight normal group-action captures were recaptured from f602c90 after nested-bin protection; the UI pixels remain unchanged where noted. Final 1.0.4: all eight group-action images recaptured from aa184d9; their bytes are identical to the visually reviewed UI because the subsequent changes only affect CI, release metadata and documentation. 1.0.5: eight new RU/EN recycle-bin captures were visually reviewed from tagged production widgets (22b22be), showing the UUID-based bin icon, clearing confirmation, permanent group deletion and phone actions. Synthetic demo data only; older images retain their actual provenance. Final 1.0.6: all eight trash images recaptured from fc11089; SHA-256 bytes match the visually reviewed 1.0.5 renders. Windows packaging metadata changed; the trash UI is unchanged.",
   "knownLimitations": [
     "These are Flutter widget-test renderings with synthetic services, terminal output, local model states and 16 GiB AI hardware recommendation; no native shell, WSL distribution or model inference is started by captures.",
     "Windows widget variants run on a macOS test host with system font aliases; these images do not establish native Windows or WSL compatibility.",
@@ -88,7 +90,8 @@
     "source0914DesktopRu": 163,
     "source0914DesktopEn": 163,
     "source0914FlutterAnalyze": "No issues found",
-    "source100GuideRuEn": 30
+    "source100GuideRuEn": 30,
+    "source106TrashGuideRuEn": 8
   },
   "images": [
     {
@@ -7100,6 +7103,142 @@
       "generatorCommit": "42c6743a8a2a51516fdaa0f6a6d8b199d4446f3f",
       "capturedAt": "2026-11-04T14:17:21.411626+00:00",
       "captureNote": "Real production widgets with synthetic demo services and a temporary KDBX. New group context menu, rename form, confirmed subtree recycle and phone group actions. No user data, live WebDAV, native authentication, real Docker engine or model inference; phone widgets use Android styling. All eight RU/EN captures visually reviewed."
+    },
+    {
+      "name": "passwords-trash-ru",
+      "case": "passwords-trash",
+      "locale": "ru",
+      "platform": "Windows widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "8f6bcc368a4413ecdf968c0d295efeae7f32a65b87574bb63b364feb17a92e33",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:19:31.097005+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
+    },
+    {
+      "name": "passwords-empty-trash-ru",
+      "case": "passwords-empty-trash",
+      "locale": "ru",
+      "platform": "Windows widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "7f4e0c660d08e4abd7ce8c343d5d93cf4e5f0f4e0de294f797f23d5323e79db5",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:19:32.178331+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
+    },
+    {
+      "name": "passwords-trash-group-menu-ru",
+      "case": "passwords-trash-group-menu",
+      "locale": "ru",
+      "platform": "Windows widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "11b539425064ace595178c7d5cdd55cd8b7cd1e8f65dab8d921fecd3ddbe09b0",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:19:33.222435+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
+    },
+    {
+      "name": "passwords-phone-trash-ru",
+      "case": "passwords-phone-trash",
+      "locale": "ru",
+      "platform": "Android widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 390,
+      "height": 844,
+      "sha256": "bb6da573914380bee0e713e2733af99f5d1db1575c30b2e1029fa6f6c8a29e99",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:19:34.020895+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
+    },
+    {
+      "name": "passwords-trash-en",
+      "case": "passwords-trash",
+      "locale": "en",
+      "platform": "Windows widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "52048e7f6507b2a3817337fda7ad6fad7b6128b5c76258f5f6ba3ffaadf9abe9",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:21:22.453993+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
+    },
+    {
+      "name": "passwords-empty-trash-en",
+      "case": "passwords-empty-trash",
+      "locale": "en",
+      "platform": "Windows widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "ede58cde78be6143997936796d245f9ca6aa9fc74aef2a9fccf362ab71add01a",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:21:23.531809+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
+    },
+    {
+      "name": "passwords-trash-group-menu-en",
+      "case": "passwords-trash-group-menu",
+      "locale": "en",
+      "platform": "Windows widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 1440,
+      "height": 900,
+      "sha256": "fd3de8cc275ef0fd1e645939eb97787b9e2310058b339da2bcd0c11de4d28f55",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:21:24.571770+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
+    },
+    {
+      "name": "passwords-phone-trash-en",
+      "case": "passwords-phone-trash",
+      "locale": "en",
+      "platform": "Android widgets",
+      "generator": "client/flutter/tool/release_1_0_capture.dart",
+      "reviewed": true,
+      "width": 390,
+      "height": 844,
+      "sha256": "66017a11b54f8727a73251149fca62c492f8c4daafb833fc3f97d7413f0d0e6d",
+      "sourceRelease": "1.0.6",
+      "sourceVersion": "1.0.6+21091",
+      "sourceCommit": "fc11089be2093a3445383c9e3e0ff0b986ef2f91",
+      "generatorCommit": "22b22beae473251b4f63c2e4a389ec85c16080b7",
+      "capturedAt": "2026-11-04T22:21:25.343843+00:00",
+      "captureNote": "Production Flutter widgets with synthetic demo services and a temporary KDBX. Recycle-bin UUID icon, clear button, irreversible confirmation, recycled-group menu and phone bin view. No user data or live WebDAV/native authentication. All eight RU/EN captures visually reviewed. Recaptured from final 1.0.6; bytes identical to the reviewed 1.0.5 captures."
     }
   ],
   "releaseSeries": "1.0",
@@ -7113,7 +7252,8 @@
     "0.9.15",
     "1.0.0",
     "1.0.1",
-    "1.0.4"
+    "1.0.4",
+    "1.0.6"
   ],
   "sourceVersions": [
     "0.5.0+18016",
@@ -7125,7 +7265,8 @@
     "0.9.15+21075",
     "1.0.0+21085",
     "1.0.1+21086",
-    "1.0.4+21089"
+    "1.0.4+21089",
+    "1.0.6+21091"
   ],
-  "updatedAt": "2026-11-04T13:16:39.602570+00:00"
+  "updatedAt": "2026-11-04T22:21:54.279235+00:00"
 }
