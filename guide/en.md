@@ -534,7 +534,7 @@ On a phone, the connected desktop automatically opens fullscreen. Touchpad is th
 
 > **Keep in mind**
 >
-> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. iOS is built and checked on the Simulator; its release is still deferred. Screenshots use real widgets with a drawn, synthetic Windows desktop; the empty area is reserved for the system keyboard.
+> Tablets enter fullscreen manually, and automatic mode selects direct touch. With a screen reader enabled, direct touch is used and the button stays visible. Phone folder redirection is unavailable. The iOS release is a Simulator build only; there is no iPhone installer. Screenshots use real widgets with a drawn, synthetic Windows desktop; the empty area is reserved for the system keyboard.
 
 ![Desktop and floating button, with permanent panels hidden.](../assets/guide/mobile-rdp-portrait-dark-en.png)
 
@@ -634,29 +634,41 @@ Adding a demo host to an existing group.
 
 Passwords opens KeePass KDBX 3/4 databases. SSH/RDP credentials remain in their own section; KDBX entries are not automatically copied there.
 
-1. On the welcome screen, choose Create KDBX, Open KDBX or Connect WebDAV. Enter the database password and select a key file when needed. Use + beside Password databases to add another database.
+1. Since 1.1.0, the lower-left list shows only unlocked databases. The small lock button beside + opens other remembered databases. Select one to unlock it; its … menu and WebDAV settings remain available in that picker.
 
-2. Folders of the selected database appear on the left, with open and remembered databases at the bottom. Search entries by title, username or URL in the middle and open a card on the right. Drag the divider to resize the list and card.
+2. All entries and No folder are entry filters, separate from the actual folder tree. No folder shows entries stored at the database root, so it cannot be renamed as a folder. The recycle bin is separate from active groups. Field cards are more compact while accommodating long values and larger text.
 
-3. Add entry and Add group create content. Entries support a title, username, URL, password, notes and custom fields. Confirming a form immediately saves the encrypted file; the status beside the database name shows the result.
+3. On the welcome screen, choose Create KDBX, Open KDBX or Connect WebDAV. Enter the database password and select a key file when needed. Use + beside Password databases to add another database.
 
-4. Since 1.0.4, use a folder’s … menu or right-click to rename it or delete it after confirmation. Deletion moves the folder, subgroups and entries to the KDBX recycle bin; the root group and the system bin itself are protected from deletion. A folder containing the system recycle bin can only be renamed. On a phone, select a folder with the groups button, then open the adjacent … menu. Both changes autosave, including WebDAV databases.
+4. Folders of the selected database appear on the left, with unlocked databases and a picker for the others at the bottom. Search entries by title, username or URL in the middle and open a card on the right. Drag the divider to resize the list and card.
 
-5. In 1.0.6, the system recycle bin has a trash icon. Select it or a recycled folder and use Empty recycle bin, also available from the bin menu. Confirmation removes all recycled groups, subgroups and entries while preserving active data. A recycled group or entry also has Delete permanently with confirmation. The empty system bin stays; changes autosave, including WebDAV.
+5. Add entry and Add group create content. Entries support a title, username, URL, password, notes and custom fields. Confirming a form immediately saves the encrypted file; the status beside the database name shows the result.
 
-6. Starting with 1.0.1, notes in an open card are always visible as plain text, including multiple lines. The password and custom secret fields stay masked; the KDBX file remains encrypted.
+6. Since 1.0.4, use a folder’s … menu or right-click to rename it or delete it after confirmation. Deletion moves the folder, subgroups and entries to the KDBX recycle bin; the root group and the system bin itself are protected from deletion. A folder containing the system recycle bin can only be renamed. On a phone, select a folder with the groups button, then open the adjacent … menu. Both changes autosave, including WebDAV databases.
 
-7. Right-click an entry to open its card, move it to another group or delete it. You can also drag entries onto folders. On a phone, use the … button or a long press.
+7. In 1.0.6, the system recycle bin has a trash icon. Select it or a recycled folder and use Empty recycle bin, also available from the bin menu. Confirmation removes all recycled groups, subgroups and entries while preserving active data. A recycled group or entry also has Delete permanently with confirmation. The empty system bin stays; changes autosave, including WebDAV.
 
-8. Right-click a database or use … to lock it, save a local copy or remove it from the list; WebDAV also has connection settings. Removing a database from the list does not delete its source KDBX. The password and key file remain available for reopening.
+8. Starting with 1.0.1, notes in an open card are always visible as plain text, including multiple lines. The password and custom secret fields stay masked; the KDBX file remains encrypted.
 
-9. On Android/iOS, a local file is imported into durable private app storage. Autosave changes that copy; Save local copy exports it through the system picker. Use WebDAV to edit one remote file from several devices.
+9. Right-click an entry to open its card, move it to another group or delete it. You can also drag entries onto folders. On a phone, use the … button or a long press.
 
-10. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
+10. Right-click a database or use … to lock it, save a local copy or remove it from the list; WebDAV also has connection settings. Removing a database from the list does not delete its source KDBX. The password and key file remain available for reopening.
+
+11. On Android/iOS, a local file is imported into durable private app storage. Autosave changes that copy; Save local copy exports it through the system picker. Use WebDAV to edit one remote file from several devices.
+
+12. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
 
 > **Keep in mind**
 >
 > KDBX files are not sent to the ConsoleCrypt sync server. Local paths and quick-unlock keys belong to this device. Copy buttons use the shared secret-clipboard clearing timer in Security settings.
+
+![Only the unlocked database remains in the list; the lock button opens other remembered databases.](../assets/guide/passwords-open-only-en.png)
+
+Only the unlocked database remains in the list; the lock button opens other remembered databases.
+
+![Choose a database to unlock. Its management menu is available before opening.](../assets/guide/passwords-locked-picker-en.png)
+
+Choose a database to unlock. Its management menu is available before opening.
 
 ![KDBX welcome: create, open or connect WebDAV.](../assets/guide/passwords-welcome-en.png)
 
@@ -740,15 +752,17 @@ Length, character sets and entropy estimate; the password is masked.
 
 Configure WebDAV before opening a database. ConsoleCrypt encrypts connection settings and reads and saves the KDBX on your WebDAV server.
 
-1. Choose Connect WebDAV and enter a name, the full HTTPS URL ending in .kdbx, a username and a WebDAV password or app token. A host address or folder alone is rejected before the network open.
+1. The … menu beside an unlocked WebDAV database’s settings button exposes quick unlock through device authentication and a physical key on supported platforms. Open the database with its password first. WebDAV settings sync separately; the quick-unlock key stays on the device.
 
-2. After saving the connection, unlock the database using its password and key file if required. The WebDAV and KDBX passwords are different secrets. Opening can be cancelled; network operations have timeouts.
+2. Choose Connect WebDAV and enter a name, the full HTTPS URL ending in .kdbx, a username and a WebDAV password or app token. A host address or folder alone is rejected before the network open.
 
-3. Confirmed changes save automatically to WebDAV. Safe writes use an ETag; a server without a reliable ETag must support WebDAV LOCK. An externally changed file is never silently overwritten.
+3. After saving the connection, unlock the database using its password and key file if required. The WebDAV and KDBX passwords are different secrets. Opening can be cancelled; network operations have timeouts.
 
-4. After a save error or conflict, changes stay in the open database. Save a local copy before resolving the conflict. Retry save handles temporary network errors without disabling overwrite protection.
+4. Confirmed changes save automatically to WebDAV. Safe writes use an ETag; a server without a reliable ETag must support WebDAV LOCK. An externally changed file is never silently overwritten.
 
-5. Update every device to 1.0.0 before adding WebDAV connections. Settings live inside encrypted vault settings and the password in a separate encrypted secret. An older client can drop an unfamiliar field when saving settings.
+5. After a save error or conflict, changes stay in the open database. Save a local copy before resolving the conflict. Retry save handles temporary network errors without disabling overwrite protection.
+
+6. Update every device to 1.0.0 before adding WebDAV connections. Settings live inside encrypted vault settings and the password in a separate encrypted secret. An older client can drop an unfamiliar field when saving settings.
 
 > **Keep in mind**
 >
@@ -834,23 +848,27 @@ A separate known-host list with demo fingerprints.
 
 A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or up to four side by side when split into panes. Phones have a special-key bar; computers have shortcuts and a context menu.
 
-1. Click inside the terminal to type. The “+” button opens another connection. When tabs overflow, scroll the strip with the mouse wheel or its edge arrows. The total number of open tabs appears in parentheses beside the arrows.
+1. On Windows, macOS and Linux, enable Minimal mode with the terminal toolbar button or Ctrl+Shift+M / ⌘⇧M. Only the terminal and top or left tabs remain. Sessions, output and split panes stay intact; Ctrl+K / ⌘K opens the usual command palette. The exit button or the same shortcut restores the interface. This mode is absent on phones.
 
-2. To select several screens of output, hold the mouse button and scroll the history with the wheel. Move the pointer beyond the terminal’s top or bottom edge to scroll automatically while extending the selection.
+2. An SSH session has an Open SFTP button at the upper left. The same action is in the tab’s right-click menu, including inactive tabs, and opens that tab’s server. It works in Minimal mode and keeps terminal sessions. Local terminals have no SFTP button.
 
-3. Select text and right-click for the menu. It offers Copy, Paste, Select all, Ask AI and saving the selection as a snippet. Shift+F10 opens it from the keyboard.
+3. Click inside the terminal to type. The “+” button opens another connection. When tabs overflow, scroll the strip with the mouse wheel or its edge arrows. The total number of open tabs appears in parentheses beside the arrows.
 
-4. On a phone, use the keyboard icon and “…” below the terminal. Esc, Tab, Ctrl+C, Ctrl+D, Ctrl+L and arrows are also available in the scrollable bar.
+4. To select several screens of output, hold the mouse button and scroll the history with the wheel. Move the pointer beyond the terminal’s top or bottom edge to scroll automatically while extending the selection.
 
-5. Multiline paste and control characters require review. Check the target and text before confirming; execution remains your action.
+5. Select text and right-click for the menu. It offers Copy, Paste, Select all, Ask AI and saving the selection as a snippet. Shift+F10 opens it from the keyboard.
 
-6. Right-click a tab to rename, duplicate, close it, close others or close tabs to the right. A background tab with new output is highlighted, and the sidebar shows a separate count of such tabs next to the tab count. Settings → Terminal sets the font (from installed monospace fonts) and the tab subtitle: the list name, the address or computer name, or nothing.
+6. On a phone, use the keyboard icon and “…” below the terminal. Esc, Tab, Ctrl+C, Ctrl+D, Ctrl+L and arrows are also available in the scrollable bar.
 
-7. On desktop a tab can be dragged to another place, in the strip at the top and in the column on the left; in the column Alt+↑ / Alt+↓ do the same. The active tab stays active. The split button in the tab bar opens another session to the same target beside it — “Split right” (Cmd/Ctrl+Shift+\\) or “Split down” (Cmd/Ctrl+Shift+−), up to four panes per tab; a click or Cmd/Ctrl+\] moves input to another pane, the dividers can be dragged, and the cross in a pane’s title closes it.
+7. Multiline paste and control characters require review. Check the target and text before confirming; execution remains your action.
 
-8. After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.
+8. Right-click a tab to rename, duplicate, close it, close others or close tabs to the right. A background tab with new output is highlighted, and the sidebar shows a separate count of such tabs next to the tab count. Settings → Terminal sets the font (from installed monospace fonts) and the tab subtitle: the list name, the address or computer name, or nothing.
 
-9. “Settings → Terminal → Tab placement”: Top or Left. Left is a column of tabs with names and addresses; drag its edge to change the width or fold it to icons. While the column is shown, the app sidebar stays folded until you unfold it. The choice is kept on this device.
+9. On desktop a tab can be dragged to another place, in the strip at the top and in the column on the left; in the column Alt+↑ / Alt+↓ do the same. The active tab stays active. The split button in the tab bar opens another session to the same target beside it — “Split right” (Cmd/Ctrl+Shift+\\) or “Split down” (Cmd/Ctrl+Shift+−), up to four panes per tab; a click or Cmd/Ctrl+\] moves input to another pane, the dividers can be dragged, and the cross in a pane’s title closes it.
+
+10. After a disconnect, use reconnect in the tab’s banner. The output buffer stays until the tab closes; closing ends that session.
+
+11. “Settings → Terminal → Tab placement”: Top or Left. Left is a column of tabs with names and addresses; drag its edge to change the width or fold it to icons. While the column is shown, the app sidebar stays folded until you unfold it. The choice is kept on this device.
 
 > **Keep in mind**
 >
@@ -859,6 +877,18 @@ A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or
 ![Context menu over a selection in the demo terminal.](../assets/guide/terminal-menu-en.png)
 
 Context menu over a selection in the demo terminal.
+
+![Minimal mode with top tabs and the SFTP button on the left.](../assets/guide/terminal-minimal-top-en.png)
+
+Minimal mode with top tabs and the SFTP button on the left.
+
+![Minimal mode with a left tab column; sessions and output continue working.](../assets/guide/terminal-minimal-left-en.png)
+
+Minimal mode with a left tab column; sessions and output continue working.
+
+![The Ctrl+K command palette remains available over the minimal terminal.](../assets/guide/terminal-minimal-palette-en.png)
+
+The Ctrl+K command palette remains available over the minimal terminal.
 
 ![A tab split into two panes: a command on the left and a log of the same host on the right, each pane with its own session.](../assets/guide/terminal-split-en.png)
 
@@ -999,7 +1029,7 @@ The Transfers panel: downloads and an upload are done, and a failed transfer has
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
-1. In “Settings → SFTP → Default editor”, choose “Choose Application” and select an installed VS Code, Zed or another editor.
+1. In “Settings → Default editor for SFTP”, choose “Choose Application” and select an installed VS Code, Zed or another editor.
 
 2. “Open” and “Open in editor” use that choice. “Open with…” selects another application for one file; “System default” resets the preference.
 
@@ -1538,9 +1568,11 @@ Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page o
 | Command line | “Install CLI commands”: the consolecrypt-cli terminal command — on computers. |
 | Updates and About | Update checks, version, author and licences. |
 
-1. Cards follow the order of the table. The chapters of this guide describe each one: “Vault, recovery and biometrics”, “Teams”, “Colors, text size and glass effects”, “Screenshots and screen protection”, “AI chat”, “Terminal”, “Keyboard shortcuts”, “Client updates”.
+1. Click a settings section title to collapse or expand it. Settings and entered values stay intact, and each section folds independently.
 
-2. Terminal scrollback stays on this device and never syncs. The Remote desktop card appears on phones only.
+2. Cards follow the order of the table. The chapters of this guide describe each one: “Vault, recovery and biometrics”, “Teams”, “Colors, text size and glass effects”, “Screenshots and screen protection”, “AI chat”, “Terminal”, “Keyboard shortcuts”, “Client updates”.
+
+3. Terminal scrollback stays on this device and never syncs. The Remote desktop card appears on phones only.
 
 ![The top of Settings: profiles, account and sync, the vault.](../assets/guide/settings-overview-en.png)
 
@@ -1715,19 +1747,21 @@ About: version, author and the client and server license labels.
 
 On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.14), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
-1. Turn off automatic checks if you prefer manual checks. Choose “Check for updates” and review the new version and notes.
+1. The RuStore Android build updates through the store. Use Open RuStore in its settings. This variant does not download APKs or request permission to install other applications. The ordinary APK on Downloads remains a separate channel. Back up local data before switching from an older debug certificate to the new production certificate.
 
-2. Save a backup and finish important sessions before installation. When downloaded through the app, the package is checked against signed metadata and a checksum; installation requires your action.
+2. Turn off automatic checks if you prefer manual checks. Choose “Check for updates” and review the new version and notes.
 
-3. On Windows, “Download and install” downloads and verifies the installer; then ConsoleCrypt closes, the installer updates the app and starts it again. SSH sessions close; profiles and vaults are kept. A copy unpacked from the ZIP archive cannot update itself: download the installer or a new archive from Downloads. Android uses the system APK installer.
+3. Save a backup and finish important sessions before installation. When downloaded through the app, the package is checked against signed metadata and a checksum; installation requires your action.
 
-4. On Windows, updating from 0.8.5 or earlier through the app may fail. Download 0.8.6 from Downloads once and install it manually over the previous version; profiles and vaults are kept. Later updates install from the app.
+4. On Windows, “Download and install” downloads and verifies the installer; then ConsoleCrypt closes, the installer updates the app and starts it again. SSH sessions close; profiles and vaults are kept. A copy unpacked from the ZIP archive cannot update itself: download the installer or a new archive from Downloads. The ordinary Android APK uses the system APK installer; the RuStore variant uses the store.
 
-5. On Linux, Download and install checks the package against the separate signed Linux feed and SHA-256; the system then asks for the administrator password, and apt, dnf or zypper installs it. Choose Restart to open the new version; profiles, vaults and the keyring are kept. Closing the password dialog cancels. Without pkexec, or on an error, install the DEB or RPM from Downloads manually (see the Linux installation chapter).
+5. On Windows, updating from 0.8.5 or earlier through the app may fail. Download 0.8.6 from Downloads once and install it manually over the previous version; profiles and vaults are kept. Later updates install from the app.
 
-6. With ConsoleCrypt 0.2.2 or newer on macOS, choose a new DMG filename or folder in the system “Save and open” dialog after downloading. Once the DMG opens, quit the app, drag the new copy to Applications and confirm replacement.
+6. On Linux, Download and install checks the package against the separate signed Linux feed and SHA-256; the system then asks for the administrator password, and apt, dnf or zypper installs it. Choose Restart to open the new version; profiles, vaults and the keyring are kept. Closing the password dialog cancels. Without pkexec, or on an error, install the DEB or RPM from Downloads manually (see the Linux installation chapter).
 
-7. Cancelling the dialog keeps the verified download ready for retry. Choose a new filename when saving: an existing file is never overwritten.
+7. With ConsoleCrypt 0.2.2 or newer on macOS, choose a new DMG filename or folder in the system “Save and open” dialog after downloading. Once the DMG opens, quit the app, drag the new copy to Applications and confirm replacement.
+
+8. Cancelling the dialog keeps the verified download ready for retry. Choose a new filename when saving: an existing file is never overwritten.
 
 [Full client update instructions ↗](../docs/public/UPDATES.md)
 
@@ -1859,7 +1893,7 @@ Logs, shell and port forwarding are built into the client and require no externa
 
 6. A Pod with a standard database port (PostgreSQL, MySQL, MariaDB, ClickHouse, Redis, MongoDB) has a “Connect to database” button. It opens a saved connection with the same route, or a Databases form with a Kubernetes route: to the Pod itself for a StatefulSet, otherwise to its only Service or Deployment, so the connection survives Pod restarts. The forward is restored on every connect.
 
-7. On Android, active tunnels appear in a notification with a stop action. The iOS release is still deferred. Locking the vault keeps the cluster session: pod terminals and port forwards keep running, and after unlocking the section reopens the same cluster.
+7. On Android, active tunnels appear in a notification with a stop action. iOS is available as a Simulator build only. Locking the vault keeps the cluster session: pod terminals and port forwards keep running, and after unlocking the section reopens the same cluster.
 
 [Full Kubernetes instructions ↗](../docs/public/KUBERNETES.md)
 
@@ -2075,31 +2109,33 @@ Click a connection to open its workspace: the database structure on the left, qu
 | AI assistant | ⌘I | Ctrl+I |
 | Insert a snippet | ⌘J | Ctrl+J |
 
-1. The structure loads as you expand it and sorts objects into folders: tables, views, functions, sequences, dictionaries; a table holds columns, indexes, constraints and triggers. The expanded table is framed, and key columns carry icons. Search filters the objects already loaded; the button next to it collapses everything.
+1. On desktop, SQL results have thin vertical and horizontal scrollbars. Hover over a table edge to expand the scrollbar, then drag it. Cell editing and pinned columns continue working.
 
-2. An object’s menu offers “Preview first 100 rows”, “Show DDL”, “Insert identifier” and “Object details”. A MongoDB collection also has “Infer schema from sample”: field types and the share of documents that contain each field.
+2. The structure loads as you expand it and sorts objects into folders: tables, views, functions, sequences, dictionaries; a table holds columns, indexes, constraints and triggers. The expanded table is framed, and key columns carry icons. Search filters the objects already loaded; the button next to it collapses everything.
 
-3. Double-clicking a table or choosing “Preview first 100 rows” runs the query right away and shows the data below in a preview tab named “name — data”. There is one such tab, reused for the next table; once you edit its text it becomes an ordinary tab.
+3. An object’s menu offers “Preview first 100 rows”, “Show DDL”, “Insert identifier” and “Object details”. A MongoDB collection also has “Infer schema from sample”: field types and the share of documents that contain each field.
 
-4. “Object details” for PostgreSQL, MySQL/MariaDB, ClickHouse and Redis are grouped in sections: owner, estimated rows, data and index sizes, column and index counts, partitioning and sorting keys, last VACUUM and ANALYZE, and for a Redis key its type, TTL, length and memory. Sizes are in KiB/MiB, estimates are marked “≈” and “Copy” copies everything as text. Where there is nothing to show, the menu item is hidden.
+4. Double-clicking a table or choosing “Preview first 100 rows” runs the query right away and shows the data below in a preview tab named “name — data”. There is one such tab, reused for the next table; once you edit its text it becomes an ordinary tab.
 
-5. DDL is shown highlighted with line numbers, each statement (CREATE TABLE, every CREATE INDEX) separated by a rule. The dialog follows the window width; long lines wrap with an indent, and turning off “Wrap lines” scrolls them sideways instead, a choice that is remembered. “Copy” copies the whole text, and “Open in editor” adds it to the current tab below the existing text; nothing runs.
+5. “Object details” for PostgreSQL, MySQL/MariaDB, ClickHouse and Redis are grouped in sections: owner, estimated rows, data and index sizes, column and index counts, partitioning and sorting keys, last VACUUM and ANALYZE, and for a Redis key its type, TTL, length and memory. Sizes are in KiB/MiB, estimates are marked “≈” and “Copy” copies everything as text. Where there is nothing to show, the menu item is hidden.
 
-6. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
+6. DDL is shown highlighted with line numbers, each statement (CREATE TABLE, every CREATE INDEX) separated by a rule. The dialog follows the window width; long lines wrap with an indent, and turning off “Wrap lines” scrolls them sideways instead, a choice that is remembered. “Copy” copies the whole text, and “Open in editor” adds it to the current tab below the existing text; nothing runs.
 
-7. The Snippets button in the editor toolbar (⌘J / Ctrl+J) opens “Insert a snippet”: your snippets for this engine, with search. After you fill in its variables, the chosen query is added to the current tab below the existing text; nothing runs.
+7. The editor numbers lines, highlights syntax and completes keywords, tables and columns, including through an alias: o. after FROM orders o. The “+” above the editor opens another query tab.
 
-8. “Run” and ⌘↵ / Ctrl+Enter execute the selection or, without one, the statement on the caret’s line, as in familiar SQL clients. Statements end at a semicolon or a blank line; from any line of a multi-line statement the whole statement runs, and on a blank line the nearest statement above runs. The arrow next to Run offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
+8. The Snippets button in the editor toolbar (⌘J / Ctrl+J) opens “Insert a snippet”: your snippets for this engine, with search. After you fill in its variables, the chosen query is added to the current tab below the existing text; nothing runs.
 
-9. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; headers carry a type glyph and a key on key columns, NULL shows as \[NULL\], and a long value opens in full. The first rows load right away, the rest with “Load more” or from the toolbar under the result (see “Databases: production, changes, history and export”). On a phone, results appear as record cards.
+9. “Run” and ⌘↵ / Ctrl+Enter execute the selection or, without one, the statement on the caret’s line, as in familiar SQL clients. Statements end at a semicolon or a blank line; from any line of a multi-line statement the whole statement runs, and on a blank line the nearest statement above runs. The arrow next to Run offers “Whole script”: statements run one by one and stop at the first error. Variables such as {{name}} are filled in a separate window and bound as driver parameters, never pasted into the text.
 
-10. The switcher on the left of the result shows it as a Table, Text (an aligned monospace table of up to 2,000 rows that is easy to select and copy) or a Record (one row as a field → value form; ⇧↵ opens it for the current row). The view is remembered per tab.
+10. Results are a compact grid with row numbers. Columns can be sorted, filtered, pinned and hidden; headers carry a type glyph and a key on key columns, NULL shows as \[NULL\], and a long value opens in full. The first rows load right away, the rest with “Load more” or from the toolbar under the result (see “Databases: production, changes, history and export”). On a phone, results appear as record cards.
 
-11. A click frames a cell, and ⌘C / Ctrl+C copies its value. A click on a row number selects the row, Shift+click extends the selection, ⌘/Ctrl+click adds or removes a row and Esc clears the selection. The status line shows “Selected: N rows”, and copy, export and the AI assistant use the selected rows.
+11. The switcher on the left of the result shows it as a Table, Text (an aligned monospace table of up to 2,000 rows that is easy to select and copy) or a Record (one row as a field → value form; ⇧↵ opens it for the current row). The view is remembered per tab.
 
-12. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first. For Cassandra/ScyllaDB, “Trace query” replaces EXPLAIN: the query runs once with tracing, and the tree shows each node’s steps and delays.
+12. A click frames a cell, and ⌘C / Ctrl+C copies its value. A click on a row number selects the row, Shift+click extends the selection, ⌘/Ctrl+click adds or removes a row and Esc clears the selection. The status line shows “Selected: N rows”, and copy, export and the AI assistant use the selected rows.
 
-13. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered instead and added to the current tab. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
+13. EXPLAIN draws the plan as a tree: each step shows rows and cost, a bar marks the step’s own share, and “JSON” opens the raw plan. “Execute with ANALYZE” adds real timings but actually runs the query, so it is available only for non-production connections and asks for confirmation first. For Cassandra/ScyllaDB, “Trace query” replaces EXPLAIN: the query runs once with tracing, and the tree shows each node’s steps and delays.
+
+14. Redis: keys are grouped into folders by the “:” separator and read page by page with SCAN; each key shows its type and TTL. KEYS is never run; the equivalent SCAN is offered instead and added to the current tab. MongoDB: commands use the familiar shell syntax, for example db.orders.find({ status: "paid" }).
 
 > **Keep in mind**
 >

@@ -28,7 +28,7 @@ the existing installation manually. Preserve the vault, application data,
 downloaded models and system Keychain/keyring; do not delete or recreate them
 as part of the domain change.
 
-The documentation workflow validates both generated guides and the 102
+The documentation workflow validates both generated guides and the 430
 screenshots against their manifest, including PNG dimensions and SHA-256 hashes.
 It has read-only repository permissions and does not deploy the
 website. Publish the matching site and client release separately, after their
