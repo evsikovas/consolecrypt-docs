@@ -41,7 +41,6 @@ Instrucciones paso a paso con capturas de la aplicación y datos de demostració
 - [Notas, tareas y recordatorios](#notes)
 - [Automatización con Ansible](#automation)
 - [Modo Solo terminal](#terminal-only)
-- [Información del servidor por SSH](#ssh-server-info)
 - [Kubernetes : conexiones y acceso](#kubernetes-connections)
 - [Kubernetes : recursos y cambios](#kubernetes-resources)
 - [Kubernetes : troncos, conchas y túneles](#kubernetes-logs-shell)
@@ -1312,19 +1311,9 @@ Abre una ventana independiente con una consola local y coloca las pestañas a la
 
 2. Pulsa + o abre la paleta con Ctrl+K (⌘K en macOS). Elige una consola instalada. Cambia la posición de las pestañas en la barra del terminal.
 
-<a name="ssh-server-info"></a>
-
-## 31. Información del servidor por SSH
-
-Conéctate por SSH y abre el panel de información de la derecha. Verás la conexión activa y las métricas disponibles de CPU, memoria, disco y red.
-
-> **Ten en cuenta**
->
-> Las métricas disponibles dependen del sistema operativo y de los comandos del host.
-
 <a name="teams"></a>
 
-## 32. Equipos
+## 31. Equipos
 
 Un equipo es una bóveda compartida por varias cuentas en el mismo servidor. Todos los miembros ven a sus anfitriones, grupos, credenciales y francotiradores; los roles deciden quién puede cambiarlos. Los nombres, configuraciones y recursos del equipo están cifrados de extremo a extremo: el servidor sólo ve quién es un miembro. Los equipos están disponibles en un perfil sincronizado en el servidor 0,2.1 o posterior (sinc.consolecrypt.dev público los soporta); un perfil local no tiene sección Equipos.
 
@@ -1415,7 +1404,7 @@ La política de “Preguntar antes de ejecutar comandos arriesgados”: incluso 
 
 <a name="sharing-start"></a>
 
-## 33. Compartir: empezar
+## 32. Compartir: empezar
 
 Compartir artículos individuales con dispositivos verificados de personas en el mismo servidor. Su bóveda privada y su llave no son compartidas.
 
@@ -1463,7 +1452,7 @@ La lista única de receptores secretos vale la pena verificar y la marca “Owne
 
 <a name="sharing-items"></a>
 
-## 34. Hosts, grupos y secretos compartidos
+## 33. Hosts, grupos y secretos compartidos
 
 Cada artículo tiene sus propios derechos de acceso. Un grupo no concede automáticamente el acceso a todos sus hijos.
 
@@ -1489,7 +1478,7 @@ El diálogo separado de publicación secreta: el valor está enmascarado y no se
 
 <a name="databases-sharing"></a>
 
-## 35. Conexiones de bases de datos compartidas
+## 34. Conexiones de bases de datos compartidas
 
 Una conexión de base de datos guardada se puede compartir con el dispositivo verificado de un colega, al igual que un host o un contexto Kubernetes. Necesita servidor de sincronización 0.1.15 o posterior con la función activada; sync.consolecrypt.dev lo tiene encendido. Con un servidor mayor, la acción está oculta. En su propio servidor la bandera CC\_SHARED\_DB\_CONNECTIONS\_ENABLED la enciende (ver “Su propio servidor: características, banderas y límites”).
 
@@ -1523,7 +1512,7 @@ Compartiendo una conexión: lo que recibe el colega; la ruta no es compartida, y
 
 <a name="shared-notes"></a>
 
-## 36. Notas compartidas sobre objetos compartidos
+## 35. Notas compartidas sobre objetos compartidos
 
 Un host compartido, conexión de bases de datos o Kubernetes contexto ha compartido notas que cada miembro ve. Esto necesita servidor de sincronización 0.2.0 o posterior con notas compartidas habilitadas por el administrador CC\_SHARED\_NOTES\_ENABLED . Un objeto contiene hasta 500 notas de hasta 288 KiB cada una, cifrado.
 
@@ -1547,7 +1536,7 @@ El bloque de notas compartido de un host compartido: la nota de un miembro y su 
 
 <a name="sharing-devices"></a>
 
-## 37. Nuevos dispositivos personales de un colega
+## 36. Nuevos dispositivos personales de un colega
 
 Una subvención se aplica únicamente a nuevos dispositivos pertenecientes a un colega ya verificado. No invita a otras personas ni eleva los permisos.
 
@@ -1573,7 +1562,7 @@ Configuración de una subvención de nuevo dispositivo: La aprobación manual si
 
 <a name="sharing-revoke"></a>
 
-## 38. Revocación, colas y recuperación de confianza
+## 37. Revocación, colas y recuperación de confianza
 
 El propietario administra a los participantes. Un editor cambia el contenido; el acceso de los participantes permanece bajo el control del propietario.
 
@@ -1605,7 +1594,7 @@ Eliminado recientemente: los artículos compartidos pueden ser restaurados duran
 
 <a name="settings-overview"></a>
 
-## 39. Ajustes: ¿qué es dónde
+## 38. Ajustes: ¿qué es dónde
 
 Ajustes abiertos desde la barra lateral o con soluble, / Ctrl+,. Es una página de desplazamiento de tarjetas; algunas tarjetas aparecen sólo donde está disponible la función. Las preferencias de aparición, terminal, atajo y editor permanecen en el dispositivo, mientras que los datos de bóveda viven en el perfil cifrado.
 
@@ -1643,7 +1632,7 @@ Proveedores de seguridad e IA: limpieza de portapapeles, proveedores locales y r
 
 <a name="cli"></a>
 
-## 40. Línea de comandos: consolacrypt-cli
+## 39. Línea de comandos: consolacrypt-cli
 
 consolacrypt-cli es el cliente ConsoleCrypt de línea de comandos. Nave con los macOS , Windows y Linux instaladores y trabaja con los mismos perfiles que la aplicación.
 
@@ -1665,7 +1654,7 @@ consolacrypt-cli es el cliente ConsoleCrypt de línea de comandos. Nave con los 
 
 <a name="appearance"></a>
 
-## 41. Colores, tamaño de texto y efectos de vidrio
+## 40. Colores, tamaño de texto y efectos de vidrio
 
 Las preferencias de apariencia se almacenan en este dispositivo. El tamaño del texto de la interfaz y el tamaño de la fuente terminal se ajustan por separado.
 
@@ -1689,7 +1678,7 @@ Ajustes de tema, escala y vidrio en la interfaz de demostración.
 
 <a name="right-panel"></a>
 
-## 42. Panel derecho: burbujas o un espacio de trabajo
+## 41. Panel derecho: burbujas o un espacio de trabajo
 
 Snippets, notas, IA y puertos de avance están en el panel de herramientas de la derecha. Elija su comportamiento en la configuración de la apariencia.
 
@@ -1715,7 +1704,7 @@ El panel AI ampliado junto con una terminal demo.
 
 <a name="screenshots"></a>
 
-## 43. Capturas de pantalla, protección de pantalla y portapapeles
+## 42. Capturas de pantalla, protección de pantalla y portapapeles
 
 Si una aplicación puede bloquear la captura de pantalla depende del sistema operativo. Las preferencias de captura son locales del dispositivo actual. Los secretos copiados se mantienen fuera de la historia del portapapeles y se eliminan después de un timeout.
 
@@ -1756,7 +1745,7 @@ Windows : “Estírese ventana de captura de pantalla” — Nunca, Mientras que
 
 <a name="backups"></a>
 
-## 44. Respaldos y restauración
+## 43. Respaldos y restauración
 
 Sync no reemplaza una copia de seguridad. Mantenga el archivo cifrado aparte de su dispositivo y el kit de recuperación aparte de ese archivo.
 
@@ -1780,7 +1769,7 @@ Restaurar desde la pantalla de bienvenida: un archivo .ccbackup se abre a un nue
 
 <a name="about"></a>
 
-## 45. Versión, autor y licencias
+## 44. Versión, autor y licencias
 
 Acerca muestra detalles de la aplicación instalada: su versión, número de construcción, autor y licencias.
 
@@ -1798,7 +1787,7 @@ Acerca de: versión, autor y etiquetas de licencia cliente y servidor.
 
 <a name="updates"></a>
 
-## 46. Actualizaciones del cliente
+## 45. Actualizaciones del cliente
 
 En Windows , macOS , Android y Linux (una copia DEB o RPM, de 0.9.14), “Settings → Updates” ofrece cheques de inicio y un cheque manual. Un cheque no instala una actualización por sí mismo.
 
@@ -1830,7 +1819,7 @@ Actualizar la comprobación con una preferencia de arranque independiente.
 
 <a name="server-account"></a>
 
-## 47. Cuenta: contraseña, desconexión y cuenta del sitio web
+## 46. Cuenta: contraseña, desconexión y cuenta del sitio web
 
 La cuenta del sitio web gestiona su cuenta de servicio público. Los anfitriones, llaves y snippets descifrados permanecen en la aplicación.
 
@@ -1858,7 +1847,7 @@ Ajustes: perfiles, “Continuación de cuentas” con las acciones de la cuenta,
 
 <a name="kubernetes-connections"></a>
 
-## 48. Kubernetes : conexiones y acceso
+## 47. Kubernetes : conexiones y acceso
 
 Importar contextos existentes y mantener credenciales en su bóveda cifrada. Las solicitudes de racimo se originan desde el dispositivo.
 
@@ -1892,7 +1881,7 @@ kubeconfig importación: contextos de un archivo demo, su autenticación, el int
 
 <a name="kubernetes-resources"></a>
 
-## 49. Kubernetes : recursos y cambios
+## 48. Kubernetes : recursos y cambios
 
 Las listas y detalles en vivo muestran objetos de las API disponibles, incluyendo CRDs instalados.
 
@@ -1932,7 +1921,7 @@ Historial del despliegue: dos revisiones del despliegue comparadas campo por cam
 
 <a name="kubernetes-logs-shell"></a>
 
-## 50. Kubernetes : troncos, conchas y túneles
+## 49. Kubernetes : troncos, conchas y túneles
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -1978,7 +1967,7 @@ Un puerto Pod hacia adelante: la dirección en este dispositivo y la lista de lo
 
 <a name="kubernetes-gitops"></a>
 
-## 51. Kubernetes : GitOps y problemas
+## 50. Kubernetes : GitOps y problemas
 
 Flux y Argo CD son descubiertos de CRDs disponibles. La visión general combina el estado, las dependencias y los vínculos con los objetos problemáticos.
 
@@ -2010,7 +1999,7 @@ GitOps en un teléfono con datos de demostración. El panel de filtro está desp
 
 <a name="kubernetes-helm"></a>
 
-## 52. Kubernetes : Helm
+## 51. Kubernetes : Helm
 
 Inspeccionar las liberaciones de Helm almacenadas y compararlas con el clúster actual.
 
@@ -2038,7 +2027,7 @@ Kubernetes interfaz con datos de demostración.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 53. Kubernetes : context terminal and AI
+## 52. Kubernetes : context terminal and AI
 
 El contexto sigue siendo explícito tanto para los comandos locales como para la asistencia de inteligencia artificial.
 
@@ -2064,7 +2053,7 @@ AI in Kubernetes : una pregunta sobre un Pod fallante, los registros y eventos q
 
 <a name="databases-connections"></a>
 
-## 54. Bases de datos: conexiones y rutas
+## 53. Bases de datos: conexiones y rutas
 
 La sección Bases de Datos funciona con PostgreSQL , MySQL y MariaDB, ClickHouse, Redis, MongoDB, Cassandra y ScyllaDB, y con archivos SQLite. Los controladores están integrados en la aplicación, las conexiones viven en la bóveda cifrada, y las consultas van desde el dispositivo directamente a la base de datos.
 
@@ -2108,7 +2097,7 @@ Elegir la ruta en el formulario de conexión: SSH host, perfil de salto, Kuberne
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 55. Bases de datos: SQLite, Cassandra y ScyllaDB
+## 54. Bases de datos: SQLite, Cassandra y ScyllaDB
 
 SQLite es un archivo, no un servidor; Cassandra y ScyllaDB hablan CQL. Ambos motores llegaron en 0.9.2. Desde 0.9.14, Cassandra / ScyllaDB y conexiones SQLite-through-a-host pueden entrar en la bóveda, mientras que un archivo SQLite en este equipo se queda aquí.
 
@@ -2146,7 +2135,7 @@ Cassandra / ScyllaDB: puntos de contacto, el centro de datos local, niveles de c
 
 <a name="databases-queries"></a>
 
-## 56. Bases de datos: estructura, consultas y resultados
+## 55. Bases de datos: estructura, consultas y resultados
 
 Haga clic en una conexión para abrir su espacio de trabajo: la estructura de bases de datos de la izquierda, pestañas de consulta, el editor y la red de resultados de la derecha. Arrastre las fronteras del panel para redimensionarlos. El modificador principal es soluble en macOS y Ctrl en Windows y Linux .
 
@@ -2234,7 +2223,7 @@ Tres filas seleccionadas: la línea de estado dice “Seleccionado: 3 filas”.
 
 <a name="databases-changes"></a>
 
-## 57. Bases de datos: producción, cambios, historia y exportación
+## 56. Bases de datos: producción, cambios, historia y exportación
 
 Una conexión de producción es sólo lectura, y cualquier cambio se muestra a usted antes de que funcione. Los escritos se activan explícitamente en una sesión de no producción, y en la producción sólo dentro de una ventana temporal.
 
@@ -2276,7 +2265,7 @@ Revisión de ediciones: las declaraciones UPDATE con los valores reales y el cam
 
 <a name="databases-production"></a>
 
-## 58. Bases de datos: escritura a la producción
+## 57. Bases de datos: escritura a la producción
 
 Una conexión de producción abre solo lectura. Cuando la producción debe cambiarse, abra una ventana de escritura temporal: dura unos minutos y se aplica solamente a esta sesión.
 
@@ -2302,7 +2291,7 @@ Una ventana de escritura abierta: la placa roja con su tiempo final, la cuenta a
 
 <a name="databases-designer"></a>
 
-## 59. Bases de datos: diseñador de tablas e importación de CSV
+## 58. Bases de datos: diseñador de tablas e importación de CSV
 
 Crear o cambiar una tabla sin escribir SQL, y cargar datos CSV en una tabla. En ambos casos nada funciona en el servidor hasta que lo confirme.
 
@@ -2350,7 +2339,7 @@ Paso 3 de 5: columnas de archivos mapeados por nombre, manager\_note saltado, y 
 
 <a name="databases-ai"></a>
 
-## 60. Bases de datos: Asistente de inteligencia artificial
+## 59. Bases de datos: Asistente de inteligencia artificial
 
 El asistente escribe, explica, arregla y acelera las consultas. Utiliza al proveedor de Ajustes → AI y nunca funciona nada por su cuenta.
 
@@ -2372,7 +2361,7 @@ The AI Assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 61. Docker : anfitriones y contenedores
+## 60. Docker : anfitriones y contenedores
 
 La sección Docker se conecta al motor en este ordenador o en un host guardado SSH. Se alcanza un motor remoto a través de la conexión del host SSH.
 
@@ -2400,7 +2389,7 @@ Contenedores de demostración agrupados por proyecto compuesto, con el filtro de
 
 <a name="docker-details"></a>
 
-## 62. Docker : detalles, registros, volúmenes y avances
+## 61. Docker : detalles, registros, volúmenes y avances
 
 Haga clic en un contenedor para abrir sus detalles a la derecha mientras mantiene la lista en la vista.
 
@@ -2440,7 +2429,7 @@ Un puerto de contenedores hacia adelante en el panel derecho compartido.
 
 <a name="docker-compose"></a>
 
-## 63. Docker : proyectos de compostura
+## 62. Docker : proyectos de compostura
 
 El menú de un encabezado de grupo compuesto controla todo el proyecto y abre sus archivos.
 
@@ -2470,7 +2459,7 @@ Componga archivos como fichas con números de línea: las contraseñas están en
 
 <a name="server-setup"></a>
 
-## 64. Su propio servidor: Kubernetes
+## 63. Su propio servidor: Kubernetes
 
 Un servidor permite sincronización y colaboración de dispositivos. El cliente no necesita uno para uso local. Ni el sitio web del producto ni el análisis se requiere para ejecutar su propio servidor.
 
@@ -2568,7 +2557,7 @@ Sincronización: el perfil conectado, estado y acciones para verificar el interc
 
 <a name="server-docker"></a>
 
-## 65. Su propio servidor: Docker
+## 64. Su propio servidor: Docker
 
 Ejecutar ConsoleCrypt en un solo servidor Linux sin Kubernetes : una imagen preconstruida del servidor, PostgreSQL 16 y Caddy para HTTPS . Los datos y certificados de base se mantienen en volúmenes persistentes Docker.
 
@@ -2641,7 +2630,7 @@ Elija su propio servidor en el cliente y introduzca su dirección HTTPS.
 
 <a name="server-settings"></a>
 
-## 66. Su propio servidor: instalación y parámetros por método
+## 65. Su propio servidor: instalación y parámetros por método
 
 Cada configuración de servidor es una variable CC\_\*; la lista completa con las rutas de Helm, los valores predeterminados y permitidos está en “Tu propio servidor: referencia de configuración”. Este capítulo muestra dónde poner una clave para cada método de instalación Docker Compose, docker run, Helm, a JSON archivo y sistematizado), cómo aplicar y verificar un cambio, y ejemplos trabajados: notas y equipos compartidos, registrarse con el ID de entrada y Active Directory, conmutando límites para hacer cumplir, elevando cuotas.
 
@@ -3098,7 +3087,7 @@ cuentas.
 
 <a name="server-enterprise"></a>
 
-## 67. Su propio servidor: firma corporativa y notas compartidas
+## 66. Su propio servidor: firma corporativa y notas compartidas
 
 Desde el servidor 0.2.0 (protocol 1.9) el servidor puede funcionar en modo de empresa: las cuentas se registran sólo a través de un OpenID Connect IdP o Active Directory / LDAP. Es parte del servidor de código abierto, sin construcción ni licencia separada. Encriptación, bóvedas, dispositivos, compartir y equipos (servidor 0.2.1) funcionan en ambos modos.
 
@@ -3186,7 +3175,7 @@ Cómo el cliente ve un servidor en modo de empresa con Active Directory.
 
 <a name="server-idp"></a>
 
-## 68. Su propio servidor: recetas corporativas de inscripción
+## 67. Su propio servidor: recetas corporativas de inscripción
 
 La guía completa del movimiento empresarial: lo que el servidor necesita del IdP, recetas paso a paso para Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta y cualquier proveedor de OIDC, Active Directory over LDAPS o STARTTLS, cuenta que conecta al primer inicio de sesión, comandos, implementación, una tabla de solución de problemas y conmutación de nuevo al registro estándar. En los ejemplos el servidor es https://sync.acme.com y los corchetes de ángulo marcan sus propios valores; guardan secretos sólo en archivos y Secretos.
 
@@ -3722,7 +3711,7 @@ la tabla en la sección rusa y [PROTOCOL_CHANGELOG.md] https://github.com/evsiko
 
 <a name="server-config"></a>
 
-## 69. Su propio servidor: características, banderas y límites
+## 68. Su propio servidor: características, banderas y límites
 
 Las funciones de su propio servidor se activan con variables CC\_\*. Con Docker Componga que van al servidor privado.env (para las variables compose.yaml lists) o un compose separado.override.yaml; con Helm en el config, auth y bloques de correo de su archivo de valores; sin contenedores en el entorno de servicio o un archivo privado JSON ( ( --config ). Los valores a continuación son los defectos del servidor.
 
@@ -3892,7 +3881,7 @@ El cliente muestra a los Equipos sólo cuando el servidor los soporta.
 
 <a name="server-reference"></a>
 
-## 70. Su propio servidor: referencia de configuración
+## 69. Su propio servidor: referencia de configuración
 
 Cada parámetro servidor de sincronización: cada tecla CC\_\* con su ruta Helm, por defecto, valores permitidos, bandera secreta y propósito, agrupado como en la referencia fuente; el orden de fuentes de configuración y cheques de puesta en marcha; todos los 18 límites de solicitud y los comandos de administración. La referencia se verifica contra el código del servidor en cada versión. Dónde poner una clave para cada método de instalación está en “Su propio servidor: instalación y parámetros por método”.
 
@@ -4313,7 +4302,7 @@ admin ... ` or ` kubectl exec deployment/... -- /usr/local/bin/consolecrypt-serv
 
 <a name="server-maintenance"></a>
 
-## 71. Su propio servidor: respaldos, actualizaciones y comandos
+## 70. Su propio servidor: respaldos, actualizaciones y comandos
 
 Todos los datos del servidor persistentes viven en PostgreSQL . Una copia de seguridad de bases de datos más la configuración privada es lo que una restauración necesita. Los comandos de Admin administran cuentas y sesiones pero nunca dan acceso a contenidos de bóveda.
 

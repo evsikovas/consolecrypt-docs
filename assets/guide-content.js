@@ -4077,28 +4077,6 @@ export const guideSections = [
     ]
   },
   {
-    "id": "ssh-server-info",
-    "group": "workspace",
-    "title": {
-      "ru": "Сведения о сервере в SSH",
-      "en": "Server information in SSH",
-      "es": "Información del servidor por SSH",
-      "zh": "SSH 服务器信息"
-    },
-    "intro": {
-      "ru": "Подключитесь к хосту по SSH и откройте панель сведений справа. Она показывает данные активного подключения и доступные метрики процессора, памяти, диска и сети.",
-      "en": "Connect over SSH and open the information panel on the right. It shows the active connection and available CPU, memory, disk and network metrics.",
-      "es": "Conéctate por SSH y abre el panel de información de la derecha. Verás la conexión activa y las métricas disponibles de CPU, memoria, disco y red.",
-      "zh": "通过 SSH 连接后打开右侧信息面板，即可查看当前连接以及可获取的 CPU、内存、磁盘和网络指标。"
-    },
-    "note": {
-      "ru": "Набор показателей зависит от ОС и доступных команд на хосте.",
-      "en": "Available metrics depend on the host operating system and commands.",
-      "es": "Las métricas disponibles dependen del sistema operativo y de los comandos del host.",
-      "zh": "可用指标取决于主机的操作系统和命令。"
-    }
-  },
-  {
     "id": "teams",
     "group": "collaboration",
     "title": {

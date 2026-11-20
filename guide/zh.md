@@ -41,7 +41,6 @@
 - [说明、任务和提醒](#notes)
 - [Ansible 自动化](#automation)
 - [仅终端模式](#terminal-only)
-- [SSH 服务器信息](#ssh-server-info)
 - [Kubernetes:连接和接入](#kubernetes-connections)
 - [Kubernetes:资源和变化](#kubernetes-resources)
 - [Kubernetes:原木、壳体和隧道](#kubernetes-logs-shell)
@@ -1312,19 +1311,9 @@ Linuxx64:选择并安装本地CPU模型. 下载前合成状态.
 
 2. 点击「+」或按 Ctrl+K（macOS 上为 ⌘K）打开命令面板，再选择已安装的 Shell。通过终端工具栏可更改选项卡位置。
 
-<a name="ssh-server-info"></a>
-
-## 31. SSH 服务器信息
-
-通过 SSH 连接后打开右侧信息面板，即可查看当前连接以及可获取的 CPU、内存、磁盘和网络指标。
-
-> **注意**
->
-> 可用指标取决于主机的操作系统和命令。
-
 <a name="teams"></a>
 
-## 32. 团队
+## 31. 团队
 
 一个团队是同一服务器上几个账户共享的金库. 所有成员都可以看到其主机,组,证书和片段;角色决定谁可以更改它们. 团队名称,设置和资源是端到端加密的:服务器只看到谁是成员. Teams在服务器0.2.1或稍后的同步配置中可以提供(public syndate.consolecrypt.dev支持它们);一个本地配置中没有Teams部分.
 
@@ -1415,7 +1404,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-start"></a>
 
-## 33. 共享: 开始
+## 32. 共享: 开始
 
 使用同一服务器上经核实的人的设备共享单个项目。 你的私人金库和钥匙没有共享
 
@@ -1463,7 +1452,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-items"></a>
 
-## 34. 共享主机、团体和秘密
+## 33. 共享主机、团体和秘密
 
 每个项目都有自己的访问权. 一个团体不会自动允许其所有儿童进入。
 
@@ -1489,7 +1478,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="databases-sharing"></a>
 
-## 35. 共享数据库连接
+## 34. 共享数据库连接
 
 保存的数据库连接可以和同事的验证设备共享,就像主机或Kubernetes上下文一样. 它需要同步服务器0.1.15或稍后启用该特性;同步.consolecrypt.dev已打开. 有了更古老的服务器,动作就被隐藏了. 在您自己的服务器上, CC\_SHARED\_DB\_CONNECTIONS\_ENABLED 旗帜打开它(参见“您自己的服务器: 特性、 旗帜和限制 ” )。
 
@@ -1523,7 +1512,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="shared-notes"></a>
 
-## 36. 关于共享对象的共享注释
+## 35. 关于共享对象的共享注释
 
 共享主机,数据库连接或Kubernetes上下文共享了每个成员都看到的音符. 这需要同步服务器0.2.0或稍后与管理员允许的共享注释CC\_SHARED\_NOTES\_ENABLED同步. 物体最多可容纳500个音符,每个音符最多可容纳288个KiB,加密.
 
@@ -1547,7 +1536,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-devices"></a>
 
-## 37. 同事的新个人用具
+## 36. 同事的新个人用具
 
 补助金只适用于属于已经核实的同事的新装置。 它不邀请其他人或提升权限。
 
@@ -1573,7 +1562,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-revoke"></a>
 
-## 38. 撤销、队列和信任恢复
+## 37. 撤销、队列和信任恢复
 
 业主管理参与者。 编辑器更改内容;参与者的访问权仍由所有者控制。
 
@@ -1605,7 +1594,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="settings-overview"></a>
 
-## 39. 设置: 在哪里
+## 38. 设置: 在哪里
 
 从侧边栏打开或带有QQ, / Ctrl+, 的设置. 它是一张滚动的卡片页;有些卡片只出现在有该功能的地方. 外观,终端,快捷键和编辑偏好都留在设备上,而金库数据则停留在加密配置中.
 
@@ -1643,7 +1632,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="cli"></a>
 
-## 40. 命令行:控制台crypt-cli
+## 39. 命令行:控制台crypt-cli
 
 控制台crypt-cli是ConsoleCrypt命令行客户端. 它与macOS,Windows和Linux的安装器同船,并使用与应用程序相同的配置图进行工作.
 
@@ -1665,7 +1654,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="appearance"></a>
 
-## 41. 颜色、文本大小和玻璃效果
+## 40. 颜色、文本大小和玻璃效果
 
 外观偏好被存储在这个设备上. 界面文本大小和终端字体大小分别调整.
 
@@ -1689,7 +1678,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="right-panel"></a>
 
-## 42. 右面板:泡泡或一个工作空间
+## 41. 右面板:泡泡或一个工作空间
 
 片段,笔记,AI和端口前置在右侧工具面板中. 在外观设置中选择它的行为 。
 
@@ -1715,7 +1704,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="screenshots"></a>
 
-## 43. 屏幕截图、屏幕保护和剪贴板
+## 42. 屏幕截图、屏幕保护和剪贴板
 
 应用程序是否能够屏蔽屏幕捕获取决于OS. 抓取偏好是当前设备的局部偏好 。 复制后的秘密远离剪贴板历史,在超时后被删除 。
 
@@ -1756,7 +1745,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="backups"></a>
 
-## 44. 备份和恢复
+## 43. 备份和恢复
 
 同步不替换备份 。 将加密文件与您的设备分开, 将回收套件与文件分开 。
 
@@ -1780,7 +1769,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="about"></a>
 
-## 45. 版本、作者和许可证
+## 44. 版本、作者和许可证
 
 大约显示已安装的应用程序的细节:其版本、构建编号、作者和许可证。
 
@@ -1798,7 +1787,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="updates"></a>
 
-## 46. 客户端更新
+## 45. 客户端更新
 
 在Windows、macOS、Android和Linux(从0.9.14开始的DEB或RPM副本)上,“Settings – Updates”提供启动检查和人工检查。 检查本身不会安装更新 。
 
@@ -1830,7 +1819,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="server-account"></a>
 
-## 47. 账户:密码、断开和网站账户
+## 46. 账户:密码、断开和网站账户
 
 网站账户管理您的公共服务器账户。 解密的主机,密钥和片段仍保留在应用程序中.
 
@@ -1858,7 +1847,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="kubernetes-connections"></a>
 
-## 48. Kubernetes:连接和接入
+## 47. Kubernetes:连接和接入
 
 导入已有的上下文, 并将证书保存在您的加密金库中 。 集群请求来自您的设备 。
 
@@ -1892,7 +1881,7 @@ kubeconfig 导入:演示文件的上下文,它们的认证,生产开关和需要
 
 <a name="kubernetes-resources"></a>
 
-## 49. Kubernetes:资源和变化
+## 48. Kubernetes:资源和变化
 
 直播列表和细节显示来自可用API的对象,包括已安装的CRD.
 
@@ -1932,7 +1921,7 @@ Kubernetes与演示数据接口.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 50. Kubernetes:原木、壳体和隧道
+## 49. Kubernetes:原木、壳体和隧道
 
 日志, shell 和端口转发被构建到客户端中,不需要外部的kubectl.
 
@@ -1978,7 +1967,7 @@ A Pod 端口向前:此设备上的地址和右侧的主动前方列表 。
 
 <a name="kubernetes-gitops"></a>
 
-## 51. Kubernetes: GitOps 与问题
+## 50. Kubernetes: GitOps 与问题
 
 Flux和Argo CD是从可用的CRD中发现的. 概览结合了状态,依赖性和与问题对象的链接.
 
@@ -2010,7 +1999,7 @@ GitOps在手机上播放演示数据. 过滤面板是滚动的;滚动到顶部�
 
 <a name="kubernetes-helm"></a>
 
-## 52. Kubernetes:赫尔姆语.
+## 51. Kubernetes:赫尔姆语.
 
 检查存储的Helm释放,并将其与当前集群进行比较.
 
@@ -2038,7 +2027,7 @@ Kubernetes与演示数据接口.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 53. Kubernetes:上下文终端和AI
+## 52. Kubernetes:上下文终端和AI
 
 地方指挥部和大赦国际的援助情况仍然明确。
 
@@ -2064,7 +2053,7 @@ AI inKubernetes:一个关于一个失败的Pod,它所读的日志和事件以及
 
 <a name="databases-connections"></a>
 
-## 54. 数据库:连接和路线
+## 53. 数据库:连接和路线
 
 数据库部分与 PostgreSQL, MySQL 和 MariaDB, ClickHouse, Redis, MongoDB, Cassandra 和 ScyllaDB 合作, 并拥有 SQLite文件. 驱动程序被构建在应用程序中,连接在加密的金库中进行直播,查询从您的设备直接转到数据库.
 
@@ -2108,7 +2097,7 @@ Demo连接:路由图标,彩色标签,PROD徽章,标签过滤器以及SQLite和Ca
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 55. 数据库:SQLite、Cassandra和ScyllaDB
+## 54. 数据库:SQLite、Cassandra和ScyllaDB
 
 SQLite是一个文件,不是服务器;Cassandra和ScyllaDB会讲CQL. 两台发动机均以0.9.2到达. 从0.9.14起,Cassandra / ScyllaDB和SQLite通过-a-host连接可以移动到金库,而这个计算机上的SQLite文件则停留在这里.
 
@@ -2146,7 +2135,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-queries"></a>
 
-## 56. 数据库:结构、查询和结果
+## 55. 数据库:结构、查询和结果
 
 点击连接打开其工作空间:左边的数据库结构,查询标签,编辑器和右边的结果网格. 拖动面板边框以调整其大小 。 主要修饰词为QQ在macOS和Ctrl在Windows和Linux.
 
@@ -2234,7 +2223,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-changes"></a>
 
-## 57. 数据库:生产、变化、历史和导出
+## 56. 数据库:生产、变化、历史和导出
 
 生产连接是只读的,任何更改在运行前都会向您显示. 在非生产环节中明确打开写字机,只在临时窗口内进行生产。
 
@@ -2276,7 +2265,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-production"></a>
 
-## 58. 数据库:编写到制作
+## 57. 数据库:编写到制作
 
 生产连接打开只读 。 当生产必须更改时,打开一个临时的写窗口:它持续几分钟,只适用于本会话.
 
@@ -2302,7 +2291,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-designer"></a>
 
-## 59. 数据库:表格设计器和 CSV 导入
+## 58. 数据库:表格设计器和 CSV 导入
 
 不写入 SQL 创建或更改表格,并加载 CSV 数据到表格中。 在这两种情况下,在确认之前,服务器上都不会有任何运行.
 
@@ -2350,7 +2339,7 @@ CSV导入,第2步 5: 编码, 分隔符, NULL,小数分隔符和文件第一行�
 
 <a name="databases-ai"></a>
 
-## 60. 数据库:AI助理
+## 59. 数据库:AI助理
 
 助理写、解释、修正和加快查询。 它使用来自 Sets → AI 的提供者,从不单独运行任何东西.
 
@@ -2372,7 +2361,7 @@ AI助手:一个来自描述的查询草稿;只有两个表格名称与模型共�
 
 <a name="docker-containers"></a>
 
-## 61. Docker:主机和集装箱
+## 60. Docker:主机和集装箱
 
 Docker段连接到此计算机或保存的SSH主机上的引擎. 通过主机的SSH连接到达一个远程引擎.
 
@@ -2400,7 +2389,7 @@ Docker段连接到此计算机或保存的SSH主机上的引擎. 通过主机的
 
 <a name="docker-details"></a>
 
-## 62. Docker:细节,日志,卷和前传.
+## 61. Docker:细节,日志,卷和前传.
 
 单击一个容器打开右边的细节,同时保持列表的视图。
 
@@ -2440,7 +2429,7 @@ JSON标签:命令中的密码是蒙面的;全文需要库口令.
 
 <a name="docker-compose"></a>
 
-## 63. Docker:编写项目
+## 62. Docker:编写项目
 
 编曲组头上的菜单控制整个项目并打开其文件.
 
@@ -2470,7 +2459,7 @@ JSON标签:命令中的密码是蒙面的;全文需要库口令.
 
 <a name="server-setup"></a>
 
-## 64. 您自己的服务器 : Kubernetes
+## 63. 您自己的服务器 : Kubernetes
 
 一个服务器可以实现设备同步和协作. 客户端不需要一个供本地使用. 不需要产品网站或分析来运行自己的服务器.
 
@@ -2568,7 +2557,7 @@ curl --fail https://sync.example.com/v1/meta
 
 <a name="server-docker"></a>
 
-## 65. 您自己的服务器:Docker 编曲
+## 64. 您自己的服务器:Docker 编曲
 
 Run ConsoleCrypt on a single Linux server without Kubernetes : a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS . 数据库数据和证书以连续(Docker册)保存。
 
@@ -2641,7 +2630,7 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
 <a name="server-settings"></a>
 
-## 66. 您自己的服务器:按方法的安装和参数
+## 65. 您自己的服务器:按方法的安装和参数
 
 每个服务器设置都是 CCQQ 变量; 带有 Helm 路径、 默认值和允许值的完整列表在“您自己的服务器: 配置引用 ” 中 。 本章显示每个安装方法(Docker Compose, docker run,Helm, aJSON文件和系统d)的键放在何处,如何应用和验证一个变化,并工作实例:共享注释和团队,与Entra ID和 Active Directory的签名,切换限制执行,提高配额.
 
@@ -3098,7 +3087,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show -
 
 <a name="server-enterprise"></a>
 
-## 67. 您自己的服务器: 公司登录和共享便条
+## 66. 您自己的服务器: 公司登录和共享便条
 
 由于服务器0.2.0(protocol 1.9),服务器可以在企业模式下运行:账户签名只能通过OpenID Connection IdP或Active Directory / LDAP进行. 它是开源服务器的一部分,没有单独的构建或许可证. 加密、金库、设备、共享和团队(服务器0.2.1)在两种模式中都起作用。
 
@@ -3186,7 +3175,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 
 <a name="server-idp"></a>
 
-## 68. 自己的服务器:公司注册食谱
+## 67. 自己的服务器:公司注册食谱
 
 完整的企业-模式指南:服务器需要的来自IDP,微软Entra ID,AD FS 2016+,Keycloak,Google Workspace,Okta和任何OIDC提供商,LDAPS或STARTLS的Active Directory,账号在初始登录时连接,命令,部署,故障排除表和切换回标准登录. 在示例中,服务器是https://sync.acme.com,角括号标记了自己的值;只将秘密保存在文件和机密中.
 
@@ -3722,7 +3711,7 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 
 <a name="server-config"></a>
 
-## 69. 您自己的服务器: 特性、 旗帜和限制
+## 68. 您自己的服务器: 特性、 旗帜和限制
 
 您自己的服务器功能被打开了 CCQQ 变量 。 使用 Docker 编译它们进入私人服务器. env(用于变量组成. yaml lists) 或单独编译. override. yaml; 由 Helm 输入您值文件的配置、 认证和邮件块;没有容器进入服务环境或一个私人文件JSON --config ) 。 下面的值是服务器默认值 。
 
@@ -3892,7 +3881,7 @@ extraEnv:
 
 <a name="server-reference"></a>
 
-## 70. 您自己的服务器: 配置引用
+## 69. 您自己的服务器: 配置引用
 
 每个同步服务器参数:每个 CCQQ 密钥及其 Helm 路径,默认,允许值, 密旗和目的, 分组为源引用; 配置源的顺序和启动检查;所有 18 请求限制和管理员命令 。 每次发布时都会对照服务器代码检查引用. 将每种安装方法的密钥放置在“自己的服务器:按方法安装和参数”中。
 
@@ -4313,7 +4302,7 @@ admin... ` or ` kubectl 执行部署/ -- -- -- /usr/local/bin/consocrypt-server 
 
 <a name="server-maintenance"></a>
 
-## 71. 您的服务器: 备份、 升级和命令
+## 70. 您的服务器: 备份、 升级和命令
 
 所有恒定服务器数据都存在PostgreSQL . 数据库备份加上私人配置是恢复需要的。 管理员命令管理账户和会话,但绝不允许访问金库内容.
 

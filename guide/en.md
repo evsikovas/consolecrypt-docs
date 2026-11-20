@@ -41,7 +41,6 @@ Step-by-step instructions with screenshots of the app and demonstration data. Th
 - [Notes, tasks and reminders](#notes)
 - [Ansible automation](#automation)
 - [Terminal Only](#terminal-only)
-- [Server information in SSH](#ssh-server-info)
 - [Kubernetes: connections and access](#kubernetes-connections)
 - [Kubernetes: resources and changes](#kubernetes-resources)
 - [Kubernetes: logs, shell and tunnels](#kubernetes-logs-shell)
@@ -1312,19 +1311,9 @@ Open a separate window with a local shell and put the tabs on the left or at the
 
 2. Choose + or press Ctrl+K (⌘K on macOS) to open the palette and select an installed shell. The terminal toolbar controls tab placement.
 
-<a name="ssh-server-info"></a>
-
-## 31. Server information in SSH
-
-Connect over SSH and open the information panel on the right. It shows the active connection and available CPU, memory, disk and network metrics.
-
-> **Keep in mind**
->
-> Available metrics depend on the host operating system and commands.
-
 <a name="teams"></a>
 
-## 32. Teams
+## 31. Teams
 
 A team is a vault shared by several accounts on the same server. All members see its hosts, groups, credentials and snippets; roles decide who may change them. Team names, settings and resources are end-to-end encrypted: the server only sees who is a member. Teams are available in a synced profile on server 0.2.1 or later (public sync.consolecrypt.dev supports them); a local profile has no Teams section.
 
@@ -1415,7 +1404,7 @@ The “Ask before running risky commands” policy: even a harmless snippet on a
 
 <a name="sharing-start"></a>
 
-## 33. Sharing: getting started
+## 32. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -1463,7 +1452,7 @@ The one-time list of secret recipients worth verifying and the “Owner not veri
 
 <a name="sharing-items"></a>
 
-## 34. Shared hosts, groups and secrets
+## 33. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -1489,7 +1478,7 @@ The separate secret-publishing dialog: the value is masked and consent has not b
 
 <a name="databases-sharing"></a>
 
-## 35. Shared database connections
+## 34. Shared database connections
 
 A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden. On your own server the CC\_SHARED\_DB\_CONNECTIONS\_ENABLED flag turns it on (see “Your own server: features, flags and limits”).
 
@@ -1523,7 +1512,7 @@ Sharing a connection: what the colleague receives; the route is not shared, and 
 
 <a name="shared-notes"></a>
 
-## 36. Shared notes on shared objects
+## 35. Shared notes on shared objects
 
 A shared host, database connection or Kubernetes context has shared notes that every member sees. This needs sync server 0.2.0 or later with shared notes enabled by the administrator (CC\_SHARED\_NOTES\_ENABLED). An object holds up to 500 notes of up to 288 KiB each, encrypted.
 
@@ -1547,7 +1536,7 @@ The Shared notes block of a shared host: a member’s note and your own note wit
 
 <a name="sharing-devices"></a>
 
-## 37. A colleague’s new personal devices
+## 36. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -1573,7 +1562,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 38. Revocation, queues and trust recovery
+## 37. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -1605,7 +1594,7 @@ Recently deleted: shared items can be restored for 30 days.
 
 <a name="settings-overview"></a>
 
-## 39. Settings: what is where
+## 38. Settings: what is where
 
 Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page of cards; some cards appear only where the feature is available. Appearance, terminal, shortcut and editor preferences stay on the device, while vault data lives in the encrypted profile.
 
@@ -1643,7 +1632,7 @@ Security and AI providers: clipboard clearing, local and remote providers, defau
 
 <a name="cli"></a>
 
-## 40. Command line: consolecrypt-cli
+## 39. Command line: consolecrypt-cli
 
 consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macOS, Windows and Linux installers and works with the same profiles as the app.
 
@@ -1665,7 +1654,7 @@ consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macO
 
 <a name="appearance"></a>
 
-## 41. Colors, text size and glass effects
+## 40. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -1689,7 +1678,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 42. Right panel: bubbles or one workspace
+## 41. Right panel: bubbles or one workspace
 
 Snippets, notes, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -1715,7 +1704,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 43. Screenshots, screen protection and clipboard
+## 42. Screenshots, screen protection and clipboard
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device. Copied secrets stay out of clipboard history and are removed after a timeout.
 
@@ -1756,7 +1745,7 @@ Windows: “Hide window from screen capture” — Never, While secrets are show
 
 <a name="backups"></a>
 
-## 44. Backups and restore
+## 43. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -1780,7 +1769,7 @@ Restoring from the welcome screen: a .ccbackup file opens into a new local profi
 
 <a name="about"></a>
 
-## 45. Version, author and licenses
+## 44. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -1798,7 +1787,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 46. Client updates
+## 45. Client updates
 
 On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.14), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
@@ -1830,7 +1819,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 47. Account: password, disconnecting and the website account
+## 46. Account: password, disconnecting and the website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -1858,7 +1847,7 @@ Settings: profiles, “Account &amp; sync” with the account actions, and the v
 
 <a name="kubernetes-connections"></a>
 
-## 48. Kubernetes: connections and access
+## 47. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -1892,7 +1881,7 @@ kubeconfig import: contexts of a demo file, their authentication, the Production
 
 <a name="kubernetes-resources"></a>
 
-## 49. Kubernetes: resources and changes
+## 48. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -1932,7 +1921,7 @@ Rollout history: two Deployment revisions compared field by field.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 50. Kubernetes: logs, shell and tunnels
+## 49. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -1978,7 +1967,7 @@ A Pod port forward: the address on this device and the list of active forwards o
 
 <a name="kubernetes-gitops"></a>
 
-## 51. Kubernetes: GitOps and problems
+## 50. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -2010,7 +1999,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 52. Kubernetes: Helm
+## 51. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -2038,7 +2027,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 53. Kubernetes: context terminal and AI
+## 52. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -2064,7 +2053,7 @@ AI in Kubernetes: a question about a failing Pod, the logs and events it read an
 
 <a name="databases-connections"></a>
 
-## 54. Databases: connections and routes
+## 53. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis, MongoDB, Cassandra and ScyllaDB, and with SQLite files. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -2108,7 +2097,7 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 55. Databases: SQLite, Cassandra and ScyllaDB
+## 54. Databases: SQLite, Cassandra and ScyllaDB
 
 SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2. From 0.9.14, Cassandra / ScyllaDB and SQLite-through-a-host connections can move into the vault, while an SQLite file on this computer stays here.
 
@@ -2146,7 +2135,7 @@ Cassandra / ScyllaDB: contact points, the local data center, consistency levels 
 
 <a name="databases-queries"></a>
 
-## 56. Databases: structure, queries and results
+## 55. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -2234,7 +2223,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 57. Databases: production, changes, history and export
+## 56. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -2276,7 +2265,7 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 58. Databases: writing to production
+## 57. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
@@ -2302,7 +2291,7 @@ An open write window: the red badge with its end time, the countdown and the Loc
 
 <a name="databases-designer"></a>
 
-## 59. Databases: table designer and CSV import
+## 58. Databases: table designer and CSV import
 
 Create or change a table without writing SQL, and load CSV data into a table. In both cases nothing runs on the server until you confirm.
 
@@ -2350,7 +2339,7 @@ Step 3 of 5: file columns mapped by name, manager\_note skipped, and total value
 
 <a name="databases-ai"></a>
 
-## 60. Databases: AI assistant
+## 59. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -2372,7 +2361,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 61. Docker: hosts and containers
+## 60. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -2400,7 +2389,7 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 62. Docker: details, logs, volumes and forwards
+## 61. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
@@ -2440,7 +2429,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 63. Docker: compose projects
+## 62. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -2470,7 +2459,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 64. Your own server: Kubernetes
+## 63. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -2568,7 +2557,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 65. Your own server: Docker Compose
+## 64. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
@@ -2641,7 +2630,7 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-settings"></a>
 
-## 66. Your own server: installation and parameters by method
+## 65. Your own server: installation and parameters by method
 
 Every server setting is a CC\_\* variable; the full list with Helm paths, defaults and allowed values is in “Your own server: configuration reference”. This chapter shows where to put a key for each installation method (Docker Compose, docker run, Helm, a JSON file and systemd), how to apply and verify a change, and worked examples: shared notes and teams, sign-in with Entra ID and Active Directory, switching limits to enforce, raising quotas.
 
@@ -3098,7 +3087,7 @@ accounts.
 
 <a name="server-enterprise"></a>
 
-## 67. Your own server: corporate sign-in and shared notes
+## 66. Your own server: corporate sign-in and shared notes
 
 Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices, sharing and teams (server 0.2.1) work in both modes.
 
@@ -3186,7 +3175,7 @@ How the client sees a server in enterprise mode with Active Directory.
 
 <a name="server-idp"></a>
 
-## 68. Your own server: corporate sign-in recipes
+## 67. Your own server: corporate sign-in recipes
 
 The complete enterprise-mode guide: what the server needs from the IdP, step-by-step recipes for Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta and any OIDC provider, Active Directory over LDAPS or STARTTLS, account linking at first sign-in, commands, deployment, a troubleshooting table and switching back to standard sign-in. In the examples the server is https://sync.acme.com and angle brackets mark your own values; keep secrets only in files and Secrets.
 
@@ -3722,7 +3711,7 @@ the table in the Russian section and [PROTOCOL_CHANGELOG.md](https://github.com/
 
 <a name="server-config"></a>
 
-## 69. Your own server: features, flags and limits
+## 68. Your own server: features, flags and limits
 
 Your own server’s features are turned on with CC\_\* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.
 
@@ -3892,7 +3881,7 @@ The client shows Teams only when the server supports them.
 
 <a name="server-reference"></a>
 
-## 70. Your own server: configuration reference
+## 69. Your own server: configuration reference
 
 Every sync server parameter: each CC\_\* key with its Helm path, default, allowed values, secret flag and purpose, grouped as in the source reference; the order of configuration sources and start-up checks; all 18 request limits and the admin commands. The reference is checked against the server code at every release. Where to put a key for each installation method is in “Your own server: installation and parameters by method”.
 
@@ -4313,7 +4302,7 @@ admin …` or `kubectl exec deployment/… -- /usr/local/bin/consolecrypt-server
 
 <a name="server-maintenance"></a>
 
-## 71. Your own server: backups, upgrades and commands
+## 70. Your own server: backups, upgrades and commands
 
 All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
 
