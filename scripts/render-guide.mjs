@@ -1,4 +1,4 @@
-// Render the public bilingual guide as GitHub-readable Markdown.
+// Render the public guide as GitHub-readable Markdown.
 // Usage: node render-guide.mjs <vetted-site-checkout> <docs-checkout> [--check]
 // Reads only the vetted guide source and its manifest-listed PNGs. No network,
 // shell commands, CI configuration or repository operations are performed.
@@ -9,6 +9,21 @@ import path from 'node:path';
 
 const args = process.argv.slice(2);
 const checkOnly = args.includes('--check');
+const languages = {
+  ru: { name: 'Русский', title: 'Руководство ConsoleCrypt', website: 'Сайт', contents: 'Оглавление',
+    chapter: 'В этой главе', note: 'Обратите внимание',
+    intro: 'Пошаговое руководство со снимками приложения и демонстрационными данными. Версии снимков указаны в [манифесте](../assets/guide/manifest.json).' },
+  en: { name: 'English', title: 'ConsoleCrypt guide', website: 'Website', contents: 'Contents',
+    chapter: 'In this chapter', note: 'Keep in mind',
+    intro: 'Step-by-step instructions with screenshots of the app and demonstration data. The [manifest](../assets/guide/manifest.json) records the source versions.' },
+  es: { name: 'Español', title: 'Guía de ConsoleCrypt', website: 'Sitio web', contents: 'Índice',
+    chapter: 'En este capítulo', note: 'Ten en cuenta',
+    intro: 'Instrucciones paso a paso con capturas de la aplicación y datos de demostración. Algunas capturas históricas se muestran en inglés. Consulta las versiones en el [manifiesto](../assets/guide/manifest.json).' },
+  zh: { name: '简体中文', title: 'ConsoleCrypt 使用指南', website: '网站', contents: '目录',
+    chapter: '本章内容', note: '注意',
+    intro: '分步操作指南附有真实界面截图，截图使用演示数据。部分历史截图以英语显示。版本详见[清单](../assets/guide/manifest.json)。' },
+};
+const locales = Object.keys(languages);
 const paths = args.filter(arg => arg !== '--check');
 assert.equal(paths.length, 2,
   'Usage: node render-guide.mjs <vetted-site-checkout> <docs-checkout> [--check]');
@@ -38,7 +53,7 @@ assert(Array.isArray(manifest.images));
 
 function paired(value, label) {
   assert(value && typeof value === 'object', `Missing translated value: ${label}`);
-  for (const locale of ['ru', 'en']) {
+  for (const locale of locales) {
     assert(typeof value[locale] === 'string' && value[locale].trim(),
       `Missing ${locale}: ${label}`);
   }
@@ -92,7 +107,7 @@ for (const section of guideSections) {
     partIds.add(part.id);
     paired(part.title, `${section.id}.${part.id}.title`);
     paired(part.body, `${section.id}.${part.id}.body`);
-    for (const locale of ['ru', 'en']) {
+    for (const locale of locales) {
       // Part bodies are Markdown generated from the server documentation; raw
       // HTML is not part of that subset.
       assert(!/<\/?[a-z][^>]*>/i.test(part.body[locale].replace(/```[\s\S]*?```|`[^`\n]+`/g, '')),
@@ -106,7 +121,8 @@ for (const section of guideSections) {
   for (const image of [section.image, ...(section.images ?? [])].filter(Boolean)) {
     assert.match(image.name, /^[a-z][a-z0-9-]+$/);
     paired(image.caption, `${section.id}.image.caption`);
-    for (const locale of ['ru', 'en']) {
+    for (const locale of image.locales ?? ['ru', 'en']) {
+      assert(locales.includes(locale), `Unsupported screenshot locale: ${locale}`);
       const name = `${image.name}-${locale}`;
       const previous = requiredImages.get(name);
       if (previous) {
@@ -154,11 +170,11 @@ function prose(value) {
 }
 const text = (value, locale) => prose(value[locale]);
 const tableText = (value, locale) => text(value, locale).replace(/\r?\n/g, '<br>');
-function linkTarget(href) {
+function linkTarget(href, locale) {
   const local = href.match(/^https:\/\/consolecrypt\.dev\/guide#([a-z0-9-]+)$/);
   if (local) return `#${local[1]}`;
   const prefix = 'https://github.com/evsikovas/consolecrypt-docs/blob/main/docs/public/';
-  return href.startsWith(prefix) ? `../docs/public/${href.slice(prefix.length)}` : href;
+  return href.startsWith(prefix) ? `../docs/public/${locale === 'ru' ? '' : locale + '/'}${href.slice(prefix.length)}` : href;
 }
 function fence(code) {
   const runs = code.match(/`+/g) ?? [];
@@ -166,16 +182,14 @@ function fence(code) {
   return `${ticks}text\n${code}${code.endsWith('\n') ? '' : '\n'}${ticks}`;
 }
 
-for (const locale of ['ru', 'en']) {
-  const title = locale === 'ru' ? 'Руководство ConsoleCrypt' : 'ConsoleCrypt guide';
-  const other = locale === 'ru' ? '[English](en.md)' : '[Русский](ru.md)';
+for (const locale of locales) {
+  const language = languages[locale];
+  const other = locales.filter(id => id !== locale).map(id => `[${languages[id].name}](${id}.md)`).join(' · ');
   const out = [
-    `# ${title}`, '',
-    `${other} · [README](../README.md) · [${locale === 'ru' ? 'Сайт' : 'Website'}](https://consolecrypt.dev/guide?lang=${locale})`, '',
-    locale === 'ru'
-      ? 'Пошаговое руководство с реальным интерфейсом приложения и демонстрационными данными. Снимки не содержат пользовательских секретов. Версии исходных снимков указаны в [манифесте](../assets/guide/manifest.json).'
-      : 'Step-by-step instructions with the real application interface and demonstration data. Screenshots contain no user secrets. Their source versions are recorded in the [manifest](../assets/guide/manifest.json).', '',
-    `## ${locale === 'ru' ? 'Оглавление' : 'Contents'}`, '',
+    `# ${language.title}`, '',
+    `${other} · [README](../README.md) · [${language.website}](https://consolecrypt.dev/guide?lang=${locale})`, '',
+    language.intro, '',
+    `## ${language.contents}`, '',
   ];
   for (const group of guideGroups) {
     out.push(`**${text(group.title, locale)}**`, '');
@@ -202,7 +216,7 @@ for (const locale of ['ru', 'en']) {
       out.push(`### ${text(block.title, locale)}`, '', text(block.caption, locale), '', fence(block.code), '');
     }
     if (section.parts?.length) {
-      out.push(`**${locale === 'ru' ? 'В этой главе' : 'In this chapter'}:** ${section.parts
+      out.push(`**${language.chapter}** ${section.parts
         .map(part => `[${text(part.title, locale)}](#${section.id}-${part.id})`).join(' · ')}`, '');
       for (const part of section.parts) {
         out.push(`<a id="${section.id}-${part.id}"></a>`, '', `### ${text(part.title, locale)}`, '',
@@ -210,14 +224,16 @@ for (const locale of ['ru', 'en']) {
       }
     }
     for (const link of section.links ?? []) {
-      out.push(`[${text(link.text, locale)}](${linkTarget(link.href)})`, '');
+      out.push(`[${text(link.text, locale)}](${linkTarget(link.href, locale)})`, '');
     }
     if (section.note) {
-      out.push(`> **${locale === 'ru' ? 'Обратите внимание' : 'Keep in mind'}**`, '>',
+      out.push(`> **${language.note}**`, '>',
         `> ${text(section.note, locale).replace(/\r?\n/g, '\n> ')}`, '');
     }
     for (const image of [section.image, ...(section.images ?? [])].filter(Boolean)) {
-      const src = `../assets/guide/${image.name}-${locale}.png`;
+      const available = image.locales ?? ['ru', 'en'];
+      const selected = available.includes(locale) ? locale : available.includes('en') ? 'en' : available[0];
+      const src = `../assets/guide/${image.name}-${selected}.png`;
       out.push(`![${text(image.caption, locale)}](${src})`, '', text(image.caption, locale), '');
     }
   }

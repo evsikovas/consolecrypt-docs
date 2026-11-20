@@ -57,9 +57,9 @@ UDP 443 используется Caddy для HTTP/3; при его блокир
 Caddy. Постоянные данные лежат в Docker volumes. Настройте резервные копии
 вне этого узла и автозапуск Docker после перезагрузки.
 
-Файлы: [compose.yaml](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/compose.yaml),
-[Caddyfile](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/Caddyfile),
-[справочник переменных](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/.env.example).
+Файлы: [compose.yaml](../../server/deploy/docker/compose.yaml),
+[Caddyfile](../../server/deploy/docker/Caddyfile),
+[справочник переменных](../../server/deploy/docker/.env.example).
 Старый `server/docker-compose.yml` остаётся отдельным вариантом для разработки
 с пересборкой исходников и записью писем в файлы.
 
@@ -69,7 +69,7 @@ Caddy. Постоянные данные лежат в Docker volumes. Наст�
 `server.env` версию сервера примера, например:
 
 ```text
-CC_SERVER_VERSION=0.2.5
+CC_SERVER_VERSION=0.2.8
 ```
 
 Compose берёт образ `ghcr.io/evsikovas/consolecrypt-server:$CC_SERVER_VERSION`.
@@ -308,7 +308,7 @@ cc_compose() {
 использует случайные loopback-порты и удаляет только свои контейнеры и volumes:
 
 ```sh
-export CC_SERVER_VERSION=0.2.5   # версия примера (server/deploy/docker/.env.example)
+export CC_SERVER_VERSION=0.2.8   # версия примера (server/deploy/docker/.env.example)
 docker pull "ghcr.io/evsikovas/consolecrypt-server:$CC_SERVER_VERSION"
 docker pull postgres:16-alpine
 docker pull caddy:2-alpine
@@ -340,12 +340,12 @@ SMTP-почты — эти проверки нужно выполнить для
 git clone --branch main --single-branch https://github.com/evsikovas/consolecrypt-server.git
 cd consolecrypt-server
 helm show chart server/helm/consolecrypt-server
-export CC_SERVER_VERSION=0.2.5   # = appVersion из вывода выше
+export CC_SERVER_VERSION=0.2.8   # = appVersion из вывода выше
 ```
 
 Для воспроизводимой установки закрепите `image.digest` из `server-image.json`
 GitHub Release этой версии (см. values ниже); digest имеет приоритет над тегом.
-Справочник параметров: [values.yaml](https://github.com/evsikovas/consolecrypt-server/blob/main/server/helm/consolecrypt-server/values.yaml).
+Справочник параметров: [values.yaml](../../server/helm/consolecrypt-server/values.yaml).
 
 Образ можно предварительно проверить Docker-командами:
 
@@ -814,7 +814,7 @@ cc_kubectl exec deployment/consolecrypt -- \
 PostgreSQL требует отдельного плана переноса данных.
 
 Все параметры запуска: [CONFIGURATION.md](CONFIGURATION.md) (пример файла окружения —
-[server/.env.example](https://github.com/evsikovas/consolecrypt-server/blob/main/server/.env.example)).
+[server/.env.example](../../server/.env.example)).
 
 ### Общие подключения Kubernetes
 
@@ -1245,9 +1245,9 @@ cc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server ad
 пользователь службы. Неизвестный или повторённый ключ, неверный JSON или
 недоступный файл останавливают запуск без вывода содержимого. `CC_LOG`,
 `RUST_LOG` и `OTEL_*` в файл не принимаются — задайте их в окружении службы.
-Пример — [server.example.json](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/server.example.json),
-unit-файл — [consolecrypt-server.service](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/consolecrypt-server.service),
-подробности — [native/README.md](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md).
+Пример — [server.example.json](../../server/deploy/native/server.example.json),
+unit-файл — [consolecrypt-server.service](../../server/deploy/native/consolecrypt-server.service),
+подробности — [native/README.md](../../server/deploy/native/README.md).
 
 ```json
 {
@@ -1791,9 +1791,9 @@ key, invalid JSON or an unreadable file stops the start without printing the
 content. `CC_LOG`, `RUST_LOG` and `OTEL_*` are not accepted in the file — set them
 in the service environment with a drop-in (`sudo systemctl edit
 consolecrypt-server`, `[Service]` / `Environment=CC_LOG=info,sqlx=warn`). See
-[server.example.json](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/server.example.json), the
-[systemd unit](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/consolecrypt-server.service) and the
-[native README](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md). After editing:
+[server.example.json](../../server/deploy/native/server.example.json), the
+[systemd unit](../../server/deploy/native/consolecrypt-server.service) and the
+[native README](../../server/deploy/native/README.md). After editing:
 `sudo systemctl restart consolecrypt-server`, then
 `sudo -u consolecrypt consolecrypt-server --config /etc/consolecrypt/server.json healthcheck`.
 If neither `CC_DATABASE_PASSWORD` nor the URL holds the database password, the
