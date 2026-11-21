@@ -12,7 +12,7 @@
 
 [Что нового в ConsoleCrypt 1.2.0 · Release notes · Novedades · 更新说明](docs/public/RELEASE_1_2_0.md)
 
-Сборки и проверки 1.2.0 · [релизный CI](https://github.com/evsikovas/consolecrypt-client/actions/runs/44747616491).
+Сборки и проверки 1.2.0 · [релизный CI](https://github.com/evsikovas/consolecrypt-client/actions/runs/44813783192).
 
 В руководстве 70 глав на четырёх языках и 438 скриншотов: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
@@ -46,27 +46,27 @@
 - [Исправление комплекта восстановления на телефоне](docs/public/RELEASE_0_5_6.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 1.1.3](docs/public/RELEASE_1_1_3.md), [версия 1.1.0](docs/public/RELEASE_1_1_0.md), [версия 1.0.6](docs/public/RELEASE_1_0_6.md), [версия 1.0.4](docs/public/RELEASE_1_0_4.md), [версия 1.0.1](docs/public/RELEASE_1_0_1.md), [версия 1.0.0](docs/public/RELEASE_1_0_0.md), [версия 0.9.15](docs/public/RELEASE_0_9_15.md), [версия 0.9.14](docs/public/RELEASE_0_9_14.md), [версия 0.9.2](docs/public/RELEASE_0_9_2.md), [версия 0.9.1](docs/public/RELEASE_0_9_1.md), [версия 0.8.6](docs/public/RELEASE_0_8_6.md), [версия 0.8.5](docs/public/RELEASE_0_8_5.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
+- [Обновления](docs/public/UPDATES.md), [версия 1.2.0](docs/public/RELEASE_1_2_0.md), [версия 1.1.3](docs/public/RELEASE_1_1_3.md), [версия 1.1.0](docs/public/RELEASE_1_1_0.md), [версия 1.0.6](docs/public/RELEASE_1_0_6.md), [версия 1.0.4](docs/public/RELEASE_1_0_4.md), [версия 1.0.1](docs/public/RELEASE_1_0_1.md), [версия 1.0.0](docs/public/RELEASE_1_0_0.md), [версия 0.9.15](docs/public/RELEASE_0_9_15.md), [версия 0.9.14](docs/public/RELEASE_0_9_14.md), [версия 0.9.2](docs/public/RELEASE_0_9_2.md), [версия 0.9.1](docs/public/RELEASE_0_9_1.md), [версия 0.8.6](docs/public/RELEASE_0_8_6.md), [версия 0.8.5](docs/public/RELEASE_0_8_5.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).
 
-## Готовые сборки 1.1.3
+## Готовые сборки 1.2.0
 
-9 файлов выпущены из одного тега [v1.1.3](https://github.com/evsikovas/consolecrypt-client/releases/tag/v1.1.3).
-Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/SHA256SUMS-1.1.3.txt).
+Девять файлов выпущены из одного тега [v1.2.0](https://github.com/evsikovas/consolecrypt-client/releases/tag/v1.2.0).
+Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/SHA256SUMS-1.2.0.txt).
 
 | Платформа | Сборка | Файл | Размер, байт |
 | --- | --- | --- | ---: |
-| macOS, Apple Silicon и Intel | 1.1.3+71011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71011-macos-universal.dmg) | 236 079 036 |
-| Windows x64 | 1.1.3+71012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71012-windows-x64-setup.exe) | 53 416 760 |
-| Windows x64 | 1.1.3+71012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71012-windows-x64.zip) | 79 841 448 |
-| Linux x64 | 1.1.3+71013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71013-linux-x64.deb) | 61 523 208 |
-| Linux x64 | 1.1.3+71013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71013-linux-x64.rpm) | 84 745 838 |
-| Android ARM64 | 1.1.3+71014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71014-android-arm64.apk) | 131 827 847 |
-| iOS Simulator на Mac (не iPhone) | 1.1.3+71015 | [Simulator ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71015-ios-simulator-universal.zip) | 246 905 114 |
-| Android ARM64 · RuStore | 1.1.3+71014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71014-rustore-arm64.apk) | 131 696 207 |
-| Android ARM64 · RuStore | 1.1.3+71014 | [AAB](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.1.3/ConsoleCrypt-1.1.3%2B71014-rustore-arm64.aab) | 113 913 434 |
+| macOS, Apple Silicon и Intel | 1.2.0+82011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82011-macos-universal.dmg) | 253 457 305 |
+| Windows x64 | 1.2.0+82012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82012-windows-x64-setup.exe) | 59 718 580 |
+| Windows x64 | 1.2.0+82012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82012-windows-x64.zip) | 89 190 945 |
+| Linux x64 | 1.2.0+82023 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82023-linux-x64.deb) | 68 402 998 |
+| Linux x64 | 1.2.0+82023 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82023-linux-x64.rpm) | 93 809 118 |
+| Android ARM64 | 1.2.0+82014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82014-android-arm64.apk) | 151 056 542 |
+| iOS Simulator на Mac (не iPhone) | 1.2.0+82015 | [Simulator ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82015-ios-simulator-universal.zip) | 274 175 356 |
+| Android ARM64 · RuStore | 1.2.0+82014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82014-rustore-arm64.apk) | 150 924 902 |
+| Android ARM64 · RuStore | 1.2.0+82014 | [AAB](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.0/ConsoleCrypt-1.2.0%2B82014-rustore-arm64.aab) | 129 176 564 |
 
 Архив iOS предназначен для Simulator, а не для установки на физический iPhone; [порядок запуска](docs/public/BUILD_IOS.md).
 
