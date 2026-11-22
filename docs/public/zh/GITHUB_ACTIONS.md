@@ -4,8 +4,8 @@
 
 `Client tag release`工作流程只公布一个精确的稳定性`vX.Y.Z`.
 标记其版本匹配`pubspec.yaml`及其承诺属于`main`
-目前`main`的人工发送进行同样的审计、测试和5次
-本地包装工作,作为未公布的候选工作。 其他分支机构的调度
+从当前 `main` 手动运行工作流时，会执行相同的审计、测试和六个打包任务，
+生成未发布的候选版本。从其他分支发起的任务
 在持续跑者收到代码之前被拒绝。 候选人不公布
 发布、签署更新信息或发送通知。 分支推力不建设.
 对持久本地跑者不执行拉动请求代码 。
@@ -23,11 +23,10 @@ Mac; Android保留其现有的签名密钥. `ci-macos-tools.sh`条款.
 iOS 工作可一次性编辑、安装和启动应用程序
 模拟器. 它不需要苹果公司提供资质证书或生产IPA.
 
-土著工作有`contents: read`. 所有5个平台工作都需要在之前完成
-一家主机出版商验证收据并出版七套: macOSDMG,
-WindowsEXE和便携式ZIP,LinuxDEB和RPM,AndroidAPK和通用iOS
-模拟器ZIP,带有SHA-256的校验和. 它首先创建草稿,然后上传
-已关闭的资产集,然后才公布。 只有出版商收到
+原生构建任务使用 `contents: read` 权限。五个平台的构建和独立的 RuStore 签名任务成功后，
+发布任务会核对构建结果，将九个文件上传到草稿。这些文件包括 macOS DMG、Windows 安装程序和便携 ZIP、
+Linux DEB 和 RPM、Android 直接下载版 APK、Mac 上 iOS Simulator 使用的通用 ZIP，以及 RuStore 的 APK 和 AAB。
+上传 SHA-256 校验清单后才会公开发布。只有发布任务具有
 `contents: write`和 `actions: write` (中文(简体) ). 它要求`update-feeds.yml`
 `main`出版后. 网站和服务器部署有独立的标签
 工作流程。 模拟器档案是为Mac上的Xcode,而不是物理的iPhone.
@@ -92,12 +91,11 @@ Windows 原生`FILEVERSION`和Inno Setup版本组件仅限于
 - 可选寄存器变量`CC_CODESIGN_IDENTITY` 选择一个已存在的
   macOS 键链以姓名或SHA-1签名身份. 没有它, 建筑保留
   之前的专制行为. 开发者ID发行需要公证.
-- 所需工作iOS生成一个模拟器ZIP,要求不提供
-  iPhone发行范围在1.0.0发行范围之外.
+- iOS 任务生成可在 Mac 上的 Xcode Simulator 中运行的通用 ZIP。
+  在实体 iPhone 上安装需要单独签名和分发。
 - 更新签名密钥`UPDATE_SIGNING_KEY`和`LINUX_UPDATE_SIGNING_KEY`
   对于单独的Linux饲料仍限于单独的更新饲料).
-  工作流程。 土著建筑工种得不到生产证书或更新
-  签名密钥。 见[RELEASING.md](RELEASING.md)和
+  工作流程。 RuStore 打包任务使用应用签名密钥和上传密钥分别签署 APK 和 AAB。 见[RELEASING.md](RELEASING.md)和
   [UPDATE_FEED_PUBLISHER.md](UPDATE_FEED_PUBLISHER.md) (中文(简体) ).
 - 主办单位(`announce`个)在出版后运作。 每个频道开始
   当所有者已经配置它:`TELEGRAM_BOT_TOKEN`+`TELEGRAM_CHAT_ID`
@@ -107,8 +105,8 @@ Windows 原生`FILEVERSION`和Inno Setup版本组件仅限于
   俄羅斯音符與控制台crypt.dev下载链接. 脚本拒绝发布
   在发放工作之外;当地使用`--dry-run`
 
-在发布前, `announce` 等待最多30分钟的公众下载页面
-以显示此版本,并链接每个已核实的软件包,包括模拟器。
+发送公告前，`announce` 最多等待 30 分钟，确认下载页面显示新版本、七个直接下载链接
+（含模拟器 ZIP）以及 RuStore 官方应用页面的链接。
 网站部署使用其单独的标签工作流程. 暂停每个时间
 通知频道;它不删除已发布的客户端软件包。
 手册`Encrypted client compatibility`工作流程还运行加密/同步
@@ -212,10 +210,9 @@ Windows路口试验继续进行(Windows路),在其他地方被明确跳过。
 
 `main`存储已核实的源底. 要发布, 提升版本, 添加
 释放笔记,发送承诺`main`,然后标注`vX.Y.Z`以实施这一承诺。
-只有标记触发了建筑。 在成功组装所有工作流程平台后
-发布全文GitHub 发布并发布签名带子的更新.
-包Android与前一个跑车键签定。 iOS在CI中不会
-(大会延迟;仅本地模拟预览)
+从 `main` 手动运行可生成候选版本。推送稳定版标签后，所有打包任务通过时，CI 会发布 GitHub Release 并更新签名订阅源。
+Android 直接下载版 APK 使用现有的运行器密钥签名。RuStore APK 和 AAB 使用应用签名密钥和上传密钥。
+iOS 预览版会在 Mac 上的 Xcode Simulator 中接受测试。
 
 任务`announce`公布后,
 由所有者设立:项目的Telegram频道`TELEGRAM_BOT_TOKEN`

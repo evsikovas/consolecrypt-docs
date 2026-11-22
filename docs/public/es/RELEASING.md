@@ -35,16 +35,16 @@ No añadir `dist/` , fichas, Android llavero o claves de firma privada.
    git push origin vX.Y.Z
    ```
 
-4. **Acciones → Nota de la etiqueta del cliente** comprobará la versión emparejando y el origen
-   a commit from `main` and dependentncy verification `cargo deny` , `osv-scanner` ; véase
-   [BUILDING.md](../BUILDING.md#проверка-зависимостей) ), luego recoger macOS .
-   Windows , Linux y Android iOS no está yendo - las asambleas se posponen). Antes de la etiqueta, cierre el número abierto
-   “Dependencias vulnerables”: Actualizar el paquete o emitir una excepción con una fecha
-   revisión. Localmente: `python3 client/scripts/dependency-audit.py check`.
+4. **Actions → Client tag release** comprueba la versión, el commit en `main` y la auditoría de
+   dependencias (`cargo deny`, `osv-scanner`). Consulte [BUILDING.md](../BUILDING.md#проверка-зависимостей).
+   Prepara las compilaciones de macOS, Windows, Linux, Android y iOS Simulator. Una tarea aparte genera los paquetes de RuStore.
+   Antes de crear la etiqueta, resuelva la incidencia de dependencias o documente una excepción con fecha de revisión.
+   Para ejecutar la auditoría localmente, use `python3 client/scripts/dependency-audit.py check`.
    Los números de construcción se emiten por separado a cada plataforma; todos conservan uno `X.Y.Z` .
-5. Después del éxito de todas las plataformas, el editor comprobará `ConsoleCrypt.version` .
-   seis archivos de instalación (DMG, EXE, ZIP, DEB, RPM, APK) y
-   `SHA256SUMS-X.Y.Z.txt` los subirá a redactar y publicar GitHub Release.
+5. Cuando terminan todas las tareas, el publicador comprueba `ConsoleCrypt.version` y adjunta nueve archivos
+   al borrador. Incluyen el DMG de macOS, instalador y ZIP portátil de Windows, DEB y RPM de Linux, APK directo de Android,
+   ZIP universal de iOS Simulator para Mac y los paquetes APK y AAB de RuStore. Sube
+   `SHA256SUMS-X.Y.Z.txt` antes de publicar la versión en GitHub.
    La liberación existente no está sobrescrito. Si la descarga se termina después de la creación
    borrador, compruébalo manualmente antes de reiniciar; archivos publicados
    y las etiquetas permanecen sin cambios, las correcciones se emiten con una nueva versión.

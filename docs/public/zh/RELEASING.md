@@ -35,16 +35,16 @@
    git push origin vX.Y.Z
    ```
 
-4. ** 动作 → 客户端标签发布** 将检查版本匹配和来源
-   a来自`main`和依赖性核查`cargo deny`,`osv-scanner`的承付款;见
-   [BUILDING.md](../BUILDING.md#проверка-зависимостей)),然后收集macOS.
-   Windows,Linux和AndroidiOS不会去 - 集会被推迟). 标记前, 关闭打开的 。
-   “脆弱依赖性”:更新软件包或发布例外,但日期除外
-   订正本。 地方志: `python3 client/scripts/dependency-audit.py check` (中文(简体) ).
+4. **Actions → Client tag release** 会检查版本、`main` 上的提交以及依赖项审计结果
+   （`cargo deny`、`osv-scanner`）。参见 [BUILDING.md](../BUILDING.md#проверка-зависимостей)。
+   CI 构建 macOS、Windows、Linux、Android 和 iOS Simulator 版本，并通过独立任务生成 RuStore 软件包。
+   创建标签前，请解决依赖项审计报告的问题，或记录例外情况及复核日期。
+   在本地运行 `python3 client/scripts/dependency-audit.py check` 即可执行审计。
    建筑编号分别发布给每个平台;所有平台都保留一个`X.Y.Z`.
-5. 所有平台成功后,出版商将检查`ConsoleCrypt.version`.
-   6个安装文件(DMG、EXE、ZIP、DEB、RPM、APK)和
-   `SHA256SUMS-X.Y.Z.txt`将上传至起草和出版GitHub发行.
+5. 所有任务通过后，发布任务会核对 `ConsoleCrypt.version`，将九个文件上传到草稿。这些文件包括
+   macOS DMG、Windows 安装程序和便携 ZIP、Linux DEB 和 RPM、Android 直接下载版 APK、
+   适用于 Mac 上 iOS Simulator 的通用 ZIP，以及 RuStore 的 APK 和 AAB。
+   上传 `SHA256SUMS-X.Y.Z.txt` 后发布 GitHub Release。
    现存的发行版本没有被覆盖. 如果创建后下载终止
    草稿,在重新启动前手动检查; 已发布文件
    并且标记不变,更正后印发新的版本。

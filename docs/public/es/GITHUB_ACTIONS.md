@@ -4,8 +4,8 @@ Referencia traducida · [Original en ruso](../GITHUB_ACTIONS.md)
 
 El flujo de trabajo `Client tag release` publica sólo un establo exacto `vX.Y.Z`
 etiqueta cuya versión coincide `pubspec.yaml` y cuyo compromiso pertenece a `main`
-Un envío manual sobre la corriente `main` ejecuta la misma auditoría, pruebas y cinco
-trabajos de embalaje nativos como candidato inédito. Despachos en otras ramas
+Un lanzamiento manual desde `main` ejecuta la misma auditoría, las pruebas y las seis
+tareas de empaquetado para crear una versión candidata. Las ejecuciones desde otras ramas
 son rechazados antes de que los corredores persistentes reciban código. Los candidatos no publican
 lanzamientos, actualizaciones de firmas o anuncios enviados. Los empujes de la rama no construyen.
 Ningún código de solicitud de tiraje ejecuta en corredores nativos persistentes.
@@ -23,11 +23,11 @@ El SDK detonado cuando está ausente. Uno dedicado Mac serializa sus trabajos.
 El trabajo iOS compila, instala y lanza la aplicación en un desechable
 Simulador. No requiere credenciales de provisión de Apple o producir un IPA.
 
-Trabajos nativos tienen `contents: read` . Los cinco puestos de trabajo de plataforma son necesarios antes
-a host editor valida recibos y publica siete paquetes: macOS DMG,
-Windows EXE and portable ZIP, Linux DEB and RPM, Android APK and universal iOS
-Simulador ZIP, con sumas de comprobación SHA-256. Primero crea un borrador, sube el
-Conjunto de activos cerrados y sólo entonces publica. Sólo el editor recibe
+Las tareas de compilación tienen el permiso `contents: read`. Una vez completadas las cinco
+compilaciones de plataforma y la tarea de firma para RuStore, el publicador comprueba los resultados.
+Adjunta nueve archivos al borrador. Incluyen el DMG de macOS, instalador y ZIP portátil de Windows, DEB y RPM
+de Linux, APK directo de Android, ZIP universal para iOS Simulator y los paquetes APK y AAB de RuStore.
+Sube las sumas SHA-256 antes de publicar. Solo el publicador recibe
 `contents: write` y `actions: write` Pide `update-feeds.yml` sobre confianza
 `main` después de la publicación. Sitio web y el despliegue del servidor tienen una etiqueta independiente
 flujos de trabajo. Los archivos Simulator son para Xcode en Mac, no para iPhones físicos.
@@ -92,12 +92,12 @@ en su primer intento; muchos registros pueden alcanzarlo antes. El límite se ap
 - Variable de repositorio opcional `CC_CODESIGN_IDENTITY` selecciona una existente
   macOS llavero firmando identidad por nombre o SHA-1. Sin ella, construye retenimiento
   El comportamiento ad-hoc anterior. La distribución de ID de desarrollador necesita notarización.
-- El trabajo requerido iOS produce un ZIP Simulador y no solicita ninguna provisión
-  La distribución del iPhone está fuera del alcance de liberación 1.0.0.
+- La tarea de iOS genera un ZIP universal para Xcode Simulator en Mac.
+  La distribución para iPhone requiere una firma y un canal de distribución independientes.
 - Las teclas de firma de actualización `UPDATE_SIGNING_KEY` y `LINUX_UPDATE_SIGNING_KEY`
   para la alimentación separada Linux permanecen limitadas a la alimentación de actualización separada)
-  flujo de trabajo. Los trabajos de construcción nativa no reciben credenciales de producción o actualización
-  Firmando las llaves. Véase [RELEASING.md](RELEASING.md) y
+  flujo de trabajo. La tarea de RuStore recibe las claves de firma de la aplicación y de subida
+  que se utilizan para firmar el APK y el AAB. Véase [RELEASING.md](RELEASING.md) y
   [UPDATE_FEED_PUBLISHER.md](UPDATE_FEED_PUBLISHER.md).
 - El trabajo hospedado `announce` funciona después de la publicación. Cada canal comienza
   Cuando el propietario lo haya configurado: `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`
@@ -107,8 +107,8 @@ en su primer intento; muchos registros pueden alcanzarlo antes. El límite se ap
   Notas rusas y enlaces de descarga de consolacrypt.dev. Los scripts se niegan a publicar
   fuera de este trabajo de liberación; uso local `--dry-run`
 
-Antes de publicar, `announce` espera hasta 30 minutos para la página de descarga pública
-para mostrar esta versión y vincular todos los paquetes verificados, incluyendo el Simulator.
+Antes de enviar el anuncio, `announce` espera hasta 30 minutos a que la página muestre la versión,
+los siete enlaces de descarga directa, incluido el ZIP del simulador, y la ficha oficial de RuStore.
 El despliegue del sitio web utiliza su flujo de trabajo de etiquetas separadas. Un tiempo retiene a cada uno
 canal de anuncios; no elimina los paquetes de clientes publicados.
 El flujo de trabajo manual `Encrypted client compatibility` también funciona cripto/sinc
@@ -212,10 +212,10 @@ contenedores de usuario en vivo.
 
 `main` almacena la base fuente verificada. Para liberar, subir la versión, añadir
 notas de liberación, enviar un compromiso a `main` , luego etiqueta `vX.Y.Z` a ese compromiso.
-Sólo la etiqueta activa las construcciones. Después de la exitosa asamblea de todas las plataformas de flujo de trabajo
-Publishes the full GitHub Release and launches an update of the signed tape.
-Los paquetes Android se firman con la llave del corredor anterior. iOS en CI no va a ir a
-(Assembly retardado; localmente sólo Simulator vista)
+Una ejecución manual desde `main` genera una versión candidata. Una etiqueta estable publica la
+versión en GitHub y activa las actualizaciones firmadas cuando terminan todas las tareas.
+CI firma el APK directo de Android con la clave habitual del ejecutor, prepara el APK y el AAB con las
+claves de firma de la aplicación y de subida y prueba la compilación de iOS en Xcode Simulator.
 
 Después de la publicación, la tarea `announce` anuncia la liberación en canales que
 creado por el propietario: Canal de telegramas del proyecto `TELEGRAM_BOT_TOKEN`

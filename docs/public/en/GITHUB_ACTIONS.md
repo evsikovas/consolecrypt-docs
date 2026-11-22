@@ -4,8 +4,8 @@ Translated reference · [Russian source](../GITHUB_ACTIONS.md)
 
 The `Client tag release` workflow publishes only an exact stable `vX.Y.Z`
 tag whose version matches `pubspec.yaml` and whose commit belongs to `main`
-A manual dispatch on the current `main` runs the same audit, tests and five
-native packaging jobs as an unpublished candidate. Dispatches on other branches
+A manual dispatch on the current `main` runs the same audit, tests and six
+packaging jobs as an unpublished candidate. Dispatches on other branches
 are rejected before persistent runners receive code. Candidates do not publish
 releases, sign update feeds or send announcements. Branch pushes do not build.
 No pull request code executes on persistent native runners.
@@ -23,11 +23,11 @@ The pinned flutter SDK when absent. One dedicated Mac serializes its jobs.
 The iOS job compiles, installs and launches the application in a disposable
 Simulator. It does not require Apple provisioning credentials or produce an IPA.
 
-Native jobs have `contents: read`. All five platform jobs are required before
-a hosted publisher validates receipts and publishes seven packages: macOS DMG,
-Windows EXE and portable ZIP, Linux DEB and RPM, Android APK and universal iOS
-Simulator ZIP, with SHA-256 checksums. It first creates a draft, uploads the
-Closed asset set and only then publishes. Only the publisher receives
+Native build jobs have `contents: read`. After the five platform builds and the separate
+RuStore signing job succeed, the publisher checks their receipts. It attaches nine files
+to the draft release, covering the macOS DMG, Windows installer and portable ZIP, Linux DEB and RPM,
+direct Android APK, universal iOS Simulator ZIP, and the RuStore APK and AAB.
+It uploads the SHA-256 manifest before publishing. Only the publisher receives
 `contents: write` and `actions: write`. It requests `update-feeds.yml` on trusted
 `main` after publication. Website and server deployment have independent tag
 workflows. Simulator archives are for Xcode on Mac, not physical iPhones.
@@ -92,12 +92,12 @@ on its first attempt; many retries can reach it sooner. The limit applies to bot
 - Optional repository variable `CC_CODESIGN_IDENTITY` selects an existing
   macOS keychain signing identity by name or SHA-1. Without it, builds retain
   The previous ad-hoc behavior. Developer ID distribution needs notarization.
-- The required iOS work produces a Simulator ZIP and requests no provisioning
-  iPhone distribution is outside the 1.0.0 release scope.
+- The iOS job builds a universal ZIP for Xcode Simulator on a Mac.
+  Installation on a physical iPhone requires separate distribution and signing.
 - The update signing keys `UPDATE_SIGNING_KEY` and `LINUX_UPDATE_SIGNING_KEY`
   for the separate Linux feed remain confined to the separate update-feed)
-  workflow. Native build jobs do not receive production credentials or update
-  signing keys. See [RELEASING.md](RELEASING.md) and
+  workflow. The RuStore packaging job receives the app and upload
+  keystores used to sign its APK and AAB. See [RELEASING.md](RELEASING.md) and
   [UPDATE_FEED_PUBLISHER.md](UPDATE_FEED_PUBLISHER.md).
 - The hosted `announce` job runs after publication. Each channel starts out
   When the owner has configured it: `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`
@@ -107,8 +107,8 @@ on its first attempt; many retries can reach it sooner. The limit applies to bot
   Russian notes and consolecrypt.dev download links. The scripts refuse to post
   outside this release job; locally use `--dry-run`
 
-Before posting, `announce` waits up to 30 minutes for the public download page
-to show this version and link every verified package, including Simulator.
+Before posting, `announce` waits up to 30 minutes for the download page to show the new
+version, seven direct download links including the Simulator ZIP, and the official RuStore listing.
 Website deployment uses its separate tag workflow. A timeout withholds every
 announcement channel; it does not remove the published client packages.
 The manual `Encrypted client compatibility` workflow also runs crypto/sync
@@ -212,10 +212,10 @@ live user containers.
 
 `main` stores the verified source base. To release, raise the version, add
 release notes, send a commit to `main`, then tag `vX.Y.Z` to that commit.
-Only the tag triggers the builds. After successful assembly of all workflow platforms
-Publishes the full GitHub Release and launches an update of the signed tape.
-Packets Android are signed with the previous runner key. iOS in CI is not going to
-(Assembly delayed; locally only Simulator preview)
+A manual run on `main` builds an unpublished candidate. A stable tag publishes the
+GitHub Release after all build jobs pass and starts the signed update feed.
+CI signs the direct Android APK with the existing runner key, builds the RuStore APK
+and AAB with the app and upload keys, and tests the iOS preview in Xcode Simulator.
 
 After publication, the task `announce` announces the release in channels that
 set up by the owner: Telegram-channel of the project `TELEGRAM_BOT_TOKEN`

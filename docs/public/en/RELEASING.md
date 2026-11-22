@@ -35,16 +35,16 @@ Do not add `dist/`, tokens, Android keystore or private signature keys.
    git push origin vX.Y.Z
    ```
 
-4. **Actions → Client tag release** will check version matching and origin
-   a commit from `main` and dependency verification `cargo deny`, `osv-scanner`; see
-   [BUILDING.md](../BUILDING.md#проверка-зависимостей)), then collect macOS.
-   Windows, Linux and Android iOS is not going - assemblies are postponed). Before the tag, close the open issue
-   “Vulnerable dependencies”: Update the package or issue an exception with a date
-   revision. Locally: `python3 client/scripts/dependency-audit.py check`.
+4. **Actions → Client tag release** checks the version, the source commit on `main` and the
+   dependency audit (`cargo deny`, `osv-scanner`). See [BUILDING.md](../BUILDING.md#проверка-зависимостей).
+   It builds for macOS, Windows, Linux, Android and iOS Simulator. A separate job packages the RuStore builds.
+   Before tagging, resolve the open dependency audit issue or record an exception with a review date.
+   Run the same checks locally with `python3 client/scripts/dependency-audit.py check`.
    Build numbers are issued separately to each platform; all retain one `X.Y.Z`.
-5. After the success of all platforms, the publisher will check `ConsoleCrypt.version`.
-   six installation files (DMG, EXE, ZIP, DEB, RPM, APK) and
-   `SHA256SUMS-X.Y.Z.txt` will upload them to draft and publish GitHub Release.
+5. After all jobs pass, the publisher verifies `ConsoleCrypt.version` and uploads nine files
+   to a draft. These include the macOS DMG, Windows installer and portable ZIP, Linux DEB and RPM, direct Android APK,
+   universal ZIP for iOS Simulator on Mac, and RuStore APK and AAB. It uploads
+   `SHA256SUMS-X.Y.Z.txt` before publishing the GitHub Release.
    The existing release is not overwritten. If the download is terminated after the creation
    draft, check it manually before restarting; published files
    and the tags remain unchanged, the corrections are issued with a new version.
