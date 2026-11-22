@@ -1,5 +1,6 @@
 # Documentación técnica de ConsoleCrypt
 
+- [Novedades de la versión 1.2.1](../RELEASE_1_2_1.md) · [Novedades de la versión 1.2.1](../../../guide/es.md#release-1-2-1)
 - [Android : publicación ConsoleCrypt en RuStore](ANDROID_RUSTORE.md)
 - [Servidor de montaje y sincronización](BUILDING.md)
 - [Asamblea ConsoleCrypt para iOS](BUILD_IOS.md)

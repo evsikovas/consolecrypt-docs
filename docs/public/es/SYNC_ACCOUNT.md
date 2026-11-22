@@ -1,5 +1,9 @@
 # Cuenta y sincronización
 
+## Sincronizar conexiones de Vault y OpenBao
+
+Las conexiones se guardan en la bóveda personal cifrada. Para cada conexión puedes activar la sincronización de su contraseña o token. Tras sincronizar un segundo dispositivo, selecciona la conexión e inicia sesión. El cliente consulta los valores de los campos directamente en Vault u OpenBao. Configura el acceso biométrico en cada dispositivo. [Instrucciones](../../../guide/es.md#release-1-2-1-vault) · [Versiones del servidor](https://github.com/evsikovas/consolecrypt-server/releases)
+
 Referencia traducida · [Original en ruso](../SYNC_ACCOUNT.md)
 
 ## Ruso

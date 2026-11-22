@@ -1,5 +1,7 @@
 # Password Manager KDBX
 
+ConsoleCrypt 1.2.1 · [Connect Vault or OpenBao](../../../guide/en.md#release-1-2-1-vault) · [Import and export KDBX entries](../../../guide/en.md#release-1-2-1-kdbx)
+
 Translated reference · [Russian source](../KEEPASS.md)
 
 Open the **Passwords** section in the sidebar. Prior to the base's opening, available

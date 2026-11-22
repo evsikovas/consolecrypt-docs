@@ -1,5 +1,7 @@
 # Kubernetes
 
+ConsoleCrypt 1.2.1 · [Deploy a container to Kubernetes](../../../guide/en.md#release-1-2-1-deploy) · [Monitor an SSH host and restore a forward](../../../guide/en.md#release-1-2-1-ssh)
+
 Translated reference · [Russian source](../KUBERNETES.md)
 
 ## Russian

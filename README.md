@@ -4,17 +4,19 @@
 
 Руководство по SSH, RDP, SFTP, Kubernetes, базам данных, Docker, зашифрованному
 хранилищу, синхронизации, сниппетам, ИИ и совместной работе. Руководство
-описывает клиент 1.2.0. Ниже перечислены проверенные файлы опубликованного выпуска.
+описывает клиент 1.2.1. Таблица загрузок указывает версию каждого проверенного файла.
 
 **[Русский](guide/ru.md)** · **[English](guide/en.md)** · **[Español](guide/es.md)** · **[简体中文](guide/zh.md)**
 
 Техническая документация и архив выпусков · [Русский](docs/public) · [English](docs/public/en) · [Español](docs/public/es) · [简体中文](docs/public/zh)
 
-[Что нового в ConsoleCrypt 1.2.0 · Release notes · Novedades · 更新说明](docs/public/RELEASE_1_2_0.md)
+[ConsoleCrypt 1.2.1 · Заметки выпуска · Release notes · Novedades · 更新说明](docs/public/RELEASE_1_2_1.md)
+
+[Инструкции 1.2.1](guide/ru.md#release-1-2-1) · [Walkthroughs](guide/en.md#release-1-2-1) · [Instrucciones](guide/es.md#release-1-2-1) · [操作指南](guide/zh.md#release-1-2-1)
 
 Сборки и проверки 1.2.0 · [релизный CI](https://github.com/evsikovas/consolecrypt-client/actions/runs/44813783192).
 
-В руководстве 70 глав на четырёх языках и 438 скриншотов: первый запуск,
+В руководстве 71 глава на четырёх языках и 450 скриншотов: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
 файлы, Kubernetes, базы данных, Docker, заметки, команды, совместный доступ,
 буфер обмена, общие папки, резервные копии, настройки, а также запуск,
@@ -46,7 +48,7 @@
 - [Исправление комплекта восстановления на телефоне](docs/public/RELEASE_0_5_6.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 1.2.0](docs/public/RELEASE_1_2_0.md), [версия 1.1.3](docs/public/RELEASE_1_1_3.md), [версия 1.1.0](docs/public/RELEASE_1_1_0.md), [версия 1.0.6](docs/public/RELEASE_1_0_6.md), [версия 1.0.4](docs/public/RELEASE_1_0_4.md), [версия 1.0.1](docs/public/RELEASE_1_0_1.md), [версия 1.0.0](docs/public/RELEASE_1_0_0.md), [версия 0.9.15](docs/public/RELEASE_0_9_15.md), [версия 0.9.14](docs/public/RELEASE_0_9_14.md), [версия 0.9.2](docs/public/RELEASE_0_9_2.md), [версия 0.9.1](docs/public/RELEASE_0_9_1.md), [версия 0.8.6](docs/public/RELEASE_0_8_6.md), [версия 0.8.5](docs/public/RELEASE_0_8_5.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
+- [Обновления](docs/public/UPDATES.md), [версия 1.2.1](docs/public/RELEASE_1_2_1.md), [версия 1.2.0](docs/public/RELEASE_1_2_0.md), [версия 1.1.3](docs/public/RELEASE_1_1_3.md), [версия 1.1.0](docs/public/RELEASE_1_1_0.md), [версия 1.0.6](docs/public/RELEASE_1_0_6.md), [версия 1.0.4](docs/public/RELEASE_1_0_4.md), [версия 1.0.1](docs/public/RELEASE_1_0_1.md), [версия 1.0.0](docs/public/RELEASE_1_0_0.md), [версия 0.9.15](docs/public/RELEASE_0_9_15.md), [версия 0.9.14](docs/public/RELEASE_0_9_14.md), [версия 0.9.2](docs/public/RELEASE_0_9_2.md), [версия 0.9.1](docs/public/RELEASE_0_9_1.md), [версия 0.8.6](docs/public/RELEASE_0_8_6.md), [версия 0.8.5](docs/public/RELEASE_0_8_5.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).

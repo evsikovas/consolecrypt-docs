@@ -1,5 +1,7 @@
 # Docker
 
+ConsoleCrypt 1.2.1 · [Localizar el motor Docker y eliminar un contenedor](../../../guide/es.md#release-1-2-1-docker) · [Desplegar un contenedor en Kubernetes](../../../guide/es.md#release-1-2-1-deploy)
+
 Referencia traducida · [Original en ruso](../DOCKER.md)
 
 ## Ruso
@@ -43,7 +45,7 @@ y puertos. Los botones comienzan, paran y reinician el contenedor, abren
 Registro y terminal. En el menú "..." - suspender y reanudar, por la fuerza
 completo, eliminar, soltar el puerto, conectarse a la base de datos, información y
 Copiando la identificación. La terminación obligatoria y la eliminación requieren confirmación;
-Los volúmenes nombrados se guardan cuando se elimina el contenedor.
+Los volúmenes y las redes se conservan por defecto. En el diálogo de eliminación puedes marcar por separado los recursos que quieras borrar.
 
 ### Información, registros y terminales
 

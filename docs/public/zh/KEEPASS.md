@@ -1,5 +1,7 @@
 # 密码管理器KDBX
 
+ConsoleCrypt 1.2.1 · [连接 Vault 或 OpenBao](../../../guide/zh.md#release-1-2-1-vault) · [导入与导出 KDBX 条目](../../../guide/zh.md#release-1-2-1-kdbx)
+
 参考文档译文 · [俄文原文](../KEEPASS.md)
 
 在侧边栏打开**Passwords**部分. 在基地开放之前,可以使用

@@ -1,5 +1,7 @@
 # Kubernetes (中文(简体) ).
 
+ConsoleCrypt 1.2.1 · [将容器部署到 Kubernetes](../../../guide/zh.md#release-1-2-1-deploy) · [监控 SSH 主机和恢复端口转发](../../../guide/zh.md#release-1-2-1-ssh)
+
 参考文档译文 · [俄文原文](../KUBERNETES.md)
 
 ## 俄罗斯语

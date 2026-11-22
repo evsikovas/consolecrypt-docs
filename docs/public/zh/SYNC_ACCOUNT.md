@@ -1,5 +1,9 @@
 # 账户和同步
 
+## 同步 Vault 和 OpenBao 连接
+
+连接保存在加密个人保管库中。可为每个连接单独选择是否同步密码或令牌。在第二台设备完成同步后，选择连接并登录。客户端直接从 Vault 或 OpenBao 读取字段值。在每台设备上单独设置生物识别登录。 [操作指南](../../../guide/zh.md#release-1-2-1-vault) · [服务器版本](https://github.com/evsikovas/consolecrypt-server/releases)
+
 参考文档译文 · [俄文原文](../SYNC_ACCOUNT.md)
 
 ## 俄罗斯语

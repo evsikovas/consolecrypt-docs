@@ -1,5 +1,7 @@
 # Docker
 
+ConsoleCrypt 1.2.1 · [Find a Docker engine and remove a container](../../../guide/en.md#release-1-2-1-docker) · [Deploy a container to Kubernetes](../../../guide/en.md#release-1-2-1-deploy)
+
 Translated reference · [Russian source](../DOCKER.md)
 
 ## Russian
@@ -43,7 +45,7 @@ and ports. Buttons start, stop and restart the container, open
 Log and terminal. In the menu "..." - suspend and resume, forcibly
 complete, delete, drop the port, connect to the database, information and
 Copying the ID. Compulsory termination and removal require confirmation;
-The named volumes are saved when the container is removed.
+Volumes and networks are kept by default. Select individual eligible resources in the removal dialog to delete them.
 
 ### Information, logs and terminal
 

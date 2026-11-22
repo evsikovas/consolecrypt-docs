@@ -1,5 +1,6 @@
 # ConsoleCrypt 技术文档
 
+- [1.2.1 更新说明](../RELEASE_1_2_1.md) · [1.2.1 新功能](../../../guide/zh.md#release-1-2-1)
 - [Android:出版ConsoleCrypt于RuStore.](ANDROID_RUSTORE.md)
 - [装配和同步服务器](BUILDING.md)
 - [大会ConsoleCrypt改为iOS](BUILD_IOS.md)

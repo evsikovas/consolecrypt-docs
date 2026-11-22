@@ -1,5 +1,7 @@
 # Kubernetes
 
+ConsoleCrypt 1.2.1 · [Desplegar un contenedor en Kubernetes](../../../guide/es.md#release-1-2-1-deploy) · [Supervisar un host SSH y restaurar un reenvío](../../../guide/es.md#release-1-2-1-ssh)
+
 Referencia traducida · [Original en ruso](../KUBERNETES.md)
 
 ## Ruso

@@ -1,5 +1,9 @@
 # Account and synchronization
 
+## Sync Vault and OpenBao connections
+
+Connections are saved in the encrypted personal vault. Enable password or token sync for each connection you want to share across your devices. After syncing a second device, select the connection and sign in. The client reads field values directly from Vault or OpenBao. Set up biometric sign-in separately on each device. [Walkthrough](../../../guide/en.md#release-1-2-1-vault) · [Server releases](https://github.com/evsikovas/consolecrypt-server/releases)
+
 Translated reference · [Russian source](../SYNC_ACCOUNT.md)
 
 ## Russian

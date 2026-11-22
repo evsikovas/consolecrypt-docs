@@ -1,5 +1,7 @@
 # Local terminals (local terminals) 0.5
 
+ConsoleCrypt 1.2.1 · [Install on macOS and paste multiple lines in PowerShell](../../../guide/en.md#release-1-2-1-terminals)
+
 Translated reference · [Russian source](../LOCAL_TERMINALS.md)
 
 ## Russian

@@ -40,6 +40,196 @@ export const guideGroups = [
 ];
 export const guideSections = [
   {
+    "id": "release-1-2-1",
+    "group": "start",
+    "title": {
+      "ru": "Что нового в 1.2.1",
+      "en": "What’s new in 1.2.1",
+      "es": "Novedades de la versión 1.2.1",
+      "zh": "1.2.1 新功能"
+    },
+    "intro": {
+      "ru": "Подключите Vault или OpenBao, перенесите записи KDBX и разверните Docker-контейнер в Kubernetes. Ниже — порядок действий и способы проверить результат.",
+      "en": "Connect Vault or OpenBao, transfer KDBX entries, and deploy a Docker container to Kubernetes. Each walkthrough includes a way to check the result.",
+      "es": "Conecta Vault u OpenBao, transfiere entradas KDBX y despliega un contenedor Docker en Kubernetes. Cada procedimiento indica cómo comprobar el resultado.",
+      "zh": "连接 Vault 或 OpenBao、迁移 KDBX 条目，或将 Docker 容器部署到 Kubernetes。以下步骤同时说明如何验证结果。"
+    },
+    "parts": [
+      {
+        "id": "vault",
+        "title": {
+          "ru": "Подключение Vault и OpenBao",
+          "en": "Connect Vault or OpenBao",
+          "es": "Conectar Vault u OpenBao",
+          "zh": "连接 Vault 或 OpenBao"
+        },
+        "body": {
+          "ru": "1. Откройте «Пароли → Vault / OpenBao → Добавить подключение». Задайте название и адрес сервера. Для подключения по сети используйте HTTPS. При выборе HTTP токен, пароль и прочитанные секреты передаются без шифрования транспорта.\n2. Выберите токен либо логин и пароль. В настройках Vault укажите путь KV v1/v2, если он отличается от предложенного. Для нестандартного userpass укажите путь этого метода входа. Затем подключитесь.\n3. Откройте папку и выберите секрет. Поиск фильтрует текущую папку. Если политика разрешает читать секрет, но скрывает список, введите полный путь секрета внутри KV. Выберите поле, чтобы увидеть или скопировать значение. В палитре команд найдите подключение по названию и перейдите к тому же полю.\n4. Для входа на другом устройстве синхронизируйте тот же личный профиль. Параметры подключения сохраняются в зашифрованном хранилище. Чтобы передавать также пароль или токен, отметьте «Сохранить данные входа в моём зашифрованном хранилище ConsoleCrypt». После синхронизации откройте подключение на другом устройстве и выберите «Войти с синхронизированными данными». Биометрический вход настраивается на каждом устройстве отдельно.",
+          "en": "1. Open Passwords → Vault / OpenBao → Add connection. Enter a name and the server URL. Use HTTPS for a network connection. HTTP sends tokens, passwords, and retrieved secrets without transport encryption.\n2. Choose a token or a username and password. In Vault settings, set the KV v1/v2 mount if it differs from the suggested path. If userpass is mounted at a custom path, enter that path too. Connect.\n3. Open a folder and select a secret. Search filters the current folder. If policy grants read access but hides the list, enter the full secret path within the mount. Select a field to reveal or copy its value. In the command palette, search by connection name and navigate to the same field.\n4. To use the connection on another device, sync the same personal profile. Connection settings are stored in the encrypted vault. To include its token or password, select Save this sign-in in my encrypted ConsoleCrypt vault. On the other device, open the connection after sync and select Sign in with the synced credential. Set up biometric sign-in separately on each device.",
+          "es": "1. Abre Contraseñas → Vault / OpenBao → Añadir conexión. Escribe el nombre y la dirección del servidor. Utiliza HTTPS para conectarte por red. Con HTTP, el token, la contraseña y los secretos consultados viajan sin cifrado de transporte.\n2. Elige token o nombre de usuario y contraseña. En los ajustes de Vault, cambia el punto de montaje KV v1/v2 si difiere del propuesto. Si userpass usa una ruta propia, indícala y conecta.\n3. Abre una carpeta y selecciona un secreto. La búsqueda filtra la carpeta actual. Si la política te permite leer el secreto pero oculta la lista, introduce su ruta completa dentro del punto de montaje. Elige el campo para ver o copiar su valor. En la paleta de comandos, busca la conexión por nombre y navega hasta el mismo campo.\n4. Para usar la conexión en otro dispositivo, sincroniza el mismo perfil personal. Los ajustes se guardan en la bóveda cifrada. Si también quieres transferir el token o la contraseña, activa Guardar el acceso en mi bóveda cifrada de ConsoleCrypt. Tras sincronizar, abre la conexión en el segundo dispositivo y elige Acceder con la credencial sincronizada. La biometría se configura en cada dispositivo.",
+          "zh": "1. 打开「密码 → Vault / OpenBao → 添加连接」，填写名称和服务器地址。通过网络连接时使用 HTTPS。使用 HTTP 时，令牌、密码和读取的机密在传输过程中均为明文。\n2. 选择令牌或用户名和密码。在 Vault 设置中，如果 KV v1/v2 引擎使用不同的挂载路径，请填写实际路径。如果 userpass 挂载在其他位置，也请修改对应的认证路径，再连接。\n3. 打开文件夹并选择机密。搜索可筛选当前文件夹。如果策略只允许读取而无权列出内容，输入该挂载点内机密的完整路径。选择字段可以显示或复制其值。也可以在命令面板按名称搜索连接，再逐级打开相同字段。\n4. 要在另一台设备上使用此连接，请同步同一份个人配置。连接设置保存在加密保管库中。如果还要同步令牌或密码，勾选「将登录凭据保存到我的加密 ConsoleCrypt 保管库」。同步后，在另一台设备上打开连接并选择「使用已同步的凭据登录」。每台设备单独设置生物识别登录。"
+        }
+      },
+      {
+        "id": "kdbx",
+        "title": {
+          "ru": "Импорт и экспорт базы KDBX",
+          "en": "Import and export KDBX entries",
+          "es": "Importar y exportar entradas KDBX",
+          "zh": "导入与导出 KDBX 条目"
+        },
+        "body": {
+          "ru": "1. В разделе «Пароли» откройте базу KDBX и разблокируйте её. В меню базы выберите «Экспорт в CSV» или «Экспорт в JSON». CSV подходит для стандартных полей, включая имя пользователя, пароль и URL. Формат JSON ConsoleCrypt также сохраняет пользовательские поля. Оба файла содержат пароли в открытом виде.\n2. Чтобы загрузить записи, откройте меню целевой базы и нажмите «Импорт CSV или JSON». Выберите файл, сверьте количество записей и название базы, затем подтвердите. Для CSV нужны заголовки title и password или их поддерживаемые варианты. Для JSON используйте экспорт ConsoleCrypt. Лимит — 10 000 записей и 16 МиБ на файл.\n3. После импорта откройте одну из записей и проверьте группу и поля. Чтобы вернуться к базе или серверу секретов позже, используйте список пяти недавних источников в разделе «Пароли». В нём видны локальные базы KDBX, WebDAV, Vault и OpenBao.",
+          "en": "1. In Passwords, open and unlock a KDBX database. In the database menu, choose Export as CSV or Export as JSON. CSV is suitable for standard fields such as username, password, and URL. ConsoleCrypt JSON also preserves custom fields. Both files contain plaintext passwords.\n2. To import, open the destination database menu and choose Import CSV or JSON. Select the file. Check the entry count and destination name before confirming. CSV needs title and password headers or supported equivalents. For JSON, use a ConsoleCrypt export. Each file supports up to 10,000 entries and 16 MiB.\n3. After import, open an entry and check its group and fields. To reopen a database or secrets server later, use the five recent sources in Passwords. The list includes local KDBX, WebDAV, Vault, and OpenBao.",
+          "es": "1. En Contraseñas, abre y desbloquea la base KDBX. En su menú, elige Exportar a CSV o Exportar a JSON. CSV sirve para campos estándar como usuario, contraseña y URL. El formato JSON de ConsoleCrypt conserva además los campos personalizados. Ambos archivos contienen contraseñas en texto sin cifrar.\n2. Para importar, abre el menú de la base de destino y elige Importar CSV o JSON. Selecciona el archivo y comprueba el número de entradas y el nombre de la base antes de confirmar. El CSV requiere las columnas title y password, o sus equivalentes admitidos. Para JSON, usa una exportación de ConsoleCrypt. El límite por archivo es de 10 000 entradas y 16 MiB.\n3. Tras la importación, abre una entrada y comprueba su grupo y sus campos. Para volver a una base de datos o a un servidor de secretos, abre las cinco fuentes recientes en Contraseñas. La lista reúne bases KDBX locales, WebDAV, Vault y OpenBao.",
+          "zh": "1. 在「密码」中打开并解锁 KDBX 数据库。在数据库菜单中选择「导出为 CSV」或「导出为 JSON」。CSV 适用于用户名、密码和网址等标准字段。ConsoleCrypt JSON 还会保留自定义字段。两种文件都包含明文密码。\n2. 在目标数据库的菜单中选择「导入 CSV 或 JSON」。选好文件后，核对条目数和目标数据库名称，再确认导入。CSV 文件须包含 title 和 password 表头或支持的别名。JSON 需使用 ConsoleCrypt 导出的格式。每个文件最多包含 10,000 条记录，大小上限为 16 MiB。\n3. 导入后打开一条记录，核对群组和字段。以后可以从「密码」中的最近五个来源重新打开数据库或机密服务器。此列表支持本地 KDBX、WebDAV、Vault 和 OpenBao。"
+        }
+      },
+      {
+        "id": "docker",
+        "title": {
+          "ru": "Локальный Docker и удаление контейнера",
+          "en": "Find a Docker engine and remove a container",
+          "es": "Localizar el motor Docker y eliminar un contenedor",
+          "zh": "选择 Docker 引擎并删除容器"
+        },
+        "body": {
+          "ru": "1. В разделе Docker выберите этот компьютер для локального движка на Windows, macOS или Linux либо сохранённый SSH-хост для удалённого движка. Проверьте имя подключения вверху списка. В Windows для контейнеров WSL также доступен раздел WSL Containers.\n2. Откройте контейнер, чтобы увидеть привязки портов. Переключайте страницы по 20 портов. Для удаления откройте меню контейнера и выберите «Удалить контейнер…». Сверьте имя и хост. Если контейнер работает, отдельно подтвердите его остановку.\n3. Изначально тома и сети не отмечены. Выберите только те доступные ресурсы, которые действительно хотите удалить. Рядом с защищённым ресурсом указана причина. Общие тома, встроенные сети Docker и файлы хоста в bind-монтах остаются на месте. Подтвердите выбор и проверьте результат по каждому ресурсу.",
+          "en": "1. In Docker, select this computer to use a local engine on Windows, macOS, or Linux, or choose a saved SSH host for a remote engine. Check the connection name above the list. On Windows, WSL Containers is also available for containers in WSL.\n2. Open the container to inspect its port mappings. Page through 20 ports at a time. To remove it, open its menu and choose Remove container. Check the name and host. If it is running, explicitly confirm that it may be stopped.\n3. Volumes and networks start unchecked. Select only the available resources you intend to remove. A protected resource shows why it is unavailable. Shared volumes, built-in networks, and host files used by bind mounts are retained. Confirm and check the outcome for each resource.",
+          "es": "1. En Docker, selecciona este equipo para usar el motor local de Windows, macOS o Linux, o elige un host SSH guardado para un motor remoto. Comprueba el nombre de la conexión sobre la lista. En Windows también puedes abrir WSL Containers para los contenedores en WSL.\n2. Abre el contenedor para consultar los puertos, en páginas de 20. Para borrarlo, abre su menú y elige Eliminar contenedor. Revisa el nombre y el host. Si está en ejecución, confirma también que se puede detener.\n3. Los volúmenes y las redes aparecen desmarcados. Marca solo los recursos disponibles que quieras eliminar. Cada recurso protegido indica el motivo. Se conservan los volúmenes compartidos, las redes integradas y los archivos del host montados mediante bind mounts. Confirma y comprueba el resultado de cada recurso.",
+          "zh": "1. 在 Docker 中选择本机以使用 Windows、macOS 或 Linux 上的本地引擎，或选择已保存的 SSH 主机以使用远程引擎。检查列表上方的连接名称。Windows 上还可通过 WSL Containers 访问 WSL 中的容器。\n2. 打开容器查看端口映射，每页显示 20 个端口。要删除容器，请在其菜单中选择「删除容器」。核对容器名和主机；如果容器仍在运行，需要单独确认停止。\n3. 卷和网络默认均未选中。只勾选要删除的可选资源。受保护的资源旁会显示原因。共享卷、Docker 内置网络和绑定挂载的主机文件会保留。确认后逐项查看处理结果。"
+        }
+      },
+      {
+        "id": "deploy",
+        "title": {
+          "ru": "Развернуть контейнер в Kubernetes",
+          "en": "Deploy a container to Kubernetes",
+          "es": "Desplegar un contenedor en Kubernetes",
+          "zh": "将容器部署到 Kubernetes"
+        },
+        "body": {
+          "ru": "1. Откройте карточку Linux-контейнера без постоянных томов и выберите «Развернуть в Kubernetes · Экспериментально». Выберите сохранённый контекст Kubernetes и namespace. Проверьте имя рабочей нагрузки и TCP-порт приложения внутри контейнера.\n2. Для автоподстановки мастер проверяет digest образа в исходном реестре через Docker. Если образ существует только локально, опубликуйте его в доступном узлам реестре и введите полный адрес с тегом или digest. Для закрытого реестра при необходимости укажите существующий imagePullSecret в выбранном namespace.\n3. Выберите шаблон или провайдера ИИ. Проверьте YAML, в том числе image, command, args и port. Выполните проверку на сервере. Она проверяет принятие манифеста Kubernetes. Скачивание образа и старт процесса проверяются при запуске Pod. Затем подтвердите создание Deployment с одной репликой и внутреннего Service типа ClusterIP.\n4. Нажмите «Проверить готовность». При ImagePullBackOff сверьте адрес образа и право узла на скачивание. При CrashLoopBackOff проверьте команду и аргументы, код выхода и число перезапусков. Код 0 у постоянно перезапускающегося Pod может означать, что процесс выполнился и вышел. Откройте созданный Deployment, чтобы изучить состояние Pod.",
+          "en": "1. Open a Linux container that runs without persistent mounts and choose Deploy to Kubernetes · Experimental. Select a saved Kubernetes context and namespace. Verify the workload name and the TCP port the application listens on inside the container.\n2. The wizard uses Docker to verify the image digest in its source registry before filling it in. If the image exists only locally, publish it to a registry reachable by the nodes and enter its full reference with a tag or digest. If needed for a private registry, specify an existing imagePullSecret in the selected namespace.\n3. Use the template or select an AI provider. Review the YAML, including image, command, args, and port. Run the server check to validate both manifests. The node pulls the image and starts the process when the Pod launches. Confirm creation of the single-replica Deployment and internal ClusterIP Service.\n4. Check readiness. For ImagePullBackOff, check the image reference and the node’s pull access. For CrashLoopBackOff, inspect the command, arguments, exit code, and restart count. Exit code 0 on a repeatedly restarted Pod can mean its process finished and exited. Open the created Deployment to inspect the Pod.",
+          "es": "1. Abre un contenedor Linux que funcione sin montajes persistentes y elige el despliegue experimental en Kubernetes. Selecciona un contexto guardado y el namespace. Comprueba el nombre de la carga y el puerto TCP en el que escucha la aplicación dentro del contenedor.\n2. El asistente usa Docker para comprobar el digest en el registro de origen antes de rellenar el campo. Si la imagen solo existe en local, publícala en un registro accesible para los nodos e introduce la referencia completa con etiqueta o digest. Para un registro privado, indica si hace falta un imagePullSecret existente en el namespace elegido.\n3. Usa la plantilla o selecciona un proveedor de IA. Revisa el YAML, incluidos image, command, args y port. Ejecuta la comprobación del servidor para validar los manifiestos. El nodo descarga la imagen e inicia el proceso cuando arranca el Pod. Confirma la creación del Deployment de una réplica y del Service interno de tipo ClusterIP.\n4. Comprueba la disponibilidad. Ante ImagePullBackOff, revisa la referencia de la imagen y los permisos de descarga del nodo. Ante CrashLoopBackOff, examina el comando, los argumentos, el código de salida y el número de reinicios. Un código 0 con reinicios repetidos puede indicar que el proceso terminó. Abre el Deployment creado para examinar el Pod.",
+          "zh": "1. 打开不依赖持久挂载的 Linux 容器，在详情中选择部署到 Kubernetes 的实验功能。选择已保存的 Kubernetes 上下文和命名空间。核对工作负载名称和容器内应用监听的 TCP 端口。\n2. 向导会通过 Docker 在源镜像仓库中验证摘要，然后自动填入镜像。如果镜像只存在于本机，请先发布到集群节点可访问的仓库，再输入带标签或摘要的完整地址。对于私有仓库，可指定所选命名空间中已有的 imagePullSecret。\n3. 使用模板或选择 AI 提供方。检查 YAML，尤其是 image、command、args 和 port。运行服务器检查以验证清单。节点会在 Pod 启动时拉取镜像并运行进程。确认后将创建单副本 Deployment 和内部 ClusterIP Service。\n4. 检查就绪状态。对于 ImagePullBackOff，核对镜像地址及节点的拉取权限。对于 CrashLoopBackOff，检查启动命令、参数、退出码和重启次数。反复重启且退出码为 0 可能表示进程执行完毕后自行退出。打开已创建的 Deployment 可以查看 Pod 状态。"
+        }
+      },
+      {
+        "id": "ssh",
+        "title": {
+          "ru": "Мониторинг SSH и восстановление проброса",
+          "en": "Monitor an SSH host and restore a forward",
+          "es": "Supervisar un host SSH y restaurar un reenvío",
+          "zh": "监控 SSH 主机和恢复端口转发"
+        },
+        "body": {
+          "ru": "1. Подключитесь к Linux-хосту через встроенный SSH-клиент. В терминале откройте «Мониторинг» на правой панели, на телефоне — в инструментах сеанса. Посмотрите CPU, память, диск и скорость сети. Сверните панель и откройте её снова. Графики продолжают пополняться, пока подключение открыто.\n2. В «Туннелях» найдите сохранённый проброс Docker или Kubernetes. Сверьте хост или кластер, ресурс назначения и локальный порт. Нажмите кнопку запуска. Дождитесь активного статуса и подключитесь к показанному локальному адресу.",
+          "en": "1. Connect to a Linux host with the built-in SSH client. Open Monitoring in the terminal’s right panel or from session tools on a phone. Check CPU, memory, disk usage, and network rates. Close and reopen the panel to see that sampling continued while the session stayed connected.\n2. In Tunnels, find the saved Docker or Kubernetes forward. Check its host or cluster, destination resource, and local port. Press Start. When its status becomes active, connect to the local address shown.",
+          "es": "1. Conecta con un host Linux mediante el cliente SSH integrado. Abre Monitorización en el panel derecho del terminal o en las herramientas de la sesión del teléfono. Consulta CPU, memoria, disco y tráfico de red. Cierra el panel y vuelve a abrirlo para ver las muestras recogidas durante la conexión.\n2. En Túneles, busca el reenvío guardado de Docker o Kubernetes. Comprueba el host o clúster, el recurso de destino y el puerto local. Pulsa iniciar. Cuando esté activo, conéctate a la dirección local indicada.",
+          "zh": "1. 使用内置 SSH 客户端连接 Linux 主机。在终端右侧面板或手机上的会话工具中打开「监控」。查看 CPU、内存、磁盘占用和网络速率。收起面板再重新打开；只要 SSH 会话仍连接，采样就会持续。\n2. 在「隧道」中找到已保存的 Docker 或 Kubernetes 转发。核对主机或集群、目标资源和本地端口，然后点击启动。状态变为活动后，连接界面显示的本地地址。"
+        }
+      },
+      {
+        "id": "terminals",
+        "title": {
+          "ru": "Установить приложения на Mac и проверить вставку в PowerShell",
+          "en": "Install on macOS and paste multiple lines in PowerShell",
+          "es": "Instalar en macOS y pegar varias líneas en PowerShell",
+          "zh": "在 macOS 上安装，以及在 PowerShell 中粘贴多行文本"
+        },
+        "body": {
+          "ru": "1. На Mac откройте DMG. В окне Finder перетащите ConsoleCrypt, ConsoleCrypt Terminal или оба приложения на значок Applications в том же ряду. Затем откройте нужное приложение из папки «Программы». ConsoleCrypt Terminal запускает отдельный терминальный интерфейс.\n2. В Windows откройте локальную вкладку PowerShell. Вставьте несколько строк в пустое приглашение через действие вставки терминала. Для проверки используйте, например, две строки с Write-Output и разными словами. Сверьте их порядок перед выполнением.",
+          "en": "1. On macOS, open the DMG. In Finder, drag ConsoleCrypt, ConsoleCrypt Terminal, or both onto Applications on the same row. Launch the app you need from Applications. ConsoleCrypt Terminal opens the standalone terminal interface.\n2. On Windows, open a local PowerShell tab. Use terminal paste to insert several lines at an empty prompt. To check the result, try two Write-Output lines with different words and review their order before executing.",
+          "es": "1. En macOS, abre el DMG. En Finder, arrastra ConsoleCrypt, ConsoleCrypt Terminal o ambas aplicaciones a la carpeta Applications de la misma fila. Abre la aplicación que necesites desde Aplicaciones. ConsoleCrypt Terminal abre la interfaz de terminal independiente.\n2. En Windows, abre una pestaña de PowerShell local. Pega varias líneas con la acción de pegado del terminal en una línea de órdenes vacía. Para comprobarlo, usa dos líneas con Write-Output y palabras distintas y revisa su orden antes de ejecutar.",
+          "zh": "1. 在 macOS 上打开 DMG。在 Finder 中将 ConsoleCrypt、ConsoleCrypt Terminal 或两者拖到同一行的 Applications 文件夹。然后从「应用程序」启动所需应用。ConsoleCrypt Terminal 会打开独立的终端界面。\n2. 在 Windows 上打开本地 PowerShell 标签页，在空提示符处用终端的粘贴功能插入多行文本。可以用两行内容不同的 Write-Output 命令进行测试，执行前核对顺序。"
+        }
+      }
+    ],
+    "links": [
+      {
+        "text": {
+          "ru": "Группы, записи и поля KDBX",
+          "en": "KDBX groups, entries, and fields",
+          "es": "Grupos, entradas y campos KDBX",
+          "zh": "KDBX 群组、条目和字段"
+        },
+        "href": "https://consolecrypt.dev/guide#password-manager"
+      },
+      {
+        "text": {
+          "ru": "Подключение к кластеру Kubernetes",
+          "en": "Connect to a Kubernetes cluster",
+          "es": "Conectarse a un clúster de Kubernetes",
+          "zh": "连接 Kubernetes 集群"
+        },
+        "href": "https://consolecrypt.dev/guide#kubernetes-connections"
+      },
+      {
+        "text": {
+          "ru": "Пробросы портов и туннели",
+          "en": "Port forwarding and tunnels",
+          "es": "Reenvío de puertos y túneles",
+          "zh": "端口转发与隧道"
+        },
+        "href": "https://consolecrypt.dev/guide#tunnels"
+      }
+    ],
+    "images": [
+      {
+        "name": "vault-sources",
+        "caption": {
+          "ru": "В разделе «Пароли» выберите недавний источник Vault или OpenBao, чтобы вернуться к его секретам.",
+          "en": "Choose a recent Vault or OpenBao connection in Passwords to return to its secrets.",
+          "es": "Selecciona una conexión reciente de Vault u OpenBao en Contraseñas para volver a sus secretos.",
+          "zh": "在「密码」的最近来源中选择 Vault 或 OpenBao 连接，即可重新访问其中的机密。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ]
+      },
+      {
+        "name": "docker-cleanup",
+        "caption": {
+          "ru": "Перед удалением можно отметить том и отдельную сеть. Общая сеть и файлы хоста защищены.",
+          "en": "The removal dialog lets you select a volume and a network. The shared network and host files are protected.",
+          "es": "En el diálogo de eliminación puedes elegir un volumen y una red. La red compartida y los archivos del host están protegidos.",
+          "zh": "在删除对话框中可以单独选择卷和网络。共享网络与主机文件受到保护。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ]
+      },
+      {
+        "name": "docker-kube-wizard",
+        "caption": {
+          "ru": "Перед созданием манифеста сверьте контекст кластера, namespace, digest образа и порт приложения.",
+          "en": "Before generating the manifest, check the cluster context, namespace, image digest, and application port.",
+          "es": "Antes de generar el manifiesto, comprueba el contexto del clúster, el namespace, el digest de la imagen y el puerto de la aplicación.",
+          "zh": "生成清单前，请确认集群上下文、命名空间、镜像摘要和应用端口。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ]
+      }
+    ]
+  },
+  {
     "id": "first-start",
     "group": "start",
     "title": {
@@ -2105,6 +2295,17 @@ export const guideSections = [
         "width": 390,
         "height": 844
       }
+    ],
+    "links": [
+      {
+        "text": {
+          "ru": "Импорт и экспорт базы KDBX",
+          "en": "Import and export KDBX entries",
+          "es": "Importar y exportar entradas KDBX",
+          "zh": "导入与导出 KDBX 条目"
+        },
+        "href": "https://consolecrypt.dev/guide#release-1-2-1-kdbx"
+      }
     ]
   },
   {
@@ -2640,7 +2841,18 @@ export const guideSections = [
       },
       "width": 1440,
       "height": 900
-    }
+    },
+    "links": [
+      {
+        "text": {
+          "ru": "Мониторинг SSH и восстановление проброса",
+          "en": "Monitor an SSH host and restore a forward",
+          "es": "Supervisar un host SSH y restaurar un reenvío",
+          "zh": "监控 SSH 主机和恢复端口转发"
+        },
+        "href": "https://consolecrypt.dev/guide#release-1-2-1-ssh"
+      }
+    ]
   },
   {
     "id": "local-terminals",
@@ -5989,6 +6201,15 @@ export const guideSections = [
           "es": "Instrucciones completas Kubernetes",
           "zh": "完整Kubernetes 指令 QQ"
         }
+      },
+      {
+        "text": {
+          "ru": "Развернуть контейнер в Kubernetes",
+          "en": "Deploy a container to Kubernetes",
+          "es": "Desplegar un contenedor en Kubernetes",
+          "zh": "将容器部署到 Kubernetes"
+        },
+        "href": "https://consolecrypt.dev/guide#release-1-2-1-deploy"
       }
     ],
     "images": [
@@ -7834,10 +8055,10 @@ export const guideSections = [
         "zh": "集装箱按组装项目分类,首先使用运行的集装箱,最后使用独立集装箱。 组头显示有多少正在运行和崩溃的组. 过滤器匹配名称和图像, All / running /stopped 切换会缩小列表的大小 。"
       },
       {
-        "ru": "В строке контейнера видны состояние, проверка здоровья, образ, короткий ID и порты. Кнопки запускают, останавливают и перезапускают контейнер, открывают логи и терминал. В меню «…» — пауза, принудительное завершение, удаление, проброс порта, сведения и копирование ID. Завершение и удаление требуют подтверждения; именованные тома при удалении сохраняются.",
-        "en": "Each row shows the state, health check, image, short ID and ports. Buttons start, stop and restart the container and open its logs and terminal. The “…” menu adds pause, kill, remove, port forwarding, details and Copy ID. Kill and Remove ask for confirmation; named volumes survive removal.",
-        "es": "Cada fila muestra el estado, control de salud, imagen, identificación corta y puertos. Los botones comienzan, detienen y reinician el contenedor y abren sus registros y terminales. El menú “...” añade pausa, mata, elimina, reenvío de puertos, detalles y ID de copia. Matar y quitar pedir confirmación; los volúmenes nombrados sobreviven la eliminación.",
-        "zh": "每行显示状态,健康检查,图像,短ID和端口. 按钮开始,停止并重新启动容器并打开其日志和终端. “...” 菜单增加了暂停、 杀死、删除、 端口转发、 细节和复制ID 。 杀死和删除请求确认; 命名的卷幸存删除 。"
+        "ru": "В строке контейнера видны состояние, проверка здоровья, образ, короткий ID и порты. Кнопки запускают, останавливают и перезапускают контейнер, открывают логи и терминал. В меню «…» доступны пауза, принудительное завершение, удаление и проброс порта. При удалении тома и сети сохраняются по умолчанию. Можно отдельно отметить доступные ресурсы для очистки.",
+        "en": "Each row shows the status, health, image, short ID, and ports. The buttons start, stop, or restart the container and open its logs or terminal. The … menu includes pause, kill, removal, and port forwarding. Removing a container keeps its volumes and networks by default. Select individual eligible resources in the removal dialog to clean them up.",
+        "es": "Cada fila muestra el estado, la salud, la imagen, el ID corto y los puertos. Los botones permiten iniciar, detener o reiniciar el contenedor y abrir los registros o el terminal. En el menú … puedes pausarlo, forzar su finalización, eliminarlo o crear un reenvío de puerto. Al eliminar el contenedor, los volúmenes y las redes se conservan por defecto. Selecciona por separado los recursos que quieras eliminar.",
+        "zh": "每行显示容器的状态、健康检查、镜像、短 ID 和端口。行内按钮可启动、停止或重启容器，也可打开日志和终端。点按「…」可以暂停、强制终止、删除容器或转发端口。删除容器时默认保留卷和网络。要同时清理可删除的资源，请在确认对话框中逐项勾选。"
       }
     ],
     "note": {
@@ -7855,6 +8076,15 @@ export const guideSections = [
           "es": "Instrucciones completas Docker",
           "zh": "完整Docker 指令 QQ"
         }
+      },
+      {
+        "text": {
+          "ru": "Локальный Docker и удаление контейнера",
+          "en": "Find a Docker engine and remove a container",
+          "es": "Localizar el motor Docker y eliminar un contenedor",
+          "zh": "选择 Docker 引擎并删除容器"
+        },
+        "href": "https://consolecrypt.dev/guide#release-1-2-1-docker"
       }
     ],
     "image": {

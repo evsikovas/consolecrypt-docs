@@ -1,5 +1,7 @@
 # 当地终端(当地终端) 0.5
 
+ConsoleCrypt 1.2.1 · [在 macOS 上安装，以及在 PowerShell 中粘贴多行文本](../../../guide/zh.md#release-1-2-1-terminals)
+
 参考文档译文 · [俄文原文](../LOCAL_TERMINALS.md)
 
 ## 俄罗斯语

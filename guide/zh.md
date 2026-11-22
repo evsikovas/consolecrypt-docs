@@ -8,6 +8,7 @@
 
 **开始**
 
+- [1.2.1 新功能](#release-1-2-1)
 - [第一次发射和简介](#first-start)
 - [Linux 安装: DEB、RPM和密钥环](#linux-install)
 - [我需要哪个密码?](#passwords)
@@ -88,9 +89,83 @@
 - [您自己的服务器: 配置引用](#server-reference)
 - [您的服务器: 备份、 升级和命令](#server-maintenance)
 
+<a name="release-1-2-1"></a>
+
+## 1. 1.2.1 新功能
+
+连接 Vault 或 OpenBao、迁移 KDBX 条目，或将 Docker 容器部署到 Kubernetes。以下步骤同时说明如何验证结果。
+
+**本章内容** [连接 Vault 或 OpenBao](#release-1-2-1-vault) · [导入与导出 KDBX 条目](#release-1-2-1-kdbx) · [选择 Docker 引擎并删除容器](#release-1-2-1-docker) · [将容器部署到 Kubernetes](#release-1-2-1-deploy) · [监控 SSH 主机和恢复端口转发](#release-1-2-1-ssh) · [在 macOS 上安装，以及在 PowerShell 中粘贴多行文本](#release-1-2-1-terminals)
+
+<a id="release-1-2-1-vault"></a>
+
+### 连接 Vault 或 OpenBao
+
+1. 打开「密码 → Vault / OpenBao → 添加连接」，填写名称和服务器地址。通过网络连接时使用 HTTPS。使用 HTTP 时，令牌、密码和读取的机密在传输过程中均为明文。
+2. 选择令牌或用户名和密码。在 Vault 设置中，如果 KV v1/v2 引擎使用不同的挂载路径，请填写实际路径。如果 userpass 挂载在其他位置，也请修改对应的认证路径，再连接。
+3. 打开文件夹并选择机密。搜索可筛选当前文件夹。如果策略只允许读取而无权列出内容，输入该挂载点内机密的完整路径。选择字段可以显示或复制其值。也可以在命令面板按名称搜索连接，再逐级打开相同字段。
+4. 要在另一台设备上使用此连接，请同步同一份个人配置。连接设置保存在加密保管库中。如果还要同步令牌或密码，勾选「将登录凭据保存到我的加密 ConsoleCrypt 保管库」。同步后，在另一台设备上打开连接并选择「使用已同步的凭据登录」。每台设备单独设置生物识别登录。
+
+<a id="release-1-2-1-kdbx"></a>
+
+### 导入与导出 KDBX 条目
+
+1. 在「密码」中打开并解锁 KDBX 数据库。在数据库菜单中选择「导出为 CSV」或「导出为 JSON」。CSV 适用于用户名、密码和网址等标准字段。ConsoleCrypt JSON 还会保留自定义字段。两种文件都包含明文密码。
+2. 在目标数据库的菜单中选择「导入 CSV 或 JSON」。选好文件后，核对条目数和目标数据库名称，再确认导入。CSV 文件须包含 title 和 password 表头或支持的别名。JSON 需使用 ConsoleCrypt 导出的格式。每个文件最多包含 10,000 条记录，大小上限为 16 MiB。
+3. 导入后打开一条记录，核对群组和字段。以后可以从「密码」中的最近五个来源重新打开数据库或机密服务器。此列表支持本地 KDBX、WebDAV、Vault 和 OpenBao。
+
+<a id="release-1-2-1-docker"></a>
+
+### 选择 Docker 引擎并删除容器
+
+1. 在 Docker 中选择本机以使用 Windows、macOS 或 Linux 上的本地引擎，或选择已保存的 SSH 主机以使用远程引擎。检查列表上方的连接名称。Windows 上还可通过 WSL Containers 访问 WSL 中的容器。
+2. 打开容器查看端口映射，每页显示 20 个端口。要删除容器，请在其菜单中选择「删除容器」。核对容器名和主机；如果容器仍在运行，需要单独确认停止。
+3. 卷和网络默认均未选中。只勾选要删除的可选资源。受保护的资源旁会显示原因。共享卷、Docker 内置网络和绑定挂载的主机文件会保留。确认后逐项查看处理结果。
+
+<a id="release-1-2-1-deploy"></a>
+
+### 将容器部署到 Kubernetes
+
+1. 打开不依赖持久挂载的 Linux 容器，在详情中选择部署到 Kubernetes 的实验功能。选择已保存的 Kubernetes 上下文和命名空间。核对工作负载名称和容器内应用监听的 TCP 端口。
+2. 向导会通过 Docker 在源镜像仓库中验证摘要，然后自动填入镜像。如果镜像只存在于本机，请先发布到集群节点可访问的仓库，再输入带标签或摘要的完整地址。对于私有仓库，可指定所选命名空间中已有的 imagePullSecret。
+3. 使用模板或选择 AI 提供方。检查 YAML，尤其是 image、command、args 和 port。运行服务器检查以验证清单。节点会在 Pod 启动时拉取镜像并运行进程。确认后将创建单副本 Deployment 和内部 ClusterIP Service。
+4. 检查就绪状态。对于 ImagePullBackOff，核对镜像地址及节点的拉取权限。对于 CrashLoopBackOff，检查启动命令、参数、退出码和重启次数。反复重启且退出码为 0 可能表示进程执行完毕后自行退出。打开已创建的 Deployment 可以查看 Pod 状态。
+
+<a id="release-1-2-1-ssh"></a>
+
+### 监控 SSH 主机和恢复端口转发
+
+1. 使用内置 SSH 客户端连接 Linux 主机。在终端右侧面板或手机上的会话工具中打开「监控」。查看 CPU、内存、磁盘占用和网络速率。收起面板再重新打开；只要 SSH 会话仍连接，采样就会持续。
+2. 在「隧道」中找到已保存的 Docker 或 Kubernetes 转发。核对主机或集群、目标资源和本地端口，然后点击启动。状态变为活动后，连接界面显示的本地地址。
+
+<a id="release-1-2-1-terminals"></a>
+
+### 在 macOS 上安装，以及在 PowerShell 中粘贴多行文本
+
+1. 在 macOS 上打开 DMG。在 Finder 中将 ConsoleCrypt、ConsoleCrypt Terminal 或两者拖到同一行的 Applications 文件夹。然后从「应用程序」启动所需应用。ConsoleCrypt Terminal 会打开独立的终端界面。
+2. 在 Windows 上打开本地 PowerShell 标签页，在空提示符处用终端的粘贴功能插入多行文本。可以用两行内容不同的 Write-Output 命令进行测试，执行前核对顺序。
+
+[KDBX 群组、条目和字段](#password-manager)
+
+[连接 Kubernetes 集群](#kubernetes-connections)
+
+[端口转发与隧道](#tunnels)
+
+![在「密码」的最近来源中选择 Vault 或 OpenBao 连接，即可重新访问其中的机密。](../assets/guide/vault-sources-zh.png)
+
+在「密码」的最近来源中选择 Vault 或 OpenBao 连接，即可重新访问其中的机密。
+
+![在删除对话框中可以单独选择卷和网络。共享网络与主机文件受到保护。](../assets/guide/docker-cleanup-zh.png)
+
+在删除对话框中可以单独选择卷和网络。共享网络与主机文件受到保护。
+
+![生成清单前，请确认集群上下文、命名空间、镜像摘要和应用端口。](../assets/guide/docker-kube-wizard-zh.png)
+
+生成清单前，请确认集群上下文、命名空间、镜像摘要和应用端口。
+
 <a name="first-start"></a>
 
-## 1. 第一次发射和简介
+## 2. 第一次发射和简介
 
 本地启动或连接加密同步 。 配置文件包含它自己的金库,并在连接时,在选定的服务器上设置一个账户.
 
@@ -126,7 +201,7 @@
 
 <a name="linux-install"></a>
 
-## 2. Linux 安装: DEB、RPM和密钥环
+## 3. Linux 安装: DEB、RPM和密钥环
 
 客户端的目标为x86-64(x64)图形桌面:Ubuntu 22.04,Debian 12和Fedora 43. 选择您分发的软件包; 软件包管理器检查依赖性 。
 
@@ -162,7 +237,7 @@ sudo dnf install ./consolecrypt.rpm
 
 <a name="passwords"></a>
 
-## 3. 我需要哪个密码?
+## 4. 我需要哪个密码?
 
 ConsoleCrypt有单独的访问层. 通过电子邮件重置您的账户密码不会解锁加密金库 。
 
@@ -184,7 +259,7 @@ ConsoleCrypt有单独的访问层. 通过电子邮件重置您的账户密码不
 
 <a name="vault"></a>
 
-## 4. 断层、恢复和生物鉴别
+## 5. 断层、恢复和生物鉴别
 
 你的保险库在装置上解锁了 创建后配置锁定和解锁 。
 
@@ -268,7 +343,7 @@ PIN之后,键会眨眼,等待触摸;应用程序说直到键解答.
 
 <a name="devices"></a>
 
-## 5. 同步和信任的设备
+## 6. 同步和信任的设备
 
 签名并被允许解密金库是单独的动作. 新的设备需要批准。
 
@@ -334,7 +409,7 @@ Demo设备列表;访问批准是一个单独的步骤.
 
 <a name="device-protection"></a>
 
-## 6. 防止在新设备上签字
+## 7. 防止在新设备上签字
 
 如果有人从新设备中签入你的账户,你马上发现,设备被暂时限制. 这种保护需要同步服务器0.116或稍后.
 
@@ -358,7 +433,7 @@ Demo设备列表;访问批准是一个单独的步骤.
 
 <a name="enterprise-sign-in"></a>
 
-## 7. 公司注册:SSO和主动目录
+## 8. 公司注册:SSO和主动目录
 
 同步服务器 0. 2. 0 , 以后只能通过您的组织授权服务器录用账户 。 客户端 0. 9. 0 检测服务器的模式并显示匹配表单 。 只有账户的注册更改 :您的金库密码句仍然打开金库 。
 
@@ -398,7 +473,7 @@ Demo设备列表;访问批准是一个单独的步骤.
 
 <a name="hosts"></a>
 
-## 8. 主机: 添加、 查找和连接
+## 9. 主机: 添加、 查找和连接
 
 主机商店SSH或RDP连接设置. 卡片和列表行显示其地址,用户和组.
 
@@ -456,7 +531,7 @@ Demo设备列表;访问批准是一个单独的步骤.
 
 <a name="rdp"></a>
 
-## 9. RDP: Windows 远程桌面
+## 10. RDP: Windows 远程桌面
 
 ConsoleCrypt现在支持RDP连接. 它直接连接到标准的微软RDP服务器;没有IronRDP加载需要安装在Windows上.
 
@@ -506,7 +581,7 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 
 <a name="rdp-mobile"></a>
 
-## 10. 手机上的 RDP: 触控板和键盘
+## 11. 手机上的 RDP: 触控板和键盘
 
 在电话中,连接的桌面自动打开全屏. Touchpad是默认:你的手指相对于其当前位置移动指针. 一个浮动按钮打开会话控件 。
 
@@ -564,7 +639,7 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 
 <a name="quick-connect"></a>
 
-## 11. 快速搜索和连接
+## 12. 快速搜索和连接
 
 在应用程序中从任何地方找到一个保存的主机, 并打开一个SSH 或 RDP会话 。 命令调色板集合了主机,片段和快速动作.
 
@@ -592,7 +667,7 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 
 <a name="groups"></a>
 
-## 12. 组合和跳转主机
+## 13. 组合和跳转主机
 
 组组织您的目录并提供共同的设置 。 一个跳动宿主链通过中间机到达一个SSH宿主.
 
@@ -632,7 +707,7 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 
 <a name="password-manager"></a>
 
-## 13. KDBX 密码管理器
+## 14. KDBX 密码管理器
 
 密码打开KeePassKDBX3/4数据库. SSH/RDP证书保留在自己的部分;KDBX条目不会自动复制到那里.
 
@@ -659,6 +734,8 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 11. 在Android/iOS上,一个本地文件被导入到耐用的私人应用程序存储中. 自动保存更改该副本;通过系统拾取器保存本地副本导出 。 使用WebDAV从多个设备编辑一个远程文件.
 
 12. 在第一个密码解锁后,通过WindowsApple系统保护或AndroidKeystore为这个设备上的这个数据库启用快速解锁. FIDO2/PRF可在Windows/macOS上查阅。 Linux生物特征快速解锁尚未实施; iOS模拟能力取决于其环境.
+
+[导入与导出 KDBX 条目](#release-1-2-1-kdbx)
 
 > **注意**
 >
@@ -734,7 +811,7 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 <a name="password-generator"></a>
 
-## 14. 密码生成器
+## 15. 密码生成器
 
 生成器可在管理器欢迎屏幕、开放数据库和密码编辑器上获取。 它运行在你的设备上,没有服务器。
 
@@ -750,7 +827,7 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 <a name="password-webdav"></a>
 
-## 15. KDBX 超过WebDAV和同步
+## 16. KDBX 超过WebDAV和同步
 
 在打开数据库之前配置WebDAV 。 ConsoleCrypt加密连接设置,并读取和保存您WebDAV服务器上的KDBX.
 
@@ -780,7 +857,7 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 <a name="password-palette"></a>
 
-## 16. 命令调色板中的密码
+## 17. 命令调色板中的密码
 
 从包括终端在内的任何区域中查找用户名,密码或API密钥. 先选择条目,然后选择字段。
 
@@ -802,7 +879,7 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 <a name="credentials"></a>
 
-## 17. 密码、钥匙和全权证书
+## 18. 密码、钥匙和全权证书
 
 身份证明与主机是分开的:一个证书可以分配到多个连接上.
 
@@ -834,7 +911,7 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 <a name="host-keys"></a>
 
-## 18. 已知主机和SSH - 关键字校验
+## 19. 已知主机和SSH - 关键字校验
 
 服务器密钥识别您正在连接的SSH主机 。 这与信任一个ConsoleCrypt设备是分开的.
 
@@ -850,7 +927,7 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 <a name="terminal"></a>
 
-## 19. 终端、 标签和选择
+## 20. 终端、 标签和选择
 
 标签会有一个终端会话SSH,加上macOS和Windows的本地贝壳,或者在分裂成扇形时,最多可以并排四个. 电话有一个特殊的键条;计算机有快捷键和上下文菜单.
 
@@ -875,6 +952,8 @@ KDBX欢迎:创建,开放或连接WebDAV.
 10. 断开后,请在标签旗下重新连接 。 输出缓冲直到标签关闭; 关闭结束该会话 。
 
 11. “安排 · 终端 · 标签放置”:上端或左端。 左侧是带有名称和地址的标签的列;拖动它的边缘以更改宽度或折叠到图标中. 当列显示时, 应用程序侧边栏会一直折叠,直到您展开它 。 选择保留在这个设备上 。
+
+[监控 SSH 主机和恢复端口转发](#release-1-2-1-ssh)
 
 > **注意**
 >
@@ -922,7 +1001,7 @@ Ctrl+K命令调色板在最小终端上仍然可用.
 
 <a name="local-terminals"></a>
 
-## 20. 本地终端: zsh、 PowerShell 和 WSL
+## 21. 本地终端: zsh、 PowerShell 和 WSL
 
 在macOS和Windows上,您可以在这个计算机上打开一个外壳,同时打开SSH标签. 它作为普通OS用户运行,不需要同步服务器.
 
@@ -960,7 +1039,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 <a name="shortcuts"></a>
 
-## 21. 键盘快捷键
+## 22. 键盘快捷键
 
 主要修饰词为QQ于macOS和Ctrl于Windows/Linux. 复制到 Windows不使用 Ctrl+C,它会中断一个命令 。 App快捷键可以在设置 → 键盘快捷键中重新映射:选择更改,并按新组合的QQ/Ctrl或Alt. 如果有另一个命令,则该命令失去它;如果系统或终端使用它,则警告你. 恢复默认值会带回下表 。
 
@@ -989,7 +1068,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 <a name="sftp"></a>
 
-## 22. SFTP: 传输和文件预览
+## 23. SFTP: 传输和文件预览
 
 从主机菜单或侧边栏打开SFTP 。 文件直接在设备与SSH主机之间行驶.
 
@@ -1031,7 +1110,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 <a name="sftp-editor"></a>
 
-## 23. SFTP: 默认编辑器
+## 24. SFTP: 默认编辑器
 
 在计算机上,文件可以在外部编辑器中打开. ConsoleCrypt记得该设备上所选的应用程序.
 
@@ -1059,7 +1138,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 <a name="tunnels"></a>
 
-## 24. SSH 隧道
+## 25. SSH 隧道
 
 一个隧道使用一个SSH连接到选定的主机. 本地转发、远程转发和动态SOCKS5可供使用。
 
@@ -1093,7 +1172,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 <a name="snippets"></a>
 
-## 25. 片段、变量和启动集
+## 26. 片段、变量和启动集
 
 片段是保存的命令或模板 。 打开右侧的&lt;/&gt;图标或它的快捷键的工具.
 
@@ -1135,7 +1214,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 <a name="ai"></a>
 
-## 26. AI 聊天和您发送的背景
+## 27. AI 聊天和您发送的背景
 
 您选择提供者、 上下文及随后的动作 。 模型的答案不会执行命令 。
 
@@ -1171,7 +1250,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 <a name="local-ai"></a>
 
-## 27. 本地AI:模型,你自己的GGUF和升级
+## 28. 本地AI:模型,你自己的GGUF和升级
 
 在macOS,Windows和Linuxx64上,模型在你的计算机上解答. 选择 Light Quen2.5-coder 1.5B,中位 Quen3.5 4B 或 strong Quen3.5 9B,并保存整个更新的下载模型. 也可以加入自己的GGUF模型.
 
@@ -1221,7 +1300,7 @@ Linuxx64:选择并安装本地CPU模型. 下载前合成状态.
 
 <a name="notes"></a>
 
-## 28. 说明、任务和提醒
+## 29. 说明、任务和提醒
 
 笔记是Spipets和AI旁边的右侧小板块工具. 用音符图标打开,从命令调色板或电话头打开. 笔记在设备上加密并与金库同步.
 
@@ -1275,7 +1354,7 @@ Linuxx64:选择并安装本地CPU模型. 下载前合成状态.
 
 <a name="automation"></a>
 
-## 29. Ansible 自动化
+## 30. Ansible 自动化
 
 从剧本或角色创建项目、添加文件，并在运行前审阅 AI 建议。
 
@@ -1303,7 +1382,7 @@ Linuxx64:选择并安装本地CPU模型. 下载前合成状态.
 
 <a name="terminal-only"></a>
 
-## 30. 仅终端模式
+## 31. 仅终端模式
 
 在独立窗口中打开本地 Shell，选项卡可放置在左侧或顶部。
 
@@ -1313,7 +1392,7 @@ Linuxx64:选择并安装本地CPU模型. 下载前合成状态.
 
 <a name="teams"></a>
 
-## 31. 团队
+## 32. 团队
 
 一个团队是同一服务器上几个账户共享的金库. 所有成员都可以看到其主机,组,证书和片段;角色决定谁可以更改它们. 团队名称,设置和资源是端到端加密的:服务器只看到谁是成员. Teams在服务器0.2.1或稍后的同步配置中可以提供(public syndate.consolecrypt.dev支持它们);一个本地配置中没有Teams部分.
 
@@ -1404,7 +1483,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-start"></a>
 
-## 32. 共享: 开始
+## 33. 共享: 开始
 
 使用同一服务器上经核实的人的设备共享单个项目。 你的私人金库和钥匙没有共享
 
@@ -1452,7 +1531,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-items"></a>
 
-## 33. 共享主机、团体和秘密
+## 34. 共享主机、团体和秘密
 
 每个项目都有自己的访问权. 一个团体不会自动允许其所有儿童进入。
 
@@ -1478,7 +1557,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="databases-sharing"></a>
 
-## 34. 共享数据库连接
+## 35. 共享数据库连接
 
 保存的数据库连接可以和同事的验证设备共享,就像主机或Kubernetes上下文一样. 它需要同步服务器0.1.15或稍后启用该特性;同步.consolecrypt.dev已打开. 有了更古老的服务器,动作就被隐藏了. 在您自己的服务器上, CC\_SHARED\_DB\_CONNECTIONS\_ENABLED 旗帜打开它(参见“您自己的服务器: 特性、 旗帜和限制 ” )。
 
@@ -1512,7 +1591,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="shared-notes"></a>
 
-## 35. 关于共享对象的共享注释
+## 36. 关于共享对象的共享注释
 
 共享主机,数据库连接或Kubernetes上下文共享了每个成员都看到的音符. 这需要同步服务器0.2.0或稍后与管理员允许的共享注释CC\_SHARED\_NOTES\_ENABLED同步. 物体最多可容纳500个音符,每个音符最多可容纳288个KiB,加密.
 
@@ -1536,7 +1615,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-devices"></a>
 
-## 36. 同事的新个人用具
+## 37. 同事的新个人用具
 
 补助金只适用于属于已经核实的同事的新装置。 它不邀请其他人或提升权限。
 
@@ -1562,7 +1641,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="sharing-revoke"></a>
 
-## 37. 撤销、队列和信任恢复
+## 38. 撤销、队列和信任恢复
 
 业主管理参与者。 编辑器更改内容;参与者的访问权仍由所有者控制。
 
@@ -1594,7 +1673,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="settings-overview"></a>
 
-## 38. 设置: 在哪里
+## 39. 设置: 在哪里
 
 从侧边栏打开或带有QQ, / Ctrl+, 的设置. 它是一张滚动的卡片页;有些卡片只出现在有该功能的地方. 外观,终端,快捷键和编辑偏好都留在设备上,而金库数据则停留在加密配置中.
 
@@ -1632,7 +1711,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="cli"></a>
 
-## 39. 命令行:控制台crypt-cli
+## 40. 命令行:控制台crypt-cli
 
 控制台crypt-cli是ConsoleCrypt命令行客户端. 它与macOS,Windows和Linux的安装器同船,并使用与应用程序相同的配置图进行工作.
 
@@ -1654,7 +1733,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="appearance"></a>
 
-## 40. 颜色、文本大小和玻璃效果
+## 41. 颜色、文本大小和玻璃效果
 
 外观偏好被存储在这个设备上. 界面文本大小和终端字体大小分别调整.
 
@@ -1678,7 +1757,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="right-panel"></a>
 
-## 41. 右面板:泡泡或一个工作空间
+## 42. 右面板:泡泡或一个工作空间
 
 片段,笔记,AI和端口前置在右侧工具面板中. 在外观设置中选择它的行为 。
 
@@ -1704,7 +1783,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 <a name="screenshots"></a>
 
-## 42. 屏幕截图、屏幕保护和剪贴板
+## 43. 屏幕截图、屏幕保护和剪贴板
 
 应用程序是否能够屏蔽屏幕捕获取决于OS. 抓取偏好是当前设备的局部偏好 。 复制后的秘密远离剪贴板历史,在超时后被删除 。
 
@@ -1745,7 +1824,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="backups"></a>
 
-## 43. 备份和恢复
+## 44. 备份和恢复
 
 同步不替换备份 。 将加密文件与您的设备分开, 将回收套件与文件分开 。
 
@@ -1769,7 +1848,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="about"></a>
 
-## 44. 版本、作者和许可证
+## 45. 版本、作者和许可证
 
 大约显示已安装的应用程序的细节:其版本、构建编号、作者和许可证。
 
@@ -1787,7 +1866,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="updates"></a>
 
-## 45. 客户端更新
+## 46. 客户端更新
 
 在Windows、macOS、Android和Linux(从0.9.14开始的DEB或RPM副本)上,“Settings – Updates”提供启动检查和人工检查。 检查本身不会安装更新 。
 
@@ -1819,7 +1898,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="server-account"></a>
 
-## 46. 账户:密码、断开和网站账户
+## 47. 账户:密码、断开和网站账户
 
 网站账户管理您的公共服务器账户。 解密的主机,密钥和片段仍保留在应用程序中.
 
@@ -1847,7 +1926,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 <a name="kubernetes-connections"></a>
 
-## 47. Kubernetes:连接和接入
+## 48. Kubernetes:连接和接入
 
 导入已有的上下文, 并将证书保存在您的加密金库中 。 集群请求来自您的设备 。
 
@@ -1862,6 +1941,8 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 5. 要与同事共享,请打开共享访问并选择上下文. 默认情况下,全权证书不在此列,需要明确列入。
 
 [完整Kubernetes 指令 QQ](../docs/public/zh/KUBERNETES.md)
+
+[将容器部署到 Kubernetes](#release-1-2-1-deploy)
 
 > **注意**
 >
@@ -1881,7 +1962,7 @@ kubeconfig 导入:演示文件的上下文,它们的认证,生产开关和需要
 
 <a name="kubernetes-resources"></a>
 
-## 48. Kubernetes:资源和变化
+## 49. Kubernetes:资源和变化
 
 直播列表和细节显示来自可用API的对象,包括已安装的CRD.
 
@@ -1921,7 +2002,7 @@ Kubernetes与演示数据接口.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 49. Kubernetes:原木、壳体和隧道
+## 50. Kubernetes:原木、壳体和隧道
 
 日志, shell 和端口转发被构建到客户端中,不需要外部的kubectl.
 
@@ -1967,7 +2048,7 @@ A Pod 端口向前:此设备上的地址和右侧的主动前方列表 。
 
 <a name="kubernetes-gitops"></a>
 
-## 50. Kubernetes: GitOps 与问题
+## 51. Kubernetes: GitOps 与问题
 
 Flux和Argo CD是从可用的CRD中发现的. 概览结合了状态,依赖性和与问题对象的链接.
 
@@ -1999,7 +2080,7 @@ GitOps在手机上播放演示数据. 过滤面板是滚动的;滚动到顶部�
 
 <a name="kubernetes-helm"></a>
 
-## 51. Kubernetes:赫尔姆语.
+## 52. Kubernetes:赫尔姆语.
 
 检查存储的Helm释放,并将其与当前集群进行比较.
 
@@ -2027,7 +2108,7 @@ Kubernetes与演示数据接口.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 52. Kubernetes:上下文终端和AI
+## 53. Kubernetes:上下文终端和AI
 
 地方指挥部和大赦国际的援助情况仍然明确。
 
@@ -2053,7 +2134,7 @@ AI inKubernetes:一个关于一个失败的Pod,它所读的日志和事件以及
 
 <a name="databases-connections"></a>
 
-## 53. 数据库:连接和路线
+## 54. 数据库:连接和路线
 
 数据库部分与 PostgreSQL, MySQL 和 MariaDB, ClickHouse, Redis, MongoDB, Cassandra 和 ScyllaDB 合作, 并拥有 SQLite文件. 驱动程序被构建在应用程序中,连接在加密的金库中进行直播,查询从您的设备直接转到数据库.
 
@@ -2097,7 +2178,7 @@ Demo连接:路由图标,彩色标签,PROD徽章,标签过滤器以及SQLite和Ca
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 54. 数据库:SQLite、Cassandra和ScyllaDB
+## 55. 数据库:SQLite、Cassandra和ScyllaDB
 
 SQLite是一个文件,不是服务器;Cassandra和ScyllaDB会讲CQL. 两台发动机均以0.9.2到达. 从0.9.14起,Cassandra / ScyllaDB和SQLite通过-a-host连接可以移动到金库,而这个计算机上的SQLite文件则停留在这里.
 
@@ -2135,7 +2216,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-queries"></a>
 
-## 55. 数据库:结构、查询和结果
+## 56. 数据库:结构、查询和结果
 
 点击连接打开其工作空间:左边的数据库结构,查询标签,编辑器和右边的结果网格. 拖动面板边框以调整其大小 。 主要修饰词为QQ在macOS和Ctrl在Windows和Linux.
 
@@ -2223,7 +2304,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-changes"></a>
 
-## 56. 数据库:生产、变化、历史和导出
+## 57. 数据库:生产、变化、历史和导出
 
 生产连接是只读的,任何更改在运行前都会向您显示. 在非生产环节中明确打开写字机,只在临时窗口内进行生产。
 
@@ -2265,7 +2346,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-production"></a>
 
-## 57. 数据库:编写到制作
+## 58. 数据库:编写到制作
 
 生产连接打开只读 。 当生产必须更改时,打开一个临时的写窗口:它持续几分钟,只适用于本会话.
 
@@ -2291,7 +2372,7 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 <a name="databases-designer"></a>
 
-## 58. 数据库:表格设计器和 CSV 导入
+## 59. 数据库:表格设计器和 CSV 导入
 
 不写入 SQL 创建或更改表格,并加载 CSV 数据到表格中。 在这两种情况下,在确认之前,服务器上都不会有任何运行.
 
@@ -2339,7 +2420,7 @@ CSV导入,第2步 5: 编码, 分隔符, NULL,小数分隔符和文件第一行�
 
 <a name="databases-ai"></a>
 
-## 59. 数据库:AI助理
+## 60. 数据库:AI助理
 
 助理写、解释、修正和加快查询。 它使用来自 Sets → AI 的提供者,从不单独运行任何东西.
 
@@ -2361,7 +2442,7 @@ AI助手:一个来自描述的查询草稿;只有两个表格名称与模型共�
 
 <a name="docker-containers"></a>
 
-## 60. Docker:主机和集装箱
+## 61. Docker:主机和集装箱
 
 Docker段连接到此计算机或保存的SSH主机上的引擎. 通过主机的SSH连接到达一个远程引擎.
 
@@ -2371,9 +2452,11 @@ Docker段连接到此计算机或保存的SSH主机上的引擎. 通过主机的
 
 3. 集装箱按组装项目分类,首先使用运行的集装箱,最后使用独立集装箱。 组头显示有多少正在运行和崩溃的组. 过滤器匹配名称和图像, All / running /stopped 切换会缩小列表的大小 。
 
-4. 每行显示状态,健康检查,图像,短ID和端口. 按钮开始,停止并重新启动容器并打开其日志和终端. “...” 菜单增加了暂停、 杀死、删除、 端口转发、 细节和复制ID 。 杀死和删除请求确认; 命名的卷幸存删除 。
+4. 每行显示容器的状态、健康检查、镜像、短 ID 和端口。行内按钮可启动、停止或重启容器，也可打开日志和终端。点按「…」可以暂停、强制终止、删除容器或转发端口。删除容器时默认保留卷和网络。要同时清理可删除的资源，请在确认对话框中逐项勾选。
 
 [完整Docker 指令 QQ](../docs/public/zh/DOCKER.md)
+
+[选择 Docker 引擎并删除容器](#release-1-2-1-docker)
 
 > **注意**
 >
@@ -2389,7 +2472,7 @@ Docker段连接到此计算机或保存的SSH主机上的引擎. 通过主机的
 
 <a name="docker-details"></a>
 
-## 61. Docker:细节,日志,卷和前传.
+## 62. Docker:细节,日志,卷和前传.
 
 单击一个容器打开右边的细节,同时保持列表的视图。
 
@@ -2429,7 +2512,7 @@ JSON标签:命令中的密码是蒙面的;全文需要库口令.
 
 <a name="docker-compose"></a>
 
-## 62. Docker:编写项目
+## 63. Docker:编写项目
 
 编曲组头上的菜单控制整个项目并打开其文件.
 
@@ -2459,7 +2542,7 @@ JSON标签:命令中的密码是蒙面的;全文需要库口令.
 
 <a name="server-setup"></a>
 
-## 63. 您自己的服务器 : Kubernetes
+## 64. 您自己的服务器 : Kubernetes
 
 一个服务器可以实现设备同步和协作. 客户端不需要一个供本地使用. 不需要产品网站或分析来运行自己的服务器.
 
@@ -2557,7 +2640,7 @@ curl --fail https://sync.example.com/v1/meta
 
 <a name="server-docker"></a>
 
-## 64. 您自己的服务器:Docker 编曲
+## 65. 您自己的服务器:Docker 编曲
 
 Run ConsoleCrypt on a single Linux server without Kubernetes : a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS . 数据库数据和证书以连续(Docker册)保存。
 
@@ -2630,7 +2713,7 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
 <a name="server-settings"></a>
 
-## 65. 您自己的服务器:按方法的安装和参数
+## 66. 您自己的服务器:按方法的安装和参数
 
 每个服务器设置都是 CCQQ 变量; 带有 Helm 路径、 默认值和允许值的完整列表在“您自己的服务器: 配置引用 ” 中 。 本章显示每个安装方法(Docker Compose, docker run,Helm, aJSON文件和系统d)的键放在何处,如何应用和验证一个变化,并工作实例:共享注释和团队,与Entra ID和 Active Directory的签名,切换限制执行,提高配额.
 
@@ -3087,7 +3170,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show -
 
 <a name="server-enterprise"></a>
 
-## 66. 您自己的服务器: 公司登录和共享便条
+## 67. 您自己的服务器: 公司登录和共享便条
 
 由于服务器0.2.0(protocol 1.9),服务器可以在企业模式下运行:账户签名只能通过OpenID Connection IdP或Active Directory / LDAP进行. 它是开源服务器的一部分,没有单独的构建或许可证. 加密、金库、设备、共享和团队(服务器0.2.1)在两种模式中都起作用。
 
@@ -3175,7 +3258,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 
 <a name="server-idp"></a>
 
-## 67. 自己的服务器:公司注册食谱
+## 68. 自己的服务器:公司注册食谱
 
 完整的企业-模式指南:服务器需要的来自IDP,微软Entra ID,AD FS 2016+,Keycloak,Google Workspace,Okta和任何OIDC提供商,LDAPS或STARTLS的Active Directory,账号在初始登录时连接,命令,部署,故障排除表和切换回标准登录. 在示例中,服务器是https://sync.acme.com,角括号标记了自己的值;只将秘密保存在文件和机密中.
 
@@ -3711,7 +3794,7 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 
 <a name="server-config"></a>
 
-## 68. 您自己的服务器: 特性、 旗帜和限制
+## 69. 您自己的服务器: 特性、 旗帜和限制
 
 您自己的服务器功能被打开了 CCQQ 变量 。 使用 Docker 编译它们进入私人服务器. env(用于变量组成. yaml lists) 或单独编译. override. yaml; 由 Helm 输入您值文件的配置、 认证和邮件块;没有容器进入服务环境或一个私人文件JSON --config ) 。 下面的值是服务器默认值 。
 
@@ -3881,7 +3964,7 @@ extraEnv:
 
 <a name="server-reference"></a>
 
-## 69. 您自己的服务器: 配置引用
+## 70. 您自己的服务器: 配置引用
 
 每个同步服务器参数:每个 CCQQ 密钥及其 Helm 路径,默认,允许值, 密旗和目的, 分组为源引用; 配置源的顺序和启动检查;所有 18 请求限制和管理员命令 。 每次发布时都会对照服务器代码检查引用. 将每种安装方法的密钥放置在“自己的服务器:按方法安装和参数”中。
 
@@ -4302,7 +4385,7 @@ admin... ` or ` kubectl 执行部署/ -- -- -- /usr/local/bin/consocrypt-server 
 
 <a name="server-maintenance"></a>
 
-## 70. 您的服务器: 备份、 升级和命令
+## 71. 您的服务器: 备份、 升级和命令
 
 所有恒定服务器数据都存在PostgreSQL . 数据库备份加上私人配置是恢复需要的。 管理员命令管理账户和会话,但绝不允许访问金库内容.
 

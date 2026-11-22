@@ -1,5 +1,6 @@
 # ConsoleCrypt technical documentation
 
+- [What’s new in 1.2.1](../RELEASE_1_2_1.md) · [What’s new in 1.2.1](../../../guide/en.md#release-1-2-1)
 - [Android: publication ConsoleCrypt in RuStore](ANDROID_RUSTORE.md)
 - [Assembly and synchronization server](BUILDING.md)
 - [Assembly ConsoleCrypt for iOS](BUILD_IOS.md)
