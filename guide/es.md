@@ -670,7 +670,7 @@ En Contraseñas puedes abrir una base de datos KeePass KDBX 3/4 o conectarte a u
 
 12. Después de que la primera contraseña se desbloquee, active el desbloqueo rápido para esta base de datos en este dispositivo a través de Windows Hola, Protección del sistema de Apple o Android Keystore. FIDO2/PRF está disponible en Windows / macOS . Linux el desbloqueo rápido biométrico aún no se implementa; iOS Las capacidades de los simuladores dependen de su entorno.
 
-**En este capítulo** [Importar y exportar entradas KDBX](#password-manager-kdbx-transfer) · [Conectar Vault u OpenBao](#password-manager-vault-openbao)
+**En este capítulo** [Importar y exportar entradas KDBX](#password-manager-kdbx-transfer) · [Conectarse a Vault u OpenBao](#password-manager-vault-openbao) · [Buscar un secreto de Vault y copiar un campo](#password-manager-vault-browse)
 
 <a id="password-manager-kdbx-transfer"></a>
 
@@ -680,18 +680,37 @@ En Contraseñas puedes abrir una base de datos KeePass KDBX 3/4 o conectarte a u
 2. Para importar, abre el menú de la base de destino y elige Importar CSV o JSON. Selecciona el archivo y comprueba el número de entradas y el nombre de la base antes de confirmar. El CSV requiere las columnas title y password, o sus equivalentes admitidos. Para JSON, usa una exportación de ConsoleCrypt. El límite por archivo es de 10 000 entradas y 16 MiB.
 3. Tras la importación, abre una entrada y comprueba su grupo y sus campos. Para volver a una base de datos o a un servidor de secretos, abre las cinco fuentes recientes en Contraseñas. La lista reúne bases KDBX locales, WebDAV, Vault y OpenBao.
 
+![El menú de una base KDBX desbloqueada permite importar CSV o JSON y exportar en ambos formatos.](../assets/guide/kdbx-csv-json-es.png)
+
+El menú de una base KDBX desbloqueada permite importar CSV o JSON y exportar en ambos formatos.
+
 <a id="password-manager-vault-openbao"></a>
 
-### Conectar Vault u OpenBao
+### Conectarse a Vault u OpenBao
 
 1. Abre Contraseñas → Vault / OpenBao → Añadir conexión. Escribe el nombre y la dirección del servidor. Utiliza HTTPS para conectarte por red. Con HTTP, el token, la contraseña y los secretos consultados viajan sin cifrado de transporte.
 2. Elige token o nombre de usuario y contraseña. En los ajustes de Vault, cambia el punto de montaje KV v1/v2 si difiere del propuesto. Si userpass usa una ruta propia, indícala y conecta.
-3. Abre una carpeta y selecciona un secreto. La búsqueda filtra la carpeta actual. Si la política te permite leer el secreto pero oculta la lista, introduce su ruta completa dentro del punto de montaje. Elige el campo para ver o copiar su valor. En la paleta de comandos, busca la conexión por nombre y navega hasta el mismo campo.
-4. Para usar la conexión en otro dispositivo, sincroniza el mismo perfil personal. Los ajustes se guardan en la bóveda cifrada. Si también quieres transferir el token o la contraseña, activa Guardar el acceso en mi bóveda cifrada de ConsoleCrypt. Tras sincronizar, abre la conexión en el segundo dispositivo y elige Acceder con la credencial sincronizada. La biometría se configura en cada dispositivo.
+3. Para usar la conexión en otro dispositivo, sincroniza el mismo perfil personal. Los ajustes se guardan en la bóveda cifrada. Si también quieres transferir el token o la contraseña, activa Guardar el acceso en mi bóveda cifrada de ConsoleCrypt. Tras sincronizar, abre la conexión en el segundo dispositivo y elige Acceder con la credencial sincronizada. La biometría se configura en cada dispositivo.
+
+![Configuración de Vault/OpenBao con la dirección del servidor a la izquierda y las opciones de acceso y guardado a la derecha.](../assets/guide/vault-connection-es.png)
+
+Configuración de Vault/OpenBao con la dirección del servidor a la izquierda y las opciones de acceso y guardado a la derecha.
 
 ![Selecciona una conexión reciente de Vault u OpenBao en Contraseñas para volver a sus secretos.](../assets/guide/vault-sources-es.png)
 
 Selecciona una conexión reciente de Vault u OpenBao en Contraseñas para volver a sus secretos.
+
+<a id="password-manager-vault-browse"></a>
+
+### Buscar un secreto de Vault y copiar un campo
+
+Abre la conexión en Contraseñas y selecciona una carpeta y un secreto. La búsqueda filtra la carpeta actual. Si la política permite leer el secreto y oculta la lista, escribe la ruta completa dentro del montaje KV. En la ficha del secreto, usa el icono del ojo para mostrar un campo o el icono de copia que aparece junto a él.
+
+[Copiar desde la paleta de comandos](#password-palette-vault-openbao)
+
+![Las carpetas, los secretos y sus campos se abren en columnas contiguas. A la derecha de cada campo están los controles para mostrarlo y copiarlo.](../assets/guide/vault-browse-es.png)
+
+Las carpetas, los secretos y sus campos se abren en columnas contiguas. A la derecha de cada campo están los controles para mostrarlo y copiarlo.
 
 > **Ten en cuenta**
 >
@@ -825,6 +844,18 @@ Encuentre un nombre de usuario, contraseña o clave de API de cualquier sección
 
 4. La base de datos debe ser desbloqueada; bloquear el perfil cierra bases de datos abiertas. Los valores secretos no se muestran en los resultados de búsqueda. Las copias usan el temporizador de limpieza de portapapeles compartido.
 
+**En este capítulo** [Copiar un secreto de Vault u OpenBao desde la paleta](#password-palette-vault-openbao)
+
+<a id="password-palette-vault-openbao"></a>
+
+### Copiar un secreto de Vault u OpenBao desde la paleta
+
+Abre la paleta de comandos y escribe el nombre de la conexión guardada. Selecciónala, inicia sesión si se te solicita y abre la carpeta y el secreto. Usa el icono de copia junto al campo deseado. La paleta copia ese campo y se cierra.
+
+![La paleta de comandos muestra los campos del secreto. Usa el botón de copia junto al campo que necesites.](../assets/guide/vault-palette-es.png)
+
+La paleta de comandos muestra los campos del secreto. Usa el botón de copia junto al campo que necesites.
+
 [Buscar y copiar un secreto de Vault u OpenBao](#password-manager-vault-openbao)
 
 ![Encuentra una entrada por título antes de copiar cualquier cosa.](../assets/guide/passwords-palette-en.png)
@@ -918,6 +949,10 @@ Una pestaña tiene una sesión terminal SSH , más conchas locales en macOS y Wi
 ### Supervisar la carga del host durante una sesión SSH
 
 Conecta con un host Linux mediante el cliente SSH integrado. Abre Monitorización en el panel derecho del terminal o en las herramientas de la sesión del teléfono. Consulta CPU, memoria, disco y tráfico de red. Cierra el panel y vuelve a abrirlo para ver las muestras recogidas durante la conexión.
+
+![El panel de monitorización junto al terminal muestra uso de CPU, memoria y disco, tráfico de red y datos del host Linux.](../assets/guide/terminal-ssh-metrics-es.png)
+
+El panel de monitorización junto al terminal muestra uso de CPU, memoria y disco, tráfico de red y datos del host Linux.
 
 [Pegar varias líneas en PowerShell](#local-terminals-powershell-paste)
 
@@ -1131,6 +1166,10 @@ Un túnel utiliza una conexión SSH con el anfitrión elegido. Se dispone de ree
 Al reenviar un puerto desde Docker o Kubernetes, active Guardar túnel. El preset aparece en Tunnels, donde se puede iniciar, parar o quitarlo. Puerto 0 selecciona un puerto local disponible en cada inicio.
 
 En Túneles, busca el reenvío guardado de Docker o Kubernetes. Comprueba el host o clúster, el recurso de destino y el puerto local. Pulsa iniciar. Cuando esté activo, conéctate a la dirección local indicada.
+
+![En Túneles, pulsa el botón de reproducción junto a un reenvío de Docker o Kubernetes guardado para iniciarlo de nuevo.](../assets/guide/tunnels-saved-forwards-es.png)
+
+En Túneles, pulsa el botón de reproducción junto a un reenvío de Docker o Kubernetes guardado para iniciarlo de nuevo.
 
 > **Ten en cuenta**
 >
@@ -2443,6 +2482,10 @@ La sección Docker se conecta al motor en este ordenador o en un host guardado S
 ### Conectar con un motor local de Docker o por SSH
 
 En Docker, selecciona este equipo para usar el motor local de Windows, macOS o Linux, o elige un host SSH guardado para un motor remoto. Comprueba el nombre de la conexión sobre la lista. En Windows también puedes abrir WSL Containers para los contenedores en WSL. En la cabecera se muestran la versión del motor, la plataforma y el número de contenedores en ejecución.
+
+![Este equipo abre el motor local de Docker. Los hosts SSH guardados aparecen por separado.](../assets/guide/docker-local-engine-es.png)
+
+Este equipo abre el motor local de Docker. Los hosts SSH guardados aparecen por separado.
 
 <a id="docker-containers-remove"></a>
 

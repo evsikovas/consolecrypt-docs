@@ -2134,6 +2134,24 @@ export const guideSections = [
         "height": 844
       },
       {
+        "name": "vault-connection",
+        "caption": {
+          "ru": "Настройки подключения Vault/OpenBao. Слева адрес сервера, справа способ входа и параметры сохранения.",
+          "en": "Vault/OpenBao connection setup, with the server address on the left and sign-in and storage options on the right.",
+          "es": "Configuración de Vault/OpenBao con la dirección del servidor a la izquierda y las opciones de acceso y guardado a la derecha.",
+          "zh": "Vault/OpenBao 连接设置。左侧填写服务器地址，右侧选择登录和保存方式。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "vault-openbao"
+      },
+      {
         "name": "vault-sources",
         "caption": {
           "ru": "В разделе «Пароли» выберите недавний источник Vault или OpenBao, чтобы вернуться к его секретам.",
@@ -2150,6 +2168,42 @@ export const guideSections = [
           "zh"
         ],
         "part": "vault-openbao"
+      },
+      {
+        "name": "vault-browse",
+        "caption": {
+          "ru": "Папки, секреты и поля открываются в соседних колонках. Справа от каждого поля находятся кнопки показа и копирования.",
+          "en": "Folders, secrets and fields open in adjacent columns. Each field has reveal and copy controls on the right.",
+          "es": "Las carpetas, los secretos y sus campos se abren en columnas contiguas. A la derecha de cada campo están los controles para mostrarlo y copiarlo.",
+          "zh": "文件夹、机密和字段在相邻列中打开。每个字段右侧都有显示和复制按钮。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "vault-browse"
+      },
+      {
+        "name": "kdbx-csv-json",
+        "caption": {
+          "ru": "Меню открытой базы KDBX. Здесь доступны импорт CSV или JSON и экспорт в каждый формат.",
+          "en": "The menu of an unlocked KDBX database offers CSV or JSON import and export to either format.",
+          "es": "El menú de una base KDBX desbloqueada permite importar CSV o JSON y exportar en ambos formatos.",
+          "zh": "已解锁的 KDBX 数据库菜单提供 CSV 或 JSON 导入，以及两种格式的导出。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "kdbx-transfer"
       }
     ],
     "parts": [
@@ -2171,16 +2225,31 @@ export const guideSections = [
       {
         "id": "vault-openbao",
         "title": {
-          "ru": "Подключение Vault и OpenBao",
-          "en": "Connect Vault or OpenBao",
-          "es": "Conectar Vault u OpenBao",
+          "ru": "Подключиться к Vault или OpenBao",
+          "en": "Connect to Vault or OpenBao",
+          "es": "Conectarse a Vault u OpenBao",
           "zh": "连接 Vault 或 OpenBao"
         },
         "body": {
-          "ru": "1. Откройте «Пароли → Vault / OpenBao → Добавить подключение». Задайте название и адрес сервера. Для подключения по сети используйте HTTPS. При выборе HTTP токен, пароль и прочитанные секреты передаются без шифрования транспорта.\n2. Выберите токен либо логин и пароль. В настройках Vault укажите путь KV v1/v2, если он отличается от предложенного. Для нестандартного userpass укажите путь этого метода входа. Затем подключитесь.\n3. Откройте папку и выберите секрет. Поиск фильтрует текущую папку. Если политика разрешает читать секрет, но скрывает список, введите полный путь секрета внутри KV. Выберите поле, чтобы увидеть или скопировать значение. В палитре команд найдите подключение по названию и перейдите к тому же полю.\n4. Для входа на другом устройстве синхронизируйте тот же личный профиль. Параметры подключения сохраняются в зашифрованном хранилище. Чтобы передавать также пароль или токен, отметьте «Сохранить данные входа в моём зашифрованном хранилище ConsoleCrypt». После синхронизации откройте подключение на другом устройстве и выберите «Войти с синхронизированными данными». Биометрический вход настраивается на каждом устройстве отдельно.",
-          "en": "1. Open Passwords → Vault / OpenBao → Add connection. Enter a name and the server URL. Use HTTPS for a network connection. HTTP sends tokens, passwords, and retrieved secrets without transport encryption.\n2. Choose a token or a username and password. In Vault settings, set the KV v1/v2 mount if it differs from the suggested path. If userpass is mounted at a custom path, enter that path too. Connect.\n3. Open a folder and select a secret. Search filters the current folder. If policy grants read access but hides the list, enter the full secret path within the mount. Select a field to reveal or copy its value. In the command palette, search by connection name and navigate to the same field.\n4. To use the connection on another device, sync the same personal profile. Connection settings are stored in the encrypted vault. To include its token or password, select Save this sign-in in my encrypted ConsoleCrypt vault. On the other device, open the connection after sync and select Sign in with the synced credential. Set up biometric sign-in separately on each device.",
-          "es": "1. Abre Contraseñas → Vault / OpenBao → Añadir conexión. Escribe el nombre y la dirección del servidor. Utiliza HTTPS para conectarte por red. Con HTTP, el token, la contraseña y los secretos consultados viajan sin cifrado de transporte.\n2. Elige token o nombre de usuario y contraseña. En los ajustes de Vault, cambia el punto de montaje KV v1/v2 si difiere del propuesto. Si userpass usa una ruta propia, indícala y conecta.\n3. Abre una carpeta y selecciona un secreto. La búsqueda filtra la carpeta actual. Si la política te permite leer el secreto pero oculta la lista, introduce su ruta completa dentro del punto de montaje. Elige el campo para ver o copiar su valor. En la paleta de comandos, busca la conexión por nombre y navega hasta el mismo campo.\n4. Para usar la conexión en otro dispositivo, sincroniza el mismo perfil personal. Los ajustes se guardan en la bóveda cifrada. Si también quieres transferir el token o la contraseña, activa Guardar el acceso en mi bóveda cifrada de ConsoleCrypt. Tras sincronizar, abre la conexión en el segundo dispositivo y elige Acceder con la credencial sincronizada. La biometría se configura en cada dispositivo.",
-          "zh": "1. 打开「密码 → Vault / OpenBao → 添加连接」，填写名称和服务器地址。通过网络连接时使用 HTTPS。使用 HTTP 时，令牌、密码和读取的机密在传输过程中均为明文。\n2. 选择令牌或用户名和密码。在 Vault 设置中，如果 KV v1/v2 引擎使用不同的挂载路径，请填写实际路径。如果 userpass 挂载在其他位置，也请修改对应的认证路径，再连接。\n3. 打开文件夹并选择机密。搜索可筛选当前文件夹。如果策略只允许读取而无权列出内容，输入该挂载点内机密的完整路径。选择字段可以显示或复制其值。也可以在命令面板按名称搜索连接，再逐级打开相同字段。\n4. 要在另一台设备上使用此连接，请同步同一份个人配置。连接设置保存在加密保管库中。如果还要同步令牌或密码，勾选「将登录凭据保存到我的加密 ConsoleCrypt 保管库」。同步后，在另一台设备上打开连接并选择「使用已同步的凭据登录」。每台设备单独设置生物识别登录。"
+          "ru": "1. Откройте «Пароли → Vault / OpenBao → Добавить подключение». Задайте название и адрес сервера. Для подключения по сети используйте HTTPS. При выборе HTTP токен, пароль и прочитанные секреты передаются без шифрования транспорта.\n2. Выберите токен либо логин и пароль. В настройках Vault укажите путь KV v1/v2, если он отличается от предложенного. Для нестандартного userpass укажите путь этого метода входа. Затем подключитесь.\n3. Для входа на другом устройстве синхронизируйте тот же личный профиль. Параметры подключения сохраняются в зашифрованном хранилище. Чтобы передавать также пароль или токен, отметьте «Сохранить данные входа в моём зашифрованном хранилище ConsoleCrypt». После синхронизации откройте подключение на другом устройстве и выберите «Войти с синхронизированными данными». Биометрический вход настраивается на каждом устройстве отдельно.",
+          "en": "1. Open Passwords → Vault / OpenBao → Add connection. Enter a name and the server URL. Use HTTPS for a network connection. HTTP sends tokens, passwords, and retrieved secrets without transport encryption.\n2. Choose a token or a username and password. In Vault settings, set the KV v1/v2 mount if it differs from the suggested path. If userpass is mounted at a custom path, enter that path too. Connect.\n3. To use the connection on another device, sync the same personal profile. Connection settings are stored in the encrypted vault. To include its token or password, select Save this sign-in in my encrypted ConsoleCrypt vault. On the other device, open the connection after sync and select Sign in with the synced credential. Set up biometric sign-in separately on each device.",
+          "es": "1. Abre Contraseñas → Vault / OpenBao → Añadir conexión. Escribe el nombre y la dirección del servidor. Utiliza HTTPS para conectarte por red. Con HTTP, el token, la contraseña y los secretos consultados viajan sin cifrado de transporte.\n2. Elige token o nombre de usuario y contraseña. En los ajustes de Vault, cambia el punto de montaje KV v1/v2 si difiere del propuesto. Si userpass usa una ruta propia, indícala y conecta.\n3. Para usar la conexión en otro dispositivo, sincroniza el mismo perfil personal. Los ajustes se guardan en la bóveda cifrada. Si también quieres transferir el token o la contraseña, activa Guardar el acceso en mi bóveda cifrada de ConsoleCrypt. Tras sincronizar, abre la conexión en el segundo dispositivo y elige Acceder con la credencial sincronizada. La biometría se configura en cada dispositivo.",
+          "zh": "1. 打开「密码 → Vault / OpenBao → 添加连接」，填写名称和服务器地址。通过网络连接时使用 HTTPS。使用 HTTP 时，令牌、密码和读取的机密在传输过程中均为明文。\n2. 选择令牌或用户名和密码。在 Vault 设置中，如果 KV v1/v2 引擎使用不同的挂载路径，请填写实际路径。如果 userpass 挂载在其他位置，也请修改对应的认证路径，再连接。\n3. 要在另一台设备上使用此连接，请同步同一份个人配置。连接设置保存在加密保管库中。如果还要同步令牌或密码，勾选「将登录凭据保存到我的加密 ConsoleCrypt 保管库」。同步后，在另一台设备上打开连接并选择「使用已同步的凭据登录」。每台设备单独设置生物识别登录。"
+        }
+      },
+      {
+        "id": "vault-browse",
+        "title": {
+          "ru": "Найти секрет Vault и скопировать поле",
+          "en": "Find a Vault secret and copy a field",
+          "es": "Buscar un secreto de Vault y copiar un campo",
+          "zh": "查找 Vault 机密并复制字段"
+        },
+        "body": {
+          "ru": "Откройте подключение в «Паролях», выберите папку и секрет. Поиск фильтрует текущую папку. Если политика разрешает чтение, а список скрыт, введите полный путь секрета внутри KV. В карточке секрета нажмите значок глаза, чтобы показать поле, или значок копирования рядом с ним.\n\n[Копирование из палитры команд](#password-palette-vault-openbao)",
+          "en": "Open the connection in Passwords, then select a folder and a secret. Search filters the current folder. If your policy grants read access and hides the list, enter the full path within the KV mount. In the secret details, use the eye icon to reveal a field or the copy icon next to it.\n\n[Copy from the command palette](#password-palette-vault-openbao)",
+          "es": "Abre la conexión en Contraseñas y selecciona una carpeta y un secreto. La búsqueda filtra la carpeta actual. Si la política permite leer el secreto y oculta la lista, escribe la ruta completa dentro del montaje KV. En la ficha del secreto, usa el icono del ojo para mostrar un campo o el icono de copia que aparece junto a él.\n\n[Copiar desde la paleta de comandos](#password-palette-vault-openbao)",
+          "zh": "在「密码」中打开连接，依次选择文件夹和机密。搜索仅筛选当前文件夹。如果策略允许读取机密但不允许列出目录，请输入该机密在 KV 挂载点内的完整路径。在机密详情中，点击眼睛图标可显示字段值，点击旁边的复制图标可复制。\n\n[从命令面板复制](#password-palette-vault-openbao)"
         }
       }
     ]
@@ -2378,6 +2447,24 @@ export const guideSections = [
         },
         "width": 1440,
         "height": 900
+      },
+      {
+        "name": "vault-palette",
+        "caption": {
+          "ru": "Палитра команд показывает поля открытого секрета. Нажмите кнопку копирования у нужного поля.",
+          "en": "The command palette lists the secret's fields. Use the copy button next to the field you need.",
+          "es": "La paleta de comandos muestra los campos del secreto. Usa el botón de copia junto al campo que necesites.",
+          "zh": "命令面板列出当前机密的字段。点击所需字段旁的复制按钮。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "vault-openbao"
       }
     ],
     "links": [
@@ -2389,6 +2476,23 @@ export const guideSections = [
           "zh": "查找并复制 Vault 或 OpenBao 机密"
         },
         "href": "https://consolecrypt.dev/guide#password-manager-vault-openbao"
+      }
+    ],
+    "parts": [
+      {
+        "id": "vault-openbao",
+        "title": {
+          "ru": "Скопировать секрет Vault или OpenBao из палитры",
+          "en": "Copy a Vault or OpenBao secret from the palette",
+          "es": "Copiar un secreto de Vault u OpenBao desde la paleta",
+          "zh": "从命令面板复制 Vault 或 OpenBao 机密"
+        },
+        "body": {
+          "ru": "Откройте палитру команд и введите название сохранённого подключения. Выберите его, при необходимости войдите, затем откройте папку и секрет. Нажмите значок копирования рядом с нужным полем. Палитра скопирует только это поле и закроется.",
+          "en": "Open the command palette and type the name of the saved connection. Select it, sign in if prompted, and open the folder and secret. Use the copy icon beside the field you need. The palette copies that field and closes.",
+          "es": "Abre la paleta de comandos y escribe el nombre de la conexión guardada. Selecciónala, inicia sesión si se te solicita y abre la carpeta y el secreto. Usa el icono de copia junto al campo deseado. La paleta copia ese campo y se cierra.",
+          "zh": "打开命令面板并输入已保存连接的名称。选择该连接，按需登录，然后打开文件夹和机密。点击所需字段旁的复制图标。命令面板复制该字段后会自动关闭。"
+        }
       }
     ]
   },
@@ -2717,6 +2821,24 @@ export const guideSections = [
         "width": 824,
         "height": 1830,
         "layout": "phone"
+      },
+      {
+        "name": "terminal-ssh-metrics",
+        "caption": {
+          "ru": "Панель «Мониторинг» справа от терминала показывает нагрузку на CPU, память и диск, скорость сети и сведения о Linux-хосте.",
+          "en": "The Monitoring panel beside the terminal shows CPU, memory and disk usage, network throughput and Linux host details.",
+          "es": "El panel de monitorización junto al terminal muestra uso de CPU, memoria y disco, tráfico de red y datos del host Linux.",
+          "zh": "终端右侧的监控面板显示 CPU、内存和磁盘使用情况、网络速率及 Linux 主机信息。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "ssh-monitoring"
       }
     ],
     "image": {
@@ -3480,6 +3602,24 @@ export const guideSections = [
         },
         "width": 1440,
         "height": 900
+      },
+      {
+        "name": "tunnels-saved-forwards",
+        "caption": {
+          "ru": "В «Туннелях» у сохранённого проброса Docker или Kubernetes нажмите кнопку с треугольником справа, чтобы запустить его снова.",
+          "en": "In Tunnels, click the play button beside a saved Docker or Kubernetes forward to start it again.",
+          "es": "En Túneles, pulsa el botón de reproducción junto a un reenvío de Docker o Kubernetes guardado para iniciarlo de nuevo.",
+          "zh": "在「隧道」中，点击已保存的 Docker 或 Kubernetes 转发右侧的播放按钮即可重新启动。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "restore"
       }
     ],
     "parts": [
@@ -8056,6 +8196,24 @@ export const guideSections = [
           "zh"
         ],
         "part": "remove"
+      },
+      {
+        "name": "docker-local-engine",
+        "caption": {
+          "ru": "«Этот компьютер» открывает локальный Docker. Сохранённые SSH-хосты перечислены отдельно.",
+          "en": "This Computer opens the local Docker engine. Saved SSH hosts are listed separately.",
+          "es": "Este equipo abre el motor local de Docker. Los hosts SSH guardados aparecen por separado.",
+          "zh": "选择「此电脑」可打开本地 Docker 引擎。已保存的 SSH 主机单独列出。"
+        },
+        "width": 1500,
+        "height": 960,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "local-engine"
       }
     ],
     "parts": [

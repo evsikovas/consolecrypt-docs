@@ -670,7 +670,7 @@ Use Passwords to open a KeePass KDBX 3/4 database or connect to a Vault or OpenB
 
 12. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
 
-**In this chapter** [Import and export KDBX entries](#password-manager-kdbx-transfer) · [Connect Vault or OpenBao](#password-manager-vault-openbao)
+**In this chapter** [Import and export KDBX entries](#password-manager-kdbx-transfer) · [Connect to Vault or OpenBao](#password-manager-vault-openbao) · [Find a Vault secret and copy a field](#password-manager-vault-browse)
 
 <a id="password-manager-kdbx-transfer"></a>
 
@@ -680,18 +680,37 @@ Use Passwords to open a KeePass KDBX 3/4 database or connect to a Vault or OpenB
 2. To import, open the destination database menu and choose Import CSV or JSON. Select the file. Check the entry count and destination name before confirming. CSV needs title and password headers or supported equivalents. For JSON, use a ConsoleCrypt export. Each file supports up to 10,000 entries and 16 MiB.
 3. After import, open an entry and check its group and fields. To reopen a database or secrets server later, use the five recent sources in Passwords. The list includes local KDBX, WebDAV, Vault, and OpenBao.
 
+![The menu of an unlocked KDBX database offers CSV or JSON import and export to either format.](../assets/guide/kdbx-csv-json-en.png)
+
+The menu of an unlocked KDBX database offers CSV or JSON import and export to either format.
+
 <a id="password-manager-vault-openbao"></a>
 
-### Connect Vault or OpenBao
+### Connect to Vault or OpenBao
 
 1. Open Passwords → Vault / OpenBao → Add connection. Enter a name and the server URL. Use HTTPS for a network connection. HTTP sends tokens, passwords, and retrieved secrets without transport encryption.
 2. Choose a token or a username and password. In Vault settings, set the KV v1/v2 mount if it differs from the suggested path. If userpass is mounted at a custom path, enter that path too. Connect.
-3. Open a folder and select a secret. Search filters the current folder. If policy grants read access but hides the list, enter the full secret path within the mount. Select a field to reveal or copy its value. In the command palette, search by connection name and navigate to the same field.
-4. To use the connection on another device, sync the same personal profile. Connection settings are stored in the encrypted vault. To include its token or password, select Save this sign-in in my encrypted ConsoleCrypt vault. On the other device, open the connection after sync and select Sign in with the synced credential. Set up biometric sign-in separately on each device.
+3. To use the connection on another device, sync the same personal profile. Connection settings are stored in the encrypted vault. To include its token or password, select Save this sign-in in my encrypted ConsoleCrypt vault. On the other device, open the connection after sync and select Sign in with the synced credential. Set up biometric sign-in separately on each device.
+
+![Vault/OpenBao connection setup, with the server address on the left and sign-in and storage options on the right.](../assets/guide/vault-connection-en.png)
+
+Vault/OpenBao connection setup, with the server address on the left and sign-in and storage options on the right.
 
 ![Choose a recent Vault or OpenBao connection in Passwords to return to its secrets.](../assets/guide/vault-sources-en.png)
 
 Choose a recent Vault or OpenBao connection in Passwords to return to its secrets.
+
+<a id="password-manager-vault-browse"></a>
+
+### Find a Vault secret and copy a field
+
+Open the connection in Passwords, then select a folder and a secret. Search filters the current folder. If your policy grants read access and hides the list, enter the full path within the KV mount. In the secret details, use the eye icon to reveal a field or the copy icon next to it.
+
+[Copy from the command palette](#password-palette-vault-openbao)
+
+![Folders, secrets and fields open in adjacent columns. Each field has reveal and copy controls on the right.](../assets/guide/vault-browse-en.png)
+
+Folders, secrets and fields open in adjacent columns. Each field has reveal and copy controls on the right.
 
 > **Keep in mind**
 >
@@ -825,6 +844,18 @@ Find a username, password or API key from any section, including the terminal. C
 
 4. The database must be unlocked; locking the profile closes open databases. Secret values are not shown in search results. Copies use the shared clipboard clearing timer.
 
+**In this chapter** [Copy a Vault or OpenBao secret from the palette](#password-palette-vault-openbao)
+
+<a id="password-palette-vault-openbao"></a>
+
+### Copy a Vault or OpenBao secret from the palette
+
+Open the command palette and type the name of the saved connection. Select it, sign in if prompted, and open the folder and secret. Use the copy icon beside the field you need. The palette copies that field and closes.
+
+![The command palette lists the secret's fields. Use the copy button next to the field you need.](../assets/guide/vault-palette-en.png)
+
+The command palette lists the secret's fields. Use the copy button next to the field you need.
+
 [Find and copy a Vault or OpenBao secret](#password-manager-vault-openbao)
 
 ![Find an entry by title before copying anything.](../assets/guide/passwords-palette-en.png)
@@ -918,6 +949,10 @@ A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or
 ### Monitor host load in an SSH session
 
 Connect to a Linux host with the built-in SSH client. Open Monitoring in the terminal’s right panel or from session tools on a phone. Check CPU, memory, disk usage, and network rates. Close and reopen the panel to see that sampling continued while the session stayed connected.
+
+![The Monitoring panel beside the terminal shows CPU, memory and disk usage, network throughput and Linux host details.](../assets/guide/terminal-ssh-metrics-en.png)
+
+The Monitoring panel beside the terminal shows CPU, memory and disk usage, network throughput and Linux host details.
 
 [Paste multiple lines in PowerShell](#local-terminals-powershell-paste)
 
@@ -1131,6 +1166,10 @@ A tunnel uses an SSH connection to the chosen host. Local forwarding, remote for
 When forwarding a port from Docker or Kubernetes, enable Save tunnel. The preset appears in Tunnels, where you can start, stop or remove it. Port 0 selects an available local port on each start.
 
 In Tunnels, find the saved Docker or Kubernetes forward. Check its host or cluster, destination resource, and local port. Press Start. When its status becomes active, connect to the local address shown.
+
+![In Tunnels, click the play button beside a saved Docker or Kubernetes forward to start it again.](../assets/guide/tunnels-saved-forwards-en.png)
+
+In Tunnels, click the play button beside a saved Docker or Kubernetes forward to start it again.
 
 > **Keep in mind**
 >
@@ -2443,6 +2482,10 @@ The Docker section connects to the engine on this computer or on a saved SSH hos
 ### Connect to a local Docker engine or use SSH
 
 In Docker, select this computer to use a local engine on Windows, macOS, or Linux, or choose a saved SSH host for a remote engine. Check the connection name above the list. On Windows, WSL Containers is also available for containers in WSL. The header shows the engine version, platform and number of running containers.
+
+![This Computer opens the local Docker engine. Saved SSH hosts are listed separately.](../assets/guide/docker-local-engine-en.png)
+
+This Computer opens the local Docker engine. Saved SSH hosts are listed separately.
 
 <a id="docker-containers-remove"></a>
 

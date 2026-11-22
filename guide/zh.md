@@ -670,7 +670,7 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 
 12. 在第一个密码解锁后,通过WindowsApple系统保护或AndroidKeystore为这个设备上的这个数据库启用快速解锁. FIDO2/PRF可在Windows/macOS上查阅。 Linux生物特征快速解锁尚未实施; iOS模拟能力取决于其环境.
 
-**本章内容** [导入与导出 KDBX 条目](#password-manager-kdbx-transfer) · [连接 Vault 或 OpenBao](#password-manager-vault-openbao)
+**本章内容** [导入与导出 KDBX 条目](#password-manager-kdbx-transfer) · [连接 Vault 或 OpenBao](#password-manager-vault-openbao) · [查找 Vault 机密并复制字段](#password-manager-vault-browse)
 
 <a id="password-manager-kdbx-transfer"></a>
 
@@ -680,18 +680,37 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 2. 在目标数据库的菜单中选择「导入 CSV 或 JSON」。选好文件后，核对条目数和目标数据库名称，再确认导入。CSV 文件须包含 title 和 password 表头或支持的别名。JSON 需使用 ConsoleCrypt 导出的格式。每个文件最多包含 10,000 条记录，大小上限为 16 MiB。
 3. 导入后打开一条记录，核对群组和字段。以后可以从「密码」中的最近五个来源重新打开数据库或机密服务器。此列表支持本地 KDBX、WebDAV、Vault 和 OpenBao。
 
+![已解锁的 KDBX 数据库菜单提供 CSV 或 JSON 导入，以及两种格式的导出。](../assets/guide/kdbx-csv-json-zh.png)
+
+已解锁的 KDBX 数据库菜单提供 CSV 或 JSON 导入，以及两种格式的导出。
+
 <a id="password-manager-vault-openbao"></a>
 
 ### 连接 Vault 或 OpenBao
 
 1. 打开「密码 → Vault / OpenBao → 添加连接」，填写名称和服务器地址。通过网络连接时使用 HTTPS。使用 HTTP 时，令牌、密码和读取的机密在传输过程中均为明文。
 2. 选择令牌或用户名和密码。在 Vault 设置中，如果 KV v1/v2 引擎使用不同的挂载路径，请填写实际路径。如果 userpass 挂载在其他位置，也请修改对应的认证路径，再连接。
-3. 打开文件夹并选择机密。搜索可筛选当前文件夹。如果策略只允许读取而无权列出内容，输入该挂载点内机密的完整路径。选择字段可以显示或复制其值。也可以在命令面板按名称搜索连接，再逐级打开相同字段。
-4. 要在另一台设备上使用此连接，请同步同一份个人配置。连接设置保存在加密保管库中。如果还要同步令牌或密码，勾选「将登录凭据保存到我的加密 ConsoleCrypt 保管库」。同步后，在另一台设备上打开连接并选择「使用已同步的凭据登录」。每台设备单独设置生物识别登录。
+3. 要在另一台设备上使用此连接，请同步同一份个人配置。连接设置保存在加密保管库中。如果还要同步令牌或密码，勾选「将登录凭据保存到我的加密 ConsoleCrypt 保管库」。同步后，在另一台设备上打开连接并选择「使用已同步的凭据登录」。每台设备单独设置生物识别登录。
+
+![Vault/OpenBao 连接设置。左侧填写服务器地址，右侧选择登录和保存方式。](../assets/guide/vault-connection-zh.png)
+
+Vault/OpenBao 连接设置。左侧填写服务器地址，右侧选择登录和保存方式。
 
 ![在「密码」的最近来源中选择 Vault 或 OpenBao 连接，即可重新访问其中的机密。](../assets/guide/vault-sources-zh.png)
 
 在「密码」的最近来源中选择 Vault 或 OpenBao 连接，即可重新访问其中的机密。
+
+<a id="password-manager-vault-browse"></a>
+
+### 查找 Vault 机密并复制字段
+
+在「密码」中打开连接，依次选择文件夹和机密。搜索仅筛选当前文件夹。如果策略允许读取机密但不允许列出目录，请输入该机密在 KV 挂载点内的完整路径。在机密详情中，点击眼睛图标可显示字段值，点击旁边的复制图标可复制。
+
+[从命令面板复制](#password-palette-vault-openbao)
+
+![文件夹、机密和字段在相邻列中打开。每个字段右侧都有显示和复制按钮。](../assets/guide/vault-browse-zh.png)
+
+文件夹、机密和字段在相邻列中打开。每个字段右侧都有显示和复制按钮。
 
 > **注意**
 >
@@ -825,6 +844,18 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 4. 数据库必须解锁;锁定配置文件会关闭打开的数据库. 搜索结果中不显示秘密值 。 副本使用共享剪贴板清除计时器 。
 
+**本章内容** [从命令面板复制 Vault 或 OpenBao 机密](#password-palette-vault-openbao)
+
+<a id="password-palette-vault-openbao"></a>
+
+### 从命令面板复制 Vault 或 OpenBao 机密
+
+打开命令面板并输入已保存连接的名称。选择该连接，按需登录，然后打开文件夹和机密。点击所需字段旁的复制图标。命令面板复制该字段后会自动关闭。
+
+![命令面板列出当前机密的字段。点击所需字段旁的复制按钮。](../assets/guide/vault-palette-zh.png)
+
+命令面板列出当前机密的字段。点击所需字段旁的复制按钮。
+
 [查找并复制 Vault 或 OpenBao 机密](#password-manager-vault-openbao)
 
 ![在复制任何内容之前按标题查找条目 。](../assets/guide/passwords-palette-en.png)
@@ -918,6 +949,10 @@ KDBX欢迎:创建,开放或连接WebDAV.
 ### 监控 SSH 会话中的主机负载
 
 使用内置 SSH 客户端连接 Linux 主机。在终端右侧面板或手机上的会话工具中打开「监控」。查看 CPU、内存、磁盘占用和网络速率。收起面板再重新打开；只要 SSH 会话仍连接，采样就会持续。
+
+![终端右侧的监控面板显示 CPU、内存和磁盘使用情况、网络速率及 Linux 主机信息。](../assets/guide/terminal-ssh-metrics-zh.png)
+
+终端右侧的监控面板显示 CPU、内存和磁盘使用情况、网络速率及 Linux 主机信息。
 
 [在 PowerShell 中粘贴多行文本](#local-terminals-powershell-paste)
 
@@ -1131,6 +1166,10 @@ macOS 的主要修饰键是 ⌘，Windows 和 Linux 使用 Ctrl。在 Windows �
 在从Docker或Kubernetes转发一个端口时,启用保存隧道. 预设出现在Tunnels中,在那里可以开始,停止或移除. 0号端口在每次启动时选择可用的本地端口.
 
 在「隧道」中找到已保存的 Docker 或 Kubernetes 转发。核对主机或集群、目标资源和本地端口，然后点击启动。状态变为活动后，连接界面显示的本地地址。
+
+![在「隧道」中，点击已保存的 Docker 或 Kubernetes 转发右侧的播放按钮即可重新启动。](../assets/guide/tunnels-saved-forwards-zh.png)
+
+在「隧道」中，点击已保存的 Docker 或 Kubernetes 转发右侧的播放按钮即可重新启动。
 
 > **注意**
 >
@@ -2443,6 +2482,10 @@ Docker段连接到此计算机或保存的SSH主机上的引擎. 通过主机的
 ### 连接本地 Docker 引擎或通过 SSH 连接
 
 在 Docker 中选择本机以使用 Windows、macOS 或 Linux 上的本地引擎，或选择已保存的 SSH 主机以使用远程引擎。检查列表上方的连接名称。Windows 上还可通过 WSL Containers 访问 WSL 中的容器。 列表顶部显示引擎版本、平台以及运行中的容器数量。
+
+![选择「此电脑」可打开本地 Docker 引擎。已保存的 SSH 主机单独列出。](../assets/guide/docker-local-engine-zh.png)
+
+选择「此电脑」可打开本地 Docker 引擎。已保存的 SSH 主机单独列出。
 
 <a id="docker-containers-remove"></a>
 
