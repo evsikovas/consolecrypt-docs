@@ -1,7 +1,5 @@
 # 当地终端(当地终端) 0.5
 
-ConsoleCrypt 1.2.1 · [在 macOS 上安装，以及在 PowerShell 中粘贴多行文本](../../../guide/zh.md#release-1-2-1-terminals)
-
 参考文档译文 · [俄文原文](../LOCAL_TERMINALS.md)
 
 ## 俄罗斯语
@@ -37,6 +35,8 @@ ConsoleCrypt 1.2.1 · [在 macOS 上安装，以及在 PowerShell 中粘贴多�
 SSH - 连接. 在0.5中,可在macOS和Windows,Linux,Android和iOS上查阅。
 它们继续使用现有的远程连接.
 
+[在 PowerShell 中粘贴多行文本](../../../guide/zh.md#local-terminals-powershell-paste)
+
 ### AI和片断
 
 调色板和聊天接收选中的 shell 类型: zsh、 PowerShell、 cmd 或
@@ -50,6 +50,8 @@ AI命令和片段被禁用; 大规模发射计划为SSH.
 正常终端输入不受此规则的限制.
 
 ### 最新情况macOS
+
+[从 DMG 安装两个应用](../../../guide/zh.md#first-start-macos-install)
 
 对于容器外的普通本地zsh会话,包0.5工作时没有App Sandbox.
 目前的建筑是临时签名的,没有公证. 硬化运行时间

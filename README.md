@@ -10,13 +10,9 @@
 
 Техническая документация и архив выпусков · [Русский](docs/public) · [English](docs/public/en) · [Español](docs/public/es) · [简体中文](docs/public/zh)
 
-[ConsoleCrypt 1.2.1 · Заметки выпуска · Release notes · Novedades · 更新说明](docs/public/RELEASE_1_2_1.md)
-
-[Инструкции 1.2.1](guide/ru.md#release-1-2-1) · [Walkthroughs](guide/en.md#release-1-2-1) · [Instrucciones](guide/es.md#release-1-2-1) · [操作指南](guide/zh.md#release-1-2-1)
-
 Сборки и проверки 1.2.0 · [релизный CI](https://github.com/evsikovas/consolecrypt-client/actions/runs/44813783192).
 
-В руководстве 71 глава на четырёх языках и 450 скриншотов: первый запуск,
+В руководстве 70 глав на четырёх языках и 450 скриншотов: первый запуск,
 профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
 файлы, Kubernetes, базы данных, Docker, заметки, команды, совместный доступ,
 буфер обмена, общие папки, резервные копии, настройки, а также запуск,
@@ -33,7 +29,7 @@
 - [Совместный доступ](docs/public/SHARING.md).
 - [Аккаунт и синхронизация](docs/public/SYNC_ACCOUNT.md): подключение к серверу, одобрение нового устройства, корпоративный вход.
 - [Android: публикация в RuStore](docs/public/ANDROID_RUSTORE.md): подпись APK/AAB, CI и обновления через магазин.
-- [Менеджер паролей KDBX](docs/public/KEEPASS.md): WebDAV, генератор, папки и поиск через палитру.
+- [Пароли в KDBX, Vault и OpenBao](docs/public/KEEPASS.md) · [Импорт и экспорт записей](guide/ru.md#password-manager-kdbx-transfer) · [Подключение к Vault и OpenBao](guide/ru.md#password-manager-vault-openbao).
 - [Поддержка платформ 1.0](docs/public/PLATFORM_SUPPORT.md), [совместимость сервера](docs/public/COMPATIBILITY_1_0.md).
 - [Буфер обмена](docs/public/CLIPBOARD.md): защищённое копирование секретов и автоочистка.
 - [Ключ безопасности (YubiKey, FIDO2)](docs/public/SECURITY_KEY.md): разблокировка хранилища физическим ключом на Windows и macOS.

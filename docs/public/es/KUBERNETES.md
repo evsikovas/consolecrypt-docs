@@ -1,7 +1,5 @@
 # Kubernetes
 
-ConsoleCrypt 1.2.1 · [Desplegar un contenedor en Kubernetes](../../../guide/es.md#release-1-2-1-deploy) · [Supervisar un host SSH y restaurar un reenvío](../../../guide/es.md#release-1-2-1-ssh)
-
 Referencia traducida · [Original en ruso](../KUBERNETES.md)
 
 ## Ruso
@@ -89,6 +87,8 @@ Es compatible con una contraseña de almacenamiento, no entrando un nombre de re
 Los cambios masivos están prohibidos en la producción, incluso cuando la ventana está abierta. Exec y Port-Forward tienen permisos separados
 contexto de producción.
 
+[Desplegar un contenedor Docker en Kubernetes](../../../guide/es.md#docker-details-deploy-kubernetes)
+
 ### Logros, conchas y túneles
 
 En la tarjeta Pod, seleccione el contenedor y abra los registros. Flujo disponible, filtro,
@@ -118,6 +118,8 @@ Todavía está ahí. Las sesiones cierran con un cambio de perfil y salida.
 Los pases lanzados Kubernetes y Docker se recogen en un panel derecho común
 “Port rollover”: estado, dirección local con copia, tráfico y
 Para. El panel se abre después de comenzar el lanzamiento.
+
+[Restablecer un reenvío guardado](../../../guide/es.md#tunnels-restore)
 
 ### Conexión a la base de datos
 

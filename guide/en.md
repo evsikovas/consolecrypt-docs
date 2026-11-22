@@ -8,7 +8,6 @@ Step-by-step instructions with screenshots of the app and demonstration data. Th
 
 **Getting started**
 
-- [What’s new in 1.2.1](#release-1-2-1)
 - [First launch and profiles](#first-start)
 - [Linux installation: DEB, RPM and keyring](#linux-install)
 - [Which password do I need?](#passwords)
@@ -24,7 +23,7 @@ Step-by-step instructions with screenshots of the app and demonstration data. Th
 - [RDP on a phone: touchpad and keyboard](#rdp-mobile)
 - [Quick search and connect](#quick-connect)
 - [Groups and jump hosts](#groups)
-- [KDBX password manager](#password-manager)
+- [Passwords: KDBX, Vault and OpenBao](#password-manager)
 - [Password generator](#password-generator)
 - [KDBX over WebDAV and sync](#password-webdav)
 - [Passwords in the command palette](#password-palette)
@@ -89,83 +88,9 @@ Step-by-step instructions with screenshots of the app and demonstration data. Th
 - [Your own server: configuration reference](#server-reference)
 - [Your own server: backups, upgrades and commands](#server-maintenance)
 
-<a name="release-1-2-1"></a>
-
-## 1. What’s new in 1.2.1
-
-Connect Vault or OpenBao, transfer KDBX entries, and deploy a Docker container to Kubernetes. Each walkthrough includes a way to check the result.
-
-**In this chapter** [Connect Vault or OpenBao](#release-1-2-1-vault) · [Import and export KDBX entries](#release-1-2-1-kdbx) · [Find a Docker engine and remove a container](#release-1-2-1-docker) · [Deploy a container to Kubernetes](#release-1-2-1-deploy) · [Monitor an SSH host and restore a forward](#release-1-2-1-ssh) · [Install on macOS and paste multiple lines in PowerShell](#release-1-2-1-terminals)
-
-<a id="release-1-2-1-vault"></a>
-
-### Connect Vault or OpenBao
-
-1. Open Passwords → Vault / OpenBao → Add connection. Enter a name and the server URL. Use HTTPS for a network connection. HTTP sends tokens, passwords, and retrieved secrets without transport encryption.
-2. Choose a token or a username and password. In Vault settings, set the KV v1/v2 mount if it differs from the suggested path. If userpass is mounted at a custom path, enter that path too. Connect.
-3. Open a folder and select a secret. Search filters the current folder. If policy grants read access but hides the list, enter the full secret path within the mount. Select a field to reveal or copy its value. In the command palette, search by connection name and navigate to the same field.
-4. To use the connection on another device, sync the same personal profile. Connection settings are stored in the encrypted vault. To include its token or password, select Save this sign-in in my encrypted ConsoleCrypt vault. On the other device, open the connection after sync and select Sign in with the synced credential. Set up biometric sign-in separately on each device.
-
-<a id="release-1-2-1-kdbx"></a>
-
-### Import and export KDBX entries
-
-1. In Passwords, open and unlock a KDBX database. In the database menu, choose Export as CSV or Export as JSON. CSV is suitable for standard fields such as username, password, and URL. ConsoleCrypt JSON also preserves custom fields. Both files contain plaintext passwords.
-2. To import, open the destination database menu and choose Import CSV or JSON. Select the file. Check the entry count and destination name before confirming. CSV needs title and password headers or supported equivalents. For JSON, use a ConsoleCrypt export. Each file supports up to 10,000 entries and 16 MiB.
-3. After import, open an entry and check its group and fields. To reopen a database or secrets server later, use the five recent sources in Passwords. The list includes local KDBX, WebDAV, Vault, and OpenBao.
-
-<a id="release-1-2-1-docker"></a>
-
-### Find a Docker engine and remove a container
-
-1. In Docker, select this computer to use a local engine on Windows, macOS, or Linux, or choose a saved SSH host for a remote engine. Check the connection name above the list. On Windows, WSL Containers is also available for containers in WSL.
-2. Open the container to inspect its port mappings. Page through 20 ports at a time. To remove it, open its menu and choose Remove container. Check the name and host. If it is running, explicitly confirm that it may be stopped.
-3. Volumes and networks start unchecked. Select only the available resources you intend to remove. A protected resource shows why it is unavailable. Shared volumes, built-in networks, and host files used by bind mounts are retained. Confirm and check the outcome for each resource.
-
-<a id="release-1-2-1-deploy"></a>
-
-### Deploy a container to Kubernetes
-
-1. Open a Linux container that runs without persistent mounts and choose Deploy to Kubernetes · Experimental. Select a saved Kubernetes context and namespace. Verify the workload name and the TCP port the application listens on inside the container.
-2. The wizard uses Docker to verify the image digest in its source registry before filling it in. If the image exists only locally, publish it to a registry reachable by the nodes and enter its full reference with a tag or digest. If needed for a private registry, specify an existing imagePullSecret in the selected namespace.
-3. Use the template or select an AI provider. Review the YAML, including image, command, args, and port. Run the server check to validate both manifests. The node pulls the image and starts the process when the Pod launches. Confirm creation of the single-replica Deployment and internal ClusterIP Service.
-4. Check readiness. For ImagePullBackOff, check the image reference and the node’s pull access. For CrashLoopBackOff, inspect the command, arguments, exit code, and restart count. Exit code 0 on a repeatedly restarted Pod can mean its process finished and exited. Open the created Deployment to inspect the Pod.
-
-<a id="release-1-2-1-ssh"></a>
-
-### Monitor an SSH host and restore a forward
-
-1. Connect to a Linux host with the built-in SSH client. Open Monitoring in the terminal’s right panel or from session tools on a phone. Check CPU, memory, disk usage, and network rates. Close and reopen the panel to see that sampling continued while the session stayed connected.
-2. In Tunnels, find the saved Docker or Kubernetes forward. Check its host or cluster, destination resource, and local port. Press Start. When its status becomes active, connect to the local address shown.
-
-<a id="release-1-2-1-terminals"></a>
-
-### Install on macOS and paste multiple lines in PowerShell
-
-1. On macOS, open the DMG. In Finder, drag ConsoleCrypt, ConsoleCrypt Terminal, or both onto Applications on the same row. Launch the app you need from Applications. ConsoleCrypt Terminal opens the standalone terminal interface.
-2. On Windows, open a local PowerShell tab. Use terminal paste to insert several lines at an empty prompt. To check the result, try two Write-Output lines with different words and review their order before executing.
-
-[KDBX groups, entries, and fields](#password-manager)
-
-[Connect to a Kubernetes cluster](#kubernetes-connections)
-
-[Port forwarding and tunnels](#tunnels)
-
-![Choose a recent Vault or OpenBao connection in Passwords to return to its secrets.](../assets/guide/vault-sources-en.png)
-
-Choose a recent Vault or OpenBao connection in Passwords to return to its secrets.
-
-![The removal dialog lets you select a volume and a network. The shared network and host files are protected.](../assets/guide/docker-cleanup-en.png)
-
-The removal dialog lets you select a volume and a network. The shared network and host files are protected.
-
-![Before generating the manifest, check the cluster context, namespace, image digest, and application port.](../assets/guide/docker-kube-wizard-en.png)
-
-Before generating the manifest, check the cluster context, namespace, image digest, and application port.
-
 <a name="first-start"></a>
 
-## 2. First launch and profiles
+## 1. First launch and profiles
 
 Start locally or connect encrypted sync. A profile contains its own vault and, when connected, an account on the chosen server.
 
@@ -182,6 +107,14 @@ Start locally or connect encrypted sync. A profile contains its own vault and, w
 6. When connecting a server, Check first shows the server version, protocol and whether registration is open. Enter a name for this device — it appears in your device list. “Forgot account password?” resets the account password by email, not the vault passphrase.
 
 7. “Settings → Profiles” renames and deletes profiles. Deleting removes the profile from this device only and needs the “I understand that this cannot be undone” tick; a synced profile’s encrypted vault on the server is not touched, while a local vault can come back only from a backup. The “Open the last profile at startup” checkbox in Appearance opens the last profile right away (the system may ask for keychain access).
+
+**In this chapter** [Install the apps on macOS](#first-start-macos-install)
+
+<a id="first-start-macos-install"></a>
+
+### Install the apps on macOS
+
+On macOS, open the DMG. In Finder, drag ConsoleCrypt, ConsoleCrypt Terminal, or both onto Applications on the same row. Launch the app you need from Applications. ConsoleCrypt Terminal opens the standalone terminal interface.
 
 > **Keep in mind**
 >
@@ -201,7 +134,7 @@ The profile switcher at the top of the sidebar: the active profile, “Add profi
 
 <a name="linux-install"></a>
 
-## 3. Linux installation: DEB, RPM and keyring
+## 2. Linux installation: DEB, RPM and keyring
 
 The client targets x86-64 (x64) graphical desktops: Ubuntu 22.04, Debian 12 and Fedora 43. Choose the package for your distribution; the package manager checks dependencies.
 
@@ -237,7 +170,7 @@ sudo dnf install ./consolecrypt.rpm
 
 <a name="passwords"></a>
 
-## 4. Which password do I need?
+## 3. Which password do I need?
 
 ConsoleCrypt has separate access layers. Resetting your account password by email does not unlock the encrypted vault.
 
@@ -259,7 +192,7 @@ ConsoleCrypt has separate access layers. Resetting your account password by emai
 
 <a name="vault"></a>
 
-## 5. Vault, recovery and biometrics
+## 4. Vault, recovery and biometrics
 
 Your vault unlocks on your device. Configure locking and unlocking after creating it.
 
@@ -343,7 +276,7 @@ Recovering access: the 24-word Recovery Key or this trusted device, then a new p
 
 <a name="devices"></a>
 
-## 6. Sync and trusted devices
+## 5. Sync and trusted devices
 
 Signing in and being allowed to decrypt the vault are separate actions. A new device needs approval.
 
@@ -409,7 +342,7 @@ The Sync indicator in the top bar: last sync, server and queue.
 
 <a name="device-protection"></a>
 
-## 7. Protection against sign-ins from new devices
+## 6. Protection against sign-ins from new devices
 
 If someone signs in to your account from a new device, you find out right away, and the device is restricted for a while. This protection needs sync server 0.1.16 or later.
 
@@ -433,7 +366,7 @@ The new sign-in notice and a new device marked “Not confirmed” and “New, r
 
 <a name="enterprise-sign-in"></a>
 
-## 8. Corporate sign-in: SSO and Active Directory
+## 7. Corporate sign-in: SSO and Active Directory
 
 Sync server 0.2.0 and later can admit accounts only through your organisation’s authorization server. Client 0.9.0 detects the server’s mode and shows the matching form. Only the account sign-in changes: your vault passphrase still opens the vault.
 
@@ -473,7 +406,7 @@ The account was disabled by the organisation: the profile is locked and the data
 
 <a name="hosts"></a>
 
-## 9. Hosts: add, find and connect
+## 8. Hosts: add, find and connect
 
 A host stores SSH or RDP connection settings. Cards and list rows show its address, user and group.
 
@@ -496,6 +429,8 @@ A host stores SSH or RDP connection settings. Cards and list rows show its addre
 9. Security: the host-key policy — Ask (confirm unknown keys), Strict (only keys from known hosts) or Accept new (save unknown keys automatically); a changed key always blocks the connection. It also holds the SSH implementation (“Built-in (russh)” or “System OpenSSH (compatibility)” for old servers), the keepalive interval and “Agent forwarding” — enable it only for hosts you trust.
 
 10. Organisation holds tags and free-text notes. At the bottom, “Effective settings” show what a connection will actually use — group, user, port, credential and route — and where each value comes from; problems such as a deleted jump host appear there too.
+
+[Monitor host load in an SSH session](#terminal-ssh-monitoring)
 
 ![An overview of demo hosts and their connection details.](../assets/guide/hosts-en.png)
 
@@ -531,7 +466,7 @@ Importing from ~/.ssh/config: Host entries with documentation-range addresses.
 
 <a name="rdp"></a>
 
-## 10. RDP: Windows remote desktop
+## 9. RDP: Windows remote desktop
 
 ConsoleCrypt now supports RDP connections. It connects directly to a standard Microsoft RDP server; no IronRDP add-on needs to be installed on Windows.
 
@@ -581,7 +516,7 @@ Full-screen connection bar: session switching, permissions and window controls. 
 
 <a name="rdp-mobile"></a>
 
-## 11. RDP on a phone: touchpad and keyboard
+## 10. RDP on a phone: touchpad and keyboard
 
 On a phone, the connected desktop automatically opens fullscreen. Touchpad is the default: your finger moves the pointer relative to its current position. One floating button opens the session controls.
 
@@ -639,7 +574,7 @@ The same controls in the light theme.
 
 <a name="quick-connect"></a>
 
-## 12. Quick search and connect
+## 11. Quick search and connect
 
 Find a saved host from anywhere in the app and open an SSH or RDP session. The command palette brings together hosts, snippets and quick actions.
 
@@ -667,7 +602,7 @@ The global “+”: choosing saved SSH and RDP hosts.
 
 <a name="groups"></a>
 
-## 13. Groups and jump hosts
+## 12. Groups and jump hosts
 
 Groups organize your inventory and provide common settings. A jump-host chain reaches an SSH host through intermediate machines.
 
@@ -707,9 +642,9 @@ Adding a demo host to an existing group.
 
 <a name="password-manager"></a>
 
-## 14. KDBX password manager
+## 13. Passwords: KDBX, Vault and OpenBao
 
-Passwords opens KeePass KDBX 3/4 databases. SSH/RDP credentials remain in their own section; KDBX entries are not automatically copied there.
+Use Passwords to open a KeePass KDBX 3/4 database or connect to a Vault or OpenBao secrets server. SSH and RDP credentials have their own section.
 
 1. Since 1.1.0, the lower-left list shows only unlocked databases. The small lock button beside + opens other remembered databases. Select one to unlock it; its … menu and WebDAV settings remain available in that picker.
 
@@ -735,7 +670,28 @@ Passwords opens KeePass KDBX 3/4 databases. SSH/RDP credentials remain in their 
 
 12. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
 
-[Import and export KDBX entries](#release-1-2-1-kdbx)
+**In this chapter** [Import and export KDBX entries](#password-manager-kdbx-transfer) · [Connect Vault or OpenBao](#password-manager-vault-openbao)
+
+<a id="password-manager-kdbx-transfer"></a>
+
+### Import and export KDBX entries
+
+1. In Passwords, open and unlock a KDBX database. In the database menu, choose Export as CSV or Export as JSON. CSV is suitable for standard fields such as username, password, and URL. ConsoleCrypt JSON also preserves custom fields. Both files contain plaintext passwords.
+2. To import, open the destination database menu and choose Import CSV or JSON. Select the file. Check the entry count and destination name before confirming. CSV needs title and password headers or supported equivalents. For JSON, use a ConsoleCrypt export. Each file supports up to 10,000 entries and 16 MiB.
+3. After import, open an entry and check its group and fields. To reopen a database or secrets server later, use the five recent sources in Passwords. The list includes local KDBX, WebDAV, Vault, and OpenBao.
+
+<a id="password-manager-vault-openbao"></a>
+
+### Connect Vault or OpenBao
+
+1. Open Passwords → Vault / OpenBao → Add connection. Enter a name and the server URL. Use HTTPS for a network connection. HTTP sends tokens, passwords, and retrieved secrets without transport encryption.
+2. Choose a token or a username and password. In Vault settings, set the KV v1/v2 mount if it differs from the suggested path. If userpass is mounted at a custom path, enter that path too. Connect.
+3. Open a folder and select a secret. Search filters the current folder. If policy grants read access but hides the list, enter the full secret path within the mount. Select a field to reveal or copy its value. In the command palette, search by connection name and navigate to the same field.
+4. To use the connection on another device, sync the same personal profile. Connection settings are stored in the encrypted vault. To include its token or password, select Save this sign-in in my encrypted ConsoleCrypt vault. On the other device, open the connection after sync and select Sign in with the synced credential. Set up biometric sign-in separately on each device.
+
+![Choose a recent Vault or OpenBao connection in Passwords to return to its secrets.](../assets/guide/vault-sources-en.png)
+
+Choose a recent Vault or OpenBao connection in Passwords to return to its secrets.
 
 > **Keep in mind**
 >
@@ -811,7 +767,7 @@ Entry card on a phone.
 
 <a name="password-generator"></a>
 
-## 15. Password generator
+## 14. Password generator
 
 The generator is available on the manager welcome screen, in an open database and in the password editor. It runs on your device without a server.
 
@@ -827,7 +783,7 @@ Length, character sets and entropy estimate; the password is masked.
 
 <a name="password-webdav"></a>
 
-## 16. KDBX over WebDAV and sync
+## 15. KDBX over WebDAV and sync
 
 Configure WebDAV before opening a database. ConsoleCrypt encrypts connection settings and reads and saves the KDBX on your WebDAV server.
 
@@ -857,7 +813,7 @@ Connection settings with an example of a full HTTPS file URL.
 
 <a name="password-palette"></a>
 
-## 17. Passwords in the command palette
+## 16. Passwords in the command palette
 
 Find a username, password or API key from any section, including the terminal. Choose the entry first, then the field.
 
@@ -869,6 +825,8 @@ Find a username, password or API key from any section, including the terminal. C
 
 4. The database must be unlocked; locking the profile closes open databases. Secret values are not shown in search results. Copies use the shared clipboard clearing timer.
 
+[Find and copy a Vault or OpenBao secret](#password-manager-vault-openbao)
+
 ![Find an entry by title before copying anything.](../assets/guide/passwords-palette-en.png)
 
 Find an entry by title before copying anything.
@@ -879,7 +837,7 @@ Second step: choose the field to copy.
 
 <a name="credentials"></a>
 
-## 18. Passwords, keys and credentials
+## 17. Passwords, keys and credentials
 
 Credentials are separate from hosts: one credential can be assigned to multiple connections.
 
@@ -911,7 +869,7 @@ Generating an SSH key: name and algorithm.
 
 <a name="host-keys"></a>
 
-## 19. Known hosts and SSH-key verification
+## 18. Known hosts and SSH-key verification
 
 A server key identifies the SSH host you are connecting to. This is separate from trusting a ConsoleCrypt device.
 
@@ -927,7 +885,7 @@ A separate known-host list with demo fingerprints.
 
 <a name="terminal"></a>
 
-## 20. Terminal, tabs and selection
+## 19. Terminal, tabs and selection
 
 A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or up to four side by side when split into panes. Phones have a special-key bar; computers have shortcuts and a context menu.
 
@@ -953,7 +911,15 @@ A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or
 
 11. “Settings → Terminal → Tab placement”: Top or Left. Left is a column of tabs with names and addresses; drag its edge to change the width or fold it to icons. While the column is shown, the app sidebar stays folded until you unfold it. The choice is kept on this device.
 
-[Monitor an SSH host and restore a forward](#release-1-2-1-ssh)
+**In this chapter** [Monitor host load in an SSH session](#terminal-ssh-monitoring)
+
+<a id="terminal-ssh-monitoring"></a>
+
+### Monitor host load in an SSH session
+
+Connect to a Linux host with the built-in SSH client. Open Monitoring in the terminal’s right panel or from session tools on a phone. Check CPU, memory, disk usage, and network rates. Close and reopen the panel to see that sampling continued while the session stayed connected.
+
+[Paste multiple lines in PowerShell](#local-terminals-powershell-paste)
 
 > **Keep in mind**
 >
@@ -1001,7 +967,7 @@ Demo Android terminal with its special-key bar.
 
 <a name="local-terminals"></a>
 
-## 21. Local terminals: zsh, PowerShell and WSL
+## 20. Local terminals: zsh, PowerShell and WSL
 
 On macOS and Windows you can open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
 
@@ -1016,6 +982,14 @@ On macOS and Windows you can open a shell on this computer alongside SSH tabs. I
 5. AI receives the active shell dialect and only explicitly selected context. AI commands and snippets can be inserted into a local tab without Enter; automatic execution is disabled. Review the text and press Enter yourself if you want to run it.
 
 6. Closing a tab ends its process. Restart shell starts a new session. Profile switch and quit close the shell and its current foreground process group. Locking the vault (also automatically) keeps terminals open: local and SSH tabs carry on after unlocking. Detached/background processes such as nohup are not searched for, and the entire WSL distribution is not stopped.
+
+**In this chapter** [Paste multiple lines in PowerShell](#local-terminals-powershell-paste)
+
+<a id="local-terminals-powershell-paste"></a>
+
+### Paste multiple lines in PowerShell
+
+On Windows, open a local PowerShell tab. Use terminal paste to insert several lines at an empty prompt. To check the result, try two Write-Output lines with different words and review their order before executing.
 
 > **Keep in mind**
 >
@@ -1039,7 +1013,7 @@ Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-ho
 
 <a name="shortcuts"></a>
 
-## 22. Keyboard shortcuts
+## 21. Keyboard shortcuts
 
 The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command. App shortcuts can be remapped in Settings → Keyboard shortcuts: choose Change and press a new combination with ⌘/Ctrl or Alt. If another command has it, that command loses it; if the system or terminal uses it, you are warned. Restore defaults brings back the table below.
 
@@ -1068,7 +1042,7 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 
 <a name="sftp"></a>
 
-## 23. SFTP: transfers and file preview
+## 22. SFTP: transfers and file preview
 
 Open SFTP from a host’s menu or the sidebar. Files travel directly between your device and the SSH host.
 
@@ -1110,7 +1084,7 @@ The Transfers panel: downloads and an upload are done, and a failed transfer has
 
 <a name="sftp-editor"></a>
 
-## 24. SFTP: default editor
+## 23. SFTP: default editor
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
@@ -1138,17 +1112,25 @@ Open on a script: the file opens as text and never runs.
 
 <a name="tunnels"></a>
 
-## 25. SSH tunnels
+## 24. SSH tunnels
 
 A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.
 
-1. When forwarding a port from Docker or Kubernetes, enable Save tunnel. The preset appears in Tunnels, where you can start, stop or remove it. Port 0 selects an available local port on each start.
+1. Open “Tunnels” and create one. Select the host, type, listening address and port; for local or remote forwarding, specify a destination address and port.
 
-2. Open “Tunnels” and create one. Select the host, type, listening address and port; for local or remote forwarding, specify a destination address and port.
+2. Prefer 127.0.0.1 for a local service needed only by you. A non-loopback address (such as 0.0.0.0) shows a “Not bound to loopback” warning, and the tunnel can be saved only after ticking “I understand this tunnel is reachable from the network”. For remote forwarding such an address works only if the SSH server allows GatewayPorts.
 
-3. Prefer 127.0.0.1 for a local service needed only by you. A non-loopback address (such as 0.0.0.0) shows a “Not bound to loopback” warning, and the tunnel can be saved only after ticking “I understand this tunnel is reachable from the network”. For remote forwarding such an address works only if the SSH server allows GatewayPorts.
+3. Start the tunnel with its switch and check its status: the row shows active connections and uptime, or the reason after an error. Stop it when finished. “Start automatically after unlock” brings the tunnel up every time the vault is unlocked on this device.
 
-4. Start the tunnel with its switch and check its status: the row shows active connections and uptime, or the reason after an error. Stop it when finished. “Start automatically after unlock” brings the tunnel up every time the vault is unlocked on this device.
+**In this chapter** [Restore a Docker or Kubernetes port forward](#tunnels-restore)
+
+<a id="tunnels-restore"></a>
+
+### Restore a Docker or Kubernetes port forward
+
+When forwarding a port from Docker or Kubernetes, enable Save tunnel. The preset appears in Tunnels, where you can start, stop or remove it. Port 0 selects an available local port on each start.
+
+In Tunnels, find the saved Docker or Kubernetes forward. Check its host or cluster, destination resource, and local port. Press Start. When its status becomes active, connect to the local address shown.
 
 > **Keep in mind**
 >
@@ -1172,7 +1154,7 @@ Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.
 
 <a name="snippets"></a>
 
-## 26. Snippets, variables and starter sets
+## 25. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
@@ -1214,7 +1196,7 @@ Filtering and managing snippet sets.
 
 <a name="ai"></a>
 
-## 27. AI chat and the context you send
+## 26. AI chat and the context you send
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
@@ -1250,7 +1232,7 @@ Adding a provider: address, model, an API key kept in the vault and the privacy 
 
 <a name="local-ai"></a>
 
-## 28. Local AI: models, your own GGUF and upgrades
+## 27. Local AI: models, your own GGUF and upgrades
 
 On macOS, Windows and Linux x64, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates. You can add your own GGUF model too.
 
@@ -1300,7 +1282,7 @@ The selected model is ready with stop and remove actions; the process state is s
 
 <a name="notes"></a>
 
-## 29. Notes, tasks and reminders
+## 28. Notes, tasks and reminders
 
 Notes is a right-panel tool next to Snippets and AI. Open it with the note icon, from the command palette or from the phone header. Notes are encrypted on the device and sync with the vault.
 
@@ -1354,7 +1336,7 @@ A note’s menu: pin, remind in an hour, detach from the object and delete.
 
 <a name="automation"></a>
 
-## 30. Ansible automation
+## 29. Ansible automation
 
 Start a project from a playbook or a role, add files and review AI suggestions before running them.
 
@@ -1382,17 +1364,19 @@ In Job settings, select a Runner and targets, then choose Validate project and t
 
 <a name="terminal-only"></a>
 
-## 31. Terminal Only
+## 30. Terminal Only
 
 Open a separate window with a local shell and put the tabs on the left or at the top.
 
-1. Windows: open ConsoleCrypt Terminal from Start or run ConsoleCrypt Terminal.cmd from the portable ZIP. macOS: drag both apps from the DMG to Applications and open ConsoleCrypt Terminal through Finder or Spotlight. Linux: choose ConsoleCrypt Terminal from the application menu or run consolecrypt --terminal-only.
+1. Windows: open ConsoleCrypt Terminal from Start or run ConsoleCrypt Terminal.cmd from the portable ZIP. macOS: open ConsoleCrypt Terminal through Finder or Spotlight. Linux: choose ConsoleCrypt Terminal from the application menu or run consolecrypt --terminal-only.
 
 2. Choose + or press Ctrl+K (⌘K on macOS) to open the palette and select an installed shell. The terminal toolbar controls tab placement.
 
+[Install the apps on macOS](#first-start-macos-install)
+
 <a name="teams"></a>
 
-## 32. Teams
+## 31. Teams
 
 A team is a vault shared by several accounts on the same server. All members see its hosts, groups, credentials and snippets; roles decide who may change them. Team names, settings and resources are end-to-end encrypted: the server only sees who is a member. Teams are available in a synced profile on server 0.2.1 or later (public sync.consolecrypt.dev supports them); a local profile has no Teams section.
 
@@ -1483,7 +1467,7 @@ The “Ask before running risky commands” policy: even a harmless snippet on a
 
 <a name="sharing-start"></a>
 
-## 33. Sharing: getting started
+## 32. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -1531,7 +1515,7 @@ The one-time list of secret recipients worth verifying and the “Owner not veri
 
 <a name="sharing-items"></a>
 
-## 34. Shared hosts, groups and secrets
+## 33. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -1557,7 +1541,7 @@ The separate secret-publishing dialog: the value is masked and consent has not b
 
 <a name="databases-sharing"></a>
 
-## 35. Shared database connections
+## 34. Shared database connections
 
 A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden. On your own server the CC\_SHARED\_DB\_CONNECTIONS\_ENABLED flag turns it on (see “Your own server: features, flags and limits”).
 
@@ -1591,7 +1575,7 @@ Sharing a connection: what the colleague receives; the route is not shared, and 
 
 <a name="shared-notes"></a>
 
-## 36. Shared notes on shared objects
+## 35. Shared notes on shared objects
 
 A shared host, database connection or Kubernetes context has shared notes that every member sees. This needs sync server 0.2.0 or later with shared notes enabled by the administrator (CC\_SHARED\_NOTES\_ENABLED). An object holds up to 500 notes of up to 288 KiB each, encrypted.
 
@@ -1615,7 +1599,7 @@ The Shared notes block of a shared host: a member’s note and your own note wit
 
 <a name="sharing-devices"></a>
 
-## 37. A colleague’s new personal devices
+## 36. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -1641,7 +1625,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 38. Revocation, queues and trust recovery
+## 37. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -1673,7 +1657,7 @@ Recently deleted: shared items can be restored for 30 days.
 
 <a name="settings-overview"></a>
 
-## 39. Settings: what is where
+## 38. Settings: what is where
 
 Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page of cards; some cards appear only where the feature is available. Appearance, terminal, shortcut and editor preferences stay on the device, while vault data lives in the encrypted profile.
 
@@ -1711,7 +1695,7 @@ Security and AI providers: clipboard clearing, local and remote providers, defau
 
 <a name="cli"></a>
 
-## 40. Command line: consolecrypt-cli
+## 39. Command line: consolecrypt-cli
 
 consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macOS, Windows and Linux installers and works with the same profiles as the app.
 
@@ -1733,7 +1717,7 @@ consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macO
 
 <a name="appearance"></a>
 
-## 41. Colors, text size and glass effects
+## 40. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -1757,7 +1741,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 42. Right panel: bubbles or one workspace
+## 41. Right panel: bubbles or one workspace
 
 Snippets, notes, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -1783,7 +1767,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 43. Screenshots, screen protection and clipboard
+## 42. Screenshots, screen protection and clipboard
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device. Copied secrets stay out of clipboard history and are removed after a timeout.
 
@@ -1824,7 +1808,7 @@ Windows: “Hide window from screen capture” — Never, While secrets are show
 
 <a name="backups"></a>
 
-## 44. Backups and restore
+## 43. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -1848,7 +1832,7 @@ Restoring from the welcome screen: a .ccbackup file opens into a new local profi
 
 <a name="about"></a>
 
-## 45. Version, author and licenses
+## 44. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -1866,7 +1850,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 46. Client updates
+## 45. Client updates
 
 On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.14), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
@@ -1898,7 +1882,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 47. Account: password, disconnecting and the website account
+## 46. Account: password, disconnecting and the website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -1926,7 +1910,7 @@ Settings: profiles, “Account &amp; sync” with the account actions, and the v
 
 <a name="kubernetes-connections"></a>
 
-## 48. Kubernetes: connections and access
+## 47. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -1942,7 +1926,7 @@ Import existing contexts and keep credentials in your encrypted vault. Cluster r
 
 [Full Kubernetes instructions ↗](../docs/public/en/KUBERNETES.md)
 
-[Deploy a container to Kubernetes](#release-1-2-1-deploy)
+[Deploy a container to Kubernetes](#docker-details-deploy-kubernetes)
 
 > **Keep in mind**
 >
@@ -1962,7 +1946,7 @@ kubeconfig import: contexts of a demo file, their authentication, the Production
 
 <a name="kubernetes-resources"></a>
 
-## 49. Kubernetes: resources and changes
+## 48. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -2002,7 +1986,7 @@ Rollout history: two Deployment revisions compared field by field.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 50. Kubernetes: logs, shell and tunnels
+## 49. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -2048,7 +2032,7 @@ A Pod port forward: the address on this device and the list of active forwards o
 
 <a name="kubernetes-gitops"></a>
 
-## 51. Kubernetes: GitOps and problems
+## 50. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -2080,7 +2064,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 52. Kubernetes: Helm
+## 51. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -2108,7 +2092,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 53. Kubernetes: context terminal and AI
+## 52. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -2134,7 +2118,7 @@ AI in Kubernetes: a question about a failing Pod, the logs and events it read an
 
 <a name="databases-connections"></a>
 
-## 54. Databases: connections and routes
+## 53. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis, MongoDB, Cassandra and ScyllaDB, and with SQLite files. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -2178,7 +2162,7 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 55. Databases: SQLite, Cassandra and ScyllaDB
+## 54. Databases: SQLite, Cassandra and ScyllaDB
 
 SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2. From 0.9.14, Cassandra / ScyllaDB and SQLite-through-a-host connections can move into the vault, while an SQLite file on this computer stays here.
 
@@ -2216,7 +2200,7 @@ Cassandra / ScyllaDB: contact points, the local data center, consistency levels 
 
 <a name="databases-queries"></a>
 
-## 56. Databases: structure, queries and results
+## 55. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -2304,7 +2288,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 57. Databases: production, changes, history and export
+## 56. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -2346,7 +2330,7 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 58. Databases: writing to production
+## 57. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
@@ -2372,7 +2356,7 @@ An open write window: the red badge with its end time, the countdown and the Loc
 
 <a name="databases-designer"></a>
 
-## 59. Databases: table designer and CSV import
+## 58. Databases: table designer and CSV import
 
 Create or change a table without writing SQL, and load CSV data into a table. In both cases nothing runs on the server until you confirm.
 
@@ -2420,7 +2404,7 @@ Step 3 of 5: file columns mapped by name, manager\_note skipped, and total value
 
 <a name="databases-ai"></a>
 
-## 60. Databases: AI assistant
+## 59. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -2442,21 +2426,36 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 61. Docker: hosts and containers
+## 60. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
-1. Open Docker in the sidebar. The list shows This computer and your saved SSH hosts; find one and choose Connect. The header then shows the engine version, platform and the number of running containers.
+1. If the SSH user cannot access the Docker socket, you see it right away, along with the command that adds the user to the docker group. Run it on the host yourself and reconnect; the new group applies to new SSH sessions. If sshd forbids socket forwarding, set AllowStreamLocalForwarding yes or install the docker CLI on the host.
 
-2. If the SSH user cannot access the Docker socket, you see it right away, along with the command that adds the user to the docker group. Run it on the host yourself and reconnect; the new group applies to new SSH sessions. If sshd forbids socket forwarding, set AllowStreamLocalForwarding yes or install the docker CLI on the host.
+2. Containers are grouped by compose project, with running ones first and standalone containers last. A group header shows how many are running and collapses the group. The filter matches names and images, and the All / Running / Stopped switch narrows the list.
 
-3. Containers are grouped by compose project, with running ones first and standalone containers last. A group header shows how many are running and collapses the group. The filter matches names and images, and the All / Running / Stopped switch narrows the list.
+3. Each row shows the status, health, image, short ID, and ports. The buttons start, stop, or restart the container and open its logs or terminal. The … menu includes pause, kill, removal, and port forwarding.
 
-4. Each row shows the status, health, image, short ID, and ports. The buttons start, stop, or restart the container and open its logs or terminal. The … menu includes pause, kill, removal, and port forwarding. Removing a container keeps its volumes and networks by default. Select individual eligible resources in the removal dialog to clean them up.
+**In this chapter** [Connect to a local Docker engine or use SSH](#docker-containers-local-engine) · [Remove a container and choose volumes and networks](#docker-containers-remove)
+
+<a id="docker-containers-local-engine"></a>
+
+### Connect to a local Docker engine or use SSH
+
+In Docker, select this computer to use a local engine on Windows, macOS, or Linux, or choose a saved SSH host for a remote engine. Check the connection name above the list. On Windows, WSL Containers is also available for containers in WSL. The header shows the engine version, platform and number of running containers.
+
+<a id="docker-containers-remove"></a>
+
+### Remove a container and choose volumes and networks
+
+1. Open the container menu and choose Remove container. Check the name and host. If the container is running, confirm that it may be stopped.
+2. Volumes and networks start unchecked. Select only the available resources you intend to remove. A protected resource shows why it is unavailable. Shared volumes, built-in networks, and host files used by bind mounts are retained. Confirm and check the outcome for each resource.
+
+![The removal dialog lets you select a volume and a network. The shared network and host files are protected.](../assets/guide/docker-cleanup-en.png)
+
+The removal dialog lets you select a volume and a network. The shared network and host files are protected.
 
 [Full Docker instructions ↗](../docs/public/en/DOCKER.md)
-
-[Find a Docker engine and remove a container](#release-1-2-1-docker)
 
 > **Keep in mind**
 >
@@ -2472,11 +2471,11 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 62. Docker: details, logs, volumes and forwards
+## 61. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
-1. The Overview tab shows the image, command, restarts, ports, networks with IP addresses, mounts, labels and environment variables. JSON holds the full inspect output with a copy button.
+1. The Overview tab shows the image, command, restarts, ports, networks with IP addresses, mounts, labels and environment variables. JSON holds the full inspect output with a copy button. Port bindings in the details are shown in pages of 20.
 
 2. Passwords, tokens and keys are masked not only in environment variables but also in URLs, commands and arguments, labels, the JSON tab and the compose view. References such as ${POSTGRES\_PASSWORD} stay visible: they are not the secret itself.
 
@@ -2489,6 +2488,21 @@ Click a container to open its details on the right while keeping the list in vie
 6. “Forward port” links a local port to a container port; 0 picks a free one. On an SSH host, the forward runs through the SSH connection. Running Docker and Kubernetes forwards share the right-hand “Port forwards” panel with the address, a copy button, traffic and Stop.
 
 7. A container with a standard database port has a “Connect to database” button. If a connection with the same route is already saved, it opens in Databases at once. Otherwise a form appears with the engine, port and route filled in, plus the database name and user when the environment has them; only the password is left. A published port is saved as an ordinary address; for an unpublished one, the forward is restored on every connect.
+
+**In this chapter** [Deploy a container to Kubernetes](#docker-details-deploy-kubernetes)
+
+<a id="docker-details-deploy-kubernetes"></a>
+
+### Deploy a container to Kubernetes
+
+1. Open a Linux container that runs without persistent mounts and choose Deploy to Kubernetes · Experimental. Select a saved Kubernetes context and namespace. Verify the workload name and the TCP port the application listens on inside the container.
+2. The wizard uses Docker to verify the image digest in its source registry before filling it in. If the image exists only locally, publish it to a registry reachable by the nodes and enter its full reference with a tag or digest. If needed for a private registry, specify an existing imagePullSecret in the selected namespace.
+3. Use the template or select an AI provider. Review the YAML, including image, command, args, and port. Run the server check to validate both manifests. The node pulls the image and starts the process when the Pod launches. Confirm creation of the single-replica Deployment and internal ClusterIP Service.
+4. Check readiness. For ImagePullBackOff, check the image reference and the node’s pull access. For CrashLoopBackOff, inspect the command, arguments, exit code, and restart count. Exit code 0 on a repeatedly restarted Pod can mean its process finished and exited. Open the created Deployment to inspect the Pod.
+
+![Before generating the manifest, check the cluster context, namespace, image digest, and application port.](../assets/guide/docker-kube-wizard-en.png)
+
+Before generating the manifest, check the cluster context, namespace, image digest, and application port.
 
 ![Container details: ports, networks, mounts, labels and masked environment secrets.](../assets/guide/docker-details-en.png)
 
@@ -2512,7 +2526,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 63. Docker: compose projects
+## 62. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -2542,7 +2556,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 64. Your own server: Kubernetes
+## 63. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -2640,7 +2654,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 65. Your own server: Docker Compose
+## 64. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
@@ -2713,7 +2727,7 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-settings"></a>
 
-## 66. Your own server: installation and parameters by method
+## 65. Your own server: installation and parameters by method
 
 Every server setting is a CC\_\* variable; the full list with Helm paths, defaults and allowed values is in “Your own server: configuration reference”. This chapter shows where to put a key for each installation method (Docker Compose, docker run, Helm, a JSON file and systemd), how to apply and verify a change, and worked examples: shared notes and teams, sign-in with Entra ID and Active Directory, switching limits to enforce, raising quotas.
 
@@ -3170,7 +3184,7 @@ accounts.
 
 <a name="server-enterprise"></a>
 
-## 67. Your own server: corporate sign-in and shared notes
+## 66. Your own server: corporate sign-in and shared notes
 
 Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices, sharing and teams (server 0.2.1) work in both modes.
 
@@ -3258,7 +3272,7 @@ How the client sees a server in enterprise mode with Active Directory.
 
 <a name="server-idp"></a>
 
-## 68. Your own server: corporate sign-in recipes
+## 67. Your own server: corporate sign-in recipes
 
 The complete enterprise-mode guide: what the server needs from the IdP, step-by-step recipes for Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta and any OIDC provider, Active Directory over LDAPS or STARTTLS, account linking at first sign-in, commands, deployment, a troubleshooting table and switching back to standard sign-in. In the examples the server is https://sync.acme.com and angle brackets mark your own values; keep secrets only in files and Secrets.
 
@@ -3794,7 +3808,7 @@ the table in the Russian section and [PROTOCOL_CHANGELOG.md](https://github.com/
 
 <a name="server-config"></a>
 
-## 69. Your own server: features, flags and limits
+## 68. Your own server: features, flags and limits
 
 Your own server’s features are turned on with CC\_\* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.
 
@@ -3964,7 +3978,7 @@ The client shows Teams only when the server supports them.
 
 <a name="server-reference"></a>
 
-## 70. Your own server: configuration reference
+## 69. Your own server: configuration reference
 
 Every sync server parameter: each CC\_\* key with its Helm path, default, allowed values, secret flag and purpose, grouped as in the source reference; the order of configuration sources and start-up checks; all 18 request limits and the admin commands. The reference is checked against the server code at every release. Where to put a key for each installation method is in “Your own server: installation and parameters by method”.
 
@@ -4385,7 +4399,7 @@ admin …` or `kubectl exec deployment/… -- /usr/local/bin/consolecrypt-server
 
 <a name="server-maintenance"></a>
 
-## 71. Your own server: backups, upgrades and commands
+## 70. Your own server: backups, upgrades and commands
 
 All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
 

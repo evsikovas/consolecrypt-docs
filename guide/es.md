@@ -8,7 +8,6 @@ Instrucciones paso a paso con capturas de la aplicación y datos de demostració
 
 **Comenzar**
 
-- [Novedades de la versión 1.2.1](#release-1-2-1)
 - [Primer lanzamiento y perfiles](#first-start)
 - [Linux instalación: DEB, RPM y llavero](#linux-install)
 - [¿Qué contraseña necesito?](#passwords)
@@ -24,7 +23,7 @@ Instrucciones paso a paso con capturas de la aplicación y datos de demostració
 - [RDP en un teléfono: touchpad y teclado](#rdp-mobile)
 - [Búsqueda rápida y conexión](#quick-connect)
 - [Grupos y anfitriones saltar](#groups)
-- [KDBX administrador de contraseña](#password-manager)
+- [Contraseñas: KDBX, Vault y OpenBao](#password-manager)
 - [Generador de contraseñas](#password-generator)
 - [KDBX más WebDAV y sincronización](#password-webdav)
 - [Contraseñas en la paleta de comandos](#password-palette)
@@ -89,83 +88,9 @@ Instrucciones paso a paso con capturas de la aplicación y datos de demostració
 - [Su propio servidor: referencia de configuración](#server-reference)
 - [Su propio servidor: respaldos, actualizaciones y comandos](#server-maintenance)
 
-<a name="release-1-2-1"></a>
-
-## 1. Novedades de la versión 1.2.1
-
-Conecta Vault u OpenBao, transfiere entradas KDBX y despliega un contenedor Docker en Kubernetes. Cada procedimiento indica cómo comprobar el resultado.
-
-**En este capítulo** [Conectar Vault u OpenBao](#release-1-2-1-vault) · [Importar y exportar entradas KDBX](#release-1-2-1-kdbx) · [Localizar el motor Docker y eliminar un contenedor](#release-1-2-1-docker) · [Desplegar un contenedor en Kubernetes](#release-1-2-1-deploy) · [Supervisar un host SSH y restaurar un reenvío](#release-1-2-1-ssh) · [Instalar en macOS y pegar varias líneas en PowerShell](#release-1-2-1-terminals)
-
-<a id="release-1-2-1-vault"></a>
-
-### Conectar Vault u OpenBao
-
-1. Abre Contraseñas → Vault / OpenBao → Añadir conexión. Escribe el nombre y la dirección del servidor. Utiliza HTTPS para conectarte por red. Con HTTP, el token, la contraseña y los secretos consultados viajan sin cifrado de transporte.
-2. Elige token o nombre de usuario y contraseña. En los ajustes de Vault, cambia el punto de montaje KV v1/v2 si difiere del propuesto. Si userpass usa una ruta propia, indícala y conecta.
-3. Abre una carpeta y selecciona un secreto. La búsqueda filtra la carpeta actual. Si la política te permite leer el secreto pero oculta la lista, introduce su ruta completa dentro del punto de montaje. Elige el campo para ver o copiar su valor. En la paleta de comandos, busca la conexión por nombre y navega hasta el mismo campo.
-4. Para usar la conexión en otro dispositivo, sincroniza el mismo perfil personal. Los ajustes se guardan en la bóveda cifrada. Si también quieres transferir el token o la contraseña, activa Guardar el acceso en mi bóveda cifrada de ConsoleCrypt. Tras sincronizar, abre la conexión en el segundo dispositivo y elige Acceder con la credencial sincronizada. La biometría se configura en cada dispositivo.
-
-<a id="release-1-2-1-kdbx"></a>
-
-### Importar y exportar entradas KDBX
-
-1. En Contraseñas, abre y desbloquea la base KDBX. En su menú, elige Exportar a CSV o Exportar a JSON. CSV sirve para campos estándar como usuario, contraseña y URL. El formato JSON de ConsoleCrypt conserva además los campos personalizados. Ambos archivos contienen contraseñas en texto sin cifrar.
-2. Para importar, abre el menú de la base de destino y elige Importar CSV o JSON. Selecciona el archivo y comprueba el número de entradas y el nombre de la base antes de confirmar. El CSV requiere las columnas title y password, o sus equivalentes admitidos. Para JSON, usa una exportación de ConsoleCrypt. El límite por archivo es de 10 000 entradas y 16 MiB.
-3. Tras la importación, abre una entrada y comprueba su grupo y sus campos. Para volver a una base de datos o a un servidor de secretos, abre las cinco fuentes recientes en Contraseñas. La lista reúne bases KDBX locales, WebDAV, Vault y OpenBao.
-
-<a id="release-1-2-1-docker"></a>
-
-### Localizar el motor Docker y eliminar un contenedor
-
-1. En Docker, selecciona este equipo para usar el motor local de Windows, macOS o Linux, o elige un host SSH guardado para un motor remoto. Comprueba el nombre de la conexión sobre la lista. En Windows también puedes abrir WSL Containers para los contenedores en WSL.
-2. Abre el contenedor para consultar los puertos, en páginas de 20. Para borrarlo, abre su menú y elige Eliminar contenedor. Revisa el nombre y el host. Si está en ejecución, confirma también que se puede detener.
-3. Los volúmenes y las redes aparecen desmarcados. Marca solo los recursos disponibles que quieras eliminar. Cada recurso protegido indica el motivo. Se conservan los volúmenes compartidos, las redes integradas y los archivos del host montados mediante bind mounts. Confirma y comprueba el resultado de cada recurso.
-
-<a id="release-1-2-1-deploy"></a>
-
-### Desplegar un contenedor en Kubernetes
-
-1. Abre un contenedor Linux que funcione sin montajes persistentes y elige el despliegue experimental en Kubernetes. Selecciona un contexto guardado y el namespace. Comprueba el nombre de la carga y el puerto TCP en el que escucha la aplicación dentro del contenedor.
-2. El asistente usa Docker para comprobar el digest en el registro de origen antes de rellenar el campo. Si la imagen solo existe en local, publícala en un registro accesible para los nodos e introduce la referencia completa con etiqueta o digest. Para un registro privado, indica si hace falta un imagePullSecret existente en el namespace elegido.
-3. Usa la plantilla o selecciona un proveedor de IA. Revisa el YAML, incluidos image, command, args y port. Ejecuta la comprobación del servidor para validar los manifiestos. El nodo descarga la imagen e inicia el proceso cuando arranca el Pod. Confirma la creación del Deployment de una réplica y del Service interno de tipo ClusterIP.
-4. Comprueba la disponibilidad. Ante ImagePullBackOff, revisa la referencia de la imagen y los permisos de descarga del nodo. Ante CrashLoopBackOff, examina el comando, los argumentos, el código de salida y el número de reinicios. Un código 0 con reinicios repetidos puede indicar que el proceso terminó. Abre el Deployment creado para examinar el Pod.
-
-<a id="release-1-2-1-ssh"></a>
-
-### Supervisar un host SSH y restaurar un reenvío
-
-1. Conecta con un host Linux mediante el cliente SSH integrado. Abre Monitorización en el panel derecho del terminal o en las herramientas de la sesión del teléfono. Consulta CPU, memoria, disco y tráfico de red. Cierra el panel y vuelve a abrirlo para ver las muestras recogidas durante la conexión.
-2. En Túneles, busca el reenvío guardado de Docker o Kubernetes. Comprueba el host o clúster, el recurso de destino y el puerto local. Pulsa iniciar. Cuando esté activo, conéctate a la dirección local indicada.
-
-<a id="release-1-2-1-terminals"></a>
-
-### Instalar en macOS y pegar varias líneas en PowerShell
-
-1. En macOS, abre el DMG. En Finder, arrastra ConsoleCrypt, ConsoleCrypt Terminal o ambas aplicaciones a la carpeta Applications de la misma fila. Abre la aplicación que necesites desde Aplicaciones. ConsoleCrypt Terminal abre la interfaz de terminal independiente.
-2. En Windows, abre una pestaña de PowerShell local. Pega varias líneas con la acción de pegado del terminal en una línea de órdenes vacía. Para comprobarlo, usa dos líneas con Write-Output y palabras distintas y revisa su orden antes de ejecutar.
-
-[Grupos, entradas y campos KDBX](#password-manager)
-
-[Conectarse a un clúster de Kubernetes](#kubernetes-connections)
-
-[Reenvío de puertos y túneles](#tunnels)
-
-![Selecciona una conexión reciente de Vault u OpenBao en Contraseñas para volver a sus secretos.](../assets/guide/vault-sources-es.png)
-
-Selecciona una conexión reciente de Vault u OpenBao en Contraseñas para volver a sus secretos.
-
-![En el diálogo de eliminación puedes elegir un volumen y una red. La red compartida y los archivos del host están protegidos.](../assets/guide/docker-cleanup-es.png)
-
-En el diálogo de eliminación puedes elegir un volumen y una red. La red compartida y los archivos del host están protegidos.
-
-![Antes de generar el manifiesto, comprueba el contexto del clúster, el namespace, el digest de la imagen y el puerto de la aplicación.](../assets/guide/docker-kube-wizard-es.png)
-
-Antes de generar el manifiesto, comprueba el contexto del clúster, el namespace, el digest de la imagen y el puerto de la aplicación.
-
 <a name="first-start"></a>
 
-## 2. Primer lanzamiento y perfiles
+## 1. Primer lanzamiento y perfiles
 
 Comience localmente o conecte sincronización encriptada. Un perfil contiene su propia bóveda y, cuando está conectado, una cuenta en el servidor elegido.
 
@@ -182,6 +107,14 @@ Comience localmente o conecte sincronización encriptada. Un perfil contiene su 
 6. Al conectar un servidor, Cheque primero muestra la versión del servidor, protocolo y si el registro está abierto. Introduzca un nombre para este dispositivo — aparece en la lista de dispositivos. “¿Olvidó la contraseña de la cuenta?” resetea la contraseña de la cuenta por correo electrónico, no la contraseña de la bóveda.
 
 7. “Configuración → Perfiles” renombra y elimina los perfiles. Eliminar elimina el perfil de este dispositivo solamente y necesita la garrapata “Entiendo que esto no puede ser deshecho”; la bóveda encriptada de un perfil sincronizado en el servidor no se toca, mientras que una bóveda local puede volver sólo de una copia de seguridad. La casilla de verificación “Abre el último perfil al iniciarse” de Apearance abre el último perfil de inmediato (el sistema puede pedir acceso a llaveros).
+
+**En este capítulo** [Instalar las aplicaciones en macOS](#first-start-macos-install)
+
+<a id="first-start-macos-install"></a>
+
+### Instalar las aplicaciones en macOS
+
+En macOS, abre el DMG. En Finder, arrastra ConsoleCrypt, ConsoleCrypt Terminal o ambas aplicaciones a la carpeta Applications de la misma fila. Abre la aplicación que necesites desde Aplicaciones. ConsoleCrypt Terminal abre la interfaz de terminal independiente.
 
 > **Ten en cuenta**
 >
@@ -201,7 +134,7 @@ El interruptor de perfil en la parte superior de la barra lateral: el perfil act
 
 <a name="linux-install"></a>
 
-## 3. Linux instalación: DEB, RPM y llavero
+## 2. Linux instalación: DEB, RPM y llavero
 
 El cliente se dirige a los escritorios gráficos x86-64 (x64): Ubuntu 22.04, Debian 12 y Fedora 43. Elija el paquete para su distribución; el administrador del paquete comprueba las dependencias.
 
@@ -237,7 +170,7 @@ sudo dnf install ./consolecrypt.rpm
 
 <a name="passwords"></a>
 
-## 4. ¿Qué contraseña necesito?
+## 3. ¿Qué contraseña necesito?
 
 ConsoleCrypt tiene capas de acceso separadas. Reiniciar la contraseña de su cuenta por correo electrónico no desbloquea la bóveda cifrada.
 
@@ -259,7 +192,7 @@ ConsoleCrypt tiene capas de acceso separadas. Reiniciar la contraseña de su cue
 
 <a name="vault"></a>
 
-## 5. Vault, recuperación y biometría
+## 4. Vault, recuperación y biometría
 
 Tu bóveda se desbloquea en tu dispositivo. Configure bloqueo y desbloqueo después de crearlo.
 
@@ -343,7 +276,7 @@ Recuperar el acceso: la llave de recuperación de 24 palabras o este dispositivo
 
 <a name="devices"></a>
 
-## 6. Dispositivos sincronizados y de confianza
+## 5. Dispositivos sincronizados y de confianza
 
 Firmar y ser permitido descifrar la bóveda son acciones separadas. Un nuevo dispositivo necesita aprobación.
 
@@ -409,7 +342,7 @@ El indicador Sync en la barra superior: última sincronización, servidor y cola
 
 <a name="device-protection"></a>
 
-## 7. Protección contra inscripciones de nuevos dispositivos
+## 6. Protección contra inscripciones de nuevos dispositivos
 
 Si alguien firma en tu cuenta desde un dispositivo nuevo, lo descubres de inmediato, y el dispositivo está restringido por un tiempo. Esta protección necesita servidor de sincronización 0.1.16 o posterior.
 
@@ -433,7 +366,7 @@ El nuevo aviso de inicio de sesión y un nuevo dispositivo marcado “No confirm
 
 <a name="enterprise-sign-in"></a>
 
-## 8. Inscripción corporativa: SSO y Active Directory
+## 7. Inscripción corporativa: SSO y Active Directory
 
 El servidor Sync 0.2.0 y más tarde puede admitir cuentas sólo a través del servidor de autorización de su organización. Cliente 0.9.0 detecta el modo del servidor y muestra el formulario de emparejamiento. Sólo el registro de cuenta cambia: su contraseña de bóveda aún abre la bóveda.
 
@@ -473,7 +406,7 @@ La cuenta fue deshabilitada por la organización: el perfil está bloqueado y lo
 
 <a name="hosts"></a>
 
-## 9. Hosts: añadir, encontrar y conectar
+## 8. Hosts: añadir, encontrar y conectar
 
 Tiendas de host SSH o configuración de conexión RDP. Las tarjetas y las filas de listas muestran su dirección, usuario y grupo.
 
@@ -496,6 +429,8 @@ Tiendas de host SSH o configuración de conexión RDP. Las tarjetas y las filas 
 9. Seguridad: la política de host-key — Pregunte (confirme teclas desconocidas), Strict (sólo las claves de los anfitriones conocidos) o Aceptar nuevo (salvar las teclas desconocidas automáticamente); una llave cambiada siempre bloquea la conexión. También tiene la implementación SSH (“Built-in (russh)” o “System OpenSSH (compatibilidad)” para servidores antiguos), el intervalo de mantenimiento y “Agent forwarding” — lo permiten sólo para los anfitriones en los que confía.
 
 10. La organización tiene etiquetas y notas de texto libre. En la parte inferior, “Configuración efectiva” muestra lo que una conexión realmente utilizará — grupo, usuario, puerto, credencial y ruta— y de dónde viene cada valor; problemas como un host de salto eliminado aparecen allí también.
+
+[Supervisar la carga del host durante una sesión SSH](#terminal-ssh-monitoring)
 
 ![Una visión general de los anfitriones de demostración y sus detalles de conexión.](../assets/guide/hosts-en.png)
 
@@ -531,7 +466,7 @@ Importación de ~/.ssh/config: Host entries with documentation-range addresses.
 
 <a name="rdp"></a>
 
-## 10. RDP: Windows remoto escritorio
+## 9. RDP: Windows remoto escritorio
 
 ConsoleCrypt ahora soporta conexiones RDP. Se conecta directamente a un servidor estándar de Microsoft RDP; no hay necesidad de añadir IronRDP Windows .
 
@@ -581,7 +516,7 @@ Barra de conexión de pantalla completa: conmutación de sesión, permisos y con
 
 <a name="rdp-mobile"></a>
 
-## 11. RDP en un teléfono: touchpad y teclado
+## 10. RDP en un teléfono: touchpad y teclado
 
 En un teléfono, el escritorio conectado abre automáticamente la pantalla completa. Touchpad es el predeterminado: el dedo mueve el puntero relativo a su posición actual. Un botón flotante abre los controles de sesión.
 
@@ -639,7 +574,7 @@ Los mismos controles en el tema ligero.
 
 <a name="quick-connect"></a>
 
-## 12. Búsqueda rápida y conexión
+## 11. Búsqueda rápida y conexión
 
 Encuentre un host guardado desde cualquier lugar de la aplicación y abra una sesión SSH o RDP. La paleta de comandos reúne anfitriones, francotiradores y acciones rápidas.
 
@@ -667,7 +602,7 @@ El “+” global: elegir los hosts salvados SSH y RDP.
 
 <a name="groups"></a>
 
-## 13. Grupos y anfitriones saltar
+## 12. Grupos y anfitriones saltar
 
 Los grupos organizan su inventario y proporcionan ajustes comunes. Una cadena de salto-host alcanza un host SSH a través de máquinas intermedias.
 
@@ -707,9 +642,9 @@ Añadiendo un host demo a un grupo existente.
 
 <a name="password-manager"></a>
 
-## 14. KDBX administrador de contraseña
+## 13. Contraseñas: KDBX, Vault y OpenBao
 
-Las contraseñas abren las bases de datos KeePass KDBX 3/4. SSH /RDP credenciales permanecen en su propia sección; KDBX entradas no se copian automáticamente allí.
+En Contraseñas puedes abrir una base de datos KeePass KDBX 3/4 o conectarte a un servidor de secretos Vault u OpenBao. Las credenciales SSH y RDP tienen su propia sección.
 
 1. Desde 1.1.0, la lista inferior a la izquierda sólo muestra bases de datos desbloqueadas. El pequeño botón de bloqueo al lado + abre otras bases de datos recordadas. Seleccione una para desbloquearla; su ... menú y WebDAV configuración permanecen disponibles en ese selector.
 
@@ -735,7 +670,28 @@ Las contraseñas abren las bases de datos KeePass KDBX 3/4. SSH /RDP credenciale
 
 12. Después de que la primera contraseña se desbloquee, active el desbloqueo rápido para esta base de datos en este dispositivo a través de Windows Hola, Protección del sistema de Apple o Android Keystore. FIDO2/PRF está disponible en Windows / macOS . Linux el desbloqueo rápido biométrico aún no se implementa; iOS Las capacidades de los simuladores dependen de su entorno.
 
-[Importar y exportar entradas KDBX](#release-1-2-1-kdbx)
+**En este capítulo** [Importar y exportar entradas KDBX](#password-manager-kdbx-transfer) · [Conectar Vault u OpenBao](#password-manager-vault-openbao)
+
+<a id="password-manager-kdbx-transfer"></a>
+
+### Importar y exportar entradas KDBX
+
+1. En Contraseñas, abre y desbloquea la base KDBX. En su menú, elige Exportar a CSV o Exportar a JSON. CSV sirve para campos estándar como usuario, contraseña y URL. El formato JSON de ConsoleCrypt conserva además los campos personalizados. Ambos archivos contienen contraseñas en texto sin cifrar.
+2. Para importar, abre el menú de la base de destino y elige Importar CSV o JSON. Selecciona el archivo y comprueba el número de entradas y el nombre de la base antes de confirmar. El CSV requiere las columnas title y password, o sus equivalentes admitidos. Para JSON, usa una exportación de ConsoleCrypt. El límite por archivo es de 10 000 entradas y 16 MiB.
+3. Tras la importación, abre una entrada y comprueba su grupo y sus campos. Para volver a una base de datos o a un servidor de secretos, abre las cinco fuentes recientes en Contraseñas. La lista reúne bases KDBX locales, WebDAV, Vault y OpenBao.
+
+<a id="password-manager-vault-openbao"></a>
+
+### Conectar Vault u OpenBao
+
+1. Abre Contraseñas → Vault / OpenBao → Añadir conexión. Escribe el nombre y la dirección del servidor. Utiliza HTTPS para conectarte por red. Con HTTP, el token, la contraseña y los secretos consultados viajan sin cifrado de transporte.
+2. Elige token o nombre de usuario y contraseña. En los ajustes de Vault, cambia el punto de montaje KV v1/v2 si difiere del propuesto. Si userpass usa una ruta propia, indícala y conecta.
+3. Abre una carpeta y selecciona un secreto. La búsqueda filtra la carpeta actual. Si la política te permite leer el secreto pero oculta la lista, introduce su ruta completa dentro del punto de montaje. Elige el campo para ver o copiar su valor. En la paleta de comandos, busca la conexión por nombre y navega hasta el mismo campo.
+4. Para usar la conexión en otro dispositivo, sincroniza el mismo perfil personal. Los ajustes se guardan en la bóveda cifrada. Si también quieres transferir el token o la contraseña, activa Guardar el acceso en mi bóveda cifrada de ConsoleCrypt. Tras sincronizar, abre la conexión en el segundo dispositivo y elige Acceder con la credencial sincronizada. La biometría se configura en cada dispositivo.
+
+![Selecciona una conexión reciente de Vault u OpenBao en Contraseñas para volver a sus secretos.](../assets/guide/vault-sources-es.png)
+
+Selecciona una conexión reciente de Vault u OpenBao en Contraseñas para volver a sus secretos.
 
 > **Ten en cuenta**
 >
@@ -811,7 +767,7 @@ Tarjeta de entrada en un teléfono.
 
 <a name="password-generator"></a>
 
-## 15. Generador de contraseñas
+## 14. Generador de contraseñas
 
 El generador está disponible en la pantalla de bienvenida del administrador, en una base de datos abierta y en el editor de contraseñas. Funciona en tu dispositivo sin un servidor.
 
@@ -827,7 +783,7 @@ Longitud, conjuntos de caracteres y estimación de entropía; la contraseña est
 
 <a name="password-webdav"></a>
 
-## 16. KDBX más WebDAV y sincronización
+## 15. KDBX más WebDAV y sincronización
 
 Configure WebDAV antes de abrir una base de datos. ConsoleCrypt cifra los ajustes de conexión y lee y guarda el KDBX en su servidor WebDAV.
 
@@ -857,7 +813,7 @@ Ajustes de conexión con un ejemplo de un archivo completo HTTPS URL .
 
 <a name="password-palette"></a>
 
-## 17. Contraseñas en la paleta de comandos
+## 16. Contraseñas en la paleta de comandos
 
 Encuentre un nombre de usuario, contraseña o clave de API de cualquier sección, incluyendo el terminal. Elige la entrada primero, luego el campo.
 
@@ -869,6 +825,8 @@ Encuentre un nombre de usuario, contraseña o clave de API de cualquier sección
 
 4. La base de datos debe ser desbloqueada; bloquear el perfil cierra bases de datos abiertas. Los valores secretos no se muestran en los resultados de búsqueda. Las copias usan el temporizador de limpieza de portapapeles compartido.
 
+[Buscar y copiar un secreto de Vault u OpenBao](#password-manager-vault-openbao)
+
 ![Encuentra una entrada por título antes de copiar cualquier cosa.](../assets/guide/passwords-palette-en.png)
 
 Encuentra una entrada por título antes de copiar cualquier cosa.
@@ -879,7 +837,7 @@ Segundo paso: elija el campo para copiar.
 
 <a name="credentials"></a>
 
-## 18. Contraseñas, claves y credenciales
+## 17. Contraseñas, claves y credenciales
 
 Las credenciales están separadas de los anfitriones: se puede asignar una credencial a múltiples conexiones.
 
@@ -911,7 +869,7 @@ Generando una tecla SSH: nombre y algoritmo.
 
 <a name="host-keys"></a>
 
-## 19. Los anfitriones conocidos y SSH - verificación clave
+## 18. Los anfitriones conocidos y SSH - verificación clave
 
 Una clave del servidor identifica el SSH host al que se está conectando. Esto está separado de confiar en un dispositivo ConsoleCrypt.
 
@@ -927,7 +885,7 @@ Una lista separada de hospedaje con huellas demo.
 
 <a name="terminal"></a>
 
-## 20. Terminal, pestañas y selección
+## 19. Terminal, pestañas y selección
 
 Una pestaña tiene una sesión terminal SSH , más conchas locales en macOS y Windows ), o hasta cuatro lado a lado cuando se dividen en paneles. Los teléfonos tienen una barra especial; los ordenadores tienen atajos y un menú contextual.
 
@@ -953,7 +911,15 @@ Una pestaña tiene una sesión terminal SSH , más conchas locales en macOS y Wi
 
 11. “Configuración → Terminal → Colocación de la pestaña”: Parte superior o izquierda. Izquierda es una columna de pestañas con nombres y direcciones; arrastre su borde para cambiar el ancho o doblarlo a iconos. Mientras que la columna se muestra, la barra lateral de la aplicación permanece doblada hasta que la despliega. La elección se mantiene en este dispositivo.
 
-[Supervisar un host SSH y restaurar un reenvío](#release-1-2-1-ssh)
+**En este capítulo** [Supervisar la carga del host durante una sesión SSH](#terminal-ssh-monitoring)
+
+<a id="terminal-ssh-monitoring"></a>
+
+### Supervisar la carga del host durante una sesión SSH
+
+Conecta con un host Linux mediante el cliente SSH integrado. Abre Monitorización en el panel derecho del terminal o en las herramientas de la sesión del teléfono. Consulta CPU, memoria, disco y tráfico de red. Cierra el panel y vuelve a abrirlo para ver las muestras recogidas durante la conexión.
+
+[Pegar varias líneas en PowerShell](#local-terminals-powershell-paste)
 
 > **Ten en cuenta**
 >
@@ -1001,7 +967,7 @@ Demo Android terminal con su barra especial.
 
 <a name="local-terminals"></a>
 
-## 21. Terminales locales: zsh, PowerShell y WSL
+## 20. Terminales locales: zsh, PowerShell y WSL
 
 En macOS y Windows se puede abrir una cáscara en esta computadora junto con SSH pestañas. Se ejecuta como su usuario ordinario del sistema operativo y no requiere un servidor de sincronización.
 
@@ -1016,6 +982,14 @@ En macOS y Windows se puede abrir una cáscara en esta computadora junto con SSH
 5. AI recibe el dialecto de cáscara activo y sólo el contexto explícitamente seleccionado. Los comandos y los snippets AI se pueden insertar en una pestaña local sin Enter; la ejecución automática está deshabilitada. Revise el texto y presione Introdúcese si desea ejecutarlo.
 
 6. Cerrar una pestaña termina su proceso. La cáscara de reinicio comienza una nueva sesión. Interruptor de perfil y dejar de cerrar la cáscara y su grupo de proceso de primer plano actual. El bloqueo de la bóveda (también automáticamente) mantiene los terminales abiertos: las pestañas locales y SSH continúan después del desbloqueo. No se buscan procesos desprendidos o subterráneos, como el nohup, y no se detiene toda la distribución WSL.
+
+**En este capítulo** [Pegar varias líneas en PowerShell](#local-terminals-powershell-paste)
+
+<a id="local-terminals-powershell-paste"></a>
+
+### Pegar varias líneas en PowerShell
+
+En Windows, abre una pestaña de PowerShell local. Pega varias líneas con la acción de pegado del terminal en una línea de órdenes vacía. Para comprobarlo, usa dos líneas con Write-Output y palabras distintas y revisa su orden antes de ejecutar.
 
 > **Ten en cuenta**
 >
@@ -1039,7 +1013,7 @@ Windows - de estilo picker para PowerShell, cmd y dos distribuciones WSL en una 
 
 <a name="shortcuts"></a>
 
-## 22. Atajos de teclado
+## 21. Atajos de teclado
 
 El modificador principal es soluble en macOS y Ctrl en Windows / Linux . Copiado en Windows no utiliza Ctrl+C, que interrumpe un comando. Los atajos de la aplicación se pueden remapped en Ajustes → Atajos de teclado: elegir Cambiar y presionar una nueva combinación con χ/Ctrl o Alt. Si otro comando lo tiene, ese comando lo pierde; si el sistema o terminal lo usa, se le advierte. Restaurar defectos trae de nuevo la tabla abajo.
 
@@ -1068,7 +1042,7 @@ El modificador principal es soluble en macOS y Ctrl en Windows / Linux . Copiado
 
 <a name="sftp"></a>
 
-## 23. SFTP : transferencias y vista previa del archivo
+## 22. SFTP : transferencias y vista previa del archivo
 
 Abra SFTP desde el menú del host o la barra lateral. Los archivos viajan directamente entre el dispositivo y el host SSH.
 
@@ -1110,7 +1084,7 @@ El panel Transferencias: descargas y una carga se realizan, y una transferencia 
 
 <a name="sftp-editor"></a>
 
-## 24. SFTP : editor por defecto
+## 23. SFTP : editor por defecto
 
 En un ordenador, los archivos pueden abrirse en un editor externo. ConsoleCrypt recuerda la aplicación elegida en ese dispositivo.
 
@@ -1138,17 +1112,25 @@ Abra un script: el archivo se abre como texto y nunca se ejecuta.
 
 <a name="tunnels"></a>
 
-## 25. SSH túneles
+## 24. SSH túneles
 
 Un túnel utiliza una conexión SSH con el anfitrión elegido. Se dispone de reenvío local, reenvío remoto y SOCKS5 dinámico.
 
-1. Al reenviar un puerto desde Docker o Kubernetes, active Guardar túnel. El preset aparece en Tunnels, donde se puede iniciar, parar o quitarlo. Puerto 0 selecciona un puerto local disponible en cada inicio.
+1. Abra “Tunels” y cree uno. Seleccione el host, tipo, dirección de escucha y puerto; para el reenvío local o remoto, especifique una dirección de destino y puerto.
 
-2. Abra “Tunels” y cree uno. Seleccione el host, tipo, dirección de escucha y puerto; para el reenvío local o remoto, especifique una dirección de destino y puerto.
+2. Preferir 127.0.0.1 para un servicio local que sólo necesita usted. Una dirección no retrocedente (como 0.0.0.0) muestra una advertencia “No ligada al retroceso” y el túnel se puede salvar sólo después de marcar “Entiendo que este túnel es accesible desde la red”. Para el reenvío remoto de tal dirección funciona sólo si el servidor SSH permite GatewayPorts.
 
-3. Preferir 127.0.0.1 para un servicio local que sólo necesita usted. Una dirección no retrocedente (como 0.0.0.0) muestra una advertencia “No ligada al retroceso” y el túnel se puede salvar sólo después de marcar “Entiendo que este túnel es accesible desde la red”. Para el reenvío remoto de tal dirección funciona sólo si el servidor SSH permite GatewayPorts.
+3. Comience el túnel con su interruptor y compruebe su estado: la fila muestra conexiones activas y tiempo de funcionamiento, o la razón después de un error. Deténgase cuando termine. “Empieza automáticamente después de desbloquear” trae el túnel cada vez que la bóveda se desbloquea en este dispositivo.
 
-4. Comience el túnel con su interruptor y compruebe su estado: la fila muestra conexiones activas y tiempo de funcionamiento, o la razón después de un error. Deténgase cuando termine. “Empieza automáticamente después de desbloquear” trae el túnel cada vez que la bóveda se desbloquea en este dispositivo.
+**En este capítulo** [Restablecer un reenvío de Docker o Kubernetes](#tunnels-restore)
+
+<a id="tunnels-restore"></a>
+
+### Restablecer un reenvío de Docker o Kubernetes
+
+Al reenviar un puerto desde Docker o Kubernetes, active Guardar túnel. El preset aparece en Tunnels, donde se puede iniciar, parar o quitarlo. Puerto 0 selecciona un puerto local disponible en cada inicio.
+
+En Túneles, busca el reenvío guardado de Docker o Kubernetes. Comprueba el host o clúster, el recurso de destino y el puerto local. Pulsa iniciar. Cuando esté activo, conéctate a la dirección local indicada.
 
 > **Ten en cuenta**
 >
@@ -1172,7 +1154,7 @@ Reenvío remoto en 0.0.0.0: la advertencia y el reconocimiento requerido.
 
 <a name="snippets"></a>
 
-## 26. Snippets, variables y conjuntos de arranque
+## 25. Snippets, variables y conjuntos de arranque
 
 Un snippet es un comando o plantilla guardado. Abra la herramienta con el icono &lt;/&gt; en la derecha o su acceso directo.
 
@@ -1214,7 +1196,7 @@ Filtrar y gestionar conjuntos de snippet.
 
 <a name="ai"></a>
 
-## 27. chat AI y el contexto que envía
+## 26. chat AI y el contexto que envía
 
 Elija el proveedor, el contexto y la acción posterior. La respuesta de un modelo no ejecuta comandos.
 
@@ -1250,7 +1232,7 @@ Añadiendo un proveedor: dirección, modelo, una clave API guardada en la bóved
 
 <a name="local-ai"></a>
 
-## 28. AI local: modelos, su propio GGUF y actualizaciones
+## 27. AI local: modelos, su propio GGUF y actualizaciones
 
 En macOS , Windows y Linux x64, el modelo responde en su computadora. Elija Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B o Strong Qwen3.5 9B y preserva los modelos descargados a través de las actualizaciones. También puedes añadir tu propio modelo GGUF.
 
@@ -1300,7 +1282,7 @@ El modelo seleccionado está listo para detener y eliminar acciones; el estado d
 
 <a name="notes"></a>
 
-## 29. Notas, tareas y recordatorios
+## 28. Notas, tareas y recordatorios
 
 Notas es una herramienta de panel derecho junto a Snippets y AI. Ábrelo con el icono de la nota, desde la paleta de comandos o desde el encabezado del teléfono. Las notas se encriptan en el dispositivo y se sincronizan con la bóveda.
 
@@ -1354,7 +1336,7 @@ Menú de una nota: pin, recordar en una hora, desprender del objeto y eliminar.
 
 <a name="automation"></a>
 
-## 30. Automatización con Ansible
+## 29. Automatización con Ansible
 
 Crea un proyecto a partir de un playbook o un rol, añade archivos y revisa las propuestas de la IA antes de ejecutarlas.
 
@@ -1382,17 +1364,19 @@ En los ajustes de la tarea, elige un Runner y los destinos y pulsa Validar proye
 
 <a name="terminal-only"></a>
 
-## 31. Modo Solo terminal
+## 30. Modo Solo terminal
 
 Abre una ventana independiente con una consola local y coloca las pestañas a la izquierda o arriba.
 
-1. En Windows, abre ConsoleCrypt Terminal desde Inicio o ejecuta ConsoleCrypt Terminal.cmd desde el ZIP portátil. En macOS, arrastra las dos aplicaciones del DMG a Aplicaciones y abre ConsoleCrypt Terminal desde Finder o Spotlight. En Linux, elige ConsoleCrypt Terminal en el menú de aplicaciones o ejecuta consolecrypt --terminal-only.
+1. En Windows, abre ConsoleCrypt Terminal desde Inicio o ejecuta ConsoleCrypt Terminal.cmd desde el ZIP portátil. En macOS, abre ConsoleCrypt Terminal desde Finder o Spotlight. En Linux, elige ConsoleCrypt Terminal en el menú de aplicaciones o ejecuta consolecrypt --terminal-only.
 
 2. Pulsa + o abre la paleta con Ctrl+K (⌘K en macOS). Elige una consola instalada. Cambia la posición de las pestañas en la barra del terminal.
 
+[Instalar las aplicaciones en macOS](#first-start-macos-install)
+
 <a name="teams"></a>
 
-## 32. Equipos
+## 31. Equipos
 
 Un equipo es una bóveda compartida por varias cuentas en el mismo servidor. Todos los miembros ven a sus anfitriones, grupos, credenciales y francotiradores; los roles deciden quién puede cambiarlos. Los nombres, configuraciones y recursos del equipo están cifrados de extremo a extremo: el servidor sólo ve quién es un miembro. Los equipos están disponibles en un perfil sincronizado en el servidor 0,2.1 o posterior (sinc.consolecrypt.dev público los soporta); un perfil local no tiene sección Equipos.
 
@@ -1483,7 +1467,7 @@ La política de “Preguntar antes de ejecutar comandos arriesgados”: incluso 
 
 <a name="sharing-start"></a>
 
-## 33. Compartir: empezar
+## 32. Compartir: empezar
 
 Compartir artículos individuales con dispositivos verificados de personas en el mismo servidor. Su bóveda privada y su llave no son compartidas.
 
@@ -1531,7 +1515,7 @@ La lista única de receptores secretos vale la pena verificar y la marca “Owne
 
 <a name="sharing-items"></a>
 
-## 34. Hosts, grupos y secretos compartidos
+## 33. Hosts, grupos y secretos compartidos
 
 Cada artículo tiene sus propios derechos de acceso. Un grupo no concede automáticamente el acceso a todos sus hijos.
 
@@ -1557,7 +1541,7 @@ El diálogo separado de publicación secreta: el valor está enmascarado y no se
 
 <a name="databases-sharing"></a>
 
-## 35. Conexiones de bases de datos compartidas
+## 34. Conexiones de bases de datos compartidas
 
 Una conexión de base de datos guardada se puede compartir con el dispositivo verificado de un colega, al igual que un host o un contexto Kubernetes. Necesita servidor de sincronización 0.1.15 o posterior con la función activada; sync.consolecrypt.dev lo tiene encendido. Con un servidor mayor, la acción está oculta. En su propio servidor la bandera CC\_SHARED\_DB\_CONNECTIONS\_ENABLED la enciende (ver “Su propio servidor: características, banderas y límites”).
 
@@ -1591,7 +1575,7 @@ Compartiendo una conexión: lo que recibe el colega; la ruta no es compartida, y
 
 <a name="shared-notes"></a>
 
-## 36. Notas compartidas sobre objetos compartidos
+## 35. Notas compartidas sobre objetos compartidos
 
 Un host compartido, conexión de bases de datos o Kubernetes contexto ha compartido notas que cada miembro ve. Esto necesita servidor de sincronización 0.2.0 o posterior con notas compartidas habilitadas por el administrador CC\_SHARED\_NOTES\_ENABLED . Un objeto contiene hasta 500 notas de hasta 288 KiB cada una, cifrado.
 
@@ -1615,7 +1599,7 @@ El bloque de notas compartido de un host compartido: la nota de un miembro y su 
 
 <a name="sharing-devices"></a>
 
-## 37. Nuevos dispositivos personales de un colega
+## 36. Nuevos dispositivos personales de un colega
 
 Una subvención se aplica únicamente a nuevos dispositivos pertenecientes a un colega ya verificado. No invita a otras personas ni eleva los permisos.
 
@@ -1641,7 +1625,7 @@ Configuración de una subvención de nuevo dispositivo: La aprobación manual si
 
 <a name="sharing-revoke"></a>
 
-## 38. Revocación, colas y recuperación de confianza
+## 37. Revocación, colas y recuperación de confianza
 
 El propietario administra a los participantes. Un editor cambia el contenido; el acceso de los participantes permanece bajo el control del propietario.
 
@@ -1673,7 +1657,7 @@ Eliminado recientemente: los artículos compartidos pueden ser restaurados duran
 
 <a name="settings-overview"></a>
 
-## 39. Ajustes: ¿qué es dónde
+## 38. Ajustes: ¿qué es dónde
 
 Ajustes abiertos desde la barra lateral o con soluble, / Ctrl+,. Es una página de desplazamiento de tarjetas; algunas tarjetas aparecen sólo donde está disponible la función. Las preferencias de aparición, terminal, atajo y editor permanecen en el dispositivo, mientras que los datos de bóveda viven en el perfil cifrado.
 
@@ -1711,7 +1695,7 @@ Proveedores de seguridad e IA: limpieza de portapapeles, proveedores locales y r
 
 <a name="cli"></a>
 
-## 40. Línea de comandos: consolacrypt-cli
+## 39. Línea de comandos: consolacrypt-cli
 
 consolacrypt-cli es el cliente ConsoleCrypt de línea de comandos. Nave con los macOS , Windows y Linux instaladores y trabaja con los mismos perfiles que la aplicación.
 
@@ -1733,7 +1717,7 @@ consolacrypt-cli es el cliente ConsoleCrypt de línea de comandos. Nave con los 
 
 <a name="appearance"></a>
 
-## 41. Colores, tamaño de texto y efectos de vidrio
+## 40. Colores, tamaño de texto y efectos de vidrio
 
 Las preferencias de apariencia se almacenan en este dispositivo. El tamaño del texto de la interfaz y el tamaño de la fuente terminal se ajustan por separado.
 
@@ -1757,7 +1741,7 @@ Ajustes de tema, escala y vidrio en la interfaz de demostración.
 
 <a name="right-panel"></a>
 
-## 42. Panel derecho: burbujas o un espacio de trabajo
+## 41. Panel derecho: burbujas o un espacio de trabajo
 
 Snippets, notas, IA y puertos de avance están en el panel de herramientas de la derecha. Elija su comportamiento en la configuración de la apariencia.
 
@@ -1783,7 +1767,7 @@ El panel AI ampliado junto con una terminal demo.
 
 <a name="screenshots"></a>
 
-## 43. Capturas de pantalla, protección de pantalla y portapapeles
+## 42. Capturas de pantalla, protección de pantalla y portapapeles
 
 Si una aplicación puede bloquear la captura de pantalla depende del sistema operativo. Las preferencias de captura son locales del dispositivo actual. Los secretos copiados se mantienen fuera de la historia del portapapeles y se eliminan después de un timeout.
 
@@ -1824,7 +1808,7 @@ Windows : “Estírese ventana de captura de pantalla” — Nunca, Mientras que
 
 <a name="backups"></a>
 
-## 44. Respaldos y restauración
+## 43. Respaldos y restauración
 
 Sync no reemplaza una copia de seguridad. Mantenga el archivo cifrado aparte de su dispositivo y el kit de recuperación aparte de ese archivo.
 
@@ -1848,7 +1832,7 @@ Restaurar desde la pantalla de bienvenida: un archivo .ccbackup se abre a un nue
 
 <a name="about"></a>
 
-## 45. Versión, autor y licencias
+## 44. Versión, autor y licencias
 
 Acerca muestra detalles de la aplicación instalada: su versión, número de construcción, autor y licencias.
 
@@ -1866,7 +1850,7 @@ Acerca de: versión, autor y etiquetas de licencia cliente y servidor.
 
 <a name="updates"></a>
 
-## 46. Actualizaciones del cliente
+## 45. Actualizaciones del cliente
 
 En Windows , macOS , Android y Linux (una copia DEB o RPM, de 0.9.14), “Settings → Updates” ofrece cheques de inicio y un cheque manual. Un cheque no instala una actualización por sí mismo.
 
@@ -1898,7 +1882,7 @@ Actualizar la comprobación con una preferencia de arranque independiente.
 
 <a name="server-account"></a>
 
-## 47. Cuenta: contraseña, desconexión y cuenta del sitio web
+## 46. Cuenta: contraseña, desconexión y cuenta del sitio web
 
 La cuenta del sitio web gestiona su cuenta de servicio público. Los anfitriones, llaves y snippets descifrados permanecen en la aplicación.
 
@@ -1926,7 +1910,7 @@ Ajustes: perfiles, “Continuación de cuentas” con las acciones de la cuenta,
 
 <a name="kubernetes-connections"></a>
 
-## 48. Kubernetes : conexiones y acceso
+## 47. Kubernetes : conexiones y acceso
 
 Importar contextos existentes y mantener credenciales en su bóveda cifrada. Las solicitudes de racimo se originan desde el dispositivo.
 
@@ -1942,7 +1926,7 @@ Importar contextos existentes y mantener credenciales en su bóveda cifrada. Las
 
 [Instrucciones completas Kubernetes](../docs/public/es/KUBERNETES.md)
 
-[Desplegar un contenedor en Kubernetes](#release-1-2-1-deploy)
+[Desplegar un contenedor en Kubernetes](#docker-details-deploy-kubernetes)
 
 > **Ten en cuenta**
 >
@@ -1962,7 +1946,7 @@ kubeconfig importación: contextos de un archivo demo, su autenticación, el int
 
 <a name="kubernetes-resources"></a>
 
-## 49. Kubernetes : recursos y cambios
+## 48. Kubernetes : recursos y cambios
 
 Las listas y detalles en vivo muestran objetos de las API disponibles, incluyendo CRDs instalados.
 
@@ -2002,7 +1986,7 @@ Historial del despliegue: dos revisiones del despliegue comparadas campo por cam
 
 <a name="kubernetes-logs-shell"></a>
 
-## 50. Kubernetes : troncos, conchas y túneles
+## 49. Kubernetes : troncos, conchas y túneles
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -2048,7 +2032,7 @@ Un puerto Pod hacia adelante: la dirección en este dispositivo y la lista de lo
 
 <a name="kubernetes-gitops"></a>
 
-## 51. Kubernetes : GitOps y problemas
+## 50. Kubernetes : GitOps y problemas
 
 Flux y Argo CD son descubiertos de CRDs disponibles. La visión general combina el estado, las dependencias y los vínculos con los objetos problemáticos.
 
@@ -2080,7 +2064,7 @@ GitOps en un teléfono con datos de demostración. El panel de filtro está desp
 
 <a name="kubernetes-helm"></a>
 
-## 52. Kubernetes : Helm
+## 51. Kubernetes : Helm
 
 Inspeccionar las liberaciones de Helm almacenadas y compararlas con el clúster actual.
 
@@ -2108,7 +2092,7 @@ Kubernetes interfaz con datos de demostración.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 53. Kubernetes : context terminal and AI
+## 52. Kubernetes : context terminal and AI
 
 El contexto sigue siendo explícito tanto para los comandos locales como para la asistencia de inteligencia artificial.
 
@@ -2134,7 +2118,7 @@ AI in Kubernetes : una pregunta sobre un Pod fallante, los registros y eventos q
 
 <a name="databases-connections"></a>
 
-## 54. Bases de datos: conexiones y rutas
+## 53. Bases de datos: conexiones y rutas
 
 La sección Bases de Datos funciona con PostgreSQL , MySQL y MariaDB, ClickHouse, Redis, MongoDB, Cassandra y ScyllaDB, y con archivos SQLite. Los controladores están integrados en la aplicación, las conexiones viven en la bóveda cifrada, y las consultas van desde el dispositivo directamente a la base de datos.
 
@@ -2178,7 +2162,7 @@ Elegir la ruta en el formulario de conexión: SSH host, perfil de salto, Kuberne
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 55. Bases de datos: SQLite, Cassandra y ScyllaDB
+## 54. Bases de datos: SQLite, Cassandra y ScyllaDB
 
 SQLite es un archivo, no un servidor; Cassandra y ScyllaDB hablan CQL. Ambos motores llegaron en 0.9.2. Desde 0.9.14, Cassandra / ScyllaDB y conexiones SQLite-through-a-host pueden entrar en la bóveda, mientras que un archivo SQLite en este equipo se queda aquí.
 
@@ -2216,7 +2200,7 @@ Cassandra / ScyllaDB: puntos de contacto, el centro de datos local, niveles de c
 
 <a name="databases-queries"></a>
 
-## 56. Bases de datos: estructura, consultas y resultados
+## 55. Bases de datos: estructura, consultas y resultados
 
 Haga clic en una conexión para abrir su espacio de trabajo: la estructura de bases de datos de la izquierda, pestañas de consulta, el editor y la red de resultados de la derecha. Arrastre las fronteras del panel para redimensionarlos. El modificador principal es soluble en macOS y Ctrl en Windows y Linux .
 
@@ -2304,7 +2288,7 @@ Tres filas seleccionadas: la línea de estado dice “Seleccionado: 3 filas”.
 
 <a name="databases-changes"></a>
 
-## 57. Bases de datos: producción, cambios, historia y exportación
+## 56. Bases de datos: producción, cambios, historia y exportación
 
 Una conexión de producción es sólo lectura, y cualquier cambio se muestra a usted antes de que funcione. Los escritos se activan explícitamente en una sesión de no producción, y en la producción sólo dentro de una ventana temporal.
 
@@ -2346,7 +2330,7 @@ Revisión de ediciones: las declaraciones UPDATE con los valores reales y el cam
 
 <a name="databases-production"></a>
 
-## 58. Bases de datos: escritura a la producción
+## 57. Bases de datos: escritura a la producción
 
 Una conexión de producción abre solo lectura. Cuando la producción debe cambiarse, abra una ventana de escritura temporal: dura unos minutos y se aplica solamente a esta sesión.
 
@@ -2372,7 +2356,7 @@ Una ventana de escritura abierta: la placa roja con su tiempo final, la cuenta a
 
 <a name="databases-designer"></a>
 
-## 59. Bases de datos: diseñador de tablas e importación de CSV
+## 58. Bases de datos: diseñador de tablas e importación de CSV
 
 Crear o cambiar una tabla sin escribir SQL, y cargar datos CSV en una tabla. En ambos casos nada funciona en el servidor hasta que lo confirme.
 
@@ -2420,7 +2404,7 @@ Paso 3 de 5: columnas de archivos mapeados por nombre, manager\_note saltado, y 
 
 <a name="databases-ai"></a>
 
-## 60. Bases de datos: Asistente de inteligencia artificial
+## 59. Bases de datos: Asistente de inteligencia artificial
 
 El asistente escribe, explica, arregla y acelera las consultas. Utiliza al proveedor de Ajustes → AI y nunca funciona nada por su cuenta.
 
@@ -2442,21 +2426,36 @@ The AI Assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 61. Docker : anfitriones y contenedores
+## 60. Docker : anfitriones y contenedores
 
 La sección Docker se conecta al motor en este ordenador o en un host guardado SSH. Se alcanza un motor remoto a través de la conexión del host SSH.
 
-1. Abierto Docker en la barra lateral. La lista muestra Este ordenador y sus hosts guardados SSH; encontrar uno y elegir Connect. La cabecera muestra la versión del motor, la plataforma y el número de contenedores en funcionamiento.
+1. Si el usuario SSH no puede acceder al socket Docker, lo verá de inmediato, junto con el comando que agrega el usuario al grupo de docker. Ejecutar en el host y reconectar; el nuevo grupo se aplica a nuevas sesiones SSH. Si sshd prohibe el reenvío de socket, establezca PermitStreamLocalForwarding sí o instale el docker CLI en el host.
 
-2. Si el usuario SSH no puede acceder al socket Docker, lo verá de inmediato, junto con el comando que agrega el usuario al grupo de docker. Ejecutar en el host y reconectar; el nuevo grupo se aplica a nuevas sesiones SSH. Si sshd prohibe el reenvío de socket, establezca PermitStreamLocalForwarding sí o instale el docker CLI en el host.
+2. Los contenedores están agrupados por proyecto de compostura, con los primeros contenedores de funcionamiento y los contenedores independientes duran. Un encabezado de grupo muestra cuántos están corriendo y colapsa el grupo. El filtro coincide con nombres e imágenes, y el interruptor All / Running / Stopped estrecha la lista.
 
-3. Los contenedores están agrupados por proyecto de compostura, con los primeros contenedores de funcionamiento y los contenedores independientes duran. Un encabezado de grupo muestra cuántos están corriendo y colapsa el grupo. El filtro coincide con nombres e imágenes, y el interruptor All / Running / Stopped estrecha la lista.
+3. Cada fila muestra el estado, la salud, la imagen, el ID corto y los puertos. Los botones permiten iniciar, detener o reiniciar el contenedor y abrir los registros o el terminal. En el menú … puedes pausarlo, forzar su finalización, eliminarlo o crear un reenvío de puerto.
 
-4. Cada fila muestra el estado, la salud, la imagen, el ID corto y los puertos. Los botones permiten iniciar, detener o reiniciar el contenedor y abrir los registros o el terminal. En el menú … puedes pausarlo, forzar su finalización, eliminarlo o crear un reenvío de puerto. Al eliminar el contenedor, los volúmenes y las redes se conservan por defecto. Selecciona por separado los recursos que quieras eliminar.
+**En este capítulo** [Conectar con un motor local de Docker o por SSH](#docker-containers-local-engine) · [Eliminar un contenedor y seleccionar volúmenes y redes](#docker-containers-remove)
+
+<a id="docker-containers-local-engine"></a>
+
+### Conectar con un motor local de Docker o por SSH
+
+En Docker, selecciona este equipo para usar el motor local de Windows, macOS o Linux, o elige un host SSH guardado para un motor remoto. Comprueba el nombre de la conexión sobre la lista. En Windows también puedes abrir WSL Containers para los contenedores en WSL. En la cabecera se muestran la versión del motor, la plataforma y el número de contenedores en ejecución.
+
+<a id="docker-containers-remove"></a>
+
+### Eliminar un contenedor y seleccionar volúmenes y redes
+
+1. Abre el menú del contenedor y selecciona Eliminar contenedor. Comprueba el nombre y el host. Si está en ejecución, confirma que se puede detener.
+2. Los volúmenes y las redes aparecen desmarcados. Marca solo los recursos disponibles que quieras eliminar. Cada recurso protegido indica el motivo. Se conservan los volúmenes compartidos, las redes integradas y los archivos del host montados mediante bind mounts. Confirma y comprueba el resultado de cada recurso.
+
+![En el diálogo de eliminación puedes elegir un volumen y una red. La red compartida y los archivos del host están protegidos.](../assets/guide/docker-cleanup-es.png)
+
+En el diálogo de eliminación puedes elegir un volumen y una red. La red compartida y los archivos del host están protegidos.
 
 [Instrucciones completas Docker](../docs/public/es/DOCKER.md)
-
-[Localizar el motor Docker y eliminar un contenedor](#release-1-2-1-docker)
 
 > **Ten en cuenta**
 >
@@ -2472,11 +2471,11 @@ Contenedores de demostración agrupados por proyecto compuesto, con el filtro de
 
 <a name="docker-details"></a>
 
-## 62. Docker : detalles, registros, volúmenes y avances
+## 61. Docker : detalles, registros, volúmenes y avances
 
 Haga clic en un contenedor para abrir sus detalles a la derecha mientras mantiene la lista en la vista.
 
-1. La pestaña Vista general muestra la imagen, comando, restarts, puertos, redes con direcciones IP, monturas, etiquetas y variables ambientales. JSON tiene la salida de inspección completa con un botón de copia.
+1. La pestaña Vista general muestra la imagen, comando, restarts, puertos, redes con direcciones IP, monturas, etiquetas y variables ambientales. JSON tiene la salida de inspección completa con un botón de copia. Los puertos del contenedor se muestran en páginas de 20.
 
 2. Las contraseñas, fichas y claves están enmascaradas no sólo en variables ambientales sino también en URLs, comandos y argumentos, etiquetas, la pestaña JSON y la vista compuesta. Referencias tales como $ {POSTGRES\_PASSWORD} permanecer visible: no son el secreto en sí mismo.
 
@@ -2489,6 +2488,21 @@ Haga clic en un contenedor para abrir sus detalles a la derecha mientras mantien
 6. “Forward port” vincula un puerto local a un puerto de contenedores; 0 elige uno libre. En un host SSH, el delantero pasa por la conexión SSH. Corriendo Docker y Kubernetes los reenvíos comparten el panel "Port forwards" de la mano derecha con la dirección, un botón de copia, tráfico y Stop.
 
 7. Un contenedor con un puerto de base de datos estándar tiene un botón “Conectar a la base de datos”. Si una conexión con la misma ruta ya se guarda, se abre en bases de datos a la vez. De lo contrario aparece un formulario con el motor, el puerto y la ruta llenados, más el nombre de la base de datos y el usuario cuando el entorno los tiene; sólo queda la contraseña. Un puerto publicado se guarda como una dirección ordinaria; para uno inédito, el adelante se restaura en cada conexión.
+
+**En este capítulo** [Desplegar un contenedor en Kubernetes](#docker-details-deploy-kubernetes)
+
+<a id="docker-details-deploy-kubernetes"></a>
+
+### Desplegar un contenedor en Kubernetes
+
+1. Abre un contenedor Linux que funcione sin montajes persistentes y elige el despliegue experimental en Kubernetes. Selecciona un contexto guardado y el namespace. Comprueba el nombre de la carga y el puerto TCP en el que escucha la aplicación dentro del contenedor.
+2. El asistente usa Docker para comprobar el digest en el registro de origen antes de rellenar el campo. Si la imagen solo existe en local, publícala en un registro accesible para los nodos e introduce la referencia completa con etiqueta o digest. Para un registro privado, indica si hace falta un imagePullSecret existente en el namespace elegido.
+3. Usa la plantilla o selecciona un proveedor de IA. Revisa el YAML, incluidos image, command, args y port. Ejecuta la comprobación del servidor para validar los manifiestos. El nodo descarga la imagen e inicia el proceso cuando arranca el Pod. Confirma la creación del Deployment de una réplica y del Service interno de tipo ClusterIP.
+4. Comprueba la disponibilidad. Ante ImagePullBackOff, revisa la referencia de la imagen y los permisos de descarga del nodo. Ante CrashLoopBackOff, examina el comando, los argumentos, el código de salida y el número de reinicios. Un código 0 con reinicios repetidos puede indicar que el proceso terminó. Abre el Deployment creado para examinar el Pod.
+
+![Antes de generar el manifiesto, comprueba el contexto del clúster, el namespace, el digest de la imagen y el puerto de la aplicación.](../assets/guide/docker-kube-wizard-es.png)
+
+Antes de generar el manifiesto, comprueba el contexto del clúster, el namespace, el digest de la imagen y el puerto de la aplicación.
 
 ![Detalles del contenedor: puertos, redes, monturas, etiquetas y secretos de entorno enmascarados.](../assets/guide/docker-details-en.png)
 
@@ -2512,7 +2526,7 @@ Un puerto de contenedores hacia adelante en el panel derecho compartido.
 
 <a name="docker-compose"></a>
 
-## 63. Docker : proyectos de compostura
+## 62. Docker : proyectos de compostura
 
 El menú de un encabezado de grupo compuesto controla todo el proyecto y abre sus archivos.
 
@@ -2542,7 +2556,7 @@ Componga archivos como fichas con números de línea: las contraseñas están en
 
 <a name="server-setup"></a>
 
-## 64. Su propio servidor: Kubernetes
+## 63. Su propio servidor: Kubernetes
 
 Un servidor permite sincronización y colaboración de dispositivos. El cliente no necesita uno para uso local. Ni el sitio web del producto ni el análisis se requiere para ejecutar su propio servidor.
 
@@ -2640,7 +2654,7 @@ Sincronización: el perfil conectado, estado y acciones para verificar el interc
 
 <a name="server-docker"></a>
 
-## 65. Su propio servidor: Docker
+## 64. Su propio servidor: Docker
 
 Ejecutar ConsoleCrypt en un solo servidor Linux sin Kubernetes : una imagen preconstruida del servidor, PostgreSQL 16 y Caddy para HTTPS . Los datos y certificados de base se mantienen en volúmenes persistentes Docker.
 
@@ -2713,7 +2727,7 @@ Elija su propio servidor en el cliente y introduzca su dirección HTTPS.
 
 <a name="server-settings"></a>
 
-## 66. Su propio servidor: instalación y parámetros por método
+## 65. Su propio servidor: instalación y parámetros por método
 
 Cada configuración de servidor es una variable CC\_\*; la lista completa con las rutas de Helm, los valores predeterminados y permitidos está en “Tu propio servidor: referencia de configuración”. Este capítulo muestra dónde poner una clave para cada método de instalación Docker Compose, docker run, Helm, a JSON archivo y sistematizado), cómo aplicar y verificar un cambio, y ejemplos trabajados: notas y equipos compartidos, registrarse con el ID de entrada y Active Directory, conmutando límites para hacer cumplir, elevando cuotas.
 
@@ -3170,7 +3184,7 @@ cuentas.
 
 <a name="server-enterprise"></a>
 
-## 67. Su propio servidor: firma corporativa y notas compartidas
+## 66. Su propio servidor: firma corporativa y notas compartidas
 
 Desde el servidor 0.2.0 (protocol 1.9) el servidor puede funcionar en modo de empresa: las cuentas se registran sólo a través de un OpenID Connect IdP o Active Directory / LDAP. Es parte del servidor de código abierto, sin construcción ni licencia separada. Encriptación, bóvedas, dispositivos, compartir y equipos (servidor 0.2.1) funcionan en ambos modos.
 
@@ -3258,7 +3272,7 @@ Cómo el cliente ve un servidor en modo de empresa con Active Directory.
 
 <a name="server-idp"></a>
 
-## 68. Su propio servidor: recetas corporativas de inscripción
+## 67. Su propio servidor: recetas corporativas de inscripción
 
 La guía completa del movimiento empresarial: lo que el servidor necesita del IdP, recetas paso a paso para Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta y cualquier proveedor de OIDC, Active Directory over LDAPS o STARTTLS, cuenta que conecta al primer inicio de sesión, comandos, implementación, una tabla de solución de problemas y conmutación de nuevo al registro estándar. En los ejemplos el servidor es https://sync.acme.com y los corchetes de ángulo marcan sus propios valores; guardan secretos sólo en archivos y Secretos.
 
@@ -3794,7 +3808,7 @@ la tabla en la sección rusa y [PROTOCOL_CHANGELOG.md] https://github.com/evsiko
 
 <a name="server-config"></a>
 
-## 69. Su propio servidor: características, banderas y límites
+## 68. Su propio servidor: características, banderas y límites
 
 Las funciones de su propio servidor se activan con variables CC\_\*. Con Docker Componga que van al servidor privado.env (para las variables compose.yaml lists) o un compose separado.override.yaml; con Helm en el config, auth y bloques de correo de su archivo de valores; sin contenedores en el entorno de servicio o un archivo privado JSON ( ( --config ). Los valores a continuación son los defectos del servidor.
 
@@ -3964,7 +3978,7 @@ El cliente muestra a los Equipos sólo cuando el servidor los soporta.
 
 <a name="server-reference"></a>
 
-## 70. Su propio servidor: referencia de configuración
+## 69. Su propio servidor: referencia de configuración
 
 Cada parámetro servidor de sincronización: cada tecla CC\_\* con su ruta Helm, por defecto, valores permitidos, bandera secreta y propósito, agrupado como en la referencia fuente; el orden de fuentes de configuración y cheques de puesta en marcha; todos los 18 límites de solicitud y los comandos de administración. La referencia se verifica contra el código del servidor en cada versión. Dónde poner una clave para cada método de instalación está en “Su propio servidor: instalación y parámetros por método”.
 
@@ -4385,7 +4399,7 @@ admin ... ` or ` kubectl exec deployment/... -- /usr/local/bin/consolecrypt-serv
 
 <a name="server-maintenance"></a>
 
-## 71. Su propio servidor: respaldos, actualizaciones y comandos
+## 70. Su propio servidor: respaldos, actualizaciones y comandos
 
 Todos los datos del servidor persistentes viven en PostgreSQL . Una copia de seguridad de bases de datos más la configuración privada es lo que una restauración necesita. Los comandos de Admin administran cuentas y sesiones pero nunca dan acceso a contenidos de bóveda.
 

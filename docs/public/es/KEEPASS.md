@@ -1,6 +1,4 @@
-# Password Manager KDBX
-
-ConsoleCrypt 1.2.1 · [Conectar Vault u OpenBao](../../../guide/es.md#release-1-2-1-vault) · [Importar y exportar entradas KDBX](../../../guide/es.md#release-1-2-1-kdbx)
+# Contraseñas en KDBX, Vault y OpenBao
 
 Referencia traducida · [Original en ruso](../KEEPASS.md)
 
@@ -37,6 +35,14 @@ Menu **ную → Bloquear la base ** cierra la base seleccionada; si automátic
 La preservación falló, primero hay una confirmación de la pérdida de cambios.
 Bloqueo ConsoleCrypt y perfiles cambiantes cierran todas las bases de datos, terminan WebDAV
 Limpian los moldes.
+
+## Importar y exportar entradas KDBX
+
+Abre la base de datos y elige importar o exportar en su menú. Usa CSV para hojas de cálculo o JSON de ConsoleCrypt para conservar rutas de grupos y campos personalizados. Revisa la vista previa antes de confirmar la importación. [Formatos y pasos de transferencia](../../../guide/es.md#password-manager-kdbx-transfer)
+
+## Conexiones a Vault y OpenBao
+
+En Contraseñas, añade la dirección del servidor y elige la autenticación con token o con usuario y contraseña. Tras iniciar sesión, abre las carpetas del motor KV y selecciona un secreto para ver sus campos. [Conectar y consultar secretos](../../../guide/es.md#password-manager-vault-openbao)
 
 ## WebDAV y sincronización
 

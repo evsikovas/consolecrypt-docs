@@ -1,7 +1,5 @@
 # Kubernetes
 
-ConsoleCrypt 1.2.1 · [Deploy a container to Kubernetes](../../../guide/en.md#release-1-2-1-deploy) · [Monitor an SSH host and restore a forward](../../../guide/en.md#release-1-2-1-ssh)
-
 Translated reference · [Russian source](../KUBERNETES.md)
 
 ## Russian
@@ -89,6 +87,8 @@ It is supported by a storage password, not by entering a resource name or contex
 Mass changes are prohibited in production, even when the window is open. Exec and Port-Forward have separate permissions
 production context.
 
+[Deploy a Docker container to Kubernetes](../../../guide/en.md#docker-details-deploy-kubernetes)
+
 ### Logs, shells and tunnels
 
 In the Pod card, select the container and open the logs. Available flow, filter,
@@ -118,6 +118,8 @@ It's still there. Sessions close with a change of profile and exit.
 Launched passes Kubernetes and Docker are collected in a common right panel
 “Port rollover”: status, local address with copying, traffic and
 stop. The panel opens itself after starting the throw.
+
+[Restore a saved port forward](../../../guide/en.md#tunnels-restore)
 
 ### Connection to the database
 

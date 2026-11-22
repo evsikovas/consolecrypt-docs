@@ -1,9 +1,5 @@
 # Cuenta y sincronización
 
-## Sincronizar conexiones de Vault y OpenBao
-
-Las conexiones se guardan en la bóveda personal cifrada. Para cada conexión puedes activar la sincronización de su contraseña o token. Tras sincronizar un segundo dispositivo, selecciona la conexión e inicia sesión. El cliente consulta los valores de los campos directamente en Vault u OpenBao. Configura el acceso biométrico en cada dispositivo. [Instrucciones](../../../guide/es.md#release-1-2-1-vault) · [Versiones del servidor](https://github.com/evsikovas/consolecrypt-server/releases)
-
 Referencia traducida · [Original en ruso](../SYNC_ACCOUNT.md)
 
 ## Ruso
@@ -29,6 +25,10 @@ método de inicio de sesión y login (nunca contraseña o fichas). En la próxim
 Este método se selecciona por adelantado, el login se sustituye, y la dirección reciente es visible
 servidores con una etiqueta de método - "Email", "SSO: ...", "AD". La pista se puede quitar
 El botón **Forget*.
+
+### Sincronizar conexiones de Vault y OpenBao
+
+Las conexiones se guardan en la bóveda personal cifrada. Para cada conexión puedes activar la sincronización de su contraseña o token. Tras sincronizar un segundo dispositivo, selecciona la conexión e inicia sesión. El cliente consulta los valores de los campos directamente en Vault u OpenBao. Configura el acceso biométrico en cada dispositivo. [Instrucciones](../../../guide/es.md#password-manager-vault-openbao)
 
 ### Nuevo dispositivo de aprobación y clave de almacenamiento (0.9.2)
 

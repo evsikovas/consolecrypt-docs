@@ -1,7 +1,5 @@
 # Docker
 
-ConsoleCrypt 1.2.1 · [Localizar el motor Docker y eliminar un contenedor](../../../guide/es.md#release-1-2-1-docker) · [Desplegar un contenedor en Kubernetes](../../../guide/es.md#release-1-2-1-deploy)
-
 Referencia traducida · [Original en ruso](../DOCKER.md)
 
 ## Ruso
@@ -33,6 +31,8 @@ Las acciones se realizan con derechos de usuario Docker en el host; la aplicaci�
 Aumenta los derechos y no utiliza `sudo` . Cambio de perfil y bloqueo de almacenamiento
 El período de sesiones está cerrado Docker.
 
+[Elegir el motor Docker local o WSL](../../../guide/es.md#docker-containers-local-engine)
+
 ### Containers.
 
 Los contenedores están agrupados por proyectos de compostura: primeros proyectos con ejecución
@@ -46,6 +46,8 @@ Registro y terminal. En el menú "..." - suspender y reanudar, por la fuerza
 completo, eliminar, soltar el puerto, conectarse a la base de datos, información y
 Copiando la identificación. La terminación obligatoria y la eliminación requieren confirmación;
 Los volúmenes y las redes se conservan por defecto. En el diálogo de eliminación puedes marcar por separado los recursos que quieras borrar.
+
+[Consultar puertos y eliminar contenedores](../../../guide/es.md#docker-containers-remove)
 
 ### Información, registros y terminales
 
@@ -64,6 +66,8 @@ pantalla separada).
 El terminal abre la concha dentro del contenedor en la pestaña terminal.
 Pruebas de selección automática `bash` , `ash` y `sh` ; la cáscara se puede especificar
 Claramente.
+
+[Desplegar un contenedor Docker en Kubernetes](../../../guide/es.md#docker-details-deploy-kubernetes)
 
 ### Secretos.
 

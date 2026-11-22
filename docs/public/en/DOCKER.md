@@ -1,7 +1,5 @@
 # Docker
 
-ConsoleCrypt 1.2.1 · [Find a Docker engine and remove a container](../../../guide/en.md#release-1-2-1-docker) · [Deploy a container to Kubernetes](../../../guide/en.md#release-1-2-1-deploy)
-
 Translated reference · [Russian source](../DOCKER.md)
 
 ## Russian
@@ -33,6 +31,8 @@ Actions are performed with user rights Docker on the host; the application does 
 Increases rights and does not use `sudo`. Change of profile and lock of storage
 The session is closed Docker.
 
+[Choose a local Docker engine or WSL](../../../guide/en.md#docker-containers-local-engine)
+
 ### Containers.
 
 Containers are grouped by compose-projects: first projects with running
@@ -46,6 +46,8 @@ Log and terminal. In the menu "..." - suspend and resume, forcibly
 complete, delete, drop the port, connect to the database, information and
 Copying the ID. Compulsory termination and removal require confirmation;
 Volumes and networks are kept by default. Select individual eligible resources in the removal dialog to delete them.
+
+[Port lists and container removal](../../../guide/en.md#docker-containers-remove)
 
 ### Information, logs and terminal
 
@@ -64,6 +66,8 @@ separate screen).
 The terminal opens the shell inside the container in the terminal tab.
 Automatic selection tries `bash`, `ash` and `sh`; shell can be specified
 Clearly.
+
+[Deploy a Docker container to Kubernetes](../../../guide/en.md#docker-details-deploy-kubernetes)
 
 ### Secrets.
 

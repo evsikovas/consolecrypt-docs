@@ -1,7 +1,5 @@
 # Kubernetes (中文(简体) ).
 
-ConsoleCrypt 1.2.1 · [将容器部署到 Kubernetes](../../../guide/zh.md#release-1-2-1-deploy) · [监控 SSH 主机和恢复端口转发](../../../guide/zh.md#release-1-2-1-ssh)
-
 参考文档译文 · [俄文原文](../KUBERNETES.md)
 
 ## 俄罗斯语
@@ -89,6 +87,8 @@ CLI通过本地代理. 你可以在电脑上打开一个时间窗口。
 在生产中,即使窗户开着,也禁止质量变化. Exec 和 Port- Forward有单独的权限
 生产环境。
 
+[将 Docker 容器部署到 Kubernetes](../../../guide/zh.md#docker-details-deploy-kubernetes)
+
 ### 日志、炮弹和隧道
 
 在Pod卡中,选择容器并打开日志. 可用的流量,过滤器,
@@ -118,6 +118,8 @@ macOS,Windows,Linux和Android. 封存(包括:
 发射的通行证Kubernetes和Docker在一个共同的右面板上收集
 “港口翻转”:状况、当地地址、复制、交通和
 停下来。 面板在开始投球后打开自己.
+
+[恢复已保存的端口转发](../../../guide/zh.md#tunnels-restore)
 
 ### 连接到数据库
 

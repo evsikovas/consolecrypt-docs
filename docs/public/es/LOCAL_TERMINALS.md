@@ -1,7 +1,5 @@
 # Terminales locales ( terminales locales) 0,5
 
-ConsoleCrypt 1.2.1 · [Instalar en macOS y pegar varias líneas en PowerShell](../../../guide/es.md#release-1-2-1-terminals)
-
 Referencia traducida · [Original en ruso](../LOCAL_TERMINALS.md)
 
 ## Ruso
@@ -37,6 +35,8 @@ Los proyectiles locales no crean registros ficticios y no se sincronizan como
 SSH - conexiones. En 0,5 están disponibles en macOS y Windows ; Linux , Android y iOS
 Siguen utilizando conexiones remotas existentes.
 
+[Pegar varias líneas en PowerShell](../../../guide/es.md#local-terminals-powershell-paste)
+
 ### AI y francotiradores
 
 La paleta y el chat reciben el tipo de shell seleccionado: zsh, PowerShell, cmd o
@@ -50,6 +50,8 @@ Compruebe el texto insertado y si desea ejecutarlo, haga clic en Introdúzcase.
 La entrada terminal normal no está limitada por esta regla.
 
 ### Actualización macOS
+
+[Instalar las dos aplicaciones desde el DMG](../../../guide/es.md#first-start-macos-install)
 
 Para una sesión normal de zsh local fuera del contenedor, paquete 0,5 obras sin App Sandbox.
 La construcción actual se firma ad-hoc y no se notariza. Tiempo de ejecución endurecido

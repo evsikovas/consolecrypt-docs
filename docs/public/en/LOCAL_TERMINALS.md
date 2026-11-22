@@ -1,7 +1,5 @@
 # Local terminals (local terminals) 0.5
 
-ConsoleCrypt 1.2.1 · [Install on macOS and paste multiple lines in PowerShell](../../../guide/en.md#release-1-2-1-terminals)
-
 Translated reference · [Russian source](../LOCAL_TERMINALS.md)
 
 ## Russian
@@ -37,6 +35,8 @@ Local shells do not create fictitious host records and are not synchronized as
 SSH - connections. In 0.5 they are available on macOS and Windows; Linux, Android and iOS
 They continue to use existing remote connections.
 
+[Paste multiple lines in PowerShell](../../../guide/en.md#local-terminals-powershell-paste)
+
 ### AI and snippets
 
 The palette and chat receive the type of shell selected: zsh, PowerShell, cmd or
@@ -50,6 +50,8 @@ Check the inserted text and if you want to execute it, click Enter yourself.
 Normal terminal input is not limited by this rule.
 
 ### Update macOS
+
+[Install both apps from the DMG](../../../guide/en.md#first-start-macos-install)
 
 For a normal local zsh session outside the container, packet 0.5 works without App Sandbox.
 The current build is signed ad-hoc and not notarized. Hardened Runtime

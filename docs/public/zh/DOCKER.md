@@ -1,7 +1,5 @@
 # Docker (中文(简体) ).
 
-ConsoleCrypt 1.2.1 · [选择 Docker 引擎并删除容器](../../../guide/zh.md#release-1-2-1-docker) · [将容器部署到 Kubernetes](../../../guide/zh.md#release-1-2-1-deploy)
-
 参考文档译文 · [俄文原文](../DOCKER.md)
 
 ## 俄罗斯语
@@ -33,6 +31,8 @@ SSH -主机;搜索缩小列表范围. 点击“ 连接” :在封顶中显示
 增加权利而不使用`sudo`. 改变配置和存储锁定
 会议闭幕Docker。
 
+[选择本地 Docker 引擎或 WSL](../../../guide/zh.md#docker-containers-local-engine)
+
 ### 集装箱。
 
 集装箱按构件项目分类:第一个运行的项目
@@ -46,6 +46,8 @@ All/Run/stopped 开关缩小列表范围 。
 完成、删除、卸下端口、连接数据库、信息和
 复制身份证。 强制终止和撤职需要确认;
 默认保留卷和网络。若要清理可删除的资源，请在删除对话框中逐项勾选。
+
+[查看端口并删除容器](../../../guide/zh.md#docker-containers-remove)
 
 ### 信息、日志和终端
 
@@ -64,6 +66,8 @@ All/Run/stopped 开关缩小列表范围 。
 航站楼在航站楼标签中打开容器内的外壳.
 自动选择尝试 `bash`, `ash` 和 `sh`; 贝壳可以指定 。
 很明显
+
+[将 Docker 容器部署到 Kubernetes](../../../guide/zh.md#docker-details-deploy-kubernetes)
 
 ### 秘诀.
 

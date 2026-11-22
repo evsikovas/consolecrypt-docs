@@ -120,6 +120,7 @@ for (const section of guideSections) {
   }
   for (const image of [section.image, ...(section.images ?? [])].filter(Boolean)) {
     assert.match(image.name, /^[a-z][a-z0-9-]+$/);
+    if (image.part !== undefined) assert(partIds.has(image.part), `Unknown screenshot subsection: ${section.id}.${image.part}`);
     paired(image.caption, `${section.id}.image.caption`);
     for (const locale of image.locales ?? ['ru', 'en']) {
       assert(locales.includes(locale), `Unsupported screenshot locale: ${locale}`);
@@ -182,6 +183,13 @@ function fence(code) {
   return `${ticks}text\n${code}${code.endsWith('\n') ? '' : '\n'}${ticks}`;
 }
 
+function appendScreenshot(out, image, locale) {
+  const available = image.locales ?? ['ru', 'en'];
+  const selected = available.includes(locale) ? locale : available.includes('en') ? 'en' : available[0];
+  const src = `../assets/guide/${image.name}-${selected}.png`;
+  out.push(`![${text(image.caption, locale)}](${src})`, '', text(image.caption, locale), '');
+}
+
 for (const locale of locales) {
   const language = languages[locale];
   const other = locales.filter(id => id !== locale).map(id => `[${languages[id].name}](${id}.md)`).join(' · ');
@@ -199,6 +207,7 @@ for (const locale of locales) {
     out.push('');
   }
   for (const [index, section] of guideSections.entries()) {
+    const images = [section.image, ...(section.images ?? [])].filter(Boolean);
     out.push(`<a name="${section.id}"></a>`, '',
       `## ${index + 1}. ${text(section.title, locale)}`, '',
       text(section.intro, locale), '');
@@ -221,6 +230,7 @@ for (const locale of locales) {
       for (const part of section.parts) {
         out.push(`<a id="${section.id}-${part.id}"></a>`, '', `### ${text(part.title, locale)}`, '',
           part.body[locale].trim(), '');
+        for (const image of images.filter(item => item.part === part.id)) appendScreenshot(out, image, locale);
       }
     }
     for (const link of section.links ?? []) {
@@ -230,15 +240,14 @@ for (const locale of locales) {
       out.push(`> **${language.note}**`, '>',
         `> ${text(section.note, locale).replace(/\r?\n/g, '\n> ')}`, '');
     }
-    for (const image of [section.image, ...(section.images ?? [])].filter(Boolean)) {
-      const available = image.locales ?? ['ru', 'en'];
-      const selected = available.includes(locale) ? locale : available.includes('en') ? 'en' : available[0];
-      const src = `../assets/guide/${image.name}-${selected}.png`;
-      out.push(`![${text(image.caption, locale)}](${src})`, '', text(image.caption, locale), '');
-    }
+    for (const image of images.filter(item => !item.part)) appendScreenshot(out, image, locale);
   }
   const markdown = out.join('\n');
   assert.equal([...markdown.matchAll(/^<a name="/gm)].length, guideSections.length);
+  const anchors = new Set([...markdown.matchAll(/^<a (?:name|id)="([^"]+)"/gm)].map(match => match[1]));
+  for (const [, target] of markdown.matchAll(/\]\(#([a-z0-9-]+)\)/g)) {
+    assert(anchors.has(target), `Unknown guide link: ${locale}#${target}`);
+  }
   assert.equal([...markdown.matchAll(/^!\[/gm)].length,
     guideSections.reduce((count, section) => count + [section.image, ...(section.images ?? [])].filter(Boolean).length, 0));
   outputs.set(`guide/${locale}.md`, Buffer.from(markdown));

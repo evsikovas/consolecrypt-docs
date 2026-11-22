@@ -1,6 +1,5 @@
 # ConsoleCrypt 技术文档
 
-- [1.2.1 更新说明](../RELEASE_1_2_1.md) · [1.2.1 新功能](../../../guide/zh.md#release-1-2-1)
 - [Android:出版ConsoleCrypt于RuStore.](ANDROID_RUSTORE.md)
 - [装配和同步服务器](BUILDING.md)
 - [大会ConsoleCrypt改为iOS](BUILD_IOS.md)
@@ -15,7 +14,7 @@
 - [企业模式:通过IDP(OIDC)或活动目录(LDAP)签名](ENTERPRISE.md)
 - [GitHub 行动:建立本地客户端](GITHUB_ACTIONS.md)
 - [安装自己的服务器ConsoleCrypt](HOSTING.md)
-- [密码管理器KDBX](KEEPASS.md)
+- [KDBX、Vault 和 OpenBao 密码管理](KEEPASS.md)
 - [Kubernetes (中文(简体) ).](KUBERNETES.md)
 - [许可证ConsoleCrypt/ConsoleCrypt](LICENSING.md)
 - [当地AI/当地AI - 1.0.0](LOCAL_AI.md)
@@ -62,6 +61,7 @@
 - [账户和同步](SYNC_ACCOUNT.md)
 - [最新情况ConsoleCrypt](UPDATES.md)
 - [已签名的更新信息更新](UPDATE_FEED_PUBLISHER.md)
+- [ConsoleCrypt 1.2.1](../RELEASE_1_2_1.md)
 - [ConsoleCrypt 1.2.0 更新说明](../RELEASE_1_2_0.md)
 - [ConsoleCrypt Sync Server 0.2.10](../RELEASE_SERVER_0_2_10.md#简体中文)
 - [ConsoleCrypt Sync Server 0.2.8](../RELEASE_SERVER_0_2_8.md)

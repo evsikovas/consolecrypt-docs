@@ -1,6 +1,5 @@
 # Documentación técnica de ConsoleCrypt
 
-- [Novedades de la versión 1.2.1](../RELEASE_1_2_1.md) · [Novedades de la versión 1.2.1](../../../guide/es.md#release-1-2-1)
 - [Android : publicación ConsoleCrypt en RuStore](ANDROID_RUSTORE.md)
 - [Servidor de montaje y sincronización](BUILDING.md)
 - [Asamblea ConsoleCrypt para iOS](BUILD_IOS.md)
@@ -15,7 +14,7 @@
 - [Modo de empresa: Inicie sesión a través de IdP (OIDC) o Active Directory (LDAP)](ENTERPRISE.md)
 - [GitHub Acciones: el cliente nativo construye](GITHUB_ACTIONS.md)
 - [Instalación de un servidor propio ConsoleCrypt](HOSTING.md)
-- [Password Manager KDBX](KEEPASS.md)
+- [Contraseñas en KDBX, Vault y OpenBao](KEEPASS.md)
 - [Kubernetes](KUBERNETES.md)
 - [Licencia ConsoleCrypt / ConsoleCrypt](LICENSING.md)
 - [Local AI / Local AI - 1.0.0](LOCAL_AI.md)
@@ -62,6 +61,7 @@
 - [Cuenta y sincronización](SYNC_ACCOUNT.md)
 - [Actualizaciones ConsoleCrypt](UPDATES.md)
 - [Renovación firmada alimentada por actualización](UPDATE_FEED_PUBLISHER.md)
+- [ConsoleCrypt 1.2.1](../RELEASE_1_2_1.md)
 - [Novedades de ConsoleCrypt 1.2.0](../RELEASE_1_2_0.md)
 - [ConsoleCrypt Sync Server 0.2.10](../RELEASE_SERVER_0_2_10.md#español)
 - [ConsoleCrypt Sync Server 0.2.8](../RELEASE_SERVER_0_2_8.md)

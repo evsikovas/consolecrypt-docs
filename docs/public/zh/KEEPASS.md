@@ -1,6 +1,4 @@
-# 密码管理器KDBX
-
-ConsoleCrypt 1.2.1 · [连接 Vault 或 OpenBao](../../../guide/zh.md#release-1-2-1-vault) · [导入与导出 KDBX 条目](../../../guide/zh.md#release-1-2-1-kdbx)
+# KDBX、Vault 和 OpenBao 密码管理
 
 参考文档译文 · [俄文原文](../KEEPASS.md)
 
@@ -37,6 +35,14 @@ KDBX :写作创建/更正,新组,转录和删除. 分开推
 保全失败,首先确认有变更损失。
 封锁ConsoleCrypt和更改配置文件关闭所有数据库,终止WebDAV
 他们清理模具。
+
+## 导入与导出 KDBX 条目
+
+打开数据库，在数据库菜单中选择导入或导出。电子表格可使用 CSV；如需保留组路径和自定义字段，请选择 ConsoleCrypt JSON。导入时先预览条目，再确认添加。 [文件格式与导入导出步骤](../../../guide/zh.md#password-manager-kdbx-transfer)
+
+## 连接 Vault 或 OpenBao
+
+在“密码”中添加服务器地址，选择令牌或用户名和密码登录。登录后，在 KV 引擎中浏览文件夹并选择机密，即可查看字段。 [连接并查看机密](../../../guide/zh.md#password-manager-vault-openbao)
 
 ## WebDAV和同步
 
