@@ -1,4 +1,4 @@
-# ConsoleCrypt 0.6.4 (中文(简体) ).
+# ConsoleCrypt 0.6.4
 
 参考文档译文 · [俄文原文](../RELEASE_0_6_4.md)
 

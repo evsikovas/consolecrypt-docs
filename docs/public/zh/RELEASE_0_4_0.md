@@ -1,4 +1,4 @@
-# ConsoleCrypt0.4.0 (中文(简体) ).
+# ConsoleCrypt0.4.0
 
 参考文档译文 · [俄文原文](../RELEASE_0_4_0.md)
 

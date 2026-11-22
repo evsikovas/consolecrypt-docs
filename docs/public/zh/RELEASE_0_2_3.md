@@ -9,7 +9,7 @@
 ## 什么变了?
 
 - ** 最终输入:** 字符和 Enter 依次发送,即使上一个条目SSH尚未完成. 关闭标签或重新连接可取消剩余队列 。 检查范围包括西里尔语,英文文本,复合Unicode字符和字节形状的响应SSH. 用户消息中准确的腐败字符尚未复制;更新后对其进行的验证Windows仍有待确认.
-- **新连接:** 圆按钮 QQ, 悬浮即时和先前的连接动作 。
+- **新建连接。** 圆形 **+** 按钮在鼠标悬停时显示提示，点击后可新建连接。
 - **Search:** 更多空间用于主机名称,IP地址,片段,或AI问题.
 - **Synchronization:** 成功状态以绿点显示,** Sinh.** 全部提示保存;错误,缺乏网络和断开的同步显示它们的状态.
 - ** 指南:** 72个新鲜的UI镜头,用俄语和英语写成,包括移动屏幕。 这是演示数据;没有使用真正的用户寄存器 。
@@ -24,7 +24,7 @@
 
 | 平台 | 版本(简体中文). | 软件包 |
 |---|---|---|
-| Windows 10/11 x64 (中文(简体) ). | **0.2.3+1309** | EXE/便携式ZIP |
+| Windows 10/11 x64 | **0.2.3+1309** | EXE/便携式ZIP |
 | macOS 英特尔/阿普尔硅 | **0.2.3+1310** | 通用DMG( 通用DMG) |
 | Android ARM64号卫星 | **0.2.3+67** | APK 地图 |
 | iOS 模拟器 Intel / Apple 硅 | **0.2.3+68** | ZIP部件`.001`/`.002` |
@@ -41,7 +41,7 @@ shasum -a 256 ConsoleCrypt-0.2.3+68-ios-simulator-universal.zip
 unzip ConsoleCrypt-0.2.3+68-ios-simulator-universal.zip -d consolecrypt-ios
 ```
 
-[Запуск iOS Simulator](https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/BUILD_IOS.md) (中文(简体) ). 此软件包没有安装在物理 iPhone 上 。
+[Запуск iOS Simulator](https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/BUILD_IOS.md) 此软件包没有安装在物理 iPhone 上 。
 
 ## 签发检查
 

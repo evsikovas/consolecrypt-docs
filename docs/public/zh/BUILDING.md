@@ -4,7 +4,7 @@
 
 在所有情况下,克隆整个寄存器: Rust-client 使用通用
 图书馆编号`crates/`. Fluster SDK 3.47.x, 达特 3. 134; Rust 固定为
-`rust-toolchain.toml` (中文(简体) ). 保存`Cargo.lock`,`pubspec.lock`和`Podfile.lock`.
+`rust-toolchain.toml` 保存`Cargo.lock`,`pubspec.lock`和`Podfile.lock`.
 
 ## 从GitHub释放
 
@@ -29,7 +29,7 @@ SDKAndroid由`ANDROID_HOME`定义,JDK由`JAVA_HOME`定义,由寄存器定义.
 必要时,它不收集安装器. 已出版的软件包版本
 未替换: 更改以新标签发布 。
 
-## macOS (中文(简体) ).
+## macOS
 
 需要带有命令工具的完整Xcode, Flutter, Rust/rustup
 可可猪笼草与Python 3. Apple Silicon和Intel正在合并成一个一站式软件包.
@@ -82,13 +82,13 @@ ZIP 本地库的对齐与对齐,用于16 KiB内存页面.
 在Android上,OS的背景限制可以打断SSH会话. SFTP 用途
 系统选择文档;与桌面编辑器的集成可以在计算机上使用.
 
-## Windows (中文(简体) ).
+## Windows
 
-[Пошаговая инструкция и создание EXE-установщика](BUILD_WINDOWS.md) (中文(简体) ).
+[Пошаговая инструкция и создание EXE-установщика](BUILD_WINDOWS.md)
 
 ## Linux• x86-64 (英语).
 
-[Установка DEB/RPM, системная ключница и сборка](BUILD_LINUX.md) (中文(简体) ).
+[Установка DEB/RPM, системная ключница и сборка](BUILD_LINUX.md)
 
 ```sh
 client/scripts/build-linux.sh
@@ -103,7 +103,7 @@ client/scripts/build-linux.sh
 
 ## iOS 初步港口
 
-[Simulator, нативные проверки и подпись для iPhone](BUILD_IOS.md) (中文(简体) ).
+[Simulator, нативные проверки и подпись для iPhone](BUILD_IOS.md)
 模拟器 ZIP为Xcode 模拟器设计; 需要在电话上安装
 在Xcode 中单独签名。
 
@@ -125,7 +125,7 @@ python3 -m unittest discover -s client/scripts -p 'test_*.py'
 `client/scripts/dependency-audit.py check` 发射"货物拒绝检查顾问"
 禁止来源许可证` для `客户/用户` и `箱 ' ,检查自己的规则
 箱子和扫描`pubspec.lock`(如果出现npm锁文件)通过
-`osv-scanner` (中文(简体) ). 在本地,您需要与 CI 相同的版本 :
+`osv-scanner` 在本地,您需要与 CI 相同的版本 :
 
 ```sh
 cargo install --locked cargo-deny@0.20.2
@@ -189,6 +189,6 @@ PEM 证书和数据库密钥`db-core`通过`rustls-pki-types`读取
 ## 你的服务器。
 
 本地配置文件在没有服务器的情况下工作. 用于同步, 使用
-[отдельный репозиторий сервера и протокола](https://github.com/evsikovas/consolecrypt-server) (中文(简体) ).
+[отдельный репозиторий сервера и протокола](https://github.com/evsikovas/consolecrypt-server)
 指令Docker/SMTP和启动命令位于其README和HOSting.md中.
 服务器代码不包含在目前的主要客户端寄存器中.

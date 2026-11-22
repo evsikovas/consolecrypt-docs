@@ -2,12 +2,12 @@
 
 参考文档译文 · [俄文原文](../RELEASE_0_1_10.md)
 
-日期:2026年9月30日 (中文(简体) ). 来源为不可变的标记`v0.1.10`.
+日期:2026年9月30日 来源为不可变的标记`v0.1.10`.
 客户端使用真实的Rust桥; `CC_MOCK`没有启用.
 
 | 平台 | 软件包 | 议会编号 |
 |---|---|---|
-| Windows 10/11 x64 (中文(简体) ). | EXE和便携式ZIP | 1208 |
+| Windows 10/11 x64 | EXE和便携式ZIP | 1208 |
 | macOS 英特尔/阿普尔硅 | 通用DMG( 通用DMG) | 1209 |
 | Android 11+ ARM64 | APK 地图 | 22 |
 
@@ -48,4 +48,4 @@ APK由与新建筑22号同为公共树制成. 已验证的软件包
 服务器0.1.9 / 1.5协议和网站有单独的版本. 更改客户端
 不需要重新组装服务器 。 网站另设`consolecrypt-site`.
 
-[Релиз и SHA-256](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.10) (中文(简体) ).
+[Релиз и SHA-256](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.10)

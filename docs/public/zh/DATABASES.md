@@ -60,7 +60,7 @@
 他们的工作就像过滤器。
 
 连接可以由线路`postgres://`,`mysql://`导入.
-`clickhouse://`, `redis://`, `mongodb://`, `mongodb+srv://` (中文(简体) ).
+`clickhouse://`, `redis://`, `mongodb://`, `mongodb+srv://`
 `cassandra://`或`scylla://` – 中转键位`?datacenter=`
 本地数据中心,和`sqlite:///абсолютный/путь.db`,`?mode=ro` - 仅
 读取)或从一个文件`.pgpass`. 在保存前, 显示已找到的连接列表 :
@@ -206,10 +206,10 @@ SQLite是文件,不是服务器. 在连接表单中,选择 SQLite 引擎.
 任何请求都无法更改. 没有它,旗帜是正常的。
 规则:关于非销售连接,检查更改、食品
 我需要一个时间窗口。 连允许的阅读都用
-`PRAGMA query_only`; `ATTACH`/ `DETACH`, `VACUUM INTO`, `load_extension` (中文(简体) ).
+`PRAGMA query_only`; `ATTACH`/ `DETACH`, `VACUUM INTO`, `load_extension`
 `readfile`/`writefile`和修改PRAGMA(加密密钥,`query_only`)
 `writable_schema`被禁止;远程程序运行与`-readonly`
-和 `-safe` (中文(简体) ).
+和 `-safe`
 
 结构:文件-“表”、“陈述”、“索引”、“顺序”
 表格触发器和数据类型;表 −
@@ -233,8 +233,7 @@ SQLite 连接只存储于此设备**(只存储于此设备图标)
 Prod-connection只打开两个层次的阅读和保护:
 
 - **在服务器上。** PostgreSQL 和 MySQL/MariaDB在
-  只读交易 。 点击之家 QQ`readonly=2` QQ
-  请求。 Redis没有服务器开关 。 对MongoDB来说,正在测试角色
+  只读事务中执行每条查询。ClickHouse 的每个请求都带有 `readonly=2`。 Redis没有服务器开关 。 对MongoDB来说,正在测试角色
   用户。
 - ** 附录。** 每项请求在发送前都得到处理。 更改命令和
   试图取消保护`SET transaction_read_only`,`COPY … TO PROGRAM`
@@ -341,8 +340,7 @@ VAUUM/ANALYZE;用于 MySQL/MariaDB - 引擎,字符串格式,字符串估计,
 数据和索引大小, AUTO_INCENT, 比较, 创建时间和
 更改; 用于 ClickHouse – 引擎、行、大小、部件、密钥
 分区、分类和取样,TTL;用于Redis键 - 类型,TTL,
-编码,长度和内存,对于Redis数据库来说是键数. 标有等级
-QQ以 KiB/MiB 显示,复制按钮复制整个窗口. 为:
+编码,长度和内存,对于Redis数据库来说是键数. 估算值用“≈”标记，大小以 KiB 或 MiB 显示。“复制”按钮可复制窗口中的全部详情。 为:
 MongoDB的描述显示为JSON. 物品隐藏在对象上
 无有消息.
 
@@ -358,20 +356,20 @@ MongoDB的描述显示为JSON. 物品隐藏在对象上
 光标上的表格和列(包括假名:`o.`)
 `FROM orders o`),格式化查询,线上注释,并以替换方式搜索.
 例如,MongoDB以熟悉的 shell 语法接收命令.
-`db.orders.find({ status: "paid" })` (中文(简体) ).
+`db.orders.find({ status: "paid" })`
 
-| 行动 | macOS (中文(简体) ). | Windows/Linux (中文(简体) ). |
+| 行动 | macOS | Windows/Linux |
 | --- | --- | --- |
-| 在光标下执行分配或运算符 | `⌘↵` | `Ctrl+Enter` (中文(简体) ). |
-| 执行整个脚本 | `⌥X` 或 `⇧⌘↵` (中文(简体) ). | `Alt+X` 或 `Ctrl+Shift+Enter` (中文(简体) ). |
-| 光标处的补充 | `⌃Space` (中文(简体) ). | `Ctrl+Space` (中文(简体) ). |
-| 格式 | `⇧⌘F` (中文(简体) ). | `Ctrl+Shift+F` (中文(简体) ). |
-| 线条注释 | `⌘/` | `Ctrl+/` (中文(简体) ). |
-| 搜索和替换 | `⌘F` (中文(简体) ). | `Ctrl+F` (中文(简体) ). |
-| 取消请求 | `⌘.` | `Ctrl+.` (中文(简体) ). |
-| 声明 | `⌘E` (中文(简体) ). | `Ctrl+E` (中文(简体) ). |
-| 历史沿革. | `⌘H` (中文(简体) ). | `Ctrl+H` (中文(简体) ). |
-| 大赦国际助理 | `⌘I` (中文(简体) ). | `Ctrl+I` (中文(简体) ). |
+| 在光标下执行分配或运算符 | `⌘↵` | `Ctrl+Enter` |
+| 执行整个脚本 | `⌥X` 或 `⇧⌘↵` | `Alt+X` 或 `Ctrl+Shift+Enter` |
+| 光标处的补充 | `⌃Space` | `Ctrl+Space` |
+| 格式 | `⇧⌘F` | `Ctrl+Shift+F` |
+| 线条注释 | `⌘/` | `Ctrl+/` |
+| 搜索和替换 | `⌘F` | `Ctrl+F` |
+| 取消请求 | `⌘.` | `Ctrl+.` |
+| 声明 | `⌘E` | `Ctrl+E` |
+| 历史沿革. | `⌘H` | `Ctrl+H` |
+| 大赦国际助理 | `⌘I` | `Ctrl+I` |
 
 没有分配, 运算符会像经典一样在光标线上执行
 SQL 客户端: 运算符分离`;`( 超出线条和注释)而空
@@ -422,10 +420,9 @@ CSV, TSV, JSON, NDJSON, Markdown 或作为 SQL `INSERT` .
 在 CSV 和 TSV 复选框"Screen 公式(用于 Excel)"中(默认情况下)
 在文本之前添加一个aposrophe,开始于`=`,`+`,`-`,`@`.
 列表或返回车厢,以便表格编辑器不作为
-公式; 数字列的数字不变。 SQL的线路`INSERT`
-QQ QQ QQ( `''`); MySQL, MariaDB \ 点击之家
-反斜线翻了一番,因为PostgreSQL 文本的写法是
-`E'…'`,这样文件在任何筛选设置下都会被读取相同.
+公式；数值列中的数字保持不变。导出 SQL `INSERT` 语句时，字符串中的单引号会写成两个单引号（`''`）。
+对于反斜杠，MySQL、MariaDB 和 ClickHouse 使用双反斜杠，PostgreSQL 使用 `E'…'` 字符串，
+以便在不同的转义设置下都能正确读取文件。
 
 ### 成果小组
 
@@ -439,21 +436,15 @@ Dots)和"记录"(一行,形式为"field_value"). 选中视图
 
 结果是工具栏 :
 
-- 更新( F5, QQR/ Ctrl+R) 重新执行最后读取请求
-  选项卡; 旁边的菜单包括自动更新日期(off, off, off, off,)
-  5秒 10秒 30秒 1分钟 5分钟 自动更新仅用于
-  阅读请求(包括销售请求)和跳过酒吧
-  未保存的更改, 请求仍然执行或窗口被隐藏 。
-- 保存( \\ S/ Ctrl+S)对菜单应用未保存的更改 。
-  "Show SQL";"取消变换"(с/Ctrl+Alt+Z)重新进行.
-- 行:"编辑当前行"(QQ,打开表单"记录"),
-  “添加字符串”(уN / Ctrl + Alt + N),“重复字符串”(уD / Ctrl + D),
-  删除一条行(\/Ctrl+Delete;加亮号-所有选中的行)。
-- 过渡:第一(ду^/Ctrl+Home),前(ду^/Alt+^),下
-  (ке↓/Alt+↓)和最后一行(ке↓/Ctrl+End);电网中的当前线路
-  他们也会移动箭头QQ/QQ.
-- “数据导出......”(уE/Ctrl+Shift+E),“数据导出......”(表CSV)。
-  结果,见下文)。
+- **刷新**（F5、⌘R / Ctrl+R）会在重新检查后再次执行当前标签页上一次的只读查询。
+  旁边的菜单可关闭自动刷新，或设置间隔为 5 秒、10 秒、30 秒、1 分钟或 5 分钟。
+  自动刷新只重复只读查询，包括生产环境中的查询。如果有未保存的更改、查询仍在执行或窗口已隐藏，会跳过本次刷新。
+- **保存**（⌘S / Ctrl+S）应用待保存的更改。菜单中可以查看 SQL。**放弃更改**（⌥⌘Z / Ctrl+Alt+Z）撤销待保存的编辑。
+- 按 ⇧↵ 在记录视图中编辑当前行。还可以添加行（⌥⌘N / Ctrl+Alt+N）、复制行（⌘D / Ctrl+D），
+  或删除行（⌘⌫ / Ctrl+Delete）。选中多行时会删除所有选中的行。
+- 跳转到第一行（⌘↑ / Ctrl+Home）、上一行（⌥↑ / Alt+↑）、下一行（⌥↓ / Alt+↓）或最后一行（⌘↓ / Ctrl+End）。
+  在网格中也可用 ↑ 和 ↓ 移动到相邻行。
+- **导出数据…**（⇧⌘E / Ctrl+Shift+E）导出查询结果。**导入数据…** 将 CSV 导入结果对应的表。
 - 齿轮和"一次磨"字段指定了下部分的大小(1-1000,).
   记得连接; “下载下一部分” 和“下载”
   所有行"(在结果的内存限度内).
@@ -634,7 +625,7 @@ INTEGER、REAL、TEXT、BLOB、以及任何一种,或`WITHOUT ROWID`(需要主�
 CQL类型,包括收藏`list<text>`,`set<int>`,`map<text, int>`
 `frozen<…>`),计数器(然后键外的所有列都是计数器),二级.
 一栏的索引,表格注释, TTL 默认和
-`gc_grace_seconds` (中文(简体) ). 默认值、 独有性、 检查和外部
+`gc_grace_seconds` 默认值、 独有性、 检查和外部
 CQL中没有密钥. 键创建后, 组合顺序和列类型
 不更改, 表格无法重命名,您只能重命名
 密钥列; 添加并删除列、 索引和参数
@@ -699,7 +690,7 @@ SETTINS ClickHouse 应用程序不运行在构造器或
 常规片段。 组合中:主动和长请求,块树,
 表格和数据库大小、索引的使用、死行和自动真空、
 复制和插槽、更改设置、重度请求
-`pg_stat_statements`,文摘 `performance_schema`, `system.query_log`, (中文(简体) ).
+`pg_stat_statements`,文摘 `performance_schema`, `system.query_log`,
 点击之家块 合并和变异 内存和慢 Redis 命令,
 `currentOp`,蒙戈DB的统计与概况. 几乎所有的要求都是
 改为; `EXPLAIN ANALYZE`(满足请求),取消请求; `KILL`

@@ -1,4 +1,4 @@
-# ConsoleCrypt 0.8.6 (中文(简体) ).
+# ConsoleCrypt 0.8.6
 
 参考文档译文 · [俄文原文](../RELEASE_0_8_6.md)
 

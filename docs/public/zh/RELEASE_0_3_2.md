@@ -23,8 +23,8 @@
 如果有必要,请再次发言。 Android – 预览iOS ZIP只用于
 模拟器在Mac上,不安装在物理的iPhone上.
 
-[Скачать](https://consolecrypt.dev/download?lang=ru) (中文(简体) ).
-[Руководство](https://consolecrypt.dev/guide?lang=ru) (中文(简体) ).
-[Клиент](https://github.com/evsikovas/consolecrypt-client) (中文(简体) ).
-[Сервер](https://github.com/evsikovas/consolecrypt-server) (中文(简体) ).
-[Документация](https://github.com/evsikovas/consolecrypt-docs) (中文(简体) ).
+[Скачать](https://consolecrypt.dev/download?lang=ru)
+[Руководство](https://consolecrypt.dev/guide?lang=ru)
+[Клиент](https://github.com/evsikovas/consolecrypt-client)
+[Сервер](https://github.com/evsikovas/consolecrypt-server)
+[Документация](https://github.com/evsikovas/consolecrypt-docs)

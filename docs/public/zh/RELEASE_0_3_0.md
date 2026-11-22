@@ -13,7 +13,7 @@ Windows - 计算机现在可以保存在SSH服务器旁边的一个列表中.
 - **True full screen.** 桌面占据整个计算机屏幕.
   顶部的滑动面板允许您切换连接,使窗口转动.
   恢复正常大小并关闭会话.
-- ** 文本交换。** Ctrl+V(QQV至macOS)传送本地文本,并立即
+- **文本交换。** Ctrl+V（macOS 上为 ⌘V）可传输本地文本，并立即
   插入到活跃的 RDP会话中 。 每份许可证分别列出。
   发送和接收按钮也可用.
 - **文件共享。**在macOS,Windows或Linux上选择一个文件夹。 她会出现。
@@ -29,9 +29,9 @@ Windows - 计算机现在可以保存在SSH服务器旁边的一个列表中.
 添加到Windows - 服务器不需要安装: 使用标准 。
 微软RDP. RDP流量在没有同步服务器的情况下直接进行.
 
-[Скачать](https://consolecrypt.evsikov.net/download?lang=ru) (中文(简体) ).
-[Руководство RDP](https://consolecrypt.evsikov.net/guide?lang=ru#rdp) (中文(简体) ).
-[Исходный код](https://git.evsikov.net/publics/consolecrypt) (中文(简体) ).
+[Скачать](https://consolecrypt.evsikov.net/download?lang=ru)
+[Руководство RDP](https://consolecrypt.evsikov.net/guide?lang=ru#rdp)
+[Исходный код](https://git.evsikov.net/publics/consolecrypt)
 
 ## 可用性
 

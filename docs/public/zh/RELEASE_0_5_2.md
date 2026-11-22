@@ -1,4 +1,4 @@
-# ConsoleCrypt0.5.2 (中文(简体) ).
+# ConsoleCrypt0.5.2
 
 参考文档译文 · [俄文原文](../RELEASE_0_5_2.md)
 
@@ -14,10 +14,9 @@
 - ** AI的明显目标:** 本地贝壳在没有虚构的情况下传递其方言
   SSH - 主持人. 对于本地AI命令和片段,可使用不包含 Enter 的插入;
   检查后的处决仍为人工执行. SFTP和大规模发射为SSH.
-- **三种本地型号:**轻量级 Quen2.5-Coder 1.5B,中度 Quen3.5 4B和强力
-  (原始内容存档于2017-09-29). Quen3.5 9B. 设置显示负载量、 RAM 引用、 来源和
-  执照。 恒星推荐计算机总内存的选项,而不改变
-  你的选择是自动的。
+- **三种本地模型。** 轻量级 Qwen2.5-Coder 1.5B、中等规模 Qwen3.5 4B，以及更大的
+  Qwen3.5 9B。设置中显示下载大小、内存需求、来源和许可证，并用星号标出适合本机总内存的模型。
+  用户仍可自行选择模型。
 - ** 升级时省去本地AI:** 引擎安装与
   GGUF文档. 测试过的模型被重新使用;模型的改变不删除
   余诸人. 删除选中的模型不会删除其他模型和引擎 。
@@ -31,7 +30,7 @@
   和移动的RDP面板在一个黑暗主题中的对比.
 
 详细情况:[локальные терминалы](https://github.com/evsikovas/consolecrypt-client/blob/v0.5.2/docs/public/LOCAL_TERMINALS.md),[локальный ИИ](https://github.com/evsikovas/consolecrypt-client/blob/v0.5.2/docs/public/LOCAL_AI.md)
-和 [обновления](https://github.com/evsikovas/consolecrypt-client/blob/v0.5.2/docs/public/UPDATES.md) (中文(简体) ). 本地贝壳和内置的本地AI可供使用
+和 [обновления](https://github.com/evsikovas/consolecrypt-client/blob/v0.5.2/docs/public/UPDATES.md) 本地贝壳和内置的本地AI可供使用
 OnmacOS/Windows; Linux移动平台保留现有能力.
 iOS套件是为模拟器设计的,而不是安装在物理的iPhone上.
 
@@ -44,8 +43,8 @@ iOS套件是为模拟器设计的,而不是安装在物理的iPhone上.
 | 平台 | 大会 | 格式 |
 | --- | --- | --- |
 | macOSARM64和英特尔x86-64 | 0.5.2+21011 | 通用DMG( 通用DMG) |
-| Windows x64 (中文(简体) ). | 0.5.2+21012 | EXE和便携式ZIP |
-| Linux x64 (中文(简体) ). | 0.5.2+21013 | DEB 和 RPM 数据 |
+| Windows x64 | 0.5.2+21012 | EXE和便携式ZIP |
+| Linux x64 | 0.5.2+21013 | DEB 和 RPM 数据 |
 | Android ARM64号卫星 | 0.5.2+21014 | APK 地图 |
 | iOSMac上的模拟器 | 0.5.2+21015 | 通用 ZIP 软件 |
 

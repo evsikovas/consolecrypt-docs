@@ -1,4 +1,4 @@
-# ConsoleCrypt 0.5.5 (中文(简体) ).
+# ConsoleCrypt 0.5.5
 
 参考文档译文 · [俄文原文](../RELEASE_0_5_5.md)
 
@@ -42,7 +42,7 @@
 该寄存器会关闭会话及其对话.
 
 [Управление RDP](RDP.md)• [Локальные терминалы](LOCAL_TERMINALS.md)•
-[Локальный ИИ](LOCAL_AI.md) (中文(简体) ).
+[Локальный ИИ](LOCAL_AI.md)
 
 ArchiveiOS是用于Mac上的模拟器;它不是Mac的安装器.
 物理 iPhone (英语). 移动 RDP 中的文件夹重定向尚未可用 。

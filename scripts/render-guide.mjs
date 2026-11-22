@@ -56,7 +56,7 @@ function paired(value, label) {
   for (const locale of locales) {
     assert(typeof value[locale] === 'string' && value[locale].trim(),
       `Missing ${locale}: ${label}`);
-    assert.doesNotMatch(value[locale], /[_＿]{8,}/u,
+    assert.doesNotMatch(value[locale], /[_＿]{8,}|\(中文\(简体\) \)\.|原始内容存档于\d{4}-\d{2}-\d{2}/u,
       `Damaged translation in ${locale}: ${label}`);
   }
 }

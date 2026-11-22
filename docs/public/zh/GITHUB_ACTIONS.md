@@ -10,10 +10,10 @@
 发布、签署更新信息或发送通知。 分支推力不建设.
 对持久本地跑者不执行拉动请求代码 。
 
-| Runner (中文(简体) ). | 工作 | 所需工具 |
+| Runner | 工作 | 所需工具 |
 |---|---|---|
 | 专门人员(`self-hosted, macOS, ARM64, consolecrypt, client`人) | Android, iOS 模拟器; macOS除非被推翻 | Fluster 3.47.5, Rust 1.98, Python; Android SDK 36, 建筑工具 36.0.0, NDK 28.2.13676358, CMake 3.22.1; 完整的Xcode和CocoaPods |
-| GitHub - 主办`windows-2025` | Windows x64 (中文(简体) ). | MSVC C++/ATL 和 Windows SDK; `ci-windows.ps1` 规定 Flutter, Perl 和 Inno 设置 |
+| GitHub - 主办`windows-2025` | Windows x64 | MSVC C++/ATL 和 Windows SDK; `ci-windows.ps1` 规定 Flutter, Perl 和 Inno 设置 |
 | GitHub - 主办`ubuntu-24.04` | Linux DEB/RPM | 孤立的Ubuntu 22.04Docker 建造者,本地特勤局/FFI测试Kubernetes接受和LinuxCPU本地-AI推断烟雾 |
 
 仓库变量`MACOS_BUILD_RUNNER` 仅覆盖使用 a 的macOS 任务
@@ -27,7 +27,7 @@ iOS 工作可一次性编辑、安装和启动应用程序
 发布任务会核对构建结果，将九个文件上传到草稿。这些文件包括 macOS DMG、Windows 安装程序和便携 ZIP、
 Linux DEB 和 RPM、Android 直接下载版 APK、Mac 上 iOS Simulator 使用的通用 ZIP，以及 RuStore 的 APK 和 AAB。
 上传 SHA-256 校验清单后才会公开发布。只有发布任务具有
-`contents: write`和 `actions: write` (中文(简体) ). 它要求`update-feeds.yml`
+`contents: write`和 `actions: write` 它要求`update-feeds.yml`
 `main`出版后. 网站和服务器部署有独立的标签
 工作流程。 模拟器档案是为Mac上的Xcode,而不是物理的iPhone.
 
@@ -38,7 +38,7 @@ Linux DEB 和 RPM、Android 直接下载版 APK、Mac 上 iOS Simulator 使用�
 触摸表或锁文件, 包括Depabot的。 其审计工作
 `contents: read`; 与`issues: write`单独工作(从未接到拉动请求).
 打开、更新或关闭“脆弱依赖”问题。 政策和例外:
-[BUILDING.md](../BUILDING.md#проверка-зависимостей) (中文(简体) ).
+[BUILDING.md](../BUILDING.md#проверка-зависимостей)
 
 在Windows上,启用开发者模式,使Flutter能够创建插件连锁,以及
 注册运行者时选择一个简短的工作目录 :
@@ -75,7 +75,7 @@ Windows 原生`FILEVERSION`和Inno Setup版本组件仅限于
 `65535`. 包装目前将完整的建筑编号置于第四部分.
 在超过这一限制之前,改变和测试Windows元数据的表示
 保留完整的应用程序/更新版本和单调版本Android
-`versionCode` (中文(简体) ). 使用当前公式,运行56次超过Windows的上限,甚至
+`versionCode` 使用当前公式,运行56次超过Windows的上限,甚至
 许多复试者可以更早到达它。 限制既适用于手工考生,也适用于标签发布. 不要重设GitHub 运行序列来绕它工作 。
 
 ## 签署和全权证书
@@ -96,7 +96,7 @@ Windows 原生`FILEVERSION`和Inno Setup版本组件仅限于
 - 更新签名密钥`UPDATE_SIGNING_KEY`和`LINUX_UPDATE_SIGNING_KEY`
   对于单独的Linux饲料仍限于单独的更新饲料).
   工作流程。 RuStore 打包任务使用应用签名密钥和上传密钥分别签署 APK 和 AAB。 见[RELEASING.md](RELEASING.md)和
-  [UPDATE_FEED_PUBLISHER.md](UPDATE_FEED_PUBLISHER.md) (中文(简体) ).
+  [UPDATE_FEED_PUBLISHER.md](UPDATE_FEED_PUBLISHER.md)
 - 主办单位(`announce`个)在出版后运作。 每个频道开始
   当所有者已经配置它:`TELEGRAM_BOT_TOKEN`+`TELEGRAM_CHAT_ID`
   (项目频道),变量`TELEGRAM_PERSONAL_CHAT_ID`(第二个频道);
@@ -178,7 +178,7 @@ Linux records of its job ownership under `RUNNER_TEMP` before starting Docker an
 其GitHub释放是公开的,如果工作空间的当前状态,则拒绝清理。
 `HEAD`与该标记不同. 因此,无法使用旧的出版版
 清除新尝试失败 。 其工具的检查结果与
-`clean: false` (中文(简体) ). 内置警卫**在** 离职前运行:他们拒绝连锁/连接
+`clean: false` 内置警卫**在** 离职前运行:他们拒绝连锁/连接
 外国工作空间和现有工具目录,除非是
 空或已经清除了预期的 Git 退出( 包括未跟踪/ 被忽略)
 文档). 退职不能擦除
@@ -197,7 +197,7 @@ gh workflow run runner-cleanup.yml --ref main \
 链接/保存点和意外运行时间内容,并保存选择,
 日志、收据和未知文件。 它不检查Windows应用数据。
 删除边界通过微小的自有临时寄存器进行测试
-`python3 -m unittest discover -s client/scripts -p 'test_ci_cleanup.py' -v` (中文(简体) ).
+`python3 -m unittest discover -s client/scripts -p 'test_ci_cleanup.py' -v`
 Windows路口试验继续进行(Windows路),在其他地方被明确跳过。
 `test_cleanup_policy.py` 也验证失败的发行创建/发布
 不发出允许完全清理的出版信号。
@@ -220,7 +220,7 @@ iOS 预览版会在 Mac 上的 Xcode Simulator 中接受测试。
 `announce-telegram.py`通过频道)和evsikov.net`EVSIKOVNET_TOKEN`:
 `announce-evsikovnet.py` 创建或更新带有俄文注释的发布
 链接到 Copercrypt.dev 。 除此任务外, 脚本不出版; 本地 ,
-`--dry-run` (中文(简体) ).
+`--dry-run`
 
 
 ### 诊断标记Windows

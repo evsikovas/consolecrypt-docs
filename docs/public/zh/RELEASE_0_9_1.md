@@ -1,4 +1,4 @@
-# ConsoleCrypt 0.9.1 (中文(简体) ).
+# ConsoleCrypt 0.9.1
 
 参考文档译文 · [俄文原文](../RELEASE_0_9_1.md)
 
@@ -65,7 +65,7 @@
 通过公司授权服务器{name}进入. 组织密码
 它不打开存储 -您需要此存储密码 。
 " 系统化 " 和 " 装置 " —— " 授权:公司服务器 " 的行
-{name}(OIDC QQ Active Directory)";在普通服务器上,"电子邮件和密码"
+{name}（OIDC | Active Directory）”；在普通服务器上，“电子邮件和密码”
 账户。
 
 ** 应用程序记得您登录时。**对于设备上的每个服务器
@@ -115,7 +115,7 @@ Kubernetes输入。
   它们被标记为"未找到的对象".
 
 ** 通用说明**(同步服务器启用0.2.0)
-`CC_SHARED_NOTES_ENABLED` (中文(简体) ).
+`CC_SHARED_NOTES_ENABLED`
 
 - 共享主机、数据库连接或上下文Kubernetes
   在"Object"标签中,出现了"General Notes"块. 皆被参众所见.
@@ -202,10 +202,10 @@ Kubernetes输入。
 - 剪贴板的自动清理设定为 30 秒至 1 天, 并且工作
   并且重启后,不碰别人的内容。
 
-** Windows** (中文(简体) ).
+** Windows**
 
 - 在选择终端字体时 -只安装了单宽字体,
-  包括为用户安装的(例如: JetBrains Mono Nerd Font); (原始内容存档于2018-09-29).
+  包括当前用户安装的字体，例如 JetBrains Mono Nerd Font。
   名称“... Nerd Font Mono”和“...NFM”可以互换,如果字体不是
   设置, 设置会显示 。 Linux也显示设置的字体.
 - 窗口在打开时隐藏在截图,录音和屏幕演示中.

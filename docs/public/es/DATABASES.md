@@ -439,21 +439,17 @@ Esto se muestra como sometido `[NULL]` .
 
 El resultado es una barra de herramientas:
 
-- Actualización (F5, щийR/Ctrl+R) re-performa la última solicitud de lectura
-  pestañas después de un nuevo cheque; el menú junto a él incluye auto-actualización (off,
-  5 s, 10 s, 30 s, 1 min, 5 min. Auto-Update solo funciona para
-  Solicitudes de lectura (incluidos en la venta) y saltando el bar mientras hay
-  cambios no salvos, la solicitud sigue siendo ejecutada o la ventana está oculta.
-- Guardar (сS/Ctrl+S) aplica cambios no guardados en el menú.
-  "Mostrar SQL"; "Cancel Changes" (сZ/Ctrl+Alt+Z) los reinicia.
-- Líneas: "Editar la línea actual" ( открывает, abre la forma "Record"),
-  "Agregar una cuerda" (en N / Ctrl + Alt + N), "Duplicar una cuerda" (enD / Ctrl + D),
-  “Eliminar una línea” (у/Ctrl+Delete; con resaltar – todas las líneas seleccionadas).
-- Transición: primero (ду^/Ctrl+Home), anterior (ду^/Alt+^), siguiente
-  (ке↓/Alt+↓) y último (ке↓/Ctrl+End) línea; línea actual en red
-  También mueven las flechas ↑/↓.
-- “Transportación de datos...” (enE/Ctrl+Shift+E), “Importación de datos...” (CSV en la tabla).
-  resultados, véase abajo).
+- **Actualizar** (F5, ⌘R / Ctrl+R) vuelve a ejecutar la última consulta de lectura de la pestaña tras revisarla.
+  En su menú puedes desactivar la actualización automática o fijar un intervalo de 5, 10 o 30 segundos,
+  o de 1 o 5 minutos. Solo se repiten consultas de lectura, incluidas las de producción.
+  Si hay cambios pendientes, una consulta en curso o la ventana está oculta, se omite esa actualización.
+- **Guardar** (⌘S / Ctrl+S) aplica los cambios pendientes. Su menú permite ver el SQL.
+  **Descartar cambios** (⌥⌘Z / Ctrl+Alt+Z) deshace las ediciones pendientes.
+- Para editar la fila actual en la vista de registro, pulsa ⇧↵. Puedes añadir una fila (⌥⌘N / Ctrl+Alt+N),
+  duplicarla (⌘D / Ctrl+D) o eliminarla (⌘⌫ / Ctrl+Delete). Si seleccionas varias filas, se eliminan las seleccionadas.
+- Salta a la primera fila (⌘↑ / Ctrl+Home), a la anterior (⌥↑ / Alt+↑), a la siguiente (⌥↓ / Alt+↓)
+  o a la última (⌘↓ / Ctrl+End). Las flechas ↑ y ↓ también cambian la fila actual en la cuadrícula.
+- **Exportar datos…** (⇧⌘E / Ctrl+Shift+E) exporta el resultado. **Importar datos…** carga un CSV en la tabla del resultado.
 - El engranaje y el campo "String at a time" especifican el tamaño de la siguiente porción (1-1000,
   Recuerde conectarse; “Descargar la siguiente porción” y “Descargar”
   Todas las líneas" (dentro del límite de memoria del resultado).

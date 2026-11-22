@@ -1,4 +1,4 @@
-# Docker (中文(简体) ).
+# Docker
 
 参考文档译文 · [俄文原文](../DOCKER.md)
 
@@ -23,9 +23,9 @@ SSH -主机;搜索缩小列表范围. 点击“ 连接” :在封顶中显示
 解释原因并显示命令`sudo usermod -aG docker <пользователь>`
 带有复制按钮。 自己在主机上运行 -它的应用程序不是
 重新开始和连接:新组在新的SSH会话中活动.
-如果SSH服务器禁止套接字传输Docker,而且主机上没有插头CLI,
-在`sshd_config`中包括`AllowStreamLocalForwarding yes`或安装
-(原始内容存档于2018-09-21). Docker CLI. 如果Docker没有运行,申请会通知您。
+如果 SSH 服务器禁止转发 Docker 套接字，且主机没有 Docker CLI，
+可在 `sshd_config` 中启用 `AllowStreamLocalForwarding yes`，或安装 Docker CLI。
+如果 Docker 守护进程未运行，应用会显示相应提示。
 
 由主机上的用户权限Docker 执行动作; 应用程序没有
 增加权利而不使用`sudo`. 改变配置和存储锁定
@@ -101,7 +101,7 @@ All/Run/stopped 开关缩小列表范围 。
 从剪贴板上自动删除。
 
 集装箱终点站提供包括环境变量在内的全程接入.
-`env` (中文(简体) ). 当您在配置中首次打开终端时,这让人想起一个提示 。
+`env` 当您在配置中首次打开终端时,这让人想起一个提示 。
 
 存储密码防止在屏幕和屏幕上意外显示秘密
 偷窥。 从一个未解锁的计算机背后的人身上,它不能保护:
@@ -156,7 +156,7 @@ ClickHouse, Redis, MongoDB)有一个按钮"连接到数据库"——在行中,�
   这将影响行动,等待确认。
 - ** 显示YAML** 打开带有行号的标签的项目文件
   背光; 顶端是工程文件夹和环境文件。 密码
-  `environment`, `labels`, `command`, `entrypoint`, `healthcheck.test` (中文(简体) ).
+  `environment`, `labels`, `command`, `entrypoint`, `healthcheck.test`
   地址和密钥中的密码被隐藏,行号被保存.
   Fully"在密码后,存储会显示源文本. 那个文件
   用户不能阅读,用解释标注. 复制开始。

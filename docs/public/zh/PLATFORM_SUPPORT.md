@@ -6,7 +6,7 @@
 系统能力依赖于操作系统,成功的构建并不能取代验证.
 真正的指纹扫描仪或USB密钥. 下面是实际发行的一套.
 
-| 机会 | Windows (中文(简体) ). | macOS (中文(简体) ). | Linux (中文(简体) ). | Android (中文(简体) ). | iOS 模拟器 |
+| 机会 | Windows | macOS | Linux | Android | iOS 模拟器 |
 | --- | --- | --- | --- | --- | --- |
 | SSH, SFTP, RDP, 数据库连接 | 对 | 对 | 对 | 对 | 临时港口 |
 | Kubernetes和Docker通过SSH | 对 | 对 | 对 | 对 | 临时港口 |

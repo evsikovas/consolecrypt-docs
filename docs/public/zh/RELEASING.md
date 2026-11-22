@@ -3,7 +3,7 @@
 参考文档译文 · [俄文原文](../RELEASING.md)
 
 存放处的大会([GitHub Actions](https://github.com/evsikovas/consolecrypt-client/blob/main/.github/workflows/client.yml)次)
-`evsikovas/consolecrypt-client` [Раннеры и нумерация](GITHUB_ACTIONS.md) (中文(简体) ).
+`evsikovas/consolecrypt-client` [Раннеры и нумерация](GITHUB_ACTIONS.md)
 源和锁文件存储在Git;安装器存储在释放附件中.
 不要添加`dist/`,令牌,Android密钥或私人签名密钥.
 
@@ -25,7 +25,7 @@
    开始共享和入学测试并删除所有内容。 `rdp`
    为Windows主机配置(权利600),由所有者授权进行测试;
    密码取自`CC_RDP_LIVE_PASSWORD`或`~/.config/consolecrypt-test/rdp.env`
-   而且没有印刷,是SHA-256. Kubernetes和Linux (中文(简体) ).
+   而且没有印刷,是SHA-256. Kubernetes和Linux
    特勤部门核实LinuxCI任务;系统查询测试
    (Secure Enclave,WindowsHello)是手动运行的.
 3. 在此承诺上创建附加说明的标签并发送 :

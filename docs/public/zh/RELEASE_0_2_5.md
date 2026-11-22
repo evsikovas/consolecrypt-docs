@@ -1,4 +1,4 @@
-<p align="center"><img src="https://git.evsikov.net/publics/consolecrypt/-/raw/v0.2.5/docs/brand/consolecrypt.svg" width="480" alt="ConsoleCrypt"></p> (中文(简体) ).
+<p align="center"><img src="https://git.evsikov.net/publics/consolecrypt/-/raw/v0.2.5/docs/brand/consolecrypt.svg" width="480" alt="ConsoleCrypt"></p>
 
 # ConsoleCrypt0.2.5 现时及上下Linux
 
@@ -21,17 +21,17 @@
 
 | 平台 | 大会 | 档案. |
 |---|---|---|
-| Linux x86-64• Debian/Ubuntu | 0.2.5+1358 | [DEB](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1358-linux-x64.deb) (中文(简体) ). |
-| Linux x86-64 → 费多拉 | 0.2.5+1358 | [RPM](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1358-linux-x64.rpm) (中文(简体) ). |
-| Windows 10/11 x64 (中文(简体) ). | 0.2.5+1353 | [Установщик EXE](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1353-windows-x64-setup.exe) - [Portable ZIP](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1353-windows-x64-portable.zip) |
-| macOS 12+ → 苹果硅和英特尔 | 0.2.5+1354 | [Универсальный DMG](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1354-macos-universal.dmg) (中文(简体) ). |
-| Android 11+ ARM64 | 0.2.5+75 | [APK](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B75-android-arm64.apk) (中文(简体) ). |
+| Linux x86-64• Debian/Ubuntu | 0.2.5+1358 | [DEB](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1358-linux-x64.deb) |
+| Linux x86-64 → 费多拉 | 0.2.5+1358 | [RPM](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1358-linux-x64.rpm) |
+| Windows 10/11 x64 | 0.2.5+1353 | [Установщик EXE](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1353-windows-x64-setup.exe) - [Portable ZIP](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1353-windows-x64-portable.zip) |
+| macOS 12+ → 苹果硅和英特尔 | 0.2.5+1354 | [Универсальный DMG](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B1354-macos-universal.dmg) |
+| Android 11+ ARM64 | 0.2.5+75 | [APK](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B75-android-arm64.apk) |
 | iOS 模拟器 → Mac, ARM64/x86-64 | 0.2.5+76 | [ZIP, часть 1](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B76-ios-simulator-universal.zip.001) - [Часть 2](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/ConsoleCrypt-0.2.5%2B76-ios-simulator-universal.zip.002) |
 
-[SHA-256 всех файлов](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/SHA256SUMS-0.2.5.txt) (中文(简体) ).
-[Сайт и загрузка](https://consolecrypt.evsikov.net/download?lang=ru) (中文(简体) ).
-[Руководство](https://consolecrypt.evsikov.net/guide?lang=ru) (中文(简体) ).
-[Установка Linux и сборка из исходников](https://git.evsikov.net/publics/consolecrypt/-/blob/v0.2.5/docs/public/BUILD_LINUX.md) (中文(简体) ).
+[SHA-256 всех файлов](https://git.evsikov.net/api/v4/projects/14/packages/generic/consolecrypt/0.2.5/SHA256SUMS-0.2.5.txt)
+[Сайт и загрузка](https://consolecrypt.evsikov.net/download?lang=ru)
+[Руководство](https://consolecrypt.evsikov.net/guide?lang=ru)
+[Установка Linux и сборка из исходников](https://git.evsikov.net/publics/consolecrypt/-/blob/v0.2.5/docs/public/BUILD_LINUX.md)
 
 ## 安装Linux
 
@@ -59,13 +59,13 @@ consolecrypt
 
 | 平台 | 来源和经确认的核查 |
 |---|---|
-| Linux+1358 (中文(简体) ). | [build-linux 1358](https://git.evsikov.net/publics/consolecrypt/-/jobs/1358),发布源;Ubuntu 22.04,真正的Rust桥 2/2和UI 1/1与特勤,重启和解锁 |
-| Windows+1353 (中文(简体) ). | [build-windows 1353](https://git.evsikov.net/publics/consolecrypt/-/jobs/1353), `41323da718694fb56a6868abba65c6fc1a3e91fb` ; ZIP, SHA-256, x64 DLL/CRT 和 EXE 版本的完整性; 安装器未运行 |
-| macOS+1354 (中文(简体) ). | [build-macos 1354](https://git.evsikov.net/publics/consolecrypt/-/jobs/1354), `41323da718694fb56a6868abba65c6fc1a3e91fb`; DMG, SHA-256, 严格签名, 普遍ARM64/x86-64 和沙盒资格; 应用程序不运行 |
-| Android+75 (中文(简体) ). | 本地建筑;ARM64 APK,前签名,ZIP/ELF对齐 16 KiB和SHA-256经核实;实体电话未检查 |
+| Linux+1358 | [build-linux 1358](https://git.evsikov.net/publics/consolecrypt/-/jobs/1358),发布源;Ubuntu 22.04,真正的Rust桥 2/2和UI 1/1与特勤,重启和解锁 |
+| Windows+1353 | [build-windows 1353](https://git.evsikov.net/publics/consolecrypt/-/jobs/1353), `41323da718694fb56a6868abba65c6fc1a3e91fb` ; ZIP, SHA-256, x64 DLL/CRT 和 EXE 版本的完整性; 安装器未运行 |
+| macOS+1354 | [build-macos 1354](https://git.evsikov.net/publics/consolecrypt/-/jobs/1354), `41323da718694fb56a6868abba65c6fc1a3e91fb`; DMG, SHA-256, 严格签名, 普遍ARM64/x86-64 和沙盒资格; 应用程序不运行 |
+| Android+75 | 本地建筑;ARM64 APK,前签名,ZIP/ELF对齐 16 KiB和SHA-256经核实;实体电话未检查 |
 | iOS模拟器+76 | 本地建筑; ARM64/x86-64 ZIP, 签名, SHA-256 和从已测试的部件回收; 单独的临时模拟器显示欢迎屏幕, 物理 iPhone未检查 |
 
-[Pipeline 224](https://git.evsikov.net/publics/consolecrypt/-/pipelines/224) (中文(简体) ).
+[Pipeline 224](https://git.evsikov.net/publics/consolecrypt/-/pipelines/224)
 ** FAILED* 通常由于以前的Linux转让而终止。
 Windows 1353和macOS1354分别通过;更正Linux - 组装1358
 当时是1352年 在他们的照片和最后的源头之间只变了.
@@ -102,13 +102,13 @@ Apple, Windows没有认证码, APK 具有之前的测试签名.
 
 存储器仍然加密在设备上. 你可以在当地工作。
 连接您的同步服务器或选择公共服务器
-`https://consolecrypt.evsikov.net` (中文(简体) ). SSH直接到你们的东道主.
+`https://consolecrypt.evsikov.net` SSH直接到你们的东道主.
 
 ---
 
 **英语:**ConsoleCrypt现在支持Linuxx86-64的DEB和RPM包,
 原生的RustSSH/SFTP,加密的工作空间和团队共享. 安装方式
-`sudo apt install ./ConsoleCrypt-0.2.5+1358-linux-x64.deb` 或 (中文(简体) ).
+`sudo apt install ./ConsoleCrypt-0.2.5+1358-linux-x64.deb` 或
 `sudo dnf install ./ConsoleCrypt-0.2.5+1358-linux-x64.rpm`,然后运行`consolecrypt`.
 作为您的普通桌面用户。 现有未解锁的持久特勤局
 需要按键环 。 Linux更新使用软件包管理器. 下载链接
@@ -128,5 +128,5 @@ Android/iOS是在当地建造的;一个不可改变的比较确认的航运代�
 和键链。 随后的更新使用系统保存和打开对话框.
 
 *亚历山大·埃夫西科夫* [i@evsikov.net](mailto:i@evsikov.net)
-[GNU AGPL-3.0-only](https://git.evsikov.net/publics/consolecrypt/-/blob/v0.2.5/LICENSE) (中文(简体) ).
+[GNU AGPL-3.0-only](https://git.evsikov.net/publics/consolecrypt/-/blob/v0.2.5/LICENSE)
 第三方部件保留自己的许可证。

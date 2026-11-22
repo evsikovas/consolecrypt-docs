@@ -20,7 +20,7 @@
 ConsoleCrypt并更新现有安装. macOS 替换申请
 申请. 不用其数据、存储或系统删除应用程序
 密钥套装: 手动更新保存它们 。 正在使用新的组件
-`updates.consolecrypt.dev` (中文(简体) ). 首先,保存备份和复原工具箱。
+`updates.consolecrypt.dev` 首先,保存备份和复原工具箱。
 
 在Windows,启动当前用户的安装器;应用程序
 退出前关闭连接和数据库。 需要Android 资源
@@ -33,7 +33,7 @@ ConsoleCrypt并更新现有安装. macOS 替换申请
 
 **从ConsoleCrypt0.2.1和以前的版本改为macOS:**如果更新后出现的话。
 无法打开程序, 下载当前 DMG 。
-[сайта через браузер](https://consolecrypt.dev/download?lang=ru) (中文(简体) ).
+[сайта через браузер](https://consolecrypt.dev/download?lang=ru)
 ,并在应用程序中替换一次应用程序。 旧的装弹机标记为 DMG 。
 未经用户同意而创建;此标签已转移到应用程序。
 旧下载器下载的新版本的拷贝也可以使用.
@@ -55,7 +55,7 @@ macOS和沙盒仍保留,存储和密钥捆绑不需要移除.
 更新的镜像检查每15分钟发布一次. 在他们俩之前
 它保留了先前核实过的版本。
 
-## Linux和iOS (中文(简体) ).
+## Linux和iOS
 
 0.9.14从DEB或RPM(包装`consolecrypt`)安装的复制件
 `/opt/consolecrypt`),与其他计算机一样更新:检查

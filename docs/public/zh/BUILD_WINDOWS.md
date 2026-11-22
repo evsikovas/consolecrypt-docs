@@ -7,14 +7,14 @@ Windows; macOS 无法创建此本地包 。
 
 ## 设一乘.
 
-1. [Git for Windows](https://git-scm.com/downloads/win) (中文(简体) ).
+1. [Git for Windows](https://git-scm.com/downloads/win)
 2. [Flutter SDK](https://docs.flutter.dev/install)**3.47.x**与达特**3.13.4或较新的兼容版本**.
    例如,在`C:\dev\flutter`和`C:\dev\flutter\bin`加进PATH.
    确切的最小版本在`client/flutter/pubspec.yaml`中指定;锁文件不删除.
 3. [Visual Studio](https://visualstudio.microsoft.com/downloads/),工作量
    ** 带有 C++ / 开发经典 C++ 应用程序的Desktop 开发 :
    MSVC x64/x86, Windows SDK, CMake 工具和**C++ ATL 用于最新的 v143 构建工具
-   (x86& x64)** `Microsoft.VisualStudio.Component.VC.ATL` (中文(简体) ). ATL 需要一个插件
+   (x86& x64)** `Microsoft.VisualStudio.Component.VC.ATL` ATL 需要一个插件
    通知Windows `atlbase.h`; `flutter doctor`不检查此部分。
    单凭VS代码是不够的。
 4. [Rust через rustup](https://rustup.rs/)是标准MSVC工具链.
@@ -71,7 +71,7 @@ Rust和内置的OpenSSL在寄存器的根部组装`target\windows-rust`:
 MSBuild`VSTEL_MSBuildProjectFullPath`:她强迫`cc-rs`重新组装
 OpenSSL/AWS-LC在构建和本土测试的交替中. 编译器和目标
 架构根据既定的MSVC和Cargo参数选择.
-[Почему нужны все DLL и папка data](https://docs.flutter.dev/platform-integration/windows/building#building-your-own-zip-file-for-windows) (中文(简体) ).
+[Почему нужны все DLL и папка data](https://docs.flutter.dev/platform-integration/windows/building#building-your-own-zip-file-for-windows)
 
 结果`dist\windows\`:
 
@@ -85,7 +85,7 @@ OpenSSL/AWS-LC在构建和本土测试的交替中. 编译器和目标
 保留申请。 当地议会没有出版商签名.
 
 应用程序仅为当前用户安装 :
-`%LOCALAPPDATA%\Programs\ConsoleCrypt` (中文(简体) ). 存储和设置单独存储
+`%LOCALAPPDATA%\Programs\ConsoleCrypt` 存储和设置单独存储
 c`%LOCALAPPDATA%\consolecrypt\ConsoleCrypt\data`,密钥 - inWindows 证书
 当前用户的管理者 。 不需要从管理员处发射.
 更新和删除应用程序不影响存储目录.
@@ -113,7 +113,7 @@ flutter test
 ## GitHub动作跑者
 
 任务`windows` 工作流程`Client packages` 使用带有标签的自备导师
-`Windows`, `X64`, `consolecrypt`, `client` (中文(简体) ). 见[настройку раннеров](GITHUB_ACTIONS.md). 脚本
+`Windows`, `X64`, `consolecrypt`, `client` 见[настройку раннеров](GITHUB_ACTIONS.md). 脚本
 `client/scripts/ci-windows.ps1`在标准目录中发现了工具.
 如果 PATH 服务与用户的 PATH 不同. 在没有小蝶的情况下
 官方标签3.47.5经承诺核查后下载;如果没有Perl,

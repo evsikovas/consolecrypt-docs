@@ -17,7 +17,7 @@
 计算机(4/8/16 GB). 如果内存不明或小于4GB,则没有恒星.
 建议不改变选定的模式或默认框。 乃导人而非导人.
 速度保证:将内存留给系统和其他程序. 苹果硅上.
-用于Metal,在Intel Mac上,Windowsx64和Linuxx64 - CPU. Android和iOS (中文(简体) ).
+用于Metal,在Intel Mac上,Windowsx64和Linuxx64 - CPU. Android和iOS
 不显示内置安装分区; 配置其他提供者
 犹在.
 
@@ -62,7 +62,7 @@
 
 请求前往`127.0.0.1`,随机表示当前发射,没有系统
 HTTP - 代办. 秘密的背景和过滤通过现有核心
-ConsoleCrypt (中文(简体) ). 模式的路径和进程符号不通过金库同步.
+ConsoleCrypt 模式的路径和进程符号不通过金库同步.
 存储锁定,配置更改并退出模式停止. 需要因特网
 当安装时,答案在计算机上计算。
 
@@ -70,25 +70,25 @@ ConsoleCrypt (中文(简体) ). 模式的路径和进程符号不通过金库同
 插入不包含 Enter,在验证后手动运行; 用于SSH
 继续单独确认执行情况。 聊天被存储在会话内存中.
 
-[Руководство со снимками RU](https://consolecrypt.dev/guide?lang=ru#local-ai) (中文(简体) ).
-[English guide](https://consolecrypt.dev/guide?lang=en#local-ai) (中文(简体) ).
+[Руководство со снимками RU](https://consolecrypt.dev/guide?lang=ru#local-ai)
+[English guide](https://consolecrypt.dev/guide?lang=en#local-ai)
 照片是真正带有演示状态的部件;它们不显示
 真正的加载或测量模型的速度.
 
 ### 来源和许可证
 
 - [llama.cpp b11739](https://github.com/ggml-org/llama.cpp/releases/tag/b11739) , 麻省理工学院.
-- [Qwen2.5-Coder-1.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF) (中文(简体) ).
+- [Qwen2.5-Coder-1.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF)
   官方 GGUF Quen, Apache-2.0, 修订版 `f86cb2c1fa58255f8052cc32aeede1b7482d4361`.
-- [Qwen3.5-4B-GGUF](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF) (中文(简体) ).
+- [Qwen3.5-4B-GGUF](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF)
   Quen模型,GGUF 的量化和分配 Unsloth, Apache-2.0,
   审计`e87f176479d0855a907a41277aca2f8ee7a09523`.
-- [Qwen3.5-9B-GGUF](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF) (中文(简体) ).
+- [Qwen3.5-9B-GGUF](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF)
   Quen模型,GGUF 的量化和分配 Unsloth, Apache-2.0,
   审计`3885219b6810b007914f3a7950a8d1b469d598a5`.
 
 精确URL,维度和SHA-256在
-`client/flutter/lib/ai/local/local_ai_catalog.dart` (中文(简体) ). 文本在设置中可用
+`client/flutter/lib/ai/local/local_ai_catalog.dart` 文本在设置中可用
 "模型的来源和许可证",包括没有互联网连接的许可证.
 对于Quen3.5,引擎的配置没有单独的推理响应. 尚未启用 CUDA 软件包
 已执行。

@@ -2,12 +2,12 @@
 
 参考文档译文 · [俄文原文](../RELEASE_0_1_13.md)
 
-日期:2026年9月30日 (中文(简体) ). 来源-标记`v0.1.13`,承诺`4dd26f2`.
+日期:2026年9月30日 来源-标记`v0.1.13`,承诺`4dd26f2`.
 实际使用的Rust桥; `CC_MOCK=false` .
 
 | 平台 | 包裹。 | 原产地版本 |
 |---|---|---|
-| Windows 10/11 x64 (中文(简体) ). | EXE和便携式ZIP | 0.1.13+1221 |
+| Windows 10/11 x64 | EXE和便携式ZIP | 0.1.13+1221 |
 | macOS 苹果硅和英特尔 | 通用DMG( 通用DMG) | 0.1.13+1222 |
 | Android 11+ ARM64 | APK 地图 | 0.1.13+27 |
 
@@ -51,5 +51,5 @@ APK证书与之前的版本相同,因此上面的安装是相容的.
 Windows没有认证码, macOS没有苹果公证, APK
 开发证书.
 
-[Релиз и контрольные суммы](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.13) (中文(简体) ).
+[Релиз и контрольные суммы](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.13)
 ·[Инструкция по обновлениям](UPDATES.md)

@@ -25,7 +25,7 @@ id, name, HTTPS URL), 登录和引用单独的加密证书.
 客户检查对新设置进行序列化和加密交换
 客户之间。 服务器同步检查、冲突、权利、联合
 单独运行GitHub的工作流程中的存取和备份/备份
-[Client compatibility](https://github.com/evsikovas/consolecrypt-server/actions/workflows/client-compatibility.yml) (中文(简体) ).
+[Client compatibility](https://github.com/evsikovas/consolecrypt-server/actions/workflows/client-compatibility.yml)
 临时PostgreSQL. 工作流不发布图像或改变生产.
 
 在保存WebDAV连接之前,将所有设备升级到客户端 1.0.0 。

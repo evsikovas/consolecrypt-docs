@@ -1,4 +1,4 @@
-# ConsoleCrypt 1.1.0 (中文(简体) ).
+# ConsoleCrypt 1.1.0
 
 参考文档译文 · [俄文原文](../RELEASE_1_1_0.md)
 

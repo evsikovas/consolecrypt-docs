@@ -9,7 +9,7 @@
 不需要同步服务器和SSH连接.
 
 1. 打开“ Terminal ” , 点击 `Cmd+T` 或 macOS 上的新标签按钮 。
-   `Ctrl+T` at Windows (中文(简体) ). 应用程序的普通“ +” 按钮仍然选择
+   `Ctrl+T` at Windows 应用程序的普通“ +” 按钮仍然选择
    保存SSH/RDP连接.
 2. 在本地贝壳组中,选择macOS上的**zsh**或
    ** Windows PowerShell**,** Command Point** 或安装**PowerShell 7**
@@ -64,9 +64,9 @@ AI命令和片段被禁用; 大规模发射计划为SSH.
 
 ### 行政指导和核查
 
-[Глава со снимками RU](https://consolecrypt.dev/guide?lang=ru#local-terminals) (中文(简体) ).
-[English guide](https://consolecrypt.dev/guide?lang=en#local-terminals) (中文(简体) ).
+[Глава со снимками RU](https://consolecrypt.dev/guide?lang=ru#local-terminals)
+[English guide](https://consolecrypt.dev/guide?lang=en#local-terminals)
 快照 0.5是真正的 Flutter 部件,有合成的贝壳和文本 。
 WSL屏幕在部件测试中显示Windows接口变体,而不是运行.
 Windows或WSL. 已安装软件包的检查在
-[заметках выпуска](RELEASE_0_5_2.md) (中文(简体) ).
+[заметках выпуска](RELEASE_0_5_2.md)

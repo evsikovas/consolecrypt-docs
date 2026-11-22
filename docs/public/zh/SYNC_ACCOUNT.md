@@ -84,7 +84,7 @@
   在入口页面。 登录时, 应用程序正在等待浏览器;** Cancel**
   打断了入口 在计算机上,浏览器返回应用程序通过
   地址`http://127.0.0.1:…/auth/callback`,地址Android和iOS
-  `consolecrypt://auth/callback` (中文(简体) ). 应用程序使用 PKCE 和检查
+  `consolecrypt://auth/callback` 应用程序使用 PKCE 和检查
   `state`; 一次性条目代码活60秒.
 - ** 活动目录 / LDAP:** 字段** 登录(电子邮件或 DOMAIN\user)** 和
   **在标题“你的组织帐户”下使用“assword**”。 密码。
@@ -98,7 +98,7 @@
   组织的密码不打开寄存器 -您需要此密码
   储存库”;
 - ** 设置 – 账户和同步** –行** 授权:
-  企业服务器 - {name}(OIDC QQ Active Directory)**
+  企业服务器 - {name}(OIDC | Active Directory)**
   以及当装置进入。 在那边的标准服务器上
   写入“电子邮件和账户密码”;
 - 在**系统化**和**Devices**中。

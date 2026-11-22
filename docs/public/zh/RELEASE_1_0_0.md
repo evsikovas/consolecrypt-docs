@@ -42,5 +42,5 @@ Linux DEB/RPM, Android和 iOS Mac上的模拟器. 模拟器不是iPhone安装器
 更改一般设置时不要保存新字段 。
 
 [Менеджер паролей](KEEPASS.md)• [Поддержка платформ](PLATFORM_SUPPORT.md)•
-[Совместимость сервера](COMPATIBILITY_1_0.md) (中文(简体) ).
-[Руководство со скриншотами](https://consolecrypt.dev/guide) (中文(简体) ).
+[Совместимость сервера](COMPATIBILITY_1_0.md)
+[Руководство со скриншотами](https://consolecrypt.dev/guide)

@@ -1,4 +1,4 @@
-# ConsoleCrypt 0.9.15 (中文(简体) ).
+# ConsoleCrypt 0.9.15
 
 参考文档译文 · [俄文原文](../RELEASE_0_9_15.md)
 

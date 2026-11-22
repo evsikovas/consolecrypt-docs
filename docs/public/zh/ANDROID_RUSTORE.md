@@ -10,8 +10,8 @@
 
 | 选项 | 小蝶队. | 最新情况 |
 |---|---|---|
-| `direct` (中文(简体) ). | `flutter build apk --release --flavor direct --target-platform android-arm64` (中文(简体) ). | 订阅磁带ConsoleCrypt和APK系统安装器 |
-| `rustore` (中文(简体) ). | `flutter build appbundle --release --flavor rustore --target-platform android-arm64` (中文(简体) ). | 仅RuStore |
+| `direct` | `flutter build apk --release --flavor direct --target-platform android-arm64` | 订阅磁带ConsoleCrypt和APK系统安装器 |
+| `rustore` | `flutter build appbundle --release --flavor rustore --target-platform android-arm64` | 仅RuStore |
 
 在`rustore`中,没有决议`REQUEST_INSTALL_PACKAGES`和FileProvider
 内建更新. Android - 安装通道被进一步封锁;
@@ -39,7 +39,7 @@ AAB使用两个永久键:
    PEM证书. 私人下载密钥仍由开发商负责.
 
 在“应用程序签名 – 下载” 部分中,选择`pepk_out.zip`和
-`upload_certificate.pem` (中文(简体) ). 随后,在"Versions"栏目中,下载了署名的AAB.
+`upload_certificate.pem` 随后,在"Versions"栏目中,下载了署名的AAB.
 密码,原始的JKS/PKCS12和文件`*-signing.properties`不下载到控制台.
 
 私人密钥和密码必须存储在单独的受保护备份中.
@@ -70,7 +70,7 @@ APK是应用程序密钥 。
 
 脚本`client/scripts/build-android-rustore.sh`使用两个变量.
 此类文件的路径:`CC_ANDROID_APP_SIGNING_PROPERTIES`和
-`CC_ANDROID_UPLOAD_SIGNING_PROPERTIES` (中文(简体) ). 他用一个号码创建了AAB和APK.
+`CC_ANDROID_UPLOAD_SIGNING_PROPERTIES` 他用一个号码创建了AAB和APK.
 新文件夹`dist/android/rustore-<version>/`中的版本,不出版。
 需要通常的Android/Rust项目环境,`ANDROID_HOME`,`JAVA_HOME`
 和独有的`CC_BUILD_NUMBER`,超过之前的Android下载.
@@ -83,10 +83,8 @@ APK/AAB试验文物`android-rustore`. 从1.1.0开始,没有它,这是常见的.
 Android - 集会,但使用不同的更新和签名通道.
 
 对于单独的检查,工作流程可以从分支`main`手动启动,指定
-`build_number` (中文(简体) ). 原生代码是从源代码中收集的. 一般工作岗位
-APK/AAB QQGitHub QQ; QQRuStore 工作流程 QQ
-将文件发送到商店 。 下载版本并发送到节制中
-cRuStore 装有已经注册的签名密钥的控制台。
+`build_number` 原生代码是从源代码中收集的. 所有平台构建成功后，发布任务会将 APK 和 AAB 附加到 GitHub Release。
+要上架 RuStore，请在 RuStore 控制台使用已注册的签名密钥上传版本并提交审核。
 
 必需的仓库密钥 :
 
@@ -98,7 +96,7 @@ cRuStore 装有已经注册的签名密钥的控制台。
 默认可选`ANDROID_APP_KEY_ALIAS`和`ANDROID_UPLOAD_KEY_ALIAS`
 等值 `consolecrypt-app` 和 `consolecrypt-upload` 。 如果密钥密码不同
 从存储密码中指定`ANDROID_APP_KEY_PASSWORD`和
-`ANDROID_UPLOAD_KEY_PASSWORD` (中文(简体) ). 使用相同的运行标签和变量
+`ANDROID_UPLOAD_KEY_PASSWORD` 使用相同的运行标签和变量
 `ANDROID_HOME`/`JAVA_HOME`,现存Android-组装.
 
 密钥被部署到一个私人临时文件夹中;在文件夹任务完成后
@@ -124,4 +122,4 @@ ARM64有效载荷、许可证和ELF与16 KB页的兼容性。
 > 是通过RuStore进行的。 组装用生产键签名,调试模式禁用.
 
 正式指示:[загрузка AAB](https://www.rustore.ru/help/developers/publishing-and-verifying-apps/app-publication/new-version-app/upload-aab)
-[подписи APK/AAB](https://www.rustore.ru/help/developers/publishing-and-verifying-apps/app-publication/apk-signature) (中文(简体) ).
+[подписи APK/AAB](https://www.rustore.ru/help/developers/publishing-and-verifying-apps/app-publication/apk-signature)

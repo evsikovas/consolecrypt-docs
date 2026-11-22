@@ -67,7 +67,7 @@ xcrun simctl launch booted io.consolecrypt.consolecrypt
 
 在[релизе v0.5.6](https://github.com/evsikovas/consolecrypt-client/releases/tag/v0.5.6)
 下载[полный Simulator ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/ConsoleCrypt-0.5.6%2B23015-ios-simulator-universal.zip)
-和 [SHA256SUMS-0.5.6.txt](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/SHA256SUMS-0.5.6.txt) (中文(简体) ).
+和 [SHA256SUMS-0.5.6.txt](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/SHA256SUMS-0.5.6.txt)
 将这两个文件保存在一个文件夹中 。 ZIP全文出版;合并部分
 已无所须. 组装 -**0.5.6+23015**,大小 -**154 939 478字节**.
 
@@ -80,7 +80,7 @@ awk '$2 == "ConsoleCrypt-0.5.6+23015-ios-simulator-universal.zip" { print; n++ }
 ```
 
 只有在结果`OK`出来之后才能继续(预期SHA-256):
-`6394d2c15d6fd28ab58e1b28638dd75bb751dc3e487212ee90e44b001f5b1264` (中文(简体) ).
+`6394d2c15d6fd28ab58e1b28638dd75bb751dc3e487212ee90e44b001f5b1264`
 
 ```sh
 unzip ConsoleCrypt-0.5.6+23015-ios-simulator-universal.zip
@@ -101,7 +101,7 @@ flutter test integration_test/ios_core_test.dart -d <SIMULATOR_UDID> \
 ```
 
 在这样的本土测试构建之前, 还要从根部保留一个数字 :
-`python3 client/scripts/bump-version.py` (中文(简体) ). 检查使用单独的
+`python3 client/scripts/bump-version.py` 检查使用单独的
 私人测试存储,不需要来自公共服务器的证书.
 
 ## GitHub行动和iOS模拟器
@@ -114,10 +114,10 @@ flutter test integration_test/ios_core_test.dart -d <SIMULATOR_UDID> \
 保存期为30天. 在成功验证所有工作平台后`publish`
 版本收据经过核实,七个包会自动发布.
 校验和于GitHub发布. 推线本身释放不运行。
-[Раннеры и номера сборок](GITHUB_ACTIONS.md) (中文(简体) ).
+[Раннеры и номера сборок](GITHUB_ACTIONS.md)
 
 2026年10月20日(UTC)收集的经核实的一期**0.5.6+23015**:
-[iOS job](https://github.com/evsikovas/consolecrypt-client/actions/runs/39377995191/job/118489659918) (中文(简体) ).
+[iOS job](https://github.com/evsikovas/consolecrypt-client/actions/runs/39377995191/job/118489659918)
 成功完成; 日志确认安装和发射
 `io.consolecrypt.consolecrypt` 带PID.
 
@@ -133,14 +133,14 @@ flutter test integration_test/ios_core_test.dart -d <SIMULATOR_UDID> \
 
 在之前的GitLab CI中,从0.3开始,完整的模拟器ZIP被保存在Mac上.
 运行** 退出** :
-`$HOME/.cache/consolecrypt/ios-preview/<полный source SHA>/<job ID>/` (中文(简体) ).
+`$HOME/.cache/consolecrypt/ios-preview/<полный source SHA>/<job ID>/`
 该目录有权利`0700`和ZIP`0600`. 源头的下一次清理不会移除
 此档案. 保存本地捆绑的身份证/工作身份证、CRC和SHA-256
 这不是在iPhone上对应用程序进行单独检查。
 
 历史的**GitLab CI文物**只包含三个小档案:
-`ConsoleCrypt-ios-preview.json`, `SHA256SUMS-ios-preview.txt` 和 (中文(简体) ).
-`README-ios-preview.txt` (中文(简体) ). 它没有应用程序。 从店主那里拿一个完整的ZIP
+`ConsoleCrypt-ios-preview.json`, `SHA256SUMS-ios-preview.txt` 和
+`README-ios-preview.txt` 它没有应用程序。 从店主那里拿一个完整的ZIP
 麦克跑车在拆包前先从收据中检查SHA-256. 如果工作结束了
 保存后的错误,收件并不意味着发射验证成功.
 
@@ -208,7 +208,7 @@ client/scripts/build-ios.sh --device
 
 签名和发行提供规则由苹果公司定义:
 ([настройка iOS в Flutter](https://docs.flutter.dev/platform-integration/ios/setup)号),,
-[Apple Developer account](https://developer.apple.com/help/account/basics/about-your-developer-account) (中文(简体) ).
+[Apple Developer account](https://developer.apple.com/help/account/basics/about-your-developer-account)
 TestFlight/App Store 需要一个苹果程序; 模拟器
 不确认是否愿意在商店中发表。
 
@@ -233,9 +233,8 @@ Build:产品ZIP由下一跑`--build-only`创建.
 SSH / SFTP - 以上运行. 视觉接受、 RDP 工作及真实设备
 这次发射没有经过测试.
 
-在之前的验收中,Rust的地基也被通过编译来检查,以进行物理的校验.
-ARM64 iPhone. (原始内容存档于2017-04-04). 在模拟器中完成以上运行,不确认
-在真电话上安装或操作.
+此前的验收还检查了 Rust 核心能否为 ARM64 iPhone 编译。上述完整测试在模拟器中进行；
+真机安装和运行需单独验证。
 
 在物理设备上,你仍然需要检查 Face ID/触摸 ID,锁定
 设备,屏幕终端键盘,SSH/SFTP,通过Wi-Fi和移动网络,

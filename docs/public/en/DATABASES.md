@@ -439,21 +439,19 @@ This is shown as subdued `[NULL]`.
 
 The result is a toolbar:
 
-- Update (F5, щийR/Ctrl+R) re-performs the last reading request
-  tabs after a new check; the menu next to it includes auto-update (off,
-  5 s, 10 s, 30 s, 1 min, 5 min. Auto-Update only works for
-  Reading requests (including on the sale) and skipping the bar while there is
-  unsaved changes, the request is still executed or the window is hidden.
-- Save (сS/Ctrl+S) applies unsaved changes to the menu.
-  "Show SQL"; "Cancel Changes" (сZ/Ctrl+Alt+Z) resets them.
-- Lines: "Edit the current line" ( открывает, opens the form "Record"),
-  "Add a string" (уN / Ctrl + Alt + N), "Duplicate a string" (уD / Ctrl + D),
-  “Delete a line” (у/Ctrl+Delete; with highlighting – all selected lines).
-- Transition: first (ду^/Ctrl+Home), previous (ду^/Alt+^), next
-  (ке↓/Alt+↓) and last (ке↓/Ctrl+End) line; current line in grid
-  They also move the arrows ↑/↓.
-- “Data export...” (уE/Ctrl+Shift+E), “Data import...” (CSV in the table).
-  results, see below).
+- **Refresh** (F5, ⌘R / Ctrl+R) runs the tab's last read query again after a
+  fresh review; its menu turns on auto-refresh (off, 5 s, 10 s, 30 s, 1 min,
+  5 min). Auto-refresh only repeats read queries (production included) and
+  skips a beat while changes are pending, a query runs or the window is hidden.
+- **Save** (⌘S / Ctrl+S) applies the pending changes; its menu has **Show
+  SQL**. **Discard changes** (⌥⌘Z / Ctrl+Alt+Z) drops them.
+- Rows: **Edit the current row** (⇧↵, opens the Record view), **Add a row**
+  (⌥⌘N / Ctrl+Alt+N), **Duplicate the row** (⌘D / Ctrl+D) and **Delete the
+  row** (⌘⌫ / Ctrl+Delete; every selected row when there is a selection).
+- Navigation: first (⌘↑ / Ctrl+Home), previous (⌥↑ / Alt+↑), next (⌥↓ /
+  Alt+↓) and last (⌘↓ / Ctrl+End) row; ↑/↓ also move the current row in the grid.
+- **Export data…** (⇧⌘E / Ctrl+Shift+E) and **Import data…** (CSV into the
+  result's table, see below).
 - The gear and the "String at a time" field specify the size of the next portion (1-1000,
   remember to connect; “Download the next portion” and “Download”
   All lines" (within the memory limit of the result).

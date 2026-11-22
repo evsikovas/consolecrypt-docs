@@ -22,10 +22,9 @@ Linux - 版本用于**x86-64**和图形桌面.
 
 ## RDP 的系统文件夹选择
 
-从 0.3 版本开始,选择本地文件夹使用 D- Bus 中的 QQDG 桌面门户**
-您的图形会话。 DEB/RPM包需要服务`xdg-desktop-portal`.
+从 0.3 版起，本地文件夹选择器通过图形会话的 D-Bus 使用 **XDG Desktop Portal**。 DEB/RPM包需要服务`xdg-desktop-portal`.
 对话本身由一个单独的提供者提供** FileChooser**
-桌面 : `xdg-desktop-portal-gnome` GNOME, (中文(简体) ).
+桌面 : `xdg-desktop-portal-gnome` GNOME,
 `xdg-desktop-portal-kde` 用于 KDE Plasma 或 `xdg-desktop-portal-gtk` 用于环境
 GTK(英语:GTK). 提供者通常是桌面的一部分. 如果他没有,
 通过`apt`或`dnf`安装适当的软件包,并重新进入图形
@@ -72,7 +71,7 @@ Linux和SHA-256,询问管理员密码`pkexec`,然后通过
 `apt-get`, `dnf`, `zypper`或 `rpm`;新版本以按钮打开
 "重置"[UPDATES.md](UPDATES.md) 0.9.14,并抄本无.
 `pkexec`手动更新:下载新软件包并重复命令
-`apt install`或 `dnf install` (中文(简体) ). 安装的版本包含组装号,
+`apt install`或 `dnf install` 安装的版本包含组装号,
 因此,包管理器区分了一次发行的重新组装.
 
 ```sh
@@ -137,8 +136,8 @@ c[GitHub Actions](GITHUB_ACTIONS.md)在单独的Linuxx64上使用Docker
 
 | 档案。 | 大小, 字节 | SHA-256 (英语). |
 | --- | ---: | --- |
-| [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/ConsoleCrypt-0.5.6%2B23013-linux-x64.deb) (中文(简体) ). | 26 693 850 | `c484f2b38832351f729ce8d15493004e4e6cd6613f330f09cab6ac21e0adf51a` (中文(简体) ). |
-| [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/ConsoleCrypt-0.5.6%2B23013-linux-x64.rpm) (中文(简体) ). | 36 027 657 | `8066884c2940ea7efc1a6074365dc9a2355211b44e9a4922348c164cf63e5eb0` (中文(简体) ). |
+| [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/ConsoleCrypt-0.5.6%2B23013-linux-x64.deb) | 26 693 850 | `c484f2b38832351f729ce8d15493004e4e6cd6613f330f09cab6ac21e0adf51a` |
+| [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v0.5.6/ConsoleCrypt-0.5.6%2B23013-linux-x64.rpm) | 36 027 657 | `8066884c2940ea7efc1a6074365dc9a2355211b44e9a4922348c164cf63e5eb0` |
 
 土著融合是在单独的测试集会中进行的。 DEB/RPM准备就绪
 未通过已安装接口的视觉接受。 这跑步。

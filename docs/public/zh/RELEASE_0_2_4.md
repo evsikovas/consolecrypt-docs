@@ -5,7 +5,8 @@
 ** NativeSSH已更正为输入西里尔语;搜索范围已扩大,主机和组合并为一节。**
 
 - ** Cyrilic:**复制并更正了与Bash/Readline在真实SSH中将首个"p"转换为`:�`的会话. 终端请求对字符进行UTF-8,并正确删除整个字符;英语输入继续工作. 语言设置和服务器编号/日期格式被保存. 更新后,开设新会话SSH.
-- ** 搜索:** 占用顶板的整个自由宽度。 主机名称或IP,片段和AI查询以单行形式提供;回合QQ打开新连接,绿点和**Sinh.**显示成功同步.
+- **搜索。** 搜索框使用顶部栏的全部可用宽度。可在同一栏输入主机名、IP、代码片段或 AI 问题。
+  圆形 **+** 按钮用于新建连接，绿色圆点和同步状态表示已成功同步。
 - **主机:**从左菜单中删除了单独的"Group"项目. 创建,巢组,和一般设置在**Hosts**;旧组链接工作.
 - ** 指南:** 72个新的俄语和英语截图,来自当前演示数据的界面。
 
@@ -15,7 +16,7 @@
 
 | 平台 | 版本(简体中文). | 软件包 |
 |---|---|---|
-| Windows 10/11 x64 (中文(简体) ). | **0.2.4+1332** | EXE和便携式ZIP |
+| Windows 10/11 x64 | **0.2.4+1332** | EXE和便携式ZIP |
 | macOS 英特尔/阿普尔硅 | **0.2.4+1333** | 通用DMG( 通用DMG) |
 | Android ARM64号卫星 | **0.2.4+71** | APK 地图 |
 | iOS 模拟器 Intel / Apple 硅 | **0.2.4+72** | ZIP部件`.001`/`.002` |
@@ -34,7 +35,7 @@ shasum -a 256 ConsoleCrypt-0.2.4+72-ios-simulator-universal.zip
 unzip ConsoleCrypt-0.2.4+72-ios-simulator-universal.zip -d consolecrypt-ios
 ```
 
-[Запуск iOS Simulator](https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/BUILD_IOS.md) (中文(简体) ). 此软件包没有安装在物理 iPhone 上 。
+[Запуск iOS Simulator](https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/BUILD_IOS.md) 此软件包没有安装在物理 iPhone 上 。
 
 ## 检查和边界
 

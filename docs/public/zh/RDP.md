@@ -14,9 +14,7 @@ SSH - 密钥和跳转主机不适用于RDP.
 
 Windows 需要启用和允许访问的标准 RDP 服务器
 账户。 无需在服务器上安装IronRDP扩展.
-连接直接来自您的设备;同步服务器不传输
-(原始内容存档于2018-09-21). RDP交通. 在进入证书之前,确认地址和SHA-256指纹.
-向管理员检查证书 。
+RDP 流量直接从您的设备发出，不经过同步服务器。输入凭据前，请向管理员核实地址和证书的 SHA-256 指纹。
 
 要连接,请按下区域中的中心按钮**Remote桌面**
 或标签旁边的“+”并选择已保存的 RDP主机。 常规“ +” 按钮
@@ -97,7 +95,7 @@ It会终. 在iOS小组中选择** Curse会话**。
 桌面,但不是会话:解锁标签后继续工作.
 会话随着配置和退出的改变而关闭.
 
-[Снимки мобильного управления](https://consolecrypt.dev/guide?lang=ru#rdp-mobile) (中文(简体) ).
+[Снимки мобильного управления](https://consolecrypt.dev/guide?lang=ru#rdp-mobile)
 他们显示真正的部件一个合成桌面。 系统键盘
 在这些图片中,这个区域被留在它下面. iOS.
 就像Mac上的模拟器的档案 无法重定向电话上的文件夹 。
@@ -157,7 +155,7 @@ Ctrl+V与最远程缓冲器Windows合作,不读本地缓冲器.
 
 在Linux中,对话框需要`xdg-desktop-portal`和您的文件选择提供者.
 当前 D- Bus会话中的桌面 。 环境描述如下:
-[инструкции Linux](../BUILD_LINUX.md#системный-выбор-папки-для-rdp) (中文(简体) ).
+[инструкции Linux](../BUILD_LINUX.md#системный-выбор-папки-для-rdp)
 
 该文件夹也可作为重定向文件夹出现在“这个计算机”部分。
 盘ConsoleCrypt. 客户端只提供** 选中的文件夹**, 包括:
@@ -182,5 +180,5 @@ Ctrl+V与最远程缓冲器Windows合作,不读本地缓冲器.
 连接关闭, 临时访问终止 。 政策Windows - 服务器
 它可能禁止剪贴板或重定向磁盘.
 
-[Иллюстрированное руководство RU](https://consolecrypt.dev/guide?lang=ru#rdp) (中文(简体) ).
-[English guide](https://consolecrypt.dev/guide?lang=en#rdp) (中文(简体) ).
+[Иллюстрированное руководство RU](https://consolecrypt.dev/guide?lang=ru#rdp)
+[English guide](https://consolecrypt.dev/guide?lang=en#rdp)

@@ -21,19 +21,19 @@
 用户需要客户端0.9.0或更高.
 
 内容:[как это работает](#как-это-работает)
-[что нужно серверу](#что-нужно-серверу-от-idp) (中文(简体) ).
-[конфигурация](#конфигурация) (中文(简体) ).
-[рецепты IdP](#рецепты-oidc) (中文(简体) ).
-[Active Directory](#active-directory-и-ldap) (中文(简体) ).
-[первый вход и привязка](#первый-вход-и-привязка-аккаунтов) (中文(简体) ).
-[команды](#проверка-при-старте-и-команды-администратора) (中文(简体) ).
-[развёртывание](#развёртывание) (中文(简体) ).
-[ошибки](#диагностика-ошибок) (中文(简体) ).
-[возврат в standard](#возврат-в-режим-standard) (中文(简体) ).
-[English](#english) (中文(简体) ).
+[что нужно серверу](#что-нужно-серверу-от-idp)
+[конфигурация](#конфигурация)
+[рецепты IdP](#рецепты-oidc)
+[Active Directory](#active-directory-и-ldap)
+[первый вход и привязка](#первый-вход-и-привязка-аккаунтов)
+[команды](#проверка-при-старте-и-команды-администратора)
+[развёртывание](#развёртывание)
+[ошибки](#диагностика-ошибок)
+[возврат в standard](#возврат-в-режим-standard)
+[English](#english)
 
 包含 Helm 路径和检查的所有密钥的完整目录
-[CONFIGURATION.md](../CONFIGURATION.md#enterprise-вход-cc_auth_-cc_oidc_-cc_ldap_) (中文(简体) ).
+[CONFIGURATION.md](../CONFIGURATION.md#enterprise-вход-cc_auth_-cc_oidc_-cc_ldap_)
 
 ## 什么不变:加密
 
@@ -54,9 +54,9 @@
 两个站点的服务器PKCE(S256):
 
 1. 应用程序打开系统浏览器
-   `GET /v1/auth/oidc/start?redirect_uri&code_challenge&state&device_id&login_hint` (中文(简体) ).
+   `GET /v1/auth/oidc/start?redirect_uri&code_challenge&state&device_id&login_hint`
 2. 服务器记得输入时间为10分钟,并用自己的`state`重定向到IDP. .
-   `nonce`和PKCE. (中文(简体) ).
+   `nonce`和PKCE.
 3. IdP 返回浏览器到 `https://<сервер>/v1/auth/oidc/callback`. server
    交换码,检查身份证(通过JWKS准确签署RS256/PS256/ES/256/ES/256).
    `iss`,`aud`,`azp`,`exp`,`iat`,`nonce`,容忍小时60秒),域名,
@@ -66,7 +66,7 @@
 
 允许返回应用程序地址:`http://127.0.0.1:{порт}/auth/callback`
 `http://[::1]:{порт}/auth/callback`(桌面)和`consolecrypt://auth/callback`
-Android, iOS (中文(简体) ). 我们其余的人正在拒绝。 因特网登记员登记册**仅**** 地址。
+Android, iOS 我们其余的人正在拒绝。 因特网登记员登记册**仅**** 地址。
 服务器 `/v1/auth/oidc/callback`, 不需要 IDP 中的应用程序地址 。
 
 ** LDAP/AD.** 应用程序发送一个登录(电子邮件、UPN或`DOMAIN\user`)和一个密码。
@@ -96,15 +96,15 @@ AD(搜索由`objectGUID`),用户能否工作. 试曰.
 
 | 什麽? | 意为. | 密钥 |
 |---|---|---|
-| 服务器的公开地址 | `https://sync.acme.com`(在客户端输入的,没有`/v1`). | `CC_PUBLIC_URL` (中文(简体) ). |
+| 服务器的公开地址 | `https://sync.acme.com`(在客户端输入的,没有`/v1`). | `CC_PUBLIC_URL` |
 | 在 IDP 中重定向 URI | `https://sync.acme.com/v1/auth/oidc/callback`—按文号`CC_PUBLIC_URL`+`/v1/auth/oidc/callback`,客户端类型"Web"/ 机密 | — |
-| 发行人 | 完全如`https://<issuer>/.well-known/openid-configuration`(外地`issuer`),有或没有完成`/`——如IdP) | `CC_OIDC_ISSUER` (中文(简体) ). |
-| 客户身份 | 已注册应用程序的标识符 | `CC_OIDC_CLIENT_ID` (中文(简体) ). |
-| 秘密客户端 | 机密文件; 认证 `client_secret_basic` 或 `client_secret_post` | `CC_OIDC_CLIENT_SECRET_FILE`, `CC_OIDC_TOKEN_AUTH_METHOD` (中文(简体) ). |
-| 密钥加密刷新令牌 | 32 随机字节文件 `openssl rand -hex 32` | `CC_OIDC_TOKEN_KEY_FILE` (中文(简体) ). |
+| 发行人 | 完全如`https://<issuer>/.well-known/openid-configuration`(外地`issuer`),有或没有完成`/`——如IdP) | `CC_OIDC_ISSUER` |
+| 客户身份 | 已注册应用程序的标识符 | `CC_OIDC_CLIENT_ID` |
+| 秘密客户端 | 机密文件; 认证 `client_secret_basic` 或 `client_secret_post` | `CC_OIDC_CLIENT_SECRET_FILE`, `CC_OIDC_TOKEN_AUTH_METHOD` |
+| 密钥加密刷新令牌 | 32 随机字节文件 `openssl rand -hex 32` | `CC_OIDC_TOKEN_KEY_FILE` |
 | 补助金类型 | 使用 PKCE S256 的授权代码和刷新托肯 | — |
-| 范围 | `openid email profile offline_access` (预科有其自己的含义). | `CC_OIDC_SCOPES` (中文(简体) ). |
-| 以**ID 代号提出的索赔** | `sub`;邮件地址`email`,`preferred_username`或`upn`,用于限制进入`groups`或`roles`,用于外交部`amr`/`acr` | `CC_OIDC_EMAIL_CLAIM`, `CC_OIDC_REQUIRED_CLAIM`, `CC_OIDC_REQUIRE_MFA` (中文(简体) ). |
+| 范围 | `openid email profile offline_access` (预科有其自己的含义). | `CC_OIDC_SCOPES` |
+| 以**ID 代号提出的索赔** | `sub`;邮件地址`email`,`preferred_username`或`upn`,用于限制进入`groups`或`roles`,用于外交部`amr`/`acr` | `CC_OIDC_EMAIL_CLAIM`, `CC_OIDC_REQUIRED_CLAIM`, `CC_OIDC_REQUIRE_MFA` |
 
 IdP要求服务器在启动时检查: 由HTTPS发现
 巧合`issuer`,`authorization_endpoint`,`token_endpoint`和`jwks_uri`
@@ -128,31 +128,31 @@ Docker Compose,赫尔姆和系统化于[HOSTING.md](../HOSTING.md#как-зад�
 
 | 密钥 | 以默认. | 任命 |
 |---|---|---|
-| `CC_AUTH_MODE` (中文(简体) ). | `standard` (中文(简体) ). | `standard` 或 `enterprise` (中文(简体) ). |
-| `CC_AUTH_PROVIDER` (中文(简体) ). | — | `oidc`或`ldap` (仅以企业计) |
-| `CC_AUTH_DISPLAY_NAME` (中文(简体) ). | — | 应用程序中“ Loginthrough...” 按钮的签名, 最多64个字符 |
-| `CC_AUTH_ALLOWED_DOMAINS` (中文(简体) ). | - (任何东西) | 通过逗号可接受电子邮件域; 自动链接现有账户的要求 |
-| `CC_AUTH_AUTO_CREATE` (中文(简体) ). | `true` (中文(简体) ). | 第一个登录时创建账户 |
-| `CC_AUTH_RECHECK_MINUTES` (中文(简体) ). | `15` | 重新检查用户的次数(1-1440次) |
-| `CC_AUTH_RECHECK_GRACE_HOURS` (中文(简体) ). | `24` | 有多少会话与无法使用的 IDP/AD( 0 - 720) |
-| `CC_PUBLIC_URL` (中文(简体) ). | — | OIDC强制地址`https://…`: IdP返回地址 |
+| `CC_AUTH_MODE` | `standard` | `standard` 或 `enterprise` |
+| `CC_AUTH_PROVIDER` | — | `oidc`或`ldap` (仅以企业计) |
+| `CC_AUTH_DISPLAY_NAME` | — | 应用程序中“ Loginthrough...” 按钮的签名, 最多64个字符 |
+| `CC_AUTH_ALLOWED_DOMAINS` | - (任何东西) | 通过逗号可接受电子邮件域; 自动链接现有账户的要求 |
+| `CC_AUTH_AUTO_CREATE` | `true` | 第一个登录时创建账户 |
+| `CC_AUTH_RECHECK_MINUTES` | `15` | 重新检查用户的次数(1-1440次) |
+| `CC_AUTH_RECHECK_GRACE_HOURS` | `24` | 有多少会话与无法使用的 IDP/AD( 0 - 720) |
+| `CC_PUBLIC_URL` | — | OIDC强制地址`https://…`: IdP返回地址 |
 
 ### 奥伊德科组织(OIDC)
 
 | 密钥 | 任命 |
 |---|---|
-| `CC_OIDC_PRESET` (中文(简体) ). | `generic`, `entra`, `adfs`, `keycloak`, `google`, `okta` (中文(简体) ). |
-| `CC_OIDC_ISSUER` (中文(简体) ). | 准确的发行者(如果 IDP不写则结尾没有额外`/` ) |
-| `CC_OIDC_CLIENT_ID` (中文(简体) ). | IDP 中的应用程序标识符 |
-| `CC_OIDC_CLIENT_SECRET_FILE` (中文(简体) ). | 客户机密 |
-| `CC_OIDC_TOKEN_KEY_FILE` (中文(简体) ). | 带有32字节加密密钥刷新令牌 IDP `openssl rand -hex 32` 的文件 |
-| `CC_OIDC_SCOPES` (中文(简体) ). | 默认 `openid email profile offline_access`(adfs:`openid email profile allatclaims`,google:`openid email profile`) |
-| `CC_OIDC_EMAIL_CLAIM` (中文(简体) ). | 默认`email`( 二次: `preferred_username`, adfs:`upn` |
-| `CC_OIDC_REQUIRED_CLAIM` (中文(简体) ). | `claim=значение` :只使用此组/ 作用,例如 `groups=<object-id>` ;一个匹配元素足够一个数组 。 |
-| `CC_OIDC_REQUIRE_MFA` (中文(简体) ). | `true`:需求`mfa`(或`http://schemas.microsoft.com/claims/multipleauthn`)在`amr`或`CC_OIDC_MFA_ACR_VALUES`之一在`acr`. |
-| `CC_OIDC_MFA_ACR_VALUES` (中文(简体) ). | 数值`acr`,被视为多要素值 |
-| `CC_OIDC_TOKEN_AUTH_METHOD` (中文(简体) ). | `client_secret_basic`(违约)或`client_secret_post` |
-| `CC_OIDC_CA_FILE` (中文(简体) ). | 额外的 IDP 根证书( 内部 CA) |
+| `CC_OIDC_PRESET` | `generic`, `entra`, `adfs`, `keycloak`, `google`, `okta` |
+| `CC_OIDC_ISSUER` | 准确的发行者(如果 IDP不写则结尾没有额外`/` ) |
+| `CC_OIDC_CLIENT_ID` | IDP 中的应用程序标识符 |
+| `CC_OIDC_CLIENT_SECRET_FILE` | 客户机密 |
+| `CC_OIDC_TOKEN_KEY_FILE` | 带有32字节加密密钥刷新令牌 IDP `openssl rand -hex 32` 的文件 |
+| `CC_OIDC_SCOPES` | 默认 `openid email profile offline_access`(adfs:`openid email profile allatclaims`,google:`openid email profile`) |
+| `CC_OIDC_EMAIL_CLAIM` | 默认`email`( 二次: `preferred_username`, adfs:`upn` |
+| `CC_OIDC_REQUIRED_CLAIM` | `claim=значение` :只使用此组/ 作用,例如 `groups=<object-id>` ;一个匹配元素足够一个数组 。 |
+| `CC_OIDC_REQUIRE_MFA` | `true`:需求`mfa`(或`http://schemas.microsoft.com/claims/multipleauthn`)在`amr`或`CC_OIDC_MFA_ACR_VALUES`之一在`acr`. |
+| `CC_OIDC_MFA_ACR_VALUES` | 数值`acr`,被视为多要素值 |
+| `CC_OIDC_TOKEN_AUTH_METHOD` | `client_secret_basic`(违约)或`client_secret_post` |
+| `CC_OIDC_CA_FILE` | 额外的 IDP 根证书( 内部 CA) |
 
 预设替换默认值并检查起始时的典型错误 :
 禁止进入`/common`、`/organizations`和`/consumers`(需要租户身份证)。
@@ -167,20 +167,20 @@ Docker Compose,赫尔姆和系统化于[HOSTING.md](../HOSTING.md#как-зад�
 
 | 密钥 | 以默认. | 任命 |
 |---|---|---|
-| `CC_LDAP_URL` (中文(简体) ). | — | `ldaps://dc1.acme.local:636`; `ldap://` - 仅与`CC_LDAP_STARTTLS=true` |
-| `CC_LDAP_STARTTLS` (中文(简体) ). | `false` (中文(简体) ). | `ldap://`的STARTLS |
-| `CC_LDAP_CA_FILE` (中文(简体) ). | 根号 | 根域证书( PEM) |
-| `CC_LDAP_BIND_DN` (中文(简体) ). | — | 例如服务会计`CN=svc-consolecrypt,OU=Service,DC=acme,DC=local` |
-| `CC_LDAP_BIND_PASSWORD_FILE` (中文(简体) ). | — | 日志文件 |
-| `CC_LDAP_BASE_DN` (中文(简体) ). | — | 例如,何处搜索用户`DC=acme,DC=local` |
-| `CC_LDAP_USER_FILTER` (中文(简体) ). | `(和(对象分类=用户)\)|(邮件={login}(用户主名={login}(sAMAccountName={login})) | 搜索; RFC 4515 的输入屏蔽 |
-| `CC_LDAP_EMAIL_ATTR` (中文(简体) ). | `mail` (中文(简体) ). | 电子邮件 |
-| `CC_LDAP_ID_ATTR` (中文(简体) ). | `objectGUID` (中文(简体) ). | 稳定身份 |
-| `CC_LDAP_REQUIRED_GROUP` (中文(简体) ). | — | DN组;巢组数`LDAP_MATCHING_RULE_IN_CHAIN` |
-| `CC_LDAP_TIMEOUT_SECS` (中文(简体) ). | `10` | 连接和运行的超时(1-60) |
-| `CC_LDAP_MAX_FAILURES` (中文(简体) ). | `3` | 尝试登录和在窗口外使用自动启动( 1 - 100, 见下文) |
-| `CC_LDAP_FAILURE_WINDOW_MINUTES` (中文(简体) ). | `15` | 未成功入口柜台的窗口(1-1440) |
-| `CC_LDAP_MAX_FAILURES_PER_IP` (中文(简体) ). | `30` | 每个窗口一个IP的不成功输入( 0 - 不受限制) |
+| `CC_LDAP_URL` | — | `ldaps://dc1.acme.local:636`; `ldap://` - 仅与`CC_LDAP_STARTTLS=true` |
+| `CC_LDAP_STARTTLS` | `false` | `ldap://`的STARTLS |
+| `CC_LDAP_CA_FILE` | 根号 | 根域证书( PEM) |
+| `CC_LDAP_BIND_DN` | — | 例如服务会计`CN=svc-consolecrypt,OU=Service,DC=acme,DC=local` |
+| `CC_LDAP_BIND_PASSWORD_FILE` | — | 日志文件 |
+| `CC_LDAP_BASE_DN` | — | 例如,何处搜索用户`DC=acme,DC=local` |
+| `CC_LDAP_USER_FILTER` | `(和(对象分类=用户)\)|(邮件={login}(用户主名={login}(sAMAccountName={login})) | 搜索; RFC 4515 的输入屏蔽 |
+| `CC_LDAP_EMAIL_ATTR` | `mail` | 电子邮件 |
+| `CC_LDAP_ID_ATTR` | `objectGUID` | 稳定身份 |
+| `CC_LDAP_REQUIRED_GROUP` | — | DN组;巢组数`LDAP_MATCHING_RULE_IN_CHAIN` |
+| `CC_LDAP_TIMEOUT_SECS` | `10` | 连接和运行的超时(1-60) |
+| `CC_LDAP_MAX_FAILURES` | `3` | 尝试登录和在窗口外使用自动启动( 1 - 100, 见下文) |
+| `CC_LDAP_FAILURE_WINDOW_MINUTES` | `15` | 未成功入口柜台的窗口(1-1440) |
+| `CC_LDAP_MAX_FAILURES_PER_IP` | `30` | 每个窗口一个IP的不成功输入( 0 - 不受限制) |
 
 ## OIDC 食谱
 
@@ -219,17 +219,17 @@ CC_OIDC_TOKEN_KEY_FILE=/etc/consolecrypt/secrets/oidc-token-key
 ### 微软 Entra ID
 
 1. Microsoft Entra 行政中心 →**App 注册 →新注册**
-   QQ“ ConsoleCrypt Sync” ,**本组织目录中的账户**
+   输入名称“ConsoleCrypt Sync”，选择**仅此组织目录中的帐户**
    (单一租户),Rediction URI(平台**Web**)
-   `https://sync.acme.com/v1/auth/oidc/callback` (中文(简体) ). 不选择 SPA 平台或
+   `https://sync.acme.com/v1/auth/oidc/callback` 不选择 SPA 平台或
    移动和桌面:服务器是一个保密客户端.
 2. ** 概览**,副本** 申请(客户)ID**
    `CC_OIDC_CLIENT_ID`和** 董事(租户) ID** —— 发行人
-   `https://login.microsoftonline.com/<tenant-id>/v2.0` (中文(简体) ).
+   `https://login.microsoftonline.com/<tenant-id>/v2.0`
 3. ** 证书和机密_客户机密_新客户机密**
    (不是秘密ID) 保存到文件 `oidc-client-secret` . 记得寿终之日.
 4. ** API权限**:微软图表,授权`openid`,`email`,`profile`
-   `offline_access` (中文(简体) ). 按** 行政部门同意** 防止雇员看到
+   `offline_access` 按** 行政部门同意** 防止雇员看到
    请求同意。
 5. ** 默认情况下,插入可选索赔要求* `email`**。
    预设使用`preferred_username`(通常为UPN)作为电子邮件. 如果UPN没有
@@ -271,18 +271,18 @@ Entra 中已禁用的用户无法更新刷新令牌, 服务器
    保密客户)。 复制客户端标识符`CC_OIDC_CLIENT_ID` .
    重新定向URI - `https://sync.acme.com/v1/auth/oidc/callback`.
 2. ** 配置应用程序 证书 – 生成一个共享的秘密**
-   `oidc-client-secret` (中文(简体) ).
+   `oidc-client-secret`
 3. 添加到组**Web API** 并带有标识符 = 客户端 id 服务器, 策略
    access(例如“permit 特定组”)、权限`openid`、`profile`,
-   `email`, `allatclaims` (中文(简体) ).
+   `email`, `allatclaims`
 4. 为网络API发布变换规则:将 LDAP 属性作为索赔发送
    `E-Mail-Addresses → email`, `User-Principal-Name → upn`;对于集体访问 -
    "将集团成员作为债权"(如`group`=`ConsoleCrypt`)
    要求范围`allatclaims`将这些索赔写在身份证上。
 5. 如果 AD FS 证书是由内部 CA 签发的,请将根证书(PEM)放入.
-   c`CC_OIDC_CA_FILE`. (中文(简体) ).
+   c`CC_OIDC_CA_FILE`.
 6. 发行人 - `https://adfs.acme.com/adfs`:检查字段 `issuer` in
-   `https://adfs.acme.com/adfs/.well-known/openid-configuration` (中文(简体) ).
+   `https://adfs.acme.com/adfs/.well-known/openid-configuration`
 
 ```dotenv
 CC_OIDC_PRESET=adfs
@@ -381,9 +381,9 @@ CC_OIDC_REQUIRED_CLAIM=groups=ConsoleCrypt-Users
    用于`CC_OIDC_REQUIRED_CLAIM`的组合。
 3. 发现`<issuer>/.well-known/openid-configuration`可以在服务器上找到.
    HTTPS(内部CA - `CC_OIDC_CA_FILE`),他的`issuer`在象征上等于
-   `CC_OIDC_ISSUER` (中文(简体) ).
+   `CC_OIDC_ISSUER`
 4. 如果IdP不接受 Basic 标题中的秘密,请问
-   `CC_OIDC_TOKEN_AUTH_METHOD=client_secret_post` (中文(简体) ).
+   `CC_OIDC_TOKEN_AUTH_METHOD=client_secret_post`
 5. 对外交部来说,请查一下哪些`amr`或`acr`IdP用ID代号写;非标准
    在`CC_OIDC_MFA_ACR_VALUES`中列出数值`acr`。
 
@@ -417,14 +417,14 @@ CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users
    `ldap://`没有TLS,服务器将不接受.
 3. **Search filter**:默认用户位于`mail`.
    `userPrincipalName`或`sAMAccountName`,所以您可以输入电子邮件,UPN或
-   `ACME\alice` (中文(简体) ). 如果搜索找到多个条目,则该条目被拒绝. 属于你的。
+   `ACME\alice` 如果搜索找到多个条目,则该条目被拒绝. 属于你的。
    过滤器必须包含`{login}`.
 4. ** 准入团体,例如`CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local`;
    附录组通过AD规则`LDAP_MATCHING_RULE_IN_CHAIN`进行核算。
    会员资格在入口处和每次重新检查时检查。
 5. ** 稳定标识** - `objectGUID`:更改电子邮件、UPN,或
    账户的重命名不会打破约束. `admin identity link`,带他去。
-   所以: `(Get-ADUser alice).ObjectGUID` (中文(简体) ). 已断开账户`userAccountControl`
+   所以: `(Get-ADUser alice).ObjectGUID` 已断开账户`userAccountControl`
    与旗帜`ACCOUNTDISABLE`在重新检查时不输入或丢失会话 。
 6. ** 启动模式前搜索**(请求密码,不是)
    以论据转达:
@@ -478,7 +478,7 @@ CC_LDAP_FAILURE_WINDOW_MINUTES=30
 > `CC_LDAP_FAILURE_WINDOW_MINUTES` -不小于锁柜台的窗口重置
 >(之后重置账户锁定计数器). 否则,仍然可以登录到服务器中.
 > 屏蔽记录. 示例:域阈值 30分钟内5次尝试
->`CC_LDAP_MAX_FAILURES=3`,`CC_LDAP_FAILURE_WINDOW_MINUTES=30` (中文(简体) ).
+>`CC_LDAP_MAX_FAILURES=3`,`CC_LDAP_FAILURE_WINDOW_MINUTES=30`
 
 ## 第一次登录和账户链接
 
@@ -524,7 +524,7 @@ CC_LDAP_FAILURE_WINDOW_MINUTES=30
    他们被附身了.
 4. 打开`CC_AUTH_MODE=enterprise` 并重新启动服务器 。 检查。
    `admin auth status`,`admin auth test`和`"auth": {"mode": "enterprise", …}`,载于
-   `/v1/meta` (中文(简体) ). 支持企业登录的版本更新应用程序
+   `/v1/meta` 支持企业登录的版本更新应用程序
    (客户:0.9.0)
 5. 测试登录您的账户并检查`admin list-users`
    (栏`sign_in`.
@@ -537,7 +537,7 @@ CC_LDAP_FAILURE_WINDOW_MINUTES=30
 - 切换前密码打开的会话不更新
   `enterprise_auth_required`:用户日志一次通过IDP/AD输入.
 - 现有账户按细则链接
-  [выше](#первый-вход-и-привязка-аккаунтов) (中文(简体) ).
+  [выше](#первый-вход-и-привязка-аккаунтов)
 - 设备及账户存储被保存; 已经保存的设备
   ,如同以前一样,以设备密钥的签名输入。
 
@@ -571,20 +571,20 @@ OIDC`admin auth test --login`进行真实的重新检查:如果IDP失败,
 在服务器日志中(和`audit_events`)是书面输入`login`,`metadata.method`=
 `oidc`/`ldap`),账号创建,主播`identity_linked`/`identity_unlinked`,
 有原因的失败`login_failed`,`metadata.reason`: `domain_not_allowed`,
-`email_missing`, `group_required`, `mfa_required`, `account_disabled` (中文(简体) ).
-`not_provisioned`, `linked_to_other_identity`, `link_requires_allowed_domain` (中文(简体) ).
+`email_missing`, `group_required`, `mfa_required`, `account_disabled`
+`not_provisioned`, `linked_to_other_identity`, `link_requires_allowed_domain`
 `email_not_verified`和为不正确的ID令牌 – `iss`, `aud`, `azp`, `exp`.
 `iat`,`nbf`,`nonce`,`sub`,`unknown_kid`,`bad_signature`,`unsupported_alg`.
 `malformed`,通过重新检查对会议进行审查`enterprise_access_revoked`,以及
 管理员。 密码,客户端秘密,令牌和登录代码不落入日志.
 度量衡:`cc_enterprise_logins_total{method,result}`
-`cc_enterprise_rechecks_total{result}`, `cc_ldap_lockout_guard_total{scope}`, (中文(简体) ).
-`cc_oidc_jwks_refetch_total` (中文(简体) ).
+`cc_enterprise_rechecks_total{result}`, `cc_ldap_lockout_guard_total{scope}`,
+`cc_oidc_jwks_refetch_total`
 
 ## 部署
 
 每种安装方法的完整示例 - in
-[HOSTING.md](../HOSTING.md#пример-корпоративный-вход-через-entra-id) (中文(简体) ).
+[HOSTING.md](../HOSTING.md#пример-корпоративный-вход-через-entra-id)
 
 ### 赫尔姆。
 
@@ -621,12 +621,12 @@ kubectl -n consolecrypt create secret generic consolecrypt-ldap \
 仅在`/run/secrets/consolecrypt-auth`中安装的密件
 `defaultMode: 0440`,群舱 - 65532);图本身替代路径`*_FILE`.
 检查强制字段和拒绝字段`ldap://`,没有`starttls: true`和OIDC,没有
-`config.publicUrl` 与 `https://` (中文(简体) ). 其余密钥`scopes`,`emailClaim`
-`requireMfa`, `mfaAcrValues`, `tokenAuthMethod`, `caKey`, `userFilter` (中文(简体) ).
-`emailAttr`, `idAttr`, `timeoutSecs`, `maxFailures`, `failureWindowMinutes` (中文(简体) ).
+`config.publicUrl` 与 `https://` 其余密钥`scopes`,`emailClaim`
+`requireMfa`, `mfaAcrValues`, `tokenAuthMethod`, `caKey`, `userFilter`
+`emailAttr`, `idAttr`, `timeoutSecs`, `maxFailures`, `failureWindowMinutes`
 `maxFailuresPerIp`)在`values.yaml`和[CONFIGURATION.md](CONFIGURATION.md)中描述.
 
-### Docker Compose (中文(简体) ).
+### Docker Compose
 
 主`compose.yaml`从源不改. 设置和秘密
 企业模式保留在旁边安装的** 私有目录中
@@ -634,7 +634,7 @@ kubectl -n consolecrypt create secret generic consolecrypt-ldap \
 复制存储器 。
 
 1. 保存 OIDC 机密( 或 LDAP 和 CA目录服务登录密码)
-   `$CC_INSTALL_DIR/secrets/` (中文(简体) ). 在没有Swarm的情况下将其装为普通文件
+   `$CC_INSTALL_DIR/secrets/` 在没有Swarm的情况下将其装为普通文件
    拥有者和主机权限, 服务器工作为 UID 65532 –make文件
    仅供他阅读:
 
@@ -693,7 +693,7 @@ kubectl -n consolecrypt create secret generic consolecrypt-ldap \
    以命令“ cc_ compine exec- T 服务器/ usr/ local/ bin/ consolecrypt- 服务器配置
    管理认证测试 。 对于 LDAP 而不是 `CC_OIDC_*` 问 `CC_LDAP_*` 和秘密
    `ldap-bind-password``CC_LDAP_BIND_PASSWORD_FILE`,如有必要
-   `ldap-ca.pem` `CC_LDAP_CA_FILE` (中文(简体) ).
+   `ldap-ca.pem` `CC_LDAP_CA_FILE`
 
 对其它所有命令使用相同的函数(Update, `admin`).
 备份:没有第二个`-f` 编译将重新创建标准中的服务器
@@ -710,27 +710,27 @@ kubectl -n consolecrypt create secret generic consolecrypt-ldap \
 | 汝等可见. | 理由。 原因。 。 | 怎么办呢? |
 |---|---|---|
 | 服务器不启动 : `OIDC sign-in requires CC_PUBLIC_URL (https://…)` | 没有`CC_PUBLIC_URL`或不是`https://` | 提供服务器的公开地址;在Helm - `config.publicUrl` |
-| `CC_OIDC_ISSUER: Entra ID multi-tenant endpoints … are not allowed` (中文(简体) ). | 与`/common`,`/organizations`或`/consumers`一起发行者 | `https://login.microsoftonline.com/<tenant-id>/v2.0` (中文(简体) ). |
-| `CC_OIDC_ISSUER: for adfs expected …/adfs`, `for keycloak expected …/realms/<realm>` (中文(简体) ). | 发行者不符合预设 | 复制`issuer`从发现 IDP |
-| `OIDC discovery: issuer mismatch` (中文(简体) ). | `CC_OIDC_ISSUER`与`issuer`在发现中(往往结束`/`)不同. | 象征性地复制该值 |
+| `CC_OIDC_ISSUER: Entra ID multi-tenant endpoints … are not allowed` | 与`/common`,`/organizations`或`/consumers`一起发行者 | `https://login.microsoftonline.com/<tenant-id>/v2.0` |
+| `CC_OIDC_ISSUER: for adfs expected …/adfs`, `for keycloak expected …/realms/<realm>` | 发行者不符合预设 | 复制`issuer`从发现 IDP |
+| `OIDC discovery: issuer mismatch` | `CC_OIDC_ISSUER`与`issuer`在发现中(往往结束`/`)不同. | 象征性地复制该值 |
 | `OIDC discovery at …`:查询或证书错误 | 服务器在HTTPS上没有收到一个IDP,或者不信任它的CA. | 检查 DNS, 出入口和代理; 内部 CA – `CC_OIDC_CA_FILE` |
-| `… none of RS256, PS256, ES256` 或 `does not support PKCE S256` (中文(简体) ). | IdP 标志,有或无 PKCE 的标志 S256 | 为客户启用RS256/ES256和PKCE S256 |
-| `CC_OIDC_CLIENT_SECRET_FILE (…): cannot open the file`/`file is empty` (中文(简体) ). | 不正确的路径, UID 65532没有权限, 空文件 | 检查挂载, `chown 65532:65532`, `chmod 0400`, 内容 |
-| `CC_OIDC_TOKEN_KEY_FILE (…): expected 32 random bytes …` (中文(简体) ). | 不是64十六进制,不是基数64 32字节 | `openssl rand -hex 32 > oidc-token-key` (中文(简体) ). |
-| `CC_OIDC_PRESET=google requires CC_AUTH_ALLOWED_DOMAINS` (中文(简体) ). | Google没有域名列表. | 询问工作空间域 |
+| `… none of RS256, PS256, ES256` 或 `does not support PKCE S256` | IdP 标志,有或无 PKCE 的标志 S256 | 为客户启用RS256/ES256和PKCE S256 |
+| `CC_OIDC_CLIENT_SECRET_FILE (…): cannot open the file`/`file is empty` | 不正确的路径, UID 65532没有权限, 空文件 | 检查挂载, `chown 65532:65532`, `chmod 0400`, 内容 |
+| `CC_OIDC_TOKEN_KEY_FILE (…): expected 32 random bytes …` | 不是64十六进制,不是基数64 32字节 | `openssl rand -hex 32 > oidc-token-key` |
+| `CC_OIDC_PRESET=google requires CC_AUTH_ALLOWED_DOMAINS` | Google没有域名列表. | 询问工作空间域 |
 | IDP 显示重定向 URI 错误 | IdP有一个不同的返回地址. | `CC_PUBLIC_URL`+`/v1/auth/oidc/callback`,网络客户端类型. |
-| `403 domain_not_allowed` `email_missing` (中文(简体) ). | 外部域名`CC_AUTH_ALLOWED_DOMAINS` 或 ID 符号中没有地址 | 检查`CC_OIDC_EMAIL_CLAIM`(Entra:(`email` vs `preferred_username`)),邮件属性,域列表 |
-| `403 group_required` (中文(简体) ). | 没有来自`CC_OIDC_REQUIRED_CLAIM`或集团外用户`CC_LDAP_REQUIRED_GROUP`的索赔 | 将索赔添加到**ID 令牌**, 检查名称( Keycloak: Full group path Off), Entra: 超龄> 200 组 – app 角色 |
-| `403 mfa_required` (中文(简体) ). | IdP没有在`amr`/`acr`报告外交部。 | 在综合规划政策中开启外交部;如果非标准`acr`-`CC_OIDC_MFA_ACR_VALUES`;否则关闭`CC_OIDC_REQUIRE_MFA` |
-| `409 identity_conflict` (中文(简体) ). | 地址属于与另一个账户相连的账户,或域名未列出,或`email_verified=false` | `admin identity link`/`unlink`;在`CC_AUTH_ALLOWED_DOMAINS`中加入域名. |
+| `403 domain_not_allowed` `email_missing` | 外部域名`CC_AUTH_ALLOWED_DOMAINS` 或 ID 符号中没有地址 | 检查`CC_OIDC_EMAIL_CLAIM`(Entra:(`email` vs `preferred_username`)),邮件属性,域列表 |
+| `403 group_required` | 没有来自`CC_OIDC_REQUIRED_CLAIM`或集团外用户`CC_LDAP_REQUIRED_GROUP`的索赔 | 将索赔添加到**ID 令牌**, 检查名称( Keycloak: Full group path Off), Entra: 超龄> 200 组 – app 角色 |
+| `403 mfa_required` | IdP没有在`amr`/`acr`报告外交部。 | 在综合规划政策中开启外交部;如果非标准`acr`-`CC_OIDC_MFA_ACR_VALUES`;否则关闭`CC_OIDC_REQUIRE_MFA` |
+| `409 identity_conflict` | 地址属于与另一个账户相连的账户,或域名未列出,或`email_verified=false` | `admin identity link`/`unlink`;在`CC_AUTH_ALLOWED_DOMAINS`中加入域名. |
 | `403`有原因`not_provisioned` | `CC_AUTH_AUTO_CREATE=false`,无账户. | 创建/链接账户或启用自动创建 |
-| `503 idp_unavailable` (中文(简体) ). | IdP /目录不再可用`CC_AUTH_RECHECK_GRACE_HOURS` | 恢复访问; `admin auth status` 将显示最新的检查 |
+| `503 idp_unavailable` | IdP /目录不再可用`CC_AUTH_RECHECK_GRACE_HOURS` | 恢复访问; `admin auth status` 将显示最新的检查 |
 | 员工已断开,但仍同步 | 尚未检查或刷新代号 IDP | 等待`CC_AUTH_RECHECK_MINUTES`+1分钟; `admin session revoke` ; `admin auth test --login` |
-| `CC_LDAP_URL: plain ldap:// is refused` (中文(简体) ). | `ldap://`无STARTLS | `ldaps://…:636` 或 `CC_LDAP_STARTTLS=true` (中文(简体) ). |
-| `LDAP …: cannot connect (network or TLS certificate problem)` (中文(简体) ). | 网络、 端口、 名称与证书不同, 错误的 CA | 来自证书的 DNS 名称, `CC_LDAP_CA_FILE`, `openssl s_client` |
-| `LDAP TLS: no system root certificates found` (中文(简体) ). | 图像缺少根 | 询问`CC_LDAP_CA_FILE` |
-| `service account bind rejected (check CC_LDAP_BIND_DN and password)` (中文(简体) ). | 不正确的 DN 或服务登录密码, 注册已禁用 | 检查 DN 、 密码文件而不包含不必要的字符、 会计状况 |
-| `LDAP base DN … not found`/`CC_LDAP_REQUIRED_GROUP … not found` (中文(简体) ). | 类型 | 从目录复制 DN |
+| `CC_LDAP_URL: plain ldap:// is refused` | `ldap://`无STARTLS | `ldaps://…:636` 或 `CC_LDAP_STARTTLS=true` |
+| `LDAP …: cannot connect (network or TLS certificate problem)` | 网络、 端口、 名称与证书不同, 错误的 CA | 来自证书的 DNS 名称, `CC_LDAP_CA_FILE`, `openssl s_client` |
+| `LDAP TLS: no system root certificates found` | 图像缺少根 | 询问`CC_LDAP_CA_FILE` |
+| `service account bind rejected (check CC_LDAP_BIND_DN and password)` | 不正确的 DN 或服务登录密码, 注册已禁用 | 检查 DN 、 密码文件而不包含不必要的字符、 会计状况 |
+| `LDAP base DN … not found`/`CC_LDAP_REQUIRED_GROUP … not found` | 类型 | 从目录复制 DN |
 | `401 invalid_credentials` 密码正确 | 账户已禁用、 被屏蔽、 密码过期或搜索找到多个记录 | 检查 AD; 指定`CC_LDAP_USER_FILTER` 账户 |
 | `429 rate_limited`在 LDAP 输入中 | сработала защита от блокировки ( `CC_LDAP_MAX_FAILURES` или `CC_LDAP_MAX_FAILURES_PER_IP` ) | 等待窗口`CC_LDAP_FAILURE_WINDOW_MINUTES`; 检查谁接取密码 |
 
@@ -745,7 +745,7 @@ kubectl -n consolecrypt create secret generic consolecrypt-ldap \
    反切换是一个键的改变.
 2. 链接账户没有密码:用命令设置它
    `admin set-password --email … --password-stdin`(或发布代码)
-   `admin reset-token --email …` (中文(简体) ). 您的账户密码仍未打开 。
+   `admin reset-token --email …` 您的账户密码仍未打开 。
    保险库。
 3. IDP/AD的参考文献得以保留. 当企业号重新启用时,请再次输入
    仅通过 IDP/AD,用户下次登录时密码会被删除.
@@ -753,17 +753,17 @@ kubectl -n consolecrypt create secret generic consolecrypt-ldap \
 
 ## 应用错误(第1.9号议定书)
 
-| 代码。 | HTTP (中文(简体) ). | 何时 |
+| 代码。 | HTTP | 何时 |
 |---|---|---|
-| `enterprise_auth_required` (中文(简体) ). | 403 | 在企业服务器上重新设置登录/注册/密码字;会话没有绑定 |
-| `identity_conflict` (中文(简体) ). | 409 | 电子邮件属于另一个来源的账户或链接需要管理员 |
-| `domain_not_allowed` (中文(简体) ). | 403 | 电子邮件域名不在`CC_AUTH_ALLOWED_DOMAINS`或没有电子邮件账户 |
-| `group_required` (中文(简体) ). | 403 | 无强制性团体/角色/索偿 |
-| `mfa_required` (中文(简体) ). | 403 | IdP没有告诉外交部 |
-| `idp_unavailable` (中文(简体) ). | 503 | 无法使用 IDP 或 AD( 以后重复) |
-| `account_disabled` (中文(简体) ). | 403 | 记录已禁用;所有会话已撤回 |
-| `invalid_credentials` (中文(简体) ). | 401 | 错误的登录/ 密码 AD, 无效的ID符号, 重复或替换`login_code` |
-| `rate_limited` (中文(简体) ). | 429 | 尝试限制(包括AD账户防屏蔽) |
+| `enterprise_auth_required` | 403 | 在企业服务器上重新设置登录/注册/密码字;会话没有绑定 |
+| `identity_conflict` | 409 | 电子邮件属于另一个来源的账户或链接需要管理员 |
+| `domain_not_allowed` | 403 | 电子邮件域名不在`CC_AUTH_ALLOWED_DOMAINS`或没有电子邮件账户 |
+| `group_required` | 403 | 无强制性团体/角色/索偿 |
+| `mfa_required` | 403 | IdP没有告诉外交部 |
+| `idp_unavailable` | 503 | 无法使用 IDP 或 AD( 以后重复) |
+| `account_disabled` | 403 | 记录已禁用;所有会话已撤回 |
+| `invalid_credentials` | 401 | 错误的登录/ 密码 AD, 无效的ID符号, 重复或替换`login_code` |
+| `rate_limited` | 429 | 尝试限制(包括AD账户防屏蔽) |
 
 协议的细节 - 载于[PROTOCOL_CHANGELOG.md](https://github.com/evsikovas/consolecrypt-server/blob/main/PROTOCOL_CHANGELOG.md).
 类型`cc_protocol::enterprise_auth`

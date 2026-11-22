@@ -18,7 +18,7 @@ aK3R5vXwJ9eeqQ1iYah9fzBAIHOeKNejoRdI8weXUYo=
 
 这是一个信任锁定检查,而不是要创建新密钥。 运算符
 必须用已经签名的`stable.json`拖住第一次释放;
-`legacy-stable.json` (中文(简体) ). 出版商拒绝从未署名的发行中推断信任
+`legacy-stable.json` 出版商拒绝从未署名的发行中推断信任
 仅元数据。 保持Git和VPS外的离线签名钥匙备份.
 工作流程没有服务器SSH密钥或Timeweb令牌. 签名密钥已装入
 从环境到内存,从不写到文件、文物、日志或
@@ -45,13 +45,13 @@ aK3R5vXwJ9eeqQ1iYah9fzBAIHOeKNejoRdI8weXUYo=
    Token从未伴随公开下载.
 5. 重新检查为种族发布元数据,然后签一个90天的对并上传
    使用短寿命`GITHUB_TOKEN`作为公共释放资产;
-   `contents: write` (中文(简体) ).
+   `contents: write`
 
 `stable.json`使用 `https://updates.consolecrypt.dev/releases/VERSION/NAME` .
 `legacy-stable.json`使用 `https://updates.consolecrypt.evsikov.net/releases/VERSION/NAME` .
 相同的版本, 构建数字, 字节大小, SHA-256 值和签名身份
 两者都使用。 遗留的终点是最后一份文件。
-`/stable.json` (中文(简体) ). 保持旧的 URL对已安装的客户端来说是必要的 。
+`/stable.json` 保持旧的 URL对已安装的客户端来说是必要的 。
 不要信任GitHub或新域.
 
 ## 服务公共文件
@@ -106,9 +106,8 @@ gh run list --repo evsikovas/consolecrypt-client --workflow update-feeds.yml --l
 ## 俄语。
 
 工作流程** 已签名的更新信息**每天检查发行量。 签名已执行
-只有从`main`到GitHub的代码 - 托管跑者. 原始的私密密钥已存储
-GitHub秘密`UPDATE_SIGNING_KEY`,仅用于记忆,不坠落.
-(原始内容存档于2018-03-21). VPS. 现有客户继续检查之前的公用钥匙.
+GitHub 托管的运行器只执行 `main` 分支上的代码。原有私钥保存在 GitHub Secret
+`UPDATE_SIGNING_KEY` 中，只在内存中使用，不会传到 VPS。现有客户端继续使用原来的公钥验签。
 
 剩余时间不足14天,工作流程对安装者进行重新检查并放行.
 新签配对 任期90天. 发行的发布也触发了核查.
@@ -126,7 +125,7 @@ GitHub秘密`UPDATE_SIGNING_KEY`,仅用于记忆,不坠落.
 
 DEB和RPM包有他们自己签署的文件,`linux-stable.json`.
 清单`linux-x64-deb`和`linux-x64-rpm`
-`https://updates.consolecrypt.dev/releases/VERSION/NAME` URLs (中文(简体) ). 签字人:
+`https://updates.consolecrypt.dev/releases/VERSION/NAME` URLs 签字人:
 单独Ed25519 密钥存储器中**LINUQUPDATE_SIGNING_KEY**; Linux
 客户只嵌入其公共主播 :
 

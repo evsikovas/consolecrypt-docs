@@ -11,7 +11,7 @@
 它与现场结合,承诺`86b8025`;客户端在组装过程中进行修改。
 仅在 pubspec.yaml/app_info.dart 中同步编号. 先说.
 `bash client/scripts/build-macos.sh --no-cli` →**0.1.4+14**,然后
-`bash client/scripts/build-android.sh`—**0.1.4+15** (中文(简体) ). 计数器没有重置.
+`bash client/scripts/build-android.sh`—**0.1.4+15** 计数器没有重置.
 
 - 蝶形 3.47.5 / 达特 3.13.4, Rust 1.98.1,Xcode 27.
 - Android SDK 36,NDK 28.2.13676358,爪哇21.

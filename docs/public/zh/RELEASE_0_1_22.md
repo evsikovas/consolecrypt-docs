@@ -14,15 +14,15 @@ AGPL的全文包含在macOS,Windows,Android和iOS模拟器中.
 
 | 平台 | 软件包 | 已验证版本 |
 |---|---|---|
-| Windows 10/11 x64 (中文(简体) ). | EXE和便携式ZIP | 0.1.22+1244 |
+| Windows 10/11 x64 | EXE和便携式ZIP | 0.1.22+1244 |
 | macOS 苹果硅和英特尔 | 通用DMG( 通用DMG) | 0.1.22+1245 |
 | Android 11+ ARM64 | APK 地图 | 0.1.22+55 |
 | iOSMac上的模拟器 | 通用 ZIP 分为两部分 | 0.1.22+56 |
 
 ## 检查。
 
-- 小蝶:无误分析和**462 PASS测试. Windows/macOS (中文(简体) ).
-  [pipeline185](https://git.evsikov.net/publics/consolecrypt/-/pipelines/185) (中文(简体) ).
+- 小蝶:无误分析和**462 PASS测试. Windows/macOS
+  [pipeline185](https://git.evsikov.net/publics/consolecrypt/-/pipelines/185)
   包装前顺利完成.
 - 普通碎屑箱:**61 PASS试验**。 货物密度许可证可供
   客户端和一般工作空间; AGPL 例外仅限于我们的箱子。
@@ -43,7 +43,7 @@ AGPL的全文包含在macOS,Windows,Android和iOS模拟器中.
 
 ## 下载
 
-[Релиз и контрольные суммы](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.22) (中文(简体) ).
+[Релиз и контрольные суммы](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.22)
 用于iOS模拟器下载两部分,并由[инструкции](BUILD_IOS.md)合并.
 这是用于模拟器的ZIP,而不是用于手机的IPA.
 

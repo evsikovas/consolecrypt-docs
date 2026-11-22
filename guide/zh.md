@@ -382,7 +382,7 @@ Demo设备列表;访问批准是一个单独的步骤.
 
 6. 如果您的组织禁用您的账户, 应用程序会显示“ 管理员禁用访问” 并锁定配置文件 。 设备的数据会保留加密;一旦恢复访问,您可以从设备中删除配置文件,或者再次签名.
 
-[账户、同步和公司注册QQ](../docs/public/zh/SYNC_ACCOUNT.md)
+[账户、同步和企业登录 ↗](../docs/public/zh/SYNC_ACCOUNT.md)
 
 > **注意**
 >
@@ -478,7 +478,7 @@ ConsoleCrypt现在支持RDP连接. 它直接连接到标准的微软RDP服务器
 
 4. 点击“ Full 屏幕”可以使用整个屏幕 。 通过移动到顶端边缘的蓝色指示器或按下Ctrl+Alt+Home,揭示顶端连接栏. 如果需要,请把栏杆扣上。 它允许您切换会话,管理权限,最小化窗口,恢复其先前的大小或者断开当前会话. 逃逸被送往远程计算机.
 
-5. 启用选定会话的文本剪贴板访问 。 活动桌面中的 Ctrl+V (QQV on macOS)现在发送并粘贴本地文本到Windows,而不首先点击“Send”。 由于共享已禁用, Ctrl+V只使用远程Windows 剪贴板 。
+5. 为所选会话开启文本剪贴板共享。在远程桌面中按 Ctrl+V（macOS 为 ⌘V），即可将本地文本发送并粘贴到远程 Windows。关闭共享时，Ctrl+V 只使用远程 Windows 剪贴板。
 
 6. “发送”提供的案文不粘贴,而“接收”则要求Windows提供案文。 仅更改本地剪贴板不会发送任何信息 。 支持最多64 KiB的文本;图像和文件不通过剪贴板传输.
 
@@ -580,11 +580,11 @@ Demo会话权限:文本剪贴板和带有单独写权限的选定文件夹. 未�
 
 1. 在顶端栏中,圆“ +” 按钮打开您保存的SSH 和 RDP主机 。 按名称或地址查找主机并选择连接. 如果尚未保存,请点击“新主机”。 搜索填补了区域标题和“+”按钮之间的可用空间;紧凑的“同步”状态出现在右边。
 
-2. 按QQK在macOS或Ctrl+K在Windows/Linux上. 键入主机名称或IP地址;搜索还匹配其连接标签中显示的地址和用户名.
+2. 在 macOS 上按 ⌘K，在 Windows 或 Linux 上按 Ctrl+K。输入主机名或 IP 地址；也可搜索连接标签中显示的地址和用户名。
 
 3. 看看Hosts集团 连接细节在每个名称下方:在选择前检查地址,用户名和端口.
 
-4. 选择 QQ 和 QQ 的结果,然后按 Enter 键或单击其行 。 该应用程序根据主机类型打开一个SSH终端或RDP会话. 在第一个连接上,验证SSH主机密钥或RDP证书.
+4. 用 ↑ 和 ↓ 选择结果，按 Enter 或点击该行。应用会根据主机类型打开 SSH 终端或 RDP 会话。首次连接时，请核对 SSH 主机密钥或 RDP 证书。
 
 5. Esc关闭调色板. 如果没有找到主机,请在主机中添加并再次搜索.
 
@@ -889,7 +889,7 @@ KDBX欢迎:创建,开放或连接WebDAV.
 
 标签会有一个终端会话SSH,加上macOS和Windows的本地贝壳,或者在分裂成扇形时,最多可以并排四个. 电话有一个特殊的键条;计算机有快捷键和上下文菜单.
 
-1. 在Windows,macOS和Linux上,启用带有终端工具栏按钮或Ctrl+Shift+M / QQM的最小模式. 仅保留终端和顶端或左端标签 。 会话,输出和拆分面板保持完好; Ctrl+K / QQK 打开通常的命令调色板. 退出按钮或相同的快捷键可以恢复接口. 这个模式在电话中缺失.
+1. 在 Windows、macOS 或 Linux 上，点击终端工具栏按钮或按 Ctrl+Shift+M / ⌘⇧M 开启极简模式。屏幕只显示终端和顶部或左侧的标签，现有会话、输出和分屏都会保留。按 Ctrl+K / ⌘K 可打开命令面板。点击退出按钮或再次按相同的快捷键可恢复原界面。手机端没有此模式。
 
 2. AnSSH会话在左上角有一个OpenSFTP按钮. 同样的动作也在标签的右键菜单中,包括不活动标签,并打开该标签的服务器 。 它以最小模式工作,并保持终端会话. 本地终端没有SFTP按钮.
 
@@ -1015,9 +1015,9 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 ## 21. 键盘快捷键
 
-主要修饰词为QQ于macOS和Ctrl于Windows/Linux. 复制到 Windows不使用 Ctrl+C,它会中断一个命令 。 App快捷键可以在设置 → 键盘快捷键中重新映射:选择更改,并按新组合的QQ/Ctrl或Alt. 如果有另一个命令,则该命令失去它;如果系统或终端使用它,则警告你. 恢复默认值会带回下表 。
+macOS 的主要修饰键是 ⌘，Windows 和 Linux 使用 Ctrl。在 Windows 的终端中，Ctrl+C 用于中断命令。要更改应用快捷键，打开“设置 → 键盘快捷键”，选择“更改”，再按下包含 ⌘、Ctrl 或 Alt 的组合键。如果组合键已分配给其他命令，原命令将失去该快捷键；如果系统或终端占用它，应用会给出提示。“恢复默认值”可恢复下表中的设置。
 
-| 行动 | macOS (中文(简体) ). | Windows/Linux (中文(简体) ). |
+| 行动 | macOS | Windows/Linux |
 | --- | --- | --- |
 | 查找主机、 片段或动作 | ⌘K | Ctrl+K |
 | 新建SSH 标签 | ⌘T | Ctrl+T |
@@ -1164,7 +1164,7 @@ Windows - PowerShell, cmd和两个WSL分布在一个macOS中的样式拾取器 -
 
 3. “Starter套件”提供Linux诊断,Docker,Kubernetes和数据库集:SQL →PostgreSQL,SQL → MySQL/MariaDB和SQL → ClickHouse(各20个查询),Redis,MongoDB和SQLite(各15个查询),Cassandra/ScyllaDB(17)——主动和长期查询,锁定,大小,索引,复制和顶级查询. 明确添加集;其命令成为普通的金库对象.
 
-4. 数据库片段也在 psql, mysql, clickhouse-client, redis-cli和mongosh 内部运行,在一个SSH会话中:多行查询作为一个粘贴发送,更改命令需要确认. 在数据库工作空间中,片段按钮(QQJ / Ctrl+J)在编辑器中插入该引擎的片段而不运行.
+4. 在 SSH 会话中的 psql、mysql、clickhouse-client、redis-cli 和 mongosh 中也能使用数据库代码片段。多行查询会一次粘贴，修改数据的命令需要确认。在数据库工作区，点击“代码片段”（⌘J / Ctrl+J）可将当前数据库引擎的片段插入编辑器，随后由您决定是否执行。
 
 5. 编辑命令,将其移动到另一集或删除。 删除一组在确认后删除其片段, 并同步更改; 示例不会自动重现 。
 
@@ -1292,7 +1292,7 @@ Linuxx64:选择并安装本地CPU模型. 下载前合成状态.
 
 3. 用 Markdown 写入文本; 预览标签显示结果 。 添加逗号分隔标记 。 一张纸条的 " ... " 菜单贴上它,打一个小时( " 一小时后重点 " ),将其贴在当前的物体或任何主机上( " 标记到... " ),或切除,并删除。 任务切换器增加了一个适当的时间和一个 Done 标记 。
 
-4. 更改在输入后保存自己一瞬间;保存(QQS / Ctrl+S)同时保存. 以下地位为“保存的”或“未保存的改变”。 如果纸条无法保存,则让编辑们问“不省钱就离开?”
+4. 结束输入后，应用稍候会自动保存。“保存”（⌘S / Ctrl+S）会立即保存。下方显示“已保存”或“有未保存的更改”。如果保存失败，退出编辑器时会询问是否放弃未保存的内容。
 
 5. 在Hosts的一个主机卡显示主机有多少个音符. 在主机的“...”菜单中,带有数字的按钮,或“笔记”,打开其笔记而不连接。 在对象标签上,选择带有搜索图标的主机,或用十字架清除;编辑器的"附着"字段提供"选择主机...".
 
@@ -1382,8 +1382,8 @@ Linuxx64:选择并安装本地CPU模型. 下载前合成状态.
 
 | 服务器限制 | 默认 |
 | --- | --- |
-| 每个账户的小组数 | 50 CC\_MAX\_TEAMS\_PER\_ACCOUNT (中文(简体) ). |
-| 每组成员 | 200 CC\_MAX\_TEAM\_MEMBERS (中文(简体) ). |
+| 每个账户的小组数 | 50 CC\_MAX\_TEAMS\_PER\_ACCOUNT |
+| 每组成员 | 200 CC\_MAX\_TEAM\_MEMBERS |
 | 邀请使用寿命 | 7天时间 |
 | 每个小组的邀请 | 每小时最多20小时 |
 
@@ -1659,7 +1659,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 ## 38. 设置: 在哪里
 
-从侧边栏打开或带有QQ, / Ctrl+, 的设置. 它是一张滚动的卡片页;有些卡片只出现在有该功能的地方. 外观,终端,快捷键和编辑偏好都留在设备上,而金库数据则停留在加密配置中.
+从侧边栏打开设置，或按 ⌘, / Ctrl+,。设置卡片位于同一可滚动页面中，有些设置只出现在支持该功能的平台。外观、终端、快捷键和编辑器偏好保存在本机，保险库数据保存在加密的配置文件中。
 
 | 纸牌 | 它所持有的 |
 | --- | --- |
@@ -1705,7 +1705,7 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 3. 命令要求密码句和其他秘密本身;脚本可以在环境变量CC\_PASSPHRASE中传递,其他则在docs/public/CLI.md中传递. “删除 CLI 命令”只删除创建的内容ConsoleCrypt。
 
-[控制台crypt-cli 命令和旗帜QQ](../docs/public/zh/CLI.md)
+[consolecrypt-cli 命令与参数 ↗](../docs/public/zh/CLI.md)
 
 > **注意**
 >
@@ -1773,10 +1773,10 @@ History标签:签名的添加日志,角色更改,删除和密钥旋转.
 
 | 平台 | 行为 |
 | --- | --- |
-| Android (中文(简体) ). | 在安全环境中启用“ Allow 截图 ” 。 抓取默认被屏蔽; 切换也会影响录制和最近应用预览. |
-| macOS (中文(简体) ). | 允许截图 。 现代macOS并没有为应用程序提供可靠的方式来屏蔽所有截图和录音;没有工作块切换. |
-| iOS (中文(简体) ). | 没有通用的截图块。 应用程序切换器封面在背景时保护预览;物理-iPhone检查仍然分开. |
-| Windows (中文(简体) ). | “设置 – 安全 – 隐藏窗口不被屏幕抓取 ” : 永远不要,尽管秘密被显示(默认)或总是。 在显示密码,密钥或恢复词时,窗口会远离截图,录音和屏幕共享. |
+| Android | 在安全环境中启用“ Allow 截图 ” 。 抓取默认被屏蔽; 切换也会影响录制和最近应用预览. |
+| macOS | 允许截图 。 现代macOS并没有为应用程序提供可靠的方式来屏蔽所有截图和录音;没有工作块切换. |
+| iOS | 没有通用的截图块。 应用程序切换器封面在背景时保护预览;物理-iPhone检查仍然分开. |
+| Windows | “设置 – 安全 – 隐藏窗口不被屏幕抓取 ” : 永远不要,尽管秘密被显示(默认)或总是。 在显示密码,密钥或恢复词时,窗口会远离截图,录音和屏幕共享. |
 
 1. 在同一节中,“ 清除剪贴板” 设定从剪贴板上删除一个复制过的秘密:从30秒( 默认)到1天 。 团队政策只能缩短. 清除程序在应用程序重新启动后也会完成, 并且从不触及您稍后在其它应用程序中复制的东西 。
 
@@ -1870,7 +1870,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 8. 取消对话框可以让已核实的下载准备进行重试 。 保存时选择新文件名: 已经存在的文件永远不会被覆盖 。
 
-[完整客户端更新指令QQ](../docs/public/zh/UPDATES.md)
+[客户端更新说明 ↗](../docs/public/zh/UPDATES.md)
 
 > **注意**
 >
@@ -1924,7 +1924,7 @@ Windows:“从屏幕捕捉中隐藏窗口”——永远不要,尽管秘密被�
 
 5. 要与同事共享,请打开共享访问并选择上下文. 默认情况下,全权证书不在此列,需要明确列入。
 
-[完整Kubernetes 指令 QQ](../docs/public/zh/KUBERNETES.md)
+[Kubernetes 完整指南 ↗](../docs/public/zh/KUBERNETES.md)
 
 [将容器部署到 Kubernetes](#docker-details-deploy-kubernetes)
 
@@ -1962,7 +1962,7 @@ kubeconfig 导入:演示文件的上下文,它们的认证,生产开关和需要
 
 6. 生产环境区块写。 桌面允许用金库密码句确认一个10分钟的写窗;批量生产变异仍然被禁止.
 
-[完整Kubernetes 指令 QQ](../docs/public/zh/KUBERNETES.md)
+[Kubernetes 完整指南 ↗](../docs/public/zh/KUBERNETES.md)
 
 > **注意**
 >
@@ -2004,7 +2004,7 @@ Kubernetes与演示数据接口.
 
 7. 在Android上,主动隧道出现在带有停止动作的通知书中. iOS仅作为模拟建筑提供. 锁定金库会保留集群会话: pock 终端和端口前置持续运行,解锁区域后重开同一集群.
 
-[完整Kubernetes 指令 QQ](../docs/public/zh/KUBERNETES.md)
+[Kubernetes 完整指南 ↗](../docs/public/zh/KUBERNETES.md)
 
 ![Kubernetes与演示数据接口.](../assets/guide/kube-details-1400-en.png)
 
@@ -2048,7 +2048,7 @@ Flux和Argo CD是从可用的CRD中发现的. 概览结合了状态,依赖性和
 
 6. 问题收集了Pods,工作量,节点和GitOps的诊断. 从一个发现打开对象,日志或一个AI解释.
 
-[完整Kubernetes 指令 QQ](../docs/public/zh/KUBERNETES.md)
+[Kubernetes 完整指南 ↗](../docs/public/zh/KUBERNETES.md)
 
 > **注意**
 >
@@ -2076,7 +2076,7 @@ GitOps在手机上播放演示数据. 过滤面板是滚动的;滚动到顶部�
 
 4. 桌面回滚需要安装方向盘,并用金库密码片单独批准。 生产限制也适用于这一作业。
 
-[完整Kubernetes 指令 QQ](../docs/public/zh/KUBERNETES.md)
+[Kubernetes 完整指南 ↗](../docs/public/zh/KUBERNETES.md)
 
 > **注意**
 >
@@ -2106,7 +2106,7 @@ Kubernetes与演示数据接口.
 
 5. 讨论资源、事件和日志尾声。 建议的命令和YAML只有在您通过正常检查采取行动后才能执行。
 
-[完整Kubernetes 指令 QQ](../docs/public/zh/KUBERNETES.md)
+[Kubernetes 完整指南 ↗](../docs/public/zh/KUBERNETES.md)
 
 > **注意**
 >
@@ -2142,7 +2142,7 @@ AI inKubernetes:一个关于一个失败的Pod,它所读的日志和事件以及
 
 10. 切换到在卡片和紧凑列表之间搜索开关,如Hosts;此设备上记住选择 。 名称旁边的图标显示路线,“...”菜单连接、编辑或删除。
 
-[完整的数据库指令 QQ](../docs/public/zh/DATABASES.md)
+[数据库完整指南 ↗](../docs/public/zh/DATABASES.md)
 
 > **注意**
 >
@@ -2202,9 +2202,9 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 ## 55. 数据库:结构、查询和结果
 
-点击连接打开其工作空间:左边的数据库结构,查询标签,编辑器和右边的结果网格. 拖动面板边框以调整其大小 。 主要修饰词为QQ在macOS和Ctrl在Windows和Linux.
+点击连接即可打开工作区。左侧显示数据库结构，右侧是查询标签页、编辑器和结果网格。拖动面板分隔线可调整宽度。macOS 的主要修饰键为 ⌘，Windows 和 Linux 使用 Ctrl。
 
-| 编辑器动作 | macOS (中文(简体) ). | Windows/Linux (中文(简体) ). |
+| 编辑器动作 | macOS | Windows/Linux |
 | --- | --- | --- |
 | 运行选中项或护身符行上的语句 | ⌘↵ | Ctrl+Enter |
 | 运行整个脚本 | ⌥X 或 ⇧⌘↵ | Alt+X 或 Ctrl+Shift+Enter |
@@ -2226,21 +2226,21 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 4. 双击一个表格或选择“审查前100行”将查询立即运行,并在一个名为“名称-数据”的预览标签中显示下面的数据。 有一个这样的标签, 重复用于下一个表格;一旦您编辑了它的文本,它就会变成一个普通的标签 。
 
-5. PostgreSQL、MySQL/MariaDB、ClickHouse和Redis的“目标细节”按下列各节分类:所有者、估计行数、数据和索引大小、列数和索引数、分区和排序键、最后的VACUUM和ANALYZE,以及Redis键的种类、TTL、长度和内存。 规模以KiB/MiB表示,估计值以“QQ”和“Copy”作为文本复制。 无所显示的地方,菜单项会被隐藏 。
+5. PostgreSQL、MySQL/MariaDB、ClickHouse 和 Redis 的“对象详情”按类别显示所有者、估算行数、数据与索引大小、列数与索引数、分区键和排序键，以及最近一次 VACUUM 和 ANALYZE 的时间。Redis 键的详情显示类型、TTL、长度和内存占用。大小以 KiB 或 MiB 显示，估算值带有“≈”标记。点击“复制”可复制全部详情。没有可显示的信息时，该菜单项会隐藏。
 
 6. DDL用行号显示,每个语句(CREATE Table,每个CREATE INDEX)用一条规则分隔. 对话框遵循窗口宽度; 长行缩进, 关闭“ 垃圾行” 后滚动它们,这是人们记得的选择 。 “ 复制” 复制整个文本, “ 打开编辑器 ” 将其添加到现有文本下方的当前标签中;没有运行 。
 
 7. 编辑器编号行,突出语法,并完成关键词,表格和列,包括通过一个别名:o. after from orders o. 编辑器上面的“ +” 打开另一个查询标签 。
 
-8. 编辑器工具栏(QQJ / Ctrl+J)中的片段按钮打开“ 插入片段” :此引擎的片段, 并进行搜索 。 填充其变量后,所选查询会被添加到现有文本下方的当前标签中;没有运行。
+8. 编辑器工具栏的“代码片段”（⌘J / Ctrl+J）会打开当前数据库引擎的片段列表，您可以在其中搜索。选中并填写变量后，查询会插入当前标签页已有文本的下方，稍后可手动运行。
 
-9. “ Run” 和 QQ / Ctrl+Enter 执行选择, 或像在熟悉的 SQL 客户端一样,不使用 caret 线上的语句 。 语句以分号或空白行结尾;从多行语句的任何一行中,整个语句运行,在空白行中,上方最接近的语句运行. Run旁边的箭头提供了“全程脚本 ” : 语句逐一运行, 并在第一个错误时停止 。 {{name}}}等变量被填入单独的窗口,并作为驱动参数绑定,从未粘贴在文本中.
+9. 点击“运行”或按 ⌘↵ / Ctrl+Enter 会执行选中的文本；未选中时执行光标所在的语句。语句以分号或空行结束。光标在多行语句中时会执行整条语句；在空行时会执行上方最近的语句。“运行”旁的箭头可选择执行整个脚本，按顺序执行并在首次出错时停止。{{name}} 这类变量在单独的窗口中填写，由驱动作为参数绑定。
 
 10. 结果是一个有行号的紧凑网格。 列可以进行排序,过滤,绑定和隐藏;头部在密钥列上携带一个类型glyph和一个密钥,NULL显示为\[NULL\],一个长的值完全打开. 第一行立即加载,其余部分加载“更多”或从结果下的工具栏中加载(见“数据库:生产、变化、历史和出口”)。 在电话中,结果作为记录卡出现.
 
-11. 结果左侧的切换器显示为表格,文本(一个最多2000行的对齐单空表,易于选择和复制)或记录(一行作为字段~值表;QQ为当前行打开). 视图会被记住每个标签。
+11. 结果左侧可选择表格、文本或记录视图。文本视图以等宽字体对齐显示最多 2,000 行，便于选择和复制。记录视图将一行显示为“字段 → 值”表单，按 ⇧↵ 可查看当前行。每个标签页会记住自己的视图。
 
-12. 点击单元格框,则QQC / Ctrl+C复制其值。 在行号上单击选择行,Shift+单击扩展选择,QQ/Ctrl+单击添加或删除一行,Esc清除选择. 状态行显示“选定:N行”,复制、导出和AI助手使用选定行。
+12. 点击单元格会显示选中边框，按 ⌘C / Ctrl+C 可复制值。点击行号选择整行，按住 Shift 点击可扩选，按住 ⌘ 或 Ctrl 点击可添加或取消选择一行。按 Esc 清除选择。状态栏显示已选行数；复制、导出和 AI 助手都会使用选中的行。
 
 13. EXPLAIN将计划画成一棵树:每一步都显示行数和成本,一个栏标出步数自己的份额,“JSON ” 打开了原始计划。 “ 执行 ANALYZE ” 增加了真实的时间,但实际上运行了查询,因此它只用于非生产连接,并首先要求确认。 Cassandra/ScyllaDB,“追踪查询”取代EXPLAIN:查询用追踪方式运行一次,树上显示每个节点的步骤和延迟.
 
@@ -2266,9 +2266,9 @@ Cassandra / ScyllaDB:联系点,局部数据中心,一致性水平和一个会话
 
 记录视图:第三个结果行作为字段 ^ 值表.
 
-![“插入片段”(QQJ / Ctrl+J):搜索PostgreSQL片段及其风险程度。](../assets/guide/db-snippets-picker-en.png)
+![通过“插入代码片段”（⌘J / Ctrl+J）搜索 PostgreSQL 片段并查看其风险等级。](../assets/guide/db-snippets-picker-en.png)
 
-“插入片段”(QQJ / Ctrl+J):搜索PostgreSQL片段及其风险程度。
+通过“插入代码片段”（⌘J / Ctrl+J）搜索 PostgreSQL 片段并查看其风险等级。
 
 ![orders 表的详细信息，包括分区、以 MiB 为单位的大小和带有“≈”标记的估算值。](../assets/guide/db-details-en.png)
 
@@ -2294,19 +2294,19 @@ orders 表的详细信息，包括分区、以 MiB 为单位的大小和带有�
 
 1. 生产有两层保护. 在服务器上,PostgreSQL和MySQL/MariaDB在只读交易中运行查询,而ClickHouse只读. 在应用程序中,每个查询在发送前都会被解析:更改命令和试图解除保护的尝试永远不会到达服务器. 当生产必须改变时,打开一个临时写字窗口;见“数据库:写到生产”。
 
-2. 工作空间头中的“检查权限” 报告服务器侧保护是否被验证, 以及角色是否可以写入 。 对于制作,偏爱只读角色: SELECT 或 pg\_read\_all\_data in PostgreSQL, SELECT in MySQL, ClickHouse 中只读配置, ACL QQ read -@write in Redis 中读角色和MongoDB中读角色.
+2. 工作区顶部的“检查权限”显示是否已验证服务器端保护，以及当前角色能否写入。对于生产环境，建议使用只读角色：PostgreSQL 使用 SELECT 或 pg\_read\_all\_data，MySQL 使用 SELECT，ClickHouse 使用 readonly 配置，Redis 使用 ACL +@read -@write，MongoDB 使用 read 角色。
 
 3. 非生产连接也打开只读. 头部的锁按钮允许写入直到连接关闭. “审查查询”中显示一个变化中的或危险的查询(DROP、TRUNCATE、UPDATE或DELETE,不在何地、FLUSHALL, 丢弃一个收藏), 是一个带有可选择和复制的行号的突出的代码块。 它只在您输入金库密码句后运行;一个错误的密码句则不会运行 。
 
-4. 工具栏位于结果下方。 刷新(F5, QQR / Ctrl+R)在重新检讨后再次运行标签页上最后一次读取的查询, 旁边的菜单每5, 10 或 30 秒, 1 或 5 分钟自动重新打开 。 它只重复读取查询(包括生产),在更改等待时跳过节拍,查询运行或窗口被隐藏.
+4. 结果下方的“刷新”（F5、⌘R / Ctrl+R）会在重新检查后执行当前标签页最近一次读取查询。旁边的菜单可设置每 5、10、30 秒或每 1、5 分钟自动刷新。生产环境同样只重复读取查询。存在未保存的更改、查询正在执行或窗口隐藏时，会跳过本次刷新。
 
 5. 齿轮和 " 每一接头 " 字段将下页(1-1 000,每次连接时记住)的大小设为 " 下行 " 和 "所有行 " 。 箭头移动到第一,前,下和最后一行. 状态行显示已获取的行、已过期的时间、完成查询的日期和时间、“更多可用”、选定的行和待决更改。
 
 6. 在桌面上,当允许写作时(非生产会话或使用开放的写作窗口制作),在PostgreSQL上的简单单表SELECT的行,MySQL或MariaDB可以更改,添加和删除. 一行由它的主键识别,或者在没有主键的情况下,由NOT NULL列的第一个独有键识别;否则按钮关闭,工具提示说明原因. 没有写入访问权限,双击打开了值查看器.
 
-7. 双击一个单元格(或按 Enter 或 F2)以编辑它的位置: 输入保留值, Esc 取消和 Tab 移动到下一个单元格;该类型来自列, NULL是它自己的切换. 更改后的单元格为黄色。 “ 添加一行” (QQN / Ctrl+Alt+N) 添加一条标有“ +” 的绿行: 服务器填列显示 \[DEFAULT\], 需要填列 。 “ 复制一行” (XQD / Ctrl+D) 复制,不按键 。 “删除一行” (XQ / Ctrl+Delete)用红色(或每条选定的一行) 击出一行;按它再次清除标记 。
+7. 双击单元格、按 Enter 或按 F2 都可就地编辑。Enter 保留修改，Esc 取消，Tab 移至下一格。字段类型取自列定义，NULL 有单独的开关。已修改的单元格以黄色标记。“添加行”（⌥⌘N / Ctrl+Alt+N）添加带“+”的绿色行。服务器自动填写的列显示 \[DEFAULT\]，必填列需填写。“复制行”（⌘D / Ctrl+D）会复制数据并省略键。“删除行”（⌘⌫ / Ctrl+Delete）给本行或所有选中行加上红色删除线；再次点击可清除标记。
 
-8. 在保存(QQS / Ctrl+S) 之前,无任何运行 。 评论中以键键显示 DELETE、UPDATE 和INSERT 的语句, 并询问金库密码句(或Touch ID, Windows Hello,一个指纹);然后每件都运行在一个交易中,每个语句必须完全修改一行, 或全部滚回。 保存按钮菜单中的“ 显示 SQL ” 打开语句复制或放到编辑器中; “ Discardchange ” (QQZ / Ctrl+Alt+Z) 将编辑器放下 。 带着待定的更改——再次运行,刷新,关闭标签——离开时询问是保存,丢弃还是停留.
+8. 点击“保存”（⌘S / Ctrl+S）前，更改只暂存在客户端。确认窗口按键显示实际的 DELETE、UPDATE 和 INSERT 语句及值，并要求输入保险库密码或通过 Touch ID、Windows Hello 或指纹验证。随后所有语句在同一事务中执行，每条语句必须恰好影响一行，否则整个事务回滚。“保存”菜单中的“显示 SQL”可复制语句或移入编辑器。“放弃更改”（⌥⌘Z / Ctrl+Alt+Z）撤销编辑。有待保存的更改时，再次执行、刷新或关闭标签页都会让您选择保存、放弃或留在当前页。
 
 9. “查询历史”保存文本、时间、持续时间、行数和错误,但不保存参数值或数据。 由成功过滤,有错误或偏好 。 默认历史会被加密, 并留在此设备上;您可以同步或关闭它 。 从历史中保存一个查询作为片段,它的{{name}}占位符成为片段变量 。
 
@@ -2374,7 +2374,7 @@ orders 表的详细信息，包括分区、以 MiB 为单位的大小和带有�
 
 7. CSV导入用于PostgreSQL, MySQL, MariaDB, SQLite, ClickHouse, Cassandra/ScyllaDB, MongoDB 和 Redis在桌面上: 输入结果下的工具栏上的“ 导入数据...” 或“从结果表中导入 CSV...”在表格、 收藏、 Redis 数据库或密钥文件夹的菜单中;必须允许写入 。 在MongoDB中,一列可以创建一个新字段;在Redis中,一列成为键和值或散列字段. 向导有五个步骤:一个CSV,TSV或文本文件,最高可达200 MB(读作此设备上的流);“读取设置”,预览了前100行——编码,分隔符(发现),引用字符,标题行,跳过行,什么算作NULL,小数分隔符和日期顺序.
 
-8. 之后的列:每个文件列都到同名的表格列或被跳过,然后对照类型检查前1000行,样本值不合适. 在“导入选项”下,选择插入、插入跳过现有密钥,或按密钥插入和更新;批量大小;在坏行上,停止或跳过它,进入QQ文件%%.errors.csv报告;文件交易一次或每批一次;以及“先删除表格中的所有行” (关闭)。 然后来一个通常的检讨 与金库密码句 和运行 进步和取消。
+8. 在“列”中，每个文件列可映射到同名表列或选择跳过。系统会检查前 1,000 行与列类型是否匹配，并列出不匹配的示例。在“导入选项”中可选择直接插入、跳过已有键或按键插入和更新；也可设置批量大小、遇到错误时停止或跳过并写入 ‹文件名›.errors.csv，以及整个文件或每批使用一个事务。“先删除表中的所有行”默认关闭。随后在确认页输入保险库密码即可开始导入，可查看进度或取消。
 
 9. SQLite通过一个主机上的sqlite3SSH,Docker,Kubernetes,和没有共享交易的Cassandra/ScyllaDB写入:每个语句都是自己承诺的,因此没有单文件的单文件选项,一个停止的导入保留了已经写入的行. 在Cassandra中,插入和插入跳过从不覆盖同一密钥的一行(INSERT......如果不是EXISTS),插入和更新是普通的INSERT,“先删除表格的所有行”是TRUNCATE。 柜台栏不进口。 ClickHouse在INSERT批次中按行进行,没有共享交易,“先删除表格的所有行”是一个TRUNCATE表。 MongoDB 将文档写入一个集合: 新的字段来自信头, 并且跳过\`\_id\` 并插入和更新匹配 。 Redis在数据库或密钥文件夹中写作字符串(SET)或散列(HSET),没有交易.
 
@@ -2408,7 +2408,7 @@ CSV导入,第2步 5: 编码, 分隔符, NULL,小数分隔符和文件第一行�
 
 助理写、解释、修正和加快查询。 它使用来自 Sets → AI 的提供者,从不单独运行任何东西.
 
-1. 在工作空间头或QQI / Ctrl+I 中打开带有 AI 按钮的面板. 选择提供者和任务:使用它的EXPLAIN计划来编写,解释,修复或优化一个查询,将其翻译为另一种方言,将其变成参数化的片段,建议实例查询或解释选定的行.
+1. 点击工作区顶部的 AI 按钮或按 ⌘I / Ctrl+I，选择 AI 提供商及任务。可编写、解释或修正查询，按 EXPLAIN 计划优化，转换 SQL 方言，制作参数化片段，建议查询示例，或解释选中的行。
 
 2. 说明你需要什么,并选择“AI助理”。 在“审查 AI 上下文”中,勾选可以共享的内容: 计划元数据、明确选定的行、最多20行的样本或最多50行的只读查询。 一切开始,未经同意,模型既不收到计划,也不收到数据。
 
@@ -2455,7 +2455,7 @@ Docker段连接到此计算机或保存的SSH主机上的引擎. 通过主机的
 
 在删除对话框中可以单独选择卷和网络。共享网络与主机文件受到保护。
 
-[完整Docker 指令 QQ](../docs/public/zh/DOCKER.md)
+[Docker 完整指南 ↗](../docs/public/zh/DOCKER.md)
 
 > **注意**
 >
@@ -2572,7 +2572,7 @@ JSON标签:命令中的密码是蒙面的;全文需要库口令.
 
 6. 请检查access-readyz和/v1/meta:答复显示服务器\_version,协议\_version和服务器的能力. 团队需要服务器0.2.1,企业签名和共享笔记需要0.2.0;如果版本更老,请在您的值中刻上更新的图像摘要(见“你的服务器:备份、升级和命令”)。 在客户端中,选择一个服务器连接并输入其基址HTTPS,不设/v1. 在第二个设备上签名或注册并测试同步 。
 
-7. Helm中的所有服务器设置都来自值块:配置(特性,限制,配额,符号,Argon2),auth(公司签名),邮件,数据库(连接和池),迁移和度量. 图表在 CfigMap 中将它们变成 CCQQ 变量;一个空的“ ” 未被通过, 服务器默认适用 。 没有自己路径的键(例如CC\_TEAMS\_ENABLED和团队限制)进入外Env. 映射表在“你自己的服务器:配置参考”和“你自己的服务器:按方法的安装和参数”中。
+7. Helm 中的服务器设置来自 values 文件的 config（功能、限制、配额、令牌和 Argon2）、auth（企业登录）、mail、database（连接与连接池）、migrations 和 metrics 配置块。Chart 将它们转换为 ConfigMap 中的 CC\_\* 变量。空字符串 "" 会省略，服务器使用默认值。没有单独配置路径的键（如 CC\_TEAMS\_ENABLED 和团队限制）放在 extraEnv 中。映射表见自托管服务器的配置参考和安装参数章节。
 
 8. 对于电子邮件,请用 TLS 和单独的密件( mail. transport: smtp) 配置 SMTP;没有邮件, 管理员用管理员验证- 电子邮件验证地址 。 团队默认在运行,而共享、共享注释和新设备保护则启用单独的旗帜——见“你自己的服务器:特性、旗帜和限制”。 计划PostgreSQL 备份和在升级前核实恢复.
 
@@ -2638,7 +2638,7 @@ curl --fail https://sync.example.com/v1/meta
 
 [每一个服务器参数: Helm 路径、 默认值、 允许值 ~](#server-reference)
 
-[GitHub的來源檔案:HOSTING.md——全赫尔姆安装,HTTPS,电子邮件,备份 QQ](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+[GitHub 上的 HOSTING.md：Helm 安装、HTTPS、电子邮件与备份 ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **注意**
 >
@@ -2715,7 +2715,7 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
 [每一个服务器参数: Helm 路径、 默认值、 允许值 ~](#server-reference)
 
-[GitHub的源文件: HOSTING.md – full Docker 安装 QQ](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose)
+[GitHub 上的 HOSTING.md：Docker 安装指南 ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md#docker-compose)
 
 > **注意**
 >
@@ -2729,7 +2729,7 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
 ## 65. 您自己的服务器:按方法的安装和参数
 
-每个服务器设置都是 CCQQ 变量; 带有 Helm 路径、 默认值和允许值的完整列表在“您自己的服务器: 配置引用 ” 中 。 本章显示每个安装方法(Docker Compose, docker run,Helm, aJSON文件和系统d)的键放在何处,如何应用和验证一个变化,并工作实例:共享注释和团队,与Entra ID和 Active Directory的签名,切换限制执行,提高配额.
+服务器设置使用 CC\_\* 变量。“自托管服务器：配置参考”列出它们的 Helm 路径、默认值和允许的值。本章说明如何用 Docker Compose、docker run、Helm、JSON 文件或 systemd 配置、应用并验证设置，并提供共享笔记和团队、Entra ID 和 Active Directory 登录、限流从 observe 切换为 enforce 以及提高配额的示例。
 
 | 方法 | 放在哪里? 放在哪儿? 放在哪里? 放在哪里? 放在哪里? 放在哪里? | 如何适用 |
 | --- | --- | --- |
@@ -2772,14 +2772,14 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 `server.env`除非`compose.yaml`使用它,否则什么都不会改变.
 
 1. ** 钥匙在`server.env`**年更改——写为`${KEY:-value}`
-   `compose.yaml`: `CC_DATABASE_PASSWORD`, `CC_RUN_MIGRATIONS` (中文(简体) ).
+   `compose.yaml`: `CC_DATABASE_PASSWORD`, `CC_RUN_MIGRATIONS`
    `CC_REGISTRATION_OPEN`, `CC_MAIL_TRANSPORT`, `CC_MAIL_FROM`, `CC_SMTP_HOST`, (英语).
    `CC_SMTP_PORT`,`CC_SMTP_TLS`,`CC_SMTP_USERNAME`,`CC_SMTP_PASSWORD`,七条.
    共享旗帜,`CC_DEVICE_PROTECTION_ENABLED`,`CC_NEW_DEVICE_MAIL_ENABLED`,
    `CC_DEVICE_QUARANTINE_DAYS`, `CC_TEAMS_ENABLED`, `CC_RATE_LIMIT_MODE`, (英语).
    `CC_QUOTAS_V2_ENABLED`, `CC_MAX_DEVICES_PER_ACCOUNT`, `CC_MAX_VAULT_OBJECTS`, (英语).
    加上康普斯自己的`CC_SERVER_VERSION`,`CC_SERVER_IMAGE`,`CC_DOMAIN`,
-   `CC_HTTP_PORT`, `CC_POSTGRES_ADMIN_PASSWORD` (中文(简体) ). 引用含有`$`,`#`的数值,
+   `CC_HTTP_PORT`, `CC_POSTGRES_ADMIN_PASSWORD` 引用含有`$`,`#`的数值,
    空格或引用单引号。
 2. **其他钥匙都放在一个私人钥匙`compose.override.yaml`旁边。
    `server.env`——`compose.yaml`未列出的密钥`CC_LIMIT_*`,
@@ -2802,12 +2802,12 @@ curl --fail "https://$CC_API_DOMAIN/v1/meta"
 
    `env_file:`)条在服务工作上也是,但是`compose.yaml`'s
    `environment:`胜过`env_file`,所以上面列出的键仍然属于
-   `environment:` (中文(简体) ).
+   `environment:`
 3. ** 保密文件** (企业`*_FILE` 密钥和 CA 证书):非 Swarm
    将挂载`secrets:`作为普通文件, 与主机`/run/secrets/<name>`
    拥有者和模式 。 图像以 UID 65532 运行,所以
-   `sudo chown 65532:65532 "$CC_INSTALL_DIR"/secrets/*`和 (中文(简体) ).
-   `sudo chmod 0400 "$CC_INSTALL_DIR"/secrets/*` (中文(简体) ). 只读绑定挂载
+   `sudo chown 65532:65532 "$CC_INSTALL_DIR"/secrets/*`和
+   `sudo chmod 0400 "$CC_INSTALL_DIR"/secrets/*` 只读绑定挂载
    (`…/secrets:/run/secrets/consolecrypt:ro`) 工也.
 4. ** 核准和核实**:
 
@@ -2864,12 +2864,12 @@ CfigMap, 数据库URL 和 SMTP 密码为密件或 `secretKeyRef`
 
 | 什麽? | 在价值方面 |
 |---|---|
-| 旗帜、标志、配额、限制、WebSocket、维护、记录 | `config.*` `config.rateLimit.limits` − `CC_LIMIT_*`) (中文(简体) ). |
+| 旗帜、标志、配额、限制、WebSocket、维护、记录 | `config.*` `config.rateLimit.limits` − `CC_LIMIT_*`) |
 | 企业注册 | `auth.*`; 秘密`auth.oidc.existingSecret`/`auth.ldap.existingSecret` 互联网档案馆的存檔,存档日期2013-12-02. |
 | 邮件 | `mail.*`; 密码 `mail.smtp.existingSecret` |
 | 数据库 | `database.*`或`postgresql.*`;迁移`migrations.*` |
-| 计量 | `metrics.enabled` `CC_METRICS_LISTEN` (中文(简体) ). |
-| 没有图表路径的密钥 `CC_TEAMS_ENABLED`, `CC_MAX_TEAMS_PER_ACCOUNT`, `CC_MAX_TEAM_MEMBERS`, `RUST_LOG`, `OTEL_*`,一个外部的 `CC_DATABASE_PASSWORD` | `extraEnv` (中文(简体) ). |
+| 计量 | `metrics.enabled` `CC_METRICS_LISTEN` |
+| 没有图表路径的密钥 `CC_TEAMS_ENABLED`, `CC_MAX_TEAMS_PER_ACCOUNT`, `CC_MAX_TEAM_MEMBERS`, `RUST_LOG`, `OTEL_*`,一个外部的 `CC_DATABASE_PASSWORD` | `extraEnv` |
 
 ```yaml
 extraEnv:
@@ -2900,11 +2900,11 @@ extraEnv:
 内容.`CC_LOG`,`RUST_LOG`和`OTEL_*`在文件中不被接受——设置.
 在服务环境中,有滴入(`sudo systemctl 编辑)
 控制台crypt-server `, ` [Service] ` / ` 环境= CC_LOG=info,sqlx=warn'). 见
-[server.example.json] https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/server.example.json, (中文(简体) ).
+[server.example.json] https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/server.example.json,
 [系统单位] https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/consolecrypt-server.service和
 (原始内容 https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/native/README.md. 经编辑后:
 `sudo systemctl restart consolecrypt-server`,然后,
-`sudo -u consolecrypt consolecrypt-server --config /etc/consolecrypt/server.json healthcheck` (中文(简体) ).
+`sudo -u consolecrypt consolecrypt-server --config /etc/consolecrypt/server.json healthcheck`
 如果`CC_DATABASE_PASSWORD`和URL都没有数据库密码,则
 驱动程序从服务环境读取标准`PGPASSWORD`。
 
@@ -3100,7 +3100,7 @@ auth:
    `limit_exceeded` 审计活动。
 2. 如果普通用户达到极限,则提高(例如.
    `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` 或用一个账户推翻它
-   `admin limits set` (中文(简体) ).
+   `admin limits set`
 3. 切换模式。 Docker 编: `CC_RATE_LIMIT_MODE=enforce` in `server.env`,,
    在`compose.override.yaml`中提高限值:
 
@@ -3176,7 +3176,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show -
 低于1米B. 计划PostgreSQL 磁盘空间,每层配额和数量
 账户。
 
-[来源文件于 GitHub : HOSTING.md QQ](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+[GitHub 上的 HOSTING.md ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **注意**
 >
@@ -3193,12 +3193,12 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show -
 | CC\_AUTH\_MODE(auth.mode) (英语). | 标准 | 标准——电子邮件和账户密码; 企业——只通过IDP或目录 |
 | CC\_AUTH\_PROVIDER(自动提供商) | — | oidc 或 ldap; 企业模式中需要的 |
 | CC\_AUTH\_DISPLAY\_NAME (auth.displayName) (英语). | — | 应用程序中登录按钮的标签, 最多64个可打印字符 |
-| CC\_AUTH\_ALLOWED\_DOMAINS(auth.allowedDomains) (中文(简体) ). | 任何 | 用逗号或空格分隔的电子邮件域; 需要自动链接已有的账户,对 google 强制 |
+| CC\_AUTH\_ALLOWED\_DOMAINS(auth.allowedDomains) | 任何 | 用逗号或空格分隔的电子邮件域; 需要自动链接已有的账户,对 google 强制 |
 | CC\_AUTH\_AUTO\_CREATE (auth.autoCreate) (英语). | 真实 | 在第一个登录上创建账户; 假拒绝未知用户为 403 |
 | CC\_AUTH\_RECHECK\_MINUTES (auth.recheckMinutes) (英语). | 15 | 用户使用 IDP 或目录重新检查的次数, 1– 1440 |
 | CC\_AUTH\_RECHECK\_GRACE\_HOURS (auth.recheck GraceHours) (英语). | 24 | IDP 或目录无法访问时,会话存续多久, 0 - 720 |
-| CC\_PUBLIC\_URL (中文(简体) ). publicUrl. | — | OIDC的强制操作https://…: IdP 返回浏览器为 CC\_PUBLIC\_URL /v1/auth/oidc/ callback |
-| CC\_OIDC\_\* (auth.oidc.\*), CC\_LDAP\_\* (auth.ldap.\*) (中文(简体) ). | — | 提供者设置, 参见下一章;在标准模式中忽略 |
+| CC\_PUBLIC\_URL publicUrl. | — | OIDC的强制操作https://…: IdP 返回浏览器为 CC\_PUBLIC\_URL /v1/auth/oidc/ callback |
+| CC\_OIDC\_\* (auth.oidc.\*), CC\_LDAP\_\* (auth.ldap.\*) | — | 提供者设置, 参见下一章;在标准模式中忽略 |
 
 1. 将服务器升级到0.2.0,并首先备份数据库:迁移0011只添加表格. 与管理列表用户审查账户。
 
@@ -3313,7 +3313,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users
 ** 账户链接。** 账户与外部身份挂钩——OIDC`(iss, sub)`
 或AD`objectGUID`. 电子邮件只是一个属性: 更改的地址确实
 不打破账户, 和别人的账户 与同一地址是永远不会
-`identity_conflict` (中文(简体) ).
+`identity_conflict`
 
 ** 重新检查( leavers) 。** 服务器最多每询问一次`CC_AUTH_RECHECK_MINUTES` 。
 IDP(通过刷新 IDP 刷新符号) 或 AD(通过搜索
@@ -3332,15 +3332,15 @@ IDP(通过刷新 IDP 刷新符号) 或 AD(通过搜索
 
 | 什麽? | 数值 | 密钥 |
 |---|---|---|
-| 公共服务器URL | `https://sync.acme.com`(用户在客户端中输入的,没有`/v1`). | `CC_PUBLIC_URL` (中文(简体) ). |
+| 公共服务器URL | `https://sync.acme.com`(用户在客户端中输入的,没有`/v1`). | `CC_PUBLIC_URL` |
 | 在 IDP 上重定向 URI | `https://sync.acme.com/v1/auth/oidc/callback`— 确切的`CC_PUBLIC_URL`+`/v1/auth/oidc/callback`,客户端类型"Web"/ 机密 | — |
-| 发行人 | `https://<issuer>/.well-known/openid-configuration` `issuer`字段,有或没有线索`/`,如IdP所写) | `CC_OIDC_ISSUER` (中文(简体) ). |
-| 客户身份 | 注册申请的编号 | `CC_OIDC_CLIENT_ID` (中文(简体) ). |
-| 客户端秘密 | 机密文件; `client_secret_basic`或 `client_secret_post` | `CC_OIDC_CLIENT_SECRET_FILE`, `CC_OIDC_TOKEN_AUTH_METHOD` (中文(简体) ). |
-| 刷新签名封存密钥 | 带有32个随机字节的文件 `openssl rand -hex 32` 。 | `CC_OIDC_TOKEN_KEY_FILE` (中文(简体) ). |
+| 发行人 | `https://<issuer>/.well-known/openid-configuration` `issuer`字段,有或没有线索`/`,如IdP所写) | `CC_OIDC_ISSUER` |
+| 客户身份 | 注册申请的编号 | `CC_OIDC_CLIENT_ID` |
+| 客户端秘密 | 机密文件; `client_secret_basic`或 `client_secret_post` | `CC_OIDC_CLIENT_SECRET_FILE`, `CC_OIDC_TOKEN_AUTH_METHOD` |
+| 刷新签名封存密钥 | 带有32个随机字节的文件 `openssl rand -hex 32` 。 | `CC_OIDC_TOKEN_KEY_FILE` |
 | 补助金类型 | 使用 PKCE S256 的授权代码,并刷新托肯 | — |
-| 范围 | `openid email profile offline_access` (预设有自己的). | `CC_OIDC_SCOPES` (中文(简体) ). |
-| 以**ID 代号提出的索赔** | `sub`;电子邮件`email`,`preferred_username`或`upn`);`groups`或`roles`,以限制进入;`amr`/`acr`,供外交部使用 | `CC_OIDC_EMAIL_CLAIM`, `CC_OIDC_REQUIRED_CLAIM`, `CC_OIDC_REQUIRE_MFA` (中文(简体) ). |
+| 范围 | `openid email profile offline_access` (预设有自己的). | `CC_OIDC_SCOPES` |
+| 以**ID 代号提出的索赔** | `sub`;电子邮件`email`,`preferred_username`或`upn`);`groups`或`roles`,以限制进入;`amr`/`acr`,供外交部使用 | `CC_OIDC_EMAIL_CLAIM`, `CC_OIDC_REQUIRED_CLAIM`, `CC_OIDC_REQUIRE_MFA` |
 
 在启动时,服务器检查:发现超过HTTPS,匹配`issuer`,HTTPS
 `authorization_endpoint`,`token_endpoint`和`jwks_uri`,至少一个RS256,
@@ -3390,11 +3390,11 @@ CC_OIDC_TOKEN_KEY_FILE=/etc/consolecrypt/secrets/oidc-token-key
 1. 微软Entra管理中心 →**App 注册 →新注册**:名称
    "ConsoleCryptSync",**本组织目录中只有账户**
    (单一租户),将URI重定向于**Web**平台:
-   `https://sync.acme.com/v1/auth/oidc/callback` (中文(简体) ). 不要选择“ SPA” 或“ 移动和
+   `https://sync.acme.com/v1/auth/oidc/callback` 不要选择“ SPA” 或“ 移动和
    桌面“ ” —— 服务器是一个保密客户端。
 2. ** 概览** 复制** 申请(客户)ID**_`CC_OIDC_CLIENT_ID`和
    ** 董事(租户)身份证** —— 发行人
-   `https://login.microsoftonline.com/<tenant-id>/v2.0` (中文(简体) ).
+   `https://login.microsoftonline.com/<tenant-id>/v2.0`
 3. ** 证书和机密 → 客户机密 → 新的客户机密**: 存储值
    (不是秘密身份)在`oidc-client-secret`. 说明失效日期。
 4. ** API 权限**:微软图授权`openid`,`email`,`profile`,
@@ -3437,20 +3437,20 @@ CC_OIDC_REQUIRED_CLAIM=roles=ConsoleCrypt.User
 1. ADFS 管理 →** 应用程序组 → 添加应用程序组 → 服务器
    应用程序**(或“Web浏览器访问一个具有机密性的网络应用程序”)
    客户端). 复制客户标识符 → `CC_OIDC_CLIENT_ID` 。 重定向 URI :
-   `https://sync.acme.com/v1/auth/oidc/callback` (中文(简体) ).
+   `https://sync.acme.com/v1/auth/oidc/callback`
 2. ** 配置应用程序 证书 – 生成一个共享的秘密** –
    `oidc-client-secret`存档.
 3. 添加一个**Web API**到带有标识符的组 = 服务器的客户端 ID, a
    访问控制策略(例如“ 许可证特定组” ) 和权限
-   `openid`, `profile`, `email`, `allatclaims` (中文(简体) ).
+   `openid`, `profile`, `email`, `allatclaims`
 4. 发布网络API的变换规则:"发送LDAP属性作为索赔" -
    `E-Mail-Addresses → email`, `User-Principal-Name → upn`;按组别限制,
    "将集团成员作为债权"(例如`group`=`ConsoleCrypt`). 那个...
    `allatclaims`范围(在预设中)将这些索赔放入ID符中.
 5. 如果 AD FS 证书来自内部 CA,请将根证书放入
-   (PEM) in `CC_OIDC_CA_FILE` (中文(简体) ).
+   (PEM) in `CC_OIDC_CA_FILE`
 6. 发行商是`https://adfs.acme.com/adfs`——检查`issuer`字段.
-   `https://adfs.acme.com/adfs/.well-known/openid-configuration` (中文(简体) ).
+   `https://adfs.acme.com/adfs/.well-known/openid-configuration`
 
 ```dotenv
 CC_OIDC_PRESET=adfs
@@ -3499,7 +3499,7 @@ CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users
 
 1. Google Cloud Console(您组织的一个项目) →** APIs& Services →
    OAuth 同意屏幕**:用户类型** 内部**,范围`openid`,`email`,
-   `profile` (中文(简体) ).
+   `profile`
 2. ** 证书 / 创建证书 / OAuth 客户端 ID / 网络应用程序**,
    授权重定向 URI `https://sync.acme.com/v1/auth/oidc/callback` 。 客户身份
    ~ `CC_OIDC_CLIENT_ID`,客户秘密~文件.
@@ -3524,8 +3524,7 @@ CC_OIDC_CLIENT_ID=<client-id>.apps.googleusercontent.com
 ### 大冈
 
 1. 管理控制台 →** 应用程序 → 创建 App 集成 → OIDC - OpenID
-   连接 – Web 应用程序**. 赠款类型:授权代码和**
-   (原始内容存档于2018-09-29). Token**. 登录重定向URI:`https://sync.acme.com/v1/auth/oidc/callback` .
+   连接 – Web 应用程序**. 授权类型请选择 Authorization Code 和 **Refresh Token**。 登录重定向URI:`https://sync.acme.com/v1/auth/oidc/callback` .
 2. ** 客户端认证:客户端秘密**;开启** 要求 PKCE作为额外
    核查**。 客户身份和秘密 – `CC_OIDC_CLIENT_ID` 和文档。
 3. ** 指派**:将该应用程序分配给一个团体。 对于一个团体,在身份证上声称:
@@ -3576,9 +3575,7 @@ CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users
    旋转程序:更新文件,重新启动服务器). 将密码存储于
    `ldap-bind-password`, DN in `CC_LDAP_BIND_DN`.
 2. ** LDAPS**:域控制器需要证书(AD CS"域控制器"或
-   "克尔伯罗斯认证"). 导出 root CA作为 PEM → `CC_LDAP_CA_FILE`. 那个...
-   主机在`CC_LDAP_URL`中必须匹配控制器证书(一个DNS名称,而不是一个
-   (原始内容存档于2018-09-25). IP. 从服务器主机检查 :
+   "克尔伯罗斯认证"). 导出 root CA作为 PEM → `CC_LDAP_CA_FILE`. `CC_LDAP_URL` 中的主机名必须与域控制器证书中的 DNS 名称匹配。请在服务器上运行以下命令进行验证：
    `openssl s_client -connect dc1.acme.local:636 -CAfile ad-ca.pem </dev/null`
    (预期`Verify return code: 0 (ok)`). 只有389号端口可供使用
    `ldap://dc1.acme.local:389`和`CC_LDAP_STARTTLS=true` ; 平原`ldap://`无
@@ -3591,11 +3588,11 @@ CC_OIDC_REQUIRED_CLAIM=groups=consolecrypt-users
    在登录和每次重新检查时检查。
 5. ** Stable id**:`objectGUID`——更改后的电子邮件、UPN或账户重命名不
    断开链接。 对于`admin identity link`
-   `(Get-ADUser alice).ObjectGUID` (中文(简体) ). 已停用账户`userAccountControl`
+   `(Get-ADUser alice).ObjectGUID` 已停用账户`userAccountControl`
    `ACCOUNTDISABLE`) 无法在下次重新检查时签名并丢失会话.
 6. **在切换前测试搜索**(密码是提示的,而不是传递为
    论点:
-   `ldapsearch -H ldaps://dc1.acme.local:636 -D '<service account DN>' -W -b 'DC=acme,DC=local' '(sAMAccountName=alice)' mail objectGUID userAccountControl` (中文(简体) ).
+   `ldapsearch -H ldaps://dc1.acme.local:636 -D '<service account DN>' -W -b 'DC=acme,DC=local' '(sAMAccountName=alice)' mail objectGUID userAccountControl`
 7. ** 域关闭政策**: 将`CC_LDAP_MAX_FAILURES`保留在禁闭线以下
    门槛值(见下文)。
 
@@ -3619,7 +3616,7 @@ CC_LDAP_FAILURE_WINDOW_MINUTES=30
 您的 `CC_LDAP_USER_FILTER`, `CC_LDAP_EMAIL_ATTR` 和一个马厩
 `CC_LDAP_ID_ATTR`(例如`entryUUID`); `CC_LDAP_REQUIRED_GROUP`使用AD规则
 `LDAP_MATCHING_RULE_IN_CHAIN`,另一个目录可能不支持的——用
-`admin auth test --login` (中文(简体) ).
+`admin auth test --login`
 
 ** 锁门警卫。** 失败将计数与域锁门政策挂钩,所以
 攻击者可以把员工锁在外面通过`/v1/auth/ldap/login`. 服务器数
@@ -3633,7 +3630,7 @@ CC_LDAP_FAILURE_WINDOW_MINUTES=30
 `CC_LDAP_MAX_FAILURES` 低于域名的账户关闭阈值和
 `CC_LDAP_FAILURE_WINDOW_MINUTES`至少是"重置账户锁门柜台"
 在“时间”之后**——例如,域阈值为每30分钟5个——`CC_LDAP_MAX_FAILURES=3`,
-`CC_LDAP_FAILURE_WINDOW_MINUTES=30` (中文(简体) ).
+`CC_LDAP_FAILURE_WINDOW_MINUTES=30`
 
 <a id="server-idp-linking"></a>
 
@@ -3648,7 +3645,7 @@ CC_LDAP_FAILURE_WINDOW_MINUTES=30
    而不报告`email_verified=false`,账户不禁被禁用。 账户
    密码被移除, 密码会话结束, 设备和金库被保留 。 否则
    登录答案`409 identity_conflict` 原因在日志中
-   `linked_to_other_identity`, `link_requires_allowed_domain`, (中文(简体) ).
+   `linked_to_other_identity`, `link_requires_allowed_domain`,
    `email_not_verified`——手动联系.
    `consolecrypt-server admin identity link --email alice@acme.com --subject <sub or objectGUID>`
    `--subject`是用户的ID代号`sub`的主张——Keycloak中的用户代号.
@@ -3678,7 +3675,7 @@ CC_LDAP_FAILURE_WINDOW_MINUTES=30
    `admin auth test`和`"auth": {"mode": "enterprise", …}`,载于`/v1/meta`.
    将应用程序更新为有企业签名的版本(客户端0.9.0).
 5. 使用自己的账户签名并检查`sign_in`栏
-   `admin list-users` (中文(简体) ).
+   `admin list-users`
 
 登记、密码签入、密码重设、更改和地址
 校验答案`403 enterprise_auth_required`;会话打开密码
@@ -3718,8 +3715,8 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 如上文俄文部分所述,重新检查撤销
 (`enterprise_access_revoked`)和管理员撤销——从不密码,客户端
 秘密、信使或登录代码。 度量衡:`cc_enterprise_logins_total{method,result}`,
-`cc_enterprise_rechecks_total{result}`, `cc_ldap_lockout_guard_total{scope}`, (中文(简体) ).
-`cc_oidc_jwks_refetch_total` (中文(简体) ).
+`cc_enterprise_rechecks_total{result}`, `cc_ldap_lockout_guard_total{scope}`,
+`cc_oidc_jwks_refetch_total`
 
 <a id="server-idp-deployment"></a>
 
@@ -3728,9 +3725,9 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 - ** Helm**:俄罗斯部分显示的`auth:`块;秘密来自一个
   现有机密`client-secret`和`token-key`适用于国际开发部,`bind-password`和
   LDAP 的可选 CA 密钥
-  `/run/secrets/consolecrypt-auth` (中文(简体) ). 图表包含`*_FILE`路径和
+  `/run/secrets/consolecrypt-auth` 图表包含`*_FILE`路径和
   refuses `ldap://` without `starttls: true` and OIDC without an `https://`
-  `config.publicUrl` (中文(简体) ).
+  `config.publicUrl`
 - ** Docker 作曲**:私密保管钥匙和秘密
   `compose.override.yaml`在`server.env`旁边, 隐藏秘密作为编曲
   UID 65532 拥有的密件, 模式 0400, 并添加到第二个`-f` 。
@@ -3748,27 +3745,27 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 | 症状 | 原因 | 修补 |
 |---|---|---|
 | 无开始:`OIDC sign-in requires CC_PUBLIC_URL (https://…)` | `CC_PUBLIC_URL`失踪或未失踪`https://` | 设置公共服务器URL;在 Helm`config.publicUrl` |
-| `CC_OIDC_ISSUER: Entra ID multi-tenant endpoints … are not allowed` (中文(简体) ). | `/common`,`/organizations`或`/consumers`发行商. | `https://login.microsoftonline.com/<tenant-id>/v2.0` (中文(简体) ). |
-| `CC_OIDC_ISSUER: for adfs expected …/adfs`, `for keycloak expected …/realms/<realm>` (中文(简体) ). | 发行器不符合预设 | 复制`issuer`从IP的发现 |
-| `OIDC discovery: issuer mismatch` (中文(简体) ). | `CC_OIDC_ISSUER`与发现`issuer`(常为后继`/`)不同. | 复制字符为字符 |
+| `CC_OIDC_ISSUER: Entra ID multi-tenant endpoints … are not allowed` | `/common`,`/organizations`或`/consumers`发行商. | `https://login.microsoftonline.com/<tenant-id>/v2.0` |
+| `CC_OIDC_ISSUER: for adfs expected …/adfs`, `for keycloak expected …/realms/<realm>` | 发行器不符合预设 | 复制`issuer`从IP的发现 |
+| `OIDC discovery: issuer mismatch` | `CC_OIDC_ISSUER`与发现`issuer`(常为后继`/`)不同. | 复制字符为字符 |
 | `OIDC discovery at …`:请求或证书错误 | 服务器无法通过 HTTPS 到达 IDP或者不信任它的 CA | 检查DNS、Egress和代理;内部CA → `CC_OIDC_CA_FILE` |
-| `… none of RS256, PS256, ES256` 或 `does not support PKCE S256` (中文(简体) ). | 另一种签名算法或没有 PKCE S256 | 为客户提供RS256/ES256和PKCE S256 |
-| `CC_OIDC_CLIENT_SECRET_FILE (…): cannot open the file`/`file is empty` (中文(简体) ). | 错误路径, UID 65532 无法读取, 空文件 | 请检查date=中的日期值 (帮助) Mount, `chown 65532:65532`, `chmod 0400`, 内容 |
-| `CC_OIDC_TOKEN_KEY_FILE (…): expected 32 random bytes …` (中文(简体) ). | 不是64个十六进制字符或32字节的基数64 | `openssl rand -hex 32 > oidc-token-key` (中文(简体) ). |
-| `CC_OIDC_PRESET=google requires CC_AUTH_ALLOWED_DOMAINS` (中文(简体) ). | Google没有域列表 | 列表工作空间域 |
+| `… none of RS256, PS256, ES256` 或 `does not support PKCE S256` | 另一种签名算法或没有 PKCE S256 | 为客户提供RS256/ES256和PKCE S256 |
+| `CC_OIDC_CLIENT_SECRET_FILE (…): cannot open the file`/`file is empty` | 错误路径, UID 65532 无法读取, 空文件 | 请检查date=中的日期值 (帮助) Mount, `chown 65532:65532`, `chmod 0400`, 内容 |
+| `CC_OIDC_TOKEN_KEY_FILE (…): expected 32 random bytes …` | 不是64个十六进制字符或32字节的基数64 | `openssl rand -hex 32 > oidc-token-key` |
+| `CC_OIDC_PRESET=google requires CC_AUTH_ALLOWED_DOMAINS` | Google没有域列表 | 列表工作空间域 |
 | IDP 显示重定向 URI 错误 | 注册了另一个重定向 URI | `CC_PUBLIC_URL`+`/v1/auth/oidc/callback`,Web客户端类型 |
-| `403 domain_not_allowed` `email_missing` (中文(简体) ). | 域名外`CC_AUTH_ALLOWED_DOMAINS` 或 ID 符号中无地址 | 检查`CC_OIDC_EMAIL_CLAIM`(Entra:(`email` vs `preferred_username`)),邮件属性,域名列表 |
-| `403 group_required` (中文(简体) ). | `CC_OIDC_REQUIRED_CLAIM`索赔失踪,或用户在外`CC_LDAP_REQUIRED_GROUP` | 将索赔放入**ID令牌**, 检查其值( Keycloak: Full group path Off); Entra 超過 200 群 ~ app 角色 |
-| `403 mfa_required` (中文(简体) ). | 在`amr`/`acr`中,报告未报告外交部。 | 在综合方案下执行外交部;非标准`acr`-`CC_OIDC_MFA_ACR_VALUES`;否则`CC_OIDC_REQUIRE_MFA`关闭 |
-| `409 identity_conflict` (中文(简体) ). | 地址属于链接到其他地方的账户,域名没有列出,或者`email_verified=false` | `admin identity link`/`unlink` ;将域名添加到`CC_AUTH_ALLOWED_DOMAINS`. |
-| `403` 理由 `not_provisioned` (中文(简体) ). | `CC_AUTH_AUTO_CREATE=false`,无账户 | 创建/链接账户或启用自动创建 |
-| `503 idp_unavailable` (中文(简体) ). | IdP/Directory 无法达到的时间超过`CC_AUTH_RECHECK_GRACE_HOURS` | 恢复访问; `admin auth status` 显示最后的检查 |
+| `403 domain_not_allowed` `email_missing` | 域名外`CC_AUTH_ALLOWED_DOMAINS` 或 ID 符号中无地址 | 检查`CC_OIDC_EMAIL_CLAIM`(Entra:(`email` vs `preferred_username`)),邮件属性,域名列表 |
+| `403 group_required` | `CC_OIDC_REQUIRED_CLAIM`索赔失踪,或用户在外`CC_LDAP_REQUIRED_GROUP` | 将索赔放入**ID令牌**, 检查其值( Keycloak: Full group path Off); Entra 超過 200 群 ~ app 角色 |
+| `403 mfa_required` | 在`amr`/`acr`中,报告未报告外交部。 | 在综合方案下执行外交部;非标准`acr`-`CC_OIDC_MFA_ACR_VALUES`;否则`CC_OIDC_REQUIRE_MFA`关闭 |
+| `409 identity_conflict` | 地址属于链接到其他地方的账户,域名没有列出,或者`email_verified=false` | `admin identity link`/`unlink` ;将域名添加到`CC_AUTH_ALLOWED_DOMAINS`. |
+| `403` 理由 `not_provisioned` | `CC_AUTH_AUTO_CREATE=false`,无账户 | 创建/链接账户或启用自动创建 |
+| `503 idp_unavailable` | IdP/Directory 无法达到的时间超过`CC_AUTH_RECHECK_GRACE_HOURS` | 恢复访问; `admin auth status` 显示最后的检查 |
 | 离开者仍然同步 | 重新检查尚未运行,或者没有 IDP 刷新令牌 | 最多等待`CC_AUTH_RECHECK_MINUTES`+1分钟; `admin session revoke` ; `admin auth test --login` |
-| `CC_LDAP_URL: plain ldap:// is refused` (中文(简体) ). | `ldap://`无STARTLS | `ldaps://…:636` 或 `CC_LDAP_STARTTLS=true` (中文(简体) ). |
-| `LDAP …: cannot connect (network or TLS certificate problem)` (中文(简体) ). | 网络、 端口、 证书中没有的主机名、 错误的 CA | 证书的 DNS 名称, `CC_LDAP_CA_FILE`, `openssl s_client` |
-| `LDAP TLS: no system root certificates found` (中文(简体) ). | 图像缺少所需的根 | 套数`CC_LDAP_CA_FILE` |
-| `service account bind rejected (check CC_LDAP_BIND_DN and password)` (中文(简体) ). | 错误 DN 或密码, 已禁用服务账户 | 检查 DN,一个没有额外字符的密码文件, 账户状态 |
-| `LDAP base DN … not found`/`CC_LDAP_REQUIRED_GROUP … not found` (中文(简体) ). | DN 中的打字符 | 从目录复制 DN |
+| `CC_LDAP_URL: plain ldap:// is refused` | `ldap://`无STARTLS | `ldaps://…:636` 或 `CC_LDAP_STARTTLS=true` |
+| `LDAP …: cannot connect (network or TLS certificate problem)` | 网络、 端口、 证书中没有的主机名、 错误的 CA | 证书的 DNS 名称, `CC_LDAP_CA_FILE`, `openssl s_client` |
+| `LDAP TLS: no system root certificates found` | 图像缺少所需的根 | 套数`CC_LDAP_CA_FILE` |
+| `service account bind rejected (check CC_LDAP_BIND_DN and password)` | 错误 DN 或密码, 已禁用服务账户 | 检查 DN,一个没有额外字符的密码文件, 账户状态 |
+| `LDAP base DN … not found`/`CC_LDAP_REQUIRED_GROUP … not found` | DN 中的打字符 | 从目录复制 DN |
 | `401 invalid_credentials`有正确的密码 | 账户已禁用、 锁定、 密码已过期, 或搜索找到多个条目 | 检查 AD; 窄`CC_LDAP_USER_FILTER` 中的账户 |
 | `429 rate_limited`在 LDAP 的登录 | `CC_LDAP_MAX_FAILURES`或`CC_LDAP_MAX_FAILURES_PER_IP`)) | 等待`CC_LDAP_FAILURE_WINDOW_MINUTES` ; 查找谁在猜测密码 。 |
 
@@ -3800,7 +3797,7 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 `account_disabled`(403)`invalid_credentials`(401)`rate_limited`(429)——见:
 和[PROTOCOL_CHANGELOG.md](https://github.com/evsikovas/consolecrypt-server/blob/main/PROTOCOL_CHANGELOG.md)中的表格。
 
-[来源文件于 GitHub: ENTERPRISE.md QQ](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
+[GitHub 上的 ENTERPRISE.md ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/ENTERPRISE.md)
 
 > **注意**
 >
@@ -3810,29 +3807,29 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 
 ## 68. 您自己的服务器: 特性、 旗帜和限制
 
-您自己的服务器功能被打开了 CCQQ 变量 。 使用 Docker Compose它们进入私人服务器. env(用于变量组成. yaml lists) 或单独编译. override. yaml; 由 Helm 输入您值文件的配置、 认证和邮件块;没有容器进入服务环境或一个私人文件JSON --config ) 。 下面的值是服务器默认值 。
+自托管服务器通过 CC\_\* 变量启用功能。使用 Docker Compose 时，将 compose.yaml 已列出的变量写入私有的 server.env；其他变量可放入单独的 compose.override.yaml。使用 Helm 时，将它们放在 values 文件的 config、auth 和 mail 配置块中。无容器运行时，可写入服务环境或通过 --config 指定的私有 JSON 文件。下文列出服务器默认值。
 
 | 特性 | 变量 (赫尔姆) | 默认 |
 | --- | --- | --- |
 | 新账户登记 | CC\_REGISTRATION\_OPEN(配置:登记开放) | 打开 |
 | 需要的电子邮件验证 | CC\_REQUIRE\_EMAIL\_VERIFICATION(配置.require电子邮件验证) | 关闭;在Docker 实例中 |
 | 邮件 | CC\_MAIL\_TRANSPORT: smtp,文件或已禁用(mail.transport) | 已禁用; Docker 实例中的 smtp |
-| 设备请求签名 | CC\_REQUIRE\_REQUEST\_PROOF(配置. require RequestProof) (中文(简体) ). | 打开 |
+| 设备请求签名 | CC\_REQUIRE\_REQUEST\_PROOF(配置. require RequestProof) | 打开 |
 | 团队 | CC\_TEAMS\_ENABLED(通过在Helm的extraEnv) | 打开 |
-| 每个账户的小组/每个小组的成员 | CC\_MAX\_TEAMS\_PER\_ACCOUNT/CC\_MAX\_TEAM\_MEMBERS (中文(简体) ). | 50 / 200 |
-| 共享(主旗) | CC\_OBJECT\_SHARING\_ENABLED(配置.objectSharingEnabled) (中文(简体) ). | 关 |
-| 共享团体和共享秘密 | CC\_SHARED\_GROUPS\_ENABLED, CC\_SHARED\_SECRETS\_ENABLED (中文(简体) ). | 关 |
-| 共享Kubernetes上下文和数据库连接 | CC\_SHARED\_KUBE\_CONTEXTS\_ENABLED, CC\_SHARED\_DB\_CONNECTIONS\_ENABLED (中文(简体) ). | 关 |
-| 共享注释 | CC\_SHARED\_NOTES\_ENABLED(配置. shared Notes Enabled) (中文(简体) ). | 关 |
-| 一个同事的新设备与所有者在线 | CC\_SHARING\_OWNER\_ONLINE\_ENROLLMENT\_ENABLED (中文(简体) ). | 关 |
+| 每个账户的小组/每个小组的成员 | CC\_MAX\_TEAMS\_PER\_ACCOUNT/CC\_MAX\_TEAM\_MEMBERS | 50 / 200 |
+| 共享(主旗) | CC\_OBJECT\_SHARING\_ENABLED(配置.objectSharingEnabled) | 关 |
+| 共享团体和共享秘密 | CC\_SHARED\_GROUPS\_ENABLED, CC\_SHARED\_SECRETS\_ENABLED | 关 |
+| 共享Kubernetes上下文和数据库连接 | CC\_SHARED\_KUBE\_CONTEXTS\_ENABLED, CC\_SHARED\_DB\_CONNECTIONS\_ENABLED | 关 |
+| 共享注释 | CC\_SHARED\_NOTES\_ENABLED(配置. shared Notes Enabled) | 关 |
+| 一个同事的新设备与所有者在线 | CC\_SHARING\_OWNER\_ONLINE\_ENROLLMENT\_ENABLED | 关 |
 | 新设备保护 | CC\_DEVICE\_PROTECTION\_ENABLED(配置.device Protection.university),检疫CC\_DEVICE\_QUARANTINE\_DAYS | 关闭;14天隔离 |
 | 公司注册 | CC\_AUTH\_MODE(auth.mode) (英语). | 标准 |
-| 每个账户/保险库大小的空档 | CC\_MAX\_VAULTS\_PER\_ACCOUNT/CC\_MAX\_VAULT\_BYTES(至少1 MiB;config.quotas.maxVaultsPercount / maxVaultBytes) (中文(简体) ). | 50 / 1 吉贝 |
-| 6.2.2 配额:物品、墓碑、装置 | CC\_QUOTAS\_V2\_ENABLED(config.quotas.v2Enabled) (中文(简体) ). | 打开 |
-| 每个金库/墓碑费用 | CC\_MAX\_VAULT\_OBJECTS/CC\_TOMBSTONE\_COST\_BYTES (0–1048576) (中文(简体) ). | 100 000 / 256 字节 |
+| 每个账户/保险库大小的空档 | CC\_MAX\_VAULTS\_PER\_ACCOUNT/CC\_MAX\_VAULT\_BYTES(至少1 MiB;config.quotas.maxVaultsPercount / maxVaultBytes) | 50 / 1 吉贝 |
+| 6.2.2 配额:物品、墓碑、装置 | CC\_QUOTAS\_V2\_ENABLED(config.quotas.v2Enabled) | 打开 |
+| 每个金库/墓碑费用 | CC\_MAX\_VAULT\_OBJECTS/CC\_TOMBSTONE\_COST\_BYTES (0–1048576) | 100 000 / 256 字节 |
 | 每天每个账户/新设备的装置 | CC\_MAX\_DEVICES\_PER\_ACCOUNT(1-64)/CC\_NEW\_DEVICES\_PER\_ACCOUNT\_PER\_DAY(0=无限制) | 20 / 10 |
 | 请求限制 | CC\_RATE\_LIMIT\_ENABLED,模式CC\_RATE\_LIMIT\_MODE:观察或执行(config.rateLimit.suplied / 模式) | 上,观察 |
-| 每个账户的 WebSocket 连接(每份复制) | CC\_WS\_MAX\_CONNECTIONS\_PER\_USER(config.websocket.max ConnectionsPerUser) (中文(简体) ). | 32 |
+| 每个账户的 WebSocket 连接(每份复制) | CC\_WS\_MAX\_CONNECTIONS\_PER\_USER(config.websocket.max ConnectionsPerUser) | 32 |
 | Prometheus 度量衡(/度量) | CC\_METRICS\_LISTEN (计量. | 端口 9090;在Docker 中关闭 |
 
 1. 分享是默认关闭的。 每个扩展——团体,秘密,Kubernetes,数据库,笔记,同事的新设备——都需要主旗CC\_OBJECT\_SHARING\_ENABLED并请求打开签名,否则服务器拒绝启动. 只启用您需要的东西; 关闭一个旗子会隐藏共享的对象和注释而不删除其加密内容 。 客户从经认证的/v1/shares/能力而不是从/v1/meta学习能力.
@@ -3845,7 +3842,7 @@ The log and `audit_events` record sign-ins ( `login` , `metadata.method` ), acco
 
 5. 请求限制(服务器0.2.2)生活在PostgreSQL,由所有复制品共享. 在观察模式(默认)中,过量请求只计算在cc\_rate\_limit\_oboaded\_total rimit和审计日志(limit\_excovered)中;在执行模式中,请求得到429 rate\_limit,并附带Retry-after和细节.limit. 签名和恢复限制(auth\_ip,登录\_email,登录\_email\_total,恢复\_email,恢复\_email\_total)在两种模式中都适用. 要切换: 监视度量表一周, 必要时提高阈值,然后设置执行 。 CC\_RATE\_LIMIT\_ENABLED = 假关闭每一次请求限制,但不关闭配额.
 
-6. 每个限制有四个键:CC\_LIMIT\_&lt;NAME&gt;\_RATE——每个限制的自然期N或N/s,N/min,N/hour,N/day(0=无主桶);\_BURST——容量,整数至少为1(默认:率的1期);\_PER\_HOUR和\_PER\_DAY——额外上限(0=无). 例如CC\_LIMIT\_PUSH\_ACCOUNT\_RATE = 600/min. (中文(简体) ). 较老的CC\_RATE\_LIMIT\_AUTH\_PER\_IP\_PER\_MINUTE,CC\_RATE\_LIMIT\_LOGIN\_PER\_EMAIL\_PER\_MINUTE和CC\_RATE\_LIMIT\_RECOVERY\_PER\_EMAIL\_PER\_HOUR设置了auth\_ip,登录\_email和recovery\_email率,而新的\_RATE密钥则未设置. 每部复制品还保留内膜限制:CC\_RATE\_LIMIT\_AUTH\_PER\_IP\_PER\_MINUTE(30,第一个登录阶段),CC\_RATE\_LIMIT\_PROOF\_PER\_DEVICE\_PER\_MINUTE(20)和CC\_RATE\_LIMIT\_READ\_PER\_DEVICE\_PER\_MINUTE(1200读每分钟,0=关闭).
+6. 每个限制有四个键:CC\_LIMIT\_&lt;NAME&gt;\_RATE——每个限制的自然期N或N/s,N/min,N/hour,N/day(0=无主桶);\_BURST——容量,整数至少为1(默认:率的1期);\_PER\_HOUR和\_PER\_DAY——额外上限(0=无). 例如CC\_LIMIT\_PUSH\_ACCOUNT\_RATE = 600/min. 较老的CC\_RATE\_LIMIT\_AUTH\_PER\_IP\_PER\_MINUTE,CC\_RATE\_LIMIT\_LOGIN\_PER\_EMAIL\_PER\_MINUTE和CC\_RATE\_LIMIT\_RECOVERY\_PER\_EMAIL\_PER\_HOUR设置了auth\_ip,登录\_email和recovery\_email率,而新的\_RATE密钥则未设置. 每部复制品还保留内膜限制:CC\_RATE\_LIMIT\_AUTH\_PER\_IP\_PER\_MINUTE(30,第一个登录阶段),CC\_RATE\_LIMIT\_PROOF\_PER\_DEVICE\_PER\_MINUTE(20)和CC\_RATE\_LIMIT\_READ\_PER\_DEVICE\_PER\_MINUTE(1200读每分钟,0=关闭).
 
 7. 定额CC\_QUOTAS\_V2\_ENABLED=真;假还原0.2.1行为:密码加墓碑,每座金库CC\_TOMBSTONE\_COST\_BYTES不得超过CC\_MAX\_VAULT\_BYTES,活物加墓碑CC\_MAX\_VAULT\_OBJECTS,活体装置CC\_MAX\_DEVICES\_PER\_ACCOUNT,活体装置(403),日新装置CC\_NEW\_DEVICES\_PER\_ACCOUNT\_PER\_DAY,(403)天新装置(403)天新装置. 删除活对象总是被接受的. admin limits--email... key=值变化限制和1个账户的配额(键&lt;name&gt;\_rate,\_burst,\_per\_hour,\_per\_fault\_bytes, max\_vault\_objects, max\_devices\_per\_count, new\_devices\_per\_count\_per\_pay):运行中的服务器在30秒内应用它们,登录限制不能这样更改,admin limits 重置取消覆盖.
 
@@ -3890,7 +3887,7 @@ cc_compose up -d --wait --wait-timeout 180 server
 
 ### 限制名称和默认值
 
-限制名称生成CC\_LIMIT\_&lt;NAME&gt; QQ密钥( push\_ account → CC\_LIMIT\_PUSH\_ACCOUNT\_RATE ) 。\* 标记登录和回收限制: 它们在观察模式下也适用, 并且不能被每个账户覆盖 。 登录\_ 电子邮件计算一个网络的每个电子邮件的登录失败( 24 IPv4 ), 64 IPv6 )。
+每个限制名称对应一组 CC\_LIMIT\_&lt;NAME&gt;\_\* 配置键（例如 push\_account → CC\_LIMIT\_PUSH\_ACCOUNT\_RATE）。星号 \* 标记登录与恢复限制；这些限制在 observe 模式下同样生效，且不能按账户覆盖。login\_email 按电子邮件地址和来源网段统计失败的登录尝试，IPv4 使用 /24，IPv6 使用 /64。
 
 ```text
 push_device               120/min, burst 60
@@ -3980,9 +3977,9 @@ extraEnv:
 
 ## 69. 您自己的服务器: 配置引用
 
-每个同步服务器参数:每个 CCQQ 密钥及其 Helm 路径,默认,允许值, 密旗和目的, 分组为源引用; 配置源的顺序和启动检查;所有 18 请求限制和管理员命令 。 每次发布时都会对照服务器代码检查引用. 将每种安装方法的密钥放置在“自己的服务器:按方法安装和参数”中。
+本参考列出每个 CC\_\* 同步服务器参数的 Helm 路径、默认值、允许值、保密标记及用途，还说明配置加载顺序、启动检查、18 项请求限制和管理员命令。每次发布时都会对照服务器代码校验。各安装方式如何设置参数，请参阅自托管服务器的安装与参数章节。
 
-**本章内容** [服务器如何读取其设置](#server-reference-sources) · [网络,公共URL,TLS和代理](#server-reference-network) · [数据库和连接池](#server-reference-database) · [邮件( SMTP)](#server-reference-mail) · [登记、地址核查、代号及账户密码](#server-reference-registration) · [设备和新设备保护](#server-reference-devices) · [同步、 WebSocket 和配额](#server-reference-sync) · [共享和团队](#server-reference-sharing) · [请求限制](#server-reference-rate-limits) · [PostgreSQL 限制:CC\_LIMIT\_ &lt;NAME&gt; QQ](#server-reference-limits) · [企业注册号:CC\_AUTH\_\*,CC\_OIDC\_\*,CC\_LDAP\_\*](#server-reference-enterprise) · [常见密钥](#server-reference-auth) · [奥伊德科组织(OIDC)](#server-reference-oidc) · [LDAP / 活动目录](#server-reference-ldap) · [可观察性:指标、日志、追踪](#server-reference-observability) · [维护和保留数据](#server-reference-maintenance) · [服务变量](#server-reference-service) · [管理员命令](#server-reference-admin)
+**本章内容** [服务器如何读取其设置](#server-reference-sources) · [网络,公共URL,TLS和代理](#server-reference-network) · [数据库和连接池](#server-reference-database) · [邮件( SMTP)](#server-reference-mail) · [登记、地址核查、代号及账户密码](#server-reference-registration) · [设备和新设备保护](#server-reference-devices) · [同步、 WebSocket 和配额](#server-reference-sync) · [共享和团队](#server-reference-sharing) · [请求限制](#server-reference-rate-limits) · [PostgreSQL 限制：CC\_LIMIT\_&lt;NAME&gt;\_\*](#server-reference-limits) · [企业注册号:CC\_AUTH\_\*,CC\_OIDC\_\*,CC\_LDAP\_\*](#server-reference-enterprise) · [常见密钥](#server-reference-auth) · [奥伊德科组织(OIDC)](#server-reference-oidc) · [LDAP / 活动目录](#server-reference-ldap) · [可观察性:指标、日志、追踪](#server-reference-observability) · [维护和保留数据](#server-reference-maintenance) · [服务变量](#server-reference-service) · [管理员命令](#server-reference-admin)
 
 <a id="server-reference-sources"></a>
 
@@ -3993,7 +3990,7 @@ extraEnv:
 
 1. 过程环境(包括**显式空**变量);
 2. JSON文件由`--config <path>`提供,或者,没有旗帜,由
-   `CC_CONFIG_FILE` (中文(简体) ).
+   `CC_CONFIG_FILE`
 3. 内置默认值。
 
 空值表示“未设定 ” :在环境中有 `CC_X=`(空) 。
@@ -4014,14 +4011,14 @@ extraEnv:
 | 文件路径 | 容器内或服务主机上的绝对路径 |
 
 在JSON文件中,每个值都是字符串,数字和布尔包括:
-`{"CC_MAX_VAULT_OBJECTS": "200000", "CC_HSTS": "true"}` (中文(简体) ).
+`{"CC_MAX_VAULT_OBJECTS": "200000", "CC_HSTS": "true"}`
 
 ** 启动时的参数。** 无效值将服务器停止使用
 `invalid configuration: <KEY>: …` ; 数值本身从未被打印. 范围
 (表格中列出)和交叉键规则检查:
 
 - 每个共享旗帜需要`CC_OBJECT_SHARING_ENABLED=true`和
-  `CC_REQUIRE_REQUEST_PROOF=true` (中文(简体) ).
+  `CC_REQUIRE_REQUEST_PROOF=true`
 - `CC_REFRESH_TOKEN_TTL_SECS`必须至少是`CC_ACCESS_TOKEN_TTL_SECS`.;
 - `CC_AUTH_MODE=enterprise` 需要`CC_AUTH_PROVIDER`和提供者的钥匙;
   OIDC还需要一个`https://``CC_PUBLIC_URL`.
@@ -4042,7 +4039,7 @@ JWKS, 或目录连接, TLS 和绑定(见
 不详`CC_DATABASE_PASSWORD_FILE`或`CC_SMTP_PASSWORD_FILE`. 只有五把钥匙,
 这些路径本身,指向文件:`CC_OIDC_CLIENT_SECRET_FILE`,
 `CC_OIDC_TOKEN_KEY_FILE`, `CC_LDAP_BIND_PASSWORD_FILE`, `CC_OIDC_CA_FILE`, (英语).
-`CC_LDAP_CA_FILE` (中文(简体) ). 通过环境传送数据库和 SMTP 密码
+`CC_LDAP_CA_FILE` 通过环境传送数据库和 SMTP 密码
 (a) Kubernetes`secretKeyRef`,私人`server.env`或私人JSON档案
 与模式`0600`.
 
@@ -4062,12 +4059,12 @@ JWKS, 或目录连接, TLS 和绑定(见
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_LISTEN_ADDR` (中文(简体) ). | ——(图表总是使用`0.0.0.0:8080`). | `0.0.0.0:8080` | `host:port` (中文(简体) ). | 无 | HTTP/WebSocket API的地址和端口. 在一个没有容器的主机上,在同一个机器上的代理,使用`127.0.0.1:8080`,所以API不能直接到达. `healthcheck`使用它的端口. |
-| `CC_PUBLIC_URL` (中文(简体) ). | `config.publicUrl` (中文(简体) ). | 未设置 | `https://…`URL (中文(简体) ). | 无 | 公共基础URL,案例`https://sync.example.org`,没有`/v1`. 邮件按钮(`/account#action=verify`,`reset`,`deny-device`)和OIDC重定向URI`CC_PUBLIC_URL/v1/auth/oidc/callback`都是从它建造的. 没有它,邮件只携带一个代码,从不提及网页. 必须是绝对的`http(s)://`URL没有`?`或`#`(否则服务器不会启动). 为国际开发组织所需要,必须从`https://``http://`开始,只用于`127.0.0.1`/`localhost`发展。 此来源的`/account`页面由您的网站或服务器本身`CC_WEB_ACCOUNT=true`提供;没有了一个,邮件链接回答404——邮件中的代码仍在应用中工作. |
-| `CC_WEB_ACCOUNT` (中文(简体) ). | `config.webAccount` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 服务器本身的内建账户页:`GET /account` (+`app.js`, `app.css`). 确认电子邮件,用邮件编码设置新的密码,"这不是我"用于新设备邮件——只能通过基于公共代码的端点,没有登录,饼干或金库访问;严格的同源CSP. 对于一个没有网站的自托管服务器:打开并设定`CC_PUBLIC_URL`到服务器的URL;反向代理必须通过`/account`和`/account/*`. 关闭: 服务器只保留 API 。 |
-| `CC_TRUST_PROXY_HEADERS` (中文(简体) ). | `config.trustProxyHeaders` `auto` = `ingress.enabled`, `"true"`, `"false"` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 从** last**`X-Forwarded-For` 条目中提取客户端地址(您的代理添加的地址 ) 。 启用时只能使用一个完全信任的代理服务器来设置或附加信头,并直接访问API端口关闭——否则客户端可以窥探其地址. 没有它,每个IP限制只看到代理地址。 |
-| `CC_HSTS` (中文(简体) ). | `config.hsts` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | 发送`Strict-Transport-Security: max-age=63072000; includeSubDomains`. 只有当代理设置 HSTS 本身或子域必须保持可达HTTP 时, 才会关闭 。 |
-| `CC_SOURCE_CODE_URL` (中文(简体) ). | `config.sourceCodeUrl` (中文(简体) ). | 该建筑的源头URL(图像设置) | URL (中文(简体) ). | 无 | 源链接`/v1/meta`返回为`source_code_url`(AGPL-3.0§13). 保留它未设定的官方图像 。 如果您运行了** 已修改的** 服务器,请将其指向您已修改的源头 。 |
+| `CC_LISTEN_ADDR` | ——(图表总是使用`0.0.0.0:8080`). | `0.0.0.0:8080` | `host:port` | 无 | HTTP/WebSocket API的地址和端口. 在一个没有容器的主机上,在同一个机器上的代理,使用`127.0.0.1:8080`,所以API不能直接到达. `healthcheck`使用它的端口. |
+| `CC_PUBLIC_URL` | `config.publicUrl` | 未设置 | `https://…`URL | 无 | 公共基础URL,案例`https://sync.example.org`,没有`/v1`. 邮件按钮(`/account#action=verify`,`reset`,`deny-device`)和OIDC重定向URI`CC_PUBLIC_URL/v1/auth/oidc/callback`都是从它建造的. 没有它,邮件只携带一个代码,从不提及网页. 必须是绝对的`http(s)://`URL没有`?`或`#`(否则服务器不会启动). 为国际开发组织所需要,必须从`https://``http://`开始,只用于`127.0.0.1`/`localhost`发展。 此来源的`/account`页面由您的网站或服务器本身`CC_WEB_ACCOUNT=true`提供;没有了一个,邮件链接回答404——邮件中的代码仍在应用中工作. |
+| `CC_WEB_ACCOUNT` | `config.webAccount` | `false` | 布尔 | 无 | 服务器本身的内建账户页:`GET /account` (+`app.js`, `app.css`). 确认电子邮件,用邮件编码设置新的密码,"这不是我"用于新设备邮件——只能通过基于公共代码的端点,没有登录,饼干或金库访问;严格的同源CSP. 对于一个没有网站的自托管服务器:打开并设定`CC_PUBLIC_URL`到服务器的URL;反向代理必须通过`/account`和`/account/*`. 关闭: 服务器只保留 API 。 |
+| `CC_TRUST_PROXY_HEADERS` | `config.trustProxyHeaders` `auto` = `ingress.enabled`, `"true"`, `"false"` | `false` | 布尔 | 无 | 从** last**`X-Forwarded-For` 条目中提取客户端地址(您的代理添加的地址 ) 。 启用时只能使用一个完全信任的代理服务器来设置或附加信头,并直接访问API端口关闭——否则客户端可以窥探其地址. 没有它,每个IP限制只看到代理地址。 |
+| `CC_HSTS` | `config.hsts` | `true` | 布尔 | 无 | 发送`Strict-Transport-Security: max-age=63072000; includeSubDomains`. 只有当代理设置 HSTS 本身或子域必须保持可达HTTP 时, 才会关闭 。 |
+| `CC_SOURCE_CODE_URL` | `config.sourceCodeUrl` | 该建筑的源头URL(图像设置) | URL | 无 | 源链接`/v1/meta`返回为`source_code_url`(AGPL-3.0§13). 保留它未设定的官方图像 。 如果您运行了** 已修改的** 服务器,请将其指向您已修改的源头 。 |
 
 <a id="server-reference-database"></a>
 
@@ -4075,13 +4072,13 @@ JWKS, 或目录连接, TLS 和绑定(见
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_DATABASE_URL` (中文(简体) ). | `database.url`,`database.existingSecret`+`database.existingSecretKey`,或捆绑`postgresql.*`. | ** 所需** | `postgres://…`URL (中文(简体) ). | 是的,有密码 | PostgreSQL 16 URL: `postgres://user@host:5432/db?sslmode=verify-full` (中文(简体) ). 用于外部数据库使用`sslmode=verify-full`和私人CA,`sslrootcert=<path in the container>` . URL 内部的密码必须用%- 编码;在`CC_DATABASE_PASSWORD` 中单独传送更为简单。**当密码包含时, secret** 。 在赫尔姆(`database.url`年),保存在图中的秘密中,(`existingSecret`年)保存在你的. |
-| `CC_DATABASE_PASSWORD` (中文(简体) ). | 仅与捆绑的数据库`postgresql.auth.password`/`existingSecret`一起使用;用于外部使用`extraEnv`并带有a`secretKeyRef` | 未设置 | 字符串 | 对 | 在URL顶端应用密码;不需要逃跑.**Secret.**当这个或URL都没有密码时,驱动程序会使用标准`PGPASSWORD`变量. |
-| `DATABASE_URL` (中文(简体) ). | — | 未设置 | `postgres://…`URL (中文(简体) ). | 是的,有密码 | 遗产名称为`CC_DATABASE_URL`,**环境仅**. 当`CC_DATABASE_URL`不是在进程环境中时使用;然后从JSON文件中胜出`CC_DATABASE_URL`.**Secret** 包含密码时使用. |
-| `CC_DATABASE_MAX_CONNECTIONS` (中文(简体) ). | `database.maxConnections` (中文(简体) ). | `20` | 整数% 1 | 无 | 每个过程的集合大小(pod),至少1. 每个进程都有一个连接`LISTEN/NOTIFY`. 保留`replicas × (value + 1)`于PostgreSQL下方的`max_connections`. 5秒后等待自由连接时间出局. |
-| `CC_DATABASE_CONNECT_TIMEOUT_SECS` (中文(简体) ). | `database.connectTimeoutSecs` (中文(简体) ). | `60` | 秒, 整数 | 无 | 多少秒的启动持续重试一个无法到达的数据库(从0.25秒后退至5秒后退),然后以错误退出. 适用于`serve`,`migrate`和`admin`. |
-| `CC_RUN_MIGRATIONS` (中文(简体) ). | `migrations.runAtStartup` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | 在启动时应用内置的迁移(在咨询锁下——带有数个复制品的安全). 只有在迁移分开运行`consolecrypt-server migrate`,赫尔姆运行`migrations.job.enabled`或为回滚运行时才使用`false`. 将图像回滚不会取消迁移 。 |
-| `CC_EVENT_BUS` (中文(简体) ). | `config.eventBus` (中文(简体) ). | `postgres` (中文(简体) ). | `postgres`, `local` (中文(简体) ). | 无 | 实时事件是如何到达WebSocket客户端的:`postgres``LISTEN/NOTIFY`,任何复制件的数量)或`local`(正在处理中,只有一份复制件;图表拒绝`local`与`replicaCount > 1`或自动缩放. |
+| `CC_DATABASE_URL` | `database.url`,`database.existingSecret`+`database.existingSecretKey`,或捆绑`postgresql.*`. | ** 所需** | `postgres://…`URL | 是的,有密码 | PostgreSQL 16 URL: `postgres://user@host:5432/db?sslmode=verify-full` 用于外部数据库使用`sslmode=verify-full`和私人CA,`sslrootcert=<path in the container>` . URL 内部的密码必须用%- 编码;在`CC_DATABASE_PASSWORD` 中单独传送更为简单。**当密码包含时, secret** 。 在赫尔姆(`database.url`年),保存在图中的秘密中,(`existingSecret`年)保存在你的. |
+| `CC_DATABASE_PASSWORD` | 仅与捆绑的数据库`postgresql.auth.password`/`existingSecret`一起使用;用于外部使用`extraEnv`并带有a`secretKeyRef` | 未设置 | 字符串 | 对 | 在URL顶端应用密码;不需要逃跑.**Secret.**当这个或URL都没有密码时,驱动程序会使用标准`PGPASSWORD`变量. |
+| `DATABASE_URL` | — | 未设置 | `postgres://…`URL | 是的,有密码 | 遗产名称为`CC_DATABASE_URL`,**环境仅**. 当`CC_DATABASE_URL`不是在进程环境中时使用;然后从JSON文件中胜出`CC_DATABASE_URL`.**Secret** 包含密码时使用. |
+| `CC_DATABASE_MAX_CONNECTIONS` | `database.maxConnections` | `20` | 整数% 1 | 无 | 每个过程的集合大小(pod),至少1. 每个进程都有一个连接`LISTEN/NOTIFY`. 保留`replicas × (value + 1)`于PostgreSQL下方的`max_connections`. 5秒后等待自由连接时间出局. |
+| `CC_DATABASE_CONNECT_TIMEOUT_SECS` | `database.connectTimeoutSecs` | `60` | 秒, 整数 | 无 | 多少秒的启动持续重试一个无法到达的数据库(从0.25秒后退至5秒后退),然后以错误退出. 适用于`serve`,`migrate`和`admin`. |
+| `CC_RUN_MIGRATIONS` | `migrations.runAtStartup` | `true` | 布尔 | 无 | 在启动时应用内置的迁移(在咨询锁下——带有数个复制品的安全). 只有在迁移分开运行`consolecrypt-server migrate`,赫尔姆运行`migrations.job.enabled`或为回滚运行时才使用`false`. 将图像回滚不会取消迁移 。 |
+| `CC_EVENT_BUS` | `config.eventBus` | `postgres` | `postgres`, `local` | 无 | 实时事件是如何到达WebSocket客户端的:`postgres``LISTEN/NOTIFY`,任何复制件的数量)或`local`(正在处理中,只有一份复制件;图表拒绝`local`与`replicaCount > 1`或自动缩放. |
 
 <a id="server-reference-mail"></a>
 
@@ -4092,15 +4089,15 @@ JWKS, 或目录连接, TLS 和绑定(见
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_MAIL_TRANSPORT` (中文(简体) ). | `mail.transport` (中文(简体) ). | `disabled` (中文(简体) ). | `disabled``none`, `smtp`, `file` (中文(简体) ). | 无 | `disabled` (或`none`):没有发送任何信息,运营商使用`admin verify-email`和`admin reset-token`; `smtp`:通过SMTP发送; `file`:仅开发,每条消息作为文件写入`CC_MAIL_DIR`. |
-| `CC_MAIL_DIR` (中文(简体) ). | `mail.file.dir` (一个空Dir in the pock) (一个空Dir in the post) (一个空Dir) (一个空Dir in the pock) (一个空Dir) (一个空Dir (一个空Dir in the pock)) | `./.dev-mail` (中文(简体) ). | 目录路径 | 无 | `file`的目录;相对于进程工作目录. 文件以模式`0600`创建. |
-| `CC_MAIL_FROM` (中文(简体) ). | `mail.from` (中文(简体) ). | `ConsoleCrypt <no-reply@localhost>` (中文(简体) ). | 地址`Name <a@example.org>` (中文(简体) ). | 无 | 发者. 您的 SMTP 服务器和发送者的 DNS 记录必须允许 。 |
-| `CC_MAIL_LANGUAGE` (中文(简体) ). | `mail.language` (中文(简体) ). | `ru` (中文(简体) ). | `ru`, `en` (中文(简体) ). | 无 | 邮件语言和内置账户页的语言。 邮件是HTML,带有一个纯文本的选项(UTF-8);代码总是显示用于粘贴到应用程序,其有效性来自TTL设置. |
-| `CC_SMTP_HOST` (中文(简体) ). | `mail.smtp.host` (中文(简体) ). | — | 主机名称 | 无 | SMTP主机名;需要使用`smtp`. |
-| `CC_SMTP_PORT` (中文(简体) ). | `mail.smtp.port` (中文(简体) ). | `587` | 1–65535 | 无 | SMTP端口(1–65535). |
-| `CC_SMTP_TLS` (中文(简体) ). | `mail.smtp.tls` (中文(简体) ). | `starttls` (中文(简体) ). | `starttls`, `tls`, `none` (中文(简体) ). | 无 | `starttls`(通常是587)`tls`——隐含的TLS(通常是465),`none`——没有加密,仅供本地继电器或测试邮件捕捉器使用. |
-| `CC_SMTP_USERNAME` (中文(简体) ). | `mail.smtp.username` (中文(简体) ). | 未设置 | 字符串 | 无 | SMTP登录. 空:没有认证(一个IP授权的中继). |
-| `CC_SMTP_PASSWORD` (中文(简体) ). | `mail.smtp.password`(图秘)或`mail.smtp.existingSecret`+`existingSecretPasswordKey` | 未设置 | 字符串 | 对 | SMTP密码.**Secret**:在Helm中使用`existingSecret`. |
+| `CC_MAIL_TRANSPORT` | `mail.transport` | `disabled` | `disabled``none`, `smtp`, `file` | 无 | `disabled` (或`none`):没有发送任何信息,运营商使用`admin verify-email`和`admin reset-token`; `smtp`:通过SMTP发送; `file`:仅开发,每条消息作为文件写入`CC_MAIL_DIR`. |
+| `CC_MAIL_DIR` | `mail.file.dir` (一个空Dir in the pock) (一个空Dir in the post) (一个空Dir) (一个空Dir in the pock) (一个空Dir) (一个空Dir (一个空Dir in the pock)) | `./.dev-mail` | 目录路径 | 无 | `file`的目录;相对于进程工作目录. 文件以模式`0600`创建. |
+| `CC_MAIL_FROM` | `mail.from` | `ConsoleCrypt <no-reply@localhost>` | 地址`Name <a@example.org>` | 无 | 发者. 您的 SMTP 服务器和发送者的 DNS 记录必须允许 。 |
+| `CC_MAIL_LANGUAGE` | `mail.language` | `ru` | `ru`, `en` | 无 | 邮件语言和内置账户页的语言。 邮件是HTML,带有一个纯文本的选项(UTF-8);代码总是显示用于粘贴到应用程序,其有效性来自TTL设置. |
+| `CC_SMTP_HOST` | `mail.smtp.host` | — | 主机名称 | 无 | SMTP主机名;需要使用`smtp`. |
+| `CC_SMTP_PORT` | `mail.smtp.port` | `587` | 1–65535 | 无 | SMTP端口(1–65535). |
+| `CC_SMTP_TLS` | `mail.smtp.tls` | `starttls` | `starttls`, `tls`, `none` | 无 | `starttls`(通常是587)`tls`——隐含的TLS(通常是465),`none`——没有加密,仅供本地继电器或测试邮件捕捉器使用. |
+| `CC_SMTP_USERNAME` | `mail.smtp.username` | 未设置 | 字符串 | 无 | SMTP登录. 空:没有认证(一个IP授权的中继). |
+| `CC_SMTP_PASSWORD` | `mail.smtp.password`(图秘)或`mail.smtp.existingSecret`+`existingSecretPasswordKey` | 未设置 | 字符串 | 对 | SMTP密码.**Secret**:在Helm中使用`existingSecret`. |
 
 <a id="server-reference-registration"></a>
 
@@ -4108,16 +4105,16 @@ JWKS, 或目录连接, TLS 和绑定(见
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_REGISTRATION_OPEN` (中文(简体) ). | `config.registrationOpen` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | 允许新账户登记。 `false`:登记答复403和`/v1/meta`报告`registration_open: false`;现有账户继续运作。 在企业模式中被忽略,其中第一个IDP/Directory sign-in创建账户`CC_AUTH_AUTO_CREATE`. |
-| `CC_REQUIRE_EMAIL_VERIFICATION` (中文(简体) ). | `config.requireEmailVerification` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 需要经过核实的地址:在没有地址的情况下,签入并创建一个金库,团队或共享项目答案`email_not_verified`. 需要邮件或 `admin verify-email` 。 Docker 作曲实例开启. |
-| `CC_EMAIL_VERIFY_TTL_SECS` (中文(简体) ). | `config.tokens.emailVerifyTtlSecs` (中文(简体) ). | `172800`(48小时) | 秒, 整数 | 无 | 地址验证码的寿命 。 |
-| `CC_PASSWORD_RESET_TTL_SECS` (中文(简体) ). | `config.tokens.passwordResetTtlSecs` (中文(简体) ). | `3600`(1小时) | 秒, 整数 | 无 | 账户密码的寿命重置代码(来自邮件或`admin reset-token`). |
-| `CC_ACCESS_TOKEN_TTL_SECS` (中文(简体) ). | `config.tokens.accessTtlSecs` (中文(简体) ). | `900` (15分钟) | 秒, 60 - 86400 键 | 无 | 60–86400. 访问标志寿命 60–86400. 更短意味着更快的取消咬,但刷新更频繁. |
-| `CC_REFRESH_TOKEN_TTL_SECS` (中文(简体) ). | `config.tokens.refreshTtlSecs` (中文(简体) ). | (`2592000`天)(30天) | 秒, \\`CC_ACCESS_TOKEN_TTL_SECS` | 无 | 刷新令牌寿命( 设备会话不刷新);至少访问令牌寿命 。 之后,装置又开始出现。 |
-| `CC_ARGON2_MEMORY_KIB` (中文(简体) ). | `config.argon2.memoryKib` (中文(简体) ). | `19456` (19 MiB) (英语). | KiB, 整数 | 无 | 用于**账户密码** hashes(服务器从未获得金库密钥)的Argon2id内存. 新的参数适用于新的散列;现有的散列用自己的参数验证,直到密码更改为止. |
-| `CC_ARGON2_ITERATIONS` (中文(简体) ). | `config.argon2.iterations` (中文(简体) ). | `2` | 整数% 1 | 无 | 阿尔贡2id通过. |
-| `CC_ARGON2_PARALLELISM` (中文(简体) ). | `config.argon2.parallelism` (中文(简体) ). | `1` | 整数% 1 | 无 | 阿尔贡2id平行主义. |
-| `CC_ARGON2_MAX_CONCURRENT` (中文(简体) ). | `config.argon2.maxConcurrent` `4` (中文(简体) ). | CPU数,最多4个 | 整数% 1 | 无 | Hashes同时计算(一个CPU和内存防洪),至少1个. 峰值记忆QQ`CC_ARGON2_MEMORY_KIB × CC_ARGON2_MAX_CONCURRENT`——保持远低于容器内存极限. |
+| `CC_REGISTRATION_OPEN` | `config.registrationOpen` | `true` | 布尔 | 无 | 允许新账户登记。 `false`:登记答复403和`/v1/meta`报告`registration_open: false`;现有账户继续运作。 在企业模式中被忽略,其中第一个IDP/Directory sign-in创建账户`CC_AUTH_AUTO_CREATE`. |
+| `CC_REQUIRE_EMAIL_VERIFICATION` | `config.requireEmailVerification` | `false` | 布尔 | 无 | 需要经过核实的地址:在没有地址的情况下,签入并创建一个金库,团队或共享项目答案`email_not_verified`. 需要邮件或 `admin verify-email` 。 Docker 作曲实例开启. |
+| `CC_EMAIL_VERIFY_TTL_SECS` | `config.tokens.emailVerifyTtlSecs` | `172800`(48小时) | 秒, 整数 | 无 | 地址验证码的寿命 。 |
+| `CC_PASSWORD_RESET_TTL_SECS` | `config.tokens.passwordResetTtlSecs` | `3600`(1小时) | 秒, 整数 | 无 | 账户密码的寿命重置代码(来自邮件或`admin reset-token`). |
+| `CC_ACCESS_TOKEN_TTL_SECS` | `config.tokens.accessTtlSecs` | `900` (15分钟) | 秒, 60 - 86400 键 | 无 | 60–86400. 访问标志寿命 60–86400. 更短意味着更快的取消咬,但刷新更频繁. |
+| `CC_REFRESH_TOKEN_TTL_SECS` | `config.tokens.refreshTtlSecs` | (`2592000`天)(30天) | 秒, \\`CC_ACCESS_TOKEN_TTL_SECS` | 无 | 刷新令牌寿命( 设备会话不刷新);至少访问令牌寿命 。 之后,装置又开始出现。 |
+| `CC_ARGON2_MEMORY_KIB` | `config.argon2.memoryKib` | `19456` (19 MiB) (英语). | KiB, 整数 | 无 | 用于**账户密码** hashes(服务器从未获得金库密钥)的Argon2id内存. 新的参数适用于新的散列;现有的散列用自己的参数验证,直到密码更改为止. |
+| `CC_ARGON2_ITERATIONS` | `config.argon2.iterations` | `2` | 整数% 1 | 无 | 阿尔贡2id通过. |
+| `CC_ARGON2_PARALLELISM` | `config.argon2.parallelism` | `1` | 整数% 1 | 无 | 阿尔贡2id平行主义. |
+| `CC_ARGON2_MAX_CONCURRENT` | `config.argon2.maxConcurrent` `4` | CPU数,最多4个 | 整数% 1 | 无 | Hashes同时计算(一个CPU和内存防洪),至少1个. 内存峰值约为 `CC_ARGON2_MEMORY_KIB × CC_ARGON2_MAX_CONCURRENT`——保持远低于容器内存极限. |
 
 <a id="server-reference-devices"></a>
 
@@ -4125,15 +4122,15 @@ JWKS, 或目录连接, TLS 和绑定(见
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_REQUIRE_REQUEST_PROOF` (中文(简体) ). | `config.requireRequestProof` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | 要求每一份请求都要与设备密钥(protocol 1.5):没有密钥,一个被盗的令牌是无用的. `false`是对老客户的临时例外:无效的证明仍然被拒绝,缺失的只是计算`cc_request_proofs_total{result="missing"}`. 分享需要`true`. |
-| `CC_DEVICE_REQUEST_TTL_SECS` (中文(简体) ). | `config.tokens.deviceRequestTtlSecs` (中文(简体) ). | `86400`(24小时) | 秒, 整数 | 无 | 新设备的信托请求要等多久才能在可信设备上获得批准. |
-| `CC_DEVICE_PROTECTION_ENABLED` (中文(简体) ). | `config.deviceProtection.enabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 防范新设备的签入:隔离,限制未信任设备的解锁材料,"新设备"邮件,`device_registered`事件,在密码重置上取消未使用的设备,"这不是我"链接指`CC_PUBLIC_URL/account`. 详细情况:[“防止新装置的登录”#device-protection]。 |
-| `CC_NEW_DEVICE_MAIL_ENABLED` (中文(简体) ). | `config.deviceProtection.newDeviceMail` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | "新设备"邮件(有保护并配置了邮件). |
-| `CC_DEVICE_QUARANTINE_DAYS` (中文(简体) ). | `config.deviceProtection.quarantineDays` (中文(简体) ). | `14` | 天数,0-365天 | 无 | 0–365日内对新设备进行检疫:同时它不能取消可信赖的设备,并且从它中更改密码或“在任何地方签字”不会结束可信赖的设备的会话。 `0`:没有检疫。 |
-| `CC_ENVELOPE_LIMIT_ACCOUNT_PER_HOUR` (中文(简体) ). | `config.deviceProtection.envelopesPerAccountPerHour` (中文(简体) ). | `5` | 整数 ^ 0, `0` =无限制 | 无 | 账户的不可信设备每小时可收到多少库锁材料(`0`=无限制). 柜台由所有复制品共享. |
-| `CC_ENVELOPE_LIMIT_ACCOUNT_PER_DAY` (中文(简体) ). | `config.deviceProtection.envelopesPerAccountPerDay` (中文(简体) ). | `20` | 整数 ^ 0, `0` =无限制 | 无 | 每日一样. |
-| `CC_ENVELOPE_LIMIT_DEVICE_PER_HOUR` (中文(简体) ). | `config.deviceProtection.envelopesPerDevicePerHour` (中文(简体) ). | `3` | 整数 ^ 0, `0` =无限制 | 无 | 每小时一个无人信任的设备也是这样 |
-| `CC_NEW_DEVICE_MAIL_PER_HOUR` (中文(简体) ). | `config.deviceProtection.newDeviceMailsPerHour` (中文(简体) ). | `10` | 整数 ^ 0 | 无 | "新设备"邮箱每时每刻的帐号;该时间的后期签注被折叠成一个邮箱. |
+| `CC_REQUIRE_REQUEST_PROOF` | `config.requireRequestProof` | `true` | 布尔 | 无 | 要求每一份请求都要与设备密钥(protocol 1.5):没有密钥,一个被盗的令牌是无用的. `false`是对老客户的临时例外:无效的证明仍然被拒绝,缺失的只是计算`cc_request_proofs_total{result="missing"}`. 分享需要`true`. |
+| `CC_DEVICE_REQUEST_TTL_SECS` | `config.tokens.deviceRequestTtlSecs` | `86400`(24小时) | 秒, 整数 | 无 | 新设备的信托请求要等多久才能在可信设备上获得批准. |
+| `CC_DEVICE_PROTECTION_ENABLED` | `config.deviceProtection.enabled` | `false` | 布尔 | 无 | 防范新设备的签入:隔离,限制未信任设备的解锁材料,"新设备"邮件,`device_registered`事件,在密码重置上取消未使用的设备,"这不是我"链接指`CC_PUBLIC_URL/account`. 详细情况:[“防止新装置的登录”#device-protection]。 |
+| `CC_NEW_DEVICE_MAIL_ENABLED` | `config.deviceProtection.newDeviceMail` | `true` | 布尔 | 无 | "新设备"邮件(有保护并配置了邮件). |
+| `CC_DEVICE_QUARANTINE_DAYS` | `config.deviceProtection.quarantineDays` | `14` | 天数,0-365天 | 无 | 0–365日内对新设备进行检疫:同时它不能取消可信赖的设备,并且从它中更改密码或“在任何地方签字”不会结束可信赖的设备的会话。 `0`:没有检疫。 |
+| `CC_ENVELOPE_LIMIT_ACCOUNT_PER_HOUR` | `config.deviceProtection.envelopesPerAccountPerHour` | `5` | 整数 ^ 0, `0` =无限制 | 无 | 账户的不可信设备每小时可收到多少库锁材料(`0`=无限制). 柜台由所有复制品共享. |
+| `CC_ENVELOPE_LIMIT_ACCOUNT_PER_DAY` | `config.deviceProtection.envelopesPerAccountPerDay` | `20` | 整数 ^ 0, `0` =无限制 | 无 | 每日一样. |
+| `CC_ENVELOPE_LIMIT_DEVICE_PER_HOUR` | `config.deviceProtection.envelopesPerDevicePerHour` | `3` | 整数 ^ 0, `0` =无限制 | 无 | 每小时一个无人信任的设备也是这样 |
+| `CC_NEW_DEVICE_MAIL_PER_HOUR` | `config.deviceProtection.newDeviceMailsPerHour` | `10` | 整数 ^ 0 | 无 | "新设备"邮箱每时每刻的帐号;该时间的后期签注被折叠成一个邮箱. |
 
 <a id="server-reference-sync"></a>
 
@@ -4141,17 +4138,17 @@ JWKS, 或目录连接, TLS 和绑定(见
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_SYNC_PAGE_BYTES` (中文(简体) ). | `config.sync.pageBytes` (中文(简体) ). | `8388608`(8个米B) | 字节, {} 65536 | 无 | 1`changes`/`snapshot`页的字节预算和共享列表,至少65536. |
-| `CC_QUOTAS_V2_ENABLED` (中文(简体) ). | `config.quotas.v2Enabled` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | 服务器0.2.2配额:墓碑和物品核算,装置限制,删除一个没有墓碑的不明物品. `false`恢复0.2.1行为(计数器仍保留). |
-| `CC_MAX_VAULT_BYTES` (中文(简体) ). | `config.quotas.maxVaultBytes` (中文(简体) ). | `1073741824`(1个GiB) | 字节,\ 1048576 | 无 | 每个保险库的密码加上墓碑,至少1米B. 超越: `413`, `details.reason = "vault_quota"`. |
-| `CC_TOMBSTONE_COST_BYTES` (中文(简体) ). | `config.quotas.tombstoneCostBytes` (中文(简体) ). | `256` | 字节, 0–1048576 | 无 | 0–1048576,每块墓碑(删除对象)成本定额字节. |
-| `CC_MAX_VAULT_OBJECTS` (中文(简体) ). | `config.quotas.maxVaultObjects` (中文(简体) ). | `100000` | 整数% 1 | 无 | 活物加墓碑每个金库,至少1个. 超越: `413`, `object_limit`. |
-| `CC_MAX_VAULTS_PER_ACCOUNT` (中文(简体) ). | `config.quotas.maxVaultsPerAccount` (中文(简体) ). | `50` | 整数% 1 | 无 | 一个账户可能拥有的缺陷,至少1个。 超越: `403`, `vault_limit`. |
-| `CC_MAX_DEVICES_PER_ACCOUNT` (中文(简体) ). | `config.quotas.maxDevicesPerAccount` (中文(简体) ). | `20` | 1–64 | 无 | 每个账户的非重发设备,1–64(64是共享项目的接收方限制). 还有一个: `403`, `device_limit`. |
-| `CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY` (中文(简体) ). | `config.quotas.newDevicesPerAccountPerDay` (中文(简体) ). | `10` | 整数 ^ 0, `0` =无限制 | 无 | 24小时内每个账户的新设备,`0`=无限制。 超越:`403`,`device_daily_limit`与`details.until`. |
-| `CC_WS_PING_INTERVAL_SECS` (中文(简体) ). | `config.websocket.pingIntervalSecs` (中文(简体) ). | `30` | 秒数,% 1 | 无 | WebSocket ping 间隔,至少 1 . 如果您的代理机构提前关闭了闲置的连接,请放下它 。 |
-| `CC_WS_SESSION_RECHECK_SECS` (中文(简体) ). | `config.websocket.sessionRecheckSecs` (中文(简体) ). | `30` | 秒, 1–30 时 | 无 | 打开的 WebSocket 检查其会话不被撤销的频率, 1–30 : 撤销在 30 秒内到达套接字 。 |
-| `CC_WS_MAX_CONNECTIONS_PER_USER` (中文(简体) ). | `config.websocket.maxConnectionsPerUser` (中文(简体) ). | `32` | 整数% 1 | 无 | 每个复制品的每个账户同时设置WebSocket连接,至少1个;更多的答案`429`. |
+| `CC_SYNC_PAGE_BYTES` | `config.sync.pageBytes` | `8388608`(8个米B) | 字节, {} 65536 | 无 | 1`changes`/`snapshot`页的字节预算和共享列表,至少65536. |
+| `CC_QUOTAS_V2_ENABLED` | `config.quotas.v2Enabled` | `true` | 布尔 | 无 | 服务器0.2.2配额:墓碑和物品核算,装置限制,删除一个没有墓碑的不明物品. `false`恢复0.2.1行为(计数器仍保留). |
+| `CC_MAX_VAULT_BYTES` | `config.quotas.maxVaultBytes` | `1073741824`(1个GiB) | 字节,\ 1048576 | 无 | 每个保险库的密码加上墓碑,至少1米B. 超越: `413`, `details.reason = "vault_quota"`. |
+| `CC_TOMBSTONE_COST_BYTES` | `config.quotas.tombstoneCostBytes` | `256` | 字节, 0–1048576 | 无 | 0–1048576,每块墓碑(删除对象)成本定额字节. |
+| `CC_MAX_VAULT_OBJECTS` | `config.quotas.maxVaultObjects` | `100000` | 整数% 1 | 无 | 活物加墓碑每个金库,至少1个. 超越: `413`, `object_limit`. |
+| `CC_MAX_VAULTS_PER_ACCOUNT` | `config.quotas.maxVaultsPerAccount` | `50` | 整数% 1 | 无 | 一个账户可能拥有的缺陷,至少1个。 超越: `403`, `vault_limit`. |
+| `CC_MAX_DEVICES_PER_ACCOUNT` | `config.quotas.maxDevicesPerAccount` | `20` | 1–64 | 无 | 每个账户的非重发设备,1–64(64是共享项目的接收方限制). 还有一个: `403`, `device_limit`. |
+| `CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY` | `config.quotas.newDevicesPerAccountPerDay` | `10` | 整数 ^ 0, `0` =无限制 | 无 | 24小时内每个账户的新设备,`0`=无限制。 超越:`403`,`device_daily_limit`与`details.until`. |
+| `CC_WS_PING_INTERVAL_SECS` | `config.websocket.pingIntervalSecs` | `30` | 秒数,% 1 | 无 | WebSocket ping 间隔,至少 1 . 如果您的代理机构提前关闭了闲置的连接,请放下它 。 |
+| `CC_WS_SESSION_RECHECK_SECS` | `config.websocket.sessionRecheckSecs` | `30` | 秒, 1–30 时 | 无 | 打开的 WebSocket 检查其会话不被撤销的频率, 1–30 : 撤销在 30 秒内到达套接字 。 |
+| `CC_WS_MAX_CONNECTIONS_PER_USER` | `config.websocket.maxConnectionsPerUser` | `32` | 整数% 1 | 无 | 每个复制品的每个账户同时设置WebSocket连接,至少1个;更多的答案`429`. |
 
 单一账户变更的配额,不重新启动:`设定的监管限额--email.
 最大值_字节_字节=... 最大值_字节_对象=... 最大值_ 设备_ 账户=...
@@ -4170,16 +4167,16 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_OBJECT_SHARING_ENABLED` (中文(简体) ). | `config.objectSharingEnabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 主机的主要共享机制. |
-| `CC_SHARED_GROUPS_ENABLED` (中文(简体) ). | `config.sharedGroupsEnabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 共享团体(集资). |
-| `CC_SHARED_SECRETS_ENABLED` (中文(简体) ). | `config.sharedSecretsEnabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 个人共享的秘密。 |
-| `CC_SHARED_KUBE_CONTEXTS_ENABLED` (中文(简体) ). | `config.sharedKubeContextsEnabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 共享Kubernetes连接`supports_kube_contexts`. |
-| `CC_SHARED_DB_CONNECTIONS_ENABLED` (中文(简体) ). | `config.sharedDbConnectionsEnabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 共享数据库连接`supports_db_connections`. |
-| `CC_SHARED_NOTES_ENABLED` (中文(简体) ). | `config.sharedNotesEnabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 共享对象上的共享注释`supports_notes_v1`:每个对象最多500个注释,每个注释最多288个密码文本的KiB. |
-| `CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED` (中文(简体) ). | `config.sharingOwnerOnlineEnrollmentEnabled` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 与所有者在线添加接收者的新个人设备. |
-| `CC_TEAMS_ENABLED` (中文(简体) ). | `extraEnv` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | 团队(共享金库,`/v1/teams/*`,`capabilities.teams` in `/v1/meta`). 独立于共享旗. 使用`false`的队伍路线回答404;数据保存. |
-| `CC_MAX_TEAMS_PER_ACCOUNT` (中文(简体) ). | `extraEnv` (中文(简体) ). | `50` | 整数% 1 | 无 | 一个账户可能属于的团队,至少1个。 |
-| `CC_MAX_TEAM_MEMBERS` (中文(简体) ). | `extraEnv` (中文(简体) ). | `200` | 整数% 2 | 无 | 一个小组的成员,至少2名。 |
+| `CC_OBJECT_SHARING_ENABLED` | `config.objectSharingEnabled` | `false` | 布尔 | 无 | 主机的主要共享机制. |
+| `CC_SHARED_GROUPS_ENABLED` | `config.sharedGroupsEnabled` | `false` | 布尔 | 无 | 共享团体(集资). |
+| `CC_SHARED_SECRETS_ENABLED` | `config.sharedSecretsEnabled` | `false` | 布尔 | 无 | 个人共享的秘密。 |
+| `CC_SHARED_KUBE_CONTEXTS_ENABLED` | `config.sharedKubeContextsEnabled` | `false` | 布尔 | 无 | 共享Kubernetes连接`supports_kube_contexts`. |
+| `CC_SHARED_DB_CONNECTIONS_ENABLED` | `config.sharedDbConnectionsEnabled` | `false` | 布尔 | 无 | 共享数据库连接`supports_db_connections`. |
+| `CC_SHARED_NOTES_ENABLED` | `config.sharedNotesEnabled` | `false` | 布尔 | 无 | 共享对象上的共享注释`supports_notes_v1`:每个对象最多500个注释,每个注释最多288个密码文本的KiB. |
+| `CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED` | `config.sharingOwnerOnlineEnrollmentEnabled` | `false` | 布尔 | 无 | 与所有者在线添加接收者的新个人设备. |
+| `CC_TEAMS_ENABLED` | `extraEnv` | `true` | 布尔 | 无 | 团队(共享金库,`/v1/teams/*`,`capabilities.teams` in `/v1/meta`). 独立于共享旗. 使用`false`的队伍路线回答404;数据保存. |
+| `CC_MAX_TEAMS_PER_ACCOUNT` | `extraEnv` | `50` | 整数% 1 | 无 | 一个账户可能属于的团队,至少1个。 |
+| `CC_MAX_TEAM_MEMBERS` | `extraEnv` | `200` | 整数% 2 | 无 | 一个小组的成员,至少2名。 |
 
 <a id="server-reference-rate-limits"></a>
 
@@ -4192,17 +4189,17 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_RATE_LIMIT_ENABLED` (中文(简体) ). | `config.rateLimit.enabled` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | `false`关闭**所有**请求限制(quotasstay). 仅调试。 |
-| `CC_RATE_LIMIT_MODE` (中文(简体) ). | `config.rateLimit.mode` (中文(简体) ). | `observe` (中文(简体) ). | `observe`, `enforce` (中文(简体) ). | 无 | `observe`:超过PostgreSQL限额,读数限额只计算`cc_rate_limit_observed_total{limiter}`,审计事件`limit_exceeded`,每个账户和限额最多每小时一次; `enforce`:被拒绝. 签注和回收限制(以下标注)和第一阶段`CC_RATE_LIMIT_AUTH_PER_IP_PER_MINUTE`和`CC_RATE_LIMIT_PROOF_PER_DEVICE_PER_MINUTE`在两种模式中都起作用。 程序:观察度量表一周,必要时提高阈值,然后`enforce`. |
-| `CC_RATE_LIMIT_AUTH_PER_IP_PER_MINUTE` (中文(简体) ). | `config.rateLimit.authPerIpPerMinute` (中文(简体) ). | `30` | 每分钟整数 | 无 | 复制内存的第一阶段:每分钟IP(IPv6 per/64)公开登录,注册和恢复请求. 虽然`CC_LIMIT_AUTH_IP_RATE`是未设置的,但相同的值设定了共享`auth_ip`的限度. |
-| `CC_RATE_LIMIT_PROOF_PER_DEVICE_PER_MINUTE` (中文(简体) ). | `config.rateLimit.proofPerDevicePerMinute` (中文(简体) ). | `20` | 每分钟整数 | 无 | 在复制内存中:每分钟每个设备的关键证明尝试(测试/认可). |
-| `CC_RATE_LIMIT_READ_PER_DEVICE_PER_MINUTE` (中文(简体) ). | `config.rateLimit.readPerDevicePerMinute` (中文(简体) ). | `1200` | 整数,每分钟; `0`=关闭 | 无 | 在复制内存中:每个设备每分钟经认证的读数(GET); `0`=关闭. 追随`CC_RATE_LIMIT_MODE`. |
-| `CC_RATE_LIMIT_LOGIN_PER_EMAIL_PER_MINUTE` (中文(简体) ). | `config.rateLimit.loginPerEmailPerMinute` (中文(简体) ). | 未设置 `10` ) | 每分钟整数 | 无 | 前0.2.2 名称:每分钟的速率(和容量)为`login_email`. 设定`CC_LIMIT_LOGIN_EMAIL_RATE` 时被忽略 。 |
-| `CC_RATE_LIMIT_RECOVERY_PER_EMAIL_PER_HOUR` (中文(简体) ). | `config.rateLimit.recoveryPerEmailPerHour` (中文(简体) ). | 未设置 `5` ) | 整数,每小时 | 无 | 0.2.2前名:小时费率为`recovery_email`. 设定`CC_LIMIT_RECOVERY_EMAIL_RATE` 时被忽略 。 |
+| `CC_RATE_LIMIT_ENABLED` | `config.rateLimit.enabled` | `true` | 布尔 | 无 | `false`关闭**所有**请求限制(quotasstay). 仅调试。 |
+| `CC_RATE_LIMIT_MODE` | `config.rateLimit.mode` | `observe` | `observe`, `enforce` | 无 | `observe`:超过PostgreSQL限额,读数限额只计算`cc_rate_limit_observed_total{limiter}`,审计事件`limit_exceeded`,每个账户和限额最多每小时一次; `enforce`:被拒绝. 签注和回收限制(以下标注)和第一阶段`CC_RATE_LIMIT_AUTH_PER_IP_PER_MINUTE`和`CC_RATE_LIMIT_PROOF_PER_DEVICE_PER_MINUTE`在两种模式中都起作用。 程序:观察度量表一周,必要时提高阈值,然后`enforce`. |
+| `CC_RATE_LIMIT_AUTH_PER_IP_PER_MINUTE` | `config.rateLimit.authPerIpPerMinute` | `30` | 每分钟整数 | 无 | 复制内存的第一阶段:每分钟IP(IPv6 per/64)公开登录,注册和恢复请求. 虽然`CC_LIMIT_AUTH_IP_RATE`是未设置的,但相同的值设定了共享`auth_ip`的限度. |
+| `CC_RATE_LIMIT_PROOF_PER_DEVICE_PER_MINUTE` | `config.rateLimit.proofPerDevicePerMinute` | `20` | 每分钟整数 | 无 | 在复制内存中:每分钟每个设备的关键证明尝试(测试/认可). |
+| `CC_RATE_LIMIT_READ_PER_DEVICE_PER_MINUTE` | `config.rateLimit.readPerDevicePerMinute` | `1200` | 整数,每分钟; `0`=关闭 | 无 | 在复制内存中:每个设备每分钟经认证的读数(GET); `0`=关闭. 追随`CC_RATE_LIMIT_MODE`. |
+| `CC_RATE_LIMIT_LOGIN_PER_EMAIL_PER_MINUTE` | `config.rateLimit.loginPerEmailPerMinute` | 未设置 `10` ) | 每分钟整数 | 无 | 前0.2.2 名称:每分钟的速率(和容量)为`login_email`. 设定`CC_LIMIT_LOGIN_EMAIL_RATE` 时被忽略 。 |
+| `CC_RATE_LIMIT_RECOVERY_PER_EMAIL_PER_HOUR` | `config.rateLimit.recoveryPerEmailPerHour` | 未设置 `5` ) | 整数,每小时 | 无 | 0.2.2前名:小时费率为`recovery_email`. 设定`CC_LIMIT_RECOVERY_EMAIL_RATE` 时被忽略 。 |
 
 <a id="server-reference-limits"></a>
 
-### PostgreSQL 限制:CC\_LIMIT\_ &lt;NAME&gt; QQ
+### PostgreSQL 限制：CC\_LIMIT\_&lt;NAME&gt;\_\*
 
 每个限制有四个密钥`<NAME>`是大写中的限制名称:
 
@@ -4224,24 +4221,24 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 名称 | 限制什么? | 默认 | 密钥 |
 |---|---|---|---|
-| `push_device` (中文(简体) ). | 从一个设备推出 | 120分/分钟,爆破60分 | `CC_LIMIT_PUSH_DEVICE_RATE`, `CC_LIMIT_PUSH_DEVICE_BURST`, `CC_LIMIT_PUSH_DEVICE_PER_HOUR`, `CC_LIMIT_PUSH_DEVICE_PER_DAY` (中文(简体) ). |
-| `push_account` (中文(简体) ). | 从账户中的所有设备推出 | 300分/分钟 | `CC_LIMIT_PUSH_ACCOUNT_RATE`, `CC_LIMIT_PUSH_ACCOUNT_BURST`, `CC_LIMIT_PUSH_ACCOUNT_PER_HOUR`, `CC_LIMIT_PUSH_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `mutations_account` (中文(简体) ). | 账户内的变化按键 | 5万/小时 | `CC_LIMIT_MUTATIONS_ACCOUNT_RATE`, `CC_LIMIT_MUTATIONS_ACCOUNT_BURST`, `CC_LIMIT_MUTATIONS_ACCOUNT_PER_HOUR`, `CC_LIMIT_MUTATIONS_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `unknown_delete_account` (中文(简体) ). | 删除服务器从未拥有的对象 | 1 000/天(单位:千美元) | `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_RATE`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_BURST`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_PER_HOUR`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `share_write_account` (中文(简体) ). | 创建共享对象 | 60小时,爆破20小时 | `CC_LIMIT_SHARE_WRITE_ACCOUNT_RATE`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_BURST`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_PER_HOUR`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `share_revision_account` (中文(简体) ). | 共享对象修改、访问更改、共享注释 | 600小时 | `CC_LIMIT_SHARE_REVISION_ACCOUNT_RATE`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_BURST`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_PER_HOUR`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `recipient_lookup_account` (中文(简体) ). | 通过电子邮件地址查询收件人 | 30分钟和300天 | `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_RATE`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_BURST`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_HOUR`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `enrollment_account` (中文(简体) ). | 添加收件人自己的设备 | 30小时/小时 | `CC_LIMIT_ENROLLMENT_ACCOUNT_RATE`, `CC_LIMIT_ENROLLMENT_ACCOUNT_BURST`, `CC_LIMIT_ENROLLMENT_ACCOUNT_PER_HOUR`, `CC_LIMIT_ENROLLMENT_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `trust_request_device` (中文(简体) ). | 一个设备提出的信任请求 | 10小时/小时 | `CC_LIMIT_TRUST_REQUEST_DEVICE_RATE`, `CC_LIMIT_TRUST_REQUEST_DEVICE_BURST`, `CC_LIMIT_TRUST_REQUEST_DEVICE_PER_HOUR`, `CC_LIMIT_TRUST_REQUEST_DEVICE_PER_DAY` (中文(简体) ). |
-| `trust_request_account` (中文(简体) ). | 账户中所有设备提出的信任请求 | 30天/日 (单位:千美元) | `CC_LIMIT_TRUST_REQUEST_ACCOUNT_RATE`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_BURST`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_PER_HOUR`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `verification_account` (中文(简体) ). | 密钥校验: 批准- 破解通知, 签名的金库密钥指纹 | 20小时/小时 | `CC_LIMIT_VERIFICATION_ACCOUNT_RATE`, `CC_LIMIT_VERIFICATION_ACCOUNT_BURST`, `CC_LIMIT_VERIFICATION_ACCOUNT_PER_HOUR`, `CC_LIMIT_VERIFICATION_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `account_security` (中文(简体) ). | 密码更改、回收箱重发、更换信封 | 10小时/小时 | `CC_LIMIT_ACCOUNT_SECURITY_RATE`, `CC_LIMIT_ACCOUNT_SECURITY_BURST`, `CC_LIMIT_ACCOUNT_SECURITY_PER_HOUR`, `CC_LIMIT_ACCOUNT_SECURITY_PER_DAY` (中文(简体) ). |
-| `ws_connect_account` (中文(简体) ). | 新建账户的 WebSocket 连接 | 60/min(60岁) | `CC_LIMIT_WS_CONNECT_ACCOUNT_RATE`, `CC_LIMIT_WS_CONNECT_ACCOUNT_BURST`, `CC_LIMIT_WS_CONNECT_ACCOUNT_PER_HOUR`, `CC_LIMIT_WS_CONNECT_ACCOUNT_PER_DAY` (中文(简体) ). |
-| `auth_ip`(一直执行) | 一个地址的公开登录、登记和追回请求,由复制品共享 | 30分钟/分钟 | `CC_LIMIT_AUTH_IP_RATE`, `CC_LIMIT_AUTH_IP_BURST`, `CC_LIMIT_AUTH_IP_PER_HOUR`, `CC_LIMIT_AUTH_IP_PER_DAY` (中文(简体) ). |
-| `login_email`(一直执行) | ** 在一个网络的一个电子邮件地址上签字失败(24IPv4,64IPv6) | 10/min和50/小时 | `CC_LIMIT_LOGIN_EMAIL_RATE`, `CC_LIMIT_LOGIN_EMAIL_BURST`, `CC_LIMIT_LOGIN_EMAIL_PER_HOUR`, `CC_LIMIT_LOGIN_EMAIL_PER_DAY` (中文(简体) ). |
-| `login_email_total`(一直执行) | 从所有网络登录到地址失败 | 200小时 | `CC_LIMIT_LOGIN_EMAIL_TOTAL_RATE`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_BURST`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_PER_HOUR`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_PER_DAY` (中文(简体) ). |
-| `recovery_email`(一直执行) | 密码重置请求到一个网络的地址 | 5小时/小时 | `CC_LIMIT_RECOVERY_EMAIL_RATE`, `CC_LIMIT_RECOVERY_EMAIL_BURST`, `CC_LIMIT_RECOVERY_EMAIL_PER_HOUR`, `CC_LIMIT_RECOVERY_EMAIL_PER_DAY` (中文(简体) ). |
-| `recovery_email_total`(一直执行) | 将邮件重置到来自所有网络的地址( 答案总是`202` ) | 20日(每日) (单位:千美元) | `CC_LIMIT_RECOVERY_EMAIL_TOTAL_RATE`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_BURST`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_PER_HOUR`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_PER_DAY` (中文(简体) ). |
+| `push_device` | 从一个设备推出 | 120分/分钟,爆破60分 | `CC_LIMIT_PUSH_DEVICE_RATE`, `CC_LIMIT_PUSH_DEVICE_BURST`, `CC_LIMIT_PUSH_DEVICE_PER_HOUR`, `CC_LIMIT_PUSH_DEVICE_PER_DAY` |
+| `push_account` | 从账户中的所有设备推出 | 300分/分钟 | `CC_LIMIT_PUSH_ACCOUNT_RATE`, `CC_LIMIT_PUSH_ACCOUNT_BURST`, `CC_LIMIT_PUSH_ACCOUNT_PER_HOUR`, `CC_LIMIT_PUSH_ACCOUNT_PER_DAY` |
+| `mutations_account` | 账户内的变化按键 | 5万/小时 | `CC_LIMIT_MUTATIONS_ACCOUNT_RATE`, `CC_LIMIT_MUTATIONS_ACCOUNT_BURST`, `CC_LIMIT_MUTATIONS_ACCOUNT_PER_HOUR`, `CC_LIMIT_MUTATIONS_ACCOUNT_PER_DAY` |
+| `unknown_delete_account` | 删除服务器从未拥有的对象 | 1 000/天(单位:千美元) | `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_RATE`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_BURST`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_PER_HOUR`, `CC_LIMIT_UNKNOWN_DELETE_ACCOUNT_PER_DAY` |
+| `share_write_account` | 创建共享对象 | 60小时,爆破20小时 | `CC_LIMIT_SHARE_WRITE_ACCOUNT_RATE`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_BURST`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_PER_HOUR`, `CC_LIMIT_SHARE_WRITE_ACCOUNT_PER_DAY` |
+| `share_revision_account` | 共享对象修改、访问更改、共享注释 | 600小时 | `CC_LIMIT_SHARE_REVISION_ACCOUNT_RATE`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_BURST`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_PER_HOUR`, `CC_LIMIT_SHARE_REVISION_ACCOUNT_PER_DAY` |
+| `recipient_lookup_account` | 通过电子邮件地址查询收件人 | 30分钟和300天 | `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_RATE`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_BURST`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_HOUR`, `CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY` |
+| `enrollment_account` | 添加收件人自己的设备 | 30小时/小时 | `CC_LIMIT_ENROLLMENT_ACCOUNT_RATE`, `CC_LIMIT_ENROLLMENT_ACCOUNT_BURST`, `CC_LIMIT_ENROLLMENT_ACCOUNT_PER_HOUR`, `CC_LIMIT_ENROLLMENT_ACCOUNT_PER_DAY` |
+| `trust_request_device` | 一个设备提出的信任请求 | 10小时/小时 | `CC_LIMIT_TRUST_REQUEST_DEVICE_RATE`, `CC_LIMIT_TRUST_REQUEST_DEVICE_BURST`, `CC_LIMIT_TRUST_REQUEST_DEVICE_PER_HOUR`, `CC_LIMIT_TRUST_REQUEST_DEVICE_PER_DAY` |
+| `trust_request_account` | 账户中所有设备提出的信任请求 | 30天/日 (单位:千美元) | `CC_LIMIT_TRUST_REQUEST_ACCOUNT_RATE`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_BURST`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_PER_HOUR`, `CC_LIMIT_TRUST_REQUEST_ACCOUNT_PER_DAY` |
+| `verification_account` | 密钥校验: 批准- 破解通知, 签名的金库密钥指纹 | 20小时/小时 | `CC_LIMIT_VERIFICATION_ACCOUNT_RATE`, `CC_LIMIT_VERIFICATION_ACCOUNT_BURST`, `CC_LIMIT_VERIFICATION_ACCOUNT_PER_HOUR`, `CC_LIMIT_VERIFICATION_ACCOUNT_PER_DAY` |
+| `account_security` | 密码更改、回收箱重发、更换信封 | 10小时/小时 | `CC_LIMIT_ACCOUNT_SECURITY_RATE`, `CC_LIMIT_ACCOUNT_SECURITY_BURST`, `CC_LIMIT_ACCOUNT_SECURITY_PER_HOUR`, `CC_LIMIT_ACCOUNT_SECURITY_PER_DAY` |
+| `ws_connect_account` | 新建账户的 WebSocket 连接 | 60/min(60岁) | `CC_LIMIT_WS_CONNECT_ACCOUNT_RATE`, `CC_LIMIT_WS_CONNECT_ACCOUNT_BURST`, `CC_LIMIT_WS_CONNECT_ACCOUNT_PER_HOUR`, `CC_LIMIT_WS_CONNECT_ACCOUNT_PER_DAY` |
+| `auth_ip`(一直执行) | 一个地址的公开登录、登记和追回请求,由复制品共享 | 30分钟/分钟 | `CC_LIMIT_AUTH_IP_RATE`, `CC_LIMIT_AUTH_IP_BURST`, `CC_LIMIT_AUTH_IP_PER_HOUR`, `CC_LIMIT_AUTH_IP_PER_DAY` |
+| `login_email`(一直执行) | ** 在一个网络的一个电子邮件地址上签字失败(24IPv4,64IPv6) | 10/min和50/小时 | `CC_LIMIT_LOGIN_EMAIL_RATE`, `CC_LIMIT_LOGIN_EMAIL_BURST`, `CC_LIMIT_LOGIN_EMAIL_PER_HOUR`, `CC_LIMIT_LOGIN_EMAIL_PER_DAY` |
+| `login_email_total`(一直执行) | 从所有网络登录到地址失败 | 200小时 | `CC_LIMIT_LOGIN_EMAIL_TOTAL_RATE`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_BURST`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_PER_HOUR`, `CC_LIMIT_LOGIN_EMAIL_TOTAL_PER_DAY` |
+| `recovery_email`(一直执行) | 密码重置请求到一个网络的地址 | 5小时/小时 | `CC_LIMIT_RECOVERY_EMAIL_RATE`, `CC_LIMIT_RECOVERY_EMAIL_BURST`, `CC_LIMIT_RECOVERY_EMAIL_PER_HOUR`, `CC_LIMIT_RECOVERY_EMAIL_PER_DAY` |
+| `recovery_email_total`(一直执行) | 将邮件重置到来自所有网络的地址( 答案总是`202` ) | 20日(每日) (单位:千美元) | `CC_LIMIT_RECOVERY_EMAIL_TOTAL_RATE`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_BURST`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_PER_HOUR`, `CC_LIMIT_RECOVERY_EMAIL_TOTAL_PER_DAY` |
 
 其他人的尝试不会把店主锁起来:成功的签注是不会的
 电子邮件限制, 账户已知设备之一的登录是有限的
@@ -4265,13 +4262,13 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_AUTH_MODE` (中文(简体) ). | `auth.mode` (中文(简体) ). | `standard` (中文(简体) ). | `standard`, `enterprise` (中文(简体) ). | 无 | `standard`:电子邮件和账户密码; `enterprise`:仅通过IDP(OIDC)或目录(LDAP)进行登录;注册和账户密码关闭. |
-| `CC_AUTH_PROVIDER` (中文(简体) ). | `auth.provider` (中文(简体) ). | — | `oidc`, `ldap` (中文(简体) ). | 无 | `oidc`或`ldap`;企业模式要求。 |
-| `CC_AUTH_DISPLAY_NAME` (中文(简体) ). | `auth.displayName` (中文(简体) ). | 未设置 | 最多64个可打印字符 | 无 | 应用的登录按钮标签("Sign in with..."),最多64个可打印字符. |
-| `CC_AUTH_ALLOWED_DOMAINS` (中文(简体) ). | `auth.allowedDomains`(名单) | 空 - 任意 | 域列表 | 无 | 允许的电子邮件域`acme.com, acme.ru`;一个线索`@`被丢弃,大小写不敏感,子域不包括在内. 需要自动连接现有密码账户;必须预先设置`google` |
-| `CC_AUTH_AUTO_CREATE` (中文(简体) ). | `auth.autoCreate` (中文(简体) ). | `true` (中文(简体) ). | 布尔 | 无 | 在新身份的第一个登录`false`上创建一个账户:只有已有或链接的账户在登录;其他人都得到`403``not_provisioned`. |
-| `CC_AUTH_RECHECK_MINUTES` (中文(简体) ). | `auth.recheckMinutes` (中文(简体) ). | `15` | 第1-1440分钟 | 无 | 如何频繁(1–1440 mine)在IDP/Directory重新检查用户. 残疾雇员在此期间+1分钟内失去同步。 |
-| `CC_AUTH_RECHECK_GRACE_HOURS` (中文(简体) ). | `auth.recheckGraceHours` (中文(简体) ). | `24` | 0-720小时 | 无 | 在IdP/Directory无法到达的情况下,有多少小时(0–720)的会话存活;然后刷新答案`503 idp_unavailable`. |
+| `CC_AUTH_MODE` | `auth.mode` | `standard` | `standard`, `enterprise` | 无 | `standard`:电子邮件和账户密码; `enterprise`:仅通过IDP(OIDC)或目录(LDAP)进行登录;注册和账户密码关闭. |
+| `CC_AUTH_PROVIDER` | `auth.provider` | — | `oidc`, `ldap` | 无 | `oidc`或`ldap`;企业模式要求。 |
+| `CC_AUTH_DISPLAY_NAME` | `auth.displayName` | 未设置 | 最多64个可打印字符 | 无 | 应用的登录按钮标签("Sign in with..."),最多64个可打印字符. |
+| `CC_AUTH_ALLOWED_DOMAINS` | `auth.allowedDomains`(名单) | 空 - 任意 | 域列表 | 无 | 允许的电子邮件域`acme.com, acme.ru`;一个线索`@`被丢弃,大小写不敏感,子域不包括在内. 需要自动连接现有密码账户;必须预先设置`google` |
+| `CC_AUTH_AUTO_CREATE` | `auth.autoCreate` | `true` | 布尔 | 无 | 在新身份的第一个登录`false`上创建一个账户:只有已有或链接的账户在登录;其他人都得到`403``not_provisioned`. |
+| `CC_AUTH_RECHECK_MINUTES` | `auth.recheckMinutes` | `15` | 第1-1440分钟 | 无 | 如何频繁(1–1440 mine)在IDP/Directory重新检查用户. 残疾雇员在此期间+1分钟内失去同步。 |
+| `CC_AUTH_RECHECK_GRACE_HOURS` | `auth.recheckGraceHours` | `24` | 0-720小时 | 无 | 在IdP/Directory无法到达的情况下,有多少小时(0–720)的会话存活;然后刷新答案`503 idp_unavailable`. |
 
 <a id="server-reference-oidc"></a>
 
@@ -4279,18 +4276,18 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_OIDC_PRESET` (中文(简体) ). | `auth.oidc.preset` (中文(简体) ). | `generic` (中文(简体) ). | `generic`, `entra`, `adfs`, `keycloak`, `google`, `okta` (中文(简体) ). | 无 | `generic` , `entra` , `adfs` , `keycloak` , `google` , `okta` : defaults and start-up checks (Entra: tenant-id issuer, no `/common` , `/organizations` , `/consumers` ; AD FS: ends with `/adfs` ; Keycloak: contains `/realms/` ; Google: fixed issuer, mandatory domain list, `hd` check). |
-| `CC_OIDC_ISSUER` (中文(简体) ). | `auth.oidc.issuer` (中文(简体) ). | `google`: `https://accounts.google.com` (中文(简体) ). | `https://…`URL (中文(简体) ). | 无 | 精确发行者:字符在发现时等于`issuer`,在ID符中等于`iss`,跟踪`/`仅包含`https://`回路开发`http://`,没有查询或片段. |
-| `CC_OIDC_CLIENT_ID` (中文(简体) ). | `auth.oidc.clientId` (中文(简体) ). | 所需经费 | 字符串 | 无 | 服务器的客户端(应用程序) id at the IDP. |
-| `CC_OIDC_CLIENT_SECRET_FILE` (中文(简体) ). | `auth.oidc.existingSecret`+ `clientSecretKey` `client-secret` (中文(简体) ). | 所需经费 | 文件路径 | 文件 :是 | 带有客户端密钥的文件路径(UTF-8,跟踪新线已丢弃,最高可达64 KiB).**Secret**:进程用户必须能够读取(UID 65532在容器中). |
-| `CC_OIDC_TOKEN_KEY_FILE` (中文(简体) ). | `auth.oidc.existingSecret`+ `tokenKeyKey` `token-key` (中文(简体) ). | 所需经费 | 文件路径 | 文件 :是 | 用32字节键封存数据库(Cha20-Poly1305)中的IDP刷新令牌的文件路径:64个hex字符`openssl rand -hex 32`,32字节的基数64,或32个随机字节.**Secret.** 更改它使得存储的刷新令牌无法读取——用户再次签名. |
-| `CC_OIDC_SCOPES` (中文(简体) ). | `auth.oidc.scopes` (中文(简体) ). | `openid email profile offline_access`; `adfs` : `openid email profile allatclaims` ; `google` : `openid email profile`  . | 包含`openid`的空格分隔列表 | 无 | 需要空间分隔的瞄准镜`openid`. `offline_access` 提供了重新检查的刷新标志; Google 拒绝(预设添加`access_type=offline`和`prompt=consent`本身). |
-| `CC_OIDC_EMAIL_CLAIM` (中文(简体) ). | `auth.oidc.emailClaim` (中文(简体) ). | `email`; `entra` : `preferred_username` ; `adfs` : `upn`  . | 索赔名称 | 无 | 用作账户电子邮件的ID代号索赔(价值必须包含`@`)。 |
-| `CC_OIDC_REQUIRED_CLAIM` (中文(简体) ). | `auth.oidc.requiredClaim` (中文(简体) ). | 未设置 | `claim=value` (中文(简体) ). | 无 | `name=value` :只承认其主张值等于`groups`和`roles`等数组的特性,或包含该特性. 否则`403 group_required`. |
-| `CC_OIDC_REQUIRE_MFA` (中文(简体) ). | `auth.oidc.requireMfa` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | 需要多因子签注:`mfa`或`http://schemas.microsoft.com/claims/multipleauthn` in`amr`,或`acr`从`CC_OIDC_MFA_ACR_VALUES`. 否则`403 mfa_required`. 拒绝`google`,无`acr`值. |
-| `CC_OIDC_MFA_ACR_VALUES` (中文(简体) ). | `auth.oidc.mfaAcrValues` (中文(简体) ). | 空 | 列表 | 无 | `acr` 计数为多因子的值(comma或空格分离). |
-| `CC_OIDC_TOKEN_AUTH_METHOD` (中文(简体) ). | `auth.oidc.tokenAuthMethod` (中文(简体) ). | `client_secret_basic` (中文(简体) ). | `client_secret_basic` `basic`, `client_secret_post` `post` (中文(简体) ). | 无 | 服务器如何在符号端点认证:`client_secret_basic``basic`或`client_secret_post``post`. |
-| `CC_OIDC_CA_FILE` (中文(简体) ). | `auth.oidc.caKey`(同一密钥) | 系统根 | 路径到 PEM文件 | 无 | 内部 CA 后面的 IDP 附加根 CA 的 PEM 证书(例如. (原始内容存档于2019-09-31). AD FS. |
+| `CC_OIDC_PRESET` | `auth.oidc.preset` | `generic` | `generic`, `entra`, `adfs`, `keycloak`, `google`, `okta` | 无 | `generic` , `entra` , `adfs` , `keycloak` , `google` , `okta` : defaults and start-up checks (Entra: tenant-id issuer, no `/common` , `/organizations` , `/consumers` ; AD FS: ends with `/adfs` ; Keycloak: contains `/realms/` ; Google: fixed issuer, mandatory domain list, `hd` check). |
+| `CC_OIDC_ISSUER` | `auth.oidc.issuer` | `google`: `https://accounts.google.com` | `https://…`URL | 无 | 精确发行者:字符在发现时等于`issuer`,在ID符中等于`iss`,跟踪`/`仅包含`https://`回路开发`http://`,没有查询或片段. |
+| `CC_OIDC_CLIENT_ID` | `auth.oidc.clientId` | 所需经费 | 字符串 | 无 | 服务器的客户端(应用程序) id at the IDP. |
+| `CC_OIDC_CLIENT_SECRET_FILE` | `auth.oidc.existingSecret`+ `clientSecretKey` `client-secret` | 所需经费 | 文件路径 | 文件 :是 | 带有客户端密钥的文件路径(UTF-8,跟踪新线已丢弃,最高可达64 KiB).**Secret**:进程用户必须能够读取(UID 65532在容器中). |
+| `CC_OIDC_TOKEN_KEY_FILE` | `auth.oidc.existingSecret`+ `tokenKeyKey` `token-key` | 所需经费 | 文件路径 | 文件 :是 | 用32字节键封存数据库(Cha20-Poly1305)中的IDP刷新令牌的文件路径:64个hex字符`openssl rand -hex 32`,32字节的基数64,或32个随机字节.**Secret.** 更改它使得存储的刷新令牌无法读取——用户再次签名. |
+| `CC_OIDC_SCOPES` | `auth.oidc.scopes` | `openid email profile offline_access`; `adfs` : `openid email profile allatclaims` ; `google` : `openid email profile`  . | 包含`openid`的空格分隔列表 | 无 | 需要空间分隔的瞄准镜`openid`. `offline_access` 提供了重新检查的刷新标志; Google 拒绝(预设添加`access_type=offline`和`prompt=consent`本身). |
+| `CC_OIDC_EMAIL_CLAIM` | `auth.oidc.emailClaim` | `email`; `entra` : `preferred_username` ; `adfs` : `upn`  . | 索赔名称 | 无 | 用作账户电子邮件的ID代号索赔(价值必须包含`@`)。 |
+| `CC_OIDC_REQUIRED_CLAIM` | `auth.oidc.requiredClaim` | 未设置 | `claim=value` | 无 | `name=value` :只承认其主张值等于`groups`和`roles`等数组的特性,或包含该特性. 否则`403 group_required`. |
+| `CC_OIDC_REQUIRE_MFA` | `auth.oidc.requireMfa` | `false` | 布尔 | 无 | 需要多因子签注:`mfa`或`http://schemas.microsoft.com/claims/multipleauthn` in`amr`,或`acr`从`CC_OIDC_MFA_ACR_VALUES`. 否则`403 mfa_required`. 拒绝`google`,无`acr`值. |
+| `CC_OIDC_MFA_ACR_VALUES` | `auth.oidc.mfaAcrValues` | 空 | 列表 | 无 | `acr` 计数为多因子的值(comma或空格分离). |
+| `CC_OIDC_TOKEN_AUTH_METHOD` | `auth.oidc.tokenAuthMethod` | `client_secret_basic` | `client_secret_basic` `basic`, `client_secret_post` `post` | 无 | 服务器如何在符号端点认证:`client_secret_basic``basic`或`client_secret_post``post`. |
+| `CC_OIDC_CA_FILE` | `auth.oidc.caKey`(同一密钥) | 系统根 | 路径到 PEM文件 | 无 | 如果 IdP 使用内部 CA（如 AD FS），可通过此文件提供额外根 CA 的 PEM 证书。 |
 
 <a id="server-reference-ldap"></a>
 
@@ -4298,20 +4295,20 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_LDAP_URL` (中文(简体) ). | `auth.ldap.url` (中文(简体) ). | 所需经费 | `ldaps://…`, `ldap://…` (中文(简体) ). | 无 | `ldaps://dc1.acme.local:636`,或`ldap://dc1.acme.local:389`与`CC_LDAP_STARTTLS=true`一起. Plain `ldap://`无STARTLS 被拒绝:域密码不得以清晰的文本行走. 主机名必须匹配域控制器的证书. |
-| `CC_LDAP_STARTTLS` (中文(简体) ). | `auth.ldap.starttls` (中文(简体) ). | `false` (中文(简体) ). | 布尔 | 无 | STARTLS为`ldap://`;不允许与`ldaps://`. |
-| `CC_LDAP_CA_FILE` (中文(简体) ). | `auth.ldap.caKey`(同一密钥) | 系统根 | 路径到 PEM文件 | 无 | 带有域根 CA 证书(一个或多个证书)的 PEM. |
-| `CC_LDAP_BIND_DN` (中文(简体) ). | `auth.ldap.bindDn` (中文(简体) ). | 所需经费 | DNA | 无 | 用于搜索和重新检查的服务账户的DN,例如`CN=svc-consolecrypt,OU=Service,DC=acme,DC=local`. 读取目录的访问权限就够了 。 |
-| `CC_LDAP_BIND_PASSWORD_FILE` (中文(简体) ). | `auth.ldap.existingSecret`+ `bindPasswordKey` `bind-password` (中文(简体) ). | 所需经费 | 文件路径 | 文件 :是 | 带有服务账户密码的文件路径 。**Secret.** |
-| `CC_LDAP_BASE_DN` (中文(简体) ). | `auth.ldap.baseDn` (中文(简体) ). | 所需经费 | DNA | 无 | 何处搜索用户`DC=acme,DC=local`. 它还确定了身份链接的来源:在更改后,必须重新创建链接。 |
-| `CC_LDAP_USER_FILTER` (中文(简体) ). | `auth.ldap.userFilter` (中文(简体) ). | `(&( 对象分类=用户) )\|(电子邮件={login}(用户主名={login}(sAMAcountName={login})))” | LDAP 过滤器为 `{login}` | 无 | 搜索过滤器为`{login}`;必须从`(`开始. 用户输入按 RFC 4515 跳出,并丢弃 a`DOMAIN\`前缀. 如果多个条目匹配,则拒绝登录 。 |
-| `CC_LDAP_EMAIL_ATTR` (中文(简体) ). | `auth.ldap.emailAttr` (中文(简体) ). | `mail` (中文(简体) ). | 属性名称 | 无 | 持有电子邮件地址的属性 。 |
-| `CC_LDAP_ID_ATTR` (中文(简体) ). | `auth.ldap.idAttr` (中文(简体) ). | `objectGUID` (中文(简体) ). | 属性名称 | 无 | 稳定的用户标识符; `objectGUID`作为GUID字符串存储. 更改后的电子邮件或名称不会断开链接. |
-| `CC_LDAP_REQUIRED_GROUP` (中文(简体) ). | `auth.ldap.requiredGroup` (中文(简体) ). | 未设置 | DNA | 无 | 用户必须属于的组的DN(记账组数,AD规则`LDAP_MATCHING_RULE_IN_CHAIN`;在登录时检查并重新检查。 启动时, 服务器检查组是否存在 。 |
-| `CC_LDAP_TIMEOUT_SECS` (中文(简体) ). | `auth.ldap.timeoutSecs` (中文(简体) ). | `10` | 秒, 1 - 60 键 | 无 | 连接和运行超时, 1–60 秒. |
-| `CC_LDAP_MAX_FAILURES` (中文(简体) ). | `auth.ldap.maxFailures` (中文(简体) ). | `3` | 1–100 | 无 | 每个登录和窗口内每个目录用户的签名失败, 1–100; 之后服务器答`429`**不联系AD** 。 保持其** 低于** 域名的账户关闭阈值。 |
-| `CC_LDAP_FAILURE_WINDOW_MINUTES` (中文(简体) ). | `auth.ldap.failureWindowMinutes` (中文(简体) ). | `15` | 第1-1440分钟 | 无 | 登录窗口失败, 1–1440分钟;不短于域名策略的锁定计数器重设时间. |
-| `CC_LDAP_MAX_FAILURES_PER_IP` (中文(简体) ). | `auth.ldap.maxFailuresPerIp` (中文(简体) ). | `30` | 整数 ^ 0, `0` =无限制 | 无 | 窗口内每个IP的签名失败; `0` =无限制. |
+| `CC_LDAP_URL` | `auth.ldap.url` | 所需经费 | `ldaps://…`, `ldap://…` | 无 | `ldaps://dc1.acme.local:636`,或`ldap://dc1.acme.local:389`与`CC_LDAP_STARTTLS=true`一起. Plain `ldap://`无STARTLS 被拒绝:域密码不得以清晰的文本行走. 主机名必须匹配域控制器的证书. |
+| `CC_LDAP_STARTTLS` | `auth.ldap.starttls` | `false` | 布尔 | 无 | STARTLS为`ldap://`;不允许与`ldaps://`. |
+| `CC_LDAP_CA_FILE` | `auth.ldap.caKey`(同一密钥) | 系统根 | 路径到 PEM文件 | 无 | 带有域根 CA 证书(一个或多个证书)的 PEM. |
+| `CC_LDAP_BIND_DN` | `auth.ldap.bindDn` | 所需经费 | DNA | 无 | 用于搜索和重新检查的服务账户的DN,例如`CN=svc-consolecrypt,OU=Service,DC=acme,DC=local`. 读取目录的访问权限就够了 。 |
+| `CC_LDAP_BIND_PASSWORD_FILE` | `auth.ldap.existingSecret`+ `bindPasswordKey` `bind-password` | 所需经费 | 文件路径 | 文件 :是 | 带有服务账户密码的文件路径 。**Secret.** |
+| `CC_LDAP_BASE_DN` | `auth.ldap.baseDn` | 所需经费 | DNA | 无 | 何处搜索用户`DC=acme,DC=local`. 它还确定了身份链接的来源:在更改后,必须重新创建链接。 |
+| `CC_LDAP_USER_FILTER` | `auth.ldap.userFilter` | `(&( 对象分类=用户) )\|(电子邮件={login}(用户主名={login}(sAMAcountName={login})))” | LDAP 过滤器为 `{login}` | 无 | 搜索过滤器为`{login}`;必须从`(`开始. 用户输入按 RFC 4515 跳出,并丢弃 a`DOMAIN\`前缀. 如果多个条目匹配,则拒绝登录 。 |
+| `CC_LDAP_EMAIL_ATTR` | `auth.ldap.emailAttr` | `mail` | 属性名称 | 无 | 持有电子邮件地址的属性 。 |
+| `CC_LDAP_ID_ATTR` | `auth.ldap.idAttr` | `objectGUID` | 属性名称 | 无 | 稳定的用户标识符; `objectGUID`作为GUID字符串存储. 更改后的电子邮件或名称不会断开链接. |
+| `CC_LDAP_REQUIRED_GROUP` | `auth.ldap.requiredGroup` | 未设置 | DNA | 无 | 用户必须属于的组的DN(记账组数,AD规则`LDAP_MATCHING_RULE_IN_CHAIN`;在登录时检查并重新检查。 启动时, 服务器检查组是否存在 。 |
+| `CC_LDAP_TIMEOUT_SECS` | `auth.ldap.timeoutSecs` | `10` | 秒, 1 - 60 键 | 无 | 连接和运行超时, 1–60 秒. |
+| `CC_LDAP_MAX_FAILURES` | `auth.ldap.maxFailures` | `3` | 1–100 | 无 | 每个登录和窗口内每个目录用户的签名失败, 1–100; 之后服务器答`429`**不联系AD** 。 保持其** 低于** 域名的账户关闭阈值。 |
+| `CC_LDAP_FAILURE_WINDOW_MINUTES` | `auth.ldap.failureWindowMinutes` | `15` | 第1-1440分钟 | 无 | 登录窗口失败, 1–1440分钟;不短于域名策略的锁定计数器重设时间. |
+| `CC_LDAP_MAX_FAILURES_PER_IP` | `auth.ldap.maxFailuresPerIp` | `30` | 整数 ^ 0, `0` =无限制 | 无 | 窗口内每个IP的签名失败; `0` =无限制. |
 
 <a id="server-reference-observability"></a>
 
@@ -4319,12 +4316,12 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_METRICS_LISTEN` (中文(简体) ). | `metrics.enabled` `true` → `0.0.0.0:9090`, `false` → `off` ). | `0.0.0.0:9090` | `host:port`, `off`, `disabled` (中文(简体) ). | 无 | 分开的普罗米修斯听众`GET /metrics`. `off`或`disabled`将其关闭. 度量衡没有校正性:从不公布端口,也不通过入侵者路线. Docker 作曲例将其关闭. |
-| `CC_LOG_FORMAT` (中文(简体) ). | `config.log.format` (中文(简体) ). | `json` (中文(简体) ). | `json`, `pretty` `text` (中文(简体) ). | 无 | stderr上的日志格式:`json`或`pretty``text`). `admin`命令总是日志`pretty`. |
-| `CC_LOG` (中文(简体) ). | `config.log.filter` (中文(简体) ). | `info,sqlx=warn` (中文(简体) ). | 信封过滤指令 | 无 | ** 仅环境**(未在JSON文件中接受)。 日志过滤器在`tracing`EnvFilter语法中:`info`,`debug,sqlx=warn`. 没有它`RUST_LOG`就读了。 |
-| `RUST_LOG` (中文(简体) ). | `extraEnv` (中文(简体) ). | — | 信封过滤指令 | 无 | ** 仅限环境。**当`CC_LOG`未设置时,倒转日志过滤器。 |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` (中文(简体) ). | `extraEnv` (中文(简体) ). | 未设置 | URL (中文(简体) ). | 无 | ** 仅限环境。** 允许OpenTeleometry微量导出(OTLP HTTP/protobuf),例如`http://otel-collector:4318`. 标准`OTEL_*`变量适用. Spans只携带非机密字段(request id,路由,状态,用户和设备UUID). |
-| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` (中文(简体) ). | `extraEnv` (中文(简体) ). | 未设置 | URL (中文(简体) ). | 无 | ** 仅限环境。** 相同,仅限跟踪终点。 |
+| `CC_METRICS_LISTEN` | `metrics.enabled` `true` → `0.0.0.0:9090`, `false` → `off` ). | `0.0.0.0:9090` | `host:port`, `off`, `disabled` | 无 | 分开的普罗米修斯听众`GET /metrics`. `off`或`disabled`将其关闭. 度量衡没有校正性:从不公布端口,也不通过入侵者路线. Docker 作曲例将其关闭. |
+| `CC_LOG_FORMAT` | `config.log.format` | `json` | `json`, `pretty` `text` | 无 | stderr上的日志格式:`json`或`pretty``text`). `admin`命令总是日志`pretty`. |
+| `CC_LOG` | `config.log.filter` | `info,sqlx=warn` | 信封过滤指令 | 无 | ** 仅环境**(未在JSON文件中接受)。 日志过滤器在`tracing`EnvFilter语法中:`info`,`debug,sqlx=warn`. 没有它`RUST_LOG`就读了。 |
+| `RUST_LOG` | `extraEnv` | — | 信封过滤指令 | 无 | ** 仅限环境。**当`CC_LOG`未设置时,倒转日志过滤器。 |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | `extraEnv` | 未设置 | URL | 无 | ** 仅限环境。** 允许OpenTeleometry微量导出(OTLP HTTP/protobuf),例如`http://otel-collector:4318`. 标准`OTEL_*`变量适用. Spans只携带非机密字段(request id,路由,状态,用户和设备UUID). |
+| `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | `extraEnv` | 未设置 | URL | 无 | ** 仅限环境。** 相同,仅限跟踪终点。 |
 
 <a id="server-reference-maintenance"></a>
 
@@ -4336,12 +4333,12 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 赫尔姆 | 默认 | 数值 | 秘密( A) | 它会做什么? |
 |---|---|---|---|---|---|
-| `CC_MAINTENANCE_INTERVAL_SECS` (中文(简体) ). | `config.maintenance.intervalSecs` (中文(简体) ). | `3600` | 秒,`0`=关闭 | 无 | 维修通行证有效期; `0`关机. |
-| `CC_RETENTION_SESSION_DAYS` (中文(简体) ). | `config.maintenance.retention.sessionDays` (中文(简体) ). | `7` | 0-36500,`0`=永远 | 无 | 被撤销和过期的会话保存多久 。 |
-| `CC_RETENTION_SYNC_MUTATION_DAYS` (中文(简体) ). | `config.maintenance.retention.syncMutationDays` (中文(简体) ). | `30` | 0-36500,`0`=永远 | 无 | 已接受同步变化的频度记录。 |
-| `CC_RETENTION_AUDIT_DAYS` (中文(简体) ). | `config.maintenance.retention.auditDays` (中文(简体) ). | `365` | 0-36500,`0`=永远 | 无 | 审计线索`audit_events`. |
-| `CC_RETENTION_DELETED_VAULT_DAYS` (中文(简体) ). | `config.maintenance.retention.deletedVaultDays` (中文(简体) ). | `30` | 0-36500,`0`=永远 | 无 | 一个被删掉的保险库密码 被清理了几天后 |
-| `CC_RETENTION_DEVICE_REQUEST_DAYS` (中文(简体) ). | `config.maintenance.retention.deviceRequestDays` (中文(简体) ). | `90` | 0-36500,`0`=永远 | 无 | 决定和过期的设备信任请求。 |
+| `CC_MAINTENANCE_INTERVAL_SECS` | `config.maintenance.intervalSecs` | `3600` | 秒,`0`=关闭 | 无 | 维修通行证有效期; `0`关机. |
+| `CC_RETENTION_SESSION_DAYS` | `config.maintenance.retention.sessionDays` | `7` | 0-36500,`0`=永远 | 无 | 被撤销和过期的会话保存多久 。 |
+| `CC_RETENTION_SYNC_MUTATION_DAYS` | `config.maintenance.retention.syncMutationDays` | `30` | 0-36500,`0`=永远 | 无 | 已接受同步变化的频度记录。 |
+| `CC_RETENTION_AUDIT_DAYS` | `config.maintenance.retention.auditDays` | `365` | 0-36500,`0`=永远 | 无 | 审计线索`audit_events`. |
+| `CC_RETENTION_DELETED_VAULT_DAYS` | `config.maintenance.retention.deletedVaultDays` | `30` | 0-36500,`0`=永远 | 无 | 一个被删掉的保险库密码 被清理了几天后 |
+| `CC_RETENTION_DEVICE_REQUEST_DAYS` | `config.maintenance.retention.deviceRequestDays` | `90` | 0-36500,`0`=永远 | 无 | 决定和过期的设备信任请求。 |
 
 <a id="server-reference-service"></a>
 
@@ -4349,18 +4346,18 @@ new_devices_per_accounts_per_day=`. `CC_MAX_VAULTS_PER_ACCOUNT ‘不能为 .
 
 | 变量 | 何处 | 它会做什么? |
 |---|---|---|
-| `CC_CONFIG_FILE` (中文(简体) ). | 仅限环境 | 未给出私密路径JSON 设置文件时的路径`--config` 。 文件:正则,最高64 KiB,一个JSON已知键对象,有字符串值,模式`0600`或`0400`在Unix上. 它从未在工作目录中被抬头,从未执行,并且`$`或命令没有扩展. |
+| `CC_CONFIG_FILE` | 仅限环境 | 未给出私密路径JSON 设置文件时的路径`--config` 。 文件:正则,最高64 KiB,一个JSON已知键对象,有字符串值,模式`0600`或`0400`在Unix上. 它从未在工作目录中被抬头,从未执行,并且`$`或命令没有扩展. |
 
 Docker 编曲的变量例——由编曲读取,而不是由服务器读取:
 
 | 变量 | 它会做什么? |
 |---|---|
-| `CC_SERVER_VERSION` (中文(简体) ). | 图片版 `ghcr.io/evsikovas/consolecrypt-server:<version>`. |
-| `CC_SERVER_IMAGE` (中文(简体) ). | 完整的图像参考而不是一个版本,例如带有一个`@sha256:`文摘. |
-| `CC_DOMAIN` (中文(简体) ). | Domain Caddy 获得证书 。 |
-| `CC_HTTP_PORT` (中文(简体) ). | 主机上的API端口`127.0.0.1`(默认值`8080`). |
-| `CC_POSTGRES_ADMIN_PASSWORD` (中文(简体) ). | PostgreSQL数据库容器内管理员密码(由`init-config.py`创建). |
-| `CC_POSTGRES_PASSWORD`, `CC_METRICS_PORT` (中文(简体) ). | 只用于开发`server/docker-compose.yml`:捆绑的数据库密码和主机度量衡端口. |
+| `CC_SERVER_VERSION` | 图片版 `ghcr.io/evsikovas/consolecrypt-server:<version>`. |
+| `CC_SERVER_IMAGE` | 完整的图像参考而不是一个版本,例如带有一个`@sha256:`文摘. |
+| `CC_DOMAIN` | Domain Caddy 获得证书 。 |
+| `CC_HTTP_PORT` | 主机上的API端口`127.0.0.1`(默认值`8080`). |
+| `CC_POSTGRES_ADMIN_PASSWORD` | PostgreSQL数据库容器内管理员密码(由`init-config.py`创建). |
+| `CC_POSTGRES_PASSWORD`, `CC_METRICS_PORT` | 只用于开发`server/docker-compose.yml`:捆绑的数据库密码和主机度量衡端口. |
 
 <a id="server-reference-admin"></a>
 
@@ -4373,29 +4370,29 @@ admin... ` or ` kubectl 执行部署/ -- -- -- /usr/local/bin/consocrypt-server 
 
 | 命令 | 它会做什么? |
 |---|---|
-| `serve` (中文(简体) ). | 运行服务器( 默认) 。 |
-| `migrate` (中文(简体) ). | 应用迁移和退出。 |
-| `healthcheck` (中文(简体) ). | 本地听众的探测器`/readyz`;退出代码0表示准备就绪. |
-| `admin list-users` (中文(简体) ). | 账号:状态,登录方法`password`,`oidc`,`ldap`),地址验证,装置和金库清点. |
-| `admin verify-email --email …` (中文(简体) ). | 标记已核实的地址(一个没有邮件的服务器) 。 |
-| `admin reset-token --email …` (中文(简体) ). | 打印单用途账户密码重置代码(有效为`CC_PASSWORD_RESET_TTL_SECS`). |
-| `admin set-password --email … --password-stdin` (中文(简体) ). | 设置第一个stdin 线的密码;所有会话结束 。 |
-| `admin disable-user --email …`/`admin enable-user --email …` (中文(简体) ). | 禁用账户并撤销其会话 / 允许它再次使用 。 |
-| `admin session revoke --email …` (中文(简体) ). | 结束账户的每一个会话。 |
-| `admin rotate-epoch --all`/`--vault <id>` (中文(简体) ). | 在从备份中恢复数据库后: 旋转保险库时段, 客户端会注意到回滚 。 |
-| `admin limits show [--email …]` (中文(简体) ). | 有效限制和配额(服务器或账户)。 |
-| `admin limits set --email … key=value…` (中文(简体) ). | 超过账户的限制和配额;在30秒内适用。 |
-| `admin limits reset --email … [key…]` (中文(简体) ). | 删除覆盖( 全部没有密钥) 。 |
-| `admin auth status` (中文(简体) ). | 签名模式, 提供者, 最后一个 IDP/ Directory 检查, 链接账户 。 |
-| `admin auth test [--login … [--password-stdin]]` (中文(简体) ). | 重复启动检查;使用`--login`查找一个LDAP用户(一个与`--password-stdin`真实绑定),或在IDP重新检查一个OIDC账户. |
-| `admin identity link --email … --subject … [--issuer …]` (中文(简体) ). | 将账户链接到 OIDC `sub` 或 `objectGUID` ; 账户密码被删除,会话结束 。 |
-| `admin identity unlink --email … [--subject …]` (中文(简体) ). | 删除账户链接( 或其中之一) 。 |
+| `serve` | 运行服务器( 默认) 。 |
+| `migrate` | 应用迁移和退出。 |
+| `healthcheck` | 本地听众的探测器`/readyz`;退出代码0表示准备就绪. |
+| `admin list-users` | 账号:状态,登录方法`password`,`oidc`,`ldap`),地址验证,装置和金库清点. |
+| `admin verify-email --email …` | 标记已核实的地址(一个没有邮件的服务器) 。 |
+| `admin reset-token --email …` | 打印单用途账户密码重置代码(有效为`CC_PASSWORD_RESET_TTL_SECS`). |
+| `admin set-password --email … --password-stdin` | 设置第一个stdin 线的密码;所有会话结束 。 |
+| `admin disable-user --email …`/`admin enable-user --email …` | 禁用账户并撤销其会话 / 允许它再次使用 。 |
+| `admin session revoke --email …` | 结束账户的每一个会话。 |
+| `admin rotate-epoch --all`/`--vault <id>` | 在从备份中恢复数据库后: 旋转保险库时段, 客户端会注意到回滚 。 |
+| `admin limits show [--email …]` | 有效限制和配额(服务器或账户)。 |
+| `admin limits set --email … key=value…` | 超过账户的限制和配额;在30秒内适用。 |
+| `admin limits reset --email … [key…]` | 删除覆盖( 全部没有密钥) 。 |
+| `admin auth status` | 签名模式, 提供者, 最后一个 IDP/ Directory 检查, 链接账户 。 |
+| `admin auth test [--login … [--password-stdin]]` | 重复启动检查;使用`--login`查找一个LDAP用户(一个与`--password-stdin`真实绑定),或在IDP重新检查一个OIDC账户. |
+| `admin identity link --email … --subject … [--issuer …]` | 将账户链接到 OIDC `sub` 或 `objectGUID` ; 账户密码被删除,会话结束 。 |
+| `admin identity unlink --email … [--subject …]` | 删除账户链接( 或其中之一) 。 |
 
 [GitHub的來源檔案: CONFIGULATION.md ↗ ↗.](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/CONFIGURATION.md)
 
 > **注意**
 >
-> 秘密值——数据库和SMTP密码,一个有密码的数据库URL和企业的登录文件——决不能公布或承诺. 服务器从未登录它们; QQFILE文件只能由服务器进程用户读取 。
+> 数据库与 SMTP 密码、含密码的数据库 URL 和企业登录凭据文件都属于机密。请勿发布这些值或提交到版本库。服务器不会在日志中记录它们；\*\_FILE 指向的文件只应允许服务器进程用户读取。
 
 <a name="server-maintenance"></a>
 
@@ -4411,9 +4408,9 @@ admin... ` or ` kubectl 执行部署/ -- -- -- /usr/local/bin/consocrypt-server 
 | admin set-password --email... --password-stdin (英语). | 设置stdin 的新账户密码, 并签署全部会话 。 |
 | 管理员禁用用户/启用用户--email... | 禁用账户并取消其会话,或再次启用。 |
 | 行政会议撤销--email. | 签名账户的每个会话。 |
-| 管理限制显示 QQ 设置 QQ 重置--email... | 有效的限制和配额;对一个账户的推翻(在30秒内适用)。 |
+| admin limits show \| set \| reset --email … | 有效的限制和配额;对一个账户的推翻(在30秒内适用)。 |
 | admin rotate-epoch --all \| --vault &lt;id&gt; | 在数据库恢复后:旋转金库历程,使客户端检测回滚. |
-| 管理认证状态 QQ 测试, 管理身份链接 QQ 解链接 | 公司签注:IDP或AD检查和账户链接(见公司签注章). |
+| admin auth status \| test, admin identity link \| unlink | 公司签注:IDP或AD检查和账户链接(见公司签注章). |
 
 1. 定期以自定义格式运行 pg\_dump,并将加密副本保存在数据库节点之外. 分别保存服务器.env或您的值文件,秘密和凯迪卷. 副本中包含账户元数据,尽管金库内容是加密的 。
 
@@ -4464,7 +4461,7 @@ kubectl -n consolecrypt exec deployment/consolecrypt -- \
 
 [每一个行政命令...](#server-reference-admin)
 
-[GitHub的源文件:HOSTING.md——备份,恢复和升级QQ](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
+[GitHub 上的 HOSTING.md：备份、恢复与升级 ↗](https://github.com/evsikovas/consolecrypt-server/blob/main/docs/public/HOSTING.md)
 
 > **注意**
 >

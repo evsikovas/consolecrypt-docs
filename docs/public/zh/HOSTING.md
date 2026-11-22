@@ -29,13 +29,13 @@ GitHub 发布所希望的版本.
 
 | 机会 | 设置 | 以默认. |
 |---|---|---|
-| 存储同步、 设备信任、 请求签名 | `CC_REQUIRE_REQUEST_PROOF` (中文(简体) ). | 包含 |
-| [Защита от входа с нового устройства](#защита-от-входа-с-нового-устройства) (中文(简体) ). | `CC_DEVICE_PROTECTION_ENABLED` (中文(简体) ). | 关机 |
+| 存储同步、 设备信任、 请求签名 | `CC_REQUIRE_REQUEST_PROOF` | 包含 |
+| [Защита от входа с нового устройства](#защита-от-входа-с-нового-устройства) | `CC_DEVICE_PROTECTION_ENABLED` | 关机 |
 | [Совместный доступ](SHARING.md)主机,团体,秘密,Kubernetes,数据库 | `CC_OBJECT_SHARING_ENABLED`和类型旗帜 | 关机 |
-| [Общие заметки](#общие-заметки)改为共同对象 | `CC_SHARED_NOTES_ENABLED` (中文(简体) ). | 关机 |
-| [Команды](#команды)(共同储存) | `CC_TEAMS_ENABLED` (中文(简体) ). | 包含 |
-| [Enterprise-вход](ENTERPRISE.md)通过IDP(OIDC)或活动目录(LDAP) | `CC_AUTH_MODE=enterprise` (中文(简体) ). | `standard` (中文(简体) ). |
-| [Квоты и лимиты запросов](#квоты-и-лимиты-запросов) (中文(简体) ). | `CC_QUOTAS_V2_ENABLED`, `CC_RATE_LIMIT_MODE` (中文(简体) ). | 包括配额、模式限制`observe` |
+| [Общие заметки](#общие-заметки)改为共同对象 | `CC_SHARED_NOTES_ENABLED` | 关机 |
+| [Команды](#команды)(共同储存) | `CC_TEAMS_ENABLED` | 包含 |
+| [Enterprise-вход](ENTERPRISE.md)通过IDP(OIDC)或活动目录(LDAP) | `CC_AUTH_MODE=enterprise` | `standard` |
+| [Квоты и лимиты запросов](#квоты-и-лимиты-запросов) | `CC_QUOTAS_V2_ENABLED`, `CC_RATE_LIMIT_MODE` | 包括配额、模式限制`observe` |
 
 所有具有有效值、默认值和路径的服务器参数
 赫尔姆被列入[CONFIGURATION.md](CONFIGURATION.md). 怎么问他们
@@ -43,7 +43,7 @@ c Docker Compose, `docker run`, Helm, JSON -文件或系统, 现成
 例如,见[Как задать любой параметр](#как-задать-любой-параметр)节。
 英语: [configuration methods and worked examples](#english).
 
-## Docker Compose (中文(简体) ).
+## Docker Compose
 
 在没有Kubernetes的单一服务器上安装
 
@@ -61,7 +61,7 @@ UDP 443被Caddy用于(HTTP/3);当它被屏蔽时,它仍然停留在HTTPSTCP之�
 
 文件:[compose.yaml](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/compose.yaml)
 ([Caddyfile](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/Caddyfile)号),,
-[справочник переменных](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/.env.example) (中文(简体) ).
+[справочник переменных](https://github.com/evsikovas/consolecrypt-server/blob/main/server/deploy/docker/.env.example)
 旧的`server/docker-compose.yml`仍然是发展的一个单独选择。
 重新组装源代码,并将字母写入文件.
 
@@ -141,7 +141,7 @@ PostgreSQL和API将变为`healthy`;Caddy`running`.
 `curl`或贝壳不需要. 在第一个开始PostgreSQL 创建
 一个拥有其基础但并非超级用户的角色`consolecrypt`.
 API然后应用迁移. 与`service_healthy`的依赖关系如下:
-[документации Compose](https://docs.docker.com/compose/how-tos/startup-order/) (中文(简体) ).
+[документации Compose](https://docs.docker.com/compose/how-tos/startup-order/)
 
 Caddy 自动接收并更新信任的证书 。 为此,DNS,
 路线和进入的港口必须工作;状态`running`尚未证明
@@ -198,8 +198,8 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server \
 
 共享旗帜默认关闭 。 如果署长另行决定
 启用共享访问并检查客户兼容性,它会更改
-`CC_OBJECT_SHARING_ENABLED`, `CC_SHARED_GROUPS_ENABLED`, `CC_SHARED_SECRETS_ENABLED` (中文(简体) ).
-`CC_SHARED_KUBE_CONTEXTS_ENABLED`, `CC_SHARED_DB_CONNECTIONS_ENABLED`, (中文(简体) ).
+`CC_OBJECT_SHARING_ENABLED`, `CC_SHARED_GROUPS_ENABLED`, `CC_SHARED_SECRETS_ENABLED`
+`CC_SHARED_KUBE_CONTEXTS_ENABLED`, `CC_SHARED_DB_CONNECTIONS_ENABLED`,
 `CC_SHARED_NOTES_ENABLED`和`CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED`在`true`的同一私人档案中.
 之后它只重现了由同一团队提供的服务`server`. 请求的签署
 仍然是强制性的。 主旗是其他扩展的强制性的.
@@ -209,7 +209,7 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server \
 ### 数据保存和备份
 
 The name of the Compose project is `consolecrypt-selfhost` ; its PostgreSQL volume is
-`consolecrypt-selfhost_pgdata` (中文(简体) ). 保存工程名称和私有文件 :
+`consolecrypt-selfhost_pgdata` 保存工程名称和私有文件 :
 另一个`--project-name`将创建另一个数据库。 `cc_compose down`将存储卷。
 但停止服务; `cc_compose up -d --wait --wait-timeout 180`开始
 **不使用`down -v`或`docker volume prune`
@@ -266,7 +266,7 @@ cc_compose run --rm --no-deps server admin rotate-epoch --all
 
 首先,做和检查备份。 保存上一个 Compose文件 。
 `server.env`和上一个数值`CC_SERVER_VERSION`. 念诵.
-[примечания к выпуску](https://github.com/evsikovas/consolecrypt-server/releases) (中文(简体) ).
+[примечания к выпуску](https://github.com/evsikovas/consolecrypt-server/releases)
 新的迁移, 旗帜和默认值 。 更新样本来源
 `git pull`在克隆目录中,然后在私密目录中更改`server.env`
 `CC_SERVER_VERSION`到新版本(或`CC_SERVER_IMAGE`到其文摘).
@@ -283,7 +283,7 @@ curl --fail --silent --show-error "$CC_API_ORIGIN/v1/meta"
 
 将您的设置( 企业入帐、 限额、一般笔记等) 保留在
 `compose.yaml`来自来源,私下`compose.override.yaml`靠近
-`server.env` (中文(简体) ). 明文`-f` 禁用自动搜索覆盖文件 。
+`server.env` 明文`-f` 禁用自动搜索覆盖文件 。
 用第二个`-f`连接到函数`cc_compose`:
 
 ```sh
@@ -318,7 +318,7 @@ python3 server/deploy/docker/verify.py
 ```
 
 要验证另一个图像(例如, 本地采集) 传输
-`--image <образ> --server-version <версия>` (中文(简体) ).
+`--image <образ> --server-version <версия>`
 
 测试检查API,HTTPS使用临时本地CA(不使检查失效).
 证书),PostgreSQL角色,备份/恢复以及`down/up`之后的安全.
@@ -332,7 +332,7 @@ SMTP-mail –这些检查必须针对您的安装进行。
 要求Kubernetes1.25或以后,`kubectl`,Helm 3或4,Python 3,
 域名,包含在入侵控制器上的DNS记录和有效证书HTTPS。
 为Traefik设计并已经配置的证书管理器示例
-`ClusterIssuer/letsencrypt` (中文(简体) ). 图表没有安装这些组件 。
+`ClusterIssuer/letsencrypt` 图表没有安装这些组件 。
 
 从`main`获得一张图表. 它的`appVersion`是当前服务器的发布, aka 标签
 默认图像;图表本身的版本独立于服务器版本.
@@ -604,9 +604,9 @@ cc_kubectl get pods,service,ingress
 服务器将连接到数据库, 应用内置迁移并开始接收
 HTTP - 内陆港请求8080. TLS结束于入侵。
 在不同参数中包括了发生错误时自动回滚:
-[Helm 3](https://github.com/helm/helm-www/blob/main/versioned_docs/version-3/helm/helm_upgrade.md) (中文(简体) ).
-`--atomic`, [Helm 4](https://helm.sh/docs/helm/helm_upgrade/) (中文(简体) ).
-`--rollback-on-failure` (中文(简体) ). 更新时使用它 。
+[Helm 3](https://github.com/helm/helm-www/blob/main/versioned_docs/version-3/helm/helm_upgrade.md)
+`--atomic`, [Helm 4](https://helm.sh/docs/helm/helm_upgrade/)
+`--rollback-on-failure` 更新时使用它 。
 只有在检查上一个版本与新基准方案的兼容性之后;
 移徙并不能消除这种倒退。
 
@@ -744,7 +744,7 @@ cc_helm upgrade consolecrypt server/helm/consolecrypt-server \
 `dbname`,`user`,`sslmode=verify-full`,必要时`sslrootcert`.
 密码保存在pgpass中,而不是在团队的论据中.
 文件中所述格式[service-файла](https://www.postgresql.org/docs/16/libpq-pgservice.html)
-和 [файла паролей](https://www.postgresql.org/docs/16/libpq-pgpass.html) (中文(简体) ).
+和 [файла паролей](https://www.postgresql.org/docs/16/libpq-pgpass.html)
 
 ```sh
 export PGSERVICEFILE="$CC_INSTALL_DIR/pg_service.conf"
@@ -816,7 +816,7 @@ cc_kubectl exec deployment/consolecrypt -- \
 PostgreSQL需要单独的数据传输计划.
 
 所有发射参数:[CONFIGURATION.md](CONFIGURATION.md)(环境文件实例-
-[server/.env.example](https://github.com/evsikovas/consolecrypt-server/blob/main/server/.env.example) (中文(简体) ).
+[server/.env.example](https://github.com/evsikovas/consolecrypt-server/blob/main/server/.env.example)
 
 ### 一般连接Kubernetes
 
@@ -827,7 +827,7 @@ PostgreSQL需要单独的数据传输计划.
 它们继续接收前几类物体. 服务器验证签名、 权利
 设备和版本; 集群地址、 证书和证书的地址
 在加密内容中。 服务器不读kubeconfig,也不连接到API.
-Kubernetes (中文(简体) ). 阻断旗帜隐藏常见对象,保存其密码文字.
+Kubernetes 阻断旗帜隐藏常见对象,保存其密码文字.
 
 ### 共享数据库连接
 
@@ -908,13 +908,13 @@ Kubernetes (中文(简体) ). 阻断旗帜隐藏常见对象,保存其密码文�
 任意 OIDC)或活动目录/LDAP. 登记、登录和密码重置
 账户关闭,现有账户在第一个登录时链接。
 IDP/AD中已停用的员工失去同步功能
-`CC_AUTH_RECHECK_MINUTES` (中文(简体) ). 存储加密不会改变: IDP 或 AD, 或
+`CC_AUTH_RECHECK_MINUTES` 存储加密不会改变: IDP 或 AD, 或
 服务器没有收到任何可以打开数据的信息 。 默认模式
 `standard`,服务器的行为也和以前一样.
 
 设置、Entra ID的食谱、AD FS 2016+、Keycloak、Google工作空间、Okta和
 LDAPS 的 AD, 紧急访问命令和 AD 账户保护, 防止屏蔽 - in
-[ENTERPRISE.md](ENTERPRISE.md) (中文(简体) ).
+[ENTERPRISE.md](ENTERPRISE.md)
 
 ### 队伍.
 
@@ -933,7 +933,7 @@ LDAPS 的 AD, 紧急访问命令和 AD 账户保护, 防止屏蔽 - in
 - 删除参与者会取消其访问权限,并要求更改存储密钥.
 - 限额:`CC_MAX_TEAMS_PER_ACCOUNT`(每个账户50项命令)
   (`CC_MAX_TEAM_MEMBERS`人)(200人参加)。 在赫尔姆语中,这些密钥通过
-  `extraEnv` (中文(简体) ).
+  `extraEnv`
 - 它在两种输入模式中都有效. 需要移徙(`0012_teams`人);老客户
   `/v1/vaults`只提供个人金库.
 
@@ -946,16 +946,16 @@ LDAPS 的 AD, 紧急访问命令和 AD 账户保护, 防止屏蔽 - in
 从服务器0.2.2(protocol 1.11)开始,一个账户或设备不能
 Exhaust服务器资源:基线,位置,CPU,邮件或其他限制.
 
-QQ配额** `CC_QUOTAS_V2_ENABLED`, 默认值 `true` ; `false` 返回
+**配额**由 `CC_QUOTAS_V2_ENABLED` 控制, 默认值 `true` ; `false` 返回
 行为0.2.1:
 
 | 密钥 | 以默认. | 超过时的反应 |
 |---|---|---|
-| `CC_MAX_VAULT_BYTES` (中文(简体) ). | 1个吉布 | `413`, `details.reason = "vault_quota"`: 密码文字加墓志铭. |
-| `CC_TOMBSTONE_COST_BYTES` (中文(简体) ). | 256 | 这么多字节配额 值得每个墓碑(远方对象) |
-| `CC_MAX_VAULT_OBJECTS` (中文(简体) ). | 100 000 | `413`, `details.reason = "object_limit"`:活体文物和墓志铭. |
-| `CC_MAX_DEVICES_PER_ACCOUNT` (中文(简体) ). | 20(不超过64个) | 从新设备输入 - `403`, `details.reason = "device_limit"` |
-| `CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY` (中文(简体) ). | 10(0 - 不受限制) | `403`, `details.reason = "device_daily_limit"`, `details.until` (中文(简体) ). |
+| `CC_MAX_VAULT_BYTES` | 1个吉布 | `413`, `details.reason = "vault_quota"`: 密码文字加墓志铭. |
+| `CC_TOMBSTONE_COST_BYTES` | 256 | 这么多字节配额 值得每个墓碑(远方对象) |
+| `CC_MAX_VAULT_OBJECTS` | 100 000 | `413`, `details.reason = "object_limit"`:活体文物和墓志铭. |
+| `CC_MAX_DEVICES_PER_ACCOUNT` | 20(不超过64个) | 从新设备输入 - `403`, `details.reason = "device_limit"` |
+| `CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY` | 10(0 - 不受限制) | `403`, `details.reason = "device_daily_limit"`, `details.until` |
 
 清除活物总是被接受,甚至超过配额。 物体移走,
 从未在服务器上出现过的一个已经不再创建墓碑. 限量
@@ -968,9 +968,9 @@ QQ配额** `CC_QUOTAS_V2_ENABLED`, 默认值 `true` ; `false` 返回
 他们的工作是任何数量的复制品。 超过 - `429 rate_limited`
 标题`Retry-After`和`details.limit`;客户端稍后重复请求.
 阅读(pull, lists)只受到每个复制品的内存的慷慨限制.
-(`CC_RATE_LIMIT_READ_PER_DEVICE_PER_MINUTE`, 1200) (中文(简体) ).
+(`CC_RATE_LIMIT_READ_PER_DEVICE_PER_MINUTE`, 1200)
 
-`CC_RATE_LIMIT_MODE` (中文(简体) ).
+`CC_RATE_LIMIT_MODE`
 
 - `observe` (违约至0.2.2) - 请求不被驳回,仅超过
   在衡量尺度`cc_rate_limit_observed_total{limiter}`和审计日记账中考虑。
@@ -986,32 +986,32 @@ QQ配额** `CC_QUOTAS_V2_ENABLED`, 默认值 `true` ; `false` 返回
 时限或`N/min`,`N/hour`,`N/day`,`0`-无限制),
 `_BURST`(容量,默认期间),`_PER_HOUR`和`_PER_DAY`
 (额外上限). 例如,`CC_LIMIT_PUSH_ACCOUNT_RATE=600/min`. 在赫尔姆
-`config.rateLimit.limits: {push_account: {rate: "600/min", burst: 600}}` (中文(简体) ).
+`config.rateLimit.limits: {push_account: {rate: "600/min", burst: 600}}`
 
 | 名称. | 何谓有限? | 以默认. |
 |---|---|---|
-| `push_device` (中文(简体) ). | 向设备发送更改 | 120分/分钟,高峰60分 |
-| `push_account` (中文(简体) ). | 向您的账户提交更改 | 300分/分钟 |
-| `mutations_account` (中文(简体) ). | 发送的更改次数,输入账户 | 每小时50 000美元 |
-| `unknown_delete_account` (中文(简体) ). | 删除未在服务器上的对象 | 1 000/天(单位:千美元) |
-| `share_write_account` (中文(简体) ). | 创建共同对象 | 60小时,20度 |
-| `share_revision_account` (中文(简体) ). | 对共同设施的审计、出入权的改变、一般说明 | 600小时 |
-| `recipient_lookup_account` (中文(简体) ). | 邮件查找 | 30分钟和300天 |
-| `enrollment_account` (中文(简体) ). | 添加收件人自己的设备 | 30小时/小时 |
-| `trust_request_device`/`trust_request_account` (中文(简体) ). | 可信赖性 | 每个设备10小时,每个账户30天 |
-| `verification_account` (中文(简体) ). | 密钥调节: 批准设备的宣布, 签名的存储密钥打印 | 20小时/小时 |
-| `account_security` (中文(简体) ). | 更改密码、重新印发回收包、更换信封 | 10小时/小时 |
-| `ws_connect_account` (中文(简体) ). | 新建 WebSocket 连接 | 60/min(60岁) |
-| `auth_ip` (中文(简体) ). | 单一地址的公开入境、登记和恢复请求 | 30分钟/分钟 |
-| `login_email` (中文(简体) ). | **未成功** 同一网络的邮政投入(24IPv4,64IPv6) | 10/min和50/小时 |
-| `login_email_total` (中文(简体) ). | 未能从所有网络发送邮件 | 200小时 |
-| `recovery_email` (中文(简体) ). | 密码重置一个网络的电子邮件请求 | 5小时/小时 |
-| `recovery_email_total` (中文(简体) ). | 所有网络的邮寄信件(始终答复`202`) | 20日(每日) (单位:千美元) |
+| `push_device` | 向设备发送更改 | 120分/分钟,高峰60分 |
+| `push_account` | 向您的账户提交更改 | 300分/分钟 |
+| `mutations_account` | 发送的更改次数,输入账户 | 每小时50 000美元 |
+| `unknown_delete_account` | 删除未在服务器上的对象 | 1 000/天(单位:千美元) |
+| `share_write_account` | 创建共同对象 | 60小时,20度 |
+| `share_revision_account` | 对共同设施的审计、出入权的改变、一般说明 | 600小时 |
+| `recipient_lookup_account` | 邮件查找 | 30分钟和300天 |
+| `enrollment_account` | 添加收件人自己的设备 | 30小时/小时 |
+| `trust_request_device`/`trust_request_account` | 可信赖性 | 每个设备10小时,每个账户30天 |
+| `verification_account` | 密钥调节: 批准设备的宣布, 签名的存储密钥打印 | 20小时/小时 |
+| `account_security` | 更改密码、重新印发回收包、更换信封 | 10小时/小时 |
+| `ws_connect_account` | 新建 WebSocket 连接 | 60/min(60岁) |
+| `auth_ip` | 单一地址的公开入境、登记和恢复请求 | 30分钟/分钟 |
+| `login_email` | **未成功** 同一网络的邮政投入(24IPv4,64IPv6) | 10/min和50/小时 |
+| `login_email_total` | 未能从所有网络发送邮件 | 200小时 |
+| `recovery_email` | 密码重置一个网络的电子邮件请求 | 5小时/小时 |
+| `recovery_email_total` | 所有网络的邮寄信件(始终答复`202`) | 20日(每日) (单位:千美元) |
 
 前键`CC_RATE_LIMIT_AUTH_PER_IP_PER_MINUTE`
-`CC_RATE_LIMIT_LOGIN_PER_EMAIL_PER_MINUTE`和 (中文(简体) ).
+`CC_RATE_LIMIT_LOGIN_PER_EMAIL_PER_MINUTE`和
 `CC_RATE_LIMIT_RECOVERY_PER_EMAIL_PER_HOUR`继续问`auth_ip`.
-`login_email`和 `recovery_email` (中文(简体) ).
+`login_email`和 `recovery_email`
 
 异形尝试不会屏蔽所有者:成功输入不会花掉邮件的限制.
 从** 已知设备** 账户登录( 设备的有效签名)
@@ -1041,18 +1041,18 @@ cc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server ad
 
 过分定义的关键是带有后缀`_rate`,`_burst`的界限名称.
 `_per_hour`,`_per_day`和配额`max_vault_bytes`,`max_vault_objects`,
-`max_devices_per_account`, `new_devices_per_account_per_day` (中文(简体) ). 入场限制
+`max_devices_per_account`, `new_devices_per_account_per_day` 入场限制
 您不能覆盖账户 。
 
 度量衡:`cc_rate_limited_total{limiter}`,`cc_rate_limit_observed_total{limiter}`
 `cc_rate_bucket_seconds`(检查时间),`cc_quota_rejected_total{reason}`
-`cc_sync_unknown_deletes_total`, `cc_tombstones_total`, (中文(简体) ).
-`cc_auth_known_device_bypass_total`, `cc_recovery_mail_suppressed_total` (中文(简体) ).
+`cc_sync_unknown_deletes_total`, `cc_tombstones_total`,
+`cc_auth_known_device_bypass_total`, `cc_recovery_mail_suppressed_total`
 
 ## 如何设置任何参数
 
 参数名称随处可见-变量`CC_*`.
-[CONFIGURATION.md](CONFIGURATION.md) (中文(简体) ). 所有安装方法的规则:
+[CONFIGURATION.md](CONFIGURATION.md) 所有安装方法的规则:
 
 - 过程环境变量比JSON文件的值更重要.
   可变表示“未设定”(默认值有效);
@@ -1068,25 +1068,25 @@ cc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server ad
 登记、邮件确认、登录模式、命令和设备保护;
 `admin limits show`和`admin auth status`显示了限制、配额和进入。
 
-### Docker Compose (中文(简体) ).
+### Docker Compose
 
 编译只将服务块`environment:`的变量传输到服务器.
-`server` (中文(简体) ). 文件`server.env`在`compose.yaml``--env-file`中被替换,但本身在
+`server` 文件`server.env`在`compose.yaml``--env-file`中被替换,但本身在
 容器不掉落:线条`CC_LIMIT_PUSH_ACCOUNT_RATE=600/min`
 `server.env`如果`compose.yaml`不使用它,则不会改变任何东西.
 
 **1. 在`server.env`中变化的密钥。**在`compose.yaml`中,这些密钥被写为:
-`${КЛЮЧ:-значение}`: `CC_DATABASE_PASSWORD`, `CC_RUN_MIGRATIONS` (中文(简体) ).
-`CC_REGISTRATION_OPEN`, `CC_MAIL_TRANSPORT`, `CC_MAIL_FROM`, `CC_SMTP_HOST` (中文(简体) ).
-`CC_SMTP_PORT`, `CC_SMTP_TLS`, `CC_SMTP_USERNAME`, `CC_SMTP_PASSWORD` (中文(简体) ).
-`CC_OBJECT_SHARING_ENABLED`, `CC_SHARED_GROUPS_ENABLED`, `CC_SHARED_SECRETS_ENABLED` (中文(简体) ).
-`CC_SHARED_KUBE_CONTEXTS_ENABLED`, `CC_SHARED_DB_CONNECTIONS_ENABLED`, (中文(简体) ).
-`CC_SHARED_NOTES_ENABLED`, `CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED`, (中文(简体) ).
-`CC_DEVICE_PROTECTION_ENABLED`, `CC_NEW_DEVICE_MAIL_ENABLED`, (中文(简体) ).
-`CC_DEVICE_QUARANTINE_DAYS`, `CC_TEAMS_ENABLED`, `CC_RATE_LIMIT_MODE` (中文(简体) ).
-`CC_QUOTAS_V2_ENABLED`, `CC_MAX_DEVICES_PER_ACCOUNT`, `CC_MAX_VAULT_OBJECTS` (中文(简体) ).
+`${КЛЮЧ:-значение}`: `CC_DATABASE_PASSWORD`, `CC_RUN_MIGRATIONS`
+`CC_REGISTRATION_OPEN`, `CC_MAIL_TRANSPORT`, `CC_MAIL_FROM`, `CC_SMTP_HOST`
+`CC_SMTP_PORT`, `CC_SMTP_TLS`, `CC_SMTP_USERNAME`, `CC_SMTP_PASSWORD`
+`CC_OBJECT_SHARING_ENABLED`, `CC_SHARED_GROUPS_ENABLED`, `CC_SHARED_SECRETS_ENABLED`
+`CC_SHARED_KUBE_CONTEXTS_ENABLED`, `CC_SHARED_DB_CONNECTIONS_ENABLED`,
+`CC_SHARED_NOTES_ENABLED`, `CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED`,
+`CC_DEVICE_PROTECTION_ENABLED`, `CC_NEW_DEVICE_MAIL_ENABLED`,
+`CC_DEVICE_QUARANTINE_DAYS`, `CC_TEAMS_ENABLED`, `CC_RATE_LIMIT_MODE`
+`CC_QUOTAS_V2_ENABLED`, `CC_MAX_DEVICES_PER_ACCOUNT`, `CC_MAX_VAULT_OBJECTS`
 除这些`server.env`外,还包含"编译本"本身的变量:`CC_SERVER_VERSION`.
-`CC_SERVER_IMAGE`, `CC_DOMAIN`, `CC_HTTP_PORT`, `CC_POSTGRES_ADMIN_PASSWORD` (中文(简体) ).
+`CC_SERVER_IMAGE`, `CC_DOMAIN`, `CC_HTTP_PORT`, `CC_POSTGRES_ADMIN_PASSWORD`
 有符号的值`$`,`#`,空格或引号单写
 引证中.
 
@@ -1094,9 +1094,9 @@ cc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server ad
 `compose.yaml`(限制`CC_LIMIT_*`,`CC_MAX_VAULT_BYTES`,`CC_MAX_TEAM_MEMBERS`)
 `CC_AUTH_*`,`CC_OIDC_*`,`CC_LDAP_*`,保存期.),以及那些键
 `compose.yaml`严格定义: `CC_DATABASE_URL`, `CC_DATABASE_CONNECT_TIMEOUT_SECS`.
-`CC_LISTEN_ADDR`, `CC_METRICS_LISTEN`, `CC_PUBLIC_URL` (中文(简体) ).
-`CC_REQUIRE_EMAIL_VERIFICATION`, `CC_REQUIRE_REQUEST_PROOF`, (中文(简体) ).
-`CC_TRUST_PROXY_HEADERS`, `CC_EVENT_BUS`, `CC_HSTS`, `CC_LOG_FORMAT` (中文(简体) ). 含义
+`CC_LISTEN_ADDR`, `CC_METRICS_LISTEN`, `CC_PUBLIC_URL`
+`CC_REQUIRE_EMAIL_VERIFICATION`, `CC_REQUIRE_REQUEST_PROOF`,
+`CC_TRUST_PROXY_HEADERS`, `CC_EVENT_BUS`, `CC_HSTS`, `CC_LOG_FORMAT` 含义
 `environment:` 覆盖文件替换相同的值`compose.yaml`.
 文件在`server.env` 旁边的私有目录中; 写下值 。
 在引号中:
@@ -1126,7 +1126,7 @@ cc_compose() {
 将覆盖文件中的路径写入绝对值 。 您可以添加一个服务和
 `env_file: [/абсолютный/путь/extra.env]`,但数值来自`environment:`
 `compose.yaml`比`env_file`更重要,所以上面列表中的密钥仍然给出.
-c`environment:`. (中文(简体) ).
+c`environment:`.
 
 **3. 密钥文件(只有企业登录密钥`*_FILE` 和 CA 证书)
 在`/run/secrets/<имя>`中将无 Swarm Mounts `secrets:` 编为普通文件
@@ -1150,7 +1150,7 @@ secrets:
 ```
 
 而不是`secrets:`,安装也适合只读:
-`volumes: ["/home/admin/.config/consolecrypt-docker/secrets:/run/secrets/consolecrypt:ro"]` (中文(简体) ).
+`volumes: ["/home/admin/.config/consolecrypt-docker/secrets:/run/secrets/consolecrypt:ro"]`
 基础密码和SMTP仍然在`server.env`中:服务器不从文件中读取.
 
 **4. 应用和核实。**
@@ -1194,24 +1194,24 @@ docker run -d --name consolecrypt-server --restart unless-stopped \
 参数变化 - `docker rm -f consolecrypt-server`和相同 `docker run`
 (数据在PostgreSQL中),容器不储存它们。 )管理员团队:
 *docker execctorcrypt服务器/usr/local/bin/consolecrypt-server--config 互联网档案馆的存檔,存档日期2007-09-21.
-/etc/consolecrypt/server.json admin...' (中文(简体) ).
+/etc/consolecrypt/server.json admin...'
 
 ### Kubernetes:赫尔姆语.
 
 图表将值块变为变量`CC_*`:未分类的块变为ConfigMap.
 URL基地和SMTP密码 –在秘密或链接`secretKeyRef`到您的秘密.
 每个`CC_*`值路径的对应数字在栏"Helm"中给出.
-[CONFIGURATION.md](CONFIGURATION.md) (中文(简体) ). 数值中的空行被跳过 -那么
+[CONFIGURATION.md](CONFIGURATION.md) 数值中的空行被跳过 -那么
 服务器的默认值是有效的 。
 
 | 什麽? | 在价值方面 |
 |---|---|
-| 旗帜、标志、配额、限制、WebSocket、服务、杂志 | `config.*``config.rateLimit.limits` - `CC_LIMIT_*` (中文(简体) ). |
+| 旗帜、标志、配额、限制、WebSocket、服务、杂志 | `config.*``config.rateLimit.limits` - `CC_LIMIT_*` |
 | 企业进入 | `auth.*`, 秘密 - `auth.oidc.existingSecret`/ `auth.ldap.existingSecret` (英语). |
 | 邮资 | `mail.*`,密码 - `mail.smtp.existingSecret` |
 | 数据库 | `database.*`或`postgresql.*`,移民`migrations.*` |
-| 度数 | `metrics.enabled` `CC_METRICS_LISTEN` (中文(简体) ). |
-| 图表`CC_TEAMS_ENABLED`,`CC_MAX_TEAMS_PER_ACCOUNT`,`CC_MAX_TEAM_MEMBERS`,`RUST_LOG`,`OTEL_*`,外部`CC_DATABASE_PASSWORD`中的无路径键 | `extraEnv` (中文(简体) ). |
+| 度数 | `metrics.enabled` `CC_METRICS_LISTEN` |
+| 图表`CC_TEAMS_ENABLED`,`CC_MAX_TEAMS_PER_ACCOUNT`,`CC_MAX_TEAM_MEMBERS`,`RUST_LOG`,`OTEL_*`,外部`CC_DATABASE_PASSWORD`中的无路径键 | `extraEnv` |
 
 ```yaml
 extraEnv:
@@ -1269,7 +1269,7 @@ cc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server ad
 ```
 
 服务的环境变量被添加到一个滴入文件
-`sudo systemctl edit consolecrypt-server`: (中文(简体) ).
+`sudo systemctl edit consolecrypt-server`:
 
 ```ini
 [Service]
@@ -1279,7 +1279,7 @@ Environment=CC_LOG=info,sqlx=warn
 在编辑文件或环境后:`sudo systemctl restart consolecrypt-server`
 然后`sudo-u控制台控制台控制台控制台服务器--config
 /etc/溶解/服务器.json健康检查'和
-`journalctl -u consolecrypt-server | grep starting | tail -n 1` (中文(简体) ). 密码可用
+`journalctl -u consolecrypt-server | grep starting | tail -n 1` 密码可用
 不存储于JSON文件 :如果在`CC_DATABASE_PASSWORD` 或 URL 中都没有密码 。
 驱动程序从服务环境取标准变量`PGPASSWORD`.
 
@@ -1327,10 +1327,10 @@ JSON:‘'CC_OBJECT_SHARING_ENABLED':‘真',‘CC_SHARED_NOTES_ENABLED':‘真',
 ### 示例: Entra ID 企业登录
 
 Entra ID 中的申请注册情况如下:
-[ENTERPRISE.md](../ENTERPRISE.md#microsoft-entra-id) (中文(简体) ). 重定向 URI -
-`https://sync.example.org/v1/auth/oidc/callback` (中文(简体) ).
+[ENTERPRISE.md](../ENTERPRISE.md#microsoft-entra-id) 重定向 URI -
+`https://sync.example.org/v1/auth/oidc/callback`
 
-Docker Compose (中文(简体) ). 秘诀 :
+Docker Compose 秘诀 :
 
 ```sh
 mkdir -p "$CC_INSTALL_DIR/secrets"
@@ -1403,7 +1403,7 @@ auth:
 
 JSON 或系统化的键与覆盖文件中的键相同,`*_FILE` 表示
 属于服务用户的有权利文件`0400`,例如
-`/etc/consolecrypt/secrets/oidc-client-secret` (中文(简体) ).
+`/etc/consolecrypt/secrets/oidc-client-secret`
 
 ### 示例: 活动目录登录( LDAP)
 
@@ -1477,7 +1477,7 @@ auth:
 3. 切换模式 。
 
 Docker Compose:在(`server.env`年)—(`CC_RATE_LIMIT_MODE=enforce`年),提高了限额—在.
-`compose.override.yaml` (中文(简体) ).
+`compose.override.yaml`
 
 ```yaml
 services:
@@ -1545,9 +1545,8 @@ cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \
 cc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.org
 ```
 
-`CC_MAX_DEVICES_PER_ACCOUNT` 不得超过64, `CC_MAX_VAULT_BYTES` 减去
-(原始内容存档于2017-03-09). 1 MiB. 规划磁盘空间PostgreSQL,配有存储配额和号码.
-账户。
+`CC_MAX_DEVICES_PER_ACCOUNT` 不能超过 64，`CC_MAX_VAULT_BYTES` 不能低于 1 MiB。
+请根据每个保险库的配额和账户数量规划 PostgreSQL 的磁盘空间。
 
 ### 示例:没有 SMTP 的字母 - 在哪里获得代码
 
@@ -1565,14 +1564,14 @@ CC_MAIL_DIR=/path/to/mail
 ```
 
 例如,文件名称是`<время UTC>-<тип>-<id>.eml`
-`20261026T205345-password_reset-….eml` (中文(简体) ). 编号为`verify_email`的字母类型
+`20261026T205345-password_reset-….eml` 编号为`verify_email`的字母类型
 确认地址,`password_reset` - 更改密码,`new_device` - 登录
 新设备("不是我"). 其他类型`password_changed`,
 `device_revoked` –没有代码的通知.
 
 字母的文本编码为基数64,因此`cat`不会显示. 最后一个
 密码更改字母的读法如下(替换电子邮件以确认电子邮件).
-`password_reset`至`verify_email`: (中文(简体) ).
+`password_reset`至`verify_email`:
 
 ```sh
 python3 - "$(ls -t "$CC_MAIL_DIR"/*-password_reset-*.eml | head -1)" <<'PY'
@@ -1607,8 +1606,8 @@ consolecrypt-server admin reset-token --email user@example.org
 `reset-token`打印可支配代码;有效`CC_PASSWORD_RESET_TTL_SECS`
 (默认1小时),并输入字母代码所在的同一地点. B类Docker Compose和
 Kubernetes在容器内执行指示:
-`cc_compose exec -T server /usr/local/bin/consolecrypt-server admin …` 或 (中文(简体) ).
-`cc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server admin …` (中文(简体) ).
+`cc_compose exec -T server /usr/local/bin/consolecrypt-server admin …` 或
+`cc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server admin …`
 
 ## 验证服务器的依赖性
 

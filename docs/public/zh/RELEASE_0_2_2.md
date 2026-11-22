@@ -1,4 +1,4 @@
-# ConsoleCrypt0.2.2 (中文(简体) ).
+# ConsoleCrypt0.2.2
 
 参考文档译文 · [俄文原文](../RELEASE_0_2_2.md)
 
@@ -23,7 +23,7 @@
 
 | 平台 | 大会 | 软件包 |
 |---|---|---|
-| Windows x64 (中文(简体) ). | **0.2.2+1292** | EXE/便携式ZIP |
+| Windows x64 | **0.2.2+1292** | EXE/便携式ZIP |
 | macOS 英特尔/阿普尔硅 | **0.2.2+1293** | 通用DMG( 通用DMG) |
 | Android ARM64号卫星 | **0.2.2+64** | APK 地图 |
 | iOS 模拟器 Intel / Apple 硅 | **0.2.2+65** | ZIP分为两部分`.001`/`.002` |
@@ -40,7 +40,7 @@ shasum -a 256 ConsoleCrypt-0.2.2+65-ios-simulator-universal.zip
 unzip ConsoleCrypt-0.2.2+65-ios-simulator-universal.zip -d consolecrypt-ios
 ```
 
-[Порядок запуска iOS Simulator](https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/BUILD_IOS.md) (中文(简体) ). 用于模拟器的构件;没有安装在iPhone上.
+[Порядок запуска iOS Simulator](https://git.evsikov.net/publics/consolecrypt/-/blob/main/docs/public/BUILD_IOS.md) 用于模拟器的构件;没有安装在iPhone上.
 
 ## 检查。
 

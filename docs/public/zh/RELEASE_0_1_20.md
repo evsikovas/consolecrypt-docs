@@ -4,11 +4,11 @@
 
 日期:2026年10月1日. 代码标签`v0.1.20`
 实施`9cc4baaca4a6b451c23d835823a35300a0c77e54`. 所有软件包都在使用中
-`CC_MOCK=false` (中文(简体) ).
+`CC_MOCK=false`
 
 | 平台 | 软件包 | 原产地版本 |
 |---|---|---|
-| Windows 10/11 x64 (中文(简体) ). | EXE和便携式ZIP | 0.1.20+1231 |
+| Windows 10/11 x64 | EXE和便携式ZIP | 0.1.20+1231 |
 | macOS 苹果硅和英特尔 | 通用DMG( 通用DMG) | 0.1.20+1232 |
 | Android 11+ ARM64 | APK 地图 | 0.1.20+49 |
 | iOSMac上的模拟器 | ZIP, GitLab 的两个部分 | 0.1.20+48 |
@@ -79,7 +79,7 @@ iOSZIP运行在Mac上的模拟器上. 这不是一个IPA的电话。
 面部ID,物理键盘,Wi-Fi/细胞网络和背景
 iPhone需要连接的设备以及个人团队/Apple账户的签名.
 测试中注入了Flustter Text Input/lifecycle,而不是手机OS的真人事件.
-[Установка частей архива и дальнейшая проверка](BUILD_IOS.md) (中文(简体) ).
+[Установка частей архива и дальнейшая проверка](BUILD_IOS.md)
 
 新的 EXE/ APK没有安装在此的用户应用程序之上
 说吧 接受有问题的Windows10个人电脑和物理设备Android
@@ -90,7 +90,7 @@ iPhone需要连接的设备以及个人团队/Apple账户的签名.
 SSH 目标服务器上的证书. 更新前保留
 加密备份和回收包。
 
-[Релиз и SHA-256](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.20) (中文(简体) ).
+[Релиз и SHA-256](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.1.20)
 ·[Обновления](UPDATES.md)-[Свой сервер](HOSTING.md)
 
 英文:此版本添加选择性的端到端加密共享, 已校验

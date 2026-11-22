@@ -30,21 +30,21 @@
   连接和授权错误分别显示 。
   公布选定的数据需要所有者采取行动。
 - ** License:**在“About”窗口中显示一个短名。
-  `AGPL-3.0` (中文(简体) ). 正式标识符`AGPL-3.0-only`和全文
+  `AGPL-3.0` 正式标识符`AGPL-3.0-only`和全文
   许可证保留。 第三方部件保留其许可证。
 
 ## 包裹。
 
 | 平台 | 版本(简体中文). | 格式 |
 |---|---|---|
-| Windows 10/11 x64 (中文(简体) ). | 0.2.0+1257 | EXE和便携式ZIP |
+| Windows 10/11 x64 | 0.2.0+1257 | EXE和便携式ZIP |
 | macOS 12+ 苹果硅 / 英特尔 | 0.2.0+1258 | 通用DMG( 通用DMG) |
 | Android 11+ ARM64 | 0.2.0+58 | APK 地图 |
 | iOSMac上的模拟器 | 0.2.0+59 | 通用 ZIP 分为两部分 |
 
-[Скачать и проверить SHA-256](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.2.0) (中文(简体) ).
+[Скачать и проверить SHA-256](https://git.evsikov.net/publics/consolecrypt/-/releases/v0.2.0)
 为iOS模拟器,下载两部分并结合.
-[инструкции](BUILD_IOS.md) (中文(简体) ). 此软件包是为模拟器设计的;
+[инструкции](BUILD_IOS.md) 此软件包是为模拟器设计的;
 在真实的iPhone上安装需要单独的签名.
 
 ## 检查。
@@ -52,7 +52,7 @@
 - 小蝶:**499 PASS测试,分析无评论. 递归
   检查选择和滚动、焦点返回、西里尔语和IME,
   右侧面板模式,主机搜索和共享再检查。
-- [Pipeline 190](https://git.evsikov.net/publics/consolecrypt/-/pipelines/190) (中文(简体) ).
+- [Pipeline 190](https://git.evsikov.net/publics/consolecrypt/-/pipelines/190)
   Windows工作1257和macOS工作1258成功进行了分析.
   一套完整的Flustter测试和包装之前的组装.
 - 本地版本、出口和包装方案:**20 PASS、1 SKIP**
