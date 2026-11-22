@@ -2939,14 +2939,14 @@ export const guideSections = [
           {
             "ru": "⌘K",
             "en": "⌘K",
-            "es": "∙K",
-            "zh": "⌘(K)"
+            "es": "⌘K",
+            "zh": "⌘K"
           },
           {
             "ru": "Ctrl+K",
             "en": "Ctrl+K",
             "es": "Ctrl+K",
-            "zh": "缩写+K"
+            "zh": "Ctrl+K"
           }
         ],
         [
@@ -2959,14 +2959,14 @@ export const guideSections = [
           {
             "ru": "⌘T",
             "en": "⌘T",
-            "es": "∙T",
+            "es": "⌘T",
             "zh": "⌘T"
           },
           {
             "ru": "Ctrl+T",
             "en": "Ctrl+T",
             "es": "Ctrl+T",
-            "zh": "Ctrl+T 数据"
+            "zh": "Ctrl+T"
           }
         ],
         [
@@ -2979,14 +2979,14 @@ export const guideSections = [
           {
             "ru": "⌘W",
             "en": "⌘W",
-            "es": ". .",
-            "zh": "{\\fn黑体\\fs22\\bord1\\shad0\\3aHBE\\4aH00\\fscx67\\fscy66\\2cHFFFFFF\\3cH808080}你觉得呢?{\\fn黑体\\fs22\\bord1\\shad0\\3aHBE\\4aH00\\fscx67\\fscy66\\2cHFFFFFF\\3cH808080}我"
+            "es": "⌘W",
+            "zh": "⌘W"
           },
           {
             "ru": "Ctrl+W",
             "en": "Ctrl+W",
             "es": "Ctrl+W",
-            "zh": "Ctrl + W 数据"
+            "zh": "Ctrl+W"
           }
         ],
         [
@@ -2999,14 +2999,14 @@ export const guideSections = [
           {
             "ru": "⌘N",
             "en": "⌘N",
-            "es": "∙N",
+            "es": "⌘N",
             "zh": "⌘N"
           },
           {
             "ru": "Ctrl+N",
             "en": "Ctrl+N",
             "es": "Ctrl+N",
-            "zh": "缩写+N"
+            "zh": "Ctrl+N"
           }
         ],
         [
@@ -3019,14 +3019,14 @@ export const guideSections = [
           {
             "ru": "⌘L",
             "en": "⌘L",
-            "es": "▪L",
+            "es": "⌘L",
             "zh": "⌘L"
           },
           {
             "ru": "Ctrl+L",
             "en": "Ctrl+L",
             "es": "Ctrl+L",
-            "zh": "Ctrl+L 数据"
+            "zh": "Ctrl+L"
           }
         ],
         [
@@ -3046,7 +3046,7 @@ export const guideSections = [
             "ru": "Ctrl+,",
             "en": "Ctrl+,",
             "es": "Ctrl+,",
-            "zh": "Ctrl+, (中文(简体) )."
+            "zh": "Ctrl+,"
           }
         ],
         [
@@ -3066,7 +3066,7 @@ export const guideSections = [
             "ru": "Ctrl+.",
             "en": "Ctrl+.",
             "es": "Ctrl+.",
-            "zh": "Ctrl+ (英语)."
+            "zh": "Ctrl+."
           }
         ],
         [
@@ -3079,14 +3079,14 @@ export const guideSections = [
           {
             "ru": "⌘C",
             "en": "⌘C",
-            "es": ". .",
-            "zh": "_____________________________________________"
+            "es": "⌘C",
+            "zh": "⌘C"
           },
           {
             "ru": "Ctrl+Shift+C",
             "en": "Ctrl+Shift+C",
             "es": "Ctrl+Shift+C",
-            "zh": "Ctrl + Shift+C 软件"
+            "zh": "Ctrl+Shift+C"
           }
         ],
         [
@@ -3099,14 +3099,14 @@ export const guideSections = [
           {
             "ru": "⌘V",
             "en": "⌘V",
-            "es": "Especificaciones métricas",
-            "zh": "页:1"
+            "es": "⌘V",
+            "zh": "⌘V"
           },
           {
             "ru": "Ctrl+V; в Windows также Shift+Insert",
             "en": "Ctrl+V; also Shift+Insert on Windows",
-            "es": "Ctrl+V; también Shift+Insert on Windows",
-            "zh": "Ctrl+V; 也在Windows 上显示 Shift+Insert"
+            "es": "Ctrl+V; en Windows también se puede usar Shift+Insert",
+            "zh": "Ctrl+V（在 Windows 上也可使用 Shift+Insert）"
           }
         ],
         [
@@ -3126,7 +3126,7 @@ export const guideSections = [
             "ru": "Ctrl+Shift+\\",
             "en": "Ctrl+Shift+\\",
             "es": "Ctrl+Shift+\\",
-            "zh": "Ctrl+Shift 键盘"
+            "zh": "Ctrl+Shift+\\"
           }
         ],
         [
@@ -3146,7 +3146,7 @@ export const guideSections = [
             "ru": "Ctrl+Shift+−",
             "en": "Ctrl+Shift+−",
             "es": "Ctrl+Shift+−",
-            "zh": "Ctrl+Shift 键盘"
+            "zh": "Ctrl+Shift+−"
           }
         ],
         [
@@ -3166,7 +3166,7 @@ export const guideSections = [
             "ru": "Ctrl+]",
             "en": "Ctrl+]",
             "es": "Ctrl+]",
-            "zh": "Ctrl+] (中文(简体) )."
+            "zh": "Ctrl+]"
           }
         ]
       ]
@@ -6577,7 +6577,7 @@ export const guideSections = [
       "ru": "Kubernetes: Helm",
       "en": "Kubernetes: Helm",
       "es": "Kubernetes : Helm",
-      "zh": "Kubernetes:赫尔姆语."
+      "zh": "Kubernetes：Helm"
     },
     "intro": {
       "ru": "Просматривайте сохранённые Helm-релизы и сравнивайте их с текущим кластером.",
@@ -7102,7 +7102,7 @@ export const guideSections = [
             "ru": "Ctrl+Enter",
             "en": "Ctrl+Enter",
             "es": "Ctrl+Enter",
-            "zh": "Ctrl+ 输入"
+            "zh": "Ctrl+Enter"
           }
         ],
         [
@@ -7115,14 +7115,14 @@ export const guideSections = [
           {
             "ru": "⌥X или ⇧⌘↵",
             "en": "⌥X or ⇧⌘↵",
-            "es": "Alternativa o ⇧",
-            "zh": "⌥X或⇧⌘↵."
+            "es": "⌥X o ⇧⌘↵",
+            "zh": "⌥X 或 ⇧⌘↵"
           },
           {
             "ru": "Alt+X или Ctrl+Shift+Enter",
             "en": "Alt+X or Ctrl+Shift+Enter",
             "es": "Alt+X o Ctrl+Shift+Enter",
-            "zh": "阿尔特QQ或 Ctrl+Shift+ Enter"
+            "zh": "Alt+X 或 Ctrl+Shift+Enter"
           }
         ],
         [
@@ -7136,13 +7136,13 @@ export const guideSections = [
             "ru": "⌃Space",
             "en": "⌃Space",
             "es": "⌃Space",
-            "zh": "空间"
+            "zh": "⌃Space"
           },
           {
             "ru": "Ctrl+Space",
             "en": "Ctrl+Space",
             "es": "Ctrl+Space",
-            "zh": "Ctrl+ 空间"
+            "zh": "Ctrl+Space"
           }
         ],
         [
@@ -7155,14 +7155,14 @@ export const guideSections = [
           {
             "ru": "⇧⌘F",
             "en": "⇧⌘F",
-            "es": "⇧ѕF",
-            "zh": "页:1"
+            "es": "⇧⌘F",
+            "zh": "⇧⌘F"
           },
           {
             "ru": "Ctrl+Shift+F",
             "en": "Ctrl+Shift+F",
             "es": "Ctrl+Shift+F",
-            "zh": "Ctrl+Shift+F (英语:Ctrl+Shift+F) 维基百科中的相关条目: 维基百科中的相关条目: 维基百科"
+            "zh": "Ctrl+Shift+F"
           }
         ],
         [
@@ -7182,7 +7182,7 @@ export const guideSections = [
             "ru": "Ctrl+/",
             "en": "Ctrl+/",
             "es": "Ctrl+/",
-            "zh": "Ctrl+/ (中文(简体) )."
+            "zh": "Ctrl+/"
           }
         ],
         [
@@ -7195,14 +7195,14 @@ export const guideSections = [
           {
             "ru": "⌘F",
             "en": "⌘F",
-            "es": "∙F",
-            "zh": "页:1"
+            "es": "⌘F",
+            "zh": "⌘F"
           },
           {
             "ru": "Ctrl+F",
             "en": "Ctrl+F",
             "es": "Ctrl+F",
-            "zh": "Ctrl + F 调制器"
+            "zh": "Ctrl+F"
           }
         ],
         [
@@ -7222,7 +7222,7 @@ export const guideSections = [
             "ru": "Ctrl+.",
             "en": "Ctrl+.",
             "es": "Ctrl+.",
-            "zh": "Ctrl+ (英语)."
+            "zh": "Ctrl+."
           }
         ],
         [
@@ -7235,14 +7235,14 @@ export const guideSections = [
           {
             "ru": "⌘E",
             "en": "⌘E",
-            "es": "∙E",
-            "zh": "_______________________________________________________"
+            "es": "⌘E",
+            "zh": "⌘E"
           },
           {
             "ru": "Ctrl+E",
             "en": "Ctrl+E",
             "es": "Ctrl+E",
-            "zh": "缩写+E"
+            "zh": "Ctrl+E"
           }
         ],
         [
@@ -7255,14 +7255,14 @@ export const guideSections = [
           {
             "ru": "⌘H",
             "en": "⌘H",
-            "es": ". . .",
-            "zh": "{\\fn黑体\\fs22\\bord1\\shad0\\3aHBE\\4aH00\\fscx67\\fscy66\\2cHFFFFFF\\3cH808080}你觉得呢?{\\fn黑体\\fs22\\bord1\\shad0\\3aHBE\\4aH00\\fscx67\\fscy66\\2cHFFFFFF\\3cH808080}我"
+            "es": "⌘H",
+            "zh": "⌘H"
           },
           {
             "ru": "Ctrl+H",
             "en": "Ctrl+H",
             "es": "Ctrl+H",
-            "zh": "Ctrl+H 数据"
+            "zh": "Ctrl+H"
           }
         ],
         [
@@ -7275,14 +7275,14 @@ export const guideSections = [
           {
             "ru": "⌘I",
             "en": "⌘I",
-            "es": "▪I",
-            "zh": "⌘и"
+            "es": "⌘I",
+            "zh": "⌘I"
           },
           {
             "ru": "Ctrl+I",
             "en": "Ctrl+I",
             "es": "Ctrl+I",
-            "zh": "Ctrl+I 数据"
+            "zh": "Ctrl+I"
           }
         ],
         [
@@ -7295,14 +7295,14 @@ export const guideSections = [
           {
             "ru": "⌘J",
             "en": "⌘J",
-            "es": "∙J",
-            "zh": "页:1"
+            "es": "⌘J",
+            "zh": "⌘J"
           },
           {
             "ru": "Ctrl+J",
             "en": "Ctrl+J",
             "es": "Ctrl+J",
-            "zh": "Ctrl + J 调制器"
+            "zh": "Ctrl+J"
           }
         ]
       ]
@@ -7460,8 +7460,8 @@ export const guideSections = [
         "caption": {
           "ru": "Сведения о таблице orders: разделы, размеры в МиБ, оценки со знаком «≈».",
           "en": "Details of the orders table: sections, sizes in MiB and estimates marked “≈”.",
-          "es": "Detalles de la tabla de pedidos: secciones, tamaños en MiB y estimaciones marcadas con “coger”.",
-          "zh": "订单表格的细节:各款、米B中的大小和标为“__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"
+          "es": "Detalles de la tabla orders: particiones, tamaños en MiB y estimaciones marcadas con «≈».",
+          "zh": "orders 表的详细信息，包括分区、以 MiB 为单位的大小和带有“≈”标记的估算值。"
         },
         "width": 1440,
         "height": 900
@@ -8780,7 +8780,7 @@ export const guideSections = [
           {
             "ru": "Docker Compose: ключи, которые compose.yaml подставляет через ${…}",
             "en": "Docker Compose: keys compose.yaml interpolates with ${…}",
-            "es": "Docker Composición: las teclas compose.yaml interpola con ${...}",
+            "es": "Docker Compose: las teclas compose.yaml interpola con ${...}",
             "zh": "Docker 作曲:按键作曲.yaml插值为${...}"
           },
           {
@@ -8800,7 +8800,7 @@ export const guideSections = [
           {
             "ru": "Docker Compose: все остальные ключи и ключи с готовым значением в compose.yaml",
             "en": "Docker Compose: every other key and keys with a fixed value in compose.yaml",
-            "es": "Docker Composición: cada otra clave y claves con un valor fijo en compose.yaml",
+            "es": "Docker Compose: cada otra clave y claves con un valor fijo en compose.yaml",
             "zh": "Docker 作曲:在作曲中具有固定值的所有其他密钥和密钥. yaml"
           },
           {
@@ -8841,7 +8841,7 @@ export const guideSections = [
             "ru": "Kubernetes / Helm",
             "en": "Kubernetes / Helm",
             "es": "Kubernetes / Helm",
-            "zh": "Kubernetes/赫尔姆语"
+            "zh": "Kubernetes / Helm"
           },
           {
             "ru": "Блоки config, auth, mail, database, migrations и metrics файла values; ключи без пути Helm — extraEnv",
@@ -8919,8 +8919,8 @@ export const guideSections = [
         "title": {
           "ru": "Docker Compose",
           "en": "Docker Compose",
-          "es": "Docker Composición",
-          "zh": "Docker 编译"
+          "es": "Docker Compose",
+          "zh": "Docker Compose"
         },
         "body": {
           "ru": "Compose передаёт серверу только переменные из блока `environment:` сервиса\n`server`. Файл `server.env` подставляется в `compose.yaml` (`--env-file`), но сам в\nконтейнер не попадает: строка `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` в\n`server.env` ничего не изменит, если `compose.yaml` её не использует.\n\n**1. Ключи, которые меняются в `server.env`.** В `compose.yaml` они записаны как\n`${КЛЮЧ:-значение}`: `CC_DATABASE_PASSWORD`, `CC_RUN_MIGRATIONS`,\n`CC_REGISTRATION_OPEN`, `CC_MAIL_TRANSPORT`, `CC_MAIL_FROM`, `CC_SMTP_HOST`,\n`CC_SMTP_PORT`, `CC_SMTP_TLS`, `CC_SMTP_USERNAME`, `CC_SMTP_PASSWORD`,\n`CC_OBJECT_SHARING_ENABLED`, `CC_SHARED_GROUPS_ENABLED`, `CC_SHARED_SECRETS_ENABLED`,\n`CC_SHARED_KUBE_CONTEXTS_ENABLED`, `CC_SHARED_DB_CONNECTIONS_ENABLED`,\n`CC_SHARED_NOTES_ENABLED`, `CC_SHARING_OWNER_ONLINE_ENROLLMENT_ENABLED`,\n`CC_DEVICE_PROTECTION_ENABLED`, `CC_NEW_DEVICE_MAIL_ENABLED`,\n`CC_DEVICE_QUARANTINE_DAYS`, `CC_TEAMS_ENABLED`, `CC_RATE_LIMIT_MODE`,\n`CC_QUOTAS_V2_ENABLED`, `CC_MAX_DEVICES_PER_ACCOUNT`, `CC_MAX_VAULT_OBJECTS`.\nКроме них `server.env` содержит переменные самого Compose: `CC_SERVER_VERSION`,\n`CC_SERVER_IMAGE`, `CC_DOMAIN`, `CC_HTTP_PORT`, `CC_POSTGRES_ADMIN_PASSWORD`.\nЗначения со знаками `$`, `#`, пробелами или кавычками записывайте в одинарных\nкавычках.\n\n**2. Все остальные ключи — в `compose.override.yaml`.** Это и ключи, которых нет в\n`compose.yaml` (лимиты `CC_LIMIT_*`, `CC_MAX_VAULT_BYTES`, `CC_MAX_TEAM_MEMBERS`,\n`CC_AUTH_*`, `CC_OIDC_*`, `CC_LDAP_*`, сроки хранения…), и ключи, которые\n`compose.yaml` задаёт жёстко: `CC_DATABASE_URL`, `CC_DATABASE_CONNECT_TIMEOUT_SECS`,\n`CC_LISTEN_ADDR`, `CC_METRICS_LISTEN`, `CC_PUBLIC_URL`,\n`CC_REQUIRE_EMAIL_VERIFICATION`, `CC_REQUIRE_REQUEST_PROOF`,\n`CC_TRUST_PROXY_HEADERS`, `CC_EVENT_BUS`, `CC_HSTS`, `CC_LOG_FORMAT`. Значения\n`environment:` из override-файла заменяют одноимённые значения `compose.yaml`.\nФайл лежит в приватном каталоге рядом с `server.env`; значения записывайте\nстроками в кавычках:\n\n```yaml\n# $CC_INSTALL_DIR/compose.override.yaml\nservices:\n  server:\n    environment:\n      CC_MAX_VAULT_BYTES: \"2147483648\"\n      CC_LIMIT_PUSH_ACCOUNT_RATE: \"600/min\"\n      CC_LOG: \"info,sqlx=warn\"\n```\n\nПодключите его вторым `-f` (без него Compose файл из другого каталога не читает)\nи используйте эту функцию для **всех** команд — обновления, `admin`, резервных\nкопий:\n\n```sh\ncc_compose() {\n  docker compose --env-file \"$CC_INSTALL_DIR/server.env\" \\\n    -f \"$CC_COMPOSE_FILE\" -f \"$CC_INSTALL_DIR/compose.override.yaml\" \\\n    --profile https \"$@\"\n}\n```\n\nПути внутри override-файла пишите абсолютными. Можно добавить сервису и\n`env_file: [/абсолютный/путь/extra.env]`, но значения из `environment:`\n`compose.yaml` важнее `env_file`, поэтому ключи из списков выше всё равно задаются\nв `environment:`.\n\n**3. Файлы секретов** (только ключи `*_FILE` enterprise-входа и CA-сертификаты).\nCompose без Swarm монтирует `secrets:` как обычные файлы в `/run/secrets/<имя>` с\nвладельцем и правами хоста. Сервер в образе работает как UID 65532 и только\nчитает их:\n\n```sh\nsudo chown 65532:65532 \"$CC_INSTALL_DIR\"/secrets/*\nsudo chmod 0400 \"$CC_INSTALL_DIR\"/secrets/*\n```\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc-client-secret\n    secrets: [oidc-client-secret]\nsecrets:\n  oidc-client-secret:\n    file: /home/admin/.config/consolecrypt-docker/secrets/oidc-client-secret\n```\n\nВместо `secrets:` подойдёт и монтирование только для чтения:\n`volumes: [\"/home/admin/.config/consolecrypt-docker/secrets:/run/secrets/consolecrypt:ro\"]`.\nПароли базы и SMTP остаются в `server.env`: сервер не читает их из файлов.\n\n**4. Применить и проверить.**\n\n```sh\ncc_compose config --quiet\ncc_compose up -d --wait --wait-timeout 180 server\ncc_compose logs --no-log-prefix server | grep '\"starting\"' | tail -n 1\ncurl --fail --silent --show-error \"$CC_API_ORIGIN/v1/meta\" | python3 -m json.tool\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show\n```\n\n`up -d` пересоздаёт контейнер, только если его конфигурация изменилась; данные\nв томах сохраняются. Не используйте `down -v`.",
@@ -8934,8 +8934,8 @@ export const guideSections = [
         "title": {
           "ru": "docker run без Compose",
           "en": "Plain docker run",
-          "es": "Plain docker run",
-          "zh": "平板喷雾器运行"
+          "es": "docker run sin Compose",
+          "zh": "单独使用 docker run"
         },
         "body": {
           "ru": "Те же ключи передаются флагами `-e КЛЮЧ=значение` или файлом `--env-file`. Учтите:\n`docker run --env-file` берёт значения буквально, **кавычки не снимаются**, поэтому\n`server.env` от `init-config.py` (значения в кавычках) для него не подходит —\nпишите значения без кавычек. Пароли удобнее держать в приватном JSON-файле,\nсмонтированном только для чтения:\n\n```sh\nsudo install -d -m 0750 /etc/consolecrypt\nsudo install -m 0400 -o 65532 -g 65532 server.json /etc/consolecrypt/server.json\ndocker run -d --name consolecrypt-server --restart unless-stopped \\\n  --read-only --cap-drop ALL --security-opt no-new-privileges:true \\\n  -p 127.0.0.1:8080:8080 \\\n  -v /etc/consolecrypt/server.json:/etc/consolecrypt/server.json:ro \\\n  -v /etc/consolecrypt/secrets:/run/secrets/consolecrypt:ro \\\n  -e CC_TRUST_PROXY_HEADERS=true \\\n  \"ghcr.io/evsikovas/consolecrypt-server:$CC_SERVER_VERSION\" \\\n  --config /etc/consolecrypt/server.json serve\n```\n\n`CC_SERVER_VERSION` — версия выпуска сервера (как в примере Docker Compose).\nОбраз уже задаёт `CC_LISTEN_ADDR=0.0.0.0:8080`, `CC_METRICS_LISTEN=0.0.0.0:9090`,\n`CC_LOG_FORMAT=json` и `CC_SOURCE_CODE_URL`; переменные окружения контейнера\nважнее JSON-файла, поэтому эти четыре ключа меняйте флагом `-e`, а не в файле.\nИзменение параметров — `docker rm -f consolecrypt-server` и тот же `docker run`\n(данные в PostgreSQL, контейнер их не хранит). Команды администратора:\n`docker exec consolecrypt-server /usr/local/bin/consolecrypt-server --config\n/etc/consolecrypt/server.json admin …`.",
@@ -8950,7 +8950,7 @@ export const guideSections = [
           "ru": "Kubernetes: Helm",
           "en": "Kubernetes: Helm",
           "es": "Kubernetes : Helm",
-          "zh": "Kubernetes:赫尔姆语."
+          "zh": "Kubernetes：Helm"
         },
         "body": {
           "ru": "Chart превращает блоки values в переменные `CC_*`: несекретные — в ConfigMap,\nURL базы и SMTP-пароль — в Secret или ссылки `secretKeyRef` на ваш Secret.\nСоответствие каждого `CC_*` пути values дано в столбце «Helm»\n[глава «Свой сервер: справочник параметров»](#server-reference). Пустые строки в values пропускаются — тогда\nдействует значение сервера по умолчанию.\n\n| Что | Где в values |\n|---|---|\n| флаги, токены, квоты, лимиты, WebSocket, обслуживание, журнал | `config.*` (`config.rateLimit.limits` — `CC_LIMIT_*`) |\n| enterprise-вход | `auth.*`, секреты — `auth.oidc.existingSecret` / `auth.ldap.existingSecret` |\n| почта | `mail.*`, пароль — `mail.smtp.existingSecret` |\n| база данных | `database.*` или `postgresql.*`, миграции — `migrations.*` |\n| метрики | `metrics.enabled` (`CC_METRICS_LISTEN`) |\n| ключи без пути в chart (`CC_TEAMS_ENABLED`, `CC_MAX_TEAMS_PER_ACCOUNT`, `CC_MAX_TEAM_MEMBERS`, `RUST_LOG`, `OTEL_*`, внешний `CC_DATABASE_PASSWORD`) | `extraEnv` |\n\n```yaml\nextraEnv:\n  - name: CC_MAX_TEAM_MEMBERS\n    value: \"50\"\n  - name: CC_DATABASE_PASSWORD          # пароль внешней базы отдельно от URL\n    valueFrom:\n      secretKeyRef: {name: consolecrypt-database, key: password}\n```\n\nПеременные из `extraEnv` (раздел `env` контейнера) важнее ConfigMap chart\n(`envFrom`), а `extraEnvFrom` подключается после ConfigMap chart и тоже\nперекрывает его. Пользуйтесь этим только для ключей без собственного пути —\nиначе значение в values и действующее значение разойдутся.\n\nПрименение — `helm upgrade` с **полным** приватным values-файлом: pods\nперезапускаются сами, потому что меняется контрольная сумма ConfigMap. После\nизменения содержимого вашего существующего Secret перезапустите их вручную:\n\n```sh\ncc_helm upgrade consolecrypt server/helm/consolecrypt-server \\\n  -f \"$CC_INSTALL_DIR/values.yaml\" --history-max 10 --wait --timeout 10m\ncc_kubectl rollout restart deployment/consolecrypt   # только после смены Secret\ncc_kubectl get configmap consolecrypt -o yaml        # несекретные CC_* как их видит pod\ncc_kubectl exec deployment/consolecrypt -- /usr/local/bin/consolecrypt-server admin limits show\n```",
@@ -9030,7 +9030,7 @@ export const guideSections = [
         "body": {
           "ru": "1. Неделю после обновления до 0.2.2 смотрите метрику\n   `cc_rate_limit_observed_total{limiter}` (порт метрик; в примере Docker он\n   выключен — включите `CC_METRICS_LISTEN` в override-файле и опубликуйте порт\n   только на `127.0.0.1`) или события аудита `limit_exceeded`.\n2. Если обычные пользователи упираются в лимит, поднимите его, например\n   `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min`, или переопределите для одного аккаунта\n   командой `admin limits set`.\n3. Переключите режим.\n\nDocker Compose: в `server.env` — `CC_RATE_LIMIT_MODE=enforce`, поднятые лимиты — в\n`compose.override.yaml`:\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_METRICS_LISTEN: 0.0.0.0:9090\n      CC_LIMIT_PUSH_ACCOUNT_RATE: \"600/min\"\n      CC_LIMIT_PUSH_ACCOUNT_BURST: \"600\"\n      CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY: \"100\"\n    ports:\n      - \"127.0.0.1:9090:9090\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  rateLimit:\n    mode: enforce\n    limits:\n      push_account: {rate: \"600/min\", burst: 600}\n      recipient_lookup_account: {perDay: 100}\n```\n\nПосле перезапуска вывод `admin limits show` начинается строкой\n`request limits: enforce` и показывает действующие значения (переопределения\nаккаунта отмечены `*`); отказы считает `cc_rate_limited_total{limiter}`.",
           "en": "1. For a week after upgrading to 0.2.2 watch `cc_rate_limit_observed_total{limiter}`\n   (the metrics port; the Docker example turns it off — enable `CC_METRICS_LISTEN`\n   in the override and publish the port on `127.0.0.1` only) or the\n   `limit_exceeded` audit events.\n2. If ordinary users hit a limit, raise it (e.g.\n   `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min`) or override it for one account with\n   `admin limits set`.\n3. Switch the mode. Docker Compose: `CC_RATE_LIMIT_MODE=enforce` in `server.env`,\n   raised limits in `compose.override.yaml`:\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_METRICS_LISTEN: 0.0.0.0:9090\n      CC_LIMIT_PUSH_ACCOUNT_RATE: \"600/min\"\n      CC_LIMIT_PUSH_ACCOUNT_BURST: \"600\"\n      CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY: \"100\"\n    ports:\n      - \"127.0.0.1:9090:9090\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  rateLimit:\n    mode: enforce\n    limits:\n      push_account: {rate: \"600/min\", burst: 600}\n      recipient_lookup_account: {perDay: 100}\n```\n\nAfter the restart `admin limits show` starts with `request limits: enforce` and\nlists the effective values (account overrides are marked `*`); refusals are\ncounted by `cc_rate_limited_total{limiter}`.",
-          "es": "1. Por una semana después de actualizar a 0,2 reloj `cc_rate_limit_observed_total{limiter}`\n   (el puerto de métricas; el ejemplo Docker lo apaga - habilitar `CC_METRICS_LISTEN`\n   en la anulación y publicar el puerto en `127.0.0.1` solamente) o\n   `limit_exceeded` eventos de auditoría.\n2. Si los usuarios ordinarios alcanzan un límite, levantenlo (por ejemplo.\n   `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` ) o anularlo para una cuenta con\n   `admin limits set`.\n3. Cambia el modo. Docker Composición: `CC_RATE_LIMIT_MODE=enforce` en `server.env` ,\n   límites elevados en `compose.override.yaml` :\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_METRICS_LISTEN: 0.0.0.0:9090\n      CC_LIMIT_PUSH_ACCOUNT_RATE: \"600/min\"\n      CC_LIMIT_PUSH_ACCOUNT_BURST: \"600\"\n      CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY: \"100\"\n    ports:\n      - \"127.0.0.1:9090:9090\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  rateLimit:\n    mode: enforce\n    limits:\n      push_account: {rate: \"600/min\", burst: 600}\n      recipient_lookup_account: {perDay: 100}\n```\n\nDespués del reinicio `admin limits show` comienza con `request limits: enforce` y\nenumera los valores efectivos (las anulaciones de la cuenta están marcadas `*` );\ncontado por `cc_rate_limited_total{limiter}` .",
+          "es": "1. Por una semana después de actualizar a 0,2 reloj `cc_rate_limit_observed_total{limiter}`\n   (el puerto de métricas; el ejemplo Docker lo apaga - habilitar `CC_METRICS_LISTEN`\n   en la anulación y publicar el puerto en `127.0.0.1` solamente) o\n   `limit_exceeded` eventos de auditoría.\n2. Si los usuarios ordinarios alcanzan un límite, levantenlo (por ejemplo.\n   `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` ) o anularlo para una cuenta con\n   `admin limits set`.\n3. Cambia el modo. Docker Compose: `CC_RATE_LIMIT_MODE=enforce` en `server.env` ,\n   límites elevados en `compose.override.yaml` :\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_METRICS_LISTEN: 0.0.0.0:9090\n      CC_LIMIT_PUSH_ACCOUNT_RATE: \"600/min\"\n      CC_LIMIT_PUSH_ACCOUNT_BURST: \"600\"\n      CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY: \"100\"\n    ports:\n      - \"127.0.0.1:9090:9090\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  rateLimit:\n    mode: enforce\n    limits:\n      push_account: {rate: \"600/min\", burst: 600}\n      recipient_lookup_account: {perDay: 100}\n```\n\nDespués del reinicio `admin limits show` comienza con `request limits: enforce` y\nenumera los valores efectivos (las anulaciones de la cuenta están marcadas `*` );\ncontado por `cc_rate_limited_total{limiter}` .",
           "zh": "1. 升级到0.2.2表`cc_rate_limit_observed_total{limiter}`后一周\n   (度量衡端口;Docker实例将其关闭——启用`CC_METRICS_LISTEN`\n   或仅公布于`127.0.0.1`或\n   `limit_exceeded` 审计活动。\n2. 如果普通用户达到极限,则提高(例如.\n   `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` 或用一个账户推翻它\n   `admin limits set` (中文(简体) ).\n3. 切换模式。 Docker 编: `CC_RATE_LIMIT_MODE=enforce` in `server.env`,,\n   在`compose.override.yaml`中提高限值:\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_METRICS_LISTEN: 0.0.0.0:9090\n      CC_LIMIT_PUSH_ACCOUNT_RATE: \"600/min\"\n      CC_LIMIT_PUSH_ACCOUNT_BURST: \"600\"\n      CC_LIMIT_RECIPIENT_LOOKUP_ACCOUNT_PER_DAY: \"100\"\n    ports:\n      - \"127.0.0.1:9090:9090\"\n```\n\n赫尔姆:\n\n```yaml\nconfig:\n  rateLimit:\n    mode: enforce\n    limits:\n      push_account: {rate: \"600/min\", burst: 600}\n      recipient_lookup_account: {perDay: 100}\n```\n\n重启后`admin limits show`以`request limits: enforce`开始;\n列出有效值(账户覆盖标记`*`);拒绝为\n计于`cc_rate_limited_total{limiter}`."
         }
       },
@@ -9045,7 +9045,7 @@ export const guideSections = [
         "body": {
           "ru": "Для всего сервера. Docker Compose: `CC_MAX_VAULT_OBJECTS` и\n`CC_MAX_DEVICES_PER_ACCOUNT` — в `server.env`, остальное — в override-файле:\n\n```dotenv\nCC_MAX_VAULT_OBJECTS=200000\nCC_MAX_DEVICES_PER_ACCOUNT=40\n```\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_MAX_VAULT_BYTES: \"4294967296\"\n      CC_MAX_VAULTS_PER_ACCOUNT: \"100\"\n      CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY: \"20\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  quotas:\n    maxVaultBytes: 4294967296\n    maxVaultsPerAccount: 100\n    maxVaultObjects: 200000\n    maxDevicesPerAccount: 40\n    newDevicesPerAccountPerDay: 20\n```\n\nДля одного аккаунта — без перезапуска, не позже чем через 30 секунд:\n\n```sh\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \\\n  --email user@example.org max_vault_bytes=4294967296 max_vault_objects=200000\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.org\n```\n\n`CC_MAX_DEVICES_PER_ACCOUNT` не может быть больше 64, `CC_MAX_VAULT_BYTES` — меньше\n1 MiB. Место на диске PostgreSQL планируйте с учётом квоты на хранилище и числа\nаккаунтов.",
           "en": "Server-wide. Docker Compose: `CC_MAX_VAULT_OBJECTS` and\n`CC_MAX_DEVICES_PER_ACCOUNT` in `server.env`, the rest in the override:\n\n```dotenv\nCC_MAX_VAULT_OBJECTS=200000\nCC_MAX_DEVICES_PER_ACCOUNT=40\n```\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_MAX_VAULT_BYTES: \"4294967296\"\n      CC_MAX_VAULTS_PER_ACCOUNT: \"100\"\n      CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY: \"20\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  quotas:\n    maxVaultBytes: 4294967296\n    maxVaultsPerAccount: 100\n    maxVaultObjects: 200000\n    maxDevicesPerAccount: 40\n    newDevicesPerAccountPerDay: 20\n```\n\nOne account, without a restart (applies within 30 seconds):\n\n```sh\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \\\n  --email user@example.org max_vault_bytes=4294967296 max_vault_objects=200000\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.org\n```\n\n`CC_MAX_DEVICES_PER_ACCOUNT` cannot exceed 64 and `CC_MAX_VAULT_BYTES` cannot be\nbelow 1 MiB. Plan PostgreSQL disk space for the per-vault quota and the number of\naccounts.",
-          "es": "Servidor en todo. Docker Composición: `CC_MAX_VAULT_OBJECTS` y\n`CC_MAX_DEVICES_PER_ACCOUNT` en `server.env` , el resto en la anulación:\n\n```dotenv\nCC_MAX_VAULT_OBJECTS=200000\nCC_MAX_DEVICES_PER_ACCOUNT=40\n```\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_MAX_VAULT_BYTES: \"4294967296\"\n      CC_MAX_VAULTS_PER_ACCOUNT: \"100\"\n      CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY: \"20\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  quotas:\n    maxVaultBytes: 4294967296\n    maxVaultsPerAccount: 100\n    maxVaultObjects: 200000\n    maxDevicesPerAccount: 40\n    newDevicesPerAccountPerDay: 20\n```\n\nUna cuenta, sin reiniciar (aplica dentro de 30 segundos):\n\n```sh\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \\\n  --email user@example.org max_vault_bytes=4294967296 max_vault_objects=200000\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.org\n```\n\n`CC_MAX_DEVICES_PER_ACCOUNT` no puede exceder de 64 y `CC_MAX_VAULT_BYTES` no puede ser\ndebajo de 1 MiB. Plan PostgreSQL espacio de disco para la cuota por vencimiento y el número de\ncuentas.",
+          "es": "Servidor en todo. Docker Compose: `CC_MAX_VAULT_OBJECTS` y\n`CC_MAX_DEVICES_PER_ACCOUNT` en `server.env` , el resto en la anulación:\n\n```dotenv\nCC_MAX_VAULT_OBJECTS=200000\nCC_MAX_DEVICES_PER_ACCOUNT=40\n```\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_MAX_VAULT_BYTES: \"4294967296\"\n      CC_MAX_VAULTS_PER_ACCOUNT: \"100\"\n      CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY: \"20\"\n```\n\nHelm:\n\n```yaml\nconfig:\n  quotas:\n    maxVaultBytes: 4294967296\n    maxVaultsPerAccount: 100\n    maxVaultObjects: 200000\n    maxDevicesPerAccount: 40\n    newDevicesPerAccountPerDay: 20\n```\n\nUna cuenta, sin reiniciar (aplica dentro de 30 segundos):\n\n```sh\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \\\n  --email user@example.org max_vault_bytes=4294967296 max_vault_objects=200000\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.org\n```\n\n`CC_MAX_DEVICES_PER_ACCOUNT` no puede exceder de 64 y `CC_MAX_VAULT_BYTES` no puede ser\ndebajo de 1 MiB. Plan PostgreSQL espacio de disco para la cuota por vencimiento y el número de\ncuentas.",
           "zh": "整个服务器 Docker 编: `CC_MAX_VAULT_OBJECTS`和\n`CC_MAX_DEVICES_PER_ACCOUNT`在`server.env`中,其余的在覆盘中:\n\n```dotenv\nCC_MAX_VAULT_OBJECTS=200000\nCC_MAX_DEVICES_PER_ACCOUNT=40\n```\n\n```yaml\nservices:\n  server:\n    environment:\n      CC_MAX_VAULT_BYTES: \"4294967296\"\n      CC_MAX_VAULTS_PER_ACCOUNT: \"100\"\n      CC_NEW_DEVICES_PER_ACCOUNT_PER_DAY: \"20\"\n```\n\n赫尔姆:\n\n```yaml\nconfig:\n  quotas:\n    maxVaultBytes: 4294967296\n    maxVaultsPerAccount: 100\n    maxVaultObjects: 200000\n    maxDevicesPerAccount: 40\n    newDevicesPerAccountPerDay: 20\n```\n\n一个账户,不重新启动( 30 秒内应用) :\n\n```sh\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits set \\\n  --email user@example.org max_vault_bytes=4294967296 max_vault_objects=200000\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin limits show --email user@example.org\n```\n\n`CC_MAX_DEVICES_PER_ACCOUNT`不能超过64,`CC_MAX_VAULT_BYTES`不能是\n低于1米B. 计划PostgreSQL 磁盘空间,每层配额和数量\n账户。"
         }
       }
@@ -9390,7 +9390,7 @@ export const guideSections = [
         "caption": {
           "ru": "Kubernetes и Docker Compose (помощник cc_compose из главы о Docker). --login для LDAP ищет пользователя, проверяет группу и отключение; с --password-stdin выполняется настоящий bind, который учитывается политикой блокировки домена. Для OIDC --login сразу перепроверяет аккаунт в IdP.",
           "en": "Kubernetes and Docker Compose (the cc_compose helper from the Docker chapter). For LDAP, --login looks up the user, its group and disabled state; with --password-stdin it performs a real bind that counts towards the domain lockout policy. For OIDC, --login re-checks the account with the IdP right away.",
-          "es": "Kubernetes y Docker Composición (el ayudante cc_compose del capítulo Docker). Para LDAP, --login busca al usuario, su grupo y estado discapacitado; con --password-stdin realiza un enlace real que cuenta con hacia la política de bloqueo de dominio. Para OIDC, --login vuelve a comprobar la cuenta con el IdP de inmediato.",
+          "es": "Kubernetes y Docker Compose (el ayudante cc_compose del capítulo Docker). Para LDAP, --login busca al usuario, su grupo y estado discapacitado; con --password-stdin realiza un enlace real que cuenta con hacia la política de bloqueo de dominio. Para OIDC, --login vuelve a comprobar la cuenta con el IdP de inmediato.",
           "zh": "Kubernetes和Docker 编曲(cc_compact helper from the Docker). 对于LDAP, --login 查看用户, 其组和残废状态;它与 --password-stdin 执行一个真正的绑定值, 以计算域锁定政策 。 对于OIDC,--login立即与IDP重新核对账户."
         },
         "code": "kubectl -n consolecrypt exec deployment/consolecrypt -- \\\n  /usr/local/bin/consolecrypt-server admin auth status\nkubectl -n consolecrypt exec deployment/consolecrypt -- \\\n  /usr/local/bin/consolecrypt-server admin auth test --login alice@example.com\n\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin auth status\ncc_compose exec -T server /usr/local/bin/consolecrypt-server admin list-users"
@@ -9707,7 +9707,7 @@ export const guideSections = [
         "body": {
           "ru": "Полные примеры для каждого способа установки — в\n[глава «Свой сервер: установка и параметры по способам»](#server-settings-example-entra).\n\n**Helm**\n\n```yaml\nconfig:\n  publicUrl: https://sync.acme.com\nauth:\n  mode: enterprise\n  provider: oidc            # или ldap\n  displayName: Acme SSO\n  allowedDomains: [acme.com]\n  oidc:\n    preset: entra\n    issuer: https://login.microsoftonline.com/<tenant-id>/v2.0\n    clientId: <client-id>\n    requiredClaim: roles=ConsoleCrypt.User\n    existingSecret: consolecrypt-oidc   # ключи client-secret, token-key\n  ldap:\n    url: ldaps://dc1.acme.local:636\n    bindDn: CN=svc-consolecrypt,OU=Service,DC=acme,DC=local\n    baseDn: DC=acme,DC=local\n    requiredGroup: CN=ConsoleCrypt,OU=Groups,DC=acme,DC=local\n    existingSecret: consolecrypt-ldap   # ключ bind-password; caKey: ca.pem\n    caKey: ca.pem\n```\n\n```sh\nkubectl -n consolecrypt create secret generic consolecrypt-oidc \\\n  --from-file=client-secret=./oidc-client-secret --from-file=token-key=./oidc-token-key\nkubectl -n consolecrypt create secret generic consolecrypt-ldap \\\n  --from-file=bind-password=./ldap-bind-password --from-file=ca.pem=./ad-ca.pem\n```\n\nSecret монтируется только для чтения в `/run/secrets/consolecrypt-auth`\n(`defaultMode: 0440`, группа pod — 65532); chart сам подставляет пути `*_FILE`,\nпроверяет обязательные поля и отклоняет `ldap://` без `starttls: true` и OIDC без\n`config.publicUrl` с `https://`. Остальные ключи (`scopes`, `emailClaim`,\n`requireMfa`, `mfaAcrValues`, `tokenAuthMethod`, `caKey`, `userFilter`,\n`emailAttr`, `idAttr`, `timeoutSecs`, `maxFailures`, `failureWindowMinutes`,\n`maxFailuresPerIp`) описаны в `values.yaml` и [главе «Свой сервер: справочник параметров»](#server-reference).\n\n**Docker Compose**\n\nОсновной `compose.yaml` из исходников не меняется. Настройки и секреты\nenterprise-режима держите в **приватном** каталоге установки рядом с\n`server.env` (`$CC_INSTALL_DIR` из [главы «Свой сервер: Docker Compose»](#server-docker)), а не в\nклоне репозитория.\n\n1. Сохраните секреты OIDC (или пароль служебной учётки LDAP и CA каталога) в\n   `$CC_INSTALL_DIR/secrets/`. Compose без Swarm монтирует их как обычные файлы с\n   владельцем и правами хоста, а сервер работает как UID 65532 — сделайте файлы\n   читаемыми только для него:\n\n   ```sh\n   mkdir -p \"$CC_INSTALL_DIR/secrets\"\n   ( umask 077\n     openssl rand -hex 32 > \"$CC_INSTALL_DIR/secrets/oidc-token-key\"\n     # client secret из IdP, без перевода строки:\n     read -rs CC_SECRET && printf '%s' \"$CC_SECRET\" > \"$CC_INSTALL_DIR/secrets/oidc-client-secret\" )\n   sudo chown 65532:65532 \"$CC_INSTALL_DIR\"/secrets/*\n   sudo chmod 0400 \"$CC_INSTALL_DIR\"/secrets/*\n   ```\n\n2. Создайте `$CC_INSTALL_DIR/compose.override.yaml`. Пути указывайте\n   **абсолютными**: относительные Compose отсчитывает от каталога первого\n   файла, то есть от исходников. Замените `/home/admin/.config/consolecrypt-docker`\n   на свой `$CC_INSTALL_DIR`:\n\n   ```yaml\n   services:\n     server:\n       environment:\n         CC_PUBLIC_URL: https://sync.acme.com\n         CC_AUTH_MODE: enterprise\n         CC_AUTH_PROVIDER: oidc\n         CC_AUTH_ALLOWED_DOMAINS: acme.com\n         CC_OIDC_PRESET: keycloak\n         CC_OIDC_ISSUER: https://sso.acme.com/realms/acme\n         CC_OIDC_CLIENT_ID: consolecrypt-server\n         CC_OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc-client-secret\n         CC_OIDC_TOKEN_KEY_FILE: /run/secrets/oidc-token-key\n       secrets: [oidc-client-secret, oidc-token-key]\n   secrets:\n     oidc-client-secret:\n       file: /home/admin/.config/consolecrypt-docker/secrets/oidc-client-secret\n     oidc-token-key:\n       file: /home/admin/.config/consolecrypt-docker/secrets/oidc-token-key\n   ```\n\n3. Подключите override-файл. Автоматически Compose подхватывает\n   `compose.override.yaml` только из каталога проекта и только без `-f`; функция\n   `cc_compose` из HOSTING.md передаёт `-f`, поэтому добавьте второй `-f`:\n\n   ```sh\n   cc_compose() {\n     docker compose --env-file \"$CC_INSTALL_DIR/server.env\" \\\n       -f \"$CC_COMPOSE_FILE\" -f \"$CC_INSTALL_DIR/compose.override.yaml\" \\\n       --profile https \"$@\"\n   }\n   cc_compose config --quiet\n   cc_compose up -d --wait --wait-timeout 180 server\n   curl --fail --silent --show-error \"$CC_API_ORIGIN/v1/meta\" | python3 -m json.tool\n   ```\n\n   В `/v1/meta` должно появиться `\"auth\": {\"mode\": \"enterprise\", …}`. Проверьте\n   настройку командой `cc_compose exec -T server /usr/local/bin/consolecrypt-server\n   admin auth test`. Для LDAP вместо `CC_OIDC_*` задайте `CC_LDAP_*` и секреты\n   `ldap-bind-password` (`CC_LDAP_BIND_PASSWORD_FILE`) и при необходимости\n   `ldap-ca.pem` (`CC_LDAP_CA_FILE`).\n\nИспользуйте эту же функцию для всех дальнейших команд (обновление, `admin`,\nрезервные копии): без второго `-f` Compose пересоздаст сервер в стандартном\nрежиме.\n\n**Бинарный файл**\n\nТе же ключи в приватном JSON (`--config /etc/consolecrypt/server.json`, права\n0600) или в окружении службы; пути `*_FILE` указывают на файлы с правами 0600,\nпринадлежащие пользователю службы.",
           "en": "- **Helm**: the `auth:` block shown in the Russian section; secrets come from an\n  existing Secret (`client-secret` and `token-key` for OIDC, `bind-password` and\n  an optional CA key for LDAP) mounted read-only at\n  `/run/secrets/consolecrypt-auth`. The chart fills in the `*_FILE` paths and\n  refuses `ldap://` without `starttls: true` and OIDC without an `https://`\n  `config.publicUrl`.\n- **Docker Compose**: keep the keys and secrets in a private\n  `compose.override.yaml` next to `server.env`, mount the secrets as Compose\n  secrets owned by UID 65532 with mode 0400, and add the override as a second `-f`\n  to `cc_compose` (the Russian section shows the full files).\n- **Binary**: the same keys in a private JSON file (`--config`, mode 0600) or the\n  service environment; `*_FILE` paths point at files owned by the service user\n  with mode 0600.\n\nComplete worked examples: [“Your own server: installation and parameters by method”](#server-settings).",
-          "es": "- **Helm**: el bloque `auth:` que se muestra en la sección rusa; los secretos provienen de un\n  Secreto existente `client-secret` y `token-key` para OIDC, `bind-password` y\n  una tecla CA opcional para LDAP) montado sólo de lectura en\n  `/run/secrets/consolecrypt-auth`. El gráfico se llena en los `*_FILE` caminos y\n  residuos `ldap://` sin `starttls: true` y OIDC sin un `https://`\n  `config.publicUrl`.\n- ** Docker Composición**: mantener las llaves y secretos en un privado\n  `compose.override.yaml` junto a `server.env` , montar los secretos como Compose\n  secretos propiedad de UID 65532 con modo 0400, y añadir la anulación como segundo `-f`\n  a `cc_compose` (la sección rusa muestra los archivos completos).\n- **Binario**: las mismas teclas en un archivo privado JSON `--config` , modo 0600) o\n  ambiente de servicio; `*_FILE` caminos apuntan a archivos propiedad del usuario del servicio\n  con el modo 0600.\n\nEjemplos completos de trabajo: [“Su propio servidor: instalación y parámetros por método”]#server-settings ).",
+          "es": "- **Helm**: el bloque `auth:` que se muestra en la sección rusa; los secretos provienen de un\n  Secreto existente `client-secret` y `token-key` para OIDC, `bind-password` y\n  una tecla CA opcional para LDAP) montado sólo de lectura en\n  `/run/secrets/consolecrypt-auth`. El gráfico se llena en los `*_FILE` caminos y\n  residuos `ldap://` sin `starttls: true` y OIDC sin un `https://`\n  `config.publicUrl`.\n- ** Docker Compose**: mantener las llaves y secretos en un privado\n  `compose.override.yaml` junto a `server.env` , montar los secretos como Compose\n  secretos propiedad de UID 65532 con modo 0400, y añadir la anulación como segundo `-f`\n  a `cc_compose` (la sección rusa muestra los archivos completos).\n- **Binario**: las mismas teclas en un archivo privado JSON `--config` , modo 0600) o\n  ambiente de servicio; `*_FILE` caminos apuntan a archivos propiedad del usuario del servicio\n  con el modo 0600.\n\nEjemplos completos de trabajo: [“Su propio servidor: instalación y parámetros por método”]#server-settings ).",
           "zh": "- ** Helm**:俄罗斯部分显示的`auth:`块;秘密来自一个\n  现有机密`client-secret`和`token-key`适用于国际开发部,`bind-password`和\n  LDAP 的可选 CA 密钥\n  `/run/secrets/consolecrypt-auth` (中文(简体) ). 图表包含`*_FILE`路径和\n  refuses `ldap://` without `starttls: true` and OIDC without an `https://`\n  `config.publicUrl` (中文(简体) ).\n- ** Docker 作曲**:私密保管钥匙和秘密\n  `compose.override.yaml`在`server.env`旁边, 隐藏秘密作为编曲\n  UID 65532 拥有的密件, 模式 0400, 并添加到第二个`-f` 。\n  至`cc_compose`(俄文部分显示完整文件)。\n- ** Binary**: 私密文件JSON中相同的密钥`--config`,模式0600或\n  服务环境; `*_FILE` 路径指向服务用户拥有的文件\n  与模式0600。\n\n完整的工作实例:“你自己的服务器:按方法分列的安装和参数”#server-settings 。"
         }
       },
@@ -9815,7 +9815,7 @@ export const guideSections = [
       "ru": "Возможности своего сервера включаются переменными CC_*. В Docker Compose они задаются в приватном server.env (для переменных, которые перечислены в compose.yaml) или в отдельном compose.override.yaml, в Helm — блоками config, auth и mail файла values, а для запуска без контейнеров — в окружении службы или приватном JSON-файле (--config). Значения ниже — значения сервера по умолчанию.",
       "en": "Your own server’s features are turned on with CC_* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.",
       "es": "Las funciones de su propio servidor se activan con variables CC_*. Con Docker Componga que van al servidor privado.env (para las variables compose.yaml lists) o un compose separado.override.yaml; con Helm en el config, auth y bloques de correo de su archivo de valores; sin contenedores en el entorno de servicio o un archivo privado JSON ( ( --config ). Los valores a continuación son los defectos del servidor.",
-      "zh": "您自己的服务器功能被打开了 CCQQ 变量 。 使用 Docker 编译它们进入私人服务器. env(用于变量组成. yaml lists) 或单独编译. override. yaml; 由 Helm 输入您值文件的配置、 认证和邮件块;没有容器进入服务环境或一个私人文件JSON --config ) 。 下面的值是服务器默认值 。"
+      "zh": "您自己的服务器功能被打开了 CCQQ 变量 。 使用 Docker Compose它们进入私人服务器. env(用于变量组成. yaml lists) 或单独编译. override. yaml; 由 Helm 输入您值文件的配置、 认证和邮件块;没有容器进入服务环境或一个私人文件JSON --config ) 。 下面的值是服务器默认值 。"
     },
     "table": {
       "headings": [
@@ -10288,7 +10288,7 @@ export const guideSections = [
         "ru": "Docker Compose передаёт серверу только переменные, перечисленные в compose.yaml: регистрацию, почту, флаги совместного доступа и защиту устройств меняйте в server.env и пересоздавайте сервис server. Лимиты команд, корпоративный вход и другие ключи задайте в compose.override.yaml в приватном каталоге и подключите его вторым -f в помощнике cc_compose. В Helm флаги лежат в блоке config, а переменные без собственного ключа (например, лимиты команд) — в extraEnv.",
         "en": "Docker Compose passes the server only the variables listed in compose.yaml: change registration, mail, sharing flags and device protection in server.env and recreate the server service. Put team limits, corporate sign-in and other keys into a compose.override.yaml in your private directory and add it as a second -f in the cc_compose helper. In Helm the flags live in the config block, and variables without their own key (such as team limits) go into extraEnv.",
         "es": "Docker El registro pasa por el servidor sólo las variables enumeradas en compose.yaml: cambiar el registro, el correo, compartir banderas y la protección del dispositivo en server.env y recrear el servicio del servidor. Poner límites de equipo, el registro corporativo y otras teclas en un compose.override.yaml en su directorio privado y añadirlo como un segundo -f en el ayudante cc_compose. En Helm las banderas viven en el bloque de config, y las variables sin su propia llave (como los límites de equipo) entran en extraEnv.",
-        "zh": "Docker 编译只通过 compose.yaml 中列出的变量: 更改注册,邮件,在 Server.env 中共享旗帜和设备保护,并重新创建服务器服务. 在您的私人目录中将团队限制, 公司签名和其他密钥插入一个 compose. override. yaml , 并在 cc_ compose 帮助器中添加为 second -f 。 在赫尔姆,旗帜生活在配置块中,没有自己密钥(如团队限制)的变量会进入extraEnv."
+        "zh": "Docker Compose只通过 compose.yaml 中列出的变量: 更改注册,邮件,在 Server.env 中共享旗帜和设备保护,并重新创建服务器服务. 在您的私人目录中将团队限制, 公司签名和其他密钥插入一个 compose. override. yaml , 并在 cc_ compose 帮助器中添加为 second -f 。 在赫尔姆,旗帜生活在配置块中,没有自己密钥(如团队限制)的变量会进入extraEnv."
       }
     ],
     "blocks": [
@@ -10296,7 +10296,7 @@ export const guideSections = [
         "title": {
           "ru": "Docker Compose: флаги в server.env",
           "en": "Docker Compose: flags in server.env",
-          "es": "Docker Composición: banderas en server.env",
+          "es": "Docker Compose: banderas en server.env",
           "zh": "Docker 编曲:服务器中的旗帜.env"
         },
         "caption": {
@@ -10311,7 +10311,7 @@ export const guideSections = [
         "title": {
           "ru": "Docker Compose: лимиты команд в compose.override.yaml",
           "en": "Docker Compose: team limits in compose.override.yaml",
-          "es": "Docker Composición: límites de equipo en compose.override.yaml",
+          "es": "Docker Compose: límites de equipo en compose.override.yaml",
           "zh": "Docker 作曲:编曲中的团队限制. override.yaml"
         },
         "caption": {
@@ -10326,8 +10326,8 @@ export const guideSections = [
         "title": {
           "ru": "Docker Compose: помощник cc_compose с override-файлом",
           "en": "Docker Compose: the cc_compose helper with the override file",
-          "es": "Docker Composición: el ayudante cc_compose con el archivo override",
-          "zh": "Docker 编译: cc_编译帮助器与覆盖文件"
+          "es": "Docker Compose: el ayudante cc_compose con el archivo override",
+          "zh": "Docker Compose：通过 cc_compose 加载覆盖文件"
         },
         "caption": {
           "ru": "Без второго -f Docker Compose не читает override-файл из другого каталога. Используйте этот вариант помощника для всех команд.",
@@ -10356,7 +10356,7 @@ export const guideSections = [
         "title": {
           "ru": "Docker Compose: enforce и квоты",
           "en": "Docker Compose: enforce and quotas",
-          "es": "Docker Composición: cumplimiento y cuotas",
+          "es": "Docker Compose: cumplimiento y cuotas",
           "zh": "Docker 编:执行和配额"
         },
         "caption": {
@@ -10422,8 +10422,8 @@ export const guideSections = [
         "text": {
           "ru": "Пример: лимиты из observe в enforce →",
           "en": "Example: limits from observe to enforce →",
-          "es": "Ejemplo: límites de la observación para hacer cumplir →",
-          "zh": "实例:从观察到强制执行的限制 _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"
+          "es": "Ejemplo: pasar del modo observe al modo enforce →",
+          "zh": "示例：将限制模式从 observe 切换为 enforce →"
         }
       }
     ],
@@ -10998,8 +10998,8 @@ export const guideSections = [
         "title": {
           "ru": "Docker Compose: копия и проверка",
           "en": "Docker Compose: backup and check",
-          "es": "Docker Composición: respaldo y comprobación",
-          "zh": "Docker 编译:备份和检查"
+          "es": "Docker Compose: respaldo y comprobación",
+          "zh": "Docker Compose:备份和检查"
         },
         "caption": {
           "ru": "pg_dump выполняется внутри контейнера PostgreSQL через локальный сокет, пароль не попадает в аргументы. Помощник cc_compose — из главы о Docker.",
@@ -11013,7 +11013,7 @@ export const guideSections = [
         "title": {
           "ru": "Docker Compose: обновление образа",
           "en": "Docker Compose: upgrading the image",
-          "es": "Docker Composición: actualización de la imagen",
+          "es": "Docker Compose: actualización de la imagen",
           "zh": "Docker 作曲:提升图像"
         },
         "caption": {

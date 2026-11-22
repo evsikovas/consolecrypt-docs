@@ -1019,15 +1019,15 @@ El modificador principal es soluble en macOS y Ctrl en Windows / Linux . Copiado
 
 | Medida | macOS | Windows / Linux |
 | --- | --- | --- |
-| Encuentra un host, un snippet o una acción | ∙K | Ctrl+K |
-| Nueva pestaña SSH | ∙T | Ctrl+T |
-| Cerrar ficha activa | . . | Ctrl+W |
-| Nuevo anfitrión | ∙N | Ctrl+N |
-| Bóveda de bloqueo | ▪L | Ctrl+L |
+| Encuentra un host, un snippet o una acción | ⌘K | Ctrl+K |
+| Nueva pestaña SSH | ⌘T | Ctrl+T |
+| Cerrar ficha activa | ⌘W | Ctrl+W |
+| Nuevo anfitrión | ⌘N | Ctrl+N |
+| Bóveda de bloqueo | ⌘L | Ctrl+L |
 | Ajustes | ⌘, | Ctrl+, |
 | Snippets | ⌘. | Ctrl+. |
-| Copiado en terminal | . . | Ctrl+Shift+C |
-| Pegado en terminal | Especificaciones métricas | Ctrl+V; también Shift+Insert on Windows |
+| Copiado en terminal | ⌘C | Ctrl+Shift+C |
+| Pegado en terminal | ⌘V | Ctrl+V; en Windows también se puede usar Shift+Insert |
 | Terminal de división derecha | ⌘⇧\\ | Ctrl+Shift+\\ |
 | Terminal de separación | ⌘⇧− | Ctrl+Shift+− |
 | Siguiente panel terminal | ⌘\] | Ctrl+\] |
@@ -2207,16 +2207,16 @@ Haga clic en una conexión para abrir su espacio de trabajo: la estructura de ba
 | Editor de medidas | macOS | Windows / Linux |
 | --- | --- | --- |
 | Ejecute la selección o la declaración en la línea del cuidado | ⌘↵ | Ctrl+Enter |
-| Ejecute todo el guión | Alternativa o ⇧ | Alt+X o Ctrl+Shift+Enter |
+| Ejecute todo el guión | ⌥X o ⇧⌘↵ | Alt+X o Ctrl+Shift+Enter |
 | Completa en el cuidado | ⌃Space | Ctrl+Space |
-| Formato de la consulta | ⇧ѕF | Ctrl+Shift+F |
+| Formato de la consulta | ⇧⌘F | Ctrl+Shift+F |
 | Toggle line comments | ⌘/ | Ctrl+/ |
-| Encontrar y reemplazar | ∙F | Ctrl+F |
+| Encontrar y reemplazar | ⌘F | Ctrl+F |
 | Cancelar la consulta | ⌘. | Ctrl+. |
-| EXPLAIN | ∙E | Ctrl+E |
-| Historia de las consultas | . . . | Ctrl+H |
-| Auxiliar de inteligencia | ▪I | Ctrl+I |
-| Insertar un fragmento | ∙J | Ctrl+J |
+| EXPLAIN | ⌘E | Ctrl+E |
+| Historia de las consultas | ⌘H | Ctrl+H |
+| Auxiliar de inteligencia | ⌘I | Ctrl+I |
+| Insertar un fragmento | ⌘J | Ctrl+J |
 
 1. En el escritorio, los resultados SQL tienen barras de desplazamiento verticales y horizontales delgadas. Sobre un borde de mesa para ampliar la barra de desplazamiento, luego arrástrela. La edición de celdas y columnas pintadas siguen funcionando.
 
@@ -2270,9 +2270,9 @@ La vista del registro: la tercera fila de resultado como campo → forma de valo
 
 “Insértese un snippet” (justoJ / Ctrl+J): búsqueda PostgreSQL snippets con sus niveles de riesgo.
 
-![Detalles de la tabla de pedidos: secciones, tamaños en MiB y estimaciones marcadas con “coger”.](../assets/guide/db-details-en.png)
+![Detalles de la tabla orders: particiones, tamaños en MiB y estimaciones marcadas con «≈».](../assets/guide/db-details-en.png)
 
-Detalles de la tabla de pedidos: secciones, tamaños en MiB y estimaciones marcadas con “coger”.
+Detalles de la tabla orders: particiones, tamaños en MiB y estimaciones marcadas con «≈».
 
 ![Un plan EXPLAIN: pasos, filas estimadas y coste; barras muestran la parte de cada paso.](../assets/guide/db-explain-en.png)
 
@@ -2733,14 +2733,14 @@ Cada configuración de servidor es una variable CC\_\*; la lista completa con la
 
 | Método | Donde ponerlo | Cómo aplicar |
 | --- | --- | --- |
-| Docker Composición: las teclas compose.yaml interpola con ${...} | El servidor privado.env | cc\_compose up -d --wait --wait-timeout 180 server |
-| Docker Composición: cada otra clave y claves con un valor fijo en compose.yaml | servicios.server.environment in a private compose.override.yaml (a second -f in cc\_compose) | El mismo comando; los valores de anulación reemplazan las mismas teclas de compose.yaml |
+| Docker Compose: las teclas compose.yaml interpola con ${...} | El servidor privado.env | cc\_compose up -d --wait --wait-timeout 180 server |
+| Docker Compose: cada otra clave y claves con un valor fijo en compose.yaml | servicios.server.environment in a private compose.override.yaml (a second -f in cc\_compose) | El mismo comando; los valores de anulación reemplazan las mismas teclas de compose.yaml |
 | Docker Run | -e CC\_KEY =valor o --env-file con un archivo privado | Recrear el contenedor: docker rm -f, luego el mismo docker run |
 | Kubernetes / Helm | El config, auth, mail, base de datos, migraciones y métricas bloques del archivo de valores; claves sin una ruta Helm ir en extraEnv | helm actualización con el archivo de valores completos; pods rodar automáticamente cuando la configuración cambia |
 | Binario / sistemad | Un archivo privado JSON ( --config o CC\_CONFIG\_FILE ) o Environment= en el archivo de unidad | systemctl restart consolecrypt-servidor: nada se recarga en la mosca |
 | Secretos de firma corporativa | Archivos solamente: CC\_OIDC\_CLIENT\_SECRET\_FILE , CC\_OIDC\_TOKEN\_KEY\_FILE , CC\_LDAP\_BIND\_PASSWORD\_FILE y los certificados CC\_OIDC\_CA\_FILE , CC\_LDAP\_CA\_FILE | Montaje sólo lectura, legible por UID 65532, reiniciar el servidor |
 
-**En este capítulo** [Reglas para cada método](#server-settings-rules) · [Docker Composición](#server-settings-compose) · [Plain docker run](#server-settings-docker-run) · [Kubernetes : Helm](#server-settings-helm) · [JSON archivo, binario y sistemad](#server-settings-native) · [Ejemplo: notas y equipos compartidos](#server-settings-example-notes) · [Ejemplo: Inscripción corporativa con ID de entrada](#server-settings-example-entra) · [Ejemplo: Active Directory (LDAP) sign-in](#server-settings-example-ldap) · [Ejemplo: límite de solicitud de observación para hacer cumplir](#server-settings-example-limits) · [Ejemplo: aumento de las cuotas](#server-settings-example-quotas)
+**En este capítulo** [Reglas para cada método](#server-settings-rules) · [Docker Compose](#server-settings-compose) · [docker run sin Compose](#server-settings-docker-run) · [Kubernetes : Helm](#server-settings-helm) · [JSON archivo, binario y sistemad](#server-settings-native) · [Ejemplo: notas y equipos compartidos](#server-settings-example-notes) · [Ejemplo: Inscripción corporativa con ID de entrada](#server-settings-example-entra) · [Ejemplo: Active Directory (LDAP) sign-in](#server-settings-example-ldap) · [Ejemplo: límite de solicitud de observación para hacer cumplir](#server-settings-example-limits) · [Ejemplo: aumento de las cuotas](#server-settings-example-quotas)
 
 <a id="server-settings-rules"></a>
 
@@ -2764,7 +2764,7 @@ límites, cuotas y registro.
 
 <a id="server-settings-compose"></a>
 
-### Docker Composición
+### Docker Compose
 
 El registro pasa por el servidor sólo el bloque `environment:` del `server`
 `server.env` está interpolado en `compose.yaml` ( `--env-file` ) pero sí
@@ -2824,7 +2824,7 @@ no alcanzar el contenedor en sí mismo: `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` en
 
 <a id="server-settings-docker-run"></a>
 
-### Plain docker run
+### docker run sin Compose
 
 Las teclas de paso con `-e KEY=value` o `--env-file` . Note that `docker run --env-file`
 toma valores literalmente y ** no tira citas**, por lo que el citado `server.env`
@@ -3101,7 +3101,7 @@ auth:
 2. Si los usuarios ordinarios alcanzan un límite, levantenlo (por ejemplo.
    `CC_LIMIT_PUSH_ACCOUNT_RATE=600/min` ) o anularlo para una cuenta con
    `admin limits set`.
-3. Cambia el modo. Docker Composición: `CC_RATE_LIMIT_MODE=enforce` en `server.env` ,
+3. Cambia el modo. Docker Compose: `CC_RATE_LIMIT_MODE=enforce` en `server.env` ,
    límites elevados en `compose.override.yaml` :
 
 ```yaml
@@ -3135,7 +3135,7 @@ contado por `cc_rate_limited_total{limiter}` .
 
 ### Ejemplo: aumento de las cuotas
 
-Servidor en todo. Docker Composición: `CC_MAX_VAULT_OBJECTS` y
+Servidor en todo. Docker Compose: `CC_MAX_VAULT_OBJECTS` y
 `CC_MAX_DEVICES_PER_ACCOUNT` en `server.env` , el resto en la anulación:
 
 ```dotenv
@@ -3244,7 +3244,7 @@ auth:
 
 ### Compruebe la configuración
 
-Kubernetes y Docker Composición (el ayudante cc\_compose del capítulo Docker). Para LDAP, --login busca al usuario, su grupo y estado discapacitado; con --password-stdin realiza un enlace real que cuenta con hacia la política de bloqueo de dominio. Para OIDC, --login vuelve a comprobar la cuenta con el IdP de inmediato.
+Kubernetes y Docker Compose (el ayudante cc\_compose del capítulo Docker). Para LDAP, --login busca al usuario, su grupo y estado discapacitado; con --password-stdin realiza un enlace real que cuenta con hacia la política de bloqueo de dominio. Para OIDC, --login vuelve a comprobar la cuenta con el IdP de inmediato.
 
 ```text
 kubectl -n consolecrypt exec deployment/consolecrypt -- \
@@ -3731,7 +3731,7 @@ secretos, fichas o códigos de acceso. métricas: `cc_enterprise_logins_total{me
   `/run/secrets/consolecrypt-auth`. El gráfico se llena en los `*_FILE` caminos y
   residuos `ldap://` sin `starttls: true` y OIDC sin un `https://`
   `config.publicUrl`.
-- ** Docker Composición**: mantener las llaves y secretos en un privado
+- ** Docker Compose**: mantener las llaves y secretos en un privado
   `compose.override.yaml` junto a `server.env` , montar los secretos como Compose
   secretos propiedad de UID 65532 con modo 0400, y añadir la anulación como segundo `-f`
   a `cc_compose` (la sección rusa muestra los archivos completos).
@@ -3851,7 +3851,7 @@ Las funciones de su propio servidor se activan con variables CC\_\*. Con Docker 
 
 8. Docker El registro pasa por el servidor sólo las variables enumeradas en compose.yaml: cambiar el registro, el correo, compartir banderas y la protección del dispositivo en server.env y recrear el servicio del servidor. Poner límites de equipo, el registro corporativo y otras teclas en un compose.override.yaml en su directorio privado y añadirlo como un segundo -f en el ayudante cc\_compose. En Helm las banderas viven en el bloque de config, y las variables sin su propia llave (como los límites de equipo) entran en extraEnv.
 
-### Docker Composición: banderas en server.env
+### Docker Compose: banderas en server.env
 
 Líneas del servidor privado.env: este ejemplo permite compartir y compartir notas y cierra el registro. Después de la edición, recrea sólo el servicio servidor: cc\_compose up -d --wait --wait-timeout 180 server.
 
@@ -3861,7 +3861,7 @@ CC_SHARED_NOTES_ENABLED=true
 CC_REGISTRATION_OPEN=false
 ```
 
-### Docker Composición: límites de equipo en compose.override.yaml
+### Docker Compose: límites de equipo en compose.override.yaml
 
 Un archivo en el directorio privado $ CC\_INSTALL\_DIR junto al servidor.env.
 
@@ -3874,7 +3874,7 @@ services:
       CC_MAX_TEAM_MEMBERS: "50"
 ```
 
-### Docker Composición: el ayudante cc\_compose con el archivo override
+### Docker Compose: el ayudante cc\_compose con el archivo override
 
 Sin el segundo -f, Docker Compose no lee un archivo override de otro directorio. Utilice este ayudante para todos los comandos.
 
@@ -3913,7 +3913,7 @@ recovery_email         *  5/hour
 recovery_email_total   *  20/day
 ```
 
-### Docker Composición: cumplimiento y cuotas
+### Docker Compose: cumplimiento y cuotas
 
 Las primeras líneas entran en server.env (compose.yaml las interpola), el resto en compose.override.yaml. A continuación, ejecutar cc\_compose up -d --wait --wait-timeout 180 servidor.
 
@@ -3966,7 +3966,7 @@ extraEnv:
 
 [Quotas: bóvedas, objetos, dispositivos →](#server-reference-sync)
 
-[Ejemplo: límites de la observación para hacer cumplir →](#server-settings-example-limits)
+[Ejemplo: pasar del modo observe al modo enforce →](#server-settings-example-limits)
 
 > **Ten en cuenta**
 >
@@ -4427,7 +4427,7 @@ Todos los datos del servidor persistentes viven en PostgreSQL . Una copia de seg
 
 6. No cambie la versión principal PostgreSQL cambiando la etiqueta, y no utilice -v, docker volume prune o helm desinstalar, o eliminar PVCs para actualizar. /healthz respuestas sin tocar la base de datos (vivencia), /readyz comprueba la base de datos, /v1/meta muestra la versión, protocolo y capacidades; Prometheus métricas se sirven en un puerto separado 9090.
 
-### Docker Composición: respaldo y comprobación
+### Docker Compose: respaldo y comprobación
 
 pg\_dump funciona dentro del contenedor PostgreSQL sobre su toma local, por lo que ninguna contraseña aparece en los argumentos. El ayudante cc\_compose viene del capítulo Docker.
 
@@ -4440,7 +4440,7 @@ cc_compose exec -T postgres pg_dump -U postgres -d consolecrypt \
 cc_compose exec -T postgres pg_restore --list < "$CC_BACKUP_FILE" > "$CC_BACKUP_FILE.list"
 ```
 
-### Docker Composición: actualización de la imagen
+### Docker Compose: actualización de la imagen
 
 Primero actualiza el clon (git pull) y cambia CC\_SERVER\_VERSION en server.env a la nueva versión (o CC\_SERVER\_IMAGE a su digest).
 

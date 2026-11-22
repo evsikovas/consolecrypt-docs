@@ -56,6 +56,8 @@ function paired(value, label) {
   for (const locale of locales) {
     assert(typeof value[locale] === 'string' && value[locale].trim(),
       `Missing ${locale}: ${label}`);
+    assert.doesNotMatch(value[locale], /[_＿]{8,}/u,
+      `Damaged translation in ${locale}: ${label}`);
   }
 }
 
