@@ -27,7 +27,7 @@
 
 - [Готовые выпуски клиента](https://github.com/evsikovas/consolecrypt-client/releases).
 - [Клиент: исходники и сборка](https://github.com/evsikovas/consolecrypt-client).
-- [Сервер и протокол](https://github.com/evsikovas/consolecrypt-server).
+- [Сервер и протокол](https://github.com/evsikovas/consolecrypt-server) · [Изменения сервера 0.2.10](docs/public/RELEASE_SERVER_0_2_10.md).
 - [Свой сервер в Docker и Kubernetes](docs/public/HOSTING.md).
 - Свой сервер: [справочник параметров](guide/ru.md#server-reference), [корпоративный вход — рецепты](guide/ru.md#server-idp), [параметры по способам установки](guide/ru.md#server-settings).
 - [Совместный доступ](docs/public/SHARING.md).

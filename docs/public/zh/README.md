@@ -63,4 +63,5 @@
 - [最新情况ConsoleCrypt](UPDATES.md)
 - [已签名的更新信息更新](UPDATE_FEED_PUBLISHER.md)
 - [ConsoleCrypt 1.2.0 更新说明](../RELEASE_1_2_0.md)
+- [ConsoleCrypt Sync Server 0.2.10](../RELEASE_SERVER_0_2_10.md#简体中文)
 - [ConsoleCrypt Sync Server 0.2.8](../RELEASE_SERVER_0_2_8.md)

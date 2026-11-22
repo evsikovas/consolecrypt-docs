@@ -63,4 +63,5 @@
 - [Actualizaciones ConsoleCrypt](UPDATES.md)
 - [Renovación firmada alimentada por actualización](UPDATE_FEED_PUBLISHER.md)
 - [Novedades de ConsoleCrypt 1.2.0](../RELEASE_1_2_0.md)
+- [ConsoleCrypt Sync Server 0.2.10](../RELEASE_SERVER_0_2_10.md#español)
 - [ConsoleCrypt Sync Server 0.2.8](../RELEASE_SERVER_0_2_8.md)
