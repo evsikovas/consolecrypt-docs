@@ -11,8 +11,8 @@ en un ordenador o en un host guardado SSH. Tiene troncos, un terminal dentro.
 contenedor, información de inspección, reenvío de puertos, conexión a la base de datos desde
 Container y editar archivos de compostura. El cliente accede a la propia API Docker:
 para el motor local - a través de su toma de corriente, para el SSH host - a través de SSH - conexión
-Este anfitrión. La sección está disponible en macOS , Windows , Linux y Android ; montaje y
-Check iOS pospuesto.
+de este host. La sección está disponible en macOS, Windows, Linux y Android. Para iOS, CI empaqueta la aplicación en un ZIP y comprueba que arranca en Xcode Simulator en un Mac.
+Probar esta función en un iPhone físico requiere una ejecución aparte.
 
 ### Hosts and rights
 

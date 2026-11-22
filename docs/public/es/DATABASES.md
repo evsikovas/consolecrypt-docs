@@ -9,8 +9,8 @@ MongoDB, Apache Cassandra y ScyllaDB, así como archivos SQLite. Es la estructur
 editor de consultas con fichas e historia, tabla de resultados, EXPLAIN, edición de celdas,
 Table builder, copying and exporting, and AI Assistant. Los conductores se construyen
 `psql` , `mysql` , `clickhouse-client` , `redis-cli` , `mongosh` y `cqlsh`
-No hay necesidad de instalar. Sección
-disponible en macOS , Windows , Linux y Android ; montaje e inspección iOS aplazado.
+no necesitan instalarse por separado. La sección está disponible en macOS, Windows, Linux y Android. Para iOS, CI empaqueta la aplicación en un ZIP y comprueba que arranca en Xcode Simulator en un Mac.
+Probar esta función en un iPhone físico requiere una ejecución aparte.
 
 ### Conexión
 

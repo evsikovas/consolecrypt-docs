@@ -9,8 +9,8 @@
 有标签和历史的查询编辑器,结果表,EXPLAIN,单元格编辑,
 表格构建器,复制和输出,以及AI助手. 驱动器被安装在
 因此,`psql`、`mysql`、`clickhouse-client`、`redis-cli`、`mongosh`和`cqlsh`
-不需要安装. 节次
-macOS,Windows,Linux和Android;装配和检查iOS被推迟。
+均无需单独安装。本节功能适用于 macOS、Windows、Linux 和 Android。对于 iOS，发布流程会生成 ZIP，并验证应用可在 Mac 上的 Xcode Simulator 中启动。
+如需验证本节功能在实体 iPhone 上的表现，需要单独测试。
 
 ### 连接
 

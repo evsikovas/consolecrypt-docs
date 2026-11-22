@@ -11,8 +11,8 @@ ConsoleCrypt 1.2.1 · [选择 Docker 引擎并删除容器](../../../guide/zh.md
 容器、检查信息、端口转发、与数据库的连接
 容器和编辑文件。 客户端亲自访问DockerAPI:
 本地引擎 - 通过其插座,为SSH主机 -通过SSH - 连接
-此宿师. 该节的编号为macOS、Windows、Linux和Android;
-检查iOS延期.
+到此主机。本节功能适用于 macOS、Windows、Linux 和 Android。对于 iOS，发布流程会生成 ZIP，并验证应用可在 Mac 上的 Xcode Simulator 中启动。
+如需验证本节功能在实体 iPhone 上的表现，需要单独测试。
 
 ### 东道主和权利
 

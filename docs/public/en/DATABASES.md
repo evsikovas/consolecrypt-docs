@@ -9,8 +9,8 @@ MongoDB, Apache Cassandra, and ScyllaDB, as well as SQLite files. It's the struc
 query editor with tabs and history, results table, EXPLAIN, cell editing,
 Table builder, copying and exporting, and AI assistant. Drivers are built into
 application, therefore `psql`, `mysql`, `clickhouse-client`, `redis-cli`, `mongosh` and `cqlsh`
-There's no need to install. Section
-available at macOS, Windows, Linux and Android; assembly and inspection iOS postponed.
+do not need to be installed. This section is available on macOS, Windows, Linux and Android. For iOS, release CI packages the app as a ZIP and checks that it launches in Xcode Simulator on a Mac.
+Testing this feature on a physical iPhone requires a separate run.
 
 ### Connections
 

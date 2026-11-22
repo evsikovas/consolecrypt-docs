@@ -11,8 +11,8 @@ on a computer or on a saved SSH host. It's got logs, a terminal inside.
 container, inspect information, port forwarding, connection to the database from
 Container and edit compose files. The client accesses the Docker API himself:
 for the local engine - through its socket, for the SSH host - through SSH - connection
-This host. The section is available at macOS, Windows, Linux and Android; assembly and
-Check iOS postponed.
+this host. This section is available on macOS, Windows, Linux and Android. For iOS, release CI packages the app as a ZIP and checks that it launches in Xcode Simulator on a Mac.
+Testing this feature on a physical iPhone requires a separate run.
 
 ### Hosts and rights
 
