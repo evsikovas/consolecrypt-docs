@@ -1,5 +1,7 @@
 # ConsoleCrypt 技术文档
 
+[下载 ConsoleCrypt 1.2.3](https://consolecrypt.dev/download?lang=zh)
+
 - [Android:出版ConsoleCrypt于RuStore.](ANDROID_RUSTORE.md)
 - [装配和同步服务器](BUILDING.md)
 - [大会ConsoleCrypt改为iOS](BUILD_IOS.md)
@@ -61,6 +63,7 @@
 - [账户和同步](SYNC_ACCOUNT.md)
 - [最新情况ConsoleCrypt](UPDATES.md)
 - [已签名的更新信息更新](UPDATE_FEED_PUBLISHER.md)
+- [ConsoleCrypt 1.2.3](../RELEASE_1_2_3.md#简体中文)
 - [ConsoleCrypt 1.2.1](../RELEASE_1_2_1.md)
 - [ConsoleCrypt 1.2.0 更新说明](../RELEASE_1_2_0.md)
 - [ConsoleCrypt Sync Server 0.2.10](../RELEASE_SERVER_0_2_10.md#简体中文)

@@ -1,5 +1,7 @@
 # ConsoleCrypt technical documentation
 
+[Download ConsoleCrypt 1.2.3](https://consolecrypt.dev/download?lang=en)
+
 - [Android: publication ConsoleCrypt in RuStore](ANDROID_RUSTORE.md)
 - [Assembly and synchronization server](BUILDING.md)
 - [Assembly ConsoleCrypt for iOS](BUILD_IOS.md)
@@ -61,6 +63,7 @@
 - [Account and synchronization](SYNC_ACCOUNT.md)
 - [Updates ConsoleCrypt](UPDATES.md)
 - [Signed update-feed renewal](UPDATE_FEED_PUBLISHER.md)
+- [ConsoleCrypt 1.2.3](../RELEASE_1_2_3.md#english)
 - [ConsoleCrypt 1.2.1](../RELEASE_1_2_1.md)
 - [What’s new in ConsoleCrypt 1.2.0](../RELEASE_1_2_0.md)
 - [ConsoleCrypt Sync Server 0.2.10](../RELEASE_SERVER_0_2_10.md#english)
