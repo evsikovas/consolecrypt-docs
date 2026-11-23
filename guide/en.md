@@ -4,6 +4,13 @@
 
 Step-by-step instructions with screenshots of the app and demonstration data. The [manifest](../assets/guide/manifest.json) records the source versions.
 
+## Common tasks
+
+- [First launch and profiles](#first-start)
+- [Hosts: add, find and connect](#hosts)
+- [Monitor host load in an SSH session](#terminal-ssh-monitoring)
+- [Connect to Vault or OpenBao](#password-manager-vault-openbao)
+
 ## Contents
 
 **Getting started**
@@ -420,7 +427,7 @@ A host stores SSH or RDP connection settings. Cards and list rows show its addre
 
 5. Search names, addresses, groups and tags. The grid/list toggle changes the view; opening a group card shows its contents.
 
-6. Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.
+6. Select a host to open an SSH terminal or RDP desktop. To check the address, port and username first, select the host’s info icon. On desktop, the details appear below the list.
 
 7. The “…” menu offers connection, SFTP, editing, deletion and adding to an existing group. “Share…” appears when the server supports it, “Copy to team…” and “Move to team…” when you have teams (see Teams).
 
@@ -948,7 +955,9 @@ A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or
 
 ### Monitor host load in an SSH session
 
-Connect to a Linux host with the built-in SSH client. Open Monitoring in the terminal’s right panel or from session tools on a phone. Check CPU, memory, disk usage, and network rates. Close and reopen the panel to see that sampling continued while the session stayed connected.
+1. Connect to a Linux host using the built-in SSH client. On desktop, open Monitoring in the right sidebar. On a phone, open it from the session tools.
+2. The chart shows CPU usage over the last five minutes. Memory, disk and network readings appear alongside it.
+3. You can close the panel. The client keeps collecting readings while the SSH session is open.
 
 ![The Monitoring panel beside the terminal shows CPU, memory and disk usage, network throughput and Linux host details.](../assets/guide/terminal-ssh-metrics-en.png)
 
@@ -2475,7 +2484,7 @@ The Docker section connects to the engine on this computer or on a saved SSH hos
 
 3. Each row shows the status, health, image, short ID, and ports. The buttons start, stop, or restart the container and open its logs or terminal. The … menu includes pause, kill, removal, and port forwarding.
 
-**In this chapter** [Connect to a local Docker engine or use SSH](#docker-containers-local-engine) · [Remove a container and choose volumes and networks](#docker-containers-remove)
+**In this chapter** [Connect to a local Docker engine or use SSH](#docker-containers-local-engine) · [Remove a container or Compose project](#docker-containers-remove)
 
 <a id="docker-containers-local-engine"></a>
 
@@ -2489,10 +2498,12 @@ This Computer opens the local Docker engine. Saved SSH hosts are listed separate
 
 <a id="docker-containers-remove"></a>
 
-### Remove a container and choose volumes and networks
+### Remove a container or Compose project
 
 1. Open the container menu and choose Remove container. Check the name and host. If the container is running, confirm that it may be stopped.
 2. Volumes and networks start unchecked. Select only the available resources you intend to remove. A protected resource shows why it is unavailable. Shared volumes, built-in networks, and host files used by bind mounts are retained. Confirm and check the outcome for each resource.
+
+To remove the whole project, open the Compose group menu and choose Remove Compose project. Review the container list. Running containers will stop and unused project networks will be removed. Removing volumes is optional. Compose files and bind-mounted host directories stay on the host.
 
 ![The removal dialog lets you select a volume and a network. The shared network and host files are protected.](../assets/guide/docker-cleanup-en.png)
 

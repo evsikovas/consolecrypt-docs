@@ -1,25 +1,22 @@
-<p align="center"><img src="docs/brand/consolecrypt.svg" width="80" alt="ConsoleCrypt"></p>
-
 # ConsoleCrypt — документация
 
-Руководство по SSH, RDP, SFTP, Kubernetes, базам данных, Docker, зашифрованному
-хранилищу, синхронизации, сниппетам, ИИ и совместной работе. Руководство
-описывает клиент 1.2.3. [Скачать ConsoleCrypt](https://consolecrypt.dev/download?lang=ru). В таблице ниже указан номер каждой проверенной сборки.
+Руководство описывает клиент 1.2.3. [Скачать ConsoleCrypt](https://consolecrypt.dev/download?lang=ru) · [Проверки релиза](https://github.com/evsikovas/consolecrypt-client/actions/runs/45073808256)
 
-**[Русский](guide/ru.md)** · **[English](guide/en.md)** · **[Español](guide/es.md)** · **[简体中文](guide/zh.md)**
+| Язык | Руководство со скриншотами | Техническая документация и выпуски |
+| --- | --- | --- |
+| Русский | [Руководство](guide/ru.md) | [Справочник](docs/public/README.md) |
+| English | [User guide](guide/en.md) | [Reference](docs/public/en/README.md) |
+| Español | [Guía de uso](guide/es.md) | [Referencia](docs/public/es/README.md) |
+| 简体中文 | [使用指南](guide/zh.md) | [技术参考](docs/public/zh/README.md) |
 
-Техническая документация и архив выпусков · [Русский](docs/public) · [English](docs/public/en) · [Español](docs/public/es) · [简体中文](docs/public/zh)
+## С чего начать
 
-Сборки и проверки 1.2.3 · [релизный CI](https://github.com/evsikovas/consolecrypt-client/actions/runs/45073808256).
+- [Установить приложение и создать профиль](guide/ru.md#first-start)
+- [Добавить SSH- или RDP-хост](guide/ru.md#hosts)
+- [Посмотреть нагрузку Linux-сервера](guide/ru.md#terminal-ssh-monitoring)
+- [Открыть секрет в Vault или OpenBao](guide/ru.md#password-manager-vault-openbao)
 
-В руководстве 70 глав на четырёх языках и 478 скриншотов: первый запуск,
-профили, установка Linux, хосты и группы, терминал, удалённый рабочий стол,
-файлы, Kubernetes, базы данных, Docker, заметки, команды, совместный доступ,
-буфер обмена, общие папки, резервные копии, настройки, а также запуск,
-настройка (полный справочник параметров, рецепты корпоративного входа через IdP и LDAP, параметры для каждого способа установки), резервное копирование и обновление своего сервера.
-Изображения получены из интерфейса с демонстрационными данными. Некоторые исторические снимки в испанском и китайском руководствах показывают английский интерфейс.
-
-## Быстрые ссылки
+## Клиент и сервер
 
 - [Готовые выпуски клиента](https://github.com/evsikovas/consolecrypt-client/releases).
 - [Клиент: исходники и сборка](https://github.com/evsikovas/consolecrypt-client).
@@ -40,6 +37,9 @@
 - [Kubernetes](docs/public/KUBERNETES.md): подключения, ресурсы, логи, Helm и GitOps.
 - [Базы данных](docs/public/DATABASES.md): подключения и маршруты, запросы, защита прода и ИИ-помощник.
 - [Docker](docs/public/DOCKER.md): контейнеры, логи, тома, пробросы и compose-проекты.
+
+## Сборка и выпуски
+
 - [Мобильный RDP и настольные улучшения](docs/public/RELEASE_0_5_5.md).
 - [Исправление комплекта восстановления на телефоне](docs/public/RELEASE_0_5_6.md).
 - [Linux](docs/public/BUILD_LINUX.md).

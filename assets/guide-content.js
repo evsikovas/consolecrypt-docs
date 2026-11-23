@@ -1081,10 +1081,10 @@ export const guideSections = [
         "zh": "搜索名称,地址,组和标签. 网格/列表切换会改变视图;打开组卡会显示其内容."
       },
       {
-        "ru": "Нажмите в центре карточки хоста или на значок подключения. В зависимости от типа откроется терминал или удалённый рабочий стол.",
-        "en": "Click the centre of a host card or its connect icon. A terminal or remote desktop tab opens according to the connection type.",
-        "es": "Haga clic en el centro de una tarjeta host o en su icono de conexión. Una pestaña de escritorio terminal o remota abre según el tipo de conexión.",
-        "zh": "单击主机卡或其连接图标的中心。 一个终端或远程桌面标签根据连接类型打开."
+        "ru": "Нажмите хост, чтобы открыть SSH-терминал или удалённый рабочий стол RDP. Чтобы сначала посмотреть адрес, порт и имя пользователя, нажмите значок сведений у хоста. В настольном списке карточка откроется под ним.",
+        "en": "Select a host to open an SSH terminal or RDP desktop. To check the address, port and username first, select the host’s info icon. On desktop, the details appear below the list.",
+        "es": "Selecciona un host para abrir el terminal SSH o el escritorio RDP. Para consultar antes la dirección, el puerto y el usuario, pulsa el icono de información del host. En la aplicación de escritorio, los datos aparecen debajo de la lista.",
+        "zh": "点选主机即可打开 SSH 终端或 RDP 远程桌面。要先查看地址、端口和用户名，点选主机的信息图标。在桌面版中，详情显示在主机列表下方。"
       },
       {
         "ru": "В меню «…» доступны подключение, SFTP, редактирование, удаление и добавление в существующую группу. «Поделиться…» показывается при поддержке сервером, «Копировать в команду…» и «Переместить в команду…» — если у вас есть команды (глава «Команды»).",
@@ -2862,10 +2862,10 @@ export const guideSections = [
           "zh": "监控 SSH 会话中的主机负载"
         },
         "body": {
-          "ru": "Подключитесь к Linux-хосту через встроенный SSH-клиент. В терминале откройте «Мониторинг» на правой панели, на телефоне — в инструментах сеанса. Посмотрите CPU, память, диск и скорость сети. Сверните панель и откройте её снова. Графики продолжают пополняться, пока подключение открыто.",
-          "en": "Connect to a Linux host with the built-in SSH client. Open Monitoring in the terminal’s right panel or from session tools on a phone. Check CPU, memory, disk usage, and network rates. Close and reopen the panel to see that sampling continued while the session stayed connected.",
-          "es": "Conecta con un host Linux mediante el cliente SSH integrado. Abre Monitorización en el panel derecho del terminal o en las herramientas de la sesión del teléfono. Consulta CPU, memoria, disco y tráfico de red. Cierra el panel y vuelve a abrirlo para ver las muestras recogidas durante la conexión.",
-          "zh": "使用内置 SSH 客户端连接 Linux 主机。在终端右侧面板或手机上的会话工具中打开「监控」。查看 CPU、内存、磁盘占用和网络速率。收起面板再重新打开；只要 SSH 会话仍连接，采样就会持续。"
+          "ru": "1. Подключитесь к Linux-хосту через встроенный SSH-клиент. На компьютере откройте «Мониторинг» на правой панели, на телефоне — в инструментах сеанса.\n2. График показывает загрузку процессора за последние пять минут. Рядом указаны память, диск и скорость сети.\n3. Панель можно свернуть. Пока SSH-сеанс открыт, клиент продолжает собирать показания.",
+          "en": "1. Connect to a Linux host using the built-in SSH client. On desktop, open Monitoring in the right sidebar. On a phone, open it from the session tools.\n2. The chart shows CPU usage over the last five minutes. Memory, disk and network readings appear alongside it.\n3. You can close the panel. The client keeps collecting readings while the SSH session is open.",
+          "es": "1. Conéctate a un host Linux con el cliente SSH integrado. En el ordenador, abre la monitorización en el panel derecho. En el móvil, ábrela desde las herramientas de la sesión.\n2. El gráfico muestra el uso de CPU de los últimos cinco minutos. También puedes consultar la memoria, el disco y la velocidad de red.\n3. Puedes cerrar el panel. El cliente sigue tomando medidas mientras la sesión SSH esté abierta.",
+          "zh": "1. 使用内置 SSH 客户端连接 Linux 主机。在桌面版的右侧栏打开监控，在手机上从会话工具中打开。\n2. 图表显示过去五分钟的 CPU 使用率，旁边列出内存、磁盘和网络速率。\n3. 可以收起面板。只要 SSH 会话仍在连接，客户端就会继续采集数据。"
         }
       }
     ],
@@ -8235,16 +8235,16 @@ export const guideSections = [
       {
         "id": "remove",
         "title": {
-          "ru": "Удалить контейнер и выбрать тома и сети",
-          "en": "Remove a container and choose volumes and networks",
-          "es": "Eliminar un contenedor y seleccionar volúmenes y redes",
-          "zh": "删除容器并选择要清理的卷和网络"
+          "ru": "Удалить контейнер или проект Compose",
+          "en": "Remove a container or Compose project",
+          "es": "Eliminar un contenedor o un proyecto de Compose",
+          "zh": "删除容器或 Compose 项目"
         },
         "body": {
-          "ru": "1. Откройте меню контейнера и выберите «Удалить контейнер…». Сверьте имя и хост. Если контейнер работает, отдельно подтвердите его остановку.\n2. Изначально тома и сети не отмечены. Выберите только те доступные ресурсы, которые действительно хотите удалить. Рядом с защищённым ресурсом указана причина. Общие тома, встроенные сети Docker и файлы хоста в bind-монтах остаются на месте. Подтвердите выбор и проверьте результат по каждому ресурсу.",
-          "en": "1. Open the container menu and choose Remove container. Check the name and host. If the container is running, confirm that it may be stopped.\n2. Volumes and networks start unchecked. Select only the available resources you intend to remove. A protected resource shows why it is unavailable. Shared volumes, built-in networks, and host files used by bind mounts are retained. Confirm and check the outcome for each resource.",
-          "es": "1. Abre el menú del contenedor y selecciona Eliminar contenedor. Comprueba el nombre y el host. Si está en ejecución, confirma que se puede detener.\n2. Los volúmenes y las redes aparecen desmarcados. Marca solo los recursos disponibles que quieras eliminar. Cada recurso protegido indica el motivo. Se conservan los volúmenes compartidos, las redes integradas y los archivos del host montados mediante bind mounts. Confirma y comprueba el resultado de cada recurso.",
-          "zh": "1. 在容器菜单中选择「删除容器」。核对名称和主机；如果容器正在运行，请确认可以先停止它。\n2. 卷和网络默认均未选中。只勾选要删除的可选资源。受保护的资源旁会显示原因。共享卷、Docker 内置网络和绑定挂载的主机文件会保留。确认后逐项查看处理结果。"
+          "ru": "1. Откройте меню контейнера и выберите «Удалить контейнер…». Сверьте имя и хост. Если контейнер работает, отдельно подтвердите его остановку.\n2. Изначально тома и сети не отмечены. Выберите только те доступные ресурсы, которые действительно хотите удалить. Рядом с защищённым ресурсом указана причина. Общие тома, встроенные сети Docker и файлы хоста в bind-монтах остаются на месте. Подтвердите выбор и проверьте результат по каждому ресурсу.\n\nЧтобы удалить весь проект, откройте меню группы Compose и выберите «Удалить проект Compose…». Проверьте список контейнеров. Запущенные контейнеры будут остановлены, освободившиеся сети проекта удалены. Удаление томов включается отдельно. Файлы Compose и подключённые каталоги хоста сохраняются.",
+          "en": "1. Open the container menu and choose Remove container. Check the name and host. If the container is running, confirm that it may be stopped.\n2. Volumes and networks start unchecked. Select only the available resources you intend to remove. A protected resource shows why it is unavailable. Shared volumes, built-in networks, and host files used by bind mounts are retained. Confirm and check the outcome for each resource.\n\nTo remove the whole project, open the Compose group menu and choose Remove Compose project. Review the container list. Running containers will stop and unused project networks will be removed. Removing volumes is optional. Compose files and bind-mounted host directories stay on the host.",
+          "es": "1. Abre el menú del contenedor y selecciona Eliminar contenedor. Comprueba el nombre y el host. Si está en ejecución, confirma que se puede detener.\n2. Los volúmenes y las redes aparecen desmarcados. Marca solo los recursos disponibles que quieras eliminar. Cada recurso protegido indica el motivo. Se conservan los volúmenes compartidos, las redes integradas y los archivos del host montados mediante bind mounts. Confirma y comprueba el resultado de cada recurso.\n\nPara eliminar el proyecto completo, abre el menú del grupo de Compose y elige la opción de eliminar el proyecto. Revisa la lista de contenedores. Se detendrán los que estén en ejecución y se eliminarán las redes del proyecto que queden sin usar. La eliminación de volúmenes es opcional. Los archivos de Compose y los directorios montados desde el host se conservan.",
+          "zh": "1. 在容器菜单中选择「删除容器」。核对名称和主机；如果容器正在运行，请确认可以先停止它。\n2. 卷和网络默认均未选中。只勾选要删除的可选资源。受保护的资源旁会显示原因。共享卷、Docker 内置网络和绑定挂载的主机文件会保留。确认后逐项查看处理结果。\n\n要删除整个项目，请打开 Compose 组的菜单并选择删除 Compose 项目。核对容器列表。运行中的容器将停止，项目中不再使用的网络将被删除。可以单独勾选删除卷。Compose 文件和绑定挂载的主机目录会保留。"
         }
       }
     ]

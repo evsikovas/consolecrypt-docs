@@ -10,16 +10,16 @@ import path from 'node:path';
 const args = process.argv.slice(2);
 const checkOnly = args.includes('--check');
 const languages = {
-  ru: { name: 'Русский', title: 'Руководство ConsoleCrypt', website: 'Сайт', contents: 'Оглавление',
+  ru: { name: 'Русский', title: 'Руководство ConsoleCrypt', website: 'Сайт', contents: 'Оглавление', tasks: 'С чего начать',
     chapter: 'В этой главе', note: 'Обратите внимание',
     intro: 'Пошаговое руководство со снимками приложения и демонстрационными данными. Версии снимков указаны в [манифесте](../assets/guide/manifest.json).' },
-  en: { name: 'English', title: 'ConsoleCrypt guide', website: 'Website', contents: 'Contents',
+  en: { name: 'English', title: 'ConsoleCrypt guide', website: 'Website', contents: 'Contents', tasks: 'Common tasks',
     chapter: 'In this chapter', note: 'Keep in mind',
     intro: 'Step-by-step instructions with screenshots of the app and demonstration data. The [manifest](../assets/guide/manifest.json) records the source versions.' },
-  es: { name: 'Español', title: 'Guía de ConsoleCrypt', website: 'Sitio web', contents: 'Índice',
+  es: { name: 'Español', title: 'Guía de ConsoleCrypt', website: 'Sitio web', contents: 'Índice', tasks: 'Tareas frecuentes',
     chapter: 'En este capítulo', note: 'Ten en cuenta',
     intro: 'Instrucciones paso a paso con capturas de la aplicación y datos de demostración. Algunas capturas históricas se muestran en inglés. Consulta las versiones en el [manifiesto](../assets/guide/manifest.json).' },
-  zh: { name: '简体中文', title: 'ConsoleCrypt 使用指南', website: '网站', contents: '目录',
+  zh: { name: '简体中文', title: 'ConsoleCrypt 使用指南', website: '网站', contents: '目录', tasks: '常用操作',
     chapter: '本章内容', note: '注意',
     intro: '分步操作指南附有真实界面截图，截图使用演示数据。部分历史截图以英语显示。版本详见[清单](../assets/guide/manifest.json)。' },
 };
@@ -199,8 +199,15 @@ for (const locale of locales) {
     `# ${language.title}`, '',
     `${other} · [README](../README.md) · [${language.website}](https://consolecrypt.dev/guide?lang=${locale})`, '',
     language.intro, '',
-    `## ${language.contents}`, '',
+    `## ${language.tasks}`, '',
   ];
+  for (const [sectionId, partId] of [['first-start'], ['hosts'], ['terminal', 'ssh-monitoring'], ['password-manager', 'vault-openbao']]) {
+    const section = guideSections.find(item => item.id === sectionId);
+    const item = partId ? section.parts.find(part => part.id === partId) : section;
+    const anchor = partId ? `${sectionId}-${partId}` : sectionId;
+    out.push(`- [${text(item.title, locale)}](#${anchor})`);
+  }
+  out.push('', `## ${language.contents}`, '');
   for (const group of guideGroups) {
     out.push(`**${text(group.title, locale)}**`, '');
     for (const section of guideSections.filter(section => section.group === group.id)) {

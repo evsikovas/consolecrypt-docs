@@ -4,6 +4,13 @@
 
 Instrucciones paso a paso con capturas de la aplicación y datos de demostración. Algunas capturas históricas se muestran en inglés. Consulta las versiones en el [manifiesto](../assets/guide/manifest.json).
 
+## Tareas frecuentes
+
+- [Primer lanzamiento y perfiles](#first-start)
+- [Hosts: añadir, encontrar y conectar](#hosts)
+- [Supervisar la carga del host durante una sesión SSH](#terminal-ssh-monitoring)
+- [Conectarse a Vault u OpenBao](#password-manager-vault-openbao)
+
 ## Índice
 
 **Comenzar**
@@ -420,7 +427,7 @@ Tiendas de host SSH o configuración de conexión RDP. Las tarjetas y las filas 
 
 5. Nombres de búsqueda, direcciones, grupos y etiquetas. La rejilla/lista cambia la vista; abrir una tarjeta de grupo muestra su contenido.
 
-6. Haga clic en el centro de una tarjeta host o en su icono de conexión. Una pestaña de escritorio terminal o remota abre según el tipo de conexión.
+6. Selecciona un host para abrir el terminal SSH o el escritorio RDP. Para consultar antes la dirección, el puerto y el usuario, pulsa el icono de información del host. En la aplicación de escritorio, los datos aparecen debajo de la lista.
 
 7. El menú “...” ofrece conexión, SFTP, edición, eliminación y adición a un grupo existente. “Compartir...” aparece cuando el servidor lo soporta, “Copiar al equipo...” y “Move al equipo...” cuando usted tiene equipos (ver Equipos).
 
@@ -948,7 +955,9 @@ Una pestaña tiene una sesión terminal SSH , más conchas locales en macOS y Wi
 
 ### Supervisar la carga del host durante una sesión SSH
 
-Conecta con un host Linux mediante el cliente SSH integrado. Abre Monitorización en el panel derecho del terminal o en las herramientas de la sesión del teléfono. Consulta CPU, memoria, disco y tráfico de red. Cierra el panel y vuelve a abrirlo para ver las muestras recogidas durante la conexión.
+1. Conéctate a un host Linux con el cliente SSH integrado. En el ordenador, abre la monitorización en el panel derecho. En el móvil, ábrela desde las herramientas de la sesión.
+2. El gráfico muestra el uso de CPU de los últimos cinco minutos. También puedes consultar la memoria, el disco y la velocidad de red.
+3. Puedes cerrar el panel. El cliente sigue tomando medidas mientras la sesión SSH esté abierta.
 
 ![El panel de monitorización junto al terminal muestra uso de CPU, memoria y disco, tráfico de red y datos del host Linux.](../assets/guide/terminal-ssh-metrics-es.png)
 
@@ -2475,7 +2484,7 @@ La sección Docker se conecta al motor en este ordenador o en un host guardado S
 
 3. Cada fila muestra el estado, la salud, la imagen, el ID corto y los puertos. Los botones permiten iniciar, detener o reiniciar el contenedor y abrir los registros o el terminal. En el menú … puedes pausarlo, forzar su finalización, eliminarlo o crear un reenvío de puerto.
 
-**En este capítulo** [Conectar con un motor local de Docker o por SSH](#docker-containers-local-engine) · [Eliminar un contenedor y seleccionar volúmenes y redes](#docker-containers-remove)
+**En este capítulo** [Conectar con un motor local de Docker o por SSH](#docker-containers-local-engine) · [Eliminar un contenedor o un proyecto de Compose](#docker-containers-remove)
 
 <a id="docker-containers-local-engine"></a>
 
@@ -2489,10 +2498,12 @@ Este equipo abre el motor local de Docker. Los hosts SSH guardados aparecen por 
 
 <a id="docker-containers-remove"></a>
 
-### Eliminar un contenedor y seleccionar volúmenes y redes
+### Eliminar un contenedor o un proyecto de Compose
 
 1. Abre el menú del contenedor y selecciona Eliminar contenedor. Comprueba el nombre y el host. Si está en ejecución, confirma que se puede detener.
 2. Los volúmenes y las redes aparecen desmarcados. Marca solo los recursos disponibles que quieras eliminar. Cada recurso protegido indica el motivo. Se conservan los volúmenes compartidos, las redes integradas y los archivos del host montados mediante bind mounts. Confirma y comprueba el resultado de cada recurso.
+
+Para eliminar el proyecto completo, abre el menú del grupo de Compose y elige la opción de eliminar el proyecto. Revisa la lista de contenedores. Se detendrán los que estén en ejecución y se eliminarán las redes del proyecto que queden sin usar. La eliminación de volúmenes es opcional. Los archivos de Compose y los directorios montados desde el host se conservan.
 
 ![En el diálogo de eliminación puedes elegir un volumen y una red. La red compartida y los archivos del host están protegidos.](../assets/guide/docker-cleanup-es.png)
 
