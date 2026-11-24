@@ -37,6 +37,7 @@ Step-by-step instructions with screenshots of the app and demonstration data. Th
 - [Passwords, keys and credentials](#credentials)
 - [Known hosts and SSH-key verification](#host-keys)
 - [Terminal, tabs and selection](#terminal)
+- [TCPdump: inspect traffic between two hosts](#tcpdump)
 - [Local terminals: zsh, PowerShell and WSL](#local-terminals)
 - [Keyboard shortcuts](#shortcuts)
 - [SFTP: transfers and file preview](#sftp)
@@ -677,6 +678,8 @@ Use Passwords to open a KeePass KDBX 3/4 database or connect to a Vault or OpenB
 
 12. After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.
 
+13. On the start screen, find your recently opened KDBX files, WebDAV connections or Vault / OpenBao connections in their respective groups. Select an entry to reopen it.
+
 **In this chapter** [Import and export KDBX entries](#password-manager-kdbx-transfer) · [Connect to Vault or OpenBao](#password-manager-vault-openbao) · [Find a Vault secret and copy a field](#password-manager-vault-browse)
 
 <a id="password-manager-kdbx-transfer"></a>
@@ -949,7 +952,7 @@ A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or
 
 11. “Settings → Terminal → Tab placement”: Top or Left. Left is a column of tabs with names and addresses; drag its edge to change the width or fold it to icons. While the column is shown, the app sidebar stays folded until you unfold it. The choice is kept on this device.
 
-**In this chapter** [Monitor host load in an SSH session](#terminal-ssh-monitoring)
+**In this chapter** [Monitor host load in an SSH session](#terminal-ssh-monitoring) · [Manage tmux sessions over SSH](#terminal-tmux) · [Search, encoding and status bar](#terminal-session-tools) · [Android tablets and external displays](#terminal-android-wide)
 
 <a id="terminal-ssh-monitoring"></a>
 
@@ -962,6 +965,36 @@ A tab holds a terminal session (SSH, plus local shells on macOS and Windows), or
 ![The Monitoring panel beside the terminal shows CPU, memory and disk usage, network throughput and Linux host details.](../assets/guide/terminal-ssh-metrics-en.png)
 
 The Monitoring panel beside the terminal shows CPU, memory and disk usage, network throughput and Linux host details.
+
+<a id="terminal-tmux"></a>
+
+### Manage tmux sessions over SSH
+
+1. Connect over SSH to a host with tmux installed. Open tmux in that terminal’s tools to see the installed version and sessions.
+2. Choose + and enter a name, or select an existing session. Its card shows the directory and window count. Use the terminal icon to attach.
+3. Detach to leave the process running. Ending a session with the trash button also closes its processes and asks for confirmation.
+
+![The deploy and logs sessions in the active terminal’s right panel.](../assets/guide/ssh-tmux-sessions-en.png)
+
+The deploy and logs sessions in the active terminal’s right panel.
+
+<a id="terminal-session-tools"></a>
+
+### Search, encoding and status bar
+
+Select the split you want and click the magnifier to search its output. Use the encoding menu to select a character set for that terminal. In terminal mode, Ctrl+Enter (⌘+Enter on Mac) toggles full screen. The SSH history panel reads the server shell’s history file.
+
+In Settings → Terminal, enable the status bar and choose its metrics and colors. On narrow panes, the arrow reveals hidden metrics. You can also group side tabs by host folder here. To paste several lines at once, enable multiline paste in Settings → Security. Control characters still prompt for confirmation.
+
+<a id="terminal-android-wide"></a>
+
+### Android tablets and external displays
+
+Maximize ConsoleCrypt on a tablet or open it on an external display using Android windowing, Samsung DeX or Pixel Desktop. When the window is wide enough, the sidebar and workspace panes appear. Narrow it to return to the compact view. The active SSH terminal stays open.
+
+![A wide Android window with sidebar navigation and an active SSH terminal.](../assets/guide/android-wide-terminal-en.png)
+
+A wide Android window with sidebar navigation and an active SSH terminal.
 
 [Paste multiple lines in PowerShell](#local-terminals-powershell-paste)
 
@@ -1009,9 +1042,31 @@ Eight open demo tabs: strip navigation and the tab count.
 
 Demo Android terminal with its special-key bar.
 
+<a name="tcpdump"></a>
+
+## 20. TCPdump: inspect traffic between two hosts
+
+Capture runs over SSH on the first server. The list shows packets it exchanges with the second server in both directions.
+
+1. Open TCPdump. Select the capture server on the left and the other saved host on the right. The arrow swaps the hosts and changes where capture runs.
+
+2. Select Check tcpdump. If the utility is missing, review the installation command and confirm it to open it in the first server’s terminal.
+
+3. Packet capture requires capture privileges. Enable sudo with the shield button if needed, then start capture. Enter the password in the separate prompt if sudo requests it.
+
+4. Select a packet. Its endpoints, ports, TCP flags and captured bytes in HEX and ASCII appear above the list. The list stays in place while you inspect it. Use Back to resume live updates or Stop to end capture.
+
+> **Keep in mind**
+>
+> For a plaintext protocol, the ASCII column can show part of a request. With TLS, the application payload stays encrypted.
+
+![A selected GET /health packet with its endpoints, port 8080 and captured request bytes above the list.](../assets/guide/tcpdump-packet-en.png)
+
+A selected GET /health packet with its endpoints, port 8080 and captured request bytes above the list.
+
 <a name="local-terminals"></a>
 
-## 20. Local terminals: zsh, PowerShell and WSL
+## 21. Local terminals: zsh, PowerShell and WSL
 
 On macOS and Windows you can open a shell on this computer alongside SSH tabs. It runs as your ordinary OS user and does not require a sync server.
 
@@ -1057,7 +1112,7 @@ Windows-style picker for PowerShell, cmd and two WSL distributions in a macOS-ho
 
 <a name="shortcuts"></a>
 
-## 21. Keyboard shortcuts
+## 22. Keyboard shortcuts
 
 The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows does not use Ctrl+C, which interrupts a command. App shortcuts can be remapped in Settings → Keyboard shortcuts: choose Change and press a new combination with ⌘/Ctrl or Alt. If another command has it, that command loses it; if the system or terminal uses it, you are warned. Restore defaults brings back the table below.
 
@@ -1086,7 +1141,7 @@ The main modifier is ⌘ on macOS and Ctrl on Windows/Linux. Copy on Windows doe
 
 <a name="sftp"></a>
 
-## 22. SFTP: transfers and file preview
+## 23. SFTP: transfers and file preview
 
 Open SFTP from a host’s menu or the sidebar. Files travel directly between your device and the SSH host.
 
@@ -1128,7 +1183,7 @@ The Transfers panel: downloads and an upload are done, and a failed transfer has
 
 <a name="sftp-editor"></a>
 
-## 23. SFTP: default editor
+## 24. SFTP: default editor
 
 On a computer, files can open in an external editor. ConsoleCrypt remembers the chosen application on that device.
 
@@ -1156,7 +1211,7 @@ Open on a script: the file opens as text and never runs.
 
 <a name="tunnels"></a>
 
-## 24. SSH tunnels
+## 25. SSH tunnels
 
 A tunnel uses an SSH connection to the chosen host. Local forwarding, remote forwarding and dynamic SOCKS5 are available.
 
@@ -1202,7 +1257,7 @@ Remote forwarding on 0.0.0.0: the warning and the required acknowledgement.
 
 <a name="snippets"></a>
 
-## 25. Snippets, variables and starter sets
+## 26. Snippets, variables and starter sets
 
 A snippet is a saved command or template. Open the tool with the &lt;/&gt; icon on the right or its shortcut.
 
@@ -1244,7 +1299,7 @@ Filtering and managing snippet sets.
 
 <a name="ai"></a>
 
-## 26. AI chat and the context you send
+## 27. AI chat and the context you send
 
 You choose the provider, context and subsequent action. A model’s answer does not execute commands.
 
@@ -1280,7 +1335,7 @@ Adding a provider: address, model, an API key kept in the vault and the privacy 
 
 <a name="local-ai"></a>
 
-## 27. Local AI: models, your own GGUF and upgrades
+## 28. Local AI: models, your own GGUF and upgrades
 
 On macOS, Windows and Linux x64, the model answers on your computer. Choose Light Qwen2.5-Coder 1.5B, Medium Qwen3.5 4B or Strong Qwen3.5 9B and preserves downloaded models across updates. You can add your own GGUF model too.
 
@@ -1330,7 +1385,7 @@ The selected model is ready with stop and remove actions; the process state is s
 
 <a name="notes"></a>
 
-## 28. Notes, tasks and reminders
+## 29. Notes, tasks and reminders
 
 Notes is a right-panel tool next to Snippets and AI. Open it with the note icon, from the command palette or from the phone header. Notes are encrypted on the device and sync with the vault.
 
@@ -1384,7 +1439,7 @@ A note’s menu: pin, remind in an hour, detach from the object and delete.
 
 <a name="automation"></a>
 
-## 29. Ansible automation
+## 30. Ansible automation
 
 Start a project from a playbook or a role, add files and review AI suggestions before running them.
 
@@ -1412,7 +1467,7 @@ In Job settings, select a Runner and targets, then choose Validate project and t
 
 <a name="terminal-only"></a>
 
-## 30. Terminal Only
+## 31. Terminal Only
 
 Open a separate window with a local shell and put the tabs on the left or at the top.
 
@@ -1420,11 +1475,13 @@ Open a separate window with a local shell and put the tabs on the left or at the
 
 2. Choose + or press Ctrl+K (⌘K on macOS) to open the palette and select an installed shell. The terminal toolbar controls tab placement.
 
+3. Open new window appears below the available shells. The magnifier searches the active pane.
+
 [Install the apps on macOS](#first-start-macos-install)
 
 <a name="teams"></a>
 
-## 31. Teams
+## 32. Teams
 
 A team is a vault shared by several accounts on the same server. All members see its hosts, groups, credentials and snippets; roles decide who may change them. Team names, settings and resources are end-to-end encrypted: the server only sees who is a member. Teams are available in a synced profile on server 0.2.1 or later (public sync.consolecrypt.dev supports them); a local profile has no Teams section.
 
@@ -1515,7 +1572,7 @@ The “Ask before running risky commands” policy: even a harmless snippet on a
 
 <a name="sharing-start"></a>
 
-## 32. Sharing: getting started
+## 33. Sharing: getting started
 
 Share individual items with verified devices of people on the same server. Your private vault and its key are not shared.
 
@@ -1563,7 +1620,7 @@ The one-time list of secret recipients worth verifying and the “Owner not veri
 
 <a name="sharing-items"></a>
 
-## 33. Shared hosts, groups and secrets
+## 34. Shared hosts, groups and secrets
 
 Each item has its own access rights. A group does not automatically grant access to all its children.
 
@@ -1589,7 +1646,7 @@ The separate secret-publishing dialog: the value is masked and consent has not b
 
 <a name="databases-sharing"></a>
 
-## 34. Shared database connections
+## 35. Shared database connections
 
 A saved database connection can be shared with a colleague’s verified device, just like a host or a Kubernetes context. It needs sync server 0.1.15 or later with the feature enabled; sync.consolecrypt.dev has it on. With an older server the action is hidden. On your own server the CC\_SHARED\_DB\_CONNECTIONS\_ENABLED flag turns it on (see “Your own server: features, flags and limits”).
 
@@ -1623,7 +1680,7 @@ Sharing a connection: what the colleague receives; the route is not shared, and 
 
 <a name="shared-notes"></a>
 
-## 35. Shared notes on shared objects
+## 36. Shared notes on shared objects
 
 A shared host, database connection or Kubernetes context has shared notes that every member sees. This needs sync server 0.2.0 or later with shared notes enabled by the administrator (CC\_SHARED\_NOTES\_ENABLED). An object holds up to 500 notes of up to 288 KiB each, encrypted.
 
@@ -1647,7 +1704,7 @@ The Shared notes block of a shared host: a member’s note and your own note wit
 
 <a name="sharing-devices"></a>
 
-## 36. A colleague’s new personal devices
+## 37. A colleague’s new personal devices
 
 A grant applies only to new devices belonging to an already verified colleague. It does not invite other people or elevate permissions.
 
@@ -1673,7 +1730,7 @@ Configuring a new-device grant: Manual approval remains the initial choice.
 
 <a name="sharing-revoke"></a>
 
-## 37. Revocation, queues and trust recovery
+## 38. Revocation, queues and trust recovery
 
 The owner manages participants. An editor changes content; participant access remains under the owner’s control.
 
@@ -1705,7 +1762,7 @@ Recently deleted: shared items can be restored for 30 days.
 
 <a name="settings-overview"></a>
 
-## 38. Settings: what is where
+## 39. Settings: what is where
 
 Settings open from the sidebar or with ⌘, / Ctrl+,. It is one scrolling page of cards; some cards appear only where the feature is available. Appearance, terminal, shortcut and editor preferences stay on the device, while vault data lives in the encrypted profile.
 
@@ -1743,7 +1800,7 @@ Security and AI providers: clipboard clearing, local and remote providers, defau
 
 <a name="cli"></a>
 
-## 39. Command line: consolecrypt-cli
+## 40. Command line: consolecrypt-cli
 
 consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macOS, Windows and Linux installers and works with the same profiles as the app.
 
@@ -1765,7 +1822,7 @@ consolecrypt-cli is the ConsoleCrypt command-line client. It ships with the macO
 
 <a name="appearance"></a>
 
-## 40. Colors, text size and glass effects
+## 41. Colors, text size and glass effects
 
 Appearance preferences are stored on this device. Interface text size and terminal font size are adjusted separately.
 
@@ -1789,7 +1846,7 @@ Theme, scale and glass settings in the demo interface.
 
 <a name="right-panel"></a>
 
-## 41. Right panel: bubbles or one workspace
+## 42. Right panel: bubbles or one workspace
 
 Snippets, notes, AI and port forwards are in the right-side tool panel. Choose its behavior in appearance settings.
 
@@ -1815,7 +1872,7 @@ The expanded AI panel alongside a demo terminal.
 
 <a name="screenshots"></a>
 
-## 42. Screenshots, screen protection and clipboard
+## 43. Screenshots, screen protection and clipboard
 
 Whether an app can block screen capture depends on the OS. Capture preferences are local to the current device. Copied secrets stay out of clipboard history and are removed after a timeout.
 
@@ -1856,7 +1913,7 @@ Windows: “Hide window from screen capture” — Never, While secrets are show
 
 <a name="backups"></a>
 
-## 43. Backups and restore
+## 44. Backups and restore
 
 Sync does not replace a backup. Keep the encrypted file apart from your device and the Recovery Kit apart from that file.
 
@@ -1880,7 +1937,7 @@ Restoring from the welcome screen: a .ccbackup file opens into a new local profi
 
 <a name="about"></a>
 
-## 44. Version, author and licenses
+## 45. Version, author and licenses
 
 About shows details of the installed app: its version, build number, author and licenses.
 
@@ -1898,7 +1955,7 @@ About: version, author and the client and server license labels.
 
 <a name="updates"></a>
 
-## 45. Client updates
+## 46. Client updates
 
 On Windows, macOS, Android and Linux (a DEB or RPM copy, from 0.9.14), “Settings → Updates” offers startup checks and a manual check. A check does not install an update by itself.
 
@@ -1930,7 +1987,7 @@ Update checking with a separate startup-check preference.
 
 <a name="server-account"></a>
 
-## 46. Account: password, disconnecting and the website account
+## 47. Account: password, disconnecting and the website account
 
 The website account manages your public-server account. Decrypted hosts, keys and snippets remain in the application.
 
@@ -1958,7 +2015,7 @@ Settings: profiles, “Account &amp; sync” with the account actions, and the v
 
 <a name="kubernetes-connections"></a>
 
-## 47. Kubernetes: connections and access
+## 48. Kubernetes: connections and access
 
 Import existing contexts and keep credentials in your encrypted vault. Cluster requests originate from your device.
 
@@ -1994,7 +2051,7 @@ kubeconfig import: contexts of a demo file, their authentication, the Production
 
 <a name="kubernetes-resources"></a>
 
-## 48. Kubernetes: resources and changes
+## 49. Kubernetes: resources and changes
 
 Live lists and details show objects from available APIs, including installed CRDs.
 
@@ -2009,6 +2066,8 @@ Live lists and details show objects from available APIs, including installed CRD
 5. Deletion, restart, scaling, cordon/drain and debug containers require confirmation with the vault passphrase; no resource name needs typing. Secret values are hidden and revealed separately.
 
 6. A production context blocks writes. Desktop allows a 10-minute write window confirmed with the vault passphrase; bulk production mutations remain prohibited.
+
+7. Open a resource row’s context menu for available actions. In its details, hover over an icon to read the tooltip. For image pull failures, open the Pod’s events tab and read the Failed event message.
 
 [Full Kubernetes instructions ↗](../docs/public/en/KUBERNETES.md)
 
@@ -2034,7 +2093,7 @@ Rollout history: two Deployment revisions compared field by field.
 
 <a name="kubernetes-logs-shell"></a>
 
-## 49. Kubernetes: logs, shell and tunnels
+## 50. Kubernetes: logs, shell and tunnels
 
 Logs, shell and port forwarding are built into the client and require no external kubectl.
 
@@ -2080,7 +2139,7 @@ A Pod port forward: the address on this device and the list of active forwards o
 
 <a name="kubernetes-gitops"></a>
 
-## 50. Kubernetes: GitOps and problems
+## 51. Kubernetes: GitOps and problems
 
 Flux and Argo CD are discovered from available CRDs. Overview combines status, dependencies and links to problematic objects.
 
@@ -2112,7 +2171,7 @@ GitOps on a phone with demonstration data. The filter panel is scrolled; scroll 
 
 <a name="kubernetes-helm"></a>
 
-## 51. Kubernetes: Helm
+## 52. Kubernetes: Helm
 
 Inspect stored Helm releases and compare them with the current cluster.
 
@@ -2140,7 +2199,7 @@ Kubernetes interface with demonstration data.
 
 <a name="kubernetes-terminal-ai"></a>
 
-## 52. Kubernetes: context terminal and AI
+## 53. Kubernetes: context terminal and AI
 
 The context remains explicit for both local commands and AI assistance.
 
@@ -2166,7 +2225,7 @@ AI in Kubernetes: a question about a failing Pod, the logs and events it read an
 
 <a name="databases-connections"></a>
 
-## 53. Databases: connections and routes
+## 54. Databases: connections and routes
 
 The Databases section works with PostgreSQL, MySQL and MariaDB, ClickHouse, Redis, MongoDB, Cassandra and ScyllaDB, and with SQLite files. Drivers are built into the app, connections live in the encrypted vault, and queries go from your device straight to the database.
 
@@ -2210,7 +2269,7 @@ Choosing the route in the connection form: SSH host, jump profile, Kubernetes, t
 
 <a name="databases-sqlite-cassandra"></a>
 
-## 54. Databases: SQLite, Cassandra and ScyllaDB
+## 55. Databases: SQLite, Cassandra and ScyllaDB
 
 SQLite is a file, not a server; Cassandra and ScyllaDB speak CQL. Both engines arrived in 0.9.2. From 0.9.14, Cassandra / ScyllaDB and SQLite-through-a-host connections can move into the vault, while an SQLite file on this computer stays here.
 
@@ -2248,7 +2307,7 @@ Cassandra / ScyllaDB: contact points, the local data center, consistency levels 
 
 <a name="databases-queries"></a>
 
-## 55. Databases: structure, queries and results
+## 56. Databases: structure, queries and results
 
 Click a connection to open its workspace: the database structure on the left, query tabs, the editor and the result grid on the right. Drag the panel borders to resize them. The main modifier is ⌘ on macOS and Ctrl on Windows and Linux.
 
@@ -2336,7 +2395,7 @@ Three rows selected: the status line reads “Selected: 3 rows”.
 
 <a name="databases-changes"></a>
 
-## 56. Databases: production, changes, history and export
+## 57. Databases: production, changes, history and export
 
 A production connection is read-only, and any change is shown to you before it runs. Writes are turned on explicitly in a non-production session, and in production only within a temporary window.
 
@@ -2378,7 +2437,7 @@ Reviewing edits: the UPDATE statements with the actual values and the vault pass
 
 <a name="databases-production"></a>
 
-## 57. Databases: writing to production
+## 58. Databases: writing to production
 
 A production connection opens read-only. When production must be changed, open a temporary write window: it lasts a few minutes and applies to this session only.
 
@@ -2404,7 +2463,7 @@ An open write window: the red badge with its end time, the countdown and the Loc
 
 <a name="databases-designer"></a>
 
-## 58. Databases: table designer and CSV import
+## 59. Databases: table designer and CSV import
 
 Create or change a table without writing SQL, and load CSV data into a table. In both cases nothing runs on the server until you confirm.
 
@@ -2452,7 +2511,7 @@ Step 3 of 5: file columns mapped by name, manager\_note skipped, and total value
 
 <a name="databases-ai"></a>
 
-## 59. Databases: AI assistant
+## 60. Databases: AI assistant
 
 The assistant writes, explains, fixes and speeds up queries. It uses the provider from Settings → AI and never runs anything on its own.
 
@@ -2474,7 +2533,7 @@ The AI assistant: a draft query from a description; only two table names were sh
 
 <a name="docker-containers"></a>
 
-## 60. Docker: hosts and containers
+## 61. Docker: hosts and containers
 
 The Docker section connects to the engine on this computer or on a saved SSH host. A remote engine is reached through the host’s SSH connection.
 
@@ -2484,7 +2543,7 @@ The Docker section connects to the engine on this computer or on a saved SSH hos
 
 3. Each row shows the status, health, image, short ID, and ports. The buttons start, stop, or restart the container and open its logs or terminal. The … menu includes pause, kill, removal, and port forwarding.
 
-**In this chapter** [Connect to a local Docker engine or use SSH](#docker-containers-local-engine) · [Remove a container or Compose project](#docker-containers-remove)
+**In this chapter** [Connect to a local Docker engine or use SSH](#docker-containers-local-engine) · [Remove a container or Compose project](#docker-containers-remove) · [Images, networks, disk usage and events](#docker-containers-engine-storage)
 
 <a id="docker-containers-local-engine"></a>
 
@@ -2509,6 +2568,18 @@ To remove the whole project, open the Compose group menu and choose Remove Compo
 
 The removal dialog lets you select a volume and a network. The shared network and host files are protected.
 
+<a id="docker-containers-engine-storage"></a>
+
+### Images, networks, disk usage and events
+
+Open Docker and connect to an engine. In Images, open an image card or its context menu. In Networks, expand a card to see its subnet, gateway and attached containers.
+
+Open Disk usage to compare storage used by images, containers, volumes and build cache. Reclaimable space appears where the engine reports it. To find when a container stopped or restarted, open Events and filter by name.
+
+![Disk usage on web-01 across the four storage categories.](../assets/guide/docker-engine-disk-en.png)
+
+Disk usage on web-01 across the four storage categories.
+
 [Full Docker instructions ↗](../docs/public/en/DOCKER.md)
 
 > **Keep in mind**
@@ -2525,7 +2596,7 @@ Demo containers grouped by compose project, with the state filter.
 
 <a name="docker-details"></a>
 
-## 61. Docker: details, logs, volumes and forwards
+## 62. Docker: details, logs, volumes and forwards
 
 Click a container to open its details on the right while keeping the list in view.
 
@@ -2549,14 +2620,16 @@ Click a container to open its details on the right while keeping the list in vie
 
 ### Deploy a container to Kubernetes
 
-1. Open a Linux container that runs without persistent mounts and choose Deploy to Kubernetes · Experimental. Select a saved Kubernetes context and namespace. Verify the workload name and the TCP port the application listens on inside the container.
-2. The wizard uses Docker to verify the image digest in its source registry before filling it in. If the image exists only locally, publish it to a registry reachable by the nodes and enter its full reference with a tag or digest. If needed for a private registry, specify an existing imagePullSecret in the selected namespace.
-3. Use the template or select an AI provider. Review the YAML, including image, command, args, and port. Run the server check to validate both manifests. The node pulls the image and starts the process when the Pod launches. Confirm creation of the single-replica Deployment and internal ClusterIP Service.
-4. Check readiness. For ImagePullBackOff, check the image reference and the node’s pull access. For CrashLoopBackOff, inspect the command, arguments, exit code, and restart count. Exit code 0 on a repeatedly restarted Pod can mean its process finished and exited. Open the created Deployment to inspect the Pod.
+1. In Docker, open a Linux container without persistent mounts and choose Deploy to Kubernetes. Select the context and namespace, workload name and application TCP port.
+2. Select a saved registry. Use + to save an account for Docker Hub, Harbor, GitLab, Forgejo or a compatible registry. Enter the repository and tag. Publish image pushes the existing image from the selected Docker host.
+3. To publish multiple architectures, enable building from source. For a local engine, select a project folder with a Dockerfile. For an SSH engine, enter the absolute project path on that server. Select linux/amd64, linux/arm64 or both, then build and publish. The host needs Buildx and a builder that supports the selected platforms. A phone can also start a build on an SSH host.
+4. After publication, check the image reference filled in with the tag. Enable digest pinning if you need an immutable version. For a private registry, enter an existing imagePullSecret from the same namespace.
+5. Use the template or select an AI provider. You can edit the prompt before sending it. Review the resulting YAML and startup command, confirm the image selection and run the server check. Then create the single-replica Deployment and internal ClusterIP Service.
+6. If a Pod shows ImagePullBackOff, open that Pod and its events. A Failed event usually includes the registry’s response about the tag, pull access or platform. Deployment events show ReplicaSet activity.
 
-![Before generating the manifest, check the cluster context, namespace, image digest, and application port.](../assets/guide/docker-kube-wizard-en.png)
+![Publish from /srv/shop-api on the SSH server with the target Linux platforms selected.](../assets/guide/docker-kube-wizard-en.png)
 
-Before generating the manifest, check the cluster context, namespace, image digest, and application port.
+Publish from /srv/shop-api on the SSH server with the target Linux platforms selected.
 
 ![Container details: ports, networks, mounts, labels and masked environment secrets.](../assets/guide/docker-details-en.png)
 
@@ -2580,7 +2653,7 @@ A container port forward in the shared right panel.
 
 <a name="docker-compose"></a>
 
-## 62. Docker: compose projects
+## 63. Docker: compose projects
 
 The menu on a compose group header controls the whole project and opens its files.
 
@@ -2610,7 +2683,7 @@ Compose files as tabs with line numbers: passwords are masked; “Show in full�
 
 <a name="server-setup"></a>
 
-## 63. Your own server: Kubernetes
+## 64. Your own server: Kubernetes
 
 A server enables device sync and collaboration. The client does not need one for local use. Neither the product website nor analytics is required to run your own server.
 
@@ -2708,7 +2781,7 @@ Sync: the connected profile, status and actions for checking data exchange.
 
 <a name="server-docker"></a>
 
-## 64. Your own server: Docker Compose
+## 65. Your own server: Docker Compose
 
 Run ConsoleCrypt on a single Linux server without Kubernetes: a prebuilt server image, PostgreSQL 16 and Caddy for HTTPS. Database data and certificates are kept in persistent Docker volumes.
 
@@ -2781,7 +2854,7 @@ Choose your own server in the client and enter its HTTPS address.
 
 <a name="server-settings"></a>
 
-## 65. Your own server: installation and parameters by method
+## 66. Your own server: installation and parameters by method
 
 Every server setting is a CC\_\* variable; the full list with Helm paths, defaults and allowed values is in “Your own server: configuration reference”. This chapter shows where to put a key for each installation method (Docker Compose, docker run, Helm, a JSON file and systemd), how to apply and verify a change, and worked examples: shared notes and teams, sign-in with Entra ID and Active Directory, switching limits to enforce, raising quotas.
 
@@ -3238,7 +3311,7 @@ accounts.
 
 <a name="server-enterprise"></a>
 
-## 66. Your own server: corporate sign-in and shared notes
+## 67. Your own server: corporate sign-in and shared notes
 
 Since server 0.2.0 (protocol 1.9) the server can run in enterprise mode: accounts sign in only through an OpenID Connect IdP or Active Directory / LDAP. It is part of the open-source server, with no separate build or licence. Encryption, vaults, devices, sharing and teams (server 0.2.1) work in both modes.
 
@@ -3326,7 +3399,7 @@ How the client sees a server in enterprise mode with Active Directory.
 
 <a name="server-idp"></a>
 
-## 67. Your own server: corporate sign-in recipes
+## 68. Your own server: corporate sign-in recipes
 
 The complete enterprise-mode guide: what the server needs from the IdP, step-by-step recipes for Microsoft Entra ID, AD FS 2016+, Keycloak, Google Workspace, Okta and any OIDC provider, Active Directory over LDAPS or STARTTLS, account linking at first sign-in, commands, deployment, a troubleshooting table and switching back to standard sign-in. In the examples the server is https://sync.acme.com and angle brackets mark your own values; keep secrets only in files and Secrets.
 
@@ -3862,7 +3935,7 @@ the table in the Russian section and [PROTOCOL_CHANGELOG.md](https://github.com/
 
 <a name="server-config"></a>
 
-## 68. Your own server: features, flags and limits
+## 69. Your own server: features, flags and limits
 
 Your own server’s features are turned on with CC\_\* variables. With Docker Compose they go into the private server.env (for the variables compose.yaml lists) or a separate compose.override.yaml; with Helm into the config, auth and mail blocks of your values file; without containers into the service environment or a private JSON file (--config). The values below are the server defaults.
 
@@ -4032,7 +4105,7 @@ The client shows Teams only when the server supports them.
 
 <a name="server-reference"></a>
 
-## 69. Your own server: configuration reference
+## 70. Your own server: configuration reference
 
 Every sync server parameter: each CC\_\* key with its Helm path, default, allowed values, secret flag and purpose, grouped as in the source reference; the order of configuration sources and start-up checks; all 18 request limits and the admin commands. The reference is checked against the server code at every release. Where to put a key for each installation method is in “Your own server: installation and parameters by method”.
 
@@ -4453,7 +4526,7 @@ admin …` or `kubectl exec deployment/… -- /usr/local/bin/consolecrypt-server
 
 <a name="server-maintenance"></a>
 
-## 70. Your own server: backups, upgrades and commands
+## 71. Your own server: backups, upgrades and commands
 
 All persistent server data lives in PostgreSQL. A database backup plus the private configuration is what a restore needs. Admin commands manage accounts and sessions but never give access to vault contents.
 

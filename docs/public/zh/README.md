@@ -40,6 +40,7 @@
 
 ## 版本记录
 
+- [ConsoleCrypt 1.2.5](../RELEASE_1_2_5.md#简体中文)
 - [ConsoleCrypt 1.2.3](../RELEASE_1_2_3.md#简体中文)
 - [ConsoleCrypt 1.2.1](../RELEASE_1_2_1.md)
 - [ConsoleCrypt 1.2.0](../RELEASE_1_2_0.md)

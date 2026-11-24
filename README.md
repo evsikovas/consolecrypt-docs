@@ -11,6 +11,9 @@
 
 ## С чего начать
 
+- [Посмотреть трафик между двумя хостами с помощью TCPdump](guide/ru.md#tcpdump)
+- [Собрать образ по SSH и развернуть его в Kubernetes](guide/ru.md#docker-details-deploy-kubernetes)
+
 - [Установить приложение и создать профиль](guide/ru.md#first-start)
 - [Добавить SSH- или RDP-хост](guide/ru.md#hosts)
 - [Посмотреть нагрузку Linux-сервера](guide/ru.md#terminal-ssh-monitoring)

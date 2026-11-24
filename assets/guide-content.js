@@ -1937,6 +1937,12 @@ export const guideSections = [
         "en": "After the first password unlock, enable quick unlock for this database on this device through Windows Hello, Apple system protection or Android Keystore. FIDO2/PRF is available on Windows/macOS. Linux biometric quick unlock is not implemented yet; iOS Simulator capabilities depend on its environment.",
         "es": "Después de que la primera contraseña se desbloquee, active el desbloqueo rápido para esta base de datos en este dispositivo a través de Windows Hola, Protección del sistema de Apple o Android Keystore. FIDO2/PRF está disponible en Windows / macOS . Linux el desbloqueo rápido biométrico aún no se implementa; iOS Las capacidades de los simuladores dependen de su entorno.",
         "zh": "在第一个密码解锁后,通过WindowsApple系统保护或AndroidKeystore为这个设备上的这个数据库启用快速解锁. FIDO2/PRF可在Windows/macOS上查阅。 Linux生物特征快速解锁尚未实施; iOS模拟能力取决于其环境."
+      },
+      {
+        "ru": "В стартовом окне выберите группу ранее открытых KDBX, подключений WebDAV или Vault / OpenBao. Нажмите нужную запись, чтобы открыть базу или перейти к подключению.",
+        "en": "On the start screen, find your recently opened KDBX files, WebDAV connections or Vault / OpenBao connections in their respective groups. Select an entry to reopen it.",
+        "es": "En la pantalla inicial, busca las bases KDBX abiertas recientemente, las conexiones WebDAV o las de Vault / OpenBao en sus respectivos grupos. Selecciona la entrada para volver a abrirla.",
+        "zh": "在首页的对应分组中查找最近打开的 KDBX 文件、WebDAV 连接或 Vault / OpenBao 连接。选择条目即可重新打开。"
       }
     ],
     "note": {
@@ -2839,6 +2845,42 @@ export const guideSections = [
           "zh"
         ],
         "part": "ssh-monitoring"
+      },
+      {
+        "name": "ssh-tmux-sessions",
+        "caption": {
+          "ru": "Сессии deploy и logs доступны в правой панели активного терминала.",
+          "en": "The deploy and logs sessions in the active terminal’s right panel.",
+          "es": "Las sesiones deploy y logs en el panel derecho del terminal activo.",
+          "zh": "当前终端右侧面板中的 deploy 和 logs 会话。"
+        },
+        "width": 1440,
+        "height": 900,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "tmux"
+      },
+      {
+        "name": "android-wide-terminal",
+        "caption": {
+          "ru": "Широкое окно Android с боковой навигацией и активным SSH-терминалом.",
+          "en": "A wide Android window with sidebar navigation and an active SSH terminal.",
+          "es": "Ventana ancha de Android con navegación lateral y un terminal SSH activo.",
+          "zh": "宽窗口 Android 布局，左侧为导航，右侧为当前 SSH 终端。"
+        },
+        "width": 1440,
+        "height": 900,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "android-wide"
       }
     ],
     "image": {
@@ -2867,6 +2909,51 @@ export const guideSections = [
           "es": "1. Conéctate a un host Linux con el cliente SSH integrado. En el ordenador, abre la monitorización en el panel derecho. En el móvil, ábrela desde las herramientas de la sesión.\n2. El gráfico muestra el uso de CPU de los últimos cinco minutos. También puedes consultar la memoria, el disco y la velocidad de red.\n3. Puedes cerrar el panel. El cliente sigue tomando medidas mientras la sesión SSH esté abierta.",
           "zh": "1. 使用内置 SSH 客户端连接 Linux 主机。在桌面版的右侧栏打开监控，在手机上从会话工具中打开。\n2. 图表显示过去五分钟的 CPU 使用率，旁边列出内存、磁盘和网络速率。\n3. 可以收起面板。只要 SSH 会话仍在连接，客户端就会继续采集数据。"
         }
+      },
+      {
+        "id": "tmux",
+        "title": {
+          "ru": "Сессии tmux по SSH",
+          "en": "Manage tmux sessions over SSH",
+          "es": "Gestionar sesiones tmux por SSH",
+          "zh": "通过 SSH 管理 tmux 会话"
+        },
+        "body": {
+          "ru": "1. Подключитесь по SSH к хосту с установленным tmux. В инструментах этого терминала откройте tmux. Сверху показаны версия и список сессий.\n2. Нажмите «+» и задайте имя или выберите существующую сессию. По карточке можно проверить каталог и число окон. Кнопка терминала подключает к сессии.\n3. Чтобы оставить процесс работать, отсоединитесь от tmux. Завершение сессии через корзину закрывает и её процессы, поэтому требует подтверждения.",
+          "en": "1. Connect over SSH to a host with tmux installed. Open tmux in that terminal’s tools to see the installed version and sessions.\n2. Choose + and enter a name, or select an existing session. Its card shows the directory and window count. Use the terminal icon to attach.\n3. Detach to leave the process running. Ending a session with the trash button also closes its processes and asks for confirmation.",
+          "es": "1. Conéctate por SSH a un host que tenga tmux instalado. Abre tmux en las herramientas de ese terminal para ver la versión y las sesiones.\n2. Pulsa + y escribe un nombre, o selecciona una sesión existente. La ficha muestra el directorio y el número de ventanas. El icono de terminal permite conectarse.\n3. Desconéctate de la sesión para mantener el proceso activo. La papelera termina la sesión y sus procesos después de pedir confirmación.",
+          "zh": "1. 通过 SSH 连接到已安装 tmux 的主机。在该终端的工具中打开 tmux，查看版本和会话列表。\n2. 点击 + 并命名新会话，或选择已有会话。卡片会显示目录和窗口数量。点击终端图标即可连接。\n3. 分离会话后，进程会继续运行。点击垃圾桶会结束会话及其进程，操作前需要确认。"
+        }
+      },
+      {
+        "id": "session-tools",
+        "title": {
+          "ru": "Поиск, кодировка и строка показателей",
+          "en": "Search, encoding and status bar",
+          "es": "Búsqueda, codificación y barra de estado",
+          "zh": "搜索、字符编码和状态栏"
+        },
+        "body": {
+          "ru": "Выберите нужный сплит и нажмите лупу, чтобы искать в его выводе. В меню кодировки можно выбрать кодовую страницу для текущего терминала. В режиме терминала Ctrl+Enter (⌘+Enter на Mac) переключает полноэкранный режим. Панель истории SSH читает команды из файла истории оболочки сервера.\n\nВ «Настройки → Терминал» включите нижнюю строку и выберите показатели и цвета. В узкой панели стрелка открывает скрытые показатели. Там же можно сгруппировать боковые вкладки по папкам хостов. Для вставки нескольких строк за один раз откройте «Настройки → Безопасность» и включите соответствующий флажок. Для управляющих символов останется отдельное подтверждение.",
+          "en": "Select the split you want and click the magnifier to search its output. Use the encoding menu to select a character set for that terminal. In terminal mode, Ctrl+Enter (⌘+Enter on Mac) toggles full screen. The SSH history panel reads the server shell’s history file.\n\nIn Settings → Terminal, enable the status bar and choose its metrics and colors. On narrow panes, the arrow reveals hidden metrics. You can also group side tabs by host folder here. To paste several lines at once, enable multiline paste in Settings → Security. Control characters still prompt for confirmation.",
+          "es": "Selecciona el panel dividido y pulsa la lupa para buscar en su salida. El menú de codificación permite elegir el juego de caracteres del terminal. En modo terminal, Ctrl+Enter (⌘+Enter en Mac) alterna la pantalla completa. El historial SSH lee el archivo de historial del shell del servidor.\n\nEn Ajustes → Terminal, activa la barra inferior y elige sus indicadores y colores. En paneles estrechos, la flecha muestra los datos ocultos. Aquí también puedes agrupar las pestañas laterales por carpeta de hosts. Para pegar varias líneas de una vez, activa la opción en Ajustes → Seguridad. Los caracteres de control siguen requiriendo confirmación.",
+          "zh": "选择目标分屏并点击放大镜，在该窗格的输出中搜索。通过编码菜单可选择当前终端的字符集。在终端模式下，Ctrl+Enter（Mac 上为 ⌘+Enter）可切换全屏。SSH 历史面板从服务器的 shell 历史文件读取命令。\n\n在“设置 → 终端”中启用底部状态栏并选择指标和颜色。窗格较窄时，箭头会显示隐藏的指标。这里也可以按主机文件夹对侧边标签分组。要直接粘贴多行文本，请在“设置 → 安全”中启用相应选项。粘贴控制字符仍需确认。"
+        }
+      },
+      {
+        "id": "android-wide",
+        "title": {
+          "ru": "Планшет и внешний экран Android",
+          "en": "Android tablets and external displays",
+          "es": "Tabletas Android y pantallas externas",
+          "zh": "Android 平板和外接显示器"
+        },
+        "body": {
+          "ru": "Разверните ConsoleCrypt на планшете или откройте приложение на внешнем дисплее в оконном режиме Android, Samsung DeX или Pixel Desktop. При достаточной ширине появляются боковая навигация и рабочие панели. Уменьшите ширину окна, чтобы вернуться к компактному виду. Активный SSH-терминал остаётся открытым.",
+          "en": "Maximize ConsoleCrypt on a tablet or open it on an external display using Android windowing, Samsung DeX or Pixel Desktop. When the window is wide enough, the sidebar and workspace panes appear. Narrow it to return to the compact view. The active SSH terminal stays open.",
+          "es": "Maximiza ConsoleCrypt en una tableta o ábrelo en una pantalla externa con el modo de ventanas de Android, Samsung DeX o Pixel Desktop. Cuando hay suficiente anchura, aparecen la navegación lateral y los paneles de trabajo. Reduce la ventana para volver a la vista compacta. El terminal SSH activo sigue abierto.",
+          "zh": "在平板上最大化 ConsoleCrypt，或通过 Android 窗口模式、Samsung DeX、Pixel Desktop 在外接屏幕上打开应用。窗口足够宽时会显示侧栏和工作窗格。缩窄窗口即可恢复紧凑布局，当前 SSH 终端会保持打开。"
+        }
       }
     ],
     "links": [
@@ -2878,6 +2965,80 @@ export const guideSections = [
           "zh": "在 PowerShell 中粘贴多行文本"
         },
         "href": "https://consolecrypt.dev/guide#local-terminals-powershell-paste"
+      }
+    ]
+  },
+  {
+    "id": "tcpdump",
+    "group": "workspace",
+    "title": {
+      "ru": "TCPdump: посмотреть трафик между двумя хостами",
+      "en": "TCPdump: inspect traffic between two hosts",
+      "es": "TCPdump: ver el tráfico entre dos hosts",
+      "zh": "TCPdump：查看两台主机之间的流量"
+    },
+    "intro": {
+      "ru": "Захват выполняется по SSH на первом сервере. В списке видны пакеты, которыми он обменивается со вторым сервером в обоих направлениях.",
+      "en": "Capture runs over SSH on the first server. The list shows packets it exchanges with the second server in both directions.",
+      "es": "La captura se ejecuta por SSH en el primer servidor. La lista muestra los paquetes que intercambia con el segundo en ambos sentidos.",
+      "zh": "通过 SSH 在第一台服务器上抓包。列表会显示该服务器与第二台服务器之间双向传输的数据包。"
+    },
+    "steps": [
+      {
+        "ru": "Откройте TCPdump. Слева выберите сервер захвата, справа — другой сохранённый хост. Стрелка между ними меняет место захвата.",
+        "en": "Open TCPdump. Select the capture server on the left and the other saved host on the right. The arrow swaps the hosts and changes where capture runs.",
+        "es": "Abre TCPdump. Elige a la izquierda el servidor de captura y a la derecha el otro host guardado. La flecha intercambia los hosts y cambia el punto de captura.",
+        "zh": "打开 TCPdump。左侧选择抓包服务器，右侧选择另一台已保存的主机。点击中间的箭头可交换主机并改变抓包位置。"
+      },
+      {
+        "ru": "Нажмите «Проверить tcpdump». Если утилита отсутствует, просмотрите команду установки и подтвердите её запуск в терминале первого сервера.",
+        "en": "Select Check tcpdump. If the utility is missing, review the installation command and confirm it to open it in the first server’s terminal.",
+        "es": "Pulsa Comprobar tcpdump. Si falta la herramienta, revisa la orden de instalación y confirma su ejecución en el terminal del primer servidor.",
+        "zh": "点击“检查 tcpdump”。如果尚未安装，先查看安装命令，确认后在第一台服务器的终端中执行。"
+      },
+      {
+        "ru": "Для захвата нужны права на чтение пакетов. При необходимости включите sudo кнопкой со щитом и нажмите «Начать захват». Введите пароль в отдельном окне, если sudo его запросит.",
+        "en": "Packet capture requires capture privileges. Enable sudo with the shield button if needed, then start capture. Enter the password in the separate prompt if sudo requests it.",
+        "es": "La captura requiere permisos para leer paquetes. Si hacen falta privilegios de sudo, activa el botón del escudo e inicia la captura. Introduce la contraseña en el diálogo si sudo la solicita.",
+        "zh": "抓包需要相应权限。需要 sudo 时，先点击盾牌按钮，再开始抓包。如果 sudo 要求密码，请在单独弹出的窗口中输入。"
+      },
+      {
+        "ru": "Выберите строку пакета. Над списком появятся адреса и порты, флаги TCP и доступные байты в HEX и ASCII. Список в этот момент фиксируется. Стрелка назад возвращает к обновлениям. Кнопка остановки завершает захват.",
+        "en": "Select a packet. Its endpoints, ports, TCP flags and captured bytes in HEX and ASCII appear above the list. The list stays in place while you inspect it. Use Back to resume live updates or Stop to end capture.",
+        "es": "Selecciona un paquete. Encima de la lista aparecerán sus extremos, puertos, indicadores TCP y bytes capturados en HEX y ASCII. La lista queda fija mientras lo examinas. Vuelve atrás para recuperar las actualizaciones o pulsa Detener para finalizar.",
+        "zh": "选择一个数据包。列表上方会显示端点、端口、TCP 标志以及十六进制和 ASCII 格式的字节。查看详情时列表固定。点击返回可恢复实时更新，点击停止可结束抓包。"
+      }
+    ],
+    "note": {
+      "ru": "Для открытого протокола в ASCII могут быть видны части запроса. При TLS содержимое приложения остаётся зашифрованным.",
+      "en": "For a plaintext protocol, the ASCII column can show part of a request. With TLS, the application payload stays encrypted.",
+      "es": "En un protocolo sin cifrado, la columna ASCII puede mostrar parte de una petición. Con TLS, el contenido de la aplicación permanece cifrado.",
+      "zh": "明文协议的 ASCII 栏可能显示部分请求内容。使用 TLS 时，应用层载荷仍为密文。"
+    },
+    "keywords": [
+      "tcpdump",
+      "TCP",
+      "sudo",
+      "HEX",
+      "ASCII"
+    ],
+    "images": [
+      {
+        "name": "tcpdump-packet",
+        "caption": {
+          "ru": "Выбран пакет с запросом GET /health. Над списком видны адреса, порт 8080 и фрагмент запроса.",
+          "en": "A selected GET /health packet with its endpoints, port 8080 and captured request bytes above the list.",
+          "es": "Paquete GET /health seleccionado con sus extremos, el puerto 8080 y los bytes capturados encima de la lista.",
+          "zh": "选中的 GET /health 数据包。列表上方显示端点、8080 端口和已捕获的请求字节。"
+        },
+        "width": 1440,
+        "height": 900,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ]
       }
     ]
   },
@@ -4358,6 +4519,12 @@ export const guideSections = [
         "en": "Choose + or press Ctrl+K (⌘K on macOS) to open the palette and select an installed shell. The terminal toolbar controls tab placement.",
         "es": "Pulsa + o abre la paleta con Ctrl+K (⌘K en macOS). Elige una consola instalada. Cambia la posición de las pestañas en la barra del terminal.",
         "zh": "点击「+」或按 Ctrl+K（macOS 上为 ⌘K）打开命令面板，再选择已安装的 Shell。通过终端工具栏可更改选项卡位置。"
+      },
+      {
+        "ru": "Пункт «Открыть новое окно» находится в конце списка оболочек. Лупа ищет в активной панели.",
+        "en": "Open new window appears below the available shells. The magnifier searches the active pane.",
+        "es": "Abrir nueva ventana aparece al final de la lista de shells. La lupa busca en el panel activo.",
+        "zh": "打开新窗口位于 shell 列表末尾。放大镜可在当前窗格内搜索。"
       }
     ],
     "links": [
@@ -6396,6 +6563,12 @@ export const guideSections = [
         "en": "A production context blocks writes. Desktop allows a 10-minute write window confirmed with the vault passphrase; bulk production mutations remain prohibited.",
         "es": "Un contexto de producción bloquea escribe. El escritorio permite una ventana de escritura de 10 minutos confirmada con la contraseña de la bóveda; las mutaciones de producción a granel permanecen prohibidas.",
         "zh": "生产环境区块写。 桌面允许用金库密码句确认一个10分钟的写窗;批量生产变异仍然被禁止."
+      },
+      {
+        "ru": "Откройте контекстное меню строки ресурса, чтобы увидеть доступные действия. В карточке наведите указатель на значок, чтобы прочитать его назначение. При ошибке загрузки образа откройте Pod и вкладку событий, затем прочитайте текст события Failed.",
+        "en": "Open a resource row’s context menu for available actions. In its details, hover over an icon to read the tooltip. For image pull failures, open the Pod’s events tab and read the Failed event message.",
+        "es": "Abre el menú contextual de una fila para ver las acciones disponibles. En la ficha, coloca el puntero sobre cada icono para leer su descripción. Si falla la descarga de una imagen, abre los eventos del Pod y lee el mensaje del evento Failed.",
+        "zh": "打开资源行的右键菜单查看可用操作。将指针停在详情页的图标上可查看说明。拉取镜像失败时，打开 Pod 的事件页并查看 Failed 事件的消息。"
       }
     ],
     "links": [
@@ -8214,6 +8387,24 @@ export const guideSections = [
           "zh"
         ],
         "part": "local-engine"
+      },
+      {
+        "name": "docker-engine-disk",
+        "caption": {
+          "ru": "Расход места на движке web-01 по четырём категориям.",
+          "en": "Disk usage on web-01 across the four storage categories.",
+          "es": "Uso del disco en web-01 desglosado en cuatro categorías.",
+          "zh": "web-01 引擎按四类展示的磁盘占用情况。"
+        },
+        "width": 1440,
+        "height": 900,
+        "locales": [
+          "ru",
+          "en",
+          "es",
+          "zh"
+        ],
+        "part": "engine-storage"
       }
     ],
     "parts": [
@@ -8245,6 +8436,21 @@ export const guideSections = [
           "en": "1. Open the container menu and choose Remove container. Check the name and host. If the container is running, confirm that it may be stopped.\n2. Volumes and networks start unchecked. Select only the available resources you intend to remove. A protected resource shows why it is unavailable. Shared volumes, built-in networks, and host files used by bind mounts are retained. Confirm and check the outcome for each resource.\n\nTo remove the whole project, open the Compose group menu and choose Remove Compose project. Review the container list. Running containers will stop and unused project networks will be removed. Removing volumes is optional. Compose files and bind-mounted host directories stay on the host.",
           "es": "1. Abre el menú del contenedor y selecciona Eliminar contenedor. Comprueba el nombre y el host. Si está en ejecución, confirma que se puede detener.\n2. Los volúmenes y las redes aparecen desmarcados. Marca solo los recursos disponibles que quieras eliminar. Cada recurso protegido indica el motivo. Se conservan los volúmenes compartidos, las redes integradas y los archivos del host montados mediante bind mounts. Confirma y comprueba el resultado de cada recurso.\n\nPara eliminar el proyecto completo, abre el menú del grupo de Compose y elige la opción de eliminar el proyecto. Revisa la lista de contenedores. Se detendrán los que estén en ejecución y se eliminarán las redes del proyecto que queden sin usar. La eliminación de volúmenes es opcional. Los archivos de Compose y los directorios montados desde el host se conservan.",
           "zh": "1. 在容器菜单中选择「删除容器」。核对名称和主机；如果容器正在运行，请确认可以先停止它。\n2. 卷和网络默认均未选中。只勾选要删除的可选资源。受保护的资源旁会显示原因。共享卷、Docker 内置网络和绑定挂载的主机文件会保留。确认后逐项查看处理结果。\n\n要删除整个项目，请打开 Compose 组的菜单并选择删除 Compose 项目。核对容器列表。运行中的容器将停止，项目中不再使用的网络将被删除。可以单独勾选删除卷。Compose 文件和绑定挂载的主机目录会保留。"
+        }
+      },
+      {
+        "id": "engine-storage",
+        "title": {
+          "ru": "Образы, сети, место на диске и события",
+          "en": "Images, networks, disk usage and events",
+          "es": "Imágenes, redes, uso de disco y eventos",
+          "zh": "镜像、网络、磁盘用量和事件"
+        },
+        "body": {
+          "ru": "Откройте Docker и подключитесь к движку. В «Образы» откройте карточку образа или его контекстное меню. В «Сети» разверните карточку, чтобы посмотреть подсеть, шлюз и подключённые контейнеры.\n\nВ «Место на диске» сравните объём образов, контейнеров, томов и кэша сборки. Доступное для освобождения место отображается там, где движок вернул эти данные. Чтобы узнать, когда контейнер остановился или перезапустился, откройте «События» и отфильтруйте список по имени.",
+          "en": "Open Docker and connect to an engine. In Images, open an image card or its context menu. In Networks, expand a card to see its subnet, gateway and attached containers.\n\nOpen Disk usage to compare storage used by images, containers, volumes and build cache. Reclaimable space appears where the engine reports it. To find when a container stopped or restarted, open Events and filter by name.",
+          "es": "Abre Docker y conéctate a un motor. En Imágenes, abre la ficha o el menú contextual de una imagen. En Redes, despliega una ficha para ver la subred, la puerta de enlace y los contenedores conectados.\n\nEn Uso de disco, compara lo que ocupan las imágenes, los contenedores, los volúmenes y la caché de compilación. El espacio recuperable se muestra cuando el motor lo informa. Para ver cuándo se detuvo o reinició un contenedor, abre Eventos y filtra por nombre.",
+          "zh": "打开 Docker 并连接到引擎。在镜像页打开镜像卡片或右键菜单。在网络页展开卡片即可查看子网、网关和已连接的容器。\n\n打开磁盘用量，对比镜像、容器、卷和构建缓存占用的空间。引擎提供可回收空间数据时也会显示。要查找容器停止或重启的时间，请打开事件并按名称筛选。"
         }
       }
     ]
@@ -8387,13 +8593,13 @@ export const guideSections = [
       {
         "name": "docker-kube-wizard",
         "caption": {
-          "ru": "Перед созданием манифеста сверьте контекст кластера, namespace, digest образа и порт приложения.",
-          "en": "Before generating the manifest, check the cluster context, namespace, image digest, and application port.",
-          "es": "Antes de generar el manifiesto, comprueba el contexto del clúster, el namespace, el digest de la imagen y el puerto de la aplicación.",
-          "zh": "生成清单前，请确认集群上下文、命名空间、镜像摘要和应用端口。"
+          "ru": "Публикация из серверной папки /srv/shop-api с выбором платформ Linux.",
+          "en": "Publish from /srv/shop-api on the SSH server with the target Linux platforms selected.",
+          "es": "Publicación desde /srv/shop-api en el servidor SSH con las plataformas Linux elegidas.",
+          "zh": "从 SSH 服务器上的 /srv/shop-api 构建并发布镜像，可选择目标 Linux 平台。"
         },
-        "width": 1500,
-        "height": 960,
+        "width": 1440,
+        "height": 900,
         "locales": [
           "ru",
           "en",
@@ -8413,10 +8619,10 @@ export const guideSections = [
           "zh": "将容器部署到 Kubernetes"
         },
         "body": {
-          "ru": "1. Откройте карточку Linux-контейнера без постоянных томов и выберите «Развернуть в Kubernetes · Экспериментально». Выберите сохранённый контекст Kubernetes и namespace. Проверьте имя рабочей нагрузки и TCP-порт приложения внутри контейнера.\n2. Для автоподстановки мастер проверяет digest образа в исходном реестре через Docker. Если образ существует только локально, опубликуйте его в доступном узлам реестре и введите полный адрес с тегом или digest. Для закрытого реестра при необходимости укажите существующий imagePullSecret в выбранном namespace.\n3. Выберите шаблон или провайдера ИИ. Проверьте YAML, в том числе image, command, args и port. Выполните проверку на сервере. Она проверяет принятие манифеста Kubernetes. Скачивание образа и старт процесса проверяются при запуске Pod. Затем подтвердите создание Deployment с одной репликой и внутреннего Service типа ClusterIP.\n4. Нажмите «Проверить готовность». При ImagePullBackOff сверьте адрес образа и право узла на скачивание. При CrashLoopBackOff проверьте команду и аргументы, код выхода и число перезапусков. Код 0 у постоянно перезапускающегося Pod может означать, что процесс выполнился и вышел. Откройте созданный Deployment, чтобы изучить состояние Pod.",
-          "en": "1. Open a Linux container that runs without persistent mounts and choose Deploy to Kubernetes · Experimental. Select a saved Kubernetes context and namespace. Verify the workload name and the TCP port the application listens on inside the container.\n2. The wizard uses Docker to verify the image digest in its source registry before filling it in. If the image exists only locally, publish it to a registry reachable by the nodes and enter its full reference with a tag or digest. If needed for a private registry, specify an existing imagePullSecret in the selected namespace.\n3. Use the template or select an AI provider. Review the YAML, including image, command, args, and port. Run the server check to validate both manifests. The node pulls the image and starts the process when the Pod launches. Confirm creation of the single-replica Deployment and internal ClusterIP Service.\n4. Check readiness. For ImagePullBackOff, check the image reference and the node’s pull access. For CrashLoopBackOff, inspect the command, arguments, exit code, and restart count. Exit code 0 on a repeatedly restarted Pod can mean its process finished and exited. Open the created Deployment to inspect the Pod.",
-          "es": "1. Abre un contenedor Linux que funcione sin montajes persistentes y elige el despliegue experimental en Kubernetes. Selecciona un contexto guardado y el namespace. Comprueba el nombre de la carga y el puerto TCP en el que escucha la aplicación dentro del contenedor.\n2. El asistente usa Docker para comprobar el digest en el registro de origen antes de rellenar el campo. Si la imagen solo existe en local, publícala en un registro accesible para los nodos e introduce la referencia completa con etiqueta o digest. Para un registro privado, indica si hace falta un imagePullSecret existente en el namespace elegido.\n3. Usa la plantilla o selecciona un proveedor de IA. Revisa el YAML, incluidos image, command, args y port. Ejecuta la comprobación del servidor para validar los manifiestos. El nodo descarga la imagen e inicia el proceso cuando arranca el Pod. Confirma la creación del Deployment de una réplica y del Service interno de tipo ClusterIP.\n4. Comprueba la disponibilidad. Ante ImagePullBackOff, revisa la referencia de la imagen y los permisos de descarga del nodo. Ante CrashLoopBackOff, examina el comando, los argumentos, el código de salida y el número de reinicios. Un código 0 con reinicios repetidos puede indicar que el proceso terminó. Abre el Deployment creado para examinar el Pod.",
-          "zh": "1. 打开不依赖持久挂载的 Linux 容器，在详情中选择部署到 Kubernetes 的实验功能。选择已保存的 Kubernetes 上下文和命名空间。核对工作负载名称和容器内应用监听的 TCP 端口。\n2. 向导会通过 Docker 在源镜像仓库中验证摘要，然后自动填入镜像。如果镜像只存在于本机，请先发布到集群节点可访问的仓库，再输入带标签或摘要的完整地址。对于私有仓库，可指定所选命名空间中已有的 imagePullSecret。\n3. 使用模板或选择 AI 提供方。检查 YAML，尤其是 image、command、args 和 port。运行服务器检查以验证清单。节点会在 Pod 启动时拉取镜像并运行进程。确认后将创建单副本 Deployment 和内部 ClusterIP Service。\n4. 检查就绪状态。对于 ImagePullBackOff，核对镜像地址及节点的拉取权限。对于 CrashLoopBackOff，检查启动命令、参数、退出码和重启次数。反复重启且退出码为 0 可能表示进程执行完毕后自行退出。打开已创建的 Deployment 可以查看 Pod 状态。"
+          "ru": "1. В Docker откройте карточку Linux-контейнера без постоянных томов и выберите «Развернуть в Kubernetes». Укажите контекст, namespace, имя и TCP-порт приложения.\n2. Выберите сохранённый реестр. Кнопка «+» добавляет учётную запись Docker Hub, Harbor, GitLab, Forgejo или другого совместимого реестра. Укажите репозиторий и тег. Кнопка загрузки отправляет готовый образ с выбранного Docker-хоста.\n3. Чтобы получить образ для разных архитектур, включите сборку из исходников. На компьютере выберите локальную папку с Dockerfile. Для SSH-движка укажите абсолютный путь к проекту на том сервере. Выберите linux/amd64, linux/arm64 или оба варианта и запустите сборку и публикацию. На хосте должны быть доступны Buildx и сборщик для выбранных платформ. Телефон также может запустить сборку на SSH-хосте.\n4. После успешной публикации проверьте подставленный адрес с тегом. Если нужна неизменяемая версия, выберите привязку к digest. Для закрытого реестра укажите существующий imagePullSecret в этом namespace.\n5. Используйте шаблон или выберите провайдера ИИ. Перед отправкой можно дополнить запрос. Проверьте итоговый YAML и команду запуска, подтвердите выбор образа и нажмите «Проверить на сервере». Затем создайте Deployment с одной репликой и внутренний Service ClusterIP.\n6. Если Pod показывает ImagePullBackOff, откройте сам Pod и его события. Причина Failed обычно содержит ответ реестра, например об отсутствующем теге, доступе или неподходящей платформе. События Deployment показывают ход создания ReplicaSet.",
+          "en": "1. In Docker, open a Linux container without persistent mounts and choose Deploy to Kubernetes. Select the context and namespace, workload name and application TCP port.\n2. Select a saved registry. Use + to save an account for Docker Hub, Harbor, GitLab, Forgejo or a compatible registry. Enter the repository and tag. Publish image pushes the existing image from the selected Docker host.\n3. To publish multiple architectures, enable building from source. For a local engine, select a project folder with a Dockerfile. For an SSH engine, enter the absolute project path on that server. Select linux/amd64, linux/arm64 or both, then build and publish. The host needs Buildx and a builder that supports the selected platforms. A phone can also start a build on an SSH host.\n4. After publication, check the image reference filled in with the tag. Enable digest pinning if you need an immutable version. For a private registry, enter an existing imagePullSecret from the same namespace.\n5. Use the template or select an AI provider. You can edit the prompt before sending it. Review the resulting YAML and startup command, confirm the image selection and run the server check. Then create the single-replica Deployment and internal ClusterIP Service.\n6. If a Pod shows ImagePullBackOff, open that Pod and its events. A Failed event usually includes the registry’s response about the tag, pull access or platform. Deployment events show ReplicaSet activity.",
+          "es": "1. En Docker, abre un contenedor Linux sin volúmenes persistentes y elige Desplegar en Kubernetes. Selecciona el contexto, el espacio de nombres, el nombre de la carga y el puerto TCP de la aplicación.\n2. Selecciona un registro guardado. Usa + para guardar una cuenta de Docker Hub, Harbor, GitLab, Forgejo u otro registro compatible. Escribe el repositorio y la etiqueta. Publicar imagen envía la imagen existente desde el host Docker elegido.\n3. Para publicar varias arquitecturas, activa la compilación desde el código fuente. Para un motor local, selecciona la carpeta del proyecto con el Dockerfile. Para un motor SSH, indica la ruta absoluta del proyecto en ese servidor. Elige linux/amd64, linux/arm64 o ambas y pulsa compilar y publicar. El host necesita Buildx y un constructor compatible con las plataformas elegidas. También puedes iniciar una compilación en un host SSH desde el teléfono.\n4. Tras publicar, comprueba la referencia con etiqueta que aparece en el campo de imagen. Puedes fijar el digest si necesitas una versión inmutable. Para un registro privado, indica un imagePullSecret existente en el mismo espacio de nombres.\n5. Usa la plantilla o elige un proveedor de IA. Puedes editar la petición antes de enviarla. Revisa el YAML y el comando de inicio, confirma la imagen y ejecuta la validación en el servidor. Después crea el Deployment de una réplica y el Service interno de tipo ClusterIP.\n6. Si un Pod muestra ImagePullBackOff, abre sus eventos. Un evento Failed suele incluir la respuesta del registro sobre la etiqueta, los permisos o la plataforma. Los eventos del Deployment describen la actividad del ReplicaSet.",
+          "zh": "1. 在 Docker 中打开一个未挂载持久卷的 Linux 容器，选择部署到 Kubernetes。指定上下文、命名空间、工作负载名称及应用监听的 TCP 端口。\n2. 选择已保存的镜像仓库，或点击 + 添加 Docker Hub、Harbor、GitLab、Forgejo 或其他兼容仓库的账户。输入仓库路径和标签。发布镜像会从所选 Docker 主机推送已有镜像。\n3. 如需构建多架构镜像，请启用从源码构建。本地引擎需要选择含 Dockerfile 的项目文件夹；SSH 引擎则需要输入该服务器上项目的绝对路径。选择 linux/amd64、linux/arm64 或两者，然后构建并发布。主机需要安装 Buildx，并使用支持所选平台的构建器。手机也可以在 SSH 主机上启动构建。\n4. 发布后检查自动填入的带标签镜像地址。需要固定版本时可选择按 digest 锁定。使用私有仓库时，输入同一命名空间中已有的 imagePullSecret。\n5. 使用模板或选择 AI 提供方。发送前可以补充提示词。检查生成的 YAML 和启动命令，确认镜像并运行服务器端验证，然后创建单副本 Deployment 和内部 ClusterIP Service。\n6. 如果 Pod 显示 ImagePullBackOff，请打开该 Pod 的事件。Failed 事件通常包含镜像仓库对标签、拉取权限或平台的具体响应。Deployment 的事件用于查看 ReplicaSet 的变更。"
         }
       }
     ]
