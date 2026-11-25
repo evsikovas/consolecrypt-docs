@@ -1,6 +1,6 @@
 # ConsoleCrypt reference
 
-[Illustrated guide](../../../guide/en.md) · [Download ConsoleCrypt 1.2.3](https://consolecrypt.dev/download?lang=en)
+[Illustrated guide](../../../guide/en.md) · [Download ConsoleCrypt 1.2.5](https://consolecrypt.dev/download?lang=en)
 
 ## Using the app
 

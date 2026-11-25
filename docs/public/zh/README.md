@@ -1,6 +1,6 @@
 # ConsoleCrypt 技术参考
 
-[图文使用指南](../../../guide/zh.md) · [下载 ConsoleCrypt 1.2.3](https://consolecrypt.dev/download?lang=zh)
+[图文使用指南](../../../guide/zh.md) · [下载 ConsoleCrypt 1.2.5](https://consolecrypt.dev/download?lang=zh)
 
 ## 使用客户端
 

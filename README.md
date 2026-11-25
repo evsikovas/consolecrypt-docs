@@ -1,6 +1,6 @@
 # ConsoleCrypt — документация
 
-Руководство описывает клиент 1.2.3. [Скачать ConsoleCrypt](https://consolecrypt.dev/download?lang=ru) · [Проверки релиза](https://github.com/evsikovas/consolecrypt-client/actions/runs/45073808256)
+Руководство описывает клиент 1.2.5. [Скачать ConsoleCrypt](https://consolecrypt.dev/download?lang=ru) · [Проверки релиза](https://github.com/evsikovas/consolecrypt-client/actions/runs/45512273279)
 
 | Язык | Руководство со скриншотами | Техническая документация и выпуски |
 | --- | --- | --- |
@@ -47,25 +47,25 @@
 - [Исправление комплекта восстановления на телефоне](docs/public/RELEASE_0_5_6.md).
 - [Linux](docs/public/BUILD_LINUX.md).
 - [macOS и Android](docs/public/BUILDING.md), [Windows](docs/public/BUILD_WINDOWS.md), [iOS Simulator](docs/public/BUILD_IOS.md).
-- [Обновления](docs/public/UPDATES.md), [версия 1.2.3](docs/public/RELEASE_1_2_3.md), [версия 1.2.1](docs/public/RELEASE_1_2_1.md), [версия 1.2.0](docs/public/RELEASE_1_2_0.md), [версия 1.1.3](docs/public/RELEASE_1_1_3.md), [версия 1.1.0](docs/public/RELEASE_1_1_0.md), [версия 1.0.6](docs/public/RELEASE_1_0_6.md), [версия 1.0.4](docs/public/RELEASE_1_0_4.md), [версия 1.0.1](docs/public/RELEASE_1_0_1.md), [версия 1.0.0](docs/public/RELEASE_1_0_0.md), [версия 0.9.15](docs/public/RELEASE_0_9_15.md), [версия 0.9.14](docs/public/RELEASE_0_9_14.md), [версия 0.9.2](docs/public/RELEASE_0_9_2.md), [версия 0.9.1](docs/public/RELEASE_0_9_1.md), [версия 0.8.6](docs/public/RELEASE_0_8_6.md), [версия 0.8.5](docs/public/RELEASE_0_8_5.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
+- [Обновления](docs/public/UPDATES.md), [версия 1.2.5](docs/public/RELEASE_1_2_5.md), [версия 1.2.3](docs/public/RELEASE_1_2_3.md), [версия 1.2.1](docs/public/RELEASE_1_2_1.md), [версия 1.2.0](docs/public/RELEASE_1_2_0.md), [версия 1.1.3](docs/public/RELEASE_1_1_3.md), [версия 1.1.0](docs/public/RELEASE_1_1_0.md), [версия 1.0.6](docs/public/RELEASE_1_0_6.md), [версия 1.0.4](docs/public/RELEASE_1_0_4.md), [версия 1.0.1](docs/public/RELEASE_1_0_1.md), [версия 1.0.0](docs/public/RELEASE_1_0_0.md), [версия 0.9.15](docs/public/RELEASE_0_9_15.md), [версия 0.9.14](docs/public/RELEASE_0_9_14.md), [версия 0.9.2](docs/public/RELEASE_0_9_2.md), [версия 0.9.1](docs/public/RELEASE_0_9_1.md), [версия 0.8.6](docs/public/RELEASE_0_8_6.md), [версия 0.8.5](docs/public/RELEASE_0_8_5.md), [версия 0.6.4](docs/public/RELEASE_0_6_4.md).
 - [GitHub Actions и раннеры](docs/public/GITHUB_ACTIONS.md).
 - [Подписание и продление ленты обновлений](docs/public/UPDATE_FEED_PUBLISHER.md).
 - [Рабочий сайт](https://consolecrypt.dev/guide?lang=ru).
 
-## Готовые сборки 1.2.3
+## Готовые сборки 1.2.5
 
-Семь файлов прямой загрузки собраны из одного тега [v1.2.3](https://github.com/evsikovas/consolecrypt-client/releases/tag/v1.2.3).
-Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/SHA256SUMS-1.2.3.txt).
+Семь файлов прямой загрузки собраны из одного тега [v1.2.5](https://github.com/evsikovas/consolecrypt-client/releases/tag/v1.2.5).
+Перед установкой сверьте файл с [SHA-256 релиза](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/SHA256SUMS-1.2.5.txt).
 
 | Платформа | Сборка | Файл | Размер, байт |
 | --- | --- | --- | ---: |
-| macOS, Apple Silicon и Intel | 1.2.3+91011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/ConsoleCrypt-1.2.3%2B91011-macos-universal.dmg) | 254 593 631 |
-| Windows x64 | 1.2.3+91012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/ConsoleCrypt-1.2.3%2B91012-windows-x64-setup.exe) | 61 064 063 |
-| Windows x64 | 1.2.3+91012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/ConsoleCrypt-1.2.3%2B91012-windows-x64.zip) | 91 107 732 |
-| Linux x64 | 1.2.3+91013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/ConsoleCrypt-1.2.3%2B91013-linux-x64.deb) | 68 833 228 |
-| Linux x64 | 1.2.3+91013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/ConsoleCrypt-1.2.3%2B91013-linux-x64.rpm) | 94 497 351 |
-| Android ARM64 | 1.2.3+91014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/ConsoleCrypt-1.2.3%2B91014-android-arm64.apk) | 152 254 354 |
-| iOS Simulator на Mac (не iPhone) | 1.2.3+91015 | [Simulator ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.3/ConsoleCrypt-1.2.3%2B91015-ios-simulator-universal.zip) | 276 336 047 |
+| macOS, Apple Silicon и Intel | 1.2.5+93011 | [DMG](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/ConsoleCrypt-1.2.5%2B93011-macos-universal.dmg) | 255 898 863 |
+| Windows x64 | 1.2.5+93012 | [EXE](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/ConsoleCrypt-1.2.5%2B93012-windows-x64-setup.exe) | 61 437 456 |
+| Windows x64 | 1.2.5+93012 | [Portable ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/ConsoleCrypt-1.2.5%2B93012-windows-x64.zip) | 91 677 320 |
+| Linux x64 | 1.2.5+93013 | [DEB](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/ConsoleCrypt-1.2.5%2B93013-linux-x64.deb) | 69 384 864 |
+| Linux x64 | 1.2.5+93013 | [RPM](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/ConsoleCrypt-1.2.5%2B93013-linux-x64.rpm) | 95 201 242 |
+| Android ARM64 | 1.2.5+93014 | [APK](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/ConsoleCrypt-1.2.5%2B93014-android-arm64.apk) | 154 305 320 |
+| iOS Simulator на Mac (не iPhone) | 1.2.5+93015 | [Simulator ZIP](https://github.com/evsikovas/consolecrypt-client/releases/download/v1.2.5/ConsoleCrypt-1.2.5%2B93015-ios-simulator-universal.zip) | 277 922 330 |
 
 Приложение для Android в магазине · [ConsoleCrypt в RuStore](https://www.rustore.ru/catalog/app/io.consolecrypt.consolecrypt).
 
@@ -117,5 +117,5 @@ node scripts/render-guide.mjs . .
 node scripts/render-guide.mjs . . --check
 ```
 
-Генератор проверяет обе локали, структуру глав, наличие изображений,
+Генератор проверяет четыре локали, структуру глав, наличие изображений,
 размеры PNG и SHA-256 по манифесту. Режим `--check` не изменяет файлы.

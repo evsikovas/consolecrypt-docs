@@ -1,6 +1,6 @@
 # Referencia de ConsoleCrypt
 
-[Guía con capturas de pantalla](../../../guide/es.md) · [Descargar ConsoleCrypt 1.2.3](https://consolecrypt.dev/download?lang=es)
+[Guía con capturas de pantalla](../../../guide/es.md) · [Descargar ConsoleCrypt 1.2.5](https://consolecrypt.dev/download?lang=es)
 
 ## Uso de la aplicación
 

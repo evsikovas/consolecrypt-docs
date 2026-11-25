@@ -1,6 +1,6 @@
 # Справочник ConsoleCrypt
 
-[Руководство со скриншотами](../../guide/ru.md) · [Скачать ConsoleCrypt 1.2.3](https://consolecrypt.dev/download?lang=ru)
+[Руководство со скриншотами](../../guide/ru.md) · [Скачать ConsoleCrypt 1.2.5](https://consolecrypt.dev/download?lang=ru)
 
 ## Работа в приложении
 
